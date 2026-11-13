@@ -1,0 +1,20 @@
+# Test queries
+
+Run after every significant change. Note what broke.
+
+| # | Input | Must contain |
+|---|---|---|
+| 1 | Czech citizen moving to Helsinki on 1 Sept for a job, also starting a master's at Aalto | DVV is the critical node; tax card early (no bank needed); bank after DVV; 60 % withholding warning |
+| 2 | Brazilian PhD student moving to Tampere with my wife | Residence permit / Migri; family member steps; Tampere offices, not Helsinki |
+| 3 | Swedish citizen moving to Espoo for work | Nordic-specific registration path (different from EU) |
+| 4 | Indian software engineer, Helsinki, arriving next week, no residence permit card yet | Permit card dependency; strong ID blocked until bank; police ID card in person |
+| 5 | German exchange student, Helsinki, 5 months | Short stay; may not need full bank credentials; DVV via university check-in |
+| 6 | Ukrainian under temporary protection, Helsinki | Different rules; basic banking without personal ID code (FIN-FSA) |
+| 7 | I want to open a bank account in Finland, I am EU citizen | Conflict shown: OP says ID code required vs FIN-FSA basic banking |
+| 8 | Out of scope: "Plan my wedding in Rome" | Polite refusal + explains scope |
+
+Check for every query:
+- every edge has a citation with a real quote
+- community tips are labelled as community
+- calendar links open with correct title, date and location
+- total time < 60 s, progress streams
