@@ -29,6 +29,7 @@ People moving to Finland (workers, students, families). Scope: Helsinki region f
 
 ## Official domains (starting list)
 dvv.fi, vero.fi, migri.fi, enterfinland.fi, kela.fi, poliisi.fi, suomi.fi, infopankki.fi, ihhelsinki.fi, finanssivalvonta.fi, hel.fi, myhelsinki.fi
++ the profile city's municipal domain (`<city>.fi`, e.g. tampere.fi, espoo.fi), added per run and labelled official.
 
 ## University / semi-official
 aalto.fi, helsinki.fi, studies.helsinki.fi, hanken.fi, uniarts.fi, tuni.fi
@@ -64,7 +65,7 @@ type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 
 ## Pipeline
 1. `parseProfile(text)` LLM (Haiku/Sonnet) → Profile
-2. `findSteps(profile)` Exa search, official domains, `contents.highlights`, deep mode for synthesis → Step[] with citations
+2. `findSteps(profile)` parallel Exa `auto` searches (one per authority), official domains, `contents.highlights` → Claude extracts steps/edges citing numbered highlight sentences → `verifyCitations` → Step[] with citations. (Not `deep`: its `output.grounding` gives url+title only, no quotes. See docs/exa-response-shapes.md.)
 3. `findCommunityTips(steps)` Exa search without domain filter, forums and guides → tips + conflicts
 4. `buildGraph(steps)` → topological order, critical node, critical path length
 5. `toCalendar(steps)` → Google template links + .ics

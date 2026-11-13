@@ -1,0 +1,40 @@
+{
+  "fetchedAt": "2026-11-13T23:45:58.484Z",
+  "request": {
+    "endpoint": "contents",
+    "urls": [
+      "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/"
+    ],
+    "text": {
+      "maxCharacters": 20000
+    }
+  },
+  "response": {
+    "requestId": "27fba56551668187ca61d77937f6c159",
+    "results": [
+      {
+        "id": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+        "title": "Opening a Finnish Bank Account: A Step-by-Step Guide",
+        "url": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+        "publishedDate": "2024-11-20T09:37:29.000Z",
+        "author": "Mariah O'Mara",
+        "text": "Opening a Finnish Bank Account: A Step-by-Step Guide\n\n# The essential guide to finance in Finland: Opening a Finnish bank account\n\nAs you unpack and start to explore the vibrant city of Helsinki, one of the first steps in establishing your new life here is opening a Finnish bank account. This key move isn’t just about setting up a place to receive your salary or pay bills – it’s your entry ticket to seamlessly experiencing everything Finland has to offer, from convenient grocery shopping to smooth online identification. Here’s your easy guide to getting started with banking in Finland.\n\nGetting settled \n\n \n\n20 Nov 2024\n\n## Finding the right bank for you\n\nChoosing a bank in Finland is relatively easy, though it does require a bit of careful consideration to ensure you pick the best fit. Each bank offers something unique, and finding the one that matches your lifestyle will help ensure a smooth transition to the Finnish way of life. \n\nFinland is home to several reputable banks that offer a range of services to both locals and international residents. The most popular banks like Nordea, OP Financial Group, Danske Bank, Aktia Bank, Ålandsbanken and S-pankki offer widespread services and branches throughout Finland. They’re known for providing a broad range of financial products and personalized customer service. \n\nIn Finland, some banks operate under a unique ownership model where customers also become shareholders. Notably, OP Bank and S-Bank embrace this approach, empowering their account holders not merely as customers but as integral parts of the bank’s ownership structure all the while providing some additional benefits.\n\nMany banks offer services in several languages, ensuring that you can get help and advice in a language you’re comfortable with.\n\n## What do you need to open an Finnish bank account?\n\nThe process to open a bank account in Finland is straightforward but requires a few critical pieces of documentation. Finland’s banks are ready to welcome you, whether you prefer to meet face-to-face or handle things digitally.\n\n### 1. Essential documents \n\nBe prepared to show proof of identity (passport or national ID card), your Finnish personal identity code, proof of your local address, and details of your employment or study arrangements in Finland.\n\n### 2. Utilizing your new bank account \n\nAfter opening your account, you will receive your debit card code through mail, soon followed by your debit card for extra safety. You will also receive online banking access, equipping you with all you need to manage your finances effectively in your new home.\n\n### 3. Explore banking tools \n\nTake the time to explore the digital banking tools at your disposal. Finnish banks typically offer advanced online and mobile platforms that make everyday banking effortless.\n\n### 4. Consider additional services \n\nConsider whether you might benefit from other banking offerings like credit cards, savings accounts, or investment services. \n\n## Opening a Finnish bank account enables strong identification\n\nIn Finland, having a bank account is often linked to strong electronic identification (e-identification), a system that provides a secure and verified method for confirming one’s identity online.\n\nThis form of identification is integral for accessing a wide array of digital services, from government portals to private sector services like healthcare and e-commerce. It serves as a digital passport that streamlines and secures transactions across various platforms, enhancing both smooth transactions and security.\n\nPhoto Maija Astikainen\n\nOpening a Finnish bank account is one of the most crucial steps in settling into Finland. It links you directly to the local economy and provides the financial tools needed to navigate your new life. With your bank account sorted, you’re ready to immerse yourself fully in the Finnish experience.",
+        "image": "https://www.myhelsinki.fi/wp-content/uploads/2025/01/customer-service-with-a-tablet-1.jpg"
+      }
+    ],
+    "statuses": [
+      {
+        "id": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+        "status": "success",
+        "source": "cached"
+      }
+    ],
+    "costDollars": {
+      "total": 0.001,
+      "contents": {
+        "text": 0.001
+      }
+    },
+    "searchTime": 5.546835999994073
+  }
+}
