@@ -6,7 +6,7 @@ config({ path: ".env.local" });
 
 import { cacheMode } from "../lib/exa/cache";
 import { cityDomains, officialDomains, trustOf } from "../lib/exa/domains";
-import { exaSearch, fetchContents, searchCommunity, searchOfficial } from "../lib/exa/search";
+import { exaSearch, getPages, searchCommunity, searchOfficial } from "../lib/exa/search";
 import type { ExaDoc } from "../lib/types";
 
 let failures = 0;
@@ -92,7 +92,7 @@ async function main() {
 
   // 4) /contents on the top official URL
   if (off.docs[0]) {
-    const c = await fetchContents([off.docs[0].url], 20_000);
+    const c = await getPages([off.docs[0].url], { maxCharacters: 20_000 });
     const text = c.docs[0]?.text ?? "";
     console.log(`\n[4] contents: ${c.meta.ms} ms (cache ${c.meta.hit ? "hit" : "miss"}), ${text.length} chars from ${off.docs[0].url}`);
     check(text.length > 200, "contents returned page text");

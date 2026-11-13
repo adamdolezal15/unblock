@@ -31,12 +31,16 @@ export type Conflict = { topic: string; a: Citation; b: Citation; note: string }
 export type ExaDoc = {
   url: string;
   title: string;
+  domain: string; // hostname without www.
   trust: Trust;
   highlights: string[];
-  text?: string; // only from fetchContents()
+  text?: string; // only from getPages()
   publishedDate?: string;
   fetchedAt: string; // when Exa returned it (cache write time)
 };
+
+/** Alias used in the Exa layer docs. */
+export type ExaHit = ExaDoc;
 
 /** One planned search (pipeline step 2a). */
 export type SearchSpec = {

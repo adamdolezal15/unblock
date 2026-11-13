@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# exa response cache (saves credits; force-add files needed for the offline demo)
+/.cache
