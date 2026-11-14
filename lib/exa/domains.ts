@@ -25,6 +25,28 @@ export const UNIVERSITY = [
   "tuni.fi",
 ] as const;
 
+// Banks and service providers stating their own rules.
+export const PROVIDER = [
+  "op.fi",
+  "nordea.fi",
+  "s-pankki.fi",
+  "danskebank.fi",
+  "spankki.fi",
+  "poppankki.fi",
+  "aktia.fi",
+] as const;
+
+export const NEWS = ["yle.fi", "hs.fi", "helsinkitimes.fi"] as const;
+
+/** Conflict ranking: higher number = more trusted. official > provider > university > news > community. */
+export const TRUST_RANK: Record<Trust, number> = {
+  official: 4,
+  provider: 3,
+  university: 2,
+  news: 1,
+  community: 0,
+};
+
 // Cities whose municipal domain is not simply <slug>.fi.
 const CITY_DOMAIN_OVERRIDES: Record<string, string> = {
   helsinki: "hel.fi",
@@ -76,5 +98,7 @@ export function trustOf(url: string, extraOfficial: string[] = []): Trust {
   // and studies.helsinki.fi is a subdomain of helsinki.fi.
   if (UNIVERSITY.some((d) => hostMatches(host, d))) return "university";
   if ([...OFFICIAL, ...extraOfficial].some((d) => hostMatches(host, d))) return "official";
+  if (PROVIDER.some((d) => hostMatches(host, d))) return "provider";
+  if (NEWS.some((d) => hostMatches(host, d))) return "news";
   return "community";
 }

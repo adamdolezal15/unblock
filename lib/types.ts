@@ -1,6 +1,6 @@
 // Shared data shapes. SPEC.md "Data shapes" is the source of truth; keep in sync.
 
-export type Trust = "official" | "university" | "community";
+export type Trust = "official" | "provider" | "university" | "news" | "community";
 
 export type Profile = {
   citizenship: "EU" | "NON_EU" | "NORDIC";

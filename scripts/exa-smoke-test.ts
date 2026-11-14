@@ -5,8 +5,8 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 
 import { cacheMode } from "../lib/exa/cache";
-import { cityDomains, officialDomains, trustOf } from "../lib/exa/domains";
-import { exaSearch, getPages, searchCommunity, searchOfficial } from "../lib/exa/search";
+import { cityDomains, officialDomains, trustOf, TRUST_RANK } from "../lib/exa/domains";
+import { exaSearch, getPages, searchCommunity, searchOfficial, searchProvider } from "../lib/exa/search";
 import type { ExaDoc } from "../lib/types";
 
 let failures = 0;
@@ -34,6 +34,14 @@ async function main() {
   check(trustOf("https://www.hel.fi/en") === "official", "hel.fi -> official");
   check(trustOf("https://www.reddit.com/r/Finland") === "community", "reddit -> community");
 
+  check(trustOf("https://www.op.fi/henkiloasiakkaat") === "provider", "op.fi -> provider");
+  check(trustOf("https://yle.fi/a/1") === "news", "yle.fi -> news");
+  check(
+    TRUST_RANK.official > TRUST_RANK.provider && TRUST_RANK.provider > TRUST_RANK.university &&
+      TRUST_RANK.university > TRUST_RANK.news && TRUST_RANK.news > TRUST_RANK.community,
+    "TRUST_RANK order official > provider > university > news > community",
+  );
+
   // 1) Official layer, highlights
   const officialArgs = {
     query: "What do I need to open a bank account in Finland as a newcomer? Personal identity code, registration requirements",
@@ -58,6 +66,17 @@ async function main() {
   printDocs(com.docs);
   check(com.docs.length > 0, "community search returned results");
   console.log(`  info: op.fi present = ${com.docs.some((d) => d.url.includes("op.fi"))}`);
+
+  // 2b) Provider layer: what banks themselves say (op.fi was missing from the community run)
+  const prov = await searchProvider("Opening a bank account in Finland as a foreigner without a Finnish personal identity code", {
+    objective: "Find bank pages stating what a newcomer needs to open an account, and whether a Finnish personal identity code is required.",
+  });
+  console.log(`
+[2b] provider search: ${prov.meta.ms} ms (cache ${prov.meta.hit ? "hit" : "miss"}), ${prov.docs.length} results`);
+  printDocs(prov.docs);
+  check(prov.docs.length > 0, "provider search returned results");
+  check(prov.docs.every((d) => d.trust === "provider"), "all provider results labelled provider");
+  console.log(`  info: op.fi present = ${prov.docs.some((d) => d.url.includes("op.fi"))}`);
 
   // 3) Deep + outputSchema (option A, kept for comparison only)
   const deep = await exaSearch({

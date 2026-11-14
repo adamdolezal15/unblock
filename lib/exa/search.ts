@@ -4,7 +4,7 @@
 import type { ExaDoc } from "../types";
 import { cached } from "./cache";
 import { exa } from "./client";
-import { cityDomains, officialDomains, trustOf, UNIVERSITY } from "./domains";
+import { cityDomains, officialDomains, PROVIDER, trustOf, UNIVERSITY } from "./domains";
 
 /** Dev budget from CLAUDE.md: numResults <= 5. */
 export const DEFAULT_NUM_RESULTS = 5;
@@ -133,6 +133,23 @@ export async function searchOfficial(args: {
   });
   logCall("searchOfficial", args.query, meta, response.results.length);
   return { docs: toDocs(response, meta.fetchedAt, cityDomains(args.city)), meta };
+}
+
+/** Provider layer: only bank / service-provider domains, to find what providers themselves state. */
+export async function searchProvider(
+  query: string,
+  opts: { objective?: string; numResults?: number } = {},
+): Promise<{ docs: ExaDoc[]; meta: SearchMeta }> {
+  const { response, meta } = await exaSearch({
+    query,
+    objective: opts.objective ?? query,
+    type: "auto",
+    numResults: opts.numResults ?? DEFAULT_NUM_RESULTS,
+    includeDomains: [...PROVIDER],
+    contents: { highlights: true },
+  });
+  logCall("searchProvider", query, meta, response.results.length);
+  return { docs: toDocs(response, meta.fetchedAt, []), meta };
 }
 
 /** Community layer: no domain filter; source preference lives in `objective`. */
