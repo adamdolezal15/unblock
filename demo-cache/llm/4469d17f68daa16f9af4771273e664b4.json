@@ -1,0 +1,73 @@
+{
+  "fetchedAt": "2026-11-14T14:12:28.182Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela) and Kela card",
+    "contextHash": "03537878b448f2ac",
+    "includeDomains": [],
+    "docsHash": "782d58583b73d579"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+          "Before you submit an application to Kela, make sure you have",
+          "You must have a bank account so that we can pay your benefits to you",
+          "You must also have a residence permit granted by the Finnish Immigration Service (migri.fi) if you need one to stay or work in Finland before you can get benefits from Kela",
+          "Working in Finland qualifies you for Kela benefits only if you earn at least EUR 800.02 per month in salary or wages from the work you do in Finland"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.514Z"
+      },
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "If you work in Finland and your wage amounts to EUR 800.02 per month or more, you can get certain Kela benefits as from the start of the employment, for instance sickness allowance (sairauspäiväraha"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.514Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.514Z"
+      },
+      {
+        "url": "https://www.kela.fi/coming-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "File a notification of your move in the OmaKela e-service (in Finnish or Swedish) or on the form Moving to Finland or employment in Finland Y 77e (PDF"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.514Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1283,
+      "costUsd": 0.004436,
+      "cacheHit": false
+    }
+  }
+}

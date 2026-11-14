@@ -1,0 +1,102 @@
+{
+  "fetchedAt": "2026-11-14T14:20:30.762Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Foreigner's identity card from the police",
+    "contextHash": "734046e7884f90d1",
+    "includeDomains": [],
+    "docsHash": "1cceb28f87b8a043"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+          "When applying for a foreigner’s identity card, you must present a valid passport or identity card"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/foreigners-identity-card-the-police/784cf477-b2b0-4799-8e86-c07a2b7d65b1",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "The police can issue identity cards to foreign citizens who reside in Finland permanently, whose details have been entered in the Population Information System, and who have a valid residence permit or residence card or whose right of residence has been registered"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Applying for the identity card requires a personal visit at the Police station"
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://www.kaleva.fi/oulun-poliisiaseman-passi-ja-henkilokorttijonot-ul/8111011",
+        "title": "kaleva.fi",
+        "domain": "kaleva.fi",
+        "trust": "community",
+        "highlights": [
+          "Tällä hetkellä seuraava vapaa aika on valittavissa kesäkuun puolenvälin jälkeen",
+          "Ajanvarausten lisäksi henkilöllisyystodistuksen voi uusia jonottamalla ilman ajanvarausta"
+        ],
+        "fetchedAt": "2026-11-14T14:12:20.721Z"
+      },
+      {
+        "url": "https://valtioneuvosto.fi/en/-/25235045/start-of-holiday-season-check-the-validity-of-your-passport-or-id-card-now",
+        "title": "valtioneuvosto.fi",
+        "domain": "valtioneuvosto.fi",
+        "trust": "community",
+        "highlights": [
+          "If you can’t find a suitable appointment time in the system immediately, it’s advisable to check the appointment times again, for example, the next day"
+        ],
+        "fetchedAt": "2026-11-14T14:12:20.721Z"
+      },
+      {
+        "url": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "title": "lifeaway.blog",
+        "domain": "lifeaway.blog",
+        "trust": "community",
+        "highlights": [
+          "Extra Important – The card will not be mailed to your home, but to a pick-up point of your choosing",
+          "Only someone with a Finnish-issued ID can collect the police card from the pick-up point",
+          "Bring your photo share code, DVV certificate, passport, and residence permit to your appointment"
+        ],
+        "fetchedAt": "2026-11-14T14:12:20.802Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2870,
+      "costUsd": 0.007204,
+      "cacheHit": false
+    }
+  }
+}

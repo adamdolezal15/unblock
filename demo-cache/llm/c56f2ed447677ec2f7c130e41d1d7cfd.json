@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T14:13:06.267Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "37b37bc731a01ee1",
+    "includeDomains": [],
+    "docsHash": "6e4e829775249a71"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "If you work in Finland and your wage amounts to EUR 800.02 per month or more, you can get certain Kela benefits as from the start of the employment, for instance sickness allowance (sairauspäiväraha"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+          "Before you submit an application to Kela, make sure you have"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF",
+          "Apply for a Kela card on the form Application Kela card SV 157e (PDF",
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "If you cannot get direct reimbursement at the private clinic, you can apply for it afterwards from Kela"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/social-security-benefits/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "To submit your applications to Kela, you can mail them and any necessary documents to: Kela, PL 10, 00056 KELA"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1274,
+      "costUsd": 0.004236,
+      "cacheHit": false
+    }
+  }
+}

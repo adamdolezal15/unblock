@@ -1,0 +1,85 @@
+{
+  "fetchedAt": "2026-11-14T14:20:51.885Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Personal identity code from a Vero tax office",
+    "contextHash": "e74b98d0840defaa",
+    "includeDomains": [],
+    "docsHash": "46056c39cb14d034"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "You can request a identity code from the Tax Administration if you need it for tax-related reasons when you start working in Finland",
+          "If you need a personal identity code and a tax card or tax number, you need to visit a service point",
+          "The processing time is usually 1 to 3 business days",
+          "a valid passport or official proof of identity with a photograph, from which you can be easily identified",
+          "an employment contract if you work for an employer who pays you wages",
+          "To book an appointment, call the Tax Administration’s telephone service at 029 497 010 (if you are calling from abroad, +358 29 497 010",
+          "You need to have a personal identity code to get a tax card or a tax number"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.022Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/About-us/contact-us/local-tax-offices/tax-offices-that-provide-finnish-personal-ids/",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "Visit one of the following service points to get your personal ID"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.022Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.022Z"
+      },
+      {
+        "url": "https://helloexpat.eu/fi/blog/finnish-personal-identity-code-henkilotunnus",
+        "title": "helloexpat.eu",
+        "domain": "helloexpat.eu",
+        "trust": "community",
+        "highlights": [
+          "Ask Vero or the DVV for the code in the same visit as your tax card application"
+        ],
+        "fetchedAt": "2026-11-14T13:56:21.172Z"
+      },
+      {
+        "url": "https://monteoz.com/finnish-personal-identity-code/",
+        "title": "monteoz.com",
+        "domain": "monteoz.com",
+        "trust": "community",
+        "highlights": [
+          "Applicants should make sure their documents identify the employer, describe the work and provide the relevant dates and workplace details",
+          "A preliminary job offer or an incomplete contract may not meet the requirements"
+        ],
+        "fetchedAt": "2026-11-14T13:56:21.172Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1689,
+      "costUsd": 0.004694,
+      "cacheHit": false
+    }
+  }
+}

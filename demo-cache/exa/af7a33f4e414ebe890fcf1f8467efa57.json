@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T14:12:27.189Z",
+  "request": {
+    "endpoint": "search",
+    "query": "International House Helsinki Nordic citizen registration Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Nordic citizen registration\" (International House Helsinki) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "58173b9f65439f3c011d5e784d640452",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://exa.ai/library/place/3v57hk9mbtz",
+        "title": "The International House Helsinki",
+        "url": "https://exa.ai/library/place/3v57hk9mbtz",
+        "publishedDate": "2026-10-31T02:31:32.000Z",
+        "highlights": [
+          "The International House Helsinki is a housing authority in Helsinki, Uusimaa, Finland.\n\n## Location\n\n- **Address:** Lintulahdenkuja 2d, Helsinki, 00530, Finland\n- **Area:** Sörnäinen, Uusimaa, Finland, Helsinki, Uusimaa, Finland\n- **Coordinates:** 60.182981, 24.961208\n\n...\n\n> As a teacher from India currently undergoing teacher training in Finland, I visited International House Helsinki for my DVV registration. Unfortunately, my experience has been far from positive. The staff seemed uncooperative and the customer service was highly inefficient. Despite it being over a month since my visit, my address update is still pending, which has made it extremely difficult for me to open a bank account and settle in. What was even more frustrating was the language barrier at the reception — the staff spoke mostly in Finnish, even though I clearly asked for help in English.…\n>\n> — 1 out of 5, 2025-06-18\n\n...\n\n> Process was fast and easy for EU registration, we made appointment online and everything went smoothly. Took around 30minutes.\n>\n> — 5 out of 5, 2024-05-24\n\n> It might take some time to find an appointment (for residence permit for a EU citizen for instance) as they publish new slots on Tuesday afternoon. However, the staff is happy to help and very efficient!\n>\n> — 5 out of 5, 2024-02-17\n\n> The most important is that you need to arrive before the opening to get a good position in the waiting line. (sometimes there is no line and people don't respect the arrival time) After they give you a number depending on your needs. They will help you with everything and if you need to do more than 1 paper you can keep your number and they will call you without having to wait the line again.\n>\n> — 4 out of 5, 2019-09-19"
+        ]
+      },
+      {
+        "id": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "Finnish Personal Identity Code (Henkilötunnus) Guide | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "publishedDate": "2026-06-04T18:43:45.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Step 3: Bring the Right Documents\n\nTake with you:\n\n- Valid passport or official EU/EEA photo ID card.\n- Residence permit card (non-EU) or EU registration certificate — or proof you have applied for one.\n- Proof of legal grounds for staying: employment contract, study acceptance/enrolment certificate, or equivalent.\n- Proof of a Finnish address if you have it: a rental agreement, or confirmation from your employer or university.\n- For family relationships, bring legalised and translated certificates (marriage, birth) where relevant.\n\n...\n\nBoth DVV and ... If you register in person with DVV, raise the kotikunta question at the same appointment so you do not leave thinking you are covered for healthcare when you are not. For the wider registration picture, see our guide to registering with DVV.\n\n...\n\n## Common Problems and Fixes\n\n- \"My permit was granted but I never got a code.\" Automatic issuance needs your identity to have been verified by a Finnish authority and your details to match your passport exactly. If it did not happen, request the code from DVV in person after you arrive — do not wait for it to appear on its own.\n- \"I have a henkilötunnus but the health centre says I'm not covered.\" You almost certainly have the code but not a kotikunta. Apply for the municipality of residence with DVV; until then, non-emergency public care may not be available at subsidised rates.\n- \"My name is spelled wrong / my date of birth is incorrect.\" Errors trace back to the source documents and identity check. Contact DVV to correct registered details; in narrow cases the code itself can be changed (e.g. wrong date of birth recorded).\n- \"I couldn't get a DVV appointment within a month of submitting the form.\" Appointment availability varies by city and season. Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day.\n- \"A bank refused me because I only have a foreigner's identity number.\" That is expected — it is not a full henkilötunnus. Use a Wise or Revolut account as interim banking, and apply for the full code once you qualify."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-personal-identity-code/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "title": "Moving to Finland – the first 30 days, step by step",
+        "url": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "publishedDate": "2026-09-25T09:08:59.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "Citizens of the Nordic countries, the EU, Liechtenstein and Switzerland need no residence permit and arrive with a valid identity card or passport. Everyone else applies to Migri (Finnish Immigration Service; Migrationsverket in Swedish) before coming, because a first permit for work cannot be applied for from inside Finland – see part 2.\n\nHave birth, marriage and divorce certificates and diplomas legalised and translated before you leave: the authorities accept Finnish, Swedish or English, nothing else. Removal goods from outside the EU customs territory need a customs declaration within 12 months of the move, and pets fall under the Finnish Food Authority’s rules, which often require vaccinations.\n\n...\n\nEU citizens staying more than three months register their right of residence with Migri within three months of arrival, only after moving, for 53 euros. Nordic citizens instead register in person at DVV within one month of moving if they stay more than six months. Permit holders get a residence permit card, delivered to a collection point in Finland within about two weeks of the decision; it is not an identity document.\n\nIn Helsinki one address covers most of week one. International House Helsinki, at Ratapihantie 7 in Pasila since 1 June 2026, handles EU registration for Migri, the code and municipality of residence for DVV, the tax card for Vero, jobseeker registration and Kela by remote service, Monday to Friday 9.00–16.00. Identity cards are the exception: newcomers go to the Helsinki Police Department at Pasilanraitio 11. Espoo and Vantaa residents use the same house, because DVV’s Espoo office has closed permanently.\n\n| City | Migri service point | DVV service location | Tax office |\n| --- | --- | --- | --- |\n| Helsinki | Kaupparaitti 10 (Malmi); EU registration also at International House | Ratapihantie 7, floor K1, appointments Mon–Fri 9.00–16.15 | Ratapihantie 7, Mon–Fri 9.00–16.00 |\n| Tampere | Tekniikankatu 1, wing A | Hatanpään valtatie 36, appointments Tue–Fri 9.00–16.00 | Hatanpään valtatie 36 |\n| Turku | Nallinkatu 8 in Raisio – none in Turku itself | Kulttuurikuja 1, Mon–Fri 9.00–16.00 | Kulttuurikuja 1, Suomi-piste |\n| Oulu | Albertinkatu 4 B | Viestikatu 1, Tue–Wed and Fri 9.00–16.00 | Uusikatu 52 |\n\n...\n\n## Three mistakes that cost time or money\n\n| Mistake | What happens | How to avoid it |\n| --- | --- | --- |\n| Assuming the code from Migri or Vero makes you a resident | No kotikunta, so no health station, school place or residence-based benefits | Apply for the municipality of residence at DVV |\n| Submitting DVV’s form and forgetting the visit | The visit must take place within one month of the form, for every person | Book the appointment when you submit |\n| EU citizen letting three months pass | You are staying without registering and cannot get a kotikunta | Apply to Migri within three months of arrival |\n\n...\n\n| 2 | Secure an address | Before you register |\n\n...\n\n| 5 | Collect your tax card and open a bank account | Before your first payday |\n| 6 | Notify Kela, register as a jobseeker if needed, find your health station | During your first weeks |"
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-moving-to-finland-first-30-days-checklist-in-the-r.jpg"
+      },
+      {
+        "id": "https://www.linkedin.com/posts/ihhelsinki_registrations-and-formalities-international-activity-7483052920226103296-xuzB",
+        "title": "Getting started in Finland means completing a few important registrations and formalities with different authorities. 📝 | International House Helsinki",
+        "url": "https://www.linkedin.com/posts/ihhelsinki_registrations-and-formalities-international-activity-7483052920226103296-xuzB",
+        "publishedDate": "2026-07-15T00:00:00.000Z",
+        "author": "International House Helsinki",
+        "highlights": [
+          "Getting started in Finland means completing a few important registrations and formalities with different authorities. 📝\n\nAt International House Helsinki, you can take care of these in one place. Depending on your situation, this may include registration with DVV, applying for a personal identity code, getting a tax card, or accessing guidance on social security and employment.\n\nIt’s a good idea to plan your visit in advance and check which services are relevant for you. ℹ️"
+        ]
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "title": "Your First Week in Finland: An Arrival Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "publishedDate": "2026-05-14T21:02:43.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Before you plan your week, understand the single fact that shapes it: almost nothing official in Finland works without a henkilötunnus (the Finnish personal identity code). Your online banking codes, your tax card, your Kela registration, and most online government services all expect that code. It is issued by the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency) when you register, and registration involves an in-person appointment.\n\nThat single bottleneck is why the first task on this list is registration, and why several later tasks — the bank, the tax card, Kela — sit in a queue behind it. You can absolutely fill your first week productively while you wait, but trying to open a bank account before you have your code usually means a wasted trip. Plan around the wait, not against it.\n\n...\n\nGet a phone connection. A working Finnish or local number matters more than it sounds, because so many later steps — bank onboarding, OmaVero login, two-factor codes — assume you can receive an SMS. Prepaid SIM cards are widely sold at convenience kiosks (such as R-kioski), supermarkets, and operator stores from DNA, Elisa, and Telia. If you would rather arrive already connected, an eSIM bought before you fly (for example through Airalo) gives you data the moment you land — handy for maps, ride-hailing, and looking up your DVV appointment options before you have sorted a physical SIM.\n\nSort out getting around. In the greater Helsinki area, public transport runs on HSL (Helsingin seudun liikenne). You do not need a travel card to start moving: the free HSL app sells single tickets and short day tickets without even an account, and you can tap a contactless bank card or phone on board many services. The HSL area is divided into zones labelled A to E, so check which zones your trips cover before you buy. Fares are adjusted periodically, so treat any euro figure you see online as indicative and check the current price in the app or at hsl.fi.\n\n...\n\nThis is the keystone task. Registration with DVV is what produces your personal identity code and, where you qualify, your municipality of residence.\n\nThe process has two parts. First, submit the foreigner registration form online at dvv.fi/en/foreigner-registration. You can complete this before your appointment to speed things along. Second, book and attend an in-person appointment at a DVV service point. Everyone who requests a personal identity code must appear in person.\n\nBring originals, not copies:\n\n- A valid passport or official photo ID card\n- Your residence permit card (non-EU) or your EU registration certificate, or proof you have applied for one\n- Proof of your legal grounds for staying — typically an employment contract or a letter of acceptance from a Finnish institution\n- Proof of your Finnish address, if you have it\n\nProcessing times vary, so book your appointment as early in your first week as the calendar allows.\n\n...\n\nIf you are starting work, the tax card (verokortti) is urgent for a concrete financial reason. According to Vero (the Finnish Tax Administration), if you do not give your employer a tax card, the employer must withhold 60% of your wages. That is a deliberately high default, and the only way to avoid it is to get a tax card in place before your first payday.\n\nOnce you have a personal identity code, you can order a tax card with Vero's form 5042e (if you are staying more than six months) or through OmaVero, the online tax service at vero.fi (logging in needs a mobile certificate, certificate card or online banking codes), and give it to your employer. Ask your employer how much in advance they need it (Vero's guide is approximately 2 weeks before payday), so the moment your code comes through, this should jump to the top of your list. If your code has not arrived yet but you are about to start work, ask whether a tax office near you can issue a personal identity code, so you are not stuck on the 60% rate. Newcomers in the capital region can also get tax guidance in person at International House Helsinki, which co-locates DVV, tax, and Kela services.\n\n...\n\nA Finnish bank account is essential for receiving salary, paying rent, and — just as importantly — getting online banking codes (pankkitunnukset), which double as your strong electronic identification across Suomi.fi, OmaVero, and Kela. This is one of the steps you genuinely cannot rush, because banks have their own rules.\n\nBanks may not make a henkilötunnus a condition for basic banking services, though they can require one before issuing online banking codes, and for a first account they usually want you to come into a branch in person rather than opening everything online. Nordea, for example, has you book a branch appointment, bring a valid identity document and proof of your right of residence (a residence permit or a certificate of a pending application for non-EU citizens, or registration of the right of residence for EU citizens), and get service in Finnish, Swedish or English."
+        ],
+        "image": "https://nordicexpat.com/finland/first-week-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      }
+    ],
+    "searchTime": 468,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

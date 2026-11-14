@@ -7,7 +7,7 @@ import type { StreamCalEvent } from "@/lib/types";
 import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
 import { unlockedSteps } from "@/lib/graph/unlocks";
-import { edgeEvidence, stepFacts, unblocks, type Fact } from "./panel";
+import { edgeEvidence, needs, stepFacts, unblocks, type Fact } from "./panel";
 import { nodeLabel } from "./labels";
 import { bookingHref } from "@/lib/calendar/bookingUrl";
 
@@ -89,23 +89,37 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
     const un = unblocks(state, id);
     // The same list the calendar's "Why" line uses (lib/graph/unlocks).
     const unlocks = (state.graph ? unlockedSteps(state.graph.graph, id) : []).filter((x) => state.steps[x]);
-    const whyNow: Seg[] = [];
-    // One short sentence (the card's header already says if it is on the slowest chain).
-    const cod = facts.costOfDelay.find((f) => f.value.split(/\s+/).length <= 16);
-    if (cod) {
-      whyNow.push({ t: `If you skip it: ${lowerName(cod.value).replace(/\.$/, "")}` }, { ref: ref(cod.citation) }, { t: "." });
-    } else if (unlocks.length) {
+    // One short sentence (the card's header already says if it is on the slowest chain). Candidates in order of
+    // usefulness; the first one that carries a source wins, so a card never states a reason without its footnote.
+    const skip = (c: Fact): Seg[] => [{ t: `If you skip it: ${lowerName(c.value).replace(/\.$/, "")}` }, { ref: ref(c.citation) }, { t: "." }];
+    const words = (f: Fact) => f.value.split(/\s+/).length;
+    const candidates: Seg[][] = [];
+    const short = facts.costOfDelay.find((f) => words(f) <= 16);
+    if (short) candidates.push(skip(short));
+    if (unlocks.length) {
       const first = unlocks[0];
       const ev = edgeEvidence(state, un.direct.includes(first) ? id : (un.via?.milestone ?? id), first)[0];
       const list = unlocks.slice(0, 3).map((x) => lowerName(name(x)));
-      whyNow.push({ t: `It unlocks ${list.length > 1 ? `${list.slice(0, -1).join(", ")} and ${list[list.length - 1]}` : list[0]}` });
-      if (ev) whyNow.push({ ref: ref(ev) });
-      whyNow.push({ t: "." });
-    } else if (step.confirmation?.by === "required_by") {
+      candidates.push([
+        { t: `It unlocks ${list.length > 1 ? `${list.slice(0, -1).join(", ")} and ${list[list.length - 1]}` : list[0]}` },
+        ...(ev ? [{ ref: ref(ev) }] : []),
+        { t: "." },
+      ]);
+    }
+    if (step.confirmation?.by === "required_by") {
       // Its verified why is the sentence that asks for it.
       const by = step.confirmation.stepIds.filter((x) => state.steps[x] && !state.steps[x].milestone).slice(0, 2).map((x) => lowerName(name(x)));
-      if (by.length) whyNow.push({ t: `Needed for ${by.join(" and ")}` }, { ref: ref(step.confirmation.citations[0]) }, { t: "." });
+      if (by.length) candidates.push([{ t: `Needed for ${by.join(" and ")}` }, { ref: ref(step.confirmation.citations[0]) }, { t: "." }]);
     }
+    const long = facts.costOfDelay.find((f) => words(f) <= 30);
+    if (long && long !== short) candidates.push(skip(long));
+    // A leaf step with nothing else to say: what it needs first, with the sentence that says so.
+    const need = needs(state, id).find((n) => n.citation && state.steps[n.id]);
+    if (need) candidates.push([{ t: `It needs ${lowerName(name(need.id)).replace(/^(?!your |the )/, "the ")} first` }, { ref: ref(need.citation!) }, { t: "." }]);
+    // Last resort with a source: how it is done, from the verified mode sentence.
+    const mode = step.claims?.find((c) => c.kind === "mode" && c.value === step.mode);
+    if (mode) candidates.push([{ t: step.mode === "online" ? "Done online" : step.mode === "in_person" ? "Done in person" : "Done online or in person" }, { ref: ref(mode.citation) }, { t: "." }]);
+    const whyNow: Seg[] = candidates.find((c) => c.some((s) => "ref" in s)) ?? candidates[0] ?? [];
     const noSource = !(step.claims?.length || step.citations.length);
 
     let wait: Seg[] | undefined;
@@ -178,7 +192,7 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
 
   // Tip reminders go under the visit for their step; any others stand alone.
   for (const e of events.filter((x) => x.kind === "reminder")) {
-    const text = e.title.replace(/^Tip:s*/i, "");
+    const text = e.title.replace(/^Tip:\s*/i, "");
     const r = e.citation ? ref(e.citation) : undefined;
     const visit = entries.find((x): x is VisitEntry => x.kind === "visit" && x.steps.some((st) => st.id === e.stepId));
     if (visit) visit.tips.push({ text, ...(r ? { ref: r } : {}) });

@@ -1,0 +1,94 @@
+{
+  "fetchedAt": "2026-11-14T14:11:32.255Z",
+  "request": {
+    "endpoint": "search",
+    "query": "FIN-FSA Bank account Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Bank account\" (FIN-FSA) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "82394615430fc73ef3a70e6575e5938a",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "Opening a Bank Account in Finland as a Foreigner | NordicExpat",
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "publishedDate": "2026-06-04T14:39:47.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "A practical tip: fill in any customer-information form your chosen bank provides before the appointment, and bring it with you. OP notes that the most common reason applications are delayed is incorrect or incomplete registration details, so it is worth double-checking that your name and address at DVV exactly match what you give the bank.\n\n...\n\nThere is, however, a genuine legal exception worth understanding. Under the EU Payment Accounts Directive (Directive 2014/92/EU), banks must offer a basic payment account to any consumer legally resident in the EEA, on an equal and non-discriminatory basis. According to the Finnish Financial Supervisory Authority (Finanssivalvonta, FIN-FSA), basic banking services include \"a payment account with basic features and an instrument for using the account (e.g. a debit card and online banking ID), the possibility to withdraw cash, the execution of payment transactions and an electronic means of identification.\" Critically, FIN-FSA's interpretation is that banks may not require a Finnish personal identity code as a blanket precondition for these basic services, and that a person whose residence-permit application is in process can qualify as legally resident.\n\nThe practical catch: where you have no henkilötunnus or are not yet in the population register, the bank can decline to give you the standard strong-authentication online banking ID and must instead offer \"a more limited electronic identification method applicable only for using a payment account with basic features and related services.\" So the right exists, but it is narrow, it is not what a front-line teller will reach for by default, and you may have to escalate. For most people the faster route is still to get the henkilötunnus first. If you want the full detail on this edge case, see our guide to opening a Finnish bank account before you have a henkilötunnus.\n\n...\n\nEven when you start an application online, all major Finnish banks require an in-person identity-verification visit for a first Finnish account — partly because, until you hold strong electronic identification, you cannot legally sign the documents online. At the branch:\n\n1. Bring every required document — passport or EEA ID card, henkilötunnus, residence document, and proof of address.\n2. Identity verification — a bank employee checks and copies your documents and confirms your identity in person.\n3. Sign the agreements — you sign the account agreement and the related services agreement.\n4. Wait for the post — account details, your debit card, and your online banking codes are typically mailed.\n\nBook the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days. For service in English, ask for it when you book; Nordea has a dedicated English line.\n\n...\n\n## Common Problems and Fixes\n\n- \"The bank says I need a henkilötunnus and I don't have one yet.\" That is correct for a standard account. Get the identity code via DVV first; only fall back on the basic-payment-account right (above) if you genuinely cannot, and expect to escalate.\n- \"My application got delayed.\" The usual cause is mismatched or incomplete registration details. Make sure your name and address at the bank exactly match DVV's records.\n- \"S-Pankki wouldn't serve me in English.\" Documented behaviour — its legal documents are in Finnish/Swedish and staff may require an interpreter. Try Nordea or OP if language is a barrier.\n- \"I was refused outright.\" Ask for the reason in writing. Refusals for a basic account should, per FIN-FSA, generally only happen for anti-money-laundering reasons such as unverifiable identity. Try another bank — risk appetites for new-to-Finland customers differ.\n- \"I can't log in to OmaVero / Kela yet.\" You need active pankkitunnukset (or a mobiilivarmenne). Until your codes arrive and are activated, you cannot use most Finnish online government services."
+        ],
+        "image": "https://nordicexpat.com/finland/opening-bank-account-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://helloexpat.eu/fi/blog/bank-account-in-finland",
+        "title": "Bank account in Finland: basic account and online codes | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/bank-account-in-finland",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "Yes, if you reside legally in the European Economic Area. Finnish law requires banks to offer a basic payment account (perusmaksutili) in euros, with a payment card and online banking. The FIN-FSA, the financial supervisor, applies the same test to all retail customers who are legally resident in an EEA country.\n\nA bank can refuse only for reasons linked to anti-money-laundering rules. The usual example is that it cannot reliably verify your identity. If it refuses, it must tell you the specific reason without delay, in writing and free of charge, and explain how to complain. Two routes exist: the FINE banking complaints board, and the FIN-FSA itself, which handles reports of breaches.\n\nThe FIN-FSA's 2023 thematic review of banking services for foreigners adds an important point: banks may not require a Finnish personal identity code as a precondition for basic banking services. In practice, some branches still ask for it, and you may need to point to the rule.\n\n## Which documents do you bring when opening a bank account in Finland?\n\nBring a valid passport or national identity card. A driving licence is not accepted. Banks also ask for an address, in Finland or abroad, and for your personal identity code if you have it. If you still pay tax abroad, mention your foreign tax residence. Many banks also ask for proof of your situation: an employment contract, a pension statement or study enrolment.\n\nEach bank decides, under its own risk policy, which foreign documents it accepts. A national identity card from another EU country is normally fine; a lesser-known document may not be. Call ahead.\n\n## What is the sensible order of steps?\n\n1. Get the personal identity code first from the DVV. See the Finnish personal identity code. Without it the bank may open an account but cannot give you full codes.\n2. Book an appointment. For a new customer this is often needed. Say clearly that you want an account and online banking codes.\n3. Answer the know-your-customer questions. Occupation, source of funds, expected transfers, and if you are a politically exposed person.\n4. Activate the codes, then a mobile certificate if you have a subscription. See digital ID in Finland.\n5. Give your Finnish IBAN to your employer, to Kela and to Vero.\n\n...\n\n## What if the bank says no?\n\nDo not leave the branch with a vague \"we cannot help you\". Ask for the specific reason in writing. The bank must give it to you without delay and free of charge, and it must tell you how to challenge it. Typical legitimate reasons relate to identity checks: a document the bank cannot verify, or a mismatch between the document and the address. These can often be fixed by bringing another document.\n\nIf the refusal does not seem to rest on money-laundering rules, you have two routes. The FINE consumer dispute service handles complaints against banks, and the FIN-FSA takes reports of breaches of the basic account rules. Keep copies of your application, the bank's reply and the date, because the 10 banking day limit runs from your application.\n\n...\n\nCards are accepted almost everywhere in Finland, and cash is rarely needed. Your employer, Kela and Vero will pay into the account you name, so give the IBAN to each of them in writing or through their online services. Tell your landlord, your electricity supplier and your insurer which account to use for payments. If you have kept a bank account in your home country, tell that bank you now live in Finland, because it may ask about your tax residence.\n\nTreat the online banking codes like a house key. Save the bank's helpline number on your phone, so you can block access at once if the phone is lost.\n\n...\n\nThe bank must accept or refuse a basic account application without undue delay and within 10 banking days at the latest. Fees on a basic account must be reasonable and in line with actual costs, closing it is free, and the bank must give you a document explaining the fees before you open it. The bank can terminate the account only after 24 months with no transactions or if you no longer reside legally in the EEA, with at least two months' written notice. There is no standard price list, so ask the bank for its current fee document.\n\n...\n\n## Which mistakes should you avoid?\n\n- Turning up without the identity code and then being surprised that the codes do not arrive.\n- Assuming a refusal is\n\n...\n\n- Lending your codes.\n\n...\n\n- Relying on a foreign bank only."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      },
+      {
+        "id": "https://www.op-media.fi/en/op-uusimaa-en/how-to-open-a-bank-account-in-finland-as-a-foreigner/",
+        "title": "How To Open A Bank Account In Finland As A Foreigner  | OP Media",
+        "url": "https://www.op-media.fi/en/op-uusimaa-en/how-to-open-a-bank-account-in-finland-as-a-foreigner/",
+        "publishedDate": "2026-03-10T07:36:10.000Z",
+        "author": "Tayla Fagan",
+        "highlights": [
+          "## The number one reason applications get delayed\n\nIncorrect or incomplete registration details. This includes address issues, missing registrations with authorities, or misunderstanding what counts as a permanent versus temporary address. Another common delay happens when customers want to transfer money from abroad but aren’t prepared to document where the funds are coming from.\n\n...\n\nDocuments Required To Open A Bank Account In Finland As An Expat At minimum, you’ll need:\n\n● A valid passport or national ID ● Proof of your right of residence (EU registration or residence permit) ● A Finnish personal identity code ● Address details registered in Finland\n\n The most common “missing piece” is strong identification. Non-EU citizens often need to apply separately for a Finnish ID card, which many don’t realize before their bank appointment."
+        ],
+        "image": "https://www.op-media.fi/contentassets/54b6830a76e249169afbe1f17befc761/op-media-how-to-open-bank-account-in-finland-cover.jpg?width=1200&height=630&rmode=crop"
+      },
+      {
+        "id": "https://blogit.uniarts.fi/en/post/how-to-open-a-bank-account-in-finland/",
+        "title": "How to Open a Bank Account in Finland? - Taideyliopiston blogit",
+        "url": "https://blogit.uniarts.fi/en/post/how-to-open-a-bank-account-in-finland/",
+        "publishedDate": "2024-11-22T09:39:00.000Z",
+        "highlights": [
+          "For a student new to Finland, you have to have a document proving your right of residence in Finland. For example, a residence permit for non-EU citizens, or registration of the right of residence for EU citizens.\n\n...\n\nYou should also have a Finnish personal identity number and municipality of residence in Finland. Both of these you have to get from the Digital Data service centre (DVV) upon your arrival to Finland. DVV website provides great instructions on how to register yourself in Finland.\n\n...\n\nUpon arrival to Finland I would also recommend getting a Finnish phone number. Although it’s not always required, it makes it easier to deal with bureaucracy here. It is quite easy to get a prepaid SIM card at any R-Kioski, from service providers such as DNA, Telia and Saunalahti. A prepaid card is usually sufficient for living in Finland for an international student.\n\n...\n\nWhen you have all the needed documents, you can finally start the process of opening a bank account. Usually banks require you to schedule an appointment, which you can do by calling the number indicated on their website. The bank will discuss the agreements and services with you, and make an application for your account. From my experience, quite often it takes 1-2 months to receive a card after you have submitted an application. Install the mobile bank application of your bank to keep track of your account.\n\n...\n\nOnce you have a bank account, I recommend getting strong electronic identification, or E-identification. Having E-identification enables you to use online public services without a problem. It makes it easier to, for example, use healthcare services, sign job agreements, and apply for residence permit renewal. It is possible to verify your identity on these services with identification from some other European countries, but having E-identification from a Finnish bank will help you in the long term."
+        ],
+        "image": "https://blogit.uniarts.fi/app/uploads/2024/11/1daebe73-img_2799.jpg"
+      },
+      {
+        "id": "https://tyoelamanpelisaannot.fi/en/abc/guide-for-workers-who-have-moved-to-finland/checklist-for-workers-coming-to-finland/",
+        "title": "Checklist for workers coming to Finland - Fair Play at Work",
+        "url": "https://tyoelamanpelisaannot.fi/en/abc/guide-for-workers-who-have-moved-to-finland/checklist-for-workers-coming-to-finland/",
+        "publishedDate": "2026-03-23T11:42:28.000Z",
+        "highlights": [
+          "## Open a bank account\n\nWages must be paid into a bank account. Wages can only be paid in cash for a compelling reason. Such a reason may be that the employee does not have a bank account. Bank accounts are personal.\n\nWhen you open an account, you need a passport or other official identity document. Opening an account is easier if you have a Finnish personal identity code. You can apply for an identity code from the Digital and Population Data Services Agency. See the Digital and Population Data Services Agency website for detailed instructions on how to apply for a personal identity code. Check with your bank to see what other documents you will need to open a bank account.\n\n...\n\n## Record your working hours\n\nAlways write down when and how many hours you have worked. It’s important to keep track of your working hours. It lets you make sure that you are paid correctly. If you have any disputes with your employer about your pay or other employment-related issues, your record of your working hours is proof of the hours you have worked.\n\n...\n\nYour employer must provide you with training for your job and advise you on what to be aware of in terms of workplace safety. Your employer must also pay accident insurance that compensates for any damages and losses to an employee or their family in the event of work accidents or occupational disease."
+        ],
+        "image": "https://tyoelamanpelisaannot.fi/wp-content/uploads/sites/2/2026/03/tyoelaman-pelisaannot-fallback-image-2400x1260-1.jpg"
+      }
+    ],
+    "searchTime": 1209.7,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

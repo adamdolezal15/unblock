@@ -1,0 +1,215 @@
+{
+  "fetchedAt": "2026-11-14T14:12:09.183Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Bank account",
+    "contextHash": "7acd54c0d3fa6dbb",
+    "includeDomains": [],
+    "docsHash": "7a6284506f41cd95"
+  },
+  "response": {
+    "data": {
+      "conflicts": [
+        {
+          "topic": "whether a Finnish personal identity code is needed to open a bank account",
+          "aUrl": "https://dvv.fi/en/as-a-foreigner-in-finland",
+          "aQuote": "You need Finnish personal identity code, for example, when you contact authorities, apply for benefits or open a bank account",
+          "bUrl": "https://www.finanssivalvonta.fi/en/publications-and-press-releases/supervision-releases/2023/thematic-review-of-availability-of-banking-services-to-foreigners-moving-to-finland/",
+          "bQuote": "The FIN-FSA states as its interpretation that banks may not require a Finnish personal identity code as a precondition for opening basic banking services.",
+          "verdict": "contradiction",
+          "note": "DVV says you need a Finnish personal identity code to open a bank account; FIN-FSA says banks may not make basic banking services conditional on one, apart from strong electronic identification.",
+          "whatToDo": "FIN-FSA supervises banks and sets the interpretation for basic banking services, so rely on it for the account itself. DVV's wording is a general statement. In practice, still apply for your personal identity code early, since it makes the process easier and online banking ID may depend on it. If a bank refuses to open an account without one, ask for a 'basic banking service' (peruspankkipalvelu) by that name and request the refusal reason in writing."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://dvv.fi/en/as-a-foreigner-in-finland",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "You need Finnish personal identity code, for example, when you contact authorities, apply for benefits or open a bank account"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.323Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "You will need an official identification document, such as a passport or EU-citizen`s identity card, to open a bank account",
+          "Go to an office of that bank and say you want to open an account"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.323Z"
+      },
+      {
+        "url": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+        "title": "myhelsinki.fi",
+        "domain": "myhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Be prepared to show proof of identity (passport or national ID card), your Finnish personal identity code, proof of your local address, and details of your employment or study arrangements in Finland"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.323Z"
+      },
+      {
+        "url": "https://danskebank.fi/en/for-you/become-a-customer/basic-banking-services",
+        "title": "danskebank.fi",
+        "domain": "danskebank.fi",
+        "trust": "provider",
+        "highlights": [
+          "The processing time is a maximum of ten business days and begins once we have received your request and all the documents required to open the services",
+          "## Who is entitled to basic banking services?\n\nDanske Bank offers basic banking services on an equal and non-discriminatory basis to all individuals who are legally resident in the European Economic Area (EEA).\n\nYou can also apply for basic banking services if you live in Finland and have applied for, for example, asylum, temporary protection, or another type of residence permit, but your application is still being processed.\n\nA Finnish personal identity code is not required to open basic banking services. Please note that there are separate requirements for issuing online bank identifiers.\n\nWhen you bank with us, we will need your ID for identification. Read more about the documents you can use to verify your identity.\n\n## What do basic banking services include?\n\n- A Danske account – an everyday current account to manage day-to-day money matters.\n- Bank identifiers for online banking and e-identification purposes.\n- Mastercard Debit card for everyday payment transactions.\n\n## Processing time for basic banking services\n\nRequests to open basic banking services will be processed as soon as possible. The processing time is a maximum of ten business days and begins once we have received your request and all the documents required to open the services.\n\nWe will inform you of our decision as soon as we have made it.\n\n...\n\nIf we are unable to open basic banking services for you, we will send you a written decision by post."
+        ],
+        "fetchedAt": "2026-11-14T00:48:38.793Z"
+      },
+      {
+        "url": "https://www.linkedin.com/posts/aleksilinna_want-to-open-a-bank-account-in-finland-dont-activity-7194634733274705920-HOpv",
+        "title": "linkedin.com",
+        "domain": "linkedin.com",
+        "trust": "community",
+        "highlights": [
+          "If you do that, especially as a non-EU citizen, you'll either get rejected or processed for up to months to get the basic services opened",
+          "Then, you need to go to a police station to apply for a foreigner's ID card (not a residence permit card), taking another week"
+        ],
+        "fetchedAt": "2026-11-14T14:11:38.407Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Expect a wait of a few days to a week"
+        ],
+        "fetchedAt": "2026-11-14T14:11:38.407Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days",
+          "OP notes that the most common reason applications are delayed is incorrect or incomplete registration details, so it is worth double-checking that your name and address at DVV exactly match what you give the bank"
+        ],
+        "fetchedAt": "2026-11-14T14:11:38.407Z"
+      },
+      {
+        "url": "https://www.countrytolive.com/knowledge/finland/open-bank-account-finland",
+        "title": "countrytolive.com",
+        "domain": "countrytolive.com",
+        "trust": "community",
+        "highlights": [
+          "Appointment availability in Helsinki, Espoo, Tampere, or Turku can stretch, so book early after your henkilötunnus arrives"
+        ],
+        "fetchedAt": "2026-11-14T14:11:38.585Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/publications-and-press-releases/supervision-releases/2023/thematic-review-of-availability-of-banking-services-to-foreigners-moving-to-finland/",
+        "title": "Thematic review of availability of banking services to foreigners moving to Finland - 2023 - www.finanssivalvonta.fi",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "The review was limited to services defined as basic banking services in the Credit Institutions Act. Banks providing payment services are under a statutory obligation to provide basic banking services equally and without discrimination to consumers residing legally in an EEA Member State.\n\n...\n\nAs a key conclusion, based on responses received from banks, the FIN-FSA finds that persons relocating to Finland from abroad as a rule have the possibility to obtain access to a basic payment account and related minimum services in the extent required by the Credit Institutions Act. Furthermore, the content of basic banking services provided to customers does not appear to be limited, at least to any major degree, by any restrictions that would be in conflict with legislation or otherwise inappropriate.\n\n...\n\n#### Time of commencement of service provision\n\nThe FIN-FSA states as its interpretation that the definition of a customer residing legally in an EEA Member State is met, and banks are thus obliged to provide basic banking services, in circumstances where the person has applied for asylum, temporary protection or other residence permit, and is residing in Finland on the grounds that the application is in process.\n\n#### Basic banking services may not be contingent on a Finnish personal identity code\n\nThe FIN-FSA states as its interpretation that banks may not require a Finnish personal identity code as a precondition for opening basic banking services. An exception to this main rule is the granting of a strong electronic means of identification to the customer.\n\n#### Due diligence information collected on the customer must be reasonable and proportionate to the risk\n\nThe FIN-FSA recommends that banks should not require the collection of unreasonably extensive customer due diligence information in order not to unduly withhold customers' access to basic banking services. \n\n#### Banks must ensure the availability and comprehensiveness of instructions for customers as well as internal guidelines \n\nThe FIN-FSA recommends that banks provide information on basic banking services and practices related to application for the services in all of their customer service channels and always on their website, too.\n\nBanks must also ensure that their internal guidelines concerning the provision of basic banking services and the training of service personnel are adequately comprehensive and clear.\n\n#### The availability of personal customer service within a reasonable period of time must be ensured, and the processing times of applications must be monitored\n\nThe FIN-FSA urges banks to ensure the availability of personal customer service to anyone needing it, within a reasonable period of time. The statutory 10-day maximum period of processing a customer's application for a payment account with basic features loses its meaning if the customer is not allowed to submit an application within a reasonable period of time."
+        ],
+        "publishedDate": "2023-09-11T00:00:00.000Z",
+        "fetchedAt": "2026-11-14T06:38:12.191Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/consumers/basic-banking-services/",
+        "title": "Basic banking services - Consumers - www.finanssivalvonta.fi",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "### What are basic banking services?\n\nBasic banking services include a payment account with basic features and an instrument for using the account (e.g. a debit card and online banking ID), the possibility to withdraw cash, the execution of payment transactions and an electronic means of identification. Basic banking services, on the other hand, do not include accounts with an overdraft facility or various kinds of credit cards.\n\n### Can a bank refuse to open a basic payment account for me?\n\nBanks must provide a basic payment account service on an equal and non-discriminatory basis to all retail customers who are legally resident in an EEA country. A retail customer means a person who uses basic banking services primarily for purposes other than his or her occupational or business activity.\n\nGenerally, a deposit bank may refuse to open a basic payment account and to provide related payment services only for reasons pertaining to money laundering regulations. This may be the case if, for example, the bank cannot reliably verify the identity of the customer.\n\nIf a deposit bank refuses to open a basic payment account for a retail customer or to provide payment services relating to such an account, it must inform the customer of the specific reason for the refusal without delay, in writing and free of charge. At the same time, the bank will give the customer an adequate account of the procedures for filing an appeal.\n\n### Can a bank refuse to provide online banking ID?\n\nThe basic payment account service also includes online banking ID, i.e. a strong electronic means of identification, if the bank offers such a service to its other customers. The bank can only refuse an electronic identification service if the customer does not have a personal identity code or if he or she has not been entered in the population register. In such cases, the bank must offer a more limited electronic identification method applicable only for using a payment account with basic features and related services."
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.191Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/consumers/basic-banking-services/availability-of-basic-banking-services/",
+        "title": "Availability of basic banking services - Basic banking services - www.finanssivalvonta.fi",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "Retail customers have a legal right to basic banking services provided by deposit banks. These services include a payment account, a means by which the account can be accessed (such as a debit card), an online banking service and a means of strong electronic identification.\n\n...\n\n### What are basic banking services?\n\nRetail customers are entitled to basic banking services provided by deposit banks. These services include a payment account with basic features, the means by which the account can be used (e.g. debit card and online banking ID), the facility to withdraw cash and to make payments, and an electronic means of identification. Basic banking services do not include accounts with an overdraft facility or a range of credit cards.\n\nDeposit banks process applications by retail customers for a basic payment account without undue delay and at the latest within 10 banking days. As a rule, a deposit bank may refuse to open a basic payment account and to provide related services only for reasons pertaining to money laundering regulations. This may be the case if, for example, the bank cannot reliably ascertain the identity of the customer.\n\nThe right to basic banking services only applies to retail customers and not to, for example, companies and associations.\n\n...\n\n### What are basic banking services?\n\nBasic banking services refer to normal deposit accounts, account facilities (for example online debit card with verification of the account balance in real time, in connection with a transaction) and execution of payment orders. Basic banking services do not include, for example, accounts with overdraft facility or credit cards.\n\nA bank may decline to open an ordinary deposit account only if there is a weighty reason. The reason must relate to the customer, his or her previous behaviour, or an apparent lack of need for the customer relationship. In addition, the Act on Detecting and Preventing Money Laundering and Terrorist Financing may preclude the provision of basic banking services in certain situations.\n\nThe right to basic banking services only applies to natural persons, not to, for example, companies and associations.\n\n...\n\nThe right to basic banking services applies only to natural persons, not, for example, to companies or associations.\n\n...\n\nA bank may decline to provide basic banking services only if there is a weighty reason. As the most common reason for declining to open an account, banks cited insufficient documentation for identification of the customer. No incidents have come to FIN-FSA's attention where a bank has declined to provide basic banking services without a valid reason.\n\n...\n\nPeruspankkipalveluilla tarkoitetaan tavanomaista talletustiliä, tilinkäyttövälinettä (esimerkiksi ns. on-line debit-korttia) sekä maksutoimeksiantojen hoitamista. Peruspankkipalveluita eivät ole esimerkiksi luotolliset tilit tai erilaiset luottokortit.\n\nPankki voi kieltäytyä avaamasta tavanomaista talletustiliä vain, jos kieltäytymiselle on painava peruste. Perusteen tulee liittyä asiakkaaseen tai hänen aiempaan käyttäytymiseensä taikka siihen, ettei asiakassuhteelle ilmeisesti ole todellista tarvetta (esimerkiksi asiakkaalla on jo tili toisessa pankissa). Myös rahanpesun estämisestä ja selvittämisestä annettu laki saattaa estää peruspankkipalvelujen tarjoamisen joissakin tilanteissa.\n\nOikeus peruspankkipalveluihin koskee vain luonnollista henkilöä, ei sen sijaan esimerkiksi yrityksiä tai yhdistyksiä.\n\n...\n\nOne of the purposes of the survey ... Basic banking services refer to normal deposit accounts, account facilities and execution of payment orders. The right to basic banking services applies only to natural persons, not eg to companies or associations.\n\n...\n\nPeruspankkipalveluilla tarkoitetaan tavanomaista talletustiliä, tilinkäyttövälineitä sekä maksutoimeksiantojen hoitamista. On huomattava, että luottolaitostoiminnasta annetun lain 50 a pykälässä tarkoitettu asiakkaan oikeus peruspankkipalveluihin koskee vain luonnollista henkilöä. Se ei sen sijaan koske esimerkiksi yrityksiä tai yhdistyksiä."
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.191Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/publications-and-press-releases/Press-release/2024/fin-fsa-surveyed-the-availability-and-pricing-of-basic-banking-services---no-significant-changes-in-availability-or-pricing-compared-with-the-past/",
+        "title": "FIN-FSA surveyed the availability and pricing of basic ...",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "The right of customers to basic banking services as specified in law is mainly fulfilled well in Finland. According to an assessment by the Financial Supervisory Authority (FIN-FSA), in 2023, basic banking services continued to be readily available and, for the most part, reasonably priced. The data used in the survey are based on the situation as at 31 December 2023.\n\n...\n\nRetail customers have a legal right to basic banking services provided by deposit banks. These services include a payment account, a means by which the account can be accessed (such as a debit card), an online banking service and a means of strong electronic identification."
+        ],
+        "publishedDate": "2024-06-12T00:00:00.000Z",
+        "fetchedAt": "2026-11-14T06:38:12.191Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/regulation/interpretations/03_2016/",
+        "title": "Customer due diligence and banks' procedures",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "In this statement, FIN-FSA outlines the information that, in its view, is necessary and essential for banks in establishing and maintaining a customer relationship involving basic banking services.\n\nIn the context of basic banking services, a customer relationship refers to one in which the customer only has a payment account, a payment card and access to online banking.\n\nBoth the Credit Institutions Act and the Money Laundering Act require that the bank obtains customer due diligence information. This information must be processed in accordance with the Personal Data Act. Under basic banking services regulations, a bank may refuse to open an account for, among other things, a reason arising from the Money Laundering Act. In addition to the customer due diligence information required in the Money Laundering Act, banks must ascertain from customers necessary information concerning the implementation of taxation. In this release, FIN-FSA does not take a position on this information.\n\nIt is the responsibility of banks to manage risks. Banks have the right to prepare questions to be presented to customers in order to obtain due diligence information from customers. The due diligence information obtained must, however, be necessary and essential in establishing and maintaining a customer relationship, taking into account the risk-based assessment referred to in the Money Laundering Act.\n\n...\n\nIn FIN-FSA’s view, the following information is necessary and essential in establishing and maintaining a customer relationship involving basic banking services, provided that no special situation referred to in the Money Laundering Act is associated with establishing and maintaining the customer relationship:\n\n- customer’s name, address, personal identity number and nationality\n- information on whether the customer holds an important public position abroad (politically exposed person, PEP) or whether he/she is a family member or a close associate of such a person 2 \n- information on the customer’s life situation, describing his/her financial status (e.g. employer, pensioner, student)\n- information on whether the customer relationship to be established is the customer’s main banking customer relationship\n- information on the origins or source of funds and regular payment transfers/cash flows\n- assessment of the customer’s regular payment transaction volumes\n- assessment of the customer’s foreign payment transaction volumes and the grounds for such transactions\n\nIn addition, the bank must take into account that which is stated in section 7 and section 10 of the Money Laundering Act about the identification of a customer representative and the verification of identity. The bank may also, if necessary, request from the customer documentation to clarify information he/she has provided."
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.191Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "Banking services for those new to Finland | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "## A Finnish bank account, debit card and online banking credentials for new customers\n\nIf you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland. Having a Finnish personal identity number will speed up the process. \n\nYou can book an appointment at one of our branches to become a customer. After the meeting, we will set up a current account, a debit card and online banking credentials for you.\n\nOur daily banking services are free of charge for the first three months, and you can access additional services online once you have become a customer.\n\n...\n\n## How to sign up as our customer\n\nMake sure you have the following documents for the meeting:\n\n- A valid identity document and a residence permit for Finland. Read more about the documents we accept\n- The form below completed. Please bring it with you to the meeting. \n\nComplete form\n\nBook an in-branch appointment by calling us.\n\n- We provide customer service in Finnish, Swedish and English. \n- If you don’t speak these languages, you will need to bring an interpreter.\n- At the branch, we’ll review your banking needs and help you complete your application.\n\n### After the meeting\n\nWe’ll contact you by phone after the meeting if needed. \n\n- Once we’ve set up your services, you’ll receive the agreements to your home address by post.\n- Activate your digital and other banking services.\n\n...\n\n## Accepted identity documents\n\nTo become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland:\n\n- a passport (not an alien’s passport) or\n- an identity card issued in the EEA (incl. San Marino and Switzerland).\n\nRead more about the documents we accept\n\n## Proof of right of residence\n\nTo prove your right of residence in Finland, you will need one of the following:\n\n- a residence permit or a certificate of a pending application (if you are a non-EU citizen) or\n- registration of the right of residence (if you are an EU citizen).\n\nThe Finnish Immigration Service helps people who are applying for asylum or a residence permit.\n\nIt also offers a payment card during the asylum application process, for example for receiving reception allowance. If you have this card, you may not need to open banking services right away.\n\n## Finnish personal identity number\n\nFor becoming our customer, it’s recommended that you have a Finnish personal identity number. If you don’t have a Finnish personal identity number, you should apply for one before you start banking with us. \n\nDepending on your situation, you can apply for a personal identity number through the Digital and Population Data Services Agency, the Finnish Tax Administration or the Finnish Immigration Service. \n\n## Strong electronic identification\n\nIn Finland, online banking credentials are also accepted as a means of electronic identification for many services beyond the banking services we provide. You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose. \n\nIf you do not have a passport or identity card issued by an EEA (European Economic Area) country, Switzerland or San Marino, you should be prepared to verify your identity at a police station."
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.497Z"
+      },
+      {
+        "url": "https://www.aktia.fi/fi/usein-kysytyt-kysymykset/kategoria/tilit/avaa-tili/voinko-avata-tilin-aktiassa-toisen-maan-kansalaisena",
+        "title": "Voinko avata tilin Aktiassa toisen maan kansalaisena?",
+        "domain": "aktia.fi",
+        "trust": "provider",
+        "highlights": [
+          "Päätös tilin avaamisesta tehdään aina paikallisesti. Yleissääntö on kuitenkin se, että laillisesti ETA-alueella asuva henkilö on oikeutettu peruspankkipalveluihin.\n\nThe decision to open an account is made locally. Standard procedure is that legal residents in the EEA-zone (The European Economic Area) have the right to basic banking services.\n\n### Hyvä pankki. Ja erinomainen varainhoitaja.\n\n#### Asiakaspalvelu\n\nHenkilöasiakkaat ark. 8-18 010 247 010 \n\nYritysasiakkaat ark. 9-16 010 247 6700 \n\nVakuutusasiat, Aktia Henkivakuutus Oy ark. 9-15 010 247 8300\n\nKorttivakuutukset, tarkista yhteystiedot korttisi sivulta. \n\nAktia Finnair Visa asiakaspalvelu ark. 8-18 010 247 050"
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.497Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/how-to-bank-with-us/living-abroad.html",
+        "title": "Banking from abroad | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "## Regulation limits banking services for customers living abroad\n\nBanking and financial services are heavily regulated across the world. Nordea’s products and services are designed to comply with Nordic regulation and taxation. For this reason, our full service selection is available to you only when your country of residence is Finland, Sweden, Denmark or Norway.\n\nIf you live outside the Nordic countries, you should be prepared for the possibility that you may not be able to open new banking services with us.\n\n## Moving abroad temporarily or permanently?\n\nIf you are moving abroad temporarily, you should make sure that your current banking services meet your needs and that your payment cards are valid. After moving abroad, opening new services may be complicated due to regulation that differs from the Nordic countries. \n\nIf you are moving abroad for work, you may also want to consider opening an account with a local bank, for example for salary payments.\n\nIf you are settling permanently in your new country of residence, you can close any banking services in Finland that you no longer need.\n\n## Checklist for those planning a move abroad\n\n- Make sure your debit and credit cards are valid and work as expected.\n- Install the Nordea ID app on more than one device.\n- Make sure you remember your online banking credentials.\n- Update your contact details once you have settled in your new country of residence.\n\n...\n\n## Opening new services while living abroad\n\nWe are a Nordic bank, and our products and services are designed to comply with Nordic regulation and taxation. Regulation in other countries may differ significantly. For this reason, we generally do not open new services for customers who live outside the EU/EEA. \n\nYou do not need to notify us of your move abroad. We verify your customer details in connection with your other banking or at regular intervals via the Digital and Population Data Services Agency, and we will contact you if needed.\n\n...\n\n## Basic banking services are available to you within the EEA\n\nIf you live in a country within the European Economic Area (EEA), you have the right to open basic banking services. The basic banking services we offer include a current account, a debit card, Nordea Mobile and Netbank, and the Nordea ID app or device.\n\n...\n\n## Outside the EEA, we can open services for you only in exceptional cases\n\nIf you live outside the European Economic Area (EEA), we are generally unable to open new services for you, even if you are already a customer. In such cases, opening new services is also blocked in Nordea Mobile and Netbank. However, we may continue your customer relationship if there are grounds for doing so. We will review your overall situation when updating your customer details or in connection with your other banking.\n\nIf you live outside the EEA, we are also generally unable to open a new customer relationship for you. We can open customer relationships or new services for customers living outside the EEA only in exceptional circumstances, based on an overall assessment. \n\nWhen we assess your situation, we look at things such as whether your stay abroad is temporary (for work or studies), whether you receive a salary or pension from Finland, and how strong your ties to Finland are. However, owning assets in Finland is not sufficient grounds by itself for approving a new customer relationship or new services. \n\nCountries outside"
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.497Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "title": "How to become a customer online | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "You can sign up as a Nordea customer online if:\n\n- you are an adult residing in Finland\n- you have a valid Finnish passport or identity card\n- you have online banking credentials from another Finnish bank\n- you have a Finnish phone number\n- you have a clean credit record.\n\nPlease note that for the time being, you can’t access either application form with online banking credentials from POP Bank. If you are unable to sign up as a customer online for this or some other reason, please book an appointment at a Nordea branch by contacting us.\n\n...\n\nLog in to the online application form using another Finnish bank’s online banking credentials. \n\n- Make sure you have a moment to fill in your details. \n- All services available in the application are free of charge for the first three months. You can also get a Nordea Debit card in addition to online banking credentials and accounts. \n\nOpen the application to sign up for services\n\n### Set up these services by filling in the application form\n\nWe will set up a current account and Nordea access codes for you automatically when you become a customer. We recommend that you order a Nordea Debit card for your new current account. \n\nWith the old application form you can still apply for a PerkAccount, which is a good option for regular saving and building a financial buffer.\n\n...\n\n### 2. You will receive an SMS and access to our services\n\nWe will process your request to become a customer within a few banking days. \n\n- Once we have approved your application, you’ll receive an SMS in which we ask you to log in again to the application. \n- After you’ve done this, you’ll receive a Nordea user ID, which you will need to do your banking.\n\n...\n\n### 3. Download the Nordea ID app \n\n \n\nIn addition to your user ID, you also need the Nordea ID app or another means of identification in order to get the Nordea access codes. \n\n- When strong identification is required, the Nordea ID app is the fastest and easiest means of identification for most people. \n- Alternatively, you can order from us a Nordea ID device or a Nordea ID Talk Device intended for our visually impaired customers.\n\n...\n\n### 4. Start using Nordea Mobile\n\n \n\nWhen you have Nordea access codes, you can log in to Nordea Mobile or Netbank. \n\n- If you have not downloaded Nordea Mobile yet, you can do it after you have received your Nordea access codes.\n- As a Nordea Mobile user, you can get your daily banking services at a low package price. If you are 65 or older, you don't need to use our mobile banking app to qualify for a service package.\n\n...\n\nRead more about our savings accounts\nWhat identity documents do I need if I want to become a Nordea customer?\n: If you use our online service to become a customer, you must have a valid Finnish passport or ID card. Note that a driving licence is not a sufficient document for verifying your identity in this context.\n\nIf you can’t fill in the online application, you can visit one of our branches to sign up as a customer. Book an appointment in branch in advance and remember to bring a valid Finnish passport or ID card with you to the appointment.\n\nRead more about the identity documents we accept\n\nAre you a foreign national? If you live in Finland, you can become a customer with Nordea.\n\nRead our instructions for foreign customers\nWhy does Nordea need my information?\n: Nordea has a statutory obligation to know its customers. When we know our customers, we can ensure that your banking is secure and reduce the risk of fraud. We ask questions in the application so we can better understand you and your current situation."
+        ],
+        "fetchedAt": "2026-11-14T06:38:12.497Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 10128,
+      "costUsd": 0.034423999999999996,
+      "cacheHit": false
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T14:11:31.618Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Migri appointment for Temporary protection in Helsinki, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Temporary protection\" (Migri) in Helsinki, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "4b421470258fc26b45b7c85672942625",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.enb.fi/guides/finland-temporary-protection-2026/",
+        "title": "Temporary Protection in Finland 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/finland-temporary-protection-2026/",
+        "publishedDate": "2026-09-05T00:00:00.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "Temporary protection runs to 4 March 2028, but permits granted under it expire on 4 March 2027. The right to work starts when the police register it.\n\n...\n\n## Short answer\n\nTemporary protection for people who fled the war in Ukraine has been extended to 4 March 2028, while the residence permits granted on that basis are valid until 4 March 2027. Since 5 August 2026 a permit on the basis of temporary protection can be granted only to Ukrainian citizens who are authorised to leave Ukraine. The application is registered with the police or the border authority on arrival, and the right to work and study begins at that registration; the right to work is not limited to any field. After a year of living in Finland you can apply to DVV for a municipality of residence, and earlier if you were granted a temporary protection permit for at least a year or if a family member already has one. Migri advises anyone with a job or a study place to apply for a different residence permit. A temporary protection permit ends by itself on 12 August 2026 if another permit granted before 12 June 2026 is still valid that day, and at once if another permit is granted on or after 12 June 2026.\n\n...\n\n## 2. Two different dates: 2028 and 2027\n\nThe point most often confused here is the difference between two dates. The temporary protection arrangement itself has been extended to 4 March 2028. The residence permits granted on that basis, however, are valid until 4 March 2027. That the arrangement runs longer does not mean the card in your hand does.\n\nWhat matters in practice is to watch the expiry date on your own permit card separately. How permits are renewed while the arrangement continues follows the procedure Migri announces, so check Migri's current page as the card date approaches.\n\n## 3. Applying and how long it takes\n\nAn application for temporary protection is registered with the police or the border authority on arrival in Finland. Migri's current estimate is that a complete application is processed in about a week; the decision then takes roughly another week to arrive by post, so it usually reaches you within two weeks.\n\nThe residence permit card is produced separately. Migri says the card takes about two weeks and is sent to a collection point within three weeks of the decision. These are estimates: a missing document or a request for further information lengthens them.\n\n## 4. Work and study begin at registration\n\nUnder temporary protection the right to work and study does not wait for the decision: it begins when the application is registered with the police or the border authority. That is the most practical difference between this route and the ordinary residence permit routes.\n\nThe right to work carries no restriction by field. Migri's guidance to employers is explicit: an employee who has applied for temporary protection has an unrestricted right to work and may take a job in any field. The employer still has to see the basis of that right and meet the ordinary employer obligations.\n\n...\n\nTemporary protection does not by itself give a municipality of residence. Someone who has lived in Finland for a year and been granted temporary protection can apply to the Digital and Population Data Services Agency (DVV) for one. The application goes to DVV, not to Migri.\n\nThere are two ways to apply before the year is complete. If the permit granted on the basis of temporary protection is for at least a year, an earlier application is possible. And if a family member already has a municipality of residence in Finland, you can apply for one as soon as you apply for temporary protection.\n\n...\n\nResidence permits granted on the basis of temporary protection are valid until 4 March 2027. The arrangement itself has been extended to 4 March 2028; the two dates are not the same thing."
+        ],
+        "image": "https://www.enb.fi/blog/Finlandiya-Schengen-Vize-Basvurusu-2026.webp"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "First 30 Days in Finland: The Complete Expat Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "publishedDate": "2026-06-14T01:37:42.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Book temporary housing for 4–6 weeks. Do not commit to a long-term lease before you arrive. You need to see the city, understand commute zones, and figure out which neighbourhoods work for your life. Short-term furnished rentals or serviced apartments give you that breathing room. A permanent address can come in week 2 or 3 once you have more information.\n\n...\n\nThe henkilötunnus is issued by the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency) when you register as a foreign national. There are two steps: submit the online foreigner registration form at dvv.fi, then attend an in-person appointment at a DVV service point.\n\nThe in-person appointment is the bottleneck. Wait times vary — in Helsinki they can stretch to a few weeks during busy periods. Book the appointment the day you land, even if you submit the form later.\n\n...\n\nWithout those two things, week 2 cannot start properly.\n\n...\n\nBook an in-person appointment — walk-ins are rarely accepted. Expect a wait of a few days to a week. During the appointment, the bank will also issue your pankkitunnukset (online banking credentials), which is a separate and critical item covered below.\n\n...\n\nApply in person at a DVV service point. Processing takes 2–4 weeks, which is why you apply in week 4 rather than waiting. The card will arrive within your first two months if you apply now.\n\n...\n\nDVV appointment wait is too long. DVV service point wait times vary significantly by city. Helsinki is the worst; Espoo, Vantaa, and smaller cities are often faster. If you have flexibility, check DVV's online booking system for all service points within commuting distance and book at whichever has the earliest slot.\n\n...\n\n## Your 30-Day Status Check\n\nBy the end of day 30, you should have:\n\n- Henkilötunnus issued by DVV\n- Finnish bank account open with pankkitunnukset active\n- Kela application submitted; Kelakortti requested\n- Tax card (verokortti) delivered to employer before first payday\n- Finnish SIM on a contract plan\n- Registered at terveyskeskus in your municipality\n- Siirto enabled in your bank app\n- Finnish ID card application submitted at DVV\n- Suomi.fi set up with digital post delivery enabled\n- OmaVero reviewed and verokortti estimate confirmed\n\nIf any of these are missing, address them now. The items that carry financial risk if delayed are the tax card (60% withholding) and Kela registration (healthcare coverage gap). Everything else is important but lower urgency."
+        ],
+        "image": "https://nordicexpat.com/finland/first-month-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.foredi.fi/post/%D0%BE%D0%B1%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D1%83-%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%BB%D1%83%D0%B6%D0%B1%D1%8B-%D1%84%D0%B8%D0%BD%D0%BB%D1%8F%D0%BD%D0%B4%D0%B8%D0%B8-%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%BE%D0%BC%D1%83-%D0%BE%D0%BC%D0%B1%D1%83%D0%B4%D1%81%D0%BC%D0%B5%D0%BD%D1%83-%D0%B8-%D0%BA%D0%B0%D0%BD%D1%86%D0%BB%D0%B5%D1%80%D1%83-%D1%8E%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8-%D1%84%D0%B8",
+        "title": "Обращение к директору Миграционной службы Финляндии, парламентскому омбудсмену и канцлеру юстиции Финляндии",
+        "url": "https://www.foredi.fi/post/%D0%BE%D0%B1%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D1%83-%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%BB%D1%83%D0%B6%D0%B1%D1%8B-%D1%84%D0%B8%D0%BD%D0%BB%D1%8F%D0%BD%D0%B4%D0%B8%D0%B8-%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%BE%D0%BC%D1%83-%D0%BE%D0%BC%D0%B1%D1%83%D0%B4%D1%81%D0%BC%D0%B5%D0%BD%D1%83-%D0%B8-%D0%BA%D0%B0%D0%BD%D1%86%D0%BB%D0%B5%D1%80%D1%83-%D1%8E%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8-%D1%84%D0%B8",
+        "publishedDate": "2024-11-05T22:00:00.000Z",
+        "author": "Initiative FoReDi",
+        "highlights": [
+          "Сегодня Initiative FoReDi направила официальное обращение к директору Миграционной службы Финляндии, парламентскому омбудсмену и канцлеру юстиции Финляндии в связи с тем, что многие граждане России ожидают решения по заявлениям на международную защиту уже более двух лет.\n\nПриводим выдержки из обращения на русском языке:\n\n> Большинство заявок на предоставление международной защиты было подано с сентября по ноябрь 2022 года. В течение 2023 года часть просителей получила приглашения на собеседование от Миграционной службы Финляндии, но некоторые до сих пор не получили не только решения, но даже приглашения на первое собеседование, хотя прошло уже более 21 месяца с момента подачи заявки.\n\n> Задержка с рассмотрением заявок нарушает Закон Финляндии об иностранцах от 30 апреля 2004 года (301 § 98 a), согласно которому решение должно быть принято в течение 21 месяца, даже при нестабильной ситуации в стране происхождения.\n\n> Уже находясь в статусе просителя убежища, люди, продолжали искать работу и поступали учиться, и около четверти из них также перестали быть просителями убежища. При этом с 1 сентября 2024 года законодательство изменилось, и просителям убежища теперь запрещено получать рабочие или студенческие виды на жительство, пока они ожидают решения по своему делу. Это нововведение ставит заявителей в положение вынужденной зависимости от центров временного размещения, где условия жизни далеки от комфортных и оказывают негативное влияние на психологическое состояние людей.\n\n...\n\nInitiative FoReDi призывает финских чиновников обратить внимание на невыполнение установленных законом сроков и содействовать взвешенному и справедливому рассмотрению заявок на международную защиту в Финляндии."
+        ],
+        "image": "https://static.wixstatic.com/media/469ea8_3004f6cd67034a87b6742d72a74b7207~mv2.jpg/v1/fill/w_1415,h_2000,al_c,q_90,usm_0.66_1.00_0.01/469ea8_3004f6cd67034a87b6742d72a74b7207~mv2.jpg"
+      },
+      {
+        "id": "https://www.helsinkitimes.fi/finland/finland-news/domestic/27398-ombudsman-rebukes-finnish-immigration-service-over-illegal-asylum-delays.html",
+        "title": "Ombudsman rebukes Finnish Immigration Service over illegal asylum delays - Helsinki Times",
+        "url": "https://www.helsinkitimes.fi/finland/finland-news/domestic/27398-ombudsman-rebukes-finnish-immigration-service-over-illegal-asylum-delays.html",
+        "publishedDate": "2025-07-14T11:08:53.000Z",
+        "author": "Tara",
+        "highlights": [
+          "> The Finnish Immigration Service (Migri) has received four formal warnings for breaching statutory time limits in asylum application processing.\n> \n> The reprimands followed complaints about the handling of applications submitted by Russian nationals in 2024 and early 2025.\n> \n> According to a review by the Deputy Parliamentary Ombudsman Mikko Sarja, several cases exceeded the maximum legal processing time of 21 months.\n\nThe delays ranged from 24 to 28 months from the date of application.\n\nThe ombudsman stated that public authorities failed to uphold the legal requirement for timely processing in international protection cases. The investigation focused on applications that had not undergone court appeals. In these examined cases, the Immigration Service had no legal justification for exceeding the time limits.\n\nBy the end of November 2024, Migri had approximately 700 Russian asylum applications pending. The backlog increased after the land border between Finland and Russia closed in December 2023, prompting a surge in applications.\n\nAccording to the Immigration Service, delays were also caused by repeated returns of cases from administrative courts, adding to internal bottlenecks. In addition, authorities reported difficulties obtaining background information from Russian institutions, which complicated the assessment of claims.\n\nMigri said it has begun reforms to shorten processing times. These include a new appointment system and an increase in the number of interpreters. The Ministry of the Interior is monitoring the progress of these measures and is expected to report back to the ombudsman by the end of 2025.\n\n...\n\n“The legal maximum for processing an asylum application is 21 months,” Mikko Sarja said. “In these cases, that limit was breached without legal justification.”\n\nThe Immigration Service has not disputed the ombudsman’s findings. In a statement, it acknowledged the excessive durations and said measures were being taken to address the situation.\n\nThe ombudsman did not review cases currently under appeal but stressed that even those should aim for decisions within six months, in line with best administrative practices."
+        ],
+        "image": "https://www.helsinkitimes.fi/images/2025/07/migri_wwarning.jpg"
+      },
+      {
+        "id": "https://yle.fi/a/74-20256821",
+        "title": "Ombudsman finds significant problems with Migri | Yle News | Yle",
+        "url": "https://yle.fi/a/74-20256821",
+        "publishedDate": "2026-11-13T10:39:35.000Z",
+        "highlights": [
+          "Immigration Service (Migri) is facing significant problems with application processing times, according to the Deputy Parliamentary Ombudsman.\n\nAn inspection by the Ombudsman's office found that Migri is unable to process all applications within the time limits set by law.\n\nHundreds of complaints about lengthy processing times prompted the Ombudsman to launch a review.\n\nThe Parliamentary Ombudsman monitors how authorities follow the law and protect people's fundamental rights, and investigates complaints from the public.\n\nThe biggest problems were found in residence permit applications based on family ties. Only 61 percent of these applications were processed within the statutory nine-month deadline in 2026.\n\nAccording to the Deputy Parliamentary Ombudsman, the delays are due to the number of applications exceeding Migri's capacity to process them.\n\nThere are also backlogs in applications for Finnish citizenship and permanent residence permits.\n\nProcessing times have been affected by staff shortages, legislative changes and the complexity of cases. But even so, authorities must comply with statutory deadlines even when application numbers increase, the Deputy Parliamentary Ombudsman noted."
+        ],
+        "image": "https://img.img-cdn.yle.fi/crop_extract,w_5999,h_3374,x_0,y_478/crop_fill,w_1200,h_628/f_auto/39-1480799684be270aee77/1752489257"
+      }
+    ],
+    "searchTime": 1209.1,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

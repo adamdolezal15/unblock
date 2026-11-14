@@ -1,0 +1,73 @@
+{
+  "fetchedAt": "2026-11-14T14:11:48.957Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Temporary protection",
+    "contextHash": "e425779ca9ddd9ae",
+    "includeDomains": [],
+    "docsHash": "1f56938b35ad7e27"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/temporary-protection",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Once you have arrived in Finland, visit the police (poliisi.fi) or a border control authority and inform them of your intention to apply for temporary protection",
+          "Show the police or the border control authority your identity document, such as a biometric passport issued by your country of nationality, or a Ukrainian internal passport",
+          "Show also the birth certificates of your children if you have any",
+          "At present, it takes approximately 2 weeks to get a residence permit card"
+        ],
+        "fetchedAt": "2026-11-14T00:51:25.917Z"
+      },
+      {
+        "url": "https://migri.fi/en/information-bank/temporary-protection",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Applications for temporary protection are submitted to the police or border authorities"
+        ],
+        "fetchedAt": "2026-11-14T00:51:25.917Z"
+      },
+      {
+        "url": "https://migri.fi/en/temporary-protection-and-municipality-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If you do not apply for a municipality of residence, you will continue to be a client of a reception centre and will continue to receive services from your reception centre"
+        ],
+        "fetchedAt": "2026-11-14T00:51:25.917Z"
+      },
+      {
+        "url": "https://www.enb.fi/guides/finland-temporary-protection-2026/",
+        "title": "enb.fi",
+        "domain": "enb.fi",
+        "trust": "community",
+        "highlights": [
+          "Migri's current estimate is that a complete application is processed in about a week; the decision then takes roughly another week to arrive by post, so it usually reaches you within two weeks",
+          "Migri says the card takes about two weeks and is sent to a collection point within three weeks of the decision",
+          "These are estimates: a missing document or a request for further information lengthens them"
+        ],
+        "fetchedAt": "2026-11-14T14:11:31.618Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2607,
+      "costUsd": 0.005442000000000001,
+      "cacheHit": false
+    }
+  }
+}

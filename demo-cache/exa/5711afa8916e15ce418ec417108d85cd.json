@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T14:11:40.415Z",
+  "request": {
+    "endpoint": "search",
+    "query": "DVV Bank account Turku, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Bank account\" (DVV) in Turku, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "3e4bfe3f5ba80953ae812396ee8a4437",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "Opening a Bank Account in Finland as a Foreigner | NordicExpat",
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "publishedDate": "2026-06-04T14:39:47.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Mandatory\n\n- Finnish personal identity code (henkilötunnus) — required by all major banks for standard onboarding. You receive it when you register your residence and kotikunta (municipality of residence) with the Digital and Population Data Services Agency (DVV). If you have not got yours yet, start with our guide to the Finnish personal identity code — almost nothing in Finnish life works smoothly without it.\n- Valid passport or EEA national ID card — Nordea, for example, accepts a passport or an identity card issued in the EEA (including San Marino and Switzerland). An alien's passport is generally not accepted as the sole identity document.\n- Proof of your right of residence — for non-EU citizens, a residence permit card or a certificate of a pending application; for EU/EEA citizens, your registration of right of residence.\n\n### Usually Required\n\n- Proof of Finnish address — your address as registered with DVV, a rental agreement, or a confirmation letter.\n- Details of employment or study — an employment contract, a letter from your employer, or a student enrolment confirmation. Banks ask this partly for customer due diligence (the anti-money-laundering checks every EU bank must run).\n\nA practical tip: fill in any customer-information form your chosen bank provides before the appointment, and bring it with you. OP notes that the most common reason applications are delayed is incorrect or incomplete registration details, so it is worth double-checking that your name and address at DVV exactly match what you give the bank.\n\n...\n\nThe practical catch: where you have no henkilötunnus or are not yet in the population register, the bank can decline to give you the standard strong-authentication online banking ID and must instead offer \"a more limited electronic identification method applicable only for using a payment account with basic features and related services.\" So the right exists, but it is narrow, it is not what a front-line teller will reach for by default, and you may have to escalate. For most people the faster route is still to get the henkilötunnus first. If you want the full detail on this edge case, see our guide to opening a Finnish bank account before you have a henkilötunnus.\n\n...\n\nEven when you start an application online, all major Finnish banks require an in-person identity-verification visit for a first Finnish account — partly because, until you hold strong electronic identification, you cannot legally sign the documents online. At the branch:\n\n1. Bring every required document — passport or EEA ID card, henkilötunnus, residence document, and proof of address.\n2. Identity verification — a bank employee checks and copies your documents and confirms your identity in person.\n3. Sign the agreements — you sign the account agreement and the related services agreement.\n4. Wait for the post — account details, your debit card, and your online banking codes are typically mailed.\n\nBook the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days. For service in English, ask for it when you book; Nordea has a dedicated English line.\n\n...\n\n## Common Problems and Fixes\n\n- \"The bank says I need a henkilötunnus and I don't have one yet.\" That is correct for a standard account. Get the identity code via DVV first; only fall back on the basic-payment-account right (above) if you genuinely cannot, and expect to escalate.\n- \"My application got delayed.\" The usual cause is mismatched or incomplete registration details. Make sure your name and address at the bank exactly match DVV's records.\n- \"S-Pankki wouldn't serve me in English.\" Documented behaviour — its legal documents are in Finnish/Swedish and staff may require an interpreter. Try Nordea or OP if language is a barrier.\n- \"I was refused outright.\" Ask for the reason in writing. Refusals for a basic account should, per FIN-FSA, generally only happen for anti-money-laundering reasons such as unverifiable identity. Try another bank — risk appetites for new-to-Finland customers differ.\n- \"I can't log in to OmaVero / Kela yet.\" You need active pankkitunnukset (or a mobiilivarmenne). Until your codes arrive and are activated, you cannot use most Finnish online government services."
+        ],
+        "image": "https://nordicexpat.com/finland/opening-bank-account-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.entnerd.com/en/new-inturku-this-guide-has-everything-you-need/",
+        "title": "New in Turku? The 2025 Newcomer's Guide Has Everything You Need",
+        "url": "https://www.entnerd.com/en/new-inturku-this-guide-has-everything-you-need/",
+        "publishedDate": "2025-09-12T18:21:00.000Z",
+        "author": "ROP",
+        "highlights": [
+          "- Moving to Turku: How to apply to the Finnish Immigration Service (Migri), obtain a personal identity code, register at the Digital and Population Data Services Agency (DVV) for your municipality of residence, enroll with Kela (social security) and set up banking/e-identification and tax matters. The guide explains online portals (e.g., Enter Finland), documents to bring, legalization/translation needs, typical processing times and where to find the closest service points (including Migri Raisio).\n- Living in Turku: Rental search tools, average 2025 rent levels (e.g., studios around €560, one-bedroom €680, two-bedroom €870), insurance/utilities basics, day care and school pathways (including Turku International School and Valmo preparatory education), Finnish language options (city courses, Finnishcourses.fi, Kielibuusti, Suomipassi), healthcare through Varha (plus FSHS for degree students), libraries, culture, sport, nature and getting around with Föli buses, city bikes and ferries.\n- Working & Studying: Local work culture and work-life balance, employee rights and contracts, unions/unemployment funds, guidance if employment ends (including new protection periods), recognition of regulated professions, entrepreneurship services, and student life.\n\n### The 3 most important things for newcomers from our perspective (save this!)\n\n1. Do your registrations in the right order. Start with Migri (residence permit/right of residence), then DVV (municipality of residence/personal identity code), then Kela (benefits & Kela card). These unlock banking (e-ID), taxes and almost all public services.\n2. Use International House Turku as your first stop. IHT provides free, multilingual guidance on immigration, family services, jobs, studies and everyday life—online, by phone/email or at Monitori, Aurakatu 8. It’s the city’s one-door service for newcomers.\n3. Sort housing, language and healthcare early.Begin rental searches ASAP, budget with 2025 averages, enroll kids in day care/school, book Finnish courses, and set up access to Varha services (or FSHS for students). Early action prevents delays and helps you settle faster.\n\n...\n\n- STEP 1: Visit International House Turku (Monitori, Aurakatu 8): In the heart of the city find the customer service on weekdays; phone and email support available. Start here for personal guidance.\n- STEP 2: Migri → DVV → Kela: From IHT they will tell you to visit them. So, follow the guide’s checklists for documents, online applications and appointments.They are located at Itsenäisyydenaukio 2; first floor, 20800 Turku (after this... you can face Kela).\n- STEP 3: Everyday life: Use the guide’s links for housing portals, language schools, Varha healthcare contacts, Föli route planner, libraries and culture calendar."
+        ],
+        "image": "https://img.entnerd.com/upload/2025/09/17161D514C434D6D14140F55544945721F131F185045427515-1024x576.jpg"
+      },
+      {
+        "id": "https://www.countrytolive.com/knowledge/finland/open-bank-account-finland",
+        "title": "How can a newcomer open a bank account in Finland in 2026? | Country Answers | Country To Live",
+        "url": "https://www.countrytolive.com/knowledge/finland/open-bank-account-finland",
+        "publishedDate": "2026-07-20T03:13:51.000Z",
+        "highlights": [
+          "InfoFinland and DVV both stress that a henkilötunnus is the number you need when dealing with banks and employers. In practice, most full-service onboarding expects that code plus a valid passport or EEA national ID, proof of lawful stay (residence permit card or EU registration certificate), and Finnish address details. Non-EU movers should bring the Migri (Finnish Immigration Service) card when they have one. Banks ask source-of-funds and purpose-of-account questions. Answer with facts from your contract or savings trail rather than vague tourist language.\n\nExpect an in-person identity check at a branch for the first account. Appointment availability in Helsinki, Espoo, Tampere, or Turku can stretch, so book early after your henkilötunnus arrives. Do not invent monthly account fees from memory. Ask the bank for its current basic-account pricing when you book.\n\nKela (the Social Insurance Institution of Finland) also expects a Finnish bank account before it can pay benefits into your name. That is another reason to finish DVV registration and the bank visit before you treat settling-in as complete: Register address and Paperwork after moving.\n\n...\n\nIf you still lack a henkilötunnus, finish Migri and DVV steps first rather than hoping a branch will invent the number. The bank does not create the Population Information System entry; DVV, Migri, or a tax office does.\n\n...\n\nTell your employer which account to use only after you have IBAN details and can log in. Keep a foreign buffer account available until the Finnish account accepts deposits. City choice affects branch density more than the legal rules; see Living in Helsinki or Living in Tampere once housing is settled.\n\nIf one bank declines, try another major retail bank with the same document pack."
+        ],
+        "image": "https://www.countrytolive.com/flags/fi.svg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Register with DVV in two stages: submit the free online foreigner registration form at dvv.fi/en/foreigner-registration (no authentication needed), then visit a DVV service point in person within 1 month with your passport, residence permit or EU registration certificate, and proof of work or study. Processing then takes 2–3 weeks for work and study cases, 3–4 weeks otherwise.\n\n...\n\nAppointments at the\n\n...\n\n### Step 3 — Bring the right documents\n\nTake, at minimum:\n\n- A valid passport or EU/EEA photo ID\n- Your residence permit card or EU registration certificate — or proof that you have applied for one\n- Proof of your grounds for staying: an employment contract, a study certificate, or similar\n- Any legalised certificates for family relationships you want recorded (marriage, birth)\n\nDocuments in languages other than Finnish, Swedish, or English may need an official translation, and foreign civil-status certificates often need legalisation (an apostille). If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment.\n\n...\n\nDVV operates service points across Finland — major cities including Helsinki, Tampere, Turku, and Oulu have offices, and there are around a dozen physical locations nationally. You can also reach DVV by telephone on +358 295 536 320 (Mon–Fri 9–15) and through secure email for questions about your case."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://aleksihimself.com/how-to-open-a-bank-account-in-finland-a-step-by-step-guide/",
+        "title": "How to Open a Bank Account in Finland: A Step-by-Step Guide",
+        "url": "https://aleksihimself.com/how-to-open-a-bank-account-in-finland-a-step-by-step-guide/",
+        "publishedDate": "2024-08-11T17:15:37.000Z",
+        "author": "Aleksi Himself",
+        "highlights": [
+          "If you’re a non-EU citizen, you first need a residence permit (RP). With this permit, you should receive a Personal Identity Code, or Henkilötunnus (Hetu in short) in Finnish. This code is your most important personal information in Finland, distinguishing you from anyone else, even if they share your name and birthday. However, if you complete your identification with VFS Global during the permit application process, you won’t get a hetu and must apply separately from Digital and Population Data Services Agency (Digi- ja väestötietovirasto, DVV in short)\n\nWithout a Personal Identity Code, you won’t be able to access many Finnish services, so it’s crucial to get this as soon as possible. Be careful with this code—only disclose it when necessary, such as dealing with the public sector or signing contracts.\n\n...\n\nOnce you arrive in Finland, you must visit the Digital and Population Data Services Agency (DVV) in person. Booking this appointment as early as possible is essential since slots fill quickly. Click here to book a meeting.\n\n...\n\n1. Get Passport Photos: Head to a local photo shop in shopping malls or downtown areas. Prices range from €15 to €25. Ensure the photos are forwarded to the Police system—you’ll get a six-digit code to retrieve your photos later.\n2. Book a Meeting with the Police: Here’s the tricky part. The Police booking system is often full for months. However, you can arrive early, around 7:30 AM, for a walk-in appointment. Many people use this strategy, so be prepared to wait. I recently guided a newcomer. She arrived at the police station around 7.30, and there were 8 people before her. She had to wait around 30 minutes after the doors opened. You can try to book the meeting here. \n3. File the form with the Officer and Choose Delivery and Pickup: When applying for your ID card, you can choose to have it delivered to either the police station or a nearby R-kioski convenience store. If you opt for R-kioski, someone with a Finnish passport or ID card must collect it. If you don’t have a trusted person to do this, it’s safer to choose the police station as the pickup location.\n4. Collect the Card. You will get an SMS and email when your card is ready to collect."
+        ],
+        "image": "https://aleksihimself.com/wp-content/uploads/2024/08/5.png"
+      }
+    ],
+    "searchTime": 15.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

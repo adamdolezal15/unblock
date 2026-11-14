@@ -1,0 +1,84 @@
+{
+  "fetchedAt": "2026-11-14T14:12:37.156Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Family member's residence (EU registration or residence card of a family member of an EU citizen)",
+    "contextHash": "9c8399e6b8c77150",
+    "includeDomains": [],
+    "docsHash": "06c661dc56410b89"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Your family members must register their stay or notify the authorities of their residence in Finland",
+          "They must visit the Finnish Immigration Service in person to prove their identity"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eservices/info/europeanpermits",
+        "title": "enterfinland.fi",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "You must apply for registration of your right of residence in Finland if you reside in Finland for over 3 months and are a citizen of an EU Member State, Liechtenstein or Switzerland"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eServices/info/europeancitizens",
+        "title": "enterfinland.fi",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "A valid passport or identity card",
+          "When you apply for EU registration as a family member: a document that proves your family ties and documents confirming that the sponsor (your family member) meets the requirements for registration"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator",
+          "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity",
+          "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://www.byteseu.com/366562/",
+        "title": "byteseu.com",
+        "domain": "byteseu.com",
+        "trust": "community",
+        "highlights": [
+          "I changed my application to this and it was approved within a few days",
+          "They informed me that it would be better for me to apply for a Residency Permit for a family member of an EU citizen in Finland",
+          "This permit has not come up on any of my searches and it was not obvious to me"
+        ],
+        "fetchedAt": "2026-11-14T14:12:18.761Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1411,
+      "costUsd": 0.004592,
+      "cacheHit": false
+    }
+  }
+}

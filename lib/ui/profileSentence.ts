@@ -2,7 +2,7 @@
 // studying in Helsinki from 1 December, on €3,200 a month (I assumed gross)."). The nationality word is
 // taken from the person's own sentence when it names one; otherwise the citizenship group is used.
 import type { Profile } from "@/lib/types";
-import { assumptionLabel } from "./assumptionLabel";
+import { assumptionPhrase } from "./assumptionLabel";
 import { longDate } from "./letter";
 
 export type Part = { t: string } | { field: Field; value: string; title?: string };
@@ -61,20 +61,6 @@ export function profileParts(p: Profile, assumptions: string[], text: string): P
     parts.push({ t: "." });
   }
   return parts;
-}
-
-/** Short phrase for "I assumed …". */
-function assumptionPhrase(sentence: string): string {
-  const l = assumptionLabel(sentence);
-  if (/^city /.test(l)) return `you mean ${l.slice(5)}`;
-  if (l === "arrival date") return "you arrive today";
-  if (l === "arrival on the 1st") return "the 1st of the month";
-  if (l === "purpose: work" || /\b(interpreted|treated) as (moving to Finland )?for work\b/i.test(sentence)) return "you are coming to work";
-  if (l === "PhD as study") return "your PhD counts as study";
-  if (/nationality|wife|husband|spouse|partner/i.test(sentence)) return "your partner has the same citizenship";
-  // Unknown kind: the whole sentence, not four truncated words.
-  const whole = sentence.trim().replace(/\.$/, "");
-  return whole[0].toLowerCase() + whole.slice(1);
 }
 
 /** The correction appended to the sentence when an editable part changes. */

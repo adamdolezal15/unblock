@@ -1,0 +1,83 @@
+{
+  "fetchedAt": "2026-11-14T14:12:37.396Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register EU citizen's right of residence (EU registration)",
+    "contextHash": "8b6f6abd43e61704",
+    "includeDomains": [],
+    "docsHash": "8babb117e2aa32f1"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if",
+          "When you visit the service point, bring with you",
+          "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.527Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are going to live in Finland for more than three months, apply for an EU registration from the Finnish Immigration Service",
+          "Visit the Finnish Immigration Service in person to identify yourself within three months of your arrival in Finland",
+          "When you have submitted your registration, you will usually receive a personal identity code"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.527Z"
+      },
+      {
+        "url": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/eu-citizens-permits-and-notifications",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Fill out the application for the registration of your right of residence in advance electronically or on paper",
+          "Pay for the processing charge when submitting your application. If you do not pay this charge, your application will not be processed"
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.527Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "Remember to book this appointment as soon as you submit your online application, because appointment slots, especially in busy periods, can fill up fast"
+        ],
+        "fetchedAt": "2026-11-14T14:12:18.187Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "Many expats swear by checking late at night or early in the morning"
+        ],
+        "fetchedAt": "2026-11-14T14:12:18.187Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1655,
+      "costUsd": 0.00456,
+      "cacheHit": false
+    }
+  }
+}

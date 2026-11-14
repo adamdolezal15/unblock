@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T14:20:52.910Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Identity card for a foreigner (Police)",
+    "contextHash": "d73387c8ce1e818a",
+    "includeDomains": [],
+    "docsHash": "5a48784ee6e1fd87"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+          "When applying for a foreigner’s identity card, you must present a valid passport or identity card"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.154Z"
+      },
+      {
+        "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.154Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "The application processing is usually rather straightforward, and you can expect to receive your ID card within 1–2 weeks after your visit to the police station",
+          "Applying for the identity card requires a personal visit at the Police station"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.154Z"
+      },
+      {
+        "url": "https://www.nokianuutiset.fi/uutiset/art-2000011078815.html",
+        "title": "nokianuutiset.fi",
+        "domain": "nokianuutiset.fi",
+        "trust": "community",
+        "highlights": [
+          "Keskiviikkona 5. maaliskuuta 2025 ajan sai varattua Tampereen poliisiasemalle alle kahden viikon päähän",
+          "Jos ajanvaraustilanteen hellittämisestä huolimatta oma tilanne ei mahdollista viikkojen odottelua, Tampereella ja Kangasalla poliisiasemilla asioimaan pääsee edelleen marssimalla asemalle ja ottamalla jonotuslapun"
+        ],
+        "fetchedAt": "2026-11-14T07:20:38.750Z"
+      },
+      {
+        "url": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "title": "valtioneuvosto.fi",
+        "domain": "valtioneuvosto.fi",
+        "trust": "community",
+        "highlights": [
+          "If you can’t find a suitable time straight away, check out the situation later"
+        ],
+        "fetchedAt": "2026-11-14T07:20:38.750Z"
+      },
+      {
+        "url": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "title": "lifeaway.blog",
+        "domain": "lifeaway.blog",
+        "trust": "community",
+        "highlights": [
+          "My Finnish husband had to collect the card for me at a pick-up location and it took about a week for the card to arrive",
+          "Extra Important – The card will not be mailed to your home, but to a pick-up point of your choosing",
+          "Bring your photo share code, DVV certificate, passport, and residence permit to your appointment"
+        ],
+        "fetchedAt": "2026-11-14T07:20:39.099Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2709,
+      "costUsd": 0.00696,
+      "cacheHit": false
+    }
+  }
+}

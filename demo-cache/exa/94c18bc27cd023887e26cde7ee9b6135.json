@@ -1,0 +1,97 @@
+{
+  "fetchedAt": "2026-11-14T14:11:40.793Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a turku.fi appointment for Strong electronic identification (online banking codes) in Turku, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Strong electronic identification (online banking codes)\" (turku.fi) in Turku, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "562fdca324471148f9f253176878416b",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://selkoraha.fi/en/blog/finland-strong-identification-2026",
+        "title": "Strong identification in Finland 2026: personal code and bank codes | Selkoraha",
+        "url": "https://selkoraha.fi/en/blog/finland-strong-identification-2026",
+        "publishedDate": "2026-07-16T15:08:14.000Z",
+        "author": "Palvemax OY",
+        "highlights": [
+          "Using Finnish e-services requires two things: a personal identity code (henkilötunnus) and strong electronic identification. Strong identification is most often done with online banking codes, a mobile certificate or a certificate card, and through the Suomi.fi service you log into Kela, Vero, Migri (Enter Finland) and OmaKanta with them.\n\n...\n\n11\n\ncharacters in the personal code\n\n2–4 wk\n\nDVV processing time\n\n3\n\nmain strong-ID methods\n\n...\n\nOtherwise you request it from the Digital and Population Data Services Agency (DVV): you fill in an online form and visit in person within a month. Processing typically takes about 2–4 weeks. For the visit you need a valid passport or EU ID card and a residence permit card or other proof of legal residence. You need the code at a bank, with an employer and in dealings with authorities.\n\n## Strong electronic identification – bank codes and other methods\n\nWith Suomi.fi e-Identification you log into public-administration services with a single sign-in. The strong-identification methods are online banking codes, a mobile certificate and a certificate card (such as the ID card issued by the police). You get online banking codes by making a contract with a Finnish bank, and they must be issued to you personally. A mobile certificate is activated with your operator and often requires existing bank codes – it does not work on a prepaid subscription.\n\n...\n\nBank codes require a bank account, and opening an account requires a personal identity code and strong identification – often a visit to a branch. So in practice the first strong token is usually the online banking codes. If you cannot get a Finnish token yet, you can use your own EU country’s eIDAS token or the Finnish Authenticator app (for people without a personal code, 18+, in English) – though it does not work in every service."
+        ],
+        "image": "https://selkoraha.fi/en/blog/finland-strong-identification-2026/opengraph-image?4656af3afa54921a"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "title": "Streamlined services for issuing personal identity codes and municipality of residence for foreign citizens - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "publishedDate": "2025-04-28T07:45:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "The Digital and Population Data Services Agency took action last year in order to streamline the registration of foreigners. You can now get your personal identity code when visiting the agency in 12 locations. The updated website and instructional videos will guide customers to use services that match their situation.\n\nThe registration of foreigners' personal data has accelerated as the Digital and Population Data Services Agency has improved its practices and systems. You can now apply for a personal identity code and municipality of residence online, which speeds up processing and improves the accuracy of the data. After filling in the online form, the customer must still usually visit the agency in order to verify their identity.\n\n...\n\nA few service locations of the Digital and Population Data Services Agency tested the practice first and started issuing a personal identity code during a personal visit, and as their experiences were positive, the practice was adopted permanently. At the moment, persons who have booked an appointment and completed an online form may receive their personal identity code in 12 locations: Helsinki, Joensuu, Jyväskylä, Kuopio, Lahti, Lappeenranta, Oulu, Pori, Rovaniemi, Tampere, Turku and Vaasa. \n\nTo receive their personal identity code during the visit, the customer must first submit their data to the Digital and Population Data Services Agency using an online form and book an appointment online. They must also meet the requirements for obtaining a personal identity code. However, a personal identity code cannot always be issued during a visit if the matter requires further clarification. \n\nThe online form for obtaining a personal identity code is available to all foreigners, and it does not require strong identification. You can use the same form to request a municipality of residence if you are intending to stay in Finland for more than one year. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "How long\n\n2–3 weeks (work/study) or 3–4 weeks (other cases), from your in-person visit\n\nWhere to apply\n\nOnline form at dvv.fi, then in person at a DVV service point (Helsinki, Tampere, Turku, Oulu)\n\n...\n\nDVV registration in Finland is how a foreigner enters the Population Information System and receives a henkilötunnus (personal identity code) that banks, the tax office and Kela rely on. You register with the Digital and Population Data Services Agency by submitting an online registration form, then attending one in-person appointment within a month. It is free and takes roughly two to four weeks.\n\n...\n\nRegister with DVV in two stages: submit the free online foreigner registration form at dvv.fi/en/foreigner-registration (no authentication needed), then visit a DVV service point in person within 1 month with your passport, residence permit or EU registration certificate, and proof of work or study. Processing then takes 2–3 weeks for work and study cases, 3–4 weeks otherwise. There is no fee — the registration and your henkilötunnus (personal identity code) are completely free.\n\n...\n\n### Step 2 — Book an in-person appointment within one month\n\nAfter the form, you must visit a DVV service point in person, and you must do so within one month of submitting. The in-person step is non-negotiable — it is where DVV verifies your identity against your documents. Appointments at the busy Helsinki-area locations can fill up, so book as early as you can rather than leaving it to the end of the one-month window.\n\n...\n\n### Step 4 — Wait for processing\n\nProcessing time, according to DVV, is roughly 2–3 weeks for work and study registrations and 3–4 weeks for other cases, counted from your visit date. At the end you receive your personal identity code, and DVV separately decides your municipality of residence.\n\n...\n\n1. Before or on arrival — settle your residence basis with Migri (permit for non-EU; right-of-residence registration for EU citizens staying over three months).\n2. First days — submit the DVV foreigner registration form online and book the in-person appointment.\n3. Within the first month — attend the DVV appointment with your documents; this is also a good moment to use International House Helsinki if you are in the capital region.\n4. Weeks two to four — DVV processes the registration (2–3 weeks for work/study, 3–4 weeks otherwise) and assigns your personal identity code and, where eligible, your municipality of residence.\n5. Once you have the henkilötunnus — open a Finnish bank account, order a tax card from Vero, and register with Kela.\n6. Whenever you move permanently or for over 3 months — file a notification of move within one week."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+        "title": "Best Bank Accounts in Finland for Expats (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+        "publishedDate": "2026-05-16T21:02:08.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "The credentials — pankkitunnukset (online banking codes) — are not just for checking your balance. They are Finland's de facto national digital identity. You use them to log in to Suomi.fi (the public services portal), OmaVero (the tax portal), Kela, your health records, and a large share of private services. Suomi.fi confirms that online banking codes are accepted as strong electronic identification across services well beyond the bank itself.\n\nHere is the part most guides miss. Ac ... In plain terms: the law treats opening an account and issuing the identification codes differently, and the codes carry the stricter requirements. This is exactly why some newcomers get an account but find the bank codes take longer.\n\n...\n\nTwo practical points. First, almost all bank staff speak English, and Finland's Discrimination Tribunal has ruled that banks cannot discriminate against applicants holding only foreign-issued documents — so foreign paperwork, on its own, is not grounds for refusal. Second, your first account almost always requires an in-person branch visit: you cannot complete the identity check fully online before you have any Finnish strong identification, which is the chicken-and-egg problem newcomers run into. Book an appointment rather than relying on a walk-in.\n\n...\n\n- Which English-speaking branch can see you soonest? Because the first account is opened in person, appointment availability often matters more than the brand. Nordea and OP have the widest reach here.\n- Do you already collect a loyalty scheme? If you shop at S-Group, S-Pankki's bonuses fold neatly into spending you already do. If you expect to use one provider for insurance and a mortgage too, OP's member model rewards consolidation.\n- How much do you need English self-service? If you will not read Finnish for a while, weight English online banking heavily — this is where the smaller banks fall short.\n- How fast do you need the online banking codes? Remember the account and the codes are separate. If getting your pankkitunnukset quickly is the priority (to file taxes or access Kela online), ask the bank directly about the codes, not just the account, at your appointment.\n\n...\n\nOnce your account is open, the codes are the prize. As Suomi.fi explains, online banking codes must be issued personally to you and are obtained by entering into a contract with a Finnish bank. They are overwhelmingly the most-used way Finnish residents log in to public services online.\n\nA few things to know:\n\n- They are not automatic with the account. Especially for newcomers, the strong-identification step can lag behind account opening — the exact gap the FIN-FSA review flagged. Ask at your appointment specifically when and how you will receive your codes.\n- There are alternatives. Finland also recognises the mobile certificate (mobiilivarmenne, a chip-based identity tied to your SIM, offered by mobile operators), certificate cards, and the Finnish Authenticator app. If bank codes are slow, mobiilivarmenne can be a useful second route into Suomi.fi services.\n- Joint accounts have a quirk. Per Suomi.fi, online banking codes for a joint account can be used only by the person in whose name the account is held — so each adult generally needs their own codes.\n\n...\n\nThe hardest stretch is the first few weeks, before your henkilötunnus, account and codes have all landed — but when you may already need to receive a first salary, pay a deposit, or cover daily costs.\n\n...\n\nPutting it together, the order that works for most newcomers is:\n\n1. Sort your henkilötunnus first. It is the practical prerequisite for the everyday accounts the big banks market, even though the law treats the basic payment account separately.\n2. Pick the bank by accessibility, not brochure features — usually the English-speaking branch with the soonest appointment.\n3. Open the account in person, bringing your passport, residence document, henkilötunnus and address details.\n4. Ask explicitly about the online banking codes — when they arrive and how, separately from the account.\n5. Bridge the gap with Wise or Revolut so you can receive and pay money while the domestic setup completes.\n\nDone in this order, you avoid the most common failure mode: assuming the account and the codes arrive together, and being stuck unable to log in to public services for weeks. For the step-by-step mechanics of the visit itself, see our guide to opening a bank account in Finland; for the codes specifically, see our guide to Finnish online banking IDs."
+        ],
+        "image": "https://nordicexpat.com/finland/best-bank-account-finland-expat/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.enb.fi/guides/moving-to-turku-living-guide-2026/",
+        "title": "Moving to and Living in Turku 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/moving-to-turku-living-guide-2026/",
+        "publishedDate": "2026-08-24T00:48:32.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "## Short answer\n\nWhen relocating to Turku, the order of formalities matters: immigration status → DVV/personal identity code/municipality of residence → Vero → Kela → banking/strong authentication → housing/utilities → local services. International House Turku / Soft Landing Service provides local guidance for international newcomers. A city guide does not replace permit or benefit rules; always verify personal eligibility with Migri, DVV, Vero and Kela.\n\n...\n\n## 2. First 2–4 weeks: formalities\n\nMunicipality-of-residence registration matters for local public services; having a Finnish personal identity code does not always mean that a municipality of residence has been registered. Kela eligibility is also not automatic merely from an address registration.\n\nDo not delay the tax card when starting work. Strong electronic identification makes access to many public and private services easier.\n\n### Checklist\n\n- Confirm residence permit / EU registration status\n- Complete DVV personal identity code and municipality-of-residence registration\n- Arrange tax card / Vero matters\n- Check Kela eligibility\n- Set up bank account and strong authentication\n- Arrange housing contract, electricity and home insurance\n- Plan public transport / driving\n- Apply early for daycare/school if needed\n- Register with employment/integration services where relevant\n- Use the local newcomer service for initial guidance"
+        ],
+        "image": "https://www.enb.fi/cities/turku.jpg"
+      }
+    ],
+    "searchTime": 8.8,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

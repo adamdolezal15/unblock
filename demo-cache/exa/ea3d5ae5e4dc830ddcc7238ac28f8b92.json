@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T14:11:44.290Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi University enrolment and arrival steps Turku, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"University enrolment and arrival steps\" (Suomi.fi) in Turku, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "6da3f52c473cd75f993f4967a23594f8",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicimmigration.fi/en/guides/first-week-student-finland",
+        "title": "Your first student week in Finland: housing, registration and starting university | Nordic Immigration",
+        "url": "https://nordicimmigration.fi/en/guides/first-week-student-finland",
+        "publishedDate": "2026-11-04T21:18:32.000Z",
+        "author": "Nordic Immigration",
+        "highlights": [
+          "Save your key collection time, accommodation address and handover contact somewhere you can open offline. If you arrive outside office hours, agree the collection arrangements with your housing provider beforehand. Your flight landing time is not your arrival time at the apartment: allow for ground transport and possible delays.\n\nRead your university’s new-student instructions separately from the admission letter. Make a short list of enrolment deadlines, orientation, account activation and the contact for access problems. If you are still planning, compare the budget for starting student life with travel expenses.\n\n...\n\n## Starting university: accounts and orientation\n\nPrioritise account activation, completing enrolment and finding the term’s starting programme. Admission, registration as an attending student and course registration serve different purposes. Your own institution’s instructions determine which steps remain outstanding.\n\nIf access fails, describe the error and the point where you became stuck to university support rather than creating duplicate accounts. Keep starting instructions, necessary letters and receipts in a secure personal folder. Do not post identity documents in a public student group.\n\n...\n\nBefore visiting a bank, ask your chosen branch about required documents and appointments. Do not assume an account application, receiving a card and obtaining electronic identification are one immediate step. eLUT also notes that banking procedures vary. Test the route between home and campus before classes begin, and check student-discount conditions with your local transport provider.\n\n...\n\nBring necessary health"
+        ],
+        "image": "https://nordicimmigration.fi/website-assets/img/arrival/first-week.png"
+      },
+      {
+        "id": "https://www.tuudo.fi/en/welcome-to-higher-education-a-checklist-for-new-students/",
+        "title": "Welcome to Higher Education – A Checklist for New Students - Tuudo",
+        "url": "https://www.tuudo.fi/en/welcome-to-higher-education-a-checklist-for-new-students/",
+        "publishedDate": "2024-07-23T10:04:53.000Z",
+        "highlights": [
+          "### 1. Finding accommodation\n\nIf you are moving for your studies, one of your first tasks is to find accommodation. You can look for housing on the private market or through a student housing foundation. It’s also worth using your connections and social media groups — your own student organization might have a group where housing ads are shared. Be proactive and start your search early, as housing often goes quickly. \n\n### 2. Registration and fees\n\nRemember to register for attendance on time and take care of the necessary payments. The student union fee is mandatory for university students, but for students in a university for applied studies the union fee is optional. Additionally, remember the FSHS fee for healthcare, which is paid directly to Kela. These fees are important as they enable student health services and many other student benefits. \n\n### 3. Organize your finances\n\nA student’s income often consists of student allowance, student loans, and housing allowances. Be sure to apply for these allowances in time and check how possible work income affects your grants. Kela’s quick guide provides easy-to-find information regarding student benefits. \n\nNote that cuts to the general housing allowance came into effect on April 1, 2024. You can calculate the amount of your housing allowance using Kela’s housing allowance calculator. \n\n### 4. Familiarize yourself with the university’s info materials\n\nThe university’s website contains a lot of useful information for new students. Familiarize yourself with the orientation week schedules, upcoming courses, available systems, library services, and student cafeterias. Being well-prepared makes the start smoother and less stressful. \n\n### 5. Download the Tuudo App\n\nThe Tuudo app, which helps students manage their daily lives, is already used by over 40 educational institutions across Finland, including universities and secondary schools. Check if your future school is one of them. Tuudo has many useful features, such as course registrations, schedules, student lunch menus, and academic records. You can also find valuable student benefits and job opportunities for both summer and during your studies through Tuudo."
+        ],
+        "image": "https://www.tuudo.fi/wp-content/uploads/2025/10/Uudelle-opiskelijalle.png"
+      },
+      {
+        "id": "https://blogit.utu.fi/opiskelijaelamaa/ensimmaista-kertaa-omilleen-uusi-elama-alkaa-turussa/",
+        "title": "Ensimmäistä kertaa omilleen – uusi elämä alkaa Turussa - Opiskelijaelämää Turun yliopistossa",
+        "url": "https://blogit.utu.fi/opiskelijaelamaa/ensimmaista-kertaa-omilleen-uusi-elama-alkaa-turussa/",
+        "publishedDate": "2026-08-04T10:23:32.000Z",
+        "author": "Kristiina Karvonen",
+        "highlights": [
+          "Turku on opiskelijalle sopivan kokoinen kaupunki. Keskusta, yliopisto ja monet opiskelijoiden suosimat alueet sijaitsevat melko lähellä toisiaan. Kaupunkiin on helppo tutustua kävellen, pyörällä tai bussilla.\n\nAurajoki toimii hyvänä maamerkkinä, kun uuden kaupungin kadut eivät vielä ole tuttuja. Joen ympäristöstä löytyvät niin keskustan palvelut, ravintolat kuin monet tunnetut nähtävyydetkin. Opiskelijaelämän kannalta tärkeäksi paikaksi muodostuu oman asuinalueen lisäksi tietenkin yliopistonmäki, missä käydään luentojen lisäksi ystävien kanssa lounaalla ja kirjastoissa opiskelemassa. Itselleni yliopistonmäestä muodostui turvapaikka, sillä reitit kampuksille oppii nopeasti ja tuttuihin tyyppeihin törmää aina.\n\nTurkuun kannattaa tutustua rauhassa jo ensimmäisten viikkojen aikana. Kävele uusi reitti kampukselle, selvitä lähimmät ruokakaupat ja etsi paikka, jossa voisit opiskella tai viettää aikaa. Käy kampuksien eri kirjastoissa ja testaa eri opiskelijaravintolat. Kun ympäristö alkaa tuntua tutulta, myös uuteen elämäntilanteeseen sopeutuminen helpottuu. Onneksi kaupunki ja kampus tulevat myös orientaatioviikkojen aikana tutuksi ilman sen suurempaa yrittämistä.\n\n...\n\nMuuttolaatikot kannattaa merkitä järjestelmällisesti.\n\nMuutto voi olla stressaavaa, koska liikkuvia osia on paljon ja päivät voivat olla pitkiä. Kannattaa välttää viimeiseen iltaan jäävää kiirettä. Tavaroiden pakkaamisen voi aloittaa jo hyvissä ajoin sellaisista asioista, joita ei tarvitse päivittäin. Samalla on hyvä käydä omat tavarat läpi ja miettiä, mitä uuteen kotiin oikeasti tarvitsee. Muutin itse hiljattain ja halusin, että en tuo uuteen kotiin mitään turhaa. Tavaroiden myyminen kannatti, koska purkaessa muuttolaatikoita tavarat löysivät paikoilleen nopeasti, kun turhille jutuille ei tarvinnut etsiä tilaa.\n\nKokemuksesta kerron myös, että muuttolaatikoihin kannattaa merkitä selvästi, mitä ne sisältävät ja mihin huoneeseen ne kuuluvat… Laatikot voi silloin tuoda suoraan sinne, mihin niiden sisältö kuuluu ja purkaminen on nopeampaa. Mitä nopeammin tavarat saa purettua, sitä nopeammin uusi asunto alkaa tuntumaan kodilta.\n\nMuuttoon liittyy tavaroiden lisäksi erilaisia sopimuksia ja ilmoituksia. Muistutuksena siis, että muuttoilmoitus, sähkösopimus, kotivakuutus ja internetyhteys kannattaa hoitaa hyvissä ajoin.\n\n...\n\nEnsimmäiseen asuntoon ei tarvitse hankkia kaikkea uutena. Huonekaluja ja kodintarvikkeita voi löytää edullisesti kirpputoreilta tai kierrätyskeskuksista. Verkossa on myös kirppareita, joita kannattaa hyödyntää. Myös perheeltä ja tuttavilta saattaa löytyä ylimääräisiä kodin perustarvikkeita.\n\nVaikka olo voi olla kärsimätön, on hyvä odottaa sellaisia huonekaluja ja sisustuselementtejä, joista pitää paljon. Omasta tilasta tulee kotoisampi, kun sen täyttää sellaisilla esineillä, jotka heijastavat omaa persoonaa. Kotia kannattaakin rakentaa vähitellen. Kun asunnossa on asunut jonkin aikaa, huomaa paremmin, mitä oikeasti tarvitsee. Samalla kotiin alkaa muodostua oma tunnelma. Valokuvat, kasvit, tekstiilit ja tutut esineet voivat tehdä vieraasta asunnosta nopeasti henkilökohtaisemman. On myös kivaa kertoa kavereille eri tavaroiden tarinoita, kenties löysit lempiesineen vanhan vintage-liikkeen nurkasta tai teit sen itse."
+        ],
+        "image": "https://blogit.utu.fi/opiskelijaelamaa/wp-content/uploads/sites/386/2026/08/turku.kuva_-scaled.jpg"
+      },
+      {
+        "id": "https://blogit.utu.fi/studentlife/how-to-move-in-tys-apartment-like-a-pro/",
+        "title": "How to move in TYS apartment like a pro - Student Life at the University of Turku",
+        "url": "https://blogit.utu.fi/studentlife/how-to-move-in-tys-apartment-like-a-pro/",
+        "publishedDate": "2024-05-17T05:43:19.000Z",
+        "author": "Olesia Komarova",
+        "highlights": [
+          "At TYS Housing Office (Inspehtorinkatu 12A, 20540, Turku), the first moving in day of the month is the first working day of the month starting from 12:00. You can check the first moving in days for each month on TYS website.\n\n...\n\n## Scenario 1: You arrive within TYS Housing Office opening hours\n\nIf you arrive on the moving in day or some day later during the month, simply pop in to the TYS Housing Office (Inspehtorinkatu 12A, 20540, Turku) and pick up your keys. Note that on the first moving in day of the month you can receive your key starting from 12:00. Check the TYS opening hours before planning your key pick-up. To receive your keys from TYS office you’ll need your ID.\n\nYou do not have to drag your luggage all around Turku to receive your key in person from TYS office, ask your tutor or a friend to pick up the key from TYS for you and meet you at the apartment location or Turku bus/train station. If your tutor has an opportunity to help you with that, inform TYS via an email with the full name and date of birth of the person picking-up your keys in advance before your arrival. The person picking up the key must have their ID with them.\n\n## Scenario 2: You arrive outside of TYS Housing Office opening hours\n\nTYS office opening hours are limited, and many students arrive when the office is closed, or at the weekends. In this case you have two options of how to get your keys:\n\n1. Ask your tutor to pick up the keys from TYS for you when the office is open and meet you at the apartment location or Turku bus/train station. If your tutor has an opportunity to help you with that, inform TYS via an email with the full name of your tutor in advance before your arrival. Your tutor must have their ID with them when they pick up the key. Keep in mind that if you arrive too early in the morning or too late at night your tutor may not be able to meet you in person, so, it is better to go for the second option:\n2. If your tutor is not going to be available at the time of your arrival, you can ask TYS to place your key in a pick-up locker located in the vestibule of the Tyyssija A-staircase (Inspehtorinkatu 12A, 20540, Turku). You will receive a password to open the locker and will be able to get your key at any time of day and night. Note that you must email TYS office no later than 12:00 midday on the previous working day before your arrival to request the key placement in the locker.\n\n...\n\nNot all TYS buildings are marked on Google Maps, so make sure to find your new home location on the TYS Student Village map before you arrive to Turku. If you are going to live at TYS housing location outside Student Village, you can check the locations list on TYS website and TYS apartment brochure.\n\n...\n\nDoors work differently in different houses, but in most TYS apartments you do not need the key to lock the door – it locks automatically when you close it. This means that if you go out of your apartment and close the door but forget the key inside, you will not be able to open it.\n\nDepending on the time this accident happens, you have two options:\n\n1. Within TYS office hours: go to TYS office if your apartment is nearby/ call TYS customer service +358 2 275 0200.\n2. Outside TYS office hours: call Arkea Oy, the door opening service for TYS housing +358 2 284 6998 (for all locations except ltakajo). For Iltakajo the number is +358 2 275 2138.\n\n...\n\n### If you moved in TYS apartment, but something is broken or does not function properly\n\nTYS pays close attention to the conditions in their housing, that is why when you arrive to your apartment, you need to fill in a moving-in Inspection Form on your Tenant Page as soon as possible – ideally, on the day of arrival. In this form you will be asked to provide your overall evaluation of the state of the apartment.\n\nAdditionally, if you detect any faults and damage in the apartment, you need to report them by filling in the Fault Report form.\n\nYou can and are legally required to notify TYS about any damage caused to the apartment throughout your stay at TYS, so you can submit a Fault Report at any time. You will not be charged for any faults that are considered normal wear and tear of the apartment. However, you may be charged a fee for fixing faults and damage caused intentionally, through neglect, or as the result of carelessness by you, your guest or your pet."
+        ],
+        "image": "https://blogit.utu.fi/studentlife/wp-content/uploads/sites/392/2024/05/Untitled-2-1.png"
+      },
+      {
+        "id": "https://odiseago.com/universities/university-of-turku/",
+        "title": "University of Turku Exchange Guide 2026 | Odisea",
+        "url": "https://odiseago.com/universities/university-of-turku/",
+        "publishedDate": "2026-06-21T17:57:11.000Z",
+        "highlights": [
+          "Start with your home international office, then follow University of Turku's incoming-exchange instructions after nomination. The practical order is: nomination, online application, course plan, housing request, insurance/residence paperwork, then arrival and orientation.\n\n🧭 Orientation Week\n\nRecommended arrival: Arrive before orientation week and before the first teaching week so you can handle keys, transport, local registration and course changes. Attend orientation or tutor/buddy sessions; they are the fastest way to understand course registration, campus systems and student services. Events hub: https://www.utu.fi/en/study-at-utu/how-to-apply-for-exchange-studies\n\n...\n\nArrival Checklist \n\n- Confirm the Learning Agreement and backup courses with both coordinators. \n- Apply early for student housing or prepare a verified private-room backup. \n- Arrange insurance, EU registration or Migri residence-permit documents if needed. \n- Set up transport discount, student canteen access and tutor/buddy contacts in the first week."
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/The_main_building_of_the_University_of_Turku%2C_Finland.jpg/960px-The_main_building_of_the_University_of_Turku%2C_Finland.jpg"
+      }
+    ],
+    "searchTime": 3233.7,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

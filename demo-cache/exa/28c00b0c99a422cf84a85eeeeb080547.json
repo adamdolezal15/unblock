@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T14:12:18.761Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi Family member's residence Oulu, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Family member's residence\" (Suomi.fi) in Oulu, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "71e13722fffd69fd5319e9ba3117cd3b",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://home-affairs.ec.europa.eu/policies/migration-and-asylum/eu-immigration-portal/family-member-finland_en",
+        "title": "Family member in Finland - Migration and Home Affairs - European Commission",
+        "url": "https://home-affairs.ec.europa.eu/policies/migration-and-asylum/eu-immigration-portal/family-member-finland_en",
+        "publishedDate": "2025-04-01T12:00:00.000Z",
+        "highlights": [
+          "If you have a family member who lives in Finland and you want to move in to live with him or her, you need a residence permit on the basis of family ties. Your family member who lives in Finland is called a ‘sponsor’. The sponsor cannot apply for a residence permit on your behalf. You need to do it yourself. A requirement for getting a residence permit is that you must lead a family life with the sponsor.\n\nAll relatives cannot act as sponsors: the Finnish law defines the persons considered to be family members. The concept of family is narrower in Finland than in many other countries.\n\nThese are the family members of a Finnish citizen or of a third-country national who is not an EU citizen:\n\n- Your spouse;\n- Your partner if you have been living continuously in a marriage-like relationship within the same household for at least two years, demonstrated by a rental contract or any other document. The two year period is not required when the relationship has resulted in children;\n- Your registered partner (same-sex partners having registered their relationship may benefit from family reunification);\n- Your unmarried minor, natural and adopted children for whom you are responsible and those of your spouse;\n- Persons with parental authority over a minor holding a residence permit and residing in Finland (to be proved with appropriate documentation from the country of origin).\n\nYou must have secure means of support. ‘Secure means of support’ means that you have sufficient funds for you and your family to live in Finland. Your income can come for example from employment, a private enterprise, assets or pensions.\n\nThe required amount of income depends on the size of your family. Not everyone who applies for a residence permit on the basis of family ties is required to have secure means of support. Read more about income requirement.\n\n...\n\nSubmit your application in the e-service Enter Finland. After you have submitted your application, you have to visit the Finnish diplomatic mission or consulate in your country of origin/residence to prove your identity and have your fingerprints taken. A paper application is submitted to the Finnish diplomatic mission or consulate in your country of origin/residence.\n\nAn application on behalf of an underage child is filled in and submitted by the child’s guardian. The child must be present, however, when the identity is proved or the paper application is submitted.\n\nProcessing fee (EUR): online 420 (minor 220), paper application 470 (minor 250).\n\n...\n\nDocumentation establishing family ties must be presented. In the absence of sufficient evidence, the family link may be proved by a DNA test, paid for by the State. You and your family members may be interviewed either in writing or orally by the Finnish Immigration Service or Finnish embassy or consulate in order to establish the family ties.\n\nDocuments required depend on your family ties.\n\nFurther requirements\n\nUpon arrival in Finland, your family member must register at the Local Register Office the municipality where he/she will be resident.\n\n...\n\nThe residence permit granted to the family member will be valid for one year or the same duration as sponsor’s residence permit if it is valid for less than one year.\n\nThe residence permit will be withdrawn in the following circumstances:\n\n- fraud;\n- the reasons for it being granted cease to exists;\n- the holder leaves Finland permanently;\n- the holder remains in another country for an uninterrupted period of two years and does not apply to the Immigration Service not to have it withdrawn.\n\n...\n\n| Access to employment | If you have been granted a residence permit on the basis of family ties, your right to work in Finland is not limited in any way. |\n| --- | --- |\n| Change of employment | There are no limitations. |\n| Access to education | If you have been granted a residence permit on the basis of family ties, you have unlimited access to education. |\n| Change of status | If the grounds for your residence change and you meet the necessary conditions, you should apply for a new residence permit. |\n| Long-term residence | After four years of continuous residence (permit A), you can apply for a permanent residence permit P if you still meet the requirements for a continuous residence permit. You must have spent at least half of the validity period of your permit in Finland and your permit must still be valid at the time you submit your application. After five years of continuous and legal residence, you may obtain a long-term resident EC residence permit. |"
+        ],
+        "image": "https://home-affairs.ec.europa.eu/profiles/contrib/ewcms/modules/ewcms_seo/assets/images/ec-socialmedia-fallback.png"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/family-reunification-finland",
+        "title": "Family Reunification in Finland: Bringing Your Family | NordicExpat",
+        "url": "https://nordicexpat.com/finland/family-reunification-finland",
+        "publishedDate": "2026-05-14T21:02:20.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Finland applies an income requirement (toimeentuloedellytys): the family must have secure means of support so it does not have to rely on social assistance. The thresholds were raised on 1 November 2024 and apply to applications submitted from that date onward. They are calculated on net income — what is left after tax and after employee and employer pension and insurance contributions.\n\nCrucially, the requirement is built up per person and varies by where you live. Migri groups municipalities into three tiers, with higher amounts in and around the capital where housing costs more. As of 2026, the net monthly amounts published by Migri are roughly:\n\n| Person added | Helsinki metro area | Other large municipalities | Other municipalities |\n| --- | --- | --- | --- |\n| First adult | €1,210 | €1,090 | €1,030 |\n| Second adult | €610 | €550 | €520 |\n| First child | €610 | €550 | €520 |\n| Second child | €480 | €430 | €410 |\n| Each further child | €360 | €320 | €310 |\n\n...\n\n- What does not count: the income cannot rest on social assistance (toimeentulotuki), labour market subsidy, basic unemployment allowance or general social security benefit.\n\n...\n\nThe family member abroad creates an account on Enter Finland, Migri's e-service, and completes the application for a residence permit on the basis of family ties. You attach documents that prove three things: your identity, the family relationship (marriage certificate, birth certificates, evidence of cohabitation), and that the income requirement is met (payslips, employment contract, business income).\n\n...\n\n### 3. Prove your identity at a Finnish mission\n\nAfter submitting online, you book an appointment at a Finnish mission abroad — an embassy or consulate, frequently handled through a VFS Global visa centre — and attend in person. There you prove your identity and give biometric data: fingerprints and a facial photograph for the residence permit card. Anyone aged 18 or over must attend in person; for a young child, the guardian handles the application and attends with them.\n\n### 4. Wait for the decision\n\nMigri processes the application and notifies you through Enter Finland. Processing time depends heavily on the type of case and the current queue, so rely on Migri's published estimates rather than anecdotes. Keep your contact details current and respond quickly if Migri requests more documents — missing paperwork is the most common reason cases stall.\n\n### 5.\n\n...\n\nThere is a practical window that family reunification creates and that people routinely forget about: the period between leaving home and being inside the Finnish system. Until a newly arrived family member is registered with DVV and entitled to public healthcare through their municipality and Kela, they are not automatically covered the way a long-term resident is. For the move itself, the early weeks before registration, and any travel back and forth during the application, short-term travel and health insurance designed for relocating expats — such as SafetyWing — is a sensible bridge until municipal and Kela coverage is in place. Treat it as a stopgap, not a replacement for the Finnish system you are joining.\n\n...\n\n## Common Mistakes to Avoid\n\n- Assuming a dating relationship counts. It does not, on family grounds. Marry, register the partnership, or document genuine long-term cohabitation — or come on another basis.\n- Underestimating the income test. Run the per-person, per-municipality calculation before applying. A near-miss on net income is a common refusal reason.\n- Letting documents lapse. Marriage and birth certificates may need to be translated and, depending on the country, legalised or apostilled. Start this early.\n- Applying separately when you could fast-track together. If the sponsor qualifies for the fast track, the family loses the benefit by applying out of sync.\n- Forgetting the post-arrival admin. The permit is the beginning, not the end. DVV registration, the personal identity code, the tax card and Kela all still have to happen after you land."
+        ],
+        "image": "https://nordicexpat.com/finland/family-reunification-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://oulu.com/en/ihoulu/news-events/tips-for-relocating-to-oulu/",
+        "title": "Tips for Relocating to Oulu - – Oulu",
+        "url": "https://oulu.com/en/ihoulu/news-events/tips-for-relocating-to-oulu/",
+        "publishedDate": "2026-04-08T11:08:12.000Z",
+        "author": "Local Author­i­ties",
+        "highlights": [
+          "It is high­ly rec­om­mend­ed to start search­ing for hous­ing ear­ly, espe­cial­ly before the aca­d­e­m­ic year begins. In Oulu, rental apart­ments are avail­able through pri­vate land­lords and hous­ing com­pa­nies.\n\nIn Fin­land, hous­ing is gen­er­al­ly unfur­nished. How­ev­er, most apart­ments include essen­tial kitchen appli­ances (except for the dish­wash­er). Some apart­ments may also have a wash­ing machine, while oth­ers pro­vide access to a shared laun­dry room. \n\nThere­fore, you should be pre­pared to pur­chase your own fur­ni­ture, such as a bed, sofa, desk, kitchen tools, and cur­tains. Most of the rental apart­ments in Fin­land allow pets, but some may have restric­tions, so make sure to check this in advance. If you are mov­ing to Fin­land with pets, per­son­al belong­ings, or a car, you can find more infor­ma­tion on how to bring them through Finnish Cus­toms: Mov­ing — Finnish Cus­toms | tulli.ﬁ\n\n...\n\nBefore relo­cat­ing to Fin­land, it is advis­able to com­plete gen­er­al med­ical and den­tal check-ups in your home coun­try. Health­care ser­vices are of high qual­i­ty in Fin­land but they can entail wait­ing times for non-urgent care. Make sure you bring copies of impor­tant med­ical records, pre­scrip­tions, vac­ci­na­tion his­to­ry, and any ongo­ing treat­ment plans. If you use reg­u­lar med­ica­tion, check whether it is avail­able in Fin­land and bring suf­fi­cient sup­ply for the first months. Hav­ing prop­er doc­u­men­ta­tion will make it eas­i­er to con­tin­ue treat­ment after arrival.\n\n...\n\nOulu is one of the best cycling cities in Fin­land. You should always fol­low the traf­fic rules. Pedes­tri­ans use foot­paths (side­walks), cyclists use cycle paths. Some areas have shared paths for both pedes­tri­ans and cyclists. There are strict park­ing rules: always check park­ing signs to avoid fines."
+        ],
+        "image": "https://oulu.com/wp-content/uploads/2026/03/businessasema_5d2a4962-1-e1774852311431.jpg"
+      },
+      {
+        "id": "https://www.helsinkitimes.fi/finland/finland-news/domestic/29488-thousands-of-finnish-residence-permit-applications-exceed-legal-deadlines.html",
+        "title": "Thousands of Finnish residence permit applications exceed legal deadlines - Helsinki Times",
+        "url": "https://www.helsinkitimes.fi/finland/finland-news/domestic/29488-thousands-of-finnish-residence-permit-applications-exceed-legal-deadlines.html",
+        "publishedDate": "2026-11-13T14:45:04.000Z",
+        "author": "Tara",
+        "highlights": [
+          "Around 22,000 applications based on family ties were awaiting decisions at the time of the inspection. Of those, 4,346 had remained unresolved for more than nine months, the statutory processing deadline.\n\nDuring 2026, Migri completed only 61 per cent of family-based residence permit applications within that deadline.\n\nThe inspection also identified delays affecting the family members of international students. Of their pending applications, 3,065, or 55 per cent, had exceeded the three-month statutory processing period.\n\nMigri reported that the number of family-based applications had continued to exceed the number of decisions. The agency had issued approximately 20 per cent fewer decisions in this category during 2026, partly because of staff reductions earlier in the year and legislative changes tightening permit requirements.\n\n...\n\nThe Ombudsman's report identified several factors contributing to delays, including staffing shortages, repeated changes to immigration legislation, incomplete applications and Migri's internal procedures.\n\nOfficials told inspectors that legislative reforms had increased their\n\n...\n\nMigri has introduced measures to reduce backlogs, including staff training, changes to case allocation and greater use of automated processing. A two-year project launched in October aims to modernise online application forms and expand automation."
+        ],
+        "image": "https://www.helsinkitimes.fi/images/2024/02/immigration_chal.jpg"
+      },
+      {
+        "id": "https://www.byteseu.com/366562/",
+        "title": "Moving to Finland Guide - Bytes Europe",
+        "url": "https://www.byteseu.com/366562/",
+        "publishedDate": "2024-08-25T19:29:08.000Z",
+        "author": "BYTESEU",
+        "highlights": [
+          "They informed me that it would be better for me to apply for a Residency Permit for a family member of an EU citizen in Finland.\n\nThis permit has not come up on any of my searches and it was not obvious to me.\n\nIt cost me only €52 euros and it is valid for 5 years! I changed my application to this and it was approved within a few days.\n\n...\n\nBank account is the most important part really. In Finland you get online ‘e-identification’ credentials through your bank account. You basically use this to log in and use almost every service in Finland. It confirms who you are to everyone and that you are you. So without the credentials life is a lot more difficult"
+        ],
+        "image": "https://www.byteseu.com/wp-content/uploads/2024/08/nM0EMns49HuMHAlB-sOfMD0mLZoCerbwrMhkh9VDGzM.jpg"
+      }
+    ],
+    "searchTime": 1102.8,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

@@ -92,7 +92,8 @@ export const STEP_TAXONOMY: StepDef[] = [
     short: "DVV registration",
     authority: "DVV",
     label: "Register as a resident and get a Finnish personal identity code",
-    appliesTo: () => true,
+    // A Nordic citizen's registration at DVV is nordic_registration: the same visit, never both.
+    appliesTo: (p) => p.citizenship !== "NORDIC",
     query: (p) =>
       `Registering as a resident in the Finnish Population Information System and getting a personal identity code after moving to ${p.city}`,
     objective: "Official pages on registering foreign residents in Finland (DVV), getting a Finnish personal identity code, municipality of residence and what you need to bring.",
@@ -206,6 +207,37 @@ export const MILESTONE_IDS: ReadonlySet<string> = new Set(Object.keys(MILESTONES
 
 /** Ids a `requires` claim may name: steps and milestones. */
 export const STEP_IDS: ReadonlySet<string> = new Set([...STEP_TAXONOMY.map((s) => s.id), ...MILESTONE_IDS]);
+
+/**
+ * What each step or milestone is called once you have it ("a Kela card", "online banking codes"). Names only,
+ * used to tell whose consequence a sentence like "Without a Kela card, ..." is.
+ */
+export const OUTPUT_NAMES: Record<string, RegExp> = {
+  personal_identity_code: /\b(personal )?identity (code|number)\b|\bID code\b|henkilötunnu/i,
+  vero_identity_code: /\b(personal )?identity (code|number)\b|\bID code\b/i,
+  strong_identification: /\bonline banking (codes|credentials|ID)\b|\bbanking codes\b|\bstrong (electronic )?(identification|identifier)\b|\bbank ID\b/i,
+  bank_account: /\bbank account\b/i,
+  kela_registration: /\bKela( card)?\b|\bsocial security\b/i,
+  tax_card: /\btax card\b/i,
+  residence_permit: /\bresidence permit\b/i,
+  police_id_card: /\b(Finnish )?(identity|ID) card\b/i,
+  // Registration at DVV is where the identity code usually comes from (its label says so too).
+  dvv_registration: /\bmunicipality of residence\b|\bpopulation information system\b|\b(personal )?identity (code|number)\b|\bID code\b/i,
+  nordic_registration: /\bmunicipality of residence\b|\bpopulation information system\b|\b(personal )?identity (code|number)\b|\bID code\b/i,
+  temporary_protection: /\btemporary protection\b/i,
+};
+
+/**
+ * Steps that stand in for another when it is not researched for this profile: a source saying "requires
+ * DVV registration" is met, for a Nordic citizen, by the Nordic registration (which is done at DVV).
+ */
+export const STANDS_IN_FOR: Record<string, string[]> = { dvv_registration: ["nordic_registration"] };
+
+/** A requires / same_visit target re-pointed at the step that stands in for it, when only that one is researched. */
+export function standIn(id: string, available: ReadonlySet<string>): string {
+  if (available.has(id)) return id;
+  return STANDS_IN_FOR[id]?.find((x) => available.has(x)) ?? id;
+}
 
 /** Steps to research for this profile. Steps the person says they already have (Profile.alreadyDone) are not searched. */
 export function selectSteps(profile: Profile): StepDef[] {

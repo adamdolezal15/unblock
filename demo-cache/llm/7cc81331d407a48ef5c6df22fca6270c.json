@@ -1,0 +1,86 @@
+{
+  "fetchedAt": "2026-11-14T14:12:01.770Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Identity card for a foreigner (Police)",
+    "contextHash": "9ebb5dc166553955",
+    "includeDomains": [],
+    "docsHash": "22bb33fc977cfaaf"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+          "When applying for a foreigner’s identity card, you must present a valid passport or identity card"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.613Z"
+      },
+      {
+        "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.613Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Applying for the foreigner’s identity card requires a personal visit to the Police station",
+          "The application processing is usually rather straightforward, and you can expect to receive your ID card within 1–2 weeks after your visit to the police station",
+          "Banks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification",
+          "Applying for the identity card requires a personal visit at the Police station"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.613Z"
+      },
+      {
+        "url": "https://yle.fi/a/74-20076145",
+        "title": "yle.fi",
+        "domain": "yle.fi",
+        "trust": "news",
+        "highlights": [
+          "Ajanvarauksella passia tai henkilökorttia hakeva voi tällä hetkellä joutua odottamaan vapaata aikaa kuukausien ajan",
+          "Peruutusaikoja voi saada myös aiemmin eikä jonotusaika pienemmille asemille ole aivan niin pitkä kuin isojen kaupunkien keskuspoliisiasemille",
+          "Tällöin jonotusajassa ei valitettavasti puhuta minuuteista vaan tunneista, kertoo Peltola poliisin tiedotteessa"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.458Z"
+      },
+      {
+        "url": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "title": "lifeaway.blog",
+        "domain": "lifeaway.blog",
+        "trust": "community",
+        "highlights": [
+          "My Finnish husband had to collect the card for me at a pick-up location and it took about a week for the card to arrive",
+          "Extra Important – The card will not be mailed to your home, but to a pick-up point of your choosing",
+          "Only someone with a Finnish-issued ID can collect the police card from the pick-up point"
+        ],
+        "fetchedAt": "2026-11-14T14:11:39.966Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2717,
+      "costUsd": 0.006658000000000001,
+      "cacheHit": false
+    }
+  }
+}

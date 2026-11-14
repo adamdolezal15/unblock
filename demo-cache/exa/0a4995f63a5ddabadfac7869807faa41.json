@@ -1,0 +1,97 @@
+{
+  "fetchedAt": "2026-11-14T14:11:40.098Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Migri (Enter Finland) appointment for Register EU citizen's right of residence in Turku, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Register EU citizen's right of residence\" (Migri (Enter Finland)) in Turku, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "527986157a4839d42d034a0a888063bf",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "title": "Migri Processing Times 2026: Fast Track 14 Days, Family 9 Months | ENB",
+        "url": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "publishedDate": "2026-09-05T16:05:02.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "| Application | What Migri reports | Limit in law or service target |\n| --- | --- | --- |\n| Employed person (TTOL), first permit | Most cases one month, a minority two months; positive decisions averaged 17 days in July 2026 | Two months in law, counted from the biometrics visit; Migri's own goal is one month |\n| Employed person (TTOL), extended permit | Averages for July 2026: 37 days for positive decisions, 162 days for refusals | Two months in law |\n| Specialist | About two weeks in most cases, up to two months in a minority | Two months in law; Fast Track target 14 days for a first permit |\n| EU Blue Card | First permits can go through Fast Track; for extensions, read the live estimate | Two months in law; Fast Track target 14 days for a first permit |\n| Start-up entrepreneur | Can go through Fast Track once Business Finland has issued its statement | Fast Track target 14 days |\n| Studies, first permit | About 82% of positive decisions within 30 days; with no decision by then, Migri's estimate is 90 days | Three months in law |\n| Family ties, first permit | Migri has reported backlogs; read the live estimate for your exact family category | Nine months in law; 90 days for a student's family member when no additional information is needed |\n| Permanent residence permit | No figure verified; read the live estimate. The requirements changed on 8 January 2026 | No general maximum in law; six months for the EU long-term resident's permit |\n| Finnish citizenship | Migri has reported a backlog that it is clearing; read the live estimate | No general maximum in law; 12 months for persons under protection |\n| EU citizen, registration of right of residence | Listed under EU citizens in Migri's table; read the live estimate | Six months for the residence card of an EU citizen's family member |\n\n...\n\nThe most common misunderstanding is that the clock starts the moment you submit. According to Migri the processing time starts when you have proved your identity, which happens at a service point visit or, for some online applications, on submission in Enter Finland. The time ends when the decision is ready.\n\nThe card has to be counted in as well. After the decision, producing and posting the residence permit card takes about two more weeks. \"The decision is out\" and \"the card is in my hand\" are therefore not the same day, and travel or a starting date at work should be planned around the card.\n\n...\n\nFor each application type Migri publishes not one time but two estimates: the processing time in most cases and the ... The rule is plain: if your application has not been taken up during the shorter estimate, the longer estimate in the table is the one that applies in your case."
+        ],
+        "image": "https://www.enb.fi/services/enb-fi-senate-square-people.jpg"
+      },
+      {
+        "id": "https://www.byteseu.com/357526/",
+        "title": "Finnish Immigration Service - Bytes Europe",
+        "url": "https://www.byteseu.com/357526/",
+        "publishedDate": "2024-08-22T08:51:16.000Z",
+        "author": "BYTESEU",
+        "highlights": [
+          "The reason I am asking is that I live in Espoo, and the soonest time to attend the office in Helsinki is in the ... ’s why I started considering attending the office in Lahti, where the soonest possible appointment is in the beginning of September."
+        ],
+        "image": "https://www.byteseu.com/wp-content/uploads/2024/08/j3qf4mmri6kd1.jpeg"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "title": "How EU/EEA Citizens Register Their Right of Residence in Finland - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "publishedDate": "2026-07-08T23:28:39.000Z",
+        "author": "Finland Handbook Editorial Team",
+        "highlights": [
+          "This legislation stipulates that if an EU/EEA citizen intends to stay in Finland for longer than three months, they must register their right of residence with the Finnish Immigration Service, Migri. This three-month period starts from your arrival date. The whole point of this system is to ensure that while you have the freedom to move, the host country still has a clear record of who is residing within its borders and under what conditions. It's about maintaining public order, security, and ensuring that individuals have legitimate means of support. So, while it's not a \"permit,\" it carries similar weight in terms of getting you into the official system. Ignoring this requirement can lead to issues later on, such as difficulties with employment, social benefits, or even facing a fine or removal from the country if you're found to be residing illegally after the initial three months. You might wonder, \"Do EU Citizens Need a Residence Permit to Live in Finland?\" The answer is no, but you do need this essential registration, which this guide details further.\n\n...\n\n### The Three-Month Window: Don't Delay!\n\nLet me tell you, as someone who's seen it all, the three-month rule is etched in stone. You have exactly three months from the date you enter Finland to register your right of residence with Migri. It sounds generous, but those initial weeks fly by faster than you can say \"terveyskeskus.\" You're busy finding an apartment, maybe starting a new job, learning a few Finnish phrases, and suddenly you realize you're nearing the deadline.\n\nWhat happens if you miss it? Well, it's not the end of the world, but it can definitely complicate things. Migri might ask for an explanation for the delay, and while they usually process late applications, it adds an unnecessary layer of stress and potential scrutiny. More importantly, until you're registered, you're essentially in a grey area. You might struggle to open a bank account, get an official tax card, or access certain social services. It’s like trying to run a race without a bib number – technically possible, but you won't be officially recognized. Trust me, get it done within that window. Set a reminder in your phone, mark it on your calendar, whatever it takes.\n\n...\n\nAfter you've submitted your application online, the next crucial step is to book an appointment at a Migri service point for identification. This is where you'll present your original documents, prove your identity, and sometimes provide biometrics (though for EU registration, it's mostly about verifying your identity and documents). You can find the nearest Migri service point on their website, usually in major cities like Helsinki, Tampere, Turku, or Oulu. Remember to book this appointment as soon as you submit your online application, because appointment slots, especially in busy periods, can fill up fast! This whole process of interacting with the system is covered in more detail in our guide on Dealing with Migri and Enter Finland: Applications, Waiting, and Decisions.\n\n...\n\n1. Book Your Appointment: You'll typically be prompted to book an appointment at a Migri service point directly through the Enter Finland portal, or you'll be directed to a separate booking system. Choose a time and location that works for you. As mentioned before, book this promptly – waiting lists can be long, and you don't want to exceed your three-month registration window because you couldn't get an appointment.\n2. Prepare for the Appointment: This is the most critical part for many. You must bring all the original documents that you uploaded online. This includes your valid passport or national ID card, your employment contract, university acceptance, family certificates, bank statements, and any health insurance certificates. If you used Translayte or RushTranslate for certified translations of documents, bring the original documents and their certified translations. The official at Migri will need to see and verify the originals against your application.\n3. What Happens at the Service Point: When you arrive, you'll check in using your appointment code. During your meeting with a Migri official, they will:\n\n...\n\n### Waiting for the Decision and What Happens Next\n\nOnce you've attended your appointment, it's a waiting game. Migri will process your application based on the information and documents provided.\n\n- Processing Times: The processing times for EU/EEA registration are generally faster than for non-EU residence permits, but they can still vary. Migri publishes estimated processing times on their website, so you can keep an eye on those. Sometimes it's a few weeks, sometimes a couple of months. You can often track the status of your application through the Enter Finland portal using your reference number. For a general idea of processing expectations, our article on Understanding Migri Decisions and Processing Times offers insight.\n- Receiving the Decision: You'll typically be notified of the decision electronically, either through the Enter Finland portal or via mail. If your application is approved, you'll receive a \"Certificate of an EU citizen's right of residence\" (Todistus EU-kansalaisen oleskeluoikeudesta). This certificate is your official proof that you have legally registered your stay in Finland.\n- What the Certificate Means: This certificate confirms your right to reside in Finland. It's not a physical card like a residence permit, but a paper document. It's crucial to keep this document safe, as you might need it for various administrative tasks, such as applying for a personal identity code if you haven't received one, or demonstrating your legal status. This document doesn't expire, provided you continue to meet the conditions of your residence (e.g., maintaining employment, studies, or sufficient funds)."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/07/output1-191.webp"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "title": "How Do I Book a Migri Appointment at migri.vihta.com? - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "publishedDate": "2026-07-12T14:28:27.000Z",
+        "author": "Finland Handbook Editorial Team",
+        "highlights": [
+          "| --- | --- | --- | --- |\n| Helsinki | All (RP, Citizenship, Interviews) | Very Limited, high demand | Requires persistence, check constantly. |\n| Tampere | All (RP, Citizenship, Interviews) | Limited, but sometimes better than Helsinki | Consider if living in Pirkanmaa region. |\n| Turku | All (RP, Citizenship, Interviews) | Moderate, good alternative to Helsinki | Good for those in Southwest Finland.\n\n...\n\n| Oulu | All (RP, Citizenship, Interviews) | Generally better, but still competitive | Best for northern Finland residents. |\n| Rovaniemi | RP, Limited Citizenship | Better, but fewer staff/slots | Primarily serves Lapland region. |\n| Vaasa | RP, Limited Citizenship | Better, but fewer staff/slots | Good for Ostrobothnia region.\n\n...\n\n- Aggressive Refreshing (The F5 Dance): Seriously, this isn't a joke. Sometimes, new slots appear for a fleeting moment due to cancellations or system updates. Many people set aside 10-15 minutes a few times a day to just refresh the page.\n- Timing is Key: New slots are often released at specific times, though these are rarely officially announced. Anecdotal evidence suggests checking first thing in the morning (e.g., 8:00 AM EET) or late in the evening can yield results, as these might be when daily allocations are updated or when others cancel.\n- Expand Your Search: If you absolutely cannot find a slot in your preferred city, consider if you can travel to another service point. For example, if you live in Helsinki, check Tampere or Turku. While it requires a train ticket, getting the appointment secured might be worth the cost and hassle compared to delays in your permit process.\n- Don't Procrastinate: As soon as you submit your application via Enter Finland and get the notification that you need an appointment, start looking. Do not wait until the last minute. The earlier you start, the more chances you have.\n- Understand the \"Treatment Guarantee\" (Hoitotakuu) Mentality: While not directly related to appointments, Finland operates with a \"treatment guarantee\" for healthcare, meaning you shouldn't wait endlessly for critical services. For immigration, while there isn't a strict legal guarantee for appointment times, Migri does aim to process applications within reasonable timeframes. If you've been searching for an excessively long time and are facing an imminent expiry of your current permit or visa, it might be worth contacting Migri's customer service directly to explain your situation, though this is a last resort. Keep evidence of your attempts to book."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/07/output1-278.webp"
+      },
+      {
+        "id": "https://helloexpat.eu/fi/blog/residence-in-finland-eu-citizens",
+        "title": "Residence in Finland for EU citizens: Migri and DVV | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/residence-in-finland-eu-citizens",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "Only if you stay longer than three months. Up to three months you need nothing but a valid passport or identity card. The InfoFinland page on EU citizens specifies that the three months are counted from your last departure from Finland, not from the first time you ever visited.\n\nBeyond three months, you apply to the Finnish Immigration Service (Maahanmuuttovirasto, Migri) to register your right of residence. The deadline, per InfoFinland, is three months from arrival. This applies to citizens of EU member states, Liechtenstein and Switzerland. Citizens of Denmark, Iceland, Norway and Sweden do not apply to Migri at all; they register their personal data at the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency).\n\n...\n\n1. Apply in Enter Finland (the online service) or on a paper form. You must submit it yourself, although you can apply for your child.\n2. Pay €53. In 2026 the fee is the same online and on paper. You can pay by card or Finnish online banking when you submit, or at the service point.\n3. Book an appointment at a Migri service point to prove your identity. Bring your passport or identity card and the originals and copies of your attachments.\n4. Wait for the decision. Migri may contact you for more information.\n5. Collect the decision at the service point, in Enter Finland or by post. If approved, you may receive the EU registration certificate on the spot or later."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      }
+    ],
+    "searchTime": 1122.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

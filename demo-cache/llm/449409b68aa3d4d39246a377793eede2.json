@@ -1,0 +1,87 @@
+{
+  "fetchedAt": "2026-11-14T14:11:58.582Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register as a resident and get a Finnish personal identity code (DVV)",
+    "contextHash": "d462ab6a264aebce",
+    "includeDomains": [],
+    "docsHash": "65ba70d95d98d207"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://dvv.fi/en/foreigner-registration",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "You can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as",
+          "a certificate of registration of the right of residence for EU citizens",
+          "Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children",
+          "a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino",
+          "proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work",
+          "Finnish identity code request (work, study) 2–3 weeks",
+          "Book an appointment to the service \"Registration of a foreigner´s personal data"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.570Z"
+      },
+      {
+        "url": "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en",
+        "title": "lomakkeet.dvv.fi",
+        "domain": "lomakkeet.dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "You will receive a Finnish personal identity code when you register"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.570Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "If you submit your request in August or early September, expect the DVV processing times to stretch toward the 4-to-6-week mark",
+          "You might find that the first available slot for identity verification is three weeks away, and only after that does the 1–3 week processing clock begin",
+          "If you see no appointments in Helsinki, widen your search radius",
+          "If the clerk has everything they need in one go, your application can be processed in the \"fast track\" queue"
+        ],
+        "fetchedAt": "2026-11-14T14:11:42.088Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day"
+        ],
+        "fetchedAt": "2026-11-14T14:11:42.088Z"
+      },
+      {
+        "url": "https://helloexpat.eu/fi/blog/finnish-personal-identity-code-henkilotunnus",
+        "title": "helloexpat.eu",
+        "domain": "helloexpat.eu",
+        "trust": "community",
+        "highlights": [
+          "Staying under a year and expecting a municipality of residence"
+        ],
+        "fetchedAt": "2026-11-14T14:11:42.453Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2500,
+      "costUsd": 0.005998,
+      "cacheHit": false
+    }
+  }
+}

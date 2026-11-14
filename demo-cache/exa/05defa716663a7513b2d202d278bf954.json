@@ -1,0 +1,86 @@
+{
+  "fetchedAt": "2026-11-14T14:11:59.527Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How does an EU citizen register their right of residence after moving to Oulu, Finland",
+    "objective": "Official pages explaining how and when an EU citizen registers the right of residence in Finland, what to bring and what it is needed for.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "2aee2f9ea887f2d347f4138b358589b5",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "Registration of right of residence | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if:\n\n- you are a citizen of an EU Member State, Liechtenstein or Switzerland; and\n- you will be staying in Finland for over 3 months at a time.\n\nIf you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency. Nordic citizens do not need to apply for EU registration at the Finnish Immigration Service.\n\n...\n\nThe registration of your right of residence is valid until further notice. You will not have to extend the validity of the registration. When you have resided legally in Finland for a continuous period of 5 years, you have the right of permanent residence.\n\nIf you have\n\n...\n\n### Make sure you meet the following requirements:\n\n You are a citizen of an EU Member State, Liechtenstein or Switzerland. \n\n You have a valid passport or identity card. \n\n You have grounds for your residence in Finland. \n\nYou are in Finland as:\n\n- an employee;\n- a self-employed person;\n- a student; or\n- a family member of an EU citizen. \n\n- If you apply for EU registration as a family member of a Finnish citizen, your family member must have exercised his or her right of free movement. Your Finnish family member must have lived in an EU Member State other than Finland, or in a country comparable to EU Member States, for at least 3 months. \n\n- The relationship that made you each other’s family members must have begun or strengthened while you were residing in an EU Member State other than Finland.\n- If you and your family member do not move from the other Member State to Finland simultaneously, your Finnish family member needs to have moved to Finland first, before you.\n- You and your Finnish family member need to have moved to Finland directly from the other Member State. If you have lived in a third country between your residence in a Member State and your move to Finland, you cannot apply for EU registration based on family ties.\n- If your Finnish family member holds the citizenship of another EU Member State and has only lived in the Member States where he or she holds citizenship, your family member has not exercised his or her right of free movement. In such a case, you cannot apply for EU registration based on family ties. \n- When you apply for EU registration as a family member of a Finnish citizen, you are not required to present documentation of sufficient financial resources.\n\nIf none of these grounds are applicable to you, you may still stay in Finland as long as you have sufficient financial resources to support yourself and your family members.\n\n...\n\nEven if your grounds for residence change, you do not need to renew your EU registration.\n\n...\n\n### Apply for the EU registration:\n\n Fill in the application and add your documents. \n\nFill in the application in our online service Enter Finland.\n\nIf you cannot use Enter Finland, fill in a paper application. You will find a link to the application at the bottom of this page.\n\nYou can only apply for the registration when you are in Finland. You cannot apply for the registration of your right of residence before you have moved to Finland on a permanent basis. \n\nYou need to fill in and submit the application yourself. Your employer or family member, for example, cannot apply for the registration on your behalf. However, you can submit an application on behalf of your child.\n\n Pay for the application. \n\nIf you submit an online application in Enter Finland, pay the processing fee: \n\n- with a credit card or with Finnish online banking credentials when you submit the application; or\n- when you visit a service point of the Finnish Immigration Service to prove your identity. \n\nIf you submit a paper application, pay the processing fee at a service point of the Finnish Immigration Service.\n\n Visit a service point to prove your identity. \n\nBook an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service.\n\nWhen you visit the service point, bring with you:\n\n- your valid passport or identity card\n- originals and copies of the documents that you attach to your application \n\n- If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator.\n- However, a document that has been issued by an authority of an EU Member State concerning birth, marriage, registered partnership or death does not need to be translated if you attach to the document a multilingual standard form issued by the authority.\n\nRead more on the page Book an appointment at a service point in advance.\n\n Wait for the decision. We will contact you if necessary. \n\nAs an EU citizen, you will be issued with a registration certificate once you have presented sufficient evidence of meeting the requirements for registration.\n\n- If you apply for EU registration on the basis of employment, for example, you can be registered only after your employment relationship has begun.\n- If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started.\n\n Supplement your application if necessary. \n\nIf you have applied online, you can log in to Enter Finland and supplement your application there. \n\nIf you have submitted a paper application, you can supplement it by post or by bringing additional documents to a service point of the Finnish Immigration Service during opening hours. For more information, see the page Notify us of changes.\n\n...\n\nYou get the decision at the service point or into your Enter Finland account or by post. \n\nIf you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity. You will be given a paper certificate that contains your name and address as well as the date of registration.\n\nIf you cannot get a decision immediately due to missing attachments, you will get the registration certificate later into your Enter Finland account or by post.\n\n- If you have submitted an online application, you will receive an email or a text message notification when a decision has been made.\n- If the decision on your online application is positive, you can print out your registration certificate from Enter Finland."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+        "title": "Registration of the right of residence of a citizen of the European Union - Finnish Immigration Service - Suomi.fi",
+        "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if:\n\n- you are a citizen of an EU Member State, Liechtenstein or Switzerland; and\n- you will be staying in Finland for over 3 months at a time.\n\nIf you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency. Nordic citizens do not nee ...\n\n## Do the following\n\n1. Make sure you meet the following requirements:\n\n- You are a citizen of an EU Member State, Liechtenstein or Switzerland.\n- You have a valid passport or identity card.\n- You have grounds for your residence in Finland.\n- You have sufficient financial resources for living in Finland for yourself and for your family members.\n- You are not a danger to public order or security or public health.\n\n2. Make sure you have all the attachments needed.\n\n3. Fill in the application and add your documents.\n\n4. Pay for the application.\n\n5. Visit a service point to prove your identity.\n\n6. Wait for the decision. We will contact you if necessary.\n\n7. Supplement your application if necessary.\n\n8. You get the decision at the service point or into your Enter Finland account or by post.\n\n9. You have a right to appeal against the decision.\n\n...\n\n### Service point of the Finnish Immigration Service (Oulu) Finnish Immigration Service\n\nService location Nationwide\n\nAt the Finnish Immigration Service's service points you can prove your identity for an application submitted online or submit a paper application for\n\nContact information:\n\nAlbertinkatu 4, 90100 Oulu\n\nShow service location on the map Show service location Service point of the Finnish Immigration Service (Oulu) on the map\n\n...\n\n## Period of validity\n\nThe registration of your right of residence is valid until further notice."
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      },
+      {
+        "id": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/registration-of-the-right-of-residence-in-finland/",
+        "title": "Registration of the right of residence in Finland - vero.fi",
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/registration-of-the-right-of-residence-in-finland/",
+        "highlights": [
+          "If you are going to stay longer than for one year, the Finnish Digital Agency will review your request and decide whether a Finnish municipality should be entered in the register as your domicile.\n\nIf you are a citizen of an EU country, or of Liechtenstein or Switzerland, and you are staying longer than three months, the right to reside in Finland is either online-registered in Enter Finland or registered by the Finnish Immigration Service at one of their customer service points. However, if you are a Nordic citizen, you should visit the Finnish Digital Agency instead. Under Nordic conventions, Nordic citizens need only register if they stay for six months or longer, and the registration process is more straightforward."
+        ],
+        "image": "https://www.vero.fi/contentassets/4d7ef5502131491da21a7915d78be9f1/nophoto_icon_504x504.png"
+      },
+      {
+        "id": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/eu-citizens-permits-and-notifications",
+        "title": "EU citizens’ permits and notifications - Starting a business - Suomi.fi",
+        "url": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/eu-citizens-permits-and-notifications",
+        "highlights": [
+          "If you are a citizen of an EU Member State, Liechtenstein, or Switzerland, you do not need a residence permit when you move to Finland. However, you must register your right of residence at the Finnish Immigration Service within three months since moving to Finland. If you intend to stay in Finland for at least a year, you must also register at the Digital and Population Data Services Agency.\n\n...\n\nHow do I register my right of residence in Finland?\n\nRegister your right of residence with the Finnish Immigration Service within three months of moving to Finland. Your right of residence may only be registered if you have an active company, job, study place or family ties in Finland, or sufficient assets.\n\nFill out the application for the registration of your right of residence in advance electronically or on paper. Book an appointment at a service point of the Finnish Immigration Service and, depending on your application criteria, take with you\n\n- the application form you have filled out\n- original copies of the appendices of your application\n- a personal identification document\n- your marriage certificate\n- the birth certificates of your underage children\n- a certificate of your employment relationship from your employer\n- a report of your business activities or self-employment\n\nFor more detailed instructions for EU citizens, go to the website of the Finnish Immigration Service Opens in a new window..\n\nRemember to check in advance whether the documents must be legalised and whether official translations of them are required. \n\nPay for the processing charge when submitting your application. If you do not pay this charge, your application will not be processed.\n\nYour right of residence is valid until further notice and you do not have to apply for continuation.\n\n...\n\nIf you intend to reside in Finland for at least one year, you must also register at the Digital and Population Data Services Agency, which will assign a municipality of residence for you. Getting a municipality of residence may make your life easier, as municipalities provide their residents with a wide range of important services. You may apply for a municipality of residence in Finland if you have registered your right of residence at the Finnish Immigration Service and are a permanent resident of Finland."
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      },
+      {
+        "id": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "title": "To do as soon as you arrive in Finland - Work in Finland - Suomi.fi",
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "highlights": [
+          "## Register your right of residence as a citizen of an EU country\n\nIf you are going to stay in Finland for at most three months, you do not have to register your stay in Finland.\n\nIf you are going to live in Finland for more than three months, apply for an EU registration from the Finnish Immigration Service. When you have submitted your registration, you will usually receive a personal identity code.\n\n1. Read about the instructions and necessary attachments on the site for registering the right of residence for an EU citizen's right of residence (Finnish Immigration Service) Opens in a new window..\n2. Request for a registration in the Enter Finland service Opens in a new window..\n3. Visit the Finnish Immigration Service in person to identify yourself within three months of your arrival in Finland. If you have not booked an appointment in advance, book the appointment in the appointment booking service of the Finnish Immigration Service Opens in a new window..\n\nIf you request for an EU registration based on work, your work must have started before the Finnish Immigration Service can register your stay.\n\nSubmit the application yourself. For example, your employer or family member cannot do it on your behalf.\n\nUpdated: 16/10/2025"
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      }
+    ],
+    "searchTime": 1120.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

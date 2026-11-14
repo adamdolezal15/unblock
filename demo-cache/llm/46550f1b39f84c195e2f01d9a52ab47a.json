@@ -1,0 +1,76 @@
+{
+  "fetchedAt": "2026-11-14T14:11:58.092Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Polish nurse moving to Oulu in March with two kids",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Oulu",
+      "arrival": {
+        "kind": "date",
+        "day": null,
+        "month": 3,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Polish",
+          "citizenship": "EU",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        },
+        {
+          "relation": "child",
+          "nationality": "Polish",
+          "citizenship": "EU",
+          "purpose": [
+            "family"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        },
+        {
+          "relation": "child",
+          "nationality": "Polish",
+          "citizenship": "EU",
+          "purpose": [
+            "family"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": [
+        "Moving to work as a nurse, so purpose is work.",
+        "The two children are assumed to be Polish citizens like the parent."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2473,
+      "costUsd": 0.011262000000000001,
+      "cacheHit": false
+    }
+  }
+}

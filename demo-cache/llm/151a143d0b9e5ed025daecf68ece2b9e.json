@@ -1,0 +1,115 @@
+{
+  "fetchedAt": "2026-11-14T14:21:14.083Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Nordic citizen registration at DVV",
+    "contextHash": "91825df9a73377b7",
+    "includeDomains": [],
+    "docsHash": "5351df84624debff"
+  },
+  "response": {
+    "data": {
+      "conflicts": [
+        {
+          "topic": "where to register at DVV through International House Helsinki (old Lintulahdenkuja premises)",
+          "aUrl": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+          "aQuote": "Visit IHH at Lintulahdenkuja 2 D, 00530 Helsinki Registration, personal identity code and municipality of residence General information and guidance Newcomer Information Sessions Relocation Guidance",
+          "bUrl": "https://www.visahq.news/2026-06-01/fi/international-house-helsinki-relocates-to-pasila-suomi-piste-service-hub/",
+          "bQuote": "The old IHH premises on Lintulahdenkuja will close permanently and no longer accept walk-in visitors",
+          "verdict": "nuance",
+          "note": "The IHH checklist page directs people to Lintulahdenkuja 2 D, while VisaHQ News reports that these premises will close permanently and IHH is moving to Pasila, so the address may be outdated depending on timing.",
+          "whatToDo": "Rely on International House Helsinki and DVV, which run the service, for the current location, but check their sites again just before you go, because the checklist page may not have been updated yet. Book your DVV appointment online and confirm the address in the booking confirmation rather than turning up at the old address without an appointment."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "All you need to do is register your personal data at the Digital and Population Data Services Agency (DVV) if you are staying in Finland longer than 6 months",
+          "When you do this, you will also receive a personal identity code",
+          "You need to visit DVV in person and you can do this at IHH",
+          "Visit IHH at Lintulahdenkuja 2 D, 00530 Helsinki Registration, personal identity code and municipality of residence General information and guidance Newcomer Information Sessions Relocation Guidance",
+          "If you are moving to Finland until further notice you should register a permanent address, because with a temporary address you cannot receive a municipality of residence in Finland, which means you are not entitled to public services"
+        ],
+        "fetchedAt": "2026-11-14T14:12:10.717Z"
+      },
+      {
+        "url": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/nordic-citizens-permits-and-notifications",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "If you aim to live in Finland for more than six months, you must register at the Digital and Population Data Services Agency"
+        ],
+        "fetchedAt": "2026-11-14T14:12:10.717Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Fill out the correct form in advance",
+          "While registering at DVV, you can also apply for a personal identity code and a municipality of residence, which you will need for everyday life in Finland",
+          "Book an appointment through DVV’s website"
+        ],
+        "fetchedAt": "2026-11-14T14:12:10.717Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Wait times vary — in Helsinki they can stretch to a few weeks during busy periods"
+        ],
+        "fetchedAt": "2026-11-14T14:12:27.956Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day"
+        ],
+        "fetchedAt": "2026-11-14T14:12:27.189Z"
+      },
+      {
+        "url": "https://exa.ai/library/place/3v57hk9mbtz",
+        "title": "exa.ai",
+        "domain": "exa.ai",
+        "trust": "community",
+        "highlights": [
+          "Despite it being over a month since my visit, my address update is still pending, which has made it extremely difficult for me to open a bank account and settle in"
+        ],
+        "fetchedAt": "2026-11-14T14:12:27.956Z"
+      },
+      {
+        "url": "https://www.visahq.news/2026-06-01/fi/international-house-helsinki-relocates-to-pasila-suomi-piste-service-hub/",
+        "title": "visahq.news",
+        "domain": "visahq.news",
+        "trust": "community",
+        "highlights": [
+          "The old IHH premises on Lintulahdenkuja will close permanently and no longer accept walk-in visitors"
+        ],
+        "fetchedAt": "2026-11-14T14:12:27.956Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 11557,
+      "costUsd": 0.019232,
+      "cacheHit": false
+    }
+  }
+}

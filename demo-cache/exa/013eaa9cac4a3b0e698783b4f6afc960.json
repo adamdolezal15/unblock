@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T14:11:32.468Z",
+  "request": {
+    "endpoint": "search",
+    "query": "International House Helsinki Register as a resident and get a Finnish personal identity code Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Register as a resident and get a Finnish personal identity code\" (International House Helsinki) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "7bfed1fb4ddee64034ca600572b09c17",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "Finnish Personal Identity Code (Henkilötunnus) Guide | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "publishedDate": "2026-06-04T18:43:45.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Step 1: Submit the Online Form\n\nStart at dvv.fi/en/foreigner-registration, which links to the registration form at lomakkeet.dvv.fi. No login or strong authentication is required to submit it. You provide your personal details, your reason for staying in Finland, and contact information. Parents submit one separate form per child under 18. (A paper form exists if you genuinely cannot use the online one.)\n\n### Step 2: Book and Attend an In-Person Appointment\n\nAfter submitting the form, book an appointment at a DVV service point and attend within one month. When booking you choose:\n\n- Book for one person if registering only yourself.\n- Book for multiple people or a family if there are 2–5 people; for six or more, book two appointments.\n\nEveryone being registered must attend in person, including children — there is no way around the identity verification.\n\n### Step 3: Bring the Right Documents\n\nTake with you:\n\n- Valid passport or official EU/EEA photo ID card.\n- Residence permit card (non-EU) or EU registration certificate — or proof you have applied for one.\n- Proof of legal grounds for staying: employment contract, study acceptance/enrolment certificate, or equivalent.\n- Proof of a Finnish address if you have it: a rental agreement, or confirmation from your employer or university.\n- For family relationships, bring legalised and translated certificates (marriage, birth) where relevant.\n\n### Step 4: Wait for Processing\n\nDVV processes the request after your visit. According to DVV, expect roughly:\n\n...\n\n- Other applications: about 3–4 weeks.\n\n...\n\nThis is the single most common misunderstanding, so treat it as a separate fact: having a henkilötunnus is not the same as having a municipality of residence (kotikunta — \"home municipality\"). The personal identity code identifies you; the kotikunta status is what entitles you to subsidised municipal and wellbeing-county services — most importantly public healthcare at standard client fees, and day care.\n\nBoth DVV and Migri are explicit that getting a code does not automatically give you a kotikunta. You apply for the municipality of residence separately with DVV, and eligibility depends on factors like the nature and length of your stay. If you register in person with DVV, raise the kotikunta question at the same appointment so you do not leave thinking you are covered for healthcare when you are not. For the wider registration picture, see our guide to registering with DVV.\n\n...\n\n## Common Problems and Fixes\n\n- \"My permit was granted but I never got a code.\" Automatic issuance needs your identity to have been verified by a Finnish authority and your details to match your passport exactly. If it did not happen, request the code from DVV in person after you arrive — do not wait for it to appear on its own.\n- \"I have a henkilötunnus but the health centre says I'm not covered.\" You almost certainly have the code but not a kotikunta. Apply for the municipality of residence with DVV; until then, non-emergency public care may not be available at subsidised rates.\n- \"My name is spelled wrong / my date of birth is incorrect.\" Errors trace back to the source documents and identity check. Contact DVV to correct registered details; in narrow cases the code itself can be changed (e.g. wrong date of birth recorded).\n- \"I couldn't get a DVV appointment within a month of submitting the form.\" Appointment availability varies by city and season. Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day.\n- \"A bank refused me because I only have a foreigner's identity number.\" That is expected — it is not a full henkilötunnus. Use a Wise or Revolut account as interim banking, and apply for the full code once you qualify.\n\n...\n\n- DVV — foreigner registration: the form, appointment booking, and document list — dvv.fi/en/foreigner-registration\n- Migri — personal identity code with a residence permit: how the automatic process works — migri.fi/en/personal-identity-code\n- InfoFinland — after you arrive: plain-language newcomer overview of registration steps — infofinland.fi\n- International House Helsinki: a one-stop service point covering DVV registration, tax, and Kela for the Helsinki region — ihhelsinki.fi\n- Your employer or university: many international employers and universities have staff who walk new arrivals through DVV registration."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-personal-identity-code/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://nerdsbay.com/finnopedia/tpost/xenn21zis1-guide-what-to-do-after-moving-to-finland",
+        "title": "GUIDE: What to do after moving to Finland",
+        "url": "https://nerdsbay.com/finnopedia/tpost/xenn21zis1-guide-what-to-do-after-moving-to-finland",
+        "publishedDate": "2025-03-07T00:00:00.000Z",
+        "highlights": [
+          "#### 2 Visit International House Helsinki\n\n- Visit International House Helsinki (or similar services in other cities).\n\n- At the local registry office dvv.fi, register to get:\n\n*Henkilötunnus (SNN, personal identity code) – your personal identifier in all government systems (similar to a tax identification number). This number consists of six digits of your birth date and four additional characters. It's issued for free, and processing can take from 30 minutes to two weeks. To obtain it, you need a residential address. Even if your Social Security Number is already on the back of your residence permit card, you still need to visit the DVV to get a paper extract from the registry. *Kotikunta – registration of your municipality, where you plan to live, pay taxes, and receive services. A temporary apartment with a postal address (but not a hotel) is enough. You can also list your office address, and your company may assist with this. \n\n- Get a tax card at the tax office (vero.fi). This is an A4 sheet that shows your tax percentage. It’s issued for free on the day of application. If you already have a Social Security Number, you can order it by phone.\n\n- At Kela, submit applications for:\n\n— Kela card – a plastic social security card that simplifies identification at clinics. The card will be mailed to you within ~3 months, but you can access public healthcare immediately after submitting the application. — E uropean Health Insurance Card – similar but valid across Europe. — Child benefits. — Other benefits.\n\n#### 3 Visit the police\n\nVisit the police and apply for an ID card (henkilökortti). Once you receive an email from DVV confirming you’ve obtained your henkilötunnus and kotikunta, you can go to the police to get your ID card. Either schedule an appointment or wait in line. Bring a photo with you.\n\n...\n\nOpen a bank account and request bank authorization codes. It's better to go to the bank after receiving your ID card from the police, as they will open the account on the same day. You can apply for an account at several banks at once. Popular banks: \n\n- S-Pankki\n- OP (requires a permanent address)\n\n...\n\nEven if you’re moving soon, provide the bank with the registered DVV address. It’s easier to request mail forwarding from Posti than to wait 20 days for a DVV address change and then go to the bank."
+        ],
+        "image": "https://static.tildacdn.com/tild3832-6439-4336-b036-313466643033/4-101.jpg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "title": "Your First Week in Finland: An Arrival Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "publishedDate": "2026-05-14T21:02:43.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Before you plan your week, understand the single fact that shapes it: almost nothing official in Finland works without a henkilötunnus (the Finnish personal identity code). Your online banking codes, your tax card, your Kela registration, and most online government services all expect that code. It is issued by the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency) when you register, and registration involves an in-person appointment.\n\n...\n\nGet a phone connection. A working Finnish or local number matters more than it sounds, because so many later steps — bank onboarding, OmaVero login, two-factor codes — assume you can receive an SMS. Prepaid SIM cards are widely sold at convenience kiosks (such as R-kioski), supermarkets, and operator stores from DNA, Elisa, and Telia. If you would rather arrive already connected, an eSIM bought before you fly (for example through Airalo) gives you data\n\n...\n\nSort out getting around. In the greater Helsinki area, public transport runs on HSL (Helsingin seudun liikenne). You do not need a travel card to start moving: the free HSL app sells single tickets and short day tickets without even an account, and you can tap a contactless bank card or phone on board many services. The HSL area is divided into zones labelled A to E, so check which zones your trips cover before you buy. Fares are adjusted periodically, so treat any euro figure you see online as indicative and check the current price in the app or at hsl.fi.\n\n...\n\nThis is the keystone task. Registration with DVV is what produces your personal identity code and, where you qualify, your municipality of residence.\n\nThe process has two parts. First, submit the foreigner registration form online at dvv.fi/en/foreigner-registration. You can complete this before your appointment to speed things along. Second, book and attend an in-person appointment at a DVV service point. Everyone who requests a personal identity code must appear in person.\n\nBring originals, not copies:\n\n- A valid passport or official photo ID card\n- Your residence permit card (non-EU) or your EU registration certificate, or proof you have applied for one\n- Proof of your legal grounds for staying — typically an employment contract or a letter of acceptance from a Finnish institution\n- Proof of your Finnish address, if you have it\n\nProcessing times vary, so book your appointment as early in your first week as the calendar allows.\n\n...\n\nThat is a deliberately high default, and the only way to avoid it is to get a tax card in place before your first payday.\n\nOnce you have a personal identity code, you can order a tax card with Vero's form 5042e (if you are staying more than six months) or through OmaVero, the online tax service at vero.fi (logging in needs a mobile certificate, certificate card or online banking codes), and give it to your employer. Ask your employer how much in advance they need it (Vero's guide is approximately 2 weeks before payday), so the moment your code comes through, this should jump to the top of your list. If your code has not arrived yet but you are about to start work, ask whether a tax office near you can issue a personal identity code, so you are not stuck on the 60% rate. Newcomers in the capital region can also get tax guidance in person at International House Helsinki, which co-locates DVV, tax, and Kela services."
+        ],
+        "image": "https://nordicexpat.com/finland/first-week-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/a-foreigner-can-apply-for-a-personal-identity-code-and-municipality-of-residence-online",
+        "title": "A foreigner can apply for a personal identity code and municipality of residence online - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/a-foreigner-can-apply-for-a-personal-identity-code-and-municipality-of-residence-online",
+        "publishedDate": "2024-05-14T06:43:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "The everyday life of a foreigner moving to Finland is made easier when their details are registered in the Population Information System. The Digital and Population Data Services Agency (DVV) maintains this information and has now made it possible for a foreigner to apply for a personal identity code and municipality of residence online. If you fill in the online form before you go in person, it is easier to obtain your personal identity code and municipality of residence.\n\nThe online forms for applying for a personal identity code and municipality of residence are available to all foreigners and do not require strong identification to fill them in. Once a foreigner has submitted an application for a personal identity code or municipality of residence online, they usually also have to visit the Digital and Population Digital Services Agency in person. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer.\n\nA new online form to apply for a personal identity code is being introduced on 13 May 2024. The submission of the preliminary information in digital format allows the customer's case to be dealt with more quickly during a customer service visit. The Digital and Population Data Services Agency Is piloting the provision of personal identity codes during customer service visits in some municipalities during the summer. This is possible for customers who have filled in the online form and made an appointment in advance in Helsinki, Turku, Tampere, Jyväskylä and Oulu."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://www.enb.fi/guides/finland-dvv-personal-identity-code-municipality-address-registration-2026-complete-guide/",
+        "title": "DVV Registration in Finland 2026: Identity Code | ENB",
+        "url": "https://www.enb.fi/guides/finland-dvv-personal-identity-code-municipality-address-registration-2026-complete-guide/",
+        "publishedDate": "2026-08-24T06:49:39.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "Many residence-permit applicants receive a personal identity code during the Migri process and it appears on the permit card. If not, it can be requested through DVV foreigner registration; in some work/tax cases Vero can also be involved in issuing a code.\n\nDVV registration requires reliable identity and a genuine Finnish connection. Passport/official ID, residence status and work/study/family documents may be required.\n\n...\n\nAfter submitting the municipality-of-residence form, follow DVV's confirmation instructions. The current form requires many applicants to visit a DVV service location in person within one month.\n\nKeep a valid passport/ID and original documents supporting the application ground ready for identity verification. Booking before arrival can reduce delays."
+        ],
+        "image": "https://www.enb.fi/services/enb-fi-market-square-harbour.jpg"
+      }
+    ],
+    "searchTime": 1625.9,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

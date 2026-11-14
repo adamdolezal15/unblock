@@ -1,0 +1,74 @@
+{
+  "fetchedAt": "2026-11-14T14:11:57.388Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register EU citizen's right of residence (EU registration with Migri)",
+    "contextHash": "a58b21188d7cb7c4",
+    "includeDomains": [],
+    "docsHash": "cbd9a69ad673ea8a"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://enterfinland.fi/eservices/info/europeanpermits",
+        "title": "enterfinland.fi",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "You must apply for registration of your right of residence in Finland if you reside in Finland for over 3 months and are a citizen of an EU Member State, Liechtenstein or Switzerland",
+          "Visit a service point of the Finnish Immigration Service to prove your identity within 3 months of arriving in Finland"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.000Z"
+      },
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started",
+          "You have a valid passport or identity card",
+          "originals and copies of the documents that you attach to your application",
+          "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service",
+          "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.000Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "Sometimes, new slots appear for a fleeting moment due to cancellations or system updates",
+          "Expand Your Search: If you absolutely cannot find a slot in your preferred city, consider if you can travel to another service point"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.098Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "Remember to book this appointment as soon as you submit your online application, because appointment slots, especially in busy periods, can fill up fast"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.098Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1310,
+      "costUsd": 0.0045000000000000005,
+      "cacheHit": false
+    }
+  }
+}

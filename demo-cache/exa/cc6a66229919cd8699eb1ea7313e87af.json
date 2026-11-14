@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T14:12:20.802Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi Identity card for a foreigner Oulu, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Identity card for a foreigner\" (Suomi.fi) in Oulu, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "9f22ef2471cda7a862d44518903a4706",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "title": "Finnish ID Card for Foreigners (Ulkomaalaisen Henkilökortti)",
+        "url": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "publishedDate": "2026-11-11T21:00:31.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Foreigners who live in Finland can get a Finnish identity card from the police, called the foreigner's identity card (ulkomaalaisen henkilökortti). The rules sit in the Identity Card Act (henkilökorttilaki 663/2016): you need a valid residence permit or residence card (or a registered right of residence), a municipality of residence (kotikunta) in Finland, and your details in the Population Information System. In 2026 the card costs EUR 59, or EUR 53 if you apply electronically.\n\n...\n\nTwo things set the foreigner's card apart:\n\n- It is not a travel document. The Act requires the foreigner's identity card to carry a note that it cannot be used as a travel document (§ 4). For travel you still need your passport.\n- It follows your permit. It is issued for five years, but never for longer than your residence permit or residence card is valid (§ 19).\n\n...\n\nSection 14 of the Identity Card Act\n\n...\n\n1. You have a valid residence permit or residence card, or your right of residence has been registered (for EU citizens, see our EU registration guide).\n\n...\n\n3. Your details have been entered in the Population Information System.\n\n...\n\n### Visit in person, at least the first time\n\nThe applicant must come in person to complete the application. For a foreigner's identity card, the Act lets you skip the visit only if all of these apply (§ 10):\n\n- you were issued a foreigner's identity card within the previous six years, and you visited the authority in person for that application,\n- you were over 12 when that card was issued, and\n- you gave a signature sample within the previous six years and your surname or first name has not changed since.\n\nThe police can still ask you to come in to identify you, give a new signature sample or for another special reason. In practice, your first foreigner's identity card means a visit.\n\n### Bring ID, give fingerprints\n\nYou must show a valid identity document, such as your passport. If you have none, a foreigner must show a valid residence permit card or residence card, and the police may compare your fingerprints with those stored on it (§ 11). Fingerprints are taken from everyone applying for an identity card, except applicants under 12 or people who cannot give them because of age, disability, illness or a similar reason (§ 9 a).\n\n### Receive the card\n\nThe card is sent as a registered letter or a similar trackable item (§ 21). In special cases the police hand it over instead. Your previous identity card stops being valid when the new card is handed over to you.\n\n...\n\nThe Act says an identity card includes the citizen certificate (kansalaisvarmenne) issued by DVV, which is used for electronic identification. The minor's identity card and the temporary identity card do not include it (§ 3). For how certificate cards work with Suomi.fi services, see our Suomi.fi e-identification guide.\n\n...\n\nSection 26 lists when a foreigner's identity card is revoked. The ones most likely to affect you:\n\n- your residence permit, registered right of residence or residence card is revoked, or you are deported,\n- you no longer have a municipality of residence in Finland,\n- you ask for it to be cancelled, or\n- you report it lost or stolen.\n\nIf you move away from Finland and no longer have a municipality of residence here, the Act says the card is revoked.\n\n## Common problems and fixes\n\n- \"The police said I have no municipality of residence.\" The card requires a kotikunta. Our DVV registration guide explains population registration.\n- \"My card expires when my permit does.\" That is the rule: the Act caps the card at the validity of your residence permit or residence card.\n- \"I tried to travel with it.\" The foreigner's card is marked as not valid for travel. Carry your passport.\n- \"My old card stopped working.\" The previous card's validity ends when the new card is handed over to you.\n\n...\n\nConfirm you have a residence permit (or registered right of residence), a municipality of residence, and your details in the Population Information System. Then start the application with the police, who handle identity cards (henkilökorttilaki § 9); their website is poliisi.fi. If you have strong electronic identification (see our guide to Finnish online banking IDs), you can apply online for the lower fee. Then book your in-person visit."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://ict.oulu.fi/en/25913/",
+        "title": "No Finnish personal identity code? Here’s how to verify your identity to activate your University of Oulu or Oamk user account. - ict.oulu.fi",
+        "url": "https://ict.oulu.fi/en/25913/",
+        "publishedDate": "2026-07-09T04:00:40.000Z",
+        "author": "Anna-Liisa",
+        "highlights": [
+          "Before you can get a university user account, you must verify your identity. After your identity has been verified, you can activate your university user account and start using the university’s digital services.\n\nGo to suomi.fi. Depending on your device and screen size, you may see either an Identification button or a menu in the top-right corner. Click Identification. If you only see the menu, open it and select the first option, Identification.\n\n## 1. If you do not have a Finnish personal identity code:\n\nChoose Identification methods for foreigners (see image below), you’ll find this option below the Finnish identification methods provided by banks operating in Finland. \n\nIf you do not have a Finnish personal identity code, you can use your home country’s electronic identification method through Suomi.fi e-Identification, if available. You can see all the available European options on the link list of identification methods for foreigners. (The list of countries are visible also on separate page, see the list of elDAS countries.) If your country is on the list, please continue to part 2 of these instructions.\n\nIf your country is not in the list, you must use the Finnish Authenticator service. Check the most up-to-date list of supported countries on the DVV website. Please follow the instructions at dvv.fi:\n\n1. Activate the Finnish Authenticator service. (See “How to get a foreigner’s identifier” in the dvv.fi instructions)\n2. Download the Finnish Authenticator mobile app (App Store / Google Play)\n3. Authenticate your identity with the app. (See “How to authenticate your identity with the app” in the dvv.fi instructions)\n\n- You will need a passport or ID card.\n- You need to take a picture of yourself.\n- Note that it may take some time for the detection to be processed.\n\n...\n\n## 2. Identify yourself to activate your University of Oulu or Oamk user account:\n\n1. When you have gotten an email from ict@oulu.fi, please copy the sign-in code from the message.\n2. Go to https://unihelp.oulu.fi\n3. Paste the sign-in code to the form.\n4. Go to suomi.fi, select Identification (a button in the top-right corner of the page) and then select identification methods for foreigners.\n5. A) If your country is available on the list, use your country’s e-identification. B) If not, use the Finnish Authenticator app. (The last option in the list.)\n6. Return to the Unihelp page in your browser. Then: \n\n1. Accept the terms of use.\n2. Set a password.\n3. Review your account details.\n4. Continue to the IT instructions for new users.\n\nIf needed, please see the Finnish authenticator app accessibility statement. If you cannot use the app because of accessibility issues, please contact ict@oulu.fi for assistance."
+        ],
+        "image": "https://ict.oulu.fi/wp-content/uploads/2026/08/IdentificationMethodsLossless.webp"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "title": "Streamlined services for issuing personal identity codes and municipality of residence for foreign citizens - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "publishedDate": "2025-04-28T07:45:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "A few service locations of the Digital and Population Data Services Agency tested the practice first and started issuing a personal identity code during a personal visit, and as their experiences were positive, the practice was adopted permanently. At the moment, persons who have booked an appointment and completed an online form may receive their personal identity code in 12 locations: Helsinki, Joensuu, Jyväskylä, Kuopio, Lahti, Lappeenranta, Oulu, Pori, Rovaniemi, Tampere, Turku and Vaasa. \n\nTo receive their personal identity code during the visit, the customer must first submit their data to the Digital and Population Data Services Agency using an online form and book an appointment online. They must also meet the requirements for obtaining a personal identity code. However, a personal identity code cannot always be issued during a visit if the matter requires further clarification. \n\nThe online form for obtaining a personal identity code is available to all foreigners, and it does not require strong identification. You can use the same form to request a municipality of residence if you are intending to stay in Finland for more than one year. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "title": "7 Steps for a Smooth Start After Moving to Finland - Life Away",
+        "url": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "publishedDate": "2025-03-09T11:57:08.000Z",
+        "author": "Katlyn Vuorenpää",
+        "highlights": [
+          "#### 4) Make an Appointment to Apply for a Finnish Identity Card (Henkilökortti)\n\nOnce you have your passport photo share code, book an appointment for the Finnish identity card (sometimes referred to as Police ID) online. A Finnish identity card is a photo ID that is accepted across Finland and is required for enabling strong identification. The card is usually valid for 5 years. \n\nUseful: once you have this, you won’t need to carry your passport as proof of age or identity when buying alcohol, for instance. \n\nImportant: the identity card is only valid for as long as your residence permit is valid. You must apply for a new identity card when your residence permit expires, so be strategic about when you apply. If you want to apply for a Finnish identity card, but your residence permit is expiring soon, get your new residence card first and then get the ID card so you won’t end up paying twice in one year. (It’s about 67€ for the card)\n\nBook an appointment with a police station here. You can make an appointment at any police station, but make sure it’s accessible by public transportation if you don’t drive (you may need to collect the card from the same police station, so make sure it’s not too difficult to get to).\n\nBring your photo share code, DVV certificate, passport, and residence permit to your appointment. You will pay for the card at the appointment. It’s 67€ in person and 63€ online (you can apply online with strong identification when you need a new card).\n\nExtra Important – The card will not be mailed to your home, but to a pick-up point of your choosing. Only someone with a Finnish-issued ID can collect the police card from the pick-up point. \n\nIf you do not have a Finnish-issued ID (residence permit does not count) and you don’t know someone who does so that you can grant them power of attorney, then you must collect from the police station. Speak to a member of staff in order to arrange the collection. In either case, you will be mailed/e-mailed a notification with a tracking number that you must also bring with you and show when picking up the card. Read more about it here.\n\n...\n\nOnce you have the identity card, make an appointment with a bank of your choosing to open an account. \n\nYou can open a bank account whenever you want. However, if you don’t have the Finnish identity card when you go to the appointment, your bank will not enable strong identification. You will have to book another appointment to get it enabled.\n\nI chose Nordea and was able to book an appointment over the phone in English. The process was simple enough, but the wait times were a little long. This all occurred in April 2024 in Tampere, so wait times may be quicker where you are or with a different bank. \n\nThe appointment to open a bank account took two weeks from when I called. It took a week after the appointment to receive the security code in the mail and then another week to receive the debit card. When I made an appointment to enable strong identification it was another 2 week wait. \n\nThis is why I recommend you wait until you have the Finnish identity card first before opening a bank account. It’s much quicker and more efficient to make one appointment and get everything done at the same time."
+        ],
+        "image": "https://lifeaway.blog/wp-content/uploads/2025/03/food-delivery-robot-in-finland-inline.jpg"
+      },
+      {
+        "id": "https://www.oulu.fi/en/news/suomifi-identification-service-for-foreigners-has-been-introduced-for-students",
+        "title": "Suomi.fi identification service for foreigners has been introduced for students | University of Oulu",
+        "url": "https://www.oulu.fi/en/news/suomifi-identification-service-for-foreigners-has-been-introduced-for-students",
+        "publishedDate": "2026-08-05T07:42:55.000Z",
+        "highlights": [
+          "The University of Oulu and Oamk have introduced an electronic first identification service that utilises Suomi.fi identification and makes it easier to activate the user account for foreigner students. The service will be introduced to staff at a later date. \n\nIf the user does not have a Finnish personal identity code or if the identification methods for Finnish citizens cannot be used in the Suomi.fi service, identification will be possible with these services (help links to the Suomi.fi identification pages):\n\n- with common European eIDAS identification (Electronic identification and trust services for electronic transactions in the internal market) or \n- with Finnish Authenticator application, for which official identity papers (passport) are required. \n\nCommon European eIDAS is intended for residents of EU countries who have joined the service, and as a rule, Finnish Authenticator is intended for other foreigners."
+        ]
+      }
+    ],
+    "searchTime": 1577.7,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "fetchedAt": "2026-11-14T14:20:27.558Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Residence permit for an employed person",
+    "contextHash": "d85497d77aba6b02",
+    "includeDomains": [],
+    "docsHash": "ff0aecdbba0632c4"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/faq-residence-permits",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "To be allowed to move to Finland for longer than 90 days, you need a residence permit",
+          "In contrast, if you apply for a residence permit on some other grounds while in Finland, the decision will usually be negative"
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for a residence permit with this application if you are coming to Finland to work for a Finnish employer or other employer operating in Finland",
+          "If you cannot use Enter Finland, fill in a paper application",
+          "Show the passport when you visit a service point to prove your identity",
+          "The passport photo must be no more than 6 months old",
+          "This document is not needed if you apply for an extended permit",
+          "After you have submitted your application in Enter Finland, your employer must add your terms of employment and other required documents to your application using Enter Finland for Employers"
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://migri.fi/en/identification",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "When you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person"
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://dvv.fi/en/personal-identity-code",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "A personal identity code is issued to a foreign citizen moving to Finland from abroad after they have been registered in the Population Information System at their own request or at the time they are granted a residence permit"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.570Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "Anecdotal evidence suggests checking first thing in the morning (e.g., 8:00 AM EET) or late in the evening can yield results, as these might be when daily allocations are updated or when others cancel",
+          "Many people set aside 10-15 minutes a few times a day to just refresh the page",
+          "It’s easy to rush through this, but selecting the wrong category could lead to problems at your appointment, potentially requiring you to rebook",
+          "Make sure you have your application number from Enter Finland handy, as it's often requested"
+        ],
+        "fetchedAt": "2026-11-14T14:11:37.912Z"
+      },
+      {
+        "url": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "title": "enb.fi",
+        "domain": "enb.fi",
+        "trust": "community",
+        "highlights": [
+          "The most common misunderstanding is that the clock starts the moment you submit",
+          "After the decision, producing and posting the residence permit card takes about two more weeks"
+        ],
+        "fetchedAt": "2026-11-14T14:11:37.912Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2806,
+      "costUsd": 0.007204,
+      "cacheHit": false
+    }
+  }
+}

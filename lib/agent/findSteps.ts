@@ -14,7 +14,9 @@ import type {
   Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
 import { whatToDoByTrust } from "./detectConflicts";
-import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, standIn, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { citizenshipClass, documentsForClass } from "./applicability";
+import { looksLikeAddress, looksLikeDuration, looksLikeHours } from "./valueFormats";
 import { inPersonFromText, localVisitClaims, permitProvidesCode, policeIdentificationClaims, policeIdentificationStep } from "./derive";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 
@@ -48,6 +50,13 @@ export type FindStepsOptions = {
    */
   onStep?: (step: Step) => void;
 };
+
+function wellFormed(c: VerifiedClaim): boolean {
+  if (c.kind === "address") return looksLikeAddress(c.value);
+  if (c.kind === "hours") return looksLikeHours(c.value);
+  if (c.kind === "processing_time") return looksLikeDuration(c.value);
+  return true;
+}
 
 function dedupeDocs(docs: ExaDoc[]): ExaDoc[] {
   const seen = new Set<string>();
@@ -205,7 +214,7 @@ async function runStep(
   }
 
   const raw: RawClaim[] = (result.data?.claims ?? []).map((c) => ({ stepId: def.id, ...c }));
-  const { verified, dropped } = await verifyCitations(raw, [...docs, ...result.sources], {
+  const checked = await verifyCitations(raw, [...docs, ...result.sources], {
     allowedDomains: includeDomains,
     extraOfficial,
     knownStepIds: STEP_IDS,
@@ -213,6 +222,12 @@ async function runStep(
     fetchPage,
     label: def.label,
   });
+  // A step's address / hours / processing time is shown as that kind of fact, so it must have its shape.
+  const verified = checked.verified.filter((c) => wellFormed(c));
+  const dropped: DroppedClaim[] = [
+    ...checked.dropped,
+    ...checked.verified.filter((c) => !wellFormed(c)).map((c) => ({ stepId: c.stepId, kind: c.kind, value: c.value, url: c.citation.url, quote: c.citation.quote, reason: "invalid_value" as const })),
+  ];
 
   return {
     def,
@@ -370,6 +385,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const fetchPage = createPageFetcher(cityDomains(profile.city));
   const done = doneSteps(profile);
   const available = new Set([...selected.map((d) => d.id), ...done.map((s) => s.id)]);
+  const cls = citizenshipClass(profile);
   // Steps with their own verified `applies` claim are confirmed the moment their run finishes: report
   // them right away. Everything else (required_by, milestones, shared visitIds) is known only after all runs.
   const emitted = new Map<string, string>();
@@ -385,7 +401,10 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   let runs = await Promise.all(
     selected.map((def) =>
       runStep(def, profile, selected, fetchPage, onProgress).then((r) => {
-        r.verified = r.verified.map(remapIdentityCode);
+        r.verified = documentsForClass(r.verified, cls)
+          .map(remapIdentityCode)
+          .map((c) => (c.kind === "requires" || c.kind === "same_visit" ? { ...c, value: standIn(c.value, available) } : c))
+          .filter((c) => !((c.kind === "requires" || c.kind === "same_visit") && c.value === r.def.id));
         r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
         if (r.verified.some((c) => c.kind === "applies") && !(permitSearched && r.def.id === "vero_identity_code")) {
           const confirmation: Confirmation = { by: "applies" };

@@ -1,0 +1,61 @@
+{
+  "fetchedAt": "2026-11-14T14:20:52.196Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "0a20fa644e5763ee",
+    "includeDomains": [],
+    "docsHash": "247b0a306bd33a27"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+          "Personal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi",
+          "You must have a bank account so that we can pay your benefits to you"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "Send the form together with any supporting documents to Kela, PL 10, 00056 KELA"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/coming-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "File a notification of your move in the OmaKela e-service (in Finnish or Swedish) or on the form Moving to Finland or employment in Finland Y 77e (PDF"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1581,
+      "costUsd": 0.0039019999999999997,
+      "cacheHit": false
+    }
+  }
+}

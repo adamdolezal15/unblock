@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T13:56:21.172Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Vero (Tax Administration) Personal identity code from a Vero tax office Tampere, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Personal identity code from a Vero tax office\" (Vero (Tax Administration)) in Tampere, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "51af0a62d9f4129193be4237b03c3df4",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "title": "Streamlined services for issuing personal identity codes and municipality of residence for foreign citizens - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "publishedDate": "2025-04-28T07:45:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "To receive their personal identity code during the visit, the customer must first submit their data to the Digital and Population Data Services Agency using an online form and book an appointment online. They must also meet the requirements for obtaining a personal identity code. However, a personal identity code cannot always be issued during a visit if the matter requires further clarification. \n\nThe online form for obtaining a personal identity code is available to all foreigners, and it does not require strong identification. You can use the same form to request a municipality of residence if you are intending to stay in Finland for more than one year. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer.\n\n...\n\nHaving a Finnish personal identity code makes many everyday matters possible, such as dealing with the authorities, opening a bank account and receiving wages. In addition to the Digital and Population Data Services Agency, a foreigner may in certain situations receive a personal identity code from the Tax Administration or the Finnish Immigration Service."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://monteoz.com/finnish-personal-identity-code/",
+        "title": "How Non-EU Expats Can Get A Finnish Personal Identity Code: A Step-by-Step Guide - Monte OZ",
+        "url": "https://monteoz.com/finnish-personal-identity-code/",
+        "publishedDate": "2026-10-23T07:05:02.000Z",
+        "highlights": [
+          "A third route is available to people who need a personal identity code specifically for tax purposes. The Finnish Tax Administration, known as Vero, can issue codes in certain circumstances, particularly to people arriving to work in Finland who need to obtain a tax card or tax number. This route is not interchangeable with every form of population registration, so applicants should first establish whether their immediate need is tax-related or whether they also require registration through DVV. Only certain Tax Administration service points issue personal identity codes, and an appointment is required.\n\nFor the tax route, applicants should prepare the relevant registration form and tax application before attending their appointment. Vero’s guidance identifies Form 6150e for registration information for a foreigner staying temporarily in Finland, alongside the appropriate tax application: Form 5057e for certain non-resident tax situations or Form 5042e for people staying in Finland for longer than six months. The correct form depends on the circumstances, so applicants should use Vero’s current instructions rather than choose one based solely on the length of their employment contract. A valid passport, applicable residence permit or visa, and documentation showing the work to be carried out in Finland may also be required.\n\nAn employment offer alone may not be enough. Vero requires reliable evidence that the applicant will actually work in Finland, and non-EU nationals generally need to demonstrate that they have a valid right to work under the rules applying to their circumstances. A preliminary job offer or an incomplete contract may not meet the requirements. Applicants should make sure their documents identify the employer, describe the work and provide the relevant dates and workplace details. If the contract does not contain sufficient information, additional documentation from the employer or the Finnish party commissioning the work may be necessary.\n\nOnce an application has been submitted, the waiting time depends on the route and whether the documents are complete. Vero says processing for relevant worker applications is normally one to three business days when the required information and documentation have been provided. That estimate should not be treated as a universal deadline for all applications through DVV or Migri. Anyone who needs the code before starting a job, arranging payroll or completing tax registration should confirm the appropriate process early and avoid making plans based on an assumed same-day decision."
+        ],
+        "image": "https://monteoz.com/wp-content/uploads/2026/10/Finnish-Personal-Identity-Code.avif"
+      },
+      {
+        "id": "https://helloexpat.eu/fi/blog/finnish-personal-identity-code-henkilotunnus",
+        "title": "Finnish personal identity code: get a henkilötunnus | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/finnish-personal-identity-code-henkilotunnus",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "Do not confuse it with the veronumero, the tax number. The tax number matters only in construction and shipbuilding, where you must register at a tax office and cannot enter the site without it. Everybody else works with the henkilötunnus.\n\n...\n\n## How do you get a Finnish tax card?\n\nOnce you have your henkilötunnus, you apply to Verohallinto (Vero, the Tax Administration) for a verokortti, the tax card. Vero says that applying for one requires a Finnish personal identity code. If a visit is needed, Vero gives you an appointment. Processing normally takes one to three working days when all information is available.\n\nPrepare an estimate of your income for the whole year, because the tax card carries a withholding percentage and an income ceiling. Give a copy to your employer. One card works for all your employers, with a single annual ceiling.\n\n## What if you need to start work before you have the code?\n\nAsk Vero or the DVV for the code in the same visit as your tax card application. Some tax offices in large cities can issue an identity code at the same time. If you start anyway without a tax card, your employer withholds 60 per cent of your salary. It comes back later through the tax return, but your cash flow suffers in the meantime.\n\n...\n\nYou can open a bank account, though banks may not issue full online banking codes without the code. You can buy a prepaid SIM card without giving an identifier. You can receive urgent medical care, and you may be billed afterwards if you have no entitlement. What you cannot do: get a tax card, apply to Kela, sign a regular phone subscription, or use most public online services. Read Kela in Finland for the benefits side.\n\n...\n\nEverywhere. Your employer reports your pay under it. Your bank links your account to it. Kela, Vero and your municipality identify you with it. When you book a doctor, the health centre asks for it; when you sign a lease, many landlords ask for it. The Kanta services, where you view prescriptions and test results, are tied to it as well.\n\nThat is also why Finns treat it carefully. It is not a secret in the way a password is, but it is a key to your records. Do not post it on social media, do not send it by email to someone you have not verified, and be suspicious of any message that claims to be from Vero or Kela and asks you to click a link. Vero warns on its own site that scam messages have been sent in its name.\n\n...\n\n## What are the common mistakes?\n\n- Starting work before the tax card. Plan the DVV appointment first.\n- Mixing up the henkilötunnus and the veronumero.\n- Forgetting that registration at the DVV is separate from Migri. You need both.\n- Moving house without telling the DVV. Every change of address is declared there, free of charge.\n- Staying under a year and expecting a municipality of residence.\n\nOnce the code arrives, guard it. Combined with your name it unlocks a lot, and you should never share it in an email or message to someone you cannot identify."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      },
+      {
+        "id": "https://zahist.lawyer/en/articles/taxes-on-salary-in-finland-what-new-employees-need-to-know/",
+        "title": "Tax card in Finland (verokortti): how to obtain it",
+        "url": "https://zahist.lawyer/en/articles/taxes-on-salary-in-finland-what-new-employees-need-to-know/",
+        "publishedDate": "2026-10-16T07:14:02.000Z",
+        "author": "Anna Müller",
+        "highlights": [
+          "The procedure for obtaining the card depends on your status, but the basic scheme is similar for most employees. Below is the sequence we recommend following.\n\n1. Obtain a Finnish personal identity code if you do not yet have one\n2. Estimate how much you will earn over the entire year\n3. Contact Vero through the electronic service or a tax office\n4. Indicate your estimated annual income and employer details\n5. Receive the card and check the withholding rate\n6. Provide the details to your employer before the first salary payment\n\nNew arrivals can obtain the card at a tax office. For this, you will need a personal identity code and an estimate of income for the entire year, not only for the first months.\n\nThe exact steps in the electronic service may change, so before you start, check the current instructions on vero.fi.\n\n...\n\nA personal identity code is needed for almost all actions with Vero. It is assigned by the DVV agency during registration in the population information system, and in certain circumstances it can also be obtained at a tax office.\n\n1. A passport or other identity document\n2. A document confirming the right to stay in Finland\n3. A Finnish personal identity code or documents for obtaining one\n4. Employer details: name, identifier, contact\n5. An estimate of your annual income\n\nIf the code has not yet been issued, the first step is to register in the population information system. Our article on the personal identity code for Ukrainians explains this in more detail.\n\n...\n\nBelow are the mistakes that occur most often. All of them can be corrected, but it is better not to make them in the first place.\n\n1. Not applying for a tax card and working with a higher withholding rate\n2. Understating annual income in the hope of paying less\n3. Not updating the tax card after a change in salary or employer\n4. Giving the employer an outdated tax card\n5. Not checking the rate before submitting it\n6. Not keeping documents on the application and payment of tax\n\n...\n\nA calm review of the data\n\n...\n\n1.\n\n...\n\n2. It is difficult to estimate annual income correctly, especially with unstable work\n3. It is unclear which rate is considered acceptable for your situation\n\n...\n\nAn error in the data leads to overpayments or additional payments\n5."
+        ],
+        "image": "https://zahist.lawyer/resources/images/news/6ad1cebdc86c76f093398663.webp"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "Finnish Personal Identity Code (Henkilötunnus) Guide | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "publishedDate": "2026-06-04T18:43:45.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Step 3: Bring the Right Documents\n\nTake with you:\n\n- Valid passport or official EU/EEA photo ID card.\n- Residence permit card (non-EU) or EU registration certificate — or proof you have applied for one.\n- Proof of legal grounds for staying: employment contract, study acceptance/enrolment certificate, or equivalent.\n- Proof of a Finnish address if you have it: a rental agreement, or confirmation from your employer or university.\n- For family relationships, bring legalised and translated certificates (marriage, birth) where relevant.\n\n...\n\nThis is the single most common misunderstanding, so treat it as a separate fact: having a henkilötunnus is not the same as having a municipality of residence (kotikunta — \"home municipality\"). The personal identity code identifies you; the kotikunta status is what entitles you to subsidised municipal and wellbeing-county services — most importantly public healthcare at standard client fees, and day care.\n\nBoth DVV and Migri are explicit that getting a code does not automatically give you a kotikunta. You apply for the municipality of residence separately with DVV, and eligibility depends on factors like the nature and length of your stay. If you register in person with DVV, raise the kotikunta question at the same appointment so you do not leave thinking you are covered for healthcare when you are not. For the wider registration picture, see our guide to registering with DVV.\n\n...\n\nA henkilötunnus is the key that turns on the rest of the system. With it you can:\n\n- Open a bank account at a Finnish bank (Nordea, OP, S-Pankki, Danske Bank). See opening a bank account in Finland.\n- Get a tax card (verokortti) through OmaVero / vero.fi — covered in our Finnish tax card guide.\n- Register with Kela for social insurance and the Kela card, where eligible.\n- Use Suomi.fi, the public services portal, once you have strong e-identification.\n- Obtain online bank credentials (pankkitunnukset) — the de-facto national e-ID for logging into government and banking services.\n- Access public healthcare at a health centre (terveyskeskus) — provided you also have a kotikunta.\n- Enrol children in school or day care.\n\n...\n\n## Common Problems and Fixes\n\n- \"My permit was granted but I never got a code.\" Automatic issuance needs your identity to have been verified by a Finnish authority and your details to match your passport exactly. If it did not happen, request the code from DVV in person after you arrive — do not wait for it to appear on its own.\n- \"I have a henkilötunnus but the health centre says I'm not covered.\" You almost certainly have the code but not a kotikunta. Apply for the municipality of residence with DVV; until then, non-emergency public care may not be available at subsidised rates.\n- \"My name is spelled wrong / my date of birth is incorrect.\" Errors trace back to the source documents and identity check. Contact DVV to correct registered details; in narrow cases the code itself can be changed (e.g. wrong date of birth recorded).\n- \"I couldn't get a DVV appointment within a month of submitting the form.\" Appointment availability varies by city and season. Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day.\n- \"A bank refused me because I only have a foreigner's identity number.\" That is expected — it is not a full henkilötunnus. Use a Wise or Revolut account as interim banking, and apply for the full code once you qualify."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-personal-identity-code/opengraph-image?c54d69fc59d92fef"
+      }
+    ],
+    "searchTime": 1272.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

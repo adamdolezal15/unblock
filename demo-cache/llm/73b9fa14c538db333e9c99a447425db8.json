@@ -1,0 +1,87 @@
+{
+  "fetchedAt": "2026-11-14T14:12:38.211Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register as a resident and get a Finnish personal identity code (DVV)",
+    "contextHash": "025c6d29677850bc",
+    "includeDomains": [],
+    "docsHash": "50765797d3eb1583"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://dvv.fi/en/foreigner-registration",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "You can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as",
+          "Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children",
+          "a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino",
+          "a certificate of registration of the right of residence for EU citizens",
+          "proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work",
+          "if you are also requesting the registration of family relationships in addition to the personal identity code, bring completed forms and, if required, legalised and translated certificates",
+          "Finnish identity code request (work, study) 2–3 weeks"
+        ],
+        "fetchedAt": "2026-11-14T13:17:40.897Z"
+      },
+      {
+        "url": "https://dvv.fi/en/personal-identity-code",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "A personal identity code is issued to a foreign citizen moving to Finland from abroad after they have been registered in the Population Information System at their own request or at the time they are granted a residence permit"
+        ],
+        "fetchedAt": "2026-11-14T13:17:40.897Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "After submitting the form, you must visit our service location in person"
+        ],
+        "fetchedAt": "2026-11-14T13:17:40.897Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "You might find that the first available slot for identity verification is three weeks away, and only after that does the 1–3 week processing clock begin",
+          "If you submit your request in August or early September, expect the DVV processing times to stretch toward the 4-to-6-week mark",
+          "The moment you know your move-in date, or the moment you receive your residence permit, check the DVV’s online booking system",
+          "If you are moving based on family ties, for example, and your marriage certificate or your child’s birth certificate lacks the proper apostille or legalisation, the DVV will pause your application"
+        ],
+        "fetchedAt": "2026-11-14T13:18:01.693Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment"
+        ],
+        "fetchedAt": "2026-11-14T13:18:01.693Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2463,
+      "costUsd": 0.0068260000000000005,
+      "cacheHit": false
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "fetchedAt": "2026-11-14T14:20:27.818Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "How does a citizen of a Nordic country register as a resident after moving to Tampere, Finland",
+    "contextHash": "7302592588fd2752",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "tampere.fi",
+      "vero.fi"
+    ],
+    "docsHash": "a5d0790cfc5e5afb"
+  },
+  "response": {
+    "data": {
+      "title": "Nordic citizen registration with DVV",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/nordic-citizens-permits-and-notifications",
+          "quote": "If you aim to live in Finland for more than six months, you must register at the Digital and Population Data Services Agency."
+        },
+        {
+          "kind": "provides",
+          "value": "personal_identity_code",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+          "quote": "When you do this, you will also receive a personal identity code."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://dvv.fi/en/moving-between-the-nordic-countries",
+          "quote": "Anyone moving from another Nordic country must visit our service location personally and prove their identity."
+        },
+        {
+          "kind": "document",
+          "value": "valid identity card showing nationality, such as a passport",
+          "url": "https://dvv.fi/en/moving-between-the-nordic-countries",
+          "quote": "Bring a valid identity card showing your nationality, such as a passport."
+        },
+        {
+          "kind": "document",
+          "value": "An address in Finland",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+          "quote": "What you need before this step"
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "With only a temporary address you get no municipality of residence in Finland and are not entitled to public services",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+          "quote": "If you are moving to Finland until further notice you should register a permanent address, because with a temporary address you cannot receive a municipality of residence in Finland, which means you are not entitled to public services."
+        },
+        {
+          "kind": "same_visit",
+          "value": "vero_identity_code",
+          "url": "https://www.tampere.fi/en/relocation-guide-tampere/moving-tampere",
+          "quote": "If you don’t have a personal identity code, you can get one in the same appointment."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.tampere.fi/en/relocation-guide-tampere/moving-tampere",
+        "title": "Moving to Tampere | www.tampere.fi",
+        "domain": "tampere.fi",
+        "trust": "official",
+        "highlights": [
+          "### Nordic Citizens (Sweden, Norway, Denmark or Iceland) Expand Collapse \n\n#### Step 1: Register your address in Finland \n\nAs a Nordic citizen, when moving to Finland (more than 6 months) you must register at Digital and Population Data Services Agency (DVV) to get your personal identity code and your address in Finland. You can make an appointment prior to your arrival.\n\nCheck carefully the instructions at Foreigner’s move to Finland, in Finland and out of Finland (dvv.fi).\n\nIf you don’t have a personal identity code, you can get one in the same appointment. Check instructions at Registration of a foreigner (dvv.fi).\n\n#### Step 2: Register with Kela \n\nCheck your eligibility and register with the Social Insurance Institution of Finland (Kela) to access public healthcare and social security. After you register, you will get a Kela card. More information at Kela card (kela.fi).\n\nImportant: Strong Authentication in Finland\n\nStrong authentication is a secure way to prove your identity online at a legally recognised level. Because the country is built for digital life, essential services like taxes, healthcare, banking, taxation, and contracts are handled digitally. The strong authentication ensures that only the right person can access and manage sensitive information safely. \n\nIn Finland, strong authentication is usually obtained through full online banking credentials when you open a bank account. Please check with your Finnish bank for detailed instructions on how to apply for and activate this service. \n\nOther alternatives for strong authentication are Mobile Certificate, Finnish Police-issued ID Card (with Citizen Certificate), Finnish Authenticator Identification Service and eIDAS (for EU Citizens). \n\n#### Additional steps for integration in Finland: \n\n##### Finnish ID card\n\nOnce you have your personal identity number (processed by DVV), we advise you to apply for a Finnish ID card at the police station. This card is not mandatory, but it is strongly recommended. It is an official photo ID in Finland and can often be used instead of your passport in many situations, such as dealing with public authorities, renting a home, opening a bank account, or using digital government services.\n\nCheck about the application for an ID card at Apply for an identity card (poliisi.fi). \n\nNote: For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier. In case you want to use a paper photography, you cannot submit your application online. Check more at Passport photographs (poliisi.fi). \n\n##### Tax card\n\nTo work in Finland, you need to get a tax card from the Finnish tax administration (Vero). Learn more about how to apply at Work in Finland (vero.fi). \n\n##### Personal bank account\n\nIf you need to open a local bank account, you must have a Finnish personal identity code (which you will get from Migri or at DVV), an official document that identifies you, and your address in Finland already registered at DVV. Bank requirements vary. Please confirm details directly with your bank.\n\nImportant: When opening a bank account, ask for the full online banking credentials so you can use the strong authentication – essential to access most digital everyday services in Finland. Please check with your Finnish bank for detailed instructions on how to apply for and activate this service.\n\n...\n\nStep 4: Register with DVV (The Digital and population data services agency). Upon arrival in Finland, make an appointment to register with DVV for a personal identity code (if not given along with your resident permit) and register your temporary or permanent address in Finland. Permanent address means the address you are living long-term here in Tampere for 1 year or more. Instructions on the application process can be found on Registration of a foreigner | Digital and population data services agency (dvv.fi). You can fill up the form before the appointment but please DO NOT sign the form or write the date before your appointment. You have to sign the form in front of DVV during your appointment.\n\n...\n\nOnce your personal ID is processed and approved at DVV, it is advisable to get a Finnish ID from the police station. ... Most banks also require that you have an ID card for full access banking services (without a Finnish ID card, you"
+        ],
+        "fetchedAt": "2026-11-14T13:56:04.695Z"
+      },
+      {
+        "url": "https://www.suomi.fi/company/starting-a-business/foreign-entrepreneurs/guide/licenses-and-notifications-required-of-foreign-entrepreneurs/nordic-citizens-permits-and-notifications",
+        "title": "Nordic citizens’ permits and notifications - Starting a business - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are a Nordic citizen and you are moving to Finland, you do not have to apply for a residence permit or give reasons for residing in Finland. If you intend to live in Finland for over six months, register at the Digital and Population Data Services Agency one week after moving to the country.\n\n...\n\nWhat notifications must I file if I am a citizen of another Nordic country and I am moving to Finland?\n\nIf you aim to live in Finland for at most six months, you do not have to file any notifications with Finland’s authorities.\n\nIf you aim to live in Finland for more than six months, you must register at the Digital and Population Data Services Agency. Primarily use the online form Opens in a new window. to apply for a municipality of residence and a personal identity code. Then visit a service location of the Digital and Population Data Services Agency, remembering to bring your official electronic ID card or valid passport. Register within one week of moving to Finland.\n\nThe Digital and Population Data Services Agency will store your basic information in the Finnish population information system, including your name, date of birth, nationality, family relations and address. In this context, you will get a Finnish personal identity code, which makes it easier to manage issues at banks and with the authorities."
+        ],
+        "fetchedAt": "2026-11-14T13:56:04.695Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/nordic-citizen/",
+        "title": "The Newcomer’s Checklist: Nordic citizen - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "### After moving \n\n Notification of move (DVV) \n\nCitizens of Nordic countries (Denmark, Iceland, Norway or Sweden) do not need a residence permit or visa to move to Finland. All you need to do is register your personal data at the Digital and Population Data Services Agency (DVV) if you are staying in Finland longer than 6 months. When you do this, you will also receive a personal identity code. If you will spend less than 6 months in Finland, you do not need to notify the authorities.\n\nWhen should this step be done\n\nRegister as soon as possible but no later than one month after moving to Finland\n\nWhat you need before this step\n\n- Passport or identity card\n- An address in Finland\n\nOfficial responsible for this step\n\nDigital and Population Data Services Agency (DVV)\n\nYou need to visit DVV in person and you can do this at IHH. Read more\n\nHow long does this step take?\n\nDepends on your situation (more information on processing times)\n\n Forms used in this step Registration information of a foreigner form Important links Read more about moving to Finland from a Nordic country IHH services linked to this step Visit IHH at Lintulahdenkuja 2 D, 00530 Helsinki Registration, personal identity code and municipality of residence General information and guidance Newcomer Information Sessions Relocation Guidance\n\n...\n\nEveryone in Finland must submit a notification of move to the Digital and Population Data Services Agency (DVV) when their address changes. Please note that this step should not be followed if you are currently moving to Finland from another country, only if you have already had one address on record in Finland before. Follow the instructions on DVV’s page “Foreigner’s move to Finland, in Finland and out of Finland” when moving from another country.\n\n...\n\nAlways if you move from one address to another in Finland\n\n...\n\nCan be done online and in person. If you have a Finnish personal identity code and strong identification, you can submit the move notification electronically on the Notification of a move service. Paper forms are available in all post offices and DVV service points, including IHH.\n\nA person moving from another Nordic country to Finland must visit the Digital and Population Data Services Agency (DVV) in person in addition to submitting a notification of move, when first moving to Finland.\n\n- Temporary address = A temporary address can be registered with DVV for a period of up to 12 months. If you are moving to Finland until further notice you should register a permanent address, because with a temporary address you cannot receive a municipality of residence in Finland, which means you are not entitled to public services.\n- Permanent address = This is valid until further notice, meaning until you submit a notification of change of address. When the permanent address is registered, a municipality of residence can also be registered. You need this to be able to use public services."
+        ],
+        "publishedDate": "2025-05-16T08:30:12.000Z",
+        "fetchedAt": "2026-11-14T13:56:04.695Z"
+      },
+      {
+        "url": "https://dvv.fi/en/moving-between-the-nordic-countries",
+        "title": "Moving between the Nordic countries",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "## When you move from another Nordic country to Finland \n\nIf you intend to live in Finland, you must visit our service location personally so that we can register you. Bring a valid identity card showing your nationality, such as a passport. Register as soon as possible but no later than one month after moving to Finland. \n\nAnyone moving from another Nordic country must visit our service location personally and prove their identity. For example, you cannot make registration on behalf of your children. \n\n I am a Finnish citizen \n\n1. Book an appointment for our service location by electronic booking \n\n2. Submit a notification of move. \n\n- You can submit a notification of move in the joint online service of us and Posti. To identify yourself, you need Finnish online banking codes or a mobile certificate. \n\nSubmit a notification of move\n\n- You can also submit a notification of move using a paper form, which you can have from Posti or our service location. The form cannot be completed electronically or printed from anywhere. \n\n3. Include a valid identity card and a notification of move in paper form if you have not notified the move electronically. Please note that anyone moving with you must come personally to our service location and prove their identity. \n\nPlease provide us with your personal identity code or personal number used in another Nordic country. This way, your personal data will be transferred electronically from the register authority of the country of origin to us. At the same time, we can inform the register authority of the country of origin that you have moved to Finland. \n\n I am a citizen of another country \n\nNotify your move in accordance with the instructions on page “ Foreigner’s move to Finland, in Finland and out of Finland” when moving from a Nordic country.\n\n## Moving from Finland to another Nordic country\n\nIf you move from Finland to another Nordic country, submit a notification of move to us and the register authority of the country to which you are moving. \n\n### Nordic local register authorities: \n\nFinland: Digital and Population Data Services Agency Iceland: Þjóðskrá Íslands Norway: Skattekontoret Sweden: Skatteverket Denmark: Municipalities of Denmark, Municipalities in Greenland, Municipalities in the Faroe Islands\n\n Why do I have to visit the Digital and Population Data Services Agency's service location personally when moving from another Nordic country back to Finland? \n\nThe treaty concluded between the Nordic countries requires that a person moving from one Nordic country to another act in person with the registration authority of the country of arrival, i.e. in Finland, the Digital and Population Data Services Agency. We are bound by this agreement and we cannot make an exception, for example for Finnish citizens.\n\n I moved to another Nordic country, but my temporary move was registered as permanent. What should I do? \n\nThe country to which you moved can decide how it registers your move. For example, Denmark often registers temporary moves as permanent. If you wish to correct an incorrectly registered move in another Nordic country, contact your local register authority."
+        ],
+        "fetchedAt": "2026-11-14T13:56:04.695Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/registration-of-the-right-of-residence-in-finland/",
+        "title": "Registration of the right of residence in Finland - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are going to stay longer than for one year, the Finnish Digital Agency will review your request and decide whether a Finnish municipality should be entered in the register as your domicile.\n\nIf you are a citizen of an EU country, or of Liechtenstein or Switzerland, and you are staying longer than three months, the right to reside in Finland is either online-registered in Enter Finland or registered by the Finnish Immigration Service at one of their customer service points. However, if you are a Nordic citizen, you should visit the Finnish Digital Agency instead. Under Nordic conventions, Nordic citizens need only register if they stay for six months or longer, and the registration process is more straightforward."
+        ],
+        "fetchedAt": "2026-11-14T13:56:04.695Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 4137,
+      "costUsd": 0.019653999999999998,
+      "cacheHit": false
+    }
+  }
+}

@@ -2,6 +2,7 @@
 // it came from. Nothing here is phrased as a fact unless a verified claim, tip or conflict backs it.
 import type { Citation, Conflict, Step, Tip, VerifiedClaim } from "@/lib/types";
 import { unblockedBy } from "@/lib/graph/unlocks";
+import { OUTPUT_NAMES } from "@/lib/agent/stepTaxonomy";
 import type { RunState } from "./runState";
 
 export type Fact = { label: string; value: string; citation: Citation };
@@ -42,6 +43,20 @@ export function isConsequence(value: string): boolean {
   return !/^(you\s+)?(cannot|can't|can not|need|needs|must|have to|required?|requires?)\b/i.test(value.trim());
 }
 
+/**
+ * "Without a personal identity code you only get limited banking codes" on the strong-ID step is what
+ * happens without the ID code, not what happens if you skip strong ID. A consequence that opens with
+ * "Without <X>" belongs to this step only when X names this step's own result (or a milestone it provides).
+ */
+export function ownConsequence(step: Pick<Step, "id" | "claims">, value: string): boolean {
+  const m = value.trim().match(/^(?:without|if you (?:do not|don't) have|if you have no|with no)\s+(.{3,80}?)(?:,|$|\s+(?:you|the|there|it|only|is|are|can|may|opening|no|your)\b)/i);
+  if (!m) return true;
+  const thing = m[1];
+  const own = [step.id, ...(step.claims ?? []).filter((c) => c.kind === "provides").map((c) => c.value)];
+  const named = Object.entries(OUTPUT_NAMES).filter(([, re]) => re.test(thing)).map(([id]) => id);
+  return named.length === 0 || named.some((id) => own.includes(id));
+}
+
 /** Visit pack and other facts, each with its own quote. */
 export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other: Fact[]; costOfDelay: Fact[] } {
   const claims = step.claims ?? [];
@@ -51,7 +66,7 @@ export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other
     documents: dedupe(claims.filter((c) => c.kind === "document").map(fact)),
     visit: dedupe(claims.filter((c) => c.kind === "address" || c.kind === "hours" || c.kind === "booking_url").map(fact)),
     other: dedupe(claims.filter((c) => c.kind === "processing_time" || c.kind === "mode").map(fact)),
-    costOfDelay: dedupe(claims.filter((c) => c.kind === "cost_of_delay" && isConsequence(c.value)).map(fact)),
+    costOfDelay: dedupe(claims.filter((c) => c.kind === "cost_of_delay" && isConsequence(c.value) && ownConsequence(step, c.value)).map(fact)),
   };
 }
 

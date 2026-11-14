@@ -1,0 +1,61 @@
+{
+  "fetchedAt": "2026-11-14T14:11:38.292Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "2ae41773c1d4cd7b",
+    "includeDomains": [],
+    "docsHash": "093889b9fb3b0c00"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Working in Finland qualifies you for Kela benefits only if you earn at least EUR 800.02 per month in salary or wages from the work you do in Finland",
+          "You must have a bank account so that we can pay your benefits to you",
+          "You must also have a residence permit granted by the Finnish Immigration Service (migri.fi) if you need one to stay or work in Finland before you can get benefits from Kela"
+        ],
+        "fetchedAt": "2026-11-14T14:11:20.659Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "Apply for a Kela card on the form Application Kela card SV 157e (PDF"
+        ],
+        "fetchedAt": "2026-11-14T14:11:20.659Z"
+      },
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Also notify us of your move to Finland in the OmaKela e-service or file the form Moving to Finland or employment in Finland Y 77e (PDF) with Kela, if you have not done that already"
+        ],
+        "fetchedAt": "2026-11-14T14:11:20.659Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1892,
+      "costUsd": 0.0039959999999999996,
+      "cacheHit": false
+    }
+  }
+}

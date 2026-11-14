@@ -1,0 +1,166 @@
+{
+  "fetchedAt": "2026-11-14T14:11:25.580Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "How to get a Finnish tax card when moving to Finland to work, and what happens if you do not have one",
+    "contextHash": "72bc5969350d6618",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "turku.fi",
+      "vero.fi"
+    ],
+    "docsHash": "b6a5832217ccf448"
+  },
+  "response": {
+    "data": {
+      "title": "Tax card",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card."
+        },
+        {
+          "kind": "requires",
+          "value": "personal_identity_code",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+          "quote": "To apply for the card and the number, you need a Finnish personal identity code."
+        },
+        {
+          "kind": "requires",
+          "value": "personal_identity_code",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+          "quote": "You will need a Finnish personal identity code and a tax card."
+        },
+        {
+          "kind": "requires",
+          "value": "residence_permit",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+          "quote": "Take your residence permit with you if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway, or Switzerland."
+        },
+        {
+          "kind": "document",
+          "value": "residence permit (for non-EU citizens)",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+          "quote": "Take your residence permit with you if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway, or Switzerland."
+        },
+        {
+          "kind": "mode",
+          "value": "either",
+          "url": "https://vero.fi/en/individuals/tax-cards-and-tax-returns/tax_card",
+          "quote": "If you need a tax card, you can get it in MyTax."
+        },
+        {
+          "kind": "provides",
+          "value": "personal_identity_code",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "If you don’t yet have a Finnish personal identity code and need a tax card, you must visit a Tax Administration’s service desk to register and get a Finnish personal identity code and a tax card."
+        },
+        {
+          "kind": "same_visit",
+          "value": "vero_identity_code",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "60% of salary withheld as advance tax if employer has no tax card",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+          "quote": "If the employer does not have your tax card, 60% of your salary will be withheld as an advance tax."
+        },
+        {
+          "kind": "processing_time",
+          "value": "normally 1 to 3 business days",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+          "quote": "The processing time, on the condition that all your information and documents are made available to the Tax Administration, is normally from 1 to 3 business days."
+        },
+        {
+          "kind": "document",
+          "value": "employment contract",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "Before visiting Vero, make sure you have all the necessary documents completed and with you."
+        },
+        {
+          "kind": "hours",
+          "value": "Vero serves customers weekdays 9:00-16:00",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "The Tax Administration (Vero) serves customers on weekdays from 9:00 to 16:00."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+        "title": "Remember these when you start working in Finland - Work in Finland - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "## A short stay in Finland affects taxation\n\nWhen you stay in Finland for a maximum of 6 months, you are a person with limited tax liability. This means that you will usually have to pay tax at source from income you receive from Finland. Tax at source is usually 35%. \n\nApply for a tax-at-source card and give it to your employer. \n\nAdditional information and instructions on how to pay taxes Opens in a new window..\n\n...\n\n## You need to pay taxes to Finland when you are staying in the country for more than six months\n\nWhen you stay in Finland for more than 6 months, you are generally liable to pay taxes. This means that you will usually have to pay tax to Finland from all your income.\n\nThe tax rate for your salary is progressively determined on the basis of your income for the entire year. You will need a Finnish personal identity code and a tax card.\n\nAdditional information and instructions on how to pay taxes Opens in a new window..\n\nUpdated: 27/6/2022\n\n## Apply for a tax card before payment of salary\n\nFollow these steps:\n\n1. Apply for a tax card using the MyTax online service Opens in a new window., from the tax office or by calling a service number. Take your residence permit with you if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway, or Switzerland. If you do not yet have a personal identity code, you can obtain it from the tax office.\n2. Give the tax card to your employer. Your employer will pay your income tax in accordance with the tax card when they pay your salary.\n\nRead more about the taxation of a foreign employee coming to work in Finland on the website of the Tax Administration Opens in a new window..\n\nRead more about taxation in Ukrainian on the website of the Tax Administration Opens in a new window..\n\n### Can I use the online service?\n\nYou can only use the MyTax online service Opens in a new window. when you are able to use strong electronic identification. Strong identification requires, for example, Finnish online banking ID codes or a mobile certificate. You can obtain online banking codes if you are a customer of a Finnish bank, and a mobile certificate if you are a customer of a Finnish telecommunications operator.\n\nYou can identify yourself in MyTax service also with\n\n- the identification tokens of the countries that have been approved for cross-border identification in Europe\n- the Finnish Authenticator application which is intended for identification only for those foreigners who cannot use common European identification methods.\n\n### Can I start working before I have a tax card?\n\nYour employer needs your tax card in order to pay you a salary. You can usually start working even if you do not have a tax card yet.\n\nAn exception to this are construction and shipyard workers who need to have a tax number already before starting work.\n\n### Why do I need to submit my tax card to my employer?\n\nYour employer will check your tax card to see how much tax should be withheld from your salary. If the employer does not have your tax card, 60% of your salary will be withheld as an advance tax.\n\nUpdated: 22/4/2025\n\n...\n\n- The employer will primarily pay your salary to your bank account. The account can be either Finnish or foreign.\n- Check that the pay slip information is in order."
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.060Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+        "title": "Work in Finland - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "Read instructions for arriving in Finland to work here: you need a tax card and/or an individual tax number. To apply for the card and the number, you need a Finnish personal identity code.\n\nPlease take into account that service points may not be able to give you a tax card and/or a tax number immediately. The processing time, on the condition that all your information and documents are made available to the Tax Administration, is normally from 1 to 3 business days.\n\n...\n\nAdditionally, special tax\n\n...\n\nIf you are moving away from Finland, you must file a notification of move and take care of the related tax matters."
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.060Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "Tax card and tax counseling - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card. You will also need a tax card if you receive taxable benefits opens in new tab from from the Social Insurance Institution of Finland (Kela).\n\nYou can apply for a tax card by visiting the Finnish Tax Administration (Vero) at International House Helsinki (IHH). Vero can also provide you with information about taxation in Finland for individuals.\n\n...\n\nThe Finnish Tax Administration (Vero) is the agency that issues tax cards and manages taxation in Finland.\n\nYou can apply for a tax card by visiting Vero’s service desk at International House Helsinki (IHH).\n\n- How to visit Vero at IHH\n- Vero – Arriving in Finland from overseas\n\nThe recommended way to get a tax card depends on whether you have a Finnish personal identity code.\n\nApply for a personal identity code at IHH\n\nYou can also receive a personal identity code for tax purposes by visiting Vero’s service desk.\n\n...\n\nIf you already have a Finnish personal identity code\n\nIf you already have a Finnish personal identity code but do not yet have a tax card, you can get one by calling the Tax Administration’s Tax Card Service at +358 29 497 050 (Mon–Fri, 9–12). You can also apply for a tax card in person at a Tax Administration’s service desk. Please note that appointments cannot be booked for tax card matters.\n\nIf you don’t yet have a Finnish personal identity code\n\nIf you don’t yet have a Finnish personal identity code and need a tax card, you must visit a Tax Administration’s service desk to register and get a Finnish personal identity code and a tax card. You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time.\n\nThe Tax Administration (Vero) serves customers on weekdays from 9:00 to 16:00.\n\nBefore visiting Vero, make sure you have all the necessary documents completed and with you. Please bring the following documents:\n\n- A valid passport or identity card\n- An employment contract\n- A filled-in application form (see below)\n- An estimation of your total annual income including wage income and possible fringe benefits, holiday pay, bonuses etc.\n\nChoose the relevant application below and fill it for your visit. The forms are also available at IHH.\n\n- ### Application form if you are arriving to stay for more than six months in Finland\n\n- Application for tax card, tax prepayment or tax number – current or former foreign residents (Form 5042e)\n- ### Application form if you are staying for six months or less in Finland\n\n- Non-resident’s application for tax at source card, tax card, tax prepayment or tax number (Form 5057e)\n\nYou can visit Vero’s service desk at IHH without an appointment.\n\n...\n\n### Opening hours\n\n...\n\nI am about to start work in construction. Can I apply for a tax number at International House Helsinki? \n\nIf you work in construction, you need a tax number (veronumero) and a tax card. You can apply for both at the Vero’s service desk. The service is available both by appointment and as a walk-in service. Bring along your employment contract as well as a valid passport or identity.\n\n How long does it take to get a tax card? \n\nYou usually get a tax card right away when you visit the Vero service desk, if you have a Finnish Personal Identity Code and required information about your income. More information about tax cards\n\n Now that I have my tax card what should I do with it? \n\nYour employer needs it to pay your salary and to make a withholding of the right amount. Please ask your employer for instructions on where and how to deliver your tax card for the payroll. If you do not provide your tax card, your employer must withhold 60 percent of your salary.\n\n I have moved to Helsinki due to my partner's work. Do I also need a tax card? \n\nYou need a tax card only if you have taxable income. In case you are currently not working, you don’t necessarily need a tax card. Please note that if you work for a foreign employer while living in Finland, under certain circumstances, you will have to pay your taxes in Finland. It is also noteworthy that some social benefits are subject to tax. In case you receive e.g. unemployment benefit, please deliver an appropriate tax card to Kela or other payer of the benefit.\n\n I have a tax card. Is that sufficient proof of my right to work in Finland? \n\nNo. Nor does for example a Finnish personal identity code, identification card or driving license prove right to work. If you are a citizen of a non-EU/EEA country, your right to work need to be checked from your residence permit. In case of a citizen of an EU/EEA or Nordic country, right to work can be proved by a passport.\n\nIt is also worth noting that EU citizens must register their right of residence if their stay in Finland lasts more than 3 months."
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.060Z"
+      },
+      {
+        "url": "https://vero.fi/en/individuals/tax-cards-and-tax-returns/tax_card",
+        "title": "Tax card - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "# Tax card\n\nIf you need a tax card, you can get it in MyTax. You can always find your current tax card in MyTax. If necessary, you can also make changes to it and get a new, revised tax card.\n\nRequest a tax card at MyTax\n\nSee the instructions: How to request a tax card in MyTax\n\n## You can also order a tax card in other ways\n\n- Visit a tax office – find the addresses and opening hours here.\n- Complete our paper form (Application for tax card and tax prepayment).\n- Call our telephone service on 029 497 050.\n\n## Valid tax card in MyTax\n\nYou will receive a tax card in MyTax and by post at the turn of the year.\n\nInstructions: How to find your tax card in MyTax\n\n...\n\n## Ask your employer how to deliver the tax card\n\nCheck with the employer or payor of other income how they want to receive your tax card information. Many employers and other payors receive tax card details electronically directly from the Tax Administration. In that case, you do not need to take any action.\n\nIf the payor does not receive your tax card details electronically, you yourself must provide them for example by presenting or sending the tax card to the payor. Check with the payor how to proceed and when the information is needed. Take into account that the payor may need the tax card details for example 2 weeks before wage payment."
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.060Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/About-us/contact-us/forms/filling-instructions/instructions-for-filling-in-an-application-for-tax-card/",
+        "title": "Instructions for filling in an application for tax card and/ ...",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "Use this form to apply for a tax card or tax prepayment, or to request changes to your tax card or prepayment. You can also use this form to apply for tax prepayment to be imposed or raised after the end of the tax year (additional prepayment). This form is for use by resident taxpayers, business operators, self-employed persons, operators of agriculture or forestry, or shareholders in a partnership in Finland.\n\nSubmit your application for a tax card or tax prepayment in MyTax or using a form available for download on the Forms page. The return address is marked on the first page of the form.\n\nAlso submit all the necessary enclosures.\n\n...\n\n- Total income and taxes from the beginning of the year\n\n...\n\nIf you realise you have not paid enough taxes when the tax year ends, you can submit an application for additional prepayment to the Tax Administration. To apply for additional prepayment, fill in section 20 “Prepayment imposed or raised after the end of the tax year (additional prepayment)”. You can submit an application up to the end of the tax assessment process. Read more about prepayments.\n\nNote that a tax card or tax prepayment decision issued earlier will remain valid until you receive a new tax card or decision. Tax prepayments must be paid on the due dates, even after you have submitted an application for a change to prepayments.\n\n...\n\n## Individuals who live abroad or stay in Finland temporarily\n\nIf you live abroad or are staying in Finland on a temporary basis, you must fill in one of the following forms to ask for a tax card, a tax-at-source card, prepayment or progressive taxation on your earned income:\n\n- Individuals who live abroad or stay in Finland for no more than six months should use form 5057e to apply for a non-resident taxpayer's tax-at-source card, tax card or tax prepayment.\n- Individuals who live abroad permanently or stay in Finland for no more than six months should use forms 5057e and 6148e to apply for the progressive taxation of earned income.\n- Individuals who currently live or have previously lived abroad and stay in Finland for more than six months should use form 5042e to apply for a tax card or tax prepayment.\n- Individuals who are moving from Finland to live abroad or who already live abroad should use form 6207a (available in Finnish and Swedish) to apply for a tax card or tax-at-source card."
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.060Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 6513,
+      "costUsd": 0.026262,
+      "cacheHit": false
+    }
+  }
+}

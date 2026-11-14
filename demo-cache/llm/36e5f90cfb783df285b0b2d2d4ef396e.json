@@ -1,0 +1,73 @@
+{
+  "fetchedAt": "2026-11-14T14:20:39.207Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Tax card",
+    "contextHash": "014b53eaa810f0f1",
+    "includeDomains": [],
+    "docsHash": "aa0ba83fe8116cf7"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card",
+          "A valid passport or identity card",
+          "An estimation of your total annual income including wage income and possible fringe benefits, holiday pay, bonuses etc",
+          "The Tax Administration (Vero) serves customers on weekdays from 9:00 to 16:00"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.050Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "To apply for the card and the number, you need a Finnish personal identity code",
+          "The processing time, on the condition that all your information and documents are made available to the Tax Administration, is normally from 1 to 3 business days"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.050Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "You will need a Finnish personal identity code and a tax card",
+          "If the employer does not have your tax card, 60% of your salary will be withheld as an advance tax"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.050Z"
+      },
+      {
+        "url": "https://vero.fi/en/individuals/tax-cards-and-tax-returns/tax_card",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "If you need a tax card, you can get it in MyTax"
+        ],
+        "fetchedAt": "2026-11-14T13:56:05.050Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1798,
+      "costUsd": 0.004234,
+      "cacheHit": false
+    }
+  }
+}

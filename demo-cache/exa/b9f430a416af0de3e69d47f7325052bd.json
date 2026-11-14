@@ -1,0 +1,85 @@
+{
+  "fetchedAt": "2026-11-14T00:51:25.917Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Applying for temporary protection in Finland: where to apply, residence permit card, municipality of residence",
+    "objective": "Official pages on applying for temporary protection in Finland and what it gives access to.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "6fca3430e513b1032223bd51b53308e4",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://migri.fi/en/temporary-protection",
+        "title": "Temporary protection | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/temporary-protection",
+        "highlights": [
+          "## Applying for temporary protection\n\n1. Once you have arrived in Finland, visit the police (poliisi.fi) or a border control authority and inform them of your intention to apply for temporary protection. Applying is free of charge. \n\n- It is recommended that you apply for temporary protection even if you have already submitted an application for asylum. Applications for temporary protection are processed at a considerably faster rate than asylum applications. \n- Show the police or the border control authority your identity document, such as a biometric passport issued by your country of nationality, or a Ukrainian internal passport. Show also the birth certificates of your children if you have any.\n2. The police or border control authority registers your application for temporary protection and makes a record of \n\n- your personal details and place of residence\n- details related to your arrival in Finland and the route you took to travel here\n- your family members’ details. You will also need to provide a photo, fingerprints and a signature. \n\n- If the details registered by the police or the border authorities must be supplemented, the Finnish Immigration Service will ask you for additional details.\n3. Following registration, the Finnish Immigration Service makes a decision on your application. \n\n- Making the decision requires an identity document, such as a biometric passport issued by your country of nationality, or a Ukrainian internal passport. If you do not have an identity document, apply for one at the embassy of Ukraine in Finland. Tell the embassy that you have applied for temporary protection and that you need an identity document for the application. Please note that the passports of Donetsk People's Republic and Luhansk People's Republic are not approved travel documents in Finland because Finland has not recognised the independence of Donetsk and Luhansk. \n- If you have applied for asylum in addition to temporary protection, you are not required to obtain an identity document from the authorities of your home country.\n- You will be heard before the decision is made only if the Finnish Immigration Service considers there to be a particular reason to do so.\n4. You will be served with the decision. \n\n- The Finnish Immigration Service will send you the decision by post. The decision will be sent to the reception centre at which you are staying. If you live in private accommodation, the decision will be sent to the address which you have given as your Finnish address. If your address in Finland changes, it is important that you notify your reception centre without delay. If you already are a resident of a municipality, make sure that your contact details are up to date in the Finnish Population Information System. For instructions on how to update your address and other contact details, see section ‘Make sure that the Finnish Immigration Service has your current address and telephone number’ on this page.\n- In cases when you are not served with the decision by post, the police will inform you of the decision.\n\n...\n\nFor the time being, the estimated processing time for an application for temporary protection is one week, if no additional information is needed for the application. After a decision has been issued, the Finnish Immigration Service will send you the decision by post. According to an estimate by the Finnish Immigration Service, the postal delivery will take approximately one week. This means that you will receive the decision within approximately 2 weeks from the date on which you submitted your application\n\nAfter a decision has been issued, the Finnish Immigration Service will order a residence permit card for you. At present, it takes approximately 2 weeks to get a residence permit card.\n\n...\n\n- o Your card will be sent to a collection point within 3 weeks of the date when we make a decision. When your card is ready, you will receive a notification by email and text message, stating the address of the collection point and the last day when the card is still available for collection. For instructions on how to collect your card, see the page Residence permit card on the basis of"
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://migri.fi/en/temporary-protection-and-municipality-of-residence",
+        "title": "Temporary protection and municipality of residence | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/temporary-protection-and-municipality-of-residence",
+        "highlights": [
+          "You can apply for a municipality of residence from the Digital and Population Data Services Agency if:\n\n- you have lived in Finland for one year; and \n- you have a residence permit on the basis of temporary protection that has been granted for at least one year.\n\nIn some cases, you can apply for a municipality of residence even before you meet the requirement of one-year residence in Finland. In order to apply earlier, you must have been granted a residence permit on the basis of temporary protection for at least one year. You also need to meet one of the following conditions:\n\n- You have an employment relationship, valid for at least two years. \n- You have been admitted to study in Finland. The duration of the studies must be at least two years. \n- You have resided in Finland with a biometric Ukrainian passport before applying for a residence permit on the basis of temporary protection. You must provide proof of this.\n\nIf your family member has a municipality of residence in Finland, you can apply for a municipality of residence as soon as you apply for temporary protection.\n\nApply for a municipality of residence online on the website of the Digital and Population Data Services Agency (dvv.fi). The Digital and Population Data Services Agency will notify you when a municipality of residence has been registered for you. After that, tell your reception centre that you have been granted a municipality of residence. \n\nWhen you have a municipality of residence, you are entitled to more extensive services than at a reception centre. Read more about how the services of a reception centre differ from the services provided by your municipality of residence.\n\nIf you do not apply for a municipality of residence, you will continue to be a client of a reception centre and will continue to receive services from your reception centre. If you need advice, you can contact your reception centre.\n\n...\n\nThe Digital and Population Data Services Agency issues Finnish personal identity codes and registers municipalities of residence. Applications for a municipality of residence can be submitted online. For more information about the requirements and on how to apply, see Instructions on arriving in Finland from Ukraine (dvv.fi)."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://migri.fi/en/residence-permit-card-for-temporary-protection",
+        "title": "Residence permit card on the basis of temporary protection | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/residence-permit-card-for-temporary-protection",
+        "highlights": [
+          "The new card is subject to a fee. Your card application must include the photograph retrieval code for your digital passport photo that you can get from a photo shop. The retrieval code must be no more than six months old. You can apply for a new card at any time as long as your residence permit is valid. You will receive a new card within about 3 weeks of your application.\n\n...\n\nApply for a new residence permit card in the Enter Finland online service. When you submit your application using Enter Finland, you do not need to visit a service point of the Finnish Immigration Service. Note the following situations:\n\n- If you cannot use Enter Finland, apply for a new residence permit card at a service point of the Finnish Immigration Service. For instructions, see Renewal of a residence permit card.\n\n...\n\nTo apply for a new residence permit card, begin by logging in to your Enter Finland account.\n\n1. When you are on the start page of Enter Finland, open the main menu by clicking the icon with three lines in the top left corner of the page. In the main menu, select ‘Temporary protection: Residence permit card’ or ‘Тимчасовий захист: заявка на нову картку’. \n\n- Scroll down and select 'Fill in the application'.\n2. Select ‘For myself’ if you are applying for a card for yourself only. Select ‘For my child’ if you are applying for a card for your child. \n\n- If your child has reached the age of 6 since the previous decision, we will need his or her fingerprints for a new residence permit card. You can send your child’s application in the Enter Finland online service and after that visit a service point of the Finnish Immigration Service to give his or her fingerprints.\n\n...\n\n- Children who are 15 or over can fill in and send their applications themselves if they so wish.\n\n...\n\n5. Write the address where you live in Finland. \n\n- Make sure that you write your full and exact address.\n- Please note that we cannot send the card to you if the address where you live is not in Finland.\n- Write the address that has been recorded for you in the Finnish Population Information System. If your address in Finland has changed, submit a notification of move to the Digital and Population Data Services Agency (dvv.fi) before you apply for a new residence permit card.\n- Your residence permit card will be delivered to a collection point near your address.\n\n...\n\n### How to apply for a new residence permit card at a service point of the Finnish Immigration Service\n\nIf you want a new residence permit card but cannot apply for it in Enter Finland, you can apply for a new card at a service point of the Finnish Immigration Service. Book an appointment beforehand in our appointment system. You can see all appointments available for booking at our service points in the appointment system.\n\nThe service point staff can help you in Finnish, Swedish or English. We do not have interpreters at our service points."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://migri.fi/en/ukraine",
+        "title": "Ukraine | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/ukraine",
+        "highlights": [
+          "### Municipality of residence \n\nIf you have lived in Finland for one year and have been granted temporary protection, you can apply for a municipality of residence. Submit the application to the Digital and Population Data Services Agency."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://migri.fi/en/information-bank/temporary-protection",
+        "title": "Temporary protection | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/information-bank/temporary-protection",
+        "highlights": [
+          "### How do you apply for temporary protection? \n\nApplications for temporary protection are submitted to the police or border authorities. The police or the border authorities register the application and record the applicant’s personal data and place of residence information as well as the details of their family members. In addition, the client is photographed and fingerprinted, and they provide their signature. The client has the right to work as soon as they have been registered. \n\nAfter registration, the Finnish Immigration Service makes a decision on their application. The estimated processing time of the application is around one week if no further information is needed. \n\nIf the client is granted temporary protection, the Finnish Immigration Service will order a residence permit card for them. It takes around 2 weeks to get a residence permit card. \n\nThe Finnish Immigration Service will send the decision to the applicant by post. The decision is posted to the reception centre where the applicant is staying. If the client lives in private accommodation, the decision will be sent to the address the applicant has given as their address in Finland.\n\n...\n\n### Where do people receiving temporary protection live? \n\nA person applying for or receiving temporary protection may stay at a reception centre. When a person is staying at a reception centre, arrangements are made for them to live together with their close family members. Unaccompanied minors live at a reception centre for minors. Reception centres of different sizes are found in different parts of Finland. Applicants are directed to a centre that has space. \n\nRecipients of temporary protection may also find their own accommodation outside the reception centre if they wish. For example, they can stay with a friend or relative. If the person does not live at a reception centre, they must be able to pay for the accommodation themselves. The reception centre does not give financial support for living in private accommodation. If the situation changes and the person needs accommodation, a place is arranged for them at a reception centre that has space. \n\nIf a person has been granted a residence permit on the basis of temporary protection for at least one year and they have lived in Finland for a year, they can apply to the Digital and Population Data Services Agency for a municipality of residence. When a person has a municipality of residence, they will no longer be a client of the reception services. They will be a client of the services provided by the municipality and wellbeing services county and a resident in the municipality in question. Those who have been granted a municipality of residence have the same rights and obligations as people who live in Finland permanently, and they can use the same services. The aim is that all those who can apply for a municipality of residence and move to it will do so."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      }
+    ],
+    "searchTime": 1151.5,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T14:11:40.735Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Migri (Enter Finland) Register EU citizen's right of residence Turku, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Register EU citizen's right of residence\" (Migri (Enter Finland)) in Turku, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "3dcf8091854007a15f1eabcfd037c214",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://helloexpat.eu/fi/blog/residence-in-finland-eu-citizens",
+        "title": "Residence in Finland for EU citizens: Migri and DVV | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/residence-in-finland-eu-citizens",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "Only if you stay longer than three months. Up to three months you need nothing but a valid passport or identity card. The InfoFinland page on EU citizens specifies that the three months are counted from your last departure from Finland, not from the first time you ever visited.\n\nBeyond three months, you apply to the Finnish Immigration Service (Maahanmuuttovirasto, Migri) to register your right of residence. The deadline, per InfoFinland, is three months from arrival. This applies to citizens of EU member states, Liechtenstein and Switzerland. Citizens of Denmark, Iceland, Norway and Sweden do not apply to Migri at all; they register their personal data at the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency).\n\n...\n\nYou need one of the following:\n\n- you are an employee (a contract is enough proof);\n- you are self-employed (trade register extracts, client contracts);\n- you are a student (a certificate of attendance, not only an admission letter, and comprehensive health insurance);\n- you are a family member of an EU citizen, or of a Finnish citizen under certain conditions;\n- you have sufficient resources for yourself and your family, for example as a pensioner.\n\nOn resources, Migri sets no fixed amount. The test is that social assistance must not become your main support. Retirees should bring proof of comprehensive health insurance; the S1 form from the country paying your pension serves that purpose (see Kela in Finland).\n\n...\n\n## How do you register your right of residence with Migri?\n\nThe sequence on Migri's page runs as follows:\n\n1. Apply in Enter Finland (the online service) or on a paper form. You must submit it yourself, although you can apply for your child.\n2. Pay €53. In 2026 the fee is the same online and on paper. You can pay by card or Finnish online banking when you submit, or at the service point.\n3. Book an appointment at a Migri service point to prove your identity. Bring your passport or identity card and the originals and copies of your attachments.\n4. Wait for the decision. Migri may contact you for more information.\n5. Collect the decision at the service point, in Enter Finland or by post. If approved, you may receive the EU registration certificate on the spot or later.\n\nDocuments that are not in Finnish, Swedish or English need an authorised translation, unless they come with the EU's multilingual standard form. You can appeal a refusal to the administrative court.\n\n...\n\nWork. An EU citizen may work from the day of arrival, even while the application is pending. What you cannot do is get registered early: as an employee, Migri registers you only once your employment has started; as a student, once your studies have started.\n\nThe other thing to avoid is treating the Migri certificate as the end. It proves your right to stay. It does not give you an address, a personal identity code or a place in the healthcare system. That is the DVV's job.\n\n...\n\nThe Migri registration has no expiry date ... After five years of continuous legal residence you can ask Migri to confirm permanent residence; the fee in 2026 is the same €53. If you lose your certificate, a copy is free when the registration is less than two years old, otherwise you pay for a new certificate (the fee listed is €50).\n\n...\n\n## What should you prepare before registering your residence in Finland?\n\nPreparation decides how fast you get through. Gather the originals of everything before you book the Migri appointment, because the officer checks them against your online attachments and you will not be able to email a missing page afterwards.\n\nFor an employee, that means the employment contract or another employer document showing the start date, salary and duties. For a student, a certificate of attendance and proof of comprehensive health insurance. For a self-employed person, trade register extracts or client contracts. For a pensioner, proof of health cover and proof of income. Anything not in Finnish, Swedish or English needs an authorised translation.\n\nPlan the timing too. Migri publishes processing times on its website, and they change with the season; check them before you travel rather than relying on a figure from a forum. The cheap mistake is to apply on day one for a job that starts in two months. The expensive one is to apply on day ninety.\n\n...\n\n## Which mistakes slow people down?\n\nLetting the three months run out is number one. Filing too early as an employee is number two: the application waits until your contract has begun. Number three is forgetting the DVV step. Number four is leaving family documents unlegalised: a certificate issued outside the Nordic countries and the EU generally needs legalisation before Finnish authorities accept it.\n\nDo these in order and the Finnish system rewards you with something rare: it simply works."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "title": "How EU/EEA Citizens Register Their Right of Residence in Finland - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-eu-eea-citizens-register-their-right-of-residence-in-finland/",
+        "publishedDate": "2026-07-08T23:28:39.000Z",
+        "author": "Finland Handbook Editorial Team",
+        "highlights": [
+          "Set a reminder in your phone, mark it on your calendar, whatever it takes.\n\n...\n\nAfter you've submitted your application online, the next crucial step is to book an appointment at a Migri service point for identification. This is where you'll present your original documents, prove your identity, and sometimes provide biometrics (though for EU registration, it's mostly about verifying your identity and documents). You can find the nearest Migri service point on their website, usually in major cities like Helsinki, Tampere, Turku, or Oulu. Remember to book this appointment as soon as you submit your online application, because appointment slots, especially in busy periods, can fill up fast! This whole process of interacting with the system is covered in more detail in our guide on Dealing with Migri and Enter Finland: Applications, Waiting, and Decisions.\n\n...\n\n### Necessary Documentation: What to Prepare\n\nRegardless of your basis for residence, having your documents organized is half the battle won. Here's a general checklist, but always refer to Migri's website for the most up-to-date and specific requirements for your situation.\n\n- Valid Passport or National ID Card: Your primary form of identification. Make sure it hasn't expired!\n- Online Application Form: This will be filled out via Enter Finland.\n- Proof of Basis for Residence: As detailed above (e.g., employment contract, study certificate, bank statements).\n- Health Insurance Certificate: If applicable to your category (especially for students and those with sufficient funds).\n- Family Documents: If applying on the basis of family ties, bring original marriage certificates, birth certificates, etc. Remember, if these documents are not in Finnish, Swedish, or English, you must get them officially translated by an authorized translator. This is where services like Translayte or RushTranslate become indispensable, ensuring your documents meet the rigorous standards of Finnish bureaucracy. They understand the need for certified translations, which are usually required for official purposes like this.\n\nTo help you get organized, here’s a quick summary table of common documents:\n\n| Basis of Residence | Key Documents Required (examples) |\n| --- | --- |\n\n...\n\nAlways bring the original documents to your Migri appointment. Photocopies are generally not enough, as they need to verify the authenticity.\n\n...\n\n1. Book Your Appointment: You'll typically be prompted to book an appointment at a Migri service point directly through the Enter Finland portal, or you'll be directed to a separate booking system. Choose a time and location that works for you. As mentioned before, book this promptly – waiting lists can be long, and you don't want to exceed your three-month registration window because you couldn't get an appointment.\n2. Prepare for the Appointment: This is the most critical part for many. You must bring all the original documents that you uploaded online. This includes your valid passport or national ID card, your employment contract, university acceptance, family certificates, bank statements, and any health insurance certificates. If you used Translayte or RushTranslate for certified translations of documents, bring the original documents and their certified translations. The official at Migri will need to see and verify the originals against your application.\n3. What Happens at the Service Point: When you arrive, you'll check in using your appointment code. During your meeting with a Migri official, they will:\n\n...\n\n### Lost Documents or Unclear Status\n\nOne of the most common anxieties revolves around lost documents or simply feeling unsure about your status. What if you misplace your Certificate of an EU citizen's right of residence? Or what if you're not entirely sure if your initial application was processed correctly?\n\n- Replacing Lost Documents: If you lose your paper Certificate of an EU citizen's right of residence, don't panic. Migri maintains records. You can contact them directly, explain your situation, and usually, they can provide you with a new printout or a verified copy. It might involve a small administrative fee, but it's generally a straightforward process.\n- Unclear Status: If you're feeling unsure about whether your registration went through, or if you've been waiting an unusually long time, the first point of contact should always be Migri. You can check the status of your application on Enter Finland, but if that doesn't provide clarity, their customer service (phone or email) can often help. Be prepared to provide your application reference number or personal details. Sometimes, contacting local expat associations or municipal integration services can also offer guidance, as they often deal with similar queries from other newcomers. Remember, official translations of documents, particularly from countries where English, Swedish, or Finnish aren't official languages, are often a sticking point. Ensure that any documents from your home country, such as marriage certificates or academic degrees, were translated by a certified professional. Translayte and RushTranslate offer such services, which are critical for ensuring your documents are accepted without question by Migri or DVV."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/07/output1-191.webp"
+      },
+      {
+        "id": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "title": "Arrival at Aalto University | Aalto University",
+        "url": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "publishedDate": "2026-11-11T00:00:00.000Z",
+        "highlights": [
+          "EU/EEA, Switzerland and Liechtenstein citizens do not need a residence permit, instead they register their right of residence at the Finnish Immigration Service. The registration is required if you are staying in Finland for over 90 days without leaving the country. You can also obtain the Finnish personal identity code in connection with the registration.\n\nYou can fill in the online application once your study right has started and then book the appointment to visit the service point in Helsinki. The Finnish Immigration Service point in Helsinki is very busy and when you book an appointment, the next available time may be several weeks or even a few months away.\n\n...\n\nStudents must personally cover the costs if they become ill, therefore you must have sufficient insurance that is valid for the whole duration of your stay in Finland. Please note that exchange students do not have access to Finnish Student Health Services (FSHS).\n\nIf you need to apply for the residence permit (non-EU/EEA citizens), you must take out private insurance that covers medical and drug expenses. For more information, please see Migri’s website on insurance.\n\nEU/EEA citizens must take the European Health Insurance Card (EHIC) with them to Finland. By presenting the European Health Insurance Card, you can prove the right to medically necessary treatment in Finland. The card must be valid for the whole duration of your exchange. We strongly recommend purchasing private health insurance as well, because it is significantly easier and faster to make an appointment at a private clinic."
+        ],
+        "image": "https://www.aalto.fi/sites/default/files/styles/1_91_1200w_630h_n/public/2022-12/Student_Guide_Use_Only_Kansainvaliset%20opiskelijat_Wide_White%20BG_1.png?h=f267d9cc&itok=FdPlfUOa"
+      },
+      {
+        "id": "https://suomiguide.fi/en/tutustu-suomeen/elama-opiskelu-ja-tyo/muutto-ja-oleskelulupa/muutto-suomeen-asiakirjat-ja-ensiaskeleet/",
+        "title": "Moving to Finland: documents and first steps – SuomiGuide",
+        "url": "https://suomiguide.fi/en/tutustu-suomeen/elama-opiskelu-ja-tyo/muutto-ja-oleskelulupa/muutto-suomeen-asiakirjat-ja-ensiaskeleet/",
+        "publishedDate": "2026-11-12T20:30:01.000Z",
+        "author": "Alexander",
+        "highlights": [
+          "Enter Finland is Migri's online application service. Each application type has its own supporting-document list. Foreign documents may need translation or legalisation, so prepare them before the identification appointment.\n\n| Document or information | Purpose |\n| --- | --- |\n| Passport or accepted identity document | Establishing identity |\n| Employment contract, study place or family certificate | Supporting the selected residence grounds |\n| Tenancy agreement and exact address | Arranging accommodation and address records |\n| Application's attachment list | Assembling that application's documents |\n\nCreate a document list recording the original, translation and application to which each item belongs. An employment contract can then be located for both immigration and tax matters. Migri's application guidance."
+        ],
+        "image": "https://suomiguide.fi/media/images/118501_mq1lnVg.max-1200x630.format-jpeg.jpg"
+      },
+      {
+        "id": "https://movetoeu.eu/guides/finland/",
+        "title": "Moving to Finland: Tax Card & Verokortti - Full Guide 2026",
+        "url": "https://movetoeu.eu/guides/finland/",
+        "publishedDate": "2026-06-11T22:19:04.000Z",
+        "author": "MoveToEu Team",
+        "highlights": [
+          "If You Don't Do It: Without a registration certificate from Migri, you cannot proceed to DVV to obtain a personal identity code or municipality of residence, which in turn blocks access to Kela benefits, banking, and municipal services."
+        ],
+        "image": "https://movetoeu.eu/og-image.jpg"
+      }
+    ],
+    "searchTime": 1646.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

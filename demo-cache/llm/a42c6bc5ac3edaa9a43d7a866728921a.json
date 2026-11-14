@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T14:11:57.681Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "University enrolment and arrival steps",
+    "contextHash": "67460f2357b48d79",
+    "includeDomains": [],
+    "docsHash": "053d3eeede262cc2"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Register at your educational institution by the given deadline",
+          "Use the OILI service Opens in a new window. as the primary channel for registering",
+          "If you try to register at an institution of higher education after a deadline, you will lose your study place",
+          "Where necessary submit copies of your transcripts to the educational institution"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      },
+      {
+        "url": "https://sites.utu.fi/utugredit/a-milestone-from-the-industry-to-academia-a-blessing-or-a-tragedy/",
+        "title": "sites.utu.fi",
+        "domain": "sites.utu.fi",
+        "trust": "community",
+        "highlights": [
+          "Delays in registering digital population data and issuing Finnish IDs led to a series of lengthy appointments",
+          "During the first two months without a bank account or salary, I faced considerable financial stress"
+        ],
+        "fetchedAt": "2026-11-14T14:11:42.142Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book the appointment the day you land, even if you submit the form later"
+        ],
+        "fetchedAt": "2026-11-14T14:11:42.142Z"
+      },
+      {
+        "url": "https://blogit.utu.fi/studentlife/how-to-move-in-tys-apartment-like-a-pro/",
+        "title": "blogit.utu.fi",
+        "domain": "blogit.utu.fi",
+        "trust": "community",
+        "highlights": [
+          "Note that you must email TYS office no later than 12:00 midday on the previous working day before your arrival to request the key placement in the locker"
+        ],
+        "fetchedAt": "2026-11-14T14:11:44.290Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1594,
+      "costUsd": 0.0042580000000000005,
+      "cacheHit": false
+    }
+  }
+}

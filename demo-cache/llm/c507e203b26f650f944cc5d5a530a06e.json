@@ -1,0 +1,66 @@
+{
+  "fetchedAt": "2026-11-14T14:13:06.450Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register EU citizen's right of residence (EU registration)",
+    "contextHash": "e0b0b5d0135bad65",
+    "includeDomains": [],
+    "docsHash": "a55bbe34a036d415"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if",
+          "If you cannot use Enter Finland, fill in a paper application",
+          "originals and copies of the documents that you attach to your application"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence",
+          "Remember to bring your identity card or passport to your appointment",
+          "If you do not pay the application fee in EnterFinland, you will also need a debit or credit card in your appointment",
+          "New appointments to visit Migri at IHH open every Thursday between 14-16 for the following week"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Documentation on the grounds for your move to Finland (for example employment, education, family ties, studies: check the exact requirements on Migri’s website",
+          "Within 90 days of your arrival and once the grounds for your registration are valid, e.g. employment has started",
+          "The decision can be given as soon as the requirements are met",
+          "IHH services linked to this step Visit IHH at Lintulahdenkuja 2 D, 00530 Helsinki Registration of an EU citizen’s right of residence Newcomer Information Sessions"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1463,
+      "costUsd": 0.00432,
+      "cacheHit": false
+    }
+  }
+}

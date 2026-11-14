@@ -1,0 +1,124 @@
+{
+  "fetchedAt": "2026-11-14T14:11:27.407Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "New international degree student arriving in Turku: enrolment, registration and practical arrival steps",
+    "contextHash": "597b79b4983afedb",
+    "includeDomains": [
+      "aalto.fi",
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hanken.fi",
+      "hel.fi",
+      "helsinki.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "studies.helsinki.fi",
+      "suomi.fi",
+      "tuni.fi",
+      "turku.fi",
+      "uniarts.fi",
+      "vero.fi"
+    ],
+    "docsHash": "d19bccd0a55d4d29"
+  },
+  "response": {
+    "data": {
+      "title": "University enrolment and arrival steps",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+          "quote": "Register at your educational institution by the given deadline."
+        },
+        {
+          "kind": "mode",
+          "value": "online",
+          "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+          "quote": "Use the OILI service Opens in a new window. as the primary channel for registering."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Lose your study place if you register after the deadline",
+          "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+          "quote": "If you try to register at an institution of higher education after a deadline, you will lose your study place."
+        },
+        {
+          "kind": "document",
+          "value": "Copies of transcripts, where necessary",
+          "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+          "quote": "Where necessary submit copies of your transcripts to the educational institution."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.turku.fi/en/integration-services/international-student-support-service",
+        "title": "International Student Support Service | Turku.fi",
+        "domain": "turku.fi",
+        "trust": "official",
+        "highlights": [
+          "The International Student Support Service offers advice and guidance to all international students currently living in (or about to move to) Turku. Students can meet with an advisor either online or in-person to discuss any issues they might be facing. \n\n The service consists of an initial consultation followed by check-ins as needed. Typical topics include:\n\n • Getting started in Turku – registration and paperwork advice • Feeling at home in Turku – networking, integration, Finnish language advice • Thinking about the future – residence permit extensions, career advice • Family matters – opportunities for your spouse and/or children whilst you are studying\n\n...\n\nAll international students studying in Southwest Finland can use this service, including those who hold an offer but have not yet arrived. The service also supports recent graduates who are planning to stay in Finland. Family members of international students are also welcome to use this service."
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      },
+      {
+        "url": "https://www.turku.fi/sites/default/files/document/iht-newcomer-s-guide-final-2025.pdf",
+        "title": "Newcomer's Guide – Welcome to Turku",
+        "domain": "turku.fi",
+        "trust": "official",
+        "highlights": [
+          "The Finnish Immigration Service, usually referred to as Migri, is almost always the first port of call for international newcomers. Migri makes decisions in matters relating to immigration and is responsible for issuing residence permits and Finnish citizenship. (Migri is not responsible for new immigration laws, which are enacted by the Finnish Parliament.) Migri’s website is available in English and is very comprehensive. We recommend first using the ‘Application Finder’ to identify the most suitable application for your situation.\n\nFinnish Immigration Service (Migri)\n\nI want to apply – Application Finder\n\nThe website also includes ‘Enter Finland’, an online application portal. You can apply online for the majority of Migri applications (and this is usually cheaper than a paper application, so we recommend it!). An email address (or Finnish ‘e-identification’ – see section 2.1.4.) is required to create an account.\n\n...\n\nIf you are a Nordic Citizen (Sweden, Norway, Denmark or Iceland), congratulations! You do not need to register with Migri. Please move straight to section 2.2. If you are an EU citizen, or a family member of an EU citizen moving to Finland, you need to register your right of residence with Migri if you are staying in Finland over 90 days. This process consists of submitting an online application form through Enter Finland and then visiting a Migri service point. You must declare a\n\n...\n\n2.1.3 Advice when applying to Migri\n\nApply on time!\n\nMigri deals with a very high number of applications all year round, so the process can take up to several months. Therefore, you should start your application as soon as possible. Migri has estimated processing times for all of its applications.\n\nProcessing times\n\nBring your documents!\n\nWhen you visit a Migri service point, they will usually want to see the original copies of the documents you have included in your online application, such as passports, work contracts, birth certificates or marriage certificates. Any documents from outside of the EU must be legalised before Migri can accept them.\n\nInstructions for legalisation\n\nApply individually!\n\nFamily members, including children, must submit their own online application forms. However, you can visit the Migri service point at the same time.\n\nKnow your rights!\n\nYour immigration status dictates whether you can remain in Finland whilst your application is being processed, as well as your right to work in Finland. You should always check the regulations on the Migri website before you make your application.\n\n...\n\nAs part of the Migri application process, you may receive a Finnish personal identity code. This code consists of your date of birth followed by five other characters. The code is essential for dealing with authorities in Finland, and therefore represents a big step forward for your registration process. If you do not receive a personal identity code through Migri, don’t panic! It is also possible to receive one from the Finnish tax office (Vero) or the Digital and Population Data Services Agency (DVV).\n\n...\n\nThe Digital and Population Data Services Agency (almost always referred to as DVV, or ‘Maistraatti’ if you speak to older Finns) handles information about the population of Finland. Now that Migri have allowed you to stay in the country, you can register with DVV as a permanent resident of Finland. DVV can grant you a ‘municipality of residence’, which essentially confirms you as a resident of a specific part of Finland. This provides access to local services as well as the same rights as other residents. Confirmation of your permanent address in Finland can also speed up other parts of the moving process, such as opening a bank account. Beyond this, DVV provides services for ‘life events’, including births, deaths, name changes and marriage (so if you expand your family during your time here, you will become quite familiar with the organisation!).\n\n...\n\nThe process for registering with DVV is similar to Migri – you download a registration form from their website and book an appointment at a service point.\n\n...\n\n• DVV often gets confused with Migri as the registration process for internationals is so similar and both organisations can provide the personal identity code. However, they are different institutions with their own forms, service points and – crucially – waiting times. \n• As with Migri, any documents you are required to show at the service point (marriage certificates, birth certificates, etc.) must be officially translated into Finnish, Swedish or English as well as legalised if they are from outside of the EU. – You should always check if there are any specific requirements for documents from your home country. \n• The processing times for DVV vary depending on the time of year, but as a rule applicants here for work or study are processed quicker than family members. You can check the current processing times on the DVV website."
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      },
+      {
+        "url": "https://www.turku.fi/en/integration-services/soft-landing-service",
+        "title": "Soft Landing Service | Turku.fi",
+        "domain": "turku.fi",
+        "trust": "official",
+        "highlights": [
+          "The Soft Landing Service helps you settle into Turku. This plan is useful if you have just moved or are planning to move to Turku.\n\n### Settling In\n\n- Support with planning your move to Turku\n- Information about official paperwork and registration (Migration Services, DVV, Police, Kela)\n- Guidance on housing options\n- Information on learning Finnish or Swedish\n\n### Navigating Local Services\n\n- Advice on accessing integration services and understanding application processes\n- Information on childcare, healthcare, education, and more\n\n...\n\nThe service is meant for all internationals, who are planning to move to Turku or have recently arrived here.\n\n- For Individuals: Receive one-on-one guidance on topics related to your life in the Turku region. Together with an advisor, you can create a personalised action plan to support your integration journey.\n- For companies and organisations: Are you an employer in the Turku region hiring international talent?"
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      },
+      {
+        "url": "https://www.suomi.fi/citizen/studying-education-and-training/studying/guide/the-start-of-studies-at-an-institution-of-higher-education/check-list-for-new-higher-education-student",
+        "title": "Check-list for new higher education student - Teaching and education - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Remember to handle the following matters by their deadlines:\n\n- Accept the study place you have been offered in the My Study Path service Opens in a new window..\n- Use the OILI service Opens in a new window. to register at your institution of higher education.\n- Where necessary submit copies of your transcripts to the educational institution.\n- Pay the university of applied sciences student fee or the student union's annual membership fee as well as other possible fees.\n- Pay the health care fee to Kela for each semester in OmaKela Opens in a new window.. Kela will not issue a separate invoice for the payment. \n- Request a student card or virtual student ID.\n- Find out what types of aid Opens in a new window. you can receive from Kela.\n- When necessary get student housing or other accommodation.\n- If you move, submit a joint notification of change of address to the Local Register Offices and post office via the Posti online service Opens in a new window..\n\n...\n\nHow do I accept a study place and register at an educational institution?\n\nYou will receive word of being offered a study place by email. If you want to begin your studies, accept the study place and notify the educational institution. Please note that these are two different things.\n\n1. Accept your study place by the given deadline on My Studyinfo Opens in a new window. or via the email link you receive. If you are unable to give notification of accepting your study place online, send a notification of acceptance written on paper to your educational institution well ahead of the deadline. If you are unable to send a written notification, phone the educational institution.\n2. Register at your educational institution by the given deadline. Use the OILI service Opens in a new window. as the primary channel for registering. If you are registering at a university, you can also pay the student union's annual membership fee and any other possible payments via the OILI service.\n\nMake sure that you keep to the specified deadlines. If you try to register at an institution of higher education after a deadline, you will lose your study place.\n\nPlease note that even if you are accepted to more than one institution of higher education at one time, you may only accept one study place at a time. If you already have a right to study at the same or a lower level, it will end when you accept a new student place.\n\n...\n\nIf you cannot begin you studies immediately, you can register as absent, if you have a valid reason to do so. Such reasons can include\n\n- military and non-military national service\n- parental leave\n- an illness or disability\n\nYou must provide proof of the reason for your absence to your institution of higher education. Proof can include\n\n- a notification of assignment for military and non-military national service\n- a certificate from Kela stating that you are on parental leave or if you do not have this a doctor’s certificate on your pregnancy\n- in the event of illness or disability a decision for sickness allowance or if you do not have this, a doctor’s certificate or other official report on the matter.\n\nIf you are unable to provide acceptable proof of the reason for your absence or do not register as absent, you will lose your study place."
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      },
+      {
+        "url": "https://www.aalto.fi/en/international-students/faq-for-new-international-degree-students",
+        "title": "FAQ for new international degree students | Aalto University",
+        "domain": "aalto.fi",
+        "trust": "university",
+        "highlights": [
+          "### After accepting my admission offer, am I automatically enlisted as \"attending\"? \n\nNo, accepting the admission offer and enrolment are separate processes. At Aalto, you must enrol for each academic year or term during your studies. \n\nPlease see enrolment instructions for new students here: for bachelor's students and for master's students.\n\n### Is it still possible to enrol after 31 July? \n\nWe recommend that you enrol as soon as possible, at the latest by 31 July. This is to ensure having enough time to prepare for your studies, including enrolling online and applying for housing. \n\nHowever, you may not be able to enrol before 31 July if you have received conditional admission due to an incomplete degree and will graduate close to 31 July. You will be able to enrol only after we have received your degree certificate. To enrol after 31 July, please contact the student services (studentservices@aalto.fi). If you do not enrol by the end of the enrolment period, you will lose your study right.\n\n### Where can I enrol as attending? Do I need to present myself at the university after arrival to complete enrolment? \n\nFirst, please check that you don't have any conditionalities in your admission. After the conditions are met, you can enrol as attending online at My Studyinfo. To log in, use the same link that was in the admission email from Studyinfo (i.e. the link you clicked to accept your admission offer). \n\nEnrolment is done online and annually until you graduate. There is no need to report physically upon arrival. You will get to meet your professors and key support persons during the orientation week.\n\n...\n\nSubmit your online application as soon as you have received your admission offer. Remember to also book an appointment to the Finnish mission (embassy or consulate) or a VFS Global application centre in your country. \n\nThe residence permit process starts with an online application and ends when you receive the residence permit card. The whole process might take several months. More information on residence permit for studies.\n\n...\n\n### When should I arrive? \n\nWe encourage you to arrive before the orientation week starts. You can find the orientation week programme in the Student Guide page of your study programme (Starting your studies). \n\nKeep this also in mind when applying for housing (see FAQ for housing below)."
+        ],
+        "fetchedAt": "2026-11-14T14:11:21.209Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 6191,
+      "costUsd": 0.022004000000000003,
+      "cacheHit": false
+    }
+  }
+}

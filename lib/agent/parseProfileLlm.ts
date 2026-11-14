@@ -5,6 +5,7 @@ import { extract } from "../llm";
 import { addCalendarDays } from "../graph/dates";
 import { ProfileExtraction, parseProfileTask } from "../prompts/parseProfile";
 import type { Profile } from "../types";
+import { assumptionKind } from "../ui/assumptionLabel";
 
 export type LlmParse =
   | { ok: true; profile: Profile; assumptions: string[]; people: Profile[] }
@@ -46,7 +47,9 @@ export async function parseProfileLlm(text: string, today: string): Promise<LlmP
   if (!d) throw new Error("LLM returned no schema-valid profile");
   if (d.outOfScope) return { ok: false, outOfScope: d.reason.trim() || "This is not about moving to Finland." };
 
-  const assumptions = d.assumptions.map((a) => a.trim()).filter(Boolean);
+  // Only the model's interpretations of a known kind are kept: each is shown as a short label written in
+  // code (lib/ui/assumptionLabel), never as the model's free text.
+  const assumptions = d.assumptions.map((a) => a.trim()).filter((a) => a && assumptionKind(a));
   const self = d.people.find((p) => p.relation === "self") ?? d.people[0];
   if (!self) throw new Error("LLM returned no person");
 

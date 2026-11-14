@@ -1,0 +1,73 @@
+{
+  "fetchedAt": "2026-11-14T14:11:33.392Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Tax card",
+    "contextHash": "df27a6a56c795bff",
+    "includeDomains": [],
+    "docsHash": "a9c01c1c52de61d7"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card",
+          "You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time",
+          "Before visiting Vero, make sure you have all the necessary documents completed and with you",
+          "If you do not provide your tax card, your employer must withhold 60 percent of your salary",
+          "The Tax Administration (Vero) serves customers on weekdays from 9:00 to 16:00"
+        ],
+        "fetchedAt": "2026-11-14T00:48:38.833Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "To apply for the card and the number, you need a Finnish personal identity code"
+        ],
+        "fetchedAt": "2026-11-14T00:48:38.833Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "You will need a Finnish personal identity code and a tax card",
+          "Take your residence permit with you if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway, or Switzerland"
+        ],
+        "fetchedAt": "2026-11-14T00:48:38.833Z"
+      },
+      {
+        "url": "https://vero.fi/en/individuals/tax-cards-and-tax-returns/tax_card",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "If you need a tax card, you can get it in MyTax"
+        ],
+        "fetchedAt": "2026-11-14T00:48:38.833Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 3190,
+      "costUsd": 0.0071059999999999995,
+      "cacheHit": false
+    }
+  }
+}

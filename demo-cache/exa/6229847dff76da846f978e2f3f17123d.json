@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T14:11:40.458Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Police appointment for Identity card for a foreigner in Turku, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Identity card for a foreigner\" (Police) in Turku, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "a11c1da7a1fb899d0a44bc152a16c503",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://yle.fi/a/74-20076145",
+        "title": "Henkilökorttien kova kysyntä venyttää jonoja poliisin lupapalveluissa | Varsinais-Suomi | Yle",
+        "url": "https://yle.fi/a/74-20076145",
+        "publishedDate": "2024-02-23T10:29:57.000Z",
+        "author": "Hannu Vähämäki",
+        "highlights": [
+          "Ajanvarauksella passia tai henkilökorttia hakeva voi tällä hetkellä joutua odottamaan vapaata aikaa kuukausien ajan.\n\n...\n\nPoliisin lupapalvelut ovat ruuhkautuneet ei puolilla Suomea. Jonoja syntyy erityisesti suuren henkilökorttikysynnän vuoksi. Poliisi kehottaakin asiakkaita varaamaan aikaa asiointiin.\n\nSyynä ruuhkiin ovat muun muassa vanhentuneet tai vanhentumassa olleet henkilökortit, joita poliisi myönsi vuosina 2018 ja 2019 ennätysmäärän. Nyt näitä kortteja halutaan uusia, koska esimerkiksi pankit vaativat asiakkailta virallista henkilötodistusta.\n\n– Tilanteeseen vaikuttaa myös se, että pankit eivät enää hyväksy ajokorttia henkilötodistukseksi, mikä osaltaan on kasvattanut henkilökorttien kysyntää, kertoo ylikomisario Mika Peltola Lounais-Suomen poliisilaitokselta.\n\nEsimerkiksi Turussa ajanvarauksella passia tai henkilökorttia hakeva voi tällä hetkellä saada seuraavan vapaan ajan heinäkuulle. Myös muualla jonot ovat kuukausien mittaisia.\n\n– Oulussa vapaita aikoja löytyy tällä erää huhtikuun puoleen välin jälkeen, kertoo Oulun poliisilaitoksen lupapalveluiden sektorinjohtaja Antero Aulakoski.\n\nMyös Länsi-Uudenmaan poliisilaitos kehottaa viestipalvelu X:ssa varautumaan siihen, että vapaat ajat lupapalveluihin voivat venyä pitkällekin.\n\nPeruutusaikoja voi saada myös aiemmin eikä jonotusaika pienemmille asemille ole aivan niin pitkä kuin isojen kaupunkien keskuspoliisiasemille.\n\nAsiointi poliisiasemilla on mahdollista myös ilman etukäteen tehtyä ajanvarausta, mutta silloin asiakkaan on varauduttava jonottomaan. Talvilomaviikolla jonottajia on ollut poikkeuksellisen paljon.\n\n– Turun pääpoliisiasemalla lupapalveluun on ajanvarausasiakkaiden lisäksi saapunut päivittäin noin 160–230 asiakasta ilman ajanvarausta. Tällöin jonotusajassa ei valitettavasti puhuta minuuteista vaan tunneista, kertoo Peltola poliisin tiedotteessa.\n\nPoliisin lupahallinnoissa on reagoitu ruuhkautuneeseen tilanteeseen muun muassa lisäämällä lupapalveluhenkilöstöä sekä siirtämällä virkailijoita muista tehtävistä henkilökorttien ja passien asiakaspalveluun."
+        ],
+        "image": "https://img.img-cdn.yle.fi/crop_extract,w_4242,h_2386,x_0,y_371/crop_fill,w_1200,h_628/f_auto/39-8593276152f01b6b76e/1632827269"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "title": "Police to provide more appointment times for passport and ID card applicants - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "publishedDate": "2025-04-15T10:04:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "The police are addressing efficient licensing services by increasing the number of appointments for passport and identity card customers. Save time and money by booking an appointment easily online.\n\n...\n\n## You can find more slots on the website\n\nMore appointment times will be available to passport and ID card applicants. Appointment times can also be found beyond the opening hours of the police station. The police will add more slots to the booking system on a daily and weekly basis, depending on the police station. \n\nIf you can’t find a suitable time straight away, check out the situation later. \n\nYou can freely choose the most convenient police station for you anywhere in Finland. You can find available appointments and service points at: asiointi.poliisi.fi \n\n“When applicants initiate their passport or ID card application online, the system automatically directs them to appointment booking if they need to visit a police station in person,” says Hanna Piipponen.\n\nInitiating an application online in advance makes for quick, effortless contact rather than having to perhaps wait in a queue for hours without an appointment. If you need to visit a police station for identification purposes, you can complete your visit in less than ten minutes with an appointment.\n\n...\n\nBook an appointment online and avoid queuing. You can plan in advance when you interact and how you will spend your time."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://www.vauva.fi/keskustelu/5483623/turussa-seuraava-passiaika-heinakuussa-hassua-mina-sain-passin-ilman",
+        "title": "Keskustelu - Turussa seuraava passiaika heinäkuussa. Hassua, minä sain passin ilman ajanvarauksia alle kuukaudessa Treella | Aihe vapaa | Vauva",
+        "url": "https://www.vauva.fi/keskustelu/5483623/turussa-seuraava-passiaika-heinakuussa-hassua-mina-sain-passin-ilman",
+        "publishedDate": "2024-02-26T14:41:30.000Z",
+        "highlights": [
+          "# Turussa seuraava passiaika heinäkuussa. Hassua, minä sain passin ilman ajanvarauksia alle kuukaudessa Treella\n\n Vierailija \n\n26.02.2024 | 14:41 \n\nEikä minulla edes ollut vanhaa passia, joka olisi tuota ehkä nopeuttanut. Mikä ihme niitä turkulaisia oikein vaivaa?\n\n...\n\nPasilassakin on kuukausien jonot, kun aikaa varaa. Kun vain menee paikalle jonotusnumerolla, niin ei tarvitse varttia pidempään jonottaa.\n\n26.02.2024 | 14:44 \n\nMinä hain passin Torniosta kun Oulussa oli kuukausien jonot. Sain ajan sinne helposti ja samalla tuli käytyä Haaparannassa halvoilla ostoksilla niin säästinkin muistaakseni reilut 300€.\n\n26.02.2024 | 14:45 \n\nJos vaan on mahdollista mennä paikan päälle jonottamaan, ei sitä aikaa kannata varata. Välillä jonossa menee tunteja, välillä ainoastaan minuutteja.\n\n...\n\nMee hoitoon!\n\n...\n\nVoi, mutta nopeampaa on kun menee vaan Tampereen poliiislaitoksella aamusta ja ottaa jonotusnumeron. Ei sinne kannata aikaa varata.\n\n26.02.2024 | 14:49 \n\nHassua. Meilläkin kuukausien jonot, eikä aikaa varaamatta voi mennä. Viimeksi kysyin kun siellä ei ketään ollut, että voisiko päästä kun aika on vasta puolentoista tunnin päästä. No ei voinut. Odotin ulko-oven edessä ja vain 1 henkilö käveli rakennukseen, saattoi mennä muuallekin.\n\nMyös henkkarin ja ajokortin hakemiseen piti varata aika, joita ei vapaana kuulemma ollut silloin kun kortit olisivat tulleet. Meni minuutti kun sitten sisään marssiessani virkailija tunnisti pärstän ja kaivoi kortit esiin.\n\n...\n\nMiksi aikuisen passi vanhenee 5 vuodessa? Tai henkilökortti? Ihan yhtä turvallista olisi antaa 10 vuoden passeja ja henkilökortteja. Monissa EU-maissa aikuinen saa 10 vuoden passin, siitä se ei ole kiinni!\n\n...\n\nIhan joka paikassa on niin että ajanvaraukset on kuukausien päähän, mutta kun menee aamulla paikanpäälle pääsee hyvinkin nopeasti. Minä hain poikieni kanssa Kokkolassa heille uudet passit, ja heidän piti antaa uudet allekirjoitukset ja ensimmäistä kertaa sormenjäljet, eikä siinä koko hommassa odotuksineen mennyt puolta tuntiakaan. Yksi ihminen oli meidän lisäksi odottamassa.\n\n...\n\nHassua, mä sain Ikaalisissa viikossa ilman ajan eikä ollut vanhaa passia.\n\n...\n\n26.02.2024 | 14:58 \n\nOlisin saanut vielä paljon nopeamminkin, mutta en pitänyt kiirettä valokuvan toimittamisessa poliisiasemalle. Ei ollut pakottavaa tarvetta saada passi mahdollisimman pian. Valokuvan viemisen jälkeen passi oli neljäntenä päivänä noudettavissa. Eli nopeimmillaan koko homma olisi voinut hoitua neljässä päivässä.\n\n...\n\nMÄ en oikeen tiedä, mutta kai sinne pääsee ihan ilman ajanvaraustakin, kun vaan menee istumaan odotussaliin ja ottaa vuoronumeron.\n\nKun mä kävin kesällä jättämässä sormenjäljet uuteen henkkariin, niin siellä oli kyllä paikan päällä sellaisiakin joilla ei ollut ajanvarausta luukulle korttiasioissa. Ja hyvin pääsivät kun vaan sen vuoronumeronsa kanssa odottivat, että luukulle kutsutaan.\n\nSiellä näytti olevan yksi luukku, jolle nää aikaa varaamattomat aina vuorollansa menivät.\n\n26.02.2024 | 15:00 \n\nMitä siellä jonotetaan. Mulle tuli passi postiin parissa viikossa hakemuksen tekemisestä.\n\n26.02.2024 | 15:02 \n\nMulla on passi vanhentunut turkulaisena. Kannattaako siis vain mennä suosiolla jonottamaan kuvien jälkeen laitokselle? Minulla olisi kova tarve uudelle passille...\n\n...\n\nJa ennen kuin menee minnekään jonottamaan tai varailemaan aikaa kannattaa selvittää, onko paikan päällä käyminen edes tarpeen vai saako passin uusittua ilman käyntiä. Itse menin paikan päälle, koska otin kuvat itse enkä valokuvaamossa, mutta myöhemmin selvisi, että sen olisi itsekin voinut ladata poliisin palvelimelle.\n\n...\n\nOnnistuu, jos on olemassaoleva passi, sormenjälki on annettu ja on tuore passikuva."
+        ],
+        "image": "https://www.vauva.fimodules/custom/vauva_node/assets/img/discussion_share.jpg"
+      },
+      {
+        "id": "https://www.laitilansanomat.fi/2024/02/passijono-aitynyt-hurjaksi-ugin-poliisiasemalla-lupapalvelut-vain-auki-yhden-paivan-viikossa/",
+        "title": "Passijono äitynyt hurjaksi – Ugin poliisiasemalla lupapalvelut auki vain yhden päivän viikossa | Laitilan Sanomat",
+        "url": "https://www.laitilansanomat.fi/2024/02/passijono-aitynyt-hurjaksi-ugin-poliisiasemalla-lupapalvelut-vain-auki-yhden-paivan-viikossa/",
+        "publishedDate": "2024-02-23T23:35:18.000Z",
+        "author": "Teija Uitto",
+        "highlights": [
+          "Viime keskiviikkona Uudenkaupungin poliisiasemalla jonotti kaikkiaan 90 ihmistä.\n\nUudenkaupungin poliisiasemalla on ollut keskiviikkoisin pitkät jonot. Ihmiset jonottavat poliisiaseman lupapalveluiden tiskille hakemaan passia tai henkilökorttia.\n\n– Kun tulimme, saimme varausnumeron 51. Meitä ennen oli niin paljon väkeä, että otimme varausnumeron ja lähdimme käymään välillä kaupassa, yksi viime keskiviikkona jonottaneista kertoo.\n\nJonossa on ollut paljon myös iäkkäitä ihmisiä.\n\n– Eihän tämä toivottava tilanne ole, mutta samanlaista on nyt joka yksikössä kautta Suomen, komisario Jouni Uusitalo sanoo.\n\nUudenkaupungin poliisiaseman lupapalveluiden aukioloaikaa supistettiin helmikuun alusta alkaen ja ruuhkat ovat nyt sen mukaisia.\n\n– Palveluaikaa jouduttiin supistamaan yhteen päivään viikossa, kun meidän piti saada lisää väkeä Turkuun, kun Turun lupapalvelut oli tupaten täynnä väkeä, Uusitalo kertoo.\n\n– Jonoa on joka paikassa, eikä tämä koske vain Lounais-Suomea tai Satakuntaa.\n\nPoliisin lupapalveluihin on anottu poliisihallitukselta lisävirkoja, mutta niitä ei ole saatu riittävästi.\n\n...\n\nKomisario Jouni Uusitalo kertoo, että Uudenkaupungin lupapalveluiden kahden työntekijän työpäivä on mitoitettu ajanvarausten mukaan.\n\n– Viime keskiviikkona ilman ajanvarausta tuli 90 ihmistä. He tulivat siis vielä ajanvaranneitten lisäksi. Totta kai yritämme palvella kaikkia, mutta toivon ihmisten ymmärtävän, että jos tulee ilman ajanvarausta, pitää sitten varautua jonottamaan.\n\nHän myös muistuttaa, että jonosta kutsutaan tiskille ajan varanneet. Muita palvellaan ajanvarausten välissä.\n\nPoliisin lupapalvelut ovat ruuhkautuneet koronan jälkeen, kun ihmiset käyvät uudistamassa passejaan. Myös henkilökorttien uudistaminen on kiihtynyt, kun pankit eivät enää hyväksy ajokortteja henkilötodistuksina.\n\nUusitalo sanoo, että poliisin on vaikea varautua ruuhkahuippuihin, kun etukäteen ei voi koskaan tietää, kuinka paljon ihmisiä tulee. Hiihtolomaviikolla monella oli aikaa lähteä poliisiasemalle.\n\nYksi jonottajista kertoi, että hän oli yrittänyt varata verkosta ajan.\n\n– Mutta ensimmäinen vapaa aika olisi ollut vasta 17. huhtikuuta.\n\nUusitalo kehottaa seuraamaan ajanvarausta.\n\n– Peruutusaikoja tulee ja joskus pystytään lisäämäänkin aikoja.\n\nHän lupaa, että kun asiakirjan saa tilattua, se toimitetaan nopeasti.\n\n– Pikapassin saa tarvittaessa vielä nopeammin.\n\nLupaesimies Eija Vuorinen muistuttaa, että passin ja henkilökortin saa tilattua sähköisesti, jos ne uusii riittävän ajoissa.\n\nMyös asehakemuksia voi tehdä 1.3. alkaen sähköisesti.\n\n– Yksi motto minulla on ihmisille: ensin katsotaan passi ja vasta sitten tilataan matka.\n\n#### Aina ei tarvitse mennä poliisiasemalle\n\n Kun haet henkilökorttia verkossa, sinun ei tarvitse käydä poliisiasemalla, jos olet käynyt lupavirkailijan tunnistettavana ja sinulta on otettu sormenjäljet passia tai henkilökorttia varten enintään 6 vuotta sitten.\n\nNimesi on sama kuin edellisessä passissasi tai henkilökortissasi.\n\nLupavirkailija pystyy toteamaan, että uusi passikuvasi esittää samaa henkilöä kuin edelliset passikuvasi.\n\nLisätiedot:"
+        ],
+        "image": "https://www.laitilansanomat.fi/wp-content/uploads/2024/02/9427937-scaled.jpg"
+      },
+      {
+        "id": "https://documentsfolders.com/sl/get-a-finnish-id-card/",
+        "title": "How to Get a Finnish ID Card: Requirements & Process",
+        "url": "https://documentsfolders.com/sl/get-a-finnish-id-card/",
+        "publishedDate": "2026-02-04T09:40:14.000Z",
+        "highlights": [
+          "## Can Foreigners Get a Finnish ID Card?\n\nYes. Foreigners can get a Finnish ID card, provided they meet specific eligibility criteria.\n\nA Finnish ID card for foreigners is typically available to:\n\n- EU/EEA citizens living in Finland\n- Non-EU residents with a valid residence permit\n- International students\n- Skilled workers and professionals\n- Family members of Finnish residents\n\nOne of the most common search questions we receive is: “Can foreigners get a Finnish ID card?” The answer is yes—but only with the right documents and registration status.\n\nThis is where many applicants face delays or rejections due to incomplete applications.\n\n...\n\nMeeting the Finnish ID card requirements is critical. Requirements vary depending on nationality and residency status, but generally include:\n\n### Basic Requirements\n\n- Valid passport or national travel document\n- Proof of legal residence in Finland\n- Finnish Population Information System registration\n- Personal identity code (henkilötunnus)\n- Recent biometric photograph\n- Completed application form\n\n### Additional Requirements for Foreigners\n\n- Valid residence permit card\n- Proof of address in Finland\n- Employment or study confirmation (if applicable)\n\nMissing even one document can lead to appointment rescheduling or application rejection.\n\n...\n\n## Finnish ID Card Appointment: What You Should Know\n\nA Finnish ID card appointment is often required to verify identity and submit biometric data. Appointment availability can vary significantly depending on location and season.\n\nCommon challenges include:\n\n- Long waiting times\n- Limited appointment slots\n- Incomplete document checks\n- Last-minute cancellations\n\nWith professional assistance, you avoid unnecessary delays by ensuring everything is correct before the appointment, reducing the risk of repeat visits.\n\n## Finnish ID Card Processing Time\n\nThe Finnish ID card processing time depends on:\n\n- Application volume\n- Applicant nationality\n- Completeness of documentation\n- Seasonal demand\n\nOn average, processing may take several weeks, but delays are common if documents are missing or incorrect.\n\nOur role is to help prevent avoidable delays by ensuring your application is prepared correctly the first time."
+        ],
+        "image": "https://documentsfolders.com/wp-content/uploads/2026/02/Finnish_identity_card.jpg"
+      }
+    ],
+    "searchTime": 1550.5,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

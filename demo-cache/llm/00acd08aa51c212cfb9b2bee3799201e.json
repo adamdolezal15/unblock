@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T14:11:32.116Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "8aabe386ff738643",
+    "includeDomains": [],
+    "docsHash": "0dc4507aec236a0a"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "If you work in Finland and your wage amounts to EUR 800.02 per month or more, you can get certain Kela benefits as from the start of the employment, for instance sickness allowance (sairauspäiväraha"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Before you submit an application to Kela, make sure you have",
+          "You must have a bank account so that we can pay your benefits to you",
+          "If you cannot use OmaKela, send your application forms and form Moving to Finland or employment in Finland Y 77e (PDF) to Kela by mail"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF",
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "You need a Kela card to prove that you have the right to Kela reimbursements when you go see a private doctor or a private dentist who cannot check your information electronically"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/social-security-benefits/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "To submit your applications to Kela, you can mail them and any necessary documents to: Kela, PL 10, 00056 KELA"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1911,
+      "costUsd": 0.0043300000000000005,
+      "cacheHit": false
+    }
+  }
+}

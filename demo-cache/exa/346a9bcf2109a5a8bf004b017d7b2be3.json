@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T14:11:38.386Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a turku.fi appointment for Register as a resident and get a Finnish personal identity code in Turku, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Register as a resident and get a Finnish personal identity code\" (turku.fi) in Turku, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "104f7ef762aa2e65ce294f79c51ec4d3",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "At a glance\n\nWho needs it\n\nForeign citizens moving to Finland on work, study, family or residence-permit grounds\n\nCost\n\nFree — no fee for the henkilötunnus or municipality decision\n\nHow long\n\n2–3 weeks (work/study) or 3–4 weeks (other cases), from your in-person visit\n\nWhere to apply\n\nOnline form at dvv.fi, then in person at a DVV service point (Helsinki, Tampere, Turku, Oulu)\n\n...\n\nDVV registration in Finland is how a foreigner enters the Population Information System and receives a henkilötunnus (personal identity code) that banks, the tax office and Kela rely on. You register with the Digital and Population Data Services Agency by submitting an online registration form, then attending one in-person appointment within a month. It is free and takes roughly two to four weeks.\n\n...\n\n## How do I register with DVV in Finland?\n\nRegister with DVV in two stages: submit the free online foreigner registration form at dvv.fi/en/foreigner-registration (no authentication needed), then visit a DVV service point in person within 1 month with your passport, residence permit or EU registration certificate, and proof of work or study. Processing then takes 2–3 weeks for work and study cases, 3–4 weeks otherwise. There is no fee — the registration and your henkilötunnus (personal identity code) are completely free.\n\n...\n\n### Step 2 — Book an in-person appointment within one month\n\nAfter the form, you must visit a DVV service point in person, and you must do so within one month of submitting. The in-person step is non-negotiable — it is where DVV verifies your identity against your documents. Appointments at the busy Helsinki-area locations can fill up, so book as early as you can rather than leaving it to the end of the one-month window.\n\n...\n\n### Step 4 — Wait for processing\n\nProcessing time, according to DVV, is roughly 2–3 weeks for work and study registrations and 3–4 weeks for other cases, counted from your visit date. At the end you receive your personal identity code, and DVV separately decides your municipality of residence.\n\n...\n\nHere is the distinction that catches almost everyone out. Being entered into the Population Information System and receiving a personal identity code is not the same as having a municipality of residence. As InfoFinland puts it, when you receive a personal identity code you are not yet automatically registered as a resident of a specific municipality. DVV makes a separate decision about your kotikunta.\n\n...\n\n## Where to Register: Service Points and Help\n\nDVV operates service points across Finland — major cities including Helsinki, Tampere, Turku, and Oulu have offices, and there are around a dozen physical locations nationally. You can also reach DVV by telephone on +358 295 536 320 (Mon–Fri 9–15) and through secure email for questions about your case.\n\n...\n\n## A Realistic Timeline for Your First Month\n\nPutting it together, a typical sequence for a new arrival looks like this:\n\n1. Before or on arrival — settle your residence basis with Migri (permit for non-EU; right-of-residence registration for EU citizens staying over three months).\n2. First days — submit the DVV foreigner registration form online and book the in-person appointment.\n3. Within the first month — attend the DVV appointment with your documents; this is also a good moment to use International House Helsinki if you are in the capital region.\n4. Weeks two to four — DVV processes the registration (2–3 weeks for work/study, 3–4 weeks otherwise) and assigns your personal identity code and, where eligible, your municipality of residence.\n5. Once you have the henkilötunnus — open a Finnish bank account, order a tax card from Vero, and register with Kela.\n6. Whenever you move permanently or for over 3 months — file a notification of move within one week.\n\n...\n\nThe single most useful thing you can do is start the DVV form early and book the appointment immediately, since the in-person slot is usually the bottleneck. Everything downstream — banking, tax, healthcare — is waiting on the code DVV gives you at the end."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "title": "Streamlined services for issuing personal identity codes and municipality of residence for foreign citizens - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "publishedDate": "2025-04-28T07:45:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "The Digital and Population Data Services Agency took action last year in order to streamline the registration of foreigners. You can now get your personal identity code when visiting the agency in 12 locations. The updated website and instructional videos will guide customers to use services that match their situation.\n\nThe registration of foreigners' personal data has accelerated as the Digital and Population Data Services Agency has improved its practices and systems. You can now apply for a personal identity code and municipality of residence online, which speeds up processing and improves the accuracy of the data. After filling in the online form, the customer must still usually visit the agency in order to verify their identity.\n\n...\n\n## Customers can receive their personal identity code in connection to a visit \n\nA few service locations of the Digital and Population Data Services Agency tested the practice first and started issuing a personal identity code during a personal visit, and as their experiences were positive, the practice was adopted permanently. At the moment, persons who have booked an appointment and completed an online form may receive their personal identity code in 12 locations: Helsinki, Joensuu, Jyväskylä, Kuopio, Lahti, Lappeenranta, Oulu, Pori, Rovaniemi, Tampere, Turku and Vaasa. \n\nTo receive their personal identity code during the visit, the customer must first submit their data to the Digital and Population Data Services Agency using an online form and book an appointment online. They must also meet the requirements for obtaining a personal identity code. However, a personal identity code cannot always be issued during a visit if the matter requires further clarification. \n\nThe online form for obtaining a personal identity code is available to all foreigners, and it does not require strong identification. You can use the same form to request a municipality of residence if you are intending to stay in Finland for more than one year. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+        "title": "How Long Does It Take to Get a Personal Identity Code in Finland? - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+        "publishedDate": "2026-06-12T10:15:08.000Z",
+        "author": "Finland Handbook Editorial Team",
+        "highlights": [
+          "In this ... This means your \"wait time\" for the code is essentially the wait time for your permit, which can range from a few weeks for specialists to several months for family-based ties. The moment you receive your residence permit card, the code is printed on the back. This is by far the most efficient route, as it bypasses the need for a separate visit to the DVV once you land.\n\nHowever, for EU citizens or those who didn't receive a code with their permit, the process involves a visit to the DVV. In 2026, the standard processing time for a Personal Identity Code at the DVV is generally 1 to 3 weeks after your appointment. The real challenge is often securing the appointment itself. In major cities like Helsinki, Espoo, or Tampere, the \"wait for the wait\" can be significant. You might find that the first available slot for identity verification is three weeks away, and only after that does the 1–3 week processing clock begin. Understanding Getting Your Personal Identity Code: The Key to Finnish Healthcare is essential here, as this code is the bedrock of your entire administrative life in Finland.\n\n| Application Path | Typical Processing Time | Key Requirement |\n| --- | --- | --- |\n| Residence Permit (Migri) | Linked to permit (1–6 months) | Applied for abroad or at Migri |\n| EU Citizen (DVV) | 1–3 weeks after appointment | Valid passport & proof of work/study |\n| Nordic Citizen (DVV) | 1 week | Personal appearance at DVV |\n| Temporary Worker (Short-term) | 1–2 weeks | Finnish employer's confirmation |\n\n...\n\nWhile the official estimates give a baseline, the reality on the ground in Finland can vary based on seasonal demand. The \"August Rush\" is a very real phenomenon. Every year, thousands of international students and new hires arrive simultaneously in late summer. If you submit your request in August or early September, expect the DVV processing times to stretch toward the 4-to-6-week mark. Many newcomers get caught in this cycle, struggling to get their electricity contracts or home internet because the system is simply overwhelmed by the volume of new residents.\n\n...\n\nTo ensure you get your code as fast as possible, you need to be proactive rather than reactive. The moment you know your move-in date, or the moment you receive your residence permit, check the DVV’s online booking system. Do not wait until you land in Finland to see what’s available. Appointments fill up weeks in advance. If you see no appointments in Helsinki, widen your search radius. The train system in Finland is excellent, and a one-hour trip to a neighboring town could save you three weeks of waiting in the city."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/06/output1-56.webp"
+      },
+      {
+        "id": "https://finland.herizon.io/en/articles/personal-identity-code-finland",
+        "title": "Personal identity code in Finland - Herizon",
+        "url": "https://finland.herizon.io/en/articles/personal-identity-code-finland",
+        "publishedDate": "2026-09-19T12:22:47.000Z",
+        "highlights": [
+          "As a foreign citizen you get a Finnish personal identity code (henkilötunnus) by registering with the Digital and Population Data Services Agency (DVV): you submit its form, then visit a DVV service point in person within one month. DVV's registration page states: \"Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children.\" Registration is free of charge, and DVV processes a request based on work or study in 2 to 3 weeks counted from the day of your visit. The code alone does not give you a municipality of residence (kotikunta), which is a separate decision with its own conditions.\n\n...\n\n1. Fill in the form. DVV's online form \"does not require authentication\". One parent can request a code on the same form for a child under 18 who moves to Finland at the same time.\n2. Book the visit at once. Book your appointment through DVV's registration page. The one-month clock starts on the day you submit the form, so book in the same sitting.\n3. Bring the documents. DVV lists a valid passport or an official photo ID card (for EU, EEA and certain other nationals); a residence permit card or other proof that you reside legally in Finland; the EU registration certificate if you have one; and proof of work or studies, \"for example, a certificate of student status or an employment contract\".\n4. Add family documents if needed. If you also register a marriage or parenthood, bring the completed forms and the certificates, legalised and translated where DVV's rules require it.\n\nDVV's registration page sets these processing times and fee:\n\n| Request | Processing time | Price |\n| --- | --- | --- |\n| Code request based on work or study | 2 to 3 weeks from the visit | Free |\n| Code request on other grounds | 3 to 4 weeks from the visit | Free |\n\n...\n\nA population register entry with a code and a municipality of residence are two different records, and you can hold the first without the second. DVV's form lets you apply for both at once, and \"A municipality of residence may be granted if the conditions for this are met.\"\n\n...\n\n## A worked sequence\n\nTake a non-EU specialist with a continuous (A) residence permit. The DVV form goes in, the appointment is booked within the month, and the passport, permit card and employment contract go to the visit. DVV states the code takes 2 to 3 weeks from the visit for work-based requests. A municipality of residence may be granted at the same time if DVV's conditions are met, which an A permit satisfies when the person also intends to stay at least a year. The tax card can be applied for once the code exists, as the Tax Administration requires it.\n\n...\n\nCount one month from the day you submit the DVV form and make sure you visit a service point within that time, as DVV requires.\n\n...\n\n### How long does it take to get a personal identity code in Finland?\n\nDVV's registration page gives 2 to 3 weeks for a request based on work or study and 3 to 4 weeks for other grounds. The clock starts on the day of your in-person visit, so a late appointment delays the code."
+        ],
+        "image": "https://finland.herizon.io/og.png?path=%2Fen%2Farticles%2Fpersonal-identity-code-finland&v=3"
+      },
+      {
+        "id": "https://finmigrants.com/first-30-days-finland-checklist/",
+        "title": "Your Complete First 30 Days in Finland — Checklist and Guide — FinMigrants",
+        "url": "https://finmigrants.com/first-30-days-finland-checklist/",
+        "publishedDate": "2026-04-10T06:00:00.000Z",
+        "author": "FI",
+        "highlights": [
+          "## Before You Land\n\n- Book a DVV appointment before you arrive — they fill up 2-4 weeks in advance.\n- Ensure your residence permit or EU right of residence is in order.\n- Download the official Suomi.fi app.\n- Get a European Health Insurance Card if you are an EU/EEA citizen.\n\n## Week 1: Registration First\n\nEverything else depends on your henkilotunnus. Go to DVV (Digi- ja vaestotietovirasto) as soon as possible. Bring your passport, lease agreement, and residence permit if applicable. You will typically receive your henkilotunnus on the same day or within a few days by post."
+        ],
+        "image": "https://finmigrants.com/wp-content/uploads/2026/04/og-post-15-1.webp"
+      }
+    ],
+    "searchTime": 1532.2,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

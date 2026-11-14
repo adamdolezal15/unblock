@@ -1,0 +1,142 @@
+{
+  "fetchedAt": "2026-11-14T14:20:34.888Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Strong electronic identification (online banking codes)",
+    "contextHash": "3076050f5f38eed7",
+    "includeDomains": [],
+    "docsHash": "0676a6054787ccb8"
+  },
+  "response": {
+    "data": {
+      "conflicts": [
+        {
+          "topic": "what identity proof a non-EU newcomer needs to get banking codes enabled for strong identification",
+          "aUrl": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "aQuote": "Banks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification",
+          "bUrl": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+          "bQuote": "Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated",
+          "verdict": "nuance",
+          "note": "International House Helsinki says banks require a Finnish-issued foreigner's ID card for non-EU nationals; Nordic Expat says Nordea has a police-station identity check as a workaround when you lack an accepted document.",
+          "whatToDo": "Treat the International House Helsinki checklist as the baseline, and bring your Finnish-issued residence or ID card and your personal identity code to the bank visit. If you have no document the bank accepts, ask the bank directly whether it offers a route such as a police identity check, because this comes from a community site and banks decide their own procedures. Ask explicitly for codes enabled for strong electronic identification, not only for online banking."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "However, e-services require a tool that enables you to use strong identification online"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.925Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/wp-content/uploads/newcomersguide.pdf",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "After opening an account with a Finnish bank, the bank will issue you a user ID"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.925Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Banks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification",
+          "A visit to the selected bank is required"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.925Z"
+      },
+      {
+        "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+        "title": "poppankki.fi",
+        "domain": "poppankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "nordea.fi",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "If you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+        "title": "s-pankki.fi",
+        "domain": "s-pankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "This is exactly why some newcomers get an account but find the bank codes take longer"
+        ],
+        "fetchedAt": "2026-11-14T06:39:22.218Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking",
+          "If you do not have an ID document the bank accepts, you may not be able to activate e-identification straight away",
+          "Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated"
+        ],
+        "fetchedAt": "2026-11-14T06:37:55.196Z"
+      },
+      {
+        "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "title": "relocateineurope.com",
+        "domain": "relocateineurope.com",
+        "trust": "community",
+        "highlights": [
+          "The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes"
+        ],
+        "fetchedAt": "2026-11-14T06:37:55.196Z"
+      },
+      {
+        "url": "https://helloexpat.eu/fi/blog/digital-id-in-finland",
+        "title": "helloexpat.eu",
+        "domain": "helloexpat.eu",
+        "trust": "community",
+        "highlights": [
+          "Before you have a personal identity code, you cannot get bank codes"
+        ],
+        "fetchedAt": "2026-11-14T06:37:55.196Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 9643,
+      "costUsd": 0.017694,
+      "cacheHit": false
+    }
+  }
+}

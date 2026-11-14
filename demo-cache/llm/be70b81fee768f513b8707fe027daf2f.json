@@ -1,0 +1,142 @@
+{
+  "fetchedAt": "2026-11-14T14:12:11.007Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Registering the right of residence of a family member of an EU citizen in Finland",
+    "contextHash": "3c17e22de6dd3521",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "ouka.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "b85063f2ce3d22cf"
+  },
+  "response": {
+    "data": {
+      "title": "Family member's residence (EU registration or residence card of a family member of an EU citizen)",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+          "quote": "Your family members must register their stay or notify the authorities of their residence in Finland."
+        },
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://enterfinland.fi/eservices/info/europeanpermits",
+          "quote": "You must apply for registration of your right of residence in Finland if you reside in Finland for over 3 months and are a citizen of an EU Member State, Liechtenstein or Switzerland."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+          "quote": "They must visit the Finnish Immigration Service in person to prove their identity."
+        },
+        {
+          "kind": "document",
+          "value": "valid passport or identity card",
+          "url": "https://enterfinland.fi/eServices/info/europeancitizens",
+          "quote": "A valid passport or identity card."
+        },
+        {
+          "kind": "document",
+          "value": "document proving family ties and documents confirming the sponsor family member meets the requirements for registration (documents from outside Nordic/EU countries must be legalised)",
+          "url": "https://enterfinland.fi/eServices/info/europeancitizens",
+          "quote": "When you apply for EU registration as a family member: a document that proves your family ties and documents confirming that the sponsor (your family member) meets the requirements for registration."
+        },
+        {
+          "kind": "document",
+          "value": "translations by an authorised translator of attachments not in Finnish, Swedish or English",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator."
+        },
+        {
+          "kind": "processing_time",
+          "value": "registration certificate issued immediately at the service point visit if requirements are met and attachments presented (EU citizens)",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity."
+        },
+        {
+          "kind": "booking_url",
+          "value": "migri.vihta.com",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "Registration of right of residence | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if:\n\n- you are a citizen of an EU Member State, Liechtenstein or Switzerland; and\n- you will be staying in Finland for over 3 months at a time.\n\nIf you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency. Nordic citizens do not need to apply for EU registration at the Finnish Immigration Service.\n\n...\n\nThe registration of your right of residence is valid until further notice. You will not have to extend the validity of the registration. When you have resided legally in Finland for a continuous period of 5 years, you have the right of permanent residence.\n\n...\n\n### Make sure you meet the following requirements:\n\n You are a citizen of an EU Member State, Liechtenstein or Switzerland. \n\n You have a valid passport or identity card. \n\n You have grounds for your residence in Finland. \n\nYou are in Finland as:\n\n- an employee;\n- a self-employed person;\n- a student; or\n- a family member of an EU citizen. \n\n- If you apply for EU registration as a family member of a Finnish citizen, your family member must have exercised his or her right of free movement. Your Finnish family member must have lived in an EU Member State other than Finland, or in a country comparable to EU Member States, for at least 3 months. \n\n- The relationship that made you each other’s family members must have begun or strengthened while you were residing in an EU Member State other than Finland.\n- If you and your family member do not move from the other Member State to Finland simultaneously, your Finnish family member needs to have moved to Finland first, before you.\n- You and your Finnish family member need to have moved to Finland directly from the other Member State. If you have lived in a third country between your residence in a Member State and your move to Finland, you cannot apply for EU registration based on family ties.\n- If your Finnish family member holds the citizenship of another EU Member State and has only lived in the Member States where he or she holds citizenship, your family member has not exercised his or her right of free movement. In such a case, you cannot apply for EU registration based on family ties. \n- When you apply for EU registration as a family member of a Finnish citizen, you are not required to present documentation of sufficient financial resources.\n\nIf none of these grounds are applicable to you, you may still stay in Finland as long as you have sufficient financial resources to support yourself and your family members.\n\nIt is possible that more than one of these grounds are applicable to you during your stay in Finland. Even if your grounds for residence change, you do not need to renew your EU registration.\n\n...\n\n### Apply for the EU registration:\n\n Fill in the application and add your documents. \n\nFill in the application in our online service Enter Finland.\n\nIf you cannot use Enter Finland, fill in a paper application. You will find a link to the application at the bottom of this page.\n\nYou can only apply for the registration when you are in Finland. You cannot apply for the registration of your right of residence before you have moved to Finland on a permanent basis. \n\nYou need to fill in and submit the application yourself. Your employer or family member, for example, cannot apply for the registration on your behalf. However, you can submit an application on behalf of your child.\n\n Pay for the application. \n\nIf you submit an online application in Enter Finland, pay the processing fee: \n\n- with a credit card or with Finnish online banking credentials when you submit the application; or\n- when you visit a service point of the Finnish Immigration Service to prove your identity. \n\nIf you submit a paper application, pay the processing fee at a service point of the Finnish Immigration Service.\n\n Visit a service point to prove your identity. \n\nBook an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service.\n\nWhen you visit the service point, bring with you:\n\n- your valid passport or identity card\n- originals and copies of the documents that you attach to your application \n\n- If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator.\n- However, a document that has been issued by an authority of an EU Member State concerning birth, marriage, registered partnership or death does not need to be translated if you attach to the document a multilingual standard form issued by the authority.\n\n...\n\nWait for the decision. We will contact you if necessary. \n\nAs an EU citizen, you will be issued with a registration certificate once you have presented sufficient evidence of meeting the requirements for registration.\n\n- If you apply for EU registration on the basis of employment, for example, you can be registered only after your employment relationship has begun.\n- If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started.\n\n...\n\nIf you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity. You will be given a paper certificate that contains your name and address as well as the date of registration."
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eservices/info/europeanpermits",
+        "title": "EnterFinland : EU registration",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "EU registration: register an EU citizen's right of residence\n\nYou must apply for registration of your right of residence in Finland if you reside in Finland for over 3 months and are a citizen of an EU Member State, Liechtenstein or Switzerland.\n\nComplete the online application and pay the processing fee on Enter Finland. Visit a service point of the Finnish Immigration Service to prove your identity within 3 months of arriving in Finland. Please note that proving your identity at a Finnish mission abroad is not possible.\n\nChildren must be registered, too. Submit an application for each child who is an EU citizen. If a child is born to you in Finland, submit an application for the child within 3 months of the birth.\n\nNordic citizens (citizens of Denmark, Iceland, Norway or Sweden) must register their right of residence at the Digital and Population Data Services Agency.\n\nFamily members: residence cards and permanent residence cards for family members\n\nAre you a family member? If you are not an EU citizen or a citizen of Iceland, Liechtenstein, Norway or Switzerland but your family member is, you must apply for a residence card of a family member of an EU citizen if you reside in Finland for over 3 months.\n\nApply for your first residence card or for a permanent residence card with this application: Application for a residence card of a family member of an EU citizen. You can apply for a permanent residence card if you have legally resided in Finland with an EU citizen for an uninterrupted period of 5 years.\n\nThere is a separate application form for those who have, for instance, lost their card or changed their name and need to renew their card: Renewal of residence permit card or residence card of a family member of an EU citizen.\n\nPlease note that you cannot apply for a residence card of an EU citizen’s family member if your family member is a Finnish citizen and you have not lived together in another EU Member State before moving to Finland. Instead, you can apply for a residence permit on the basis of family ties. Before you apply, please make sure that you meet the permit requirements."
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://migri.fi/en/i-am-a-family-member-of-an-eu-citizen",
+        "title": "I am a family member of an EU citizen | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "# You need to apply for a residence card if you are not an EU citizen but are a family member of an EU citizen or of a citizen of Iceland, Liechtenstein, Norway or Switzerland\n\nThe following persons are considered to be family members of an EU citizen:\n\n- spouses and cohabiting partners\n\n- Persons living continuously in a marriage-like relationship in the same household, regardless of their sex, are comparable to cohabiting partners if \n\n- they have lived in the same household for at least two years or\n- they have a child in their joint custody or\n- there are other weighty reasons.\n- a child who is under 21 years of age or dependent on an EU citizen\n\n- The child must be under 21 years of age or dependent on an EU citizen or his/her spouse, and his/her direct descendant, for example a child or a grandchild.\n- dependent older relatives\n\n- A relative in a direct ascending line, for example a mother, a father or a grandparent, who is dependent on an EU citizen or his/her spouse.\n- his or her guardian, if the EU citizen is a minor\n- other relatives\n\n- Other relatives are treated as family members of EU citizens, regardless of their citizenship, if \n\n- the relative is, in the country of departure, dependent on an EU citizen who has the primary right of residence, or the relative lived in the same household with the EU citizen in question. Other relatives of an EU citizen’s spouse are not usually treated as the EU citizen’s family members.\n- or, serious health grounds absolutely require that the EU citizen in question must personally take care of the relative.\n\nIf you are a citizen of an EU Member State, Liechtenstein or Switzerland, you do not need a residence permit to stay in Finland."
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "title": "To do as soon as you arrive in Finland - Work in Finland - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "## Registering the right of residence of family members \n\nYour family members must register their stay or notify the authorities of their residence in Finland. If your family member is a \n\n- citizen of a Nordic country, they can request a personal identity code from the Digital and Population Data Services Agency. They do not have to register their right of residence with the Finnish Immigration Service.\n- citizen of an EU Member State or any other country, they must be in contact with the Finnish Immigration Service to manage their affairs. \n\nMore detailed instructions are available at:\n\n...\n\n- Complete the online form for each family member and you can also apply for a municipality of residence Opens in a new window..\n- Book an appointment at a service location of the Digital and Population Data Services Agency Opens in a new\n\n...\n\n### My family member is a citizen of an EU Member State, Liechtenstein or Switzerland\n\nYour family member must register their right of residence as EU citizens in the Enter Finland service Opens in a new window.. \n\nThey must visit the Finnish Immigration Service in person to prove their identity. Visit the Finnish Immigration Service together, if possible. Otherwise, book an appointment for the identification of the family members in the Finnish Immigration Service‘s appointment system Opens in a new window..\n\n### My family members are not citizens of Nordic countries, EU Member States, Liechtenstein or Switzerland\n\nYour family members do not need to apply for a residence permit. They must apply for the residence card of an EU citizen’s family member Opens in a new window.. \n\nYour family members must visit the Finnish Immigration Service in person to prove their identity. Visit the Finnish Immigration Service together, if possible. Otherwise, book an appointment for the identification of the family members in the Finnish Immigration Service‘s appointment system Opens in a new window.."
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eServices/info/europeancitizens",
+        "title": "EnterFinland : EU Citizens residence registration",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "Your right of residence in Finland can be registered once you meet the requirements for EU registration.\n\n...\n\nIf you are a family member of an EU citizen, apply for a residence card of a family member of an EU citizen.\n\n...\n\n- A valid passport or identity card.\n- When you apply for EU registration on the basis of work: your employment contract or some other document issued by your employer as proof of a valid employment relationship.\n- If you are self-employed, a document on your self-employment.\n- When you apply for EU registration on the basis of studies: a certificate of admission to a Finnish educational institution, a certificate of attendance from the educational institution, and an assurance from you of having sufficient financial resources.\n- When you apply for EU registration as a family member: a document that proves your family ties and documents confirming that the sponsor (your family member) meets the requirements for registration. Documents issued by a country that is not a Nordic country or an EU Member State must be legalised.\n- When you apply for EU registration on the basis of sufficient financial resources (other grounds): evidence of your means of support."
+        ],
+        "fetchedAt": "2026-11-14T14:11:59.511Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 11489,
+      "costUsd": 0.031670000000000004,
+      "cacheHit": false
+    }
+  }
+}

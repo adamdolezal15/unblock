@@ -108,7 +108,10 @@ function writeLetter(ctx: Ctx): Letter {
     const step = first ? state.steps[first] : undefined;
     const it = first ? sched.schedule.items[first] : undefined;
     if (step && it) {
-      headline.push({ t: `Start with the ${lowerFirst(ctx.short(first))} at ${who(step.authority)} on ${day(it.startDate)}: the longest chain of steps begins there.` });
+      // A short label that already names the office ("ID code at Vero") does not get it a second time.
+      const name = lowerFirst(ctx.short(first));
+      const at = name.toLowerCase().includes(`at ${step.authority.toLowerCase()}`) ? "" : ` at ${who(step.authority)}`;
+      headline.push({ t: `Start with the ${name}${at} on ${day(it.startDate)}: the longest chain of steps begins there.` });
       const applies = step.claims?.find((c) => c.kind === "applies")?.citation ?? step.citations[0];
       if (applies) headline.push({ ref: ctx.reg.ref(applies) });
     }

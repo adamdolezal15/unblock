@@ -1,4 +1,5 @@
-// npm run warm-demo               all demo sentences; demo-cache/ is REPLACED by exactly the entries they used
+// npm run warm-demo               all demo sentences + the invariant matrix (lib/eval/profiles.ts) + the parse inputs;
+//                                 demo-cache/ is REPLACED by exactly the entries they used
 // npm run warm-demo -- marta      only these sentences; their entries are ADDED, other sentences' entries kept
 // Runs the sentences (live where .cache misses) and copies the Exa and LLM cache entries they used into
 // demo-cache/ (tracked in git; the cache readers fall back to it). Same calls as the golden test and
@@ -18,6 +19,9 @@ import { parseProfile } from "../lib/agent/parseProfile";
 import { resetUsedCacheEntries, usedCacheEntries } from "../lib/cache/disk";
 import { DEMO_SENTENCES, type DemoKey } from "../lib/demo/sentences";
 import { exaStats, resetExaStats } from "../lib/exa/search";
+import { readEvents, runStream } from "../lib/agent/runStream";
+import { EVAL_PROFILES, EVAL_TODAY } from "../lib/eval/profiles";
+import { PARSE_CASES, PARSE_TODAY } from "../tests/parse/inputs";
 
 const OUT = path.join(process.cwd(), "demo-cache");
 const SUBDIR: Record<string, string> = { EXA_CACHE: "exa", LLM_CACHE: "llm" };
@@ -46,6 +50,19 @@ async function main() {
         `verified ${r.reports.reduce((n, x) => n + x.verified, 0)}  dropped ${r.dropped.length}  ` +
         `tips ${t.tips.length}  conflicts ${r.conflicts.length + c.conflicts.length}  step extractor $${cost.toFixed(3)}`,
     );
+  }
+
+  // A full refresh also keeps the invariant matrix (tests/golden/invariants.test.ts) offline.
+  if (!subset) {
+    for (const p of EVAL_PROFILES) {
+      let live = 0;
+      for await (const e of readEvents(runStream(p.text, { fast: true, persist: false, today: EVAL_TODAY, timeoutMs: 600_000 }))) {
+        if (e.type === "done") live = e.summary.calls.exaLive + e.summary.calls.llmLive;
+      }
+      console.log(`eval   ${p.key.padEnd(10)} ${live} live calls`);
+    }
+    // ...and the parse inputs (tests/parse, npm run parse-table), so the parser tests stay offline too.
+    for (const c of PARSE_CASES) await parseProfile(c.text, PARSE_TODAY);
   }
 
   const entries = usedCacheEntries();

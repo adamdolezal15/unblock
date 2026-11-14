@@ -1,0 +1,154 @@
+{
+  "fetchedAt": "2026-11-14T14:11:24.067Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Residence permit for a non-EU citizen moving to Finland for work: how to apply, residence permit card, identification visit",
+    "contextHash": "bc903833f1b9fc34",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "turku.fi",
+      "vero.fi"
+    ],
+    "docsHash": "cad60cfcec8071d6"
+  },
+  "response": {
+    "data": {
+      "title": "Residence permit for an employed person",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://migri.fi/en/faq-residence-permits",
+          "quote": "To be allowed to move to Finland for longer than 90 days, you need a residence permit."
+        },
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "Apply for a residence permit with this application if you are coming to Finland to work for a Finnish employer or other employer operating in Finland."
+        },
+        {
+          "kind": "mode",
+          "value": "either",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "If you cannot use Enter Finland, fill in a paper application."
+        },
+        {
+          "kind": "document",
+          "value": "Valid passport issued by your country of nationality",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "Show the passport when you visit a service point to prove your identity."
+        },
+        {
+          "kind": "document",
+          "value": "Passport photo (no more than 6 months old) or photograph retrieval code",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "The passport photo must be no more than 6 months old."
+        },
+        {
+          "kind": "document",
+          "value": "Document showing you are legally staying in the country where you submit the application (not needed for extended permit)",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "This document is not needed if you apply for an extended permit."
+        },
+        {
+          "kind": "document",
+          "value": "Terms of employment filled in by employer in Enter Finland for Employers",
+          "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+          "quote": "After you have submitted your application in Enter Finland, your employer must add your terms of employment and other required documents to your application using Enter Finland for Employers."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://migri.fi/en/identification",
+          "quote": "When you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person."
+        },
+        {
+          "kind": "processing_time",
+          "value": "See processing times on the Finnish Immigration Service website",
+          "url": "https://www.suomi.fi/guides/work-in-finland/before-finland/prepare-your-arrival",
+          "quote": "Check the processing times of residence permits on the website of the Finnish Immigration Service."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Without confirmed employment and a permit you cannot start working; first permit must be applied for abroad, otherwise decision usually negative",
+          "url": "https://migri.fi/en/faq-residence-permits",
+          "quote": "In contrast, if you apply for a residence permit on some other grounds while in Finland, the decision will usually be negative."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/faq-residence-permits",
+        "title": "Residence permits | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "### I wish to move to Finland. May a foreigner who is not an EU citizen or equivalent move to Finland?\n\nTo be allowed to move to Finland for longer than 90 days, you need a residence permit. As a rule, you must submit the application for a first residence permit abroad. A residence permit may be granted on certain grounds.\n\n- Residence permit applications\n\nIf you are not sure what application form you should use, use the Application Finder to find out.\n\n...\n\n### May I wait for the decision on my resident permit application in Finland if I am applying for a first residence permit and submit the application in Finland?\n\nUsually, an application for a first residence permit must be submitted outside Finland and you must also wait for the decision abroad. If you are granted a residence permit, you can get your residence permit card from a Finnish embassy or consulate. In some cases, you can get your residence permit card in Finland if you are applying for a D visa or using the fast-track service. \n\nYou can apply for a first residence permit in Finland in the following cases:\n\n- You are a family member of a Finnish citizen.\n- You are applying for a residence permit for a child born in Finland.\n- You are a victim of human trafficking.\n- You are a victim of labour exploitation.\n- You need a residence permit on a discretionary basis on humanitarian grounds.\n- You are applying for asylum or temporary protection.\n\nIn contrast, if you apply for a residence permit on some other grounds while in Finland, the decision will usually be negative. When making a decision, we\n\n...\n\n### I have applied for a residence permit in a Finnish embassy abroad. If I am granted a residence permit, can receive the decision and the residence permit card in Finland? Or in another Finnish embassy?\n\nYou cannot usually receive the decision and the residence permit card in Finland. You must wait for the decision abroad. In some cases, however, you can apply for a residence permit using the fast-track service or apply for a residence permit and a D visa and have the residence permit card delivered to Finland.\n\n...\n\n#### If you are an adult (over 18)\n\nYou must complete and submit your application yourself in the online service Enter Finland. If you wish to use a paper application, fill in the application form and submit it at a service point of the Finnish Immigration Service or at a Finnish mission (embassy or consulate) abroad.\n\n...\n\n### Can I submit my application by post?\n\nNo, you cannot. The application must be submitted in person. Submit your application at a Finnish mission (embassy or consulate) abroad before coming to Finland. If you are already in Finland, submit your application at a service point of the Finnish Immigration Service. It is possible to submit an online application through the online service Enter Finland."
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+        "title": "Residence permit for an employed person (TTOL) | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for a residence permit with this application if you are coming to Finland to work for a Finnish employer or other employer operating in Finland. A residence permit for an employed person is granted for the field of employment to which your job belongs. You must have confirmed employment before you can apply for this permit.\n\n...\n\nIf you apply for this permit as a first residence permit, you must submit the application abroad. Applications for an extended permit can only be submitted in Finland.\n\n...\n\nAdd the following attachments to your residence permit application: \n\nHave the attachments translated and legalised if needed.\n\n- A valid passport issued by your country of nationality. For more information, see the page Passports and other travel documents. Show the passport when you visit a service point to prove your identity.\n- A passport photo complying with the photo guidelines issued by the police, or a photograph retrieval code you received from a photo shop \n\n- The passport photo must be no more than 6 months old.\n- Colour copies of the passport page containing personal data and of all passport pages that contain notes\n- Document showing that you are legally staying in the country where you submit the application \n\n- This document is not needed if you apply for an extended permit. \n- Response to possible denial of admittance or stay and to entry ban (the form MP_1) \n\n- This form is needed only if you, for some reason, submit your residence permit application in Finland. Please note that an application for a first residence permit must usually be submitted abroad.\n- This form is not needed when you apply for an extended permit.\n\n...\n\n### Fill in the application:\n\n Fill in the application and add your documents \n\nYou can fill in the application online in Enter Finland. The fee for an online application is lower than for a paper application. If you apply for your first residence permit in Enter Finland, you might not need to visit a service point when you apply for an extended permit. Read more on the page Identification and strong identification in Enter Finland.\n\nIf you cannot use Enter Finland, fill in a paper application. You will find a link to the application at the bottom of the page.\n\n Pay for your application \n\nIf you apply online via the online service Enter Finland, pay the processing fee: \n\n- with a credit card or with Finnish online banking credentials when you submit the application, or\n- when you visit a Finnish mission abroad to prove your identity.\n\nIf you apply with a paper application, pay the processing fee:\n\n- when you visit a Finnish mission abroad to prove your identity.\n\n...\n\nAfter you have submitted your application in Enter Finland, your employer must add your terms of employment and other required documents to your application using Enter Finland for Employers. See the page Filling in the terms of employment to check what information your employer needs to fill in and which attachments are required.\n\n...\n\nProve your identity \n\nIf you applied for your residence permit abroad, book an appointment to visit a Finnish mission (finlandabroad.fi). Read more on the page Proving your identity abroad.\n\nIf you applied for your residence permit in Finland, book an appointment to a service point of the Finnish Immigration Service. Read more on the page Book an appointment at a service point."
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/before-finland/prepare-your-arrival",
+        "title": "Prepare your arrival in Finland - Work in Finland - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "## Apply for a residence permit for working\n\n1. Find out from the Application Finder of the Finnish Immigration Service what the right residence permit is. Opens in a new window.\n2. Apply for the residence permit in the Enter Finland service while you are still in the country of origin. Opens in a new window.\n3. Prove your identity in person at a Finnish diplomatic mission. You will need a valid passport for this. Make an appointment with a Finnish diplomatic mission. Opens in a new window.\n\nCheck the processing times of residence permits on the website of the Finnish Immigration Service. Opens in a new window.\n\n### What matters can the employer take care of on my behalf?\n\nYou have to apply for the residence permit yourself. When you apply for the permit in the Enter Finland service, your employer must fill in the employment conditions for your aplication via the Employer's Enter Finland e-service. Your employer can follow the status of your residence permit application in the online service of the Finnish Immigration Service. It may also pay the processing fee on your behalf. \n\nWhen you receive the residence permit, show your residence permit card to your employer."
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://migri.fi/en/identification",
+        "title": "Identification",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Identification means proving your identity. Using strong identification means that you prove your identity online with your online banking credentials, citizen certificate or mobile certificate. \n\nWhen you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person. Read more on the page Handling your matters at a Finnish mission. If you are in Finland and apply for your first permit, you must visit a service point of the Finnish Immigration Service to prove your identity.\n\n## When is a visit at a service point not required?\n\nA visit to a service point of the Finnish Immigration Service is not always required if you use online banking credentials or other form of strong identification in Enter Finland when you apply for\n\n- an extended permit;\n- a new residence permit card;\n- a new residence card; or\n- Finnish citizenship. \n\n- If you apply for citizenship for your children as well, you and your children will need to visit a service point to prove your identities.\n\nIn addition to using strong identification, you need to:\n\n- pay the processing fee in Enter Finland;\n- add to your application the photograph retrieval code for your digital passport photo; \n\n- The photograph retrieval code is not needed if you apply for Finnish citizenship. \n\nAfter you have submitted your application, Enter Finland will tell you whether you need to visit a service point or not.\n\n...\n\nLog in to the online service Enter Finland using your Finnish online banking credentials, citizen certificate or mobile certificate. Set strong identification as the login method for your old Enter Finland account. \n\n- You are using strong identification when you log in to the service using online banking credentials, mobile certificate or citizen certificate.\n\n...\n\n- In the main menu, select ‘My Account’.\n\n...\n\n- After you have logged in to the service using strong identification, your account is upgraded to an account that uses strong identification. From now on, when you log in to your Enter Finland account you must always use the strong identification method you selected (for instance, your online banking credentials).\n\n...\n\nAdd to your application the retrieval code for your digital passport photo that you received from the photo shop. Enter the retrieval code into the field ‘Passport photo’ on the first page of the online application form. \n\n- Remember to enter the retrieval code before submitting the application.\n- If you fail to add the retrieval code or if you add it only after submitting the application, you will have to visit a service point to prove your identity.\n- If you apply for citizenship, you do not need to attach a photograph retrieval code.\n- More information on how to attach your passport photo.\n\n...\n\nYou need to visit a Finnish Immigration Service service point within three months to verify your identity. At the same visit, you will show the official the original versions of the attachments to your application. You can find more detailed information on what you need to bring with you on the page Visiting a service point.\n\n...\n\n## Factors to take into account when you apply for a new residence permit card or residence card in Enter Finland:\n\n You can apply for a new residence permit card or residence card online in Enter Finland without needing to visit a service point if you apply for one of the following reasons: \n\n- Your card will expire soon.\n- Your card is lost or stolen.\n- Your card is so worn out that the information on it is unreadable.\n- You have a residence permit sticker on your passport and your passport is about to expire.\n\nTo avoid visiting a service point, you must \n\n- log in to your Enter Finland account using your online banking credentials, mobile certificate or citizen certificate \n- add to your application the photograph retrieval code for your digital passport photo, and \n- pay for the application. \n\nSee more detailed instructions on how to avoid visiting a service point."
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/checklist",
+        "title": "Checklist - Work in Finland - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "## Apply for a residence permit before coming to Finland\n\nYou will probably need a residence permit to work in Finland if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway or Switzerland.\n\nYou should submit your residence permit application to the Finnish Immigration Service in your country of origin: \n\n1. Select the right permit from the application guide of the Finnish Immigration Service Opens in a new window.. \n2. Submit your residence permit application in the Enter Finland service Opens in a new window. when you are still in your country of origin. \n3. You must prove your identity in person in the Finnish diplomatic mission Opens in a new window..\n\n...\n\n## You will need your passport or identity card and an insurance \n\nWhen you travel to Finland, you will need a valid passport or identity card. \n\nIt is a good idea to get a travel insurance that is valid for a few months after your arrival in Finland. If you have a European citizen's European Health Insurance Card, the card will also help you get treatment in Finland if the need is acute."
+        ],
+        "fetchedAt": "2026-11-14T14:11:18.542Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 5516,
+      "costUsd": 0.021642,
+      "cacheHit": false
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "fetchedAt": "2026-11-14T14:11:59.509Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Strong electronic identification (online banking codes)",
+    "contextHash": "be2decfa99fcb048",
+    "includeDomains": [],
+    "docsHash": "501c4d38b640877e"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.turku.fi/sites/default/files/document/iht-newcomer-s-guide-final-2025.pdf",
+        "title": "turku.fi",
+        "domain": "turku.fi",
+        "trust": "official",
+        "highlights": [
+          "Many official digital services in Finland require e-identification, which goes beyond the standard username and password"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.914Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/wp-content/uploads/newcomersguide.pdf",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "After opening an account with a Finnish bank, the bank will issue you a user ID"
+        ],
+        "fetchedAt": "2026-11-14T14:11:19.914Z"
+      },
+      {
+        "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+        "title": "poppankki.fi",
+        "domain": "poppankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+          "If you do not meet the requirements for a strong electronic means of identification, we can offer a more limited method of identification that works in the bank’s own payment services, but not in other online services",
+          "We process applications for basic banking services as quickly as possible and no later than within 10 banking days from the date on which all required information and documents have been received"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "nordea.fi",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "You can book an appointment at one of our branches to become a customer",
+          "To become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days",
+          "OP notes that the most common reason applications are delayed is incorrect or incomplete registration details, so it is worth double-checking that your name and address at DVV exactly match what you give the bank"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.691Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Done in this order, you avoid the most common failure mode: assuming the account and the codes arrive together, and being stuck unable to log in to public services for weeks",
+          "Ask at your appointment specifically when and how you will receive your codes"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.793Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking"
+        ],
+        "fetchedAt": "2026-11-14T14:11:40.691Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 3424,
+      "costUsd": 0.006647999999999999,
+      "cacheHit": false
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "fetchedAt": "2026-11-14T14:12:11.589Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "American software developer moving to Tampere in March, I already have a residence permit",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Tampere",
+      "arrival": {
+        "kind": "date",
+        "day": null,
+        "month": 3,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "American",
+          "citizenship": "NON_EU",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [
+        "residence_permit"
+      ],
+      "assumptions": [
+        "Software developer implies the purpose of the move is work."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2329,
+      "costUsd": 0.009767999999999999,
+      "cacheHit": false
+    }
+  }
+}

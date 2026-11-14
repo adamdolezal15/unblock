@@ -1,0 +1,85 @@
+{
+  "fetchedAt": "2026-11-14T14:11:19.570Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Registering as a resident in the Finnish Population Information System and getting a personal identity code after moving to Turku",
+    "objective": "Official pages on registering foreign residents in Finland (DVV), getting a Finnish personal identity code, municipality of residence and what you need to bring.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "turku.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "26574b55a4f7a6282eb59758a373c652",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.turku.fi/en/integration-services/moving-turku",
+        "title": "Moving to Turku | Turku.fi",
+        "url": "https://www.turku.fi/en/integration-services/moving-turku",
+        "highlights": [
+          "When you move to Turku, you can handle permit matters through the Finnish Immigration Service's Enter Finland online service or at a service point. You can register as a resident of Turku at the Digital and Population Data Services Agency. We have compiled information here about important services for those moving.\n\n...\n\n### Registering as a Resident\n\nWhen you move permanently to Turku, you need to register as a resident of the municipality at the Digital and Population Data Services Agency.\n\nSouthwest Finland Digital and Population Data Register, Turku Unit: \n\nItsenäisyydenaukio 2 P.O. Box 372 20101 TURKU\n\nWhen you go to the Digital and Population Data Services Agency, bring with you:\n\n- Identification (e.g., passport)\n- Residence permit and residence card (if you need a residence permit for Finland)\n- Certificate of registration of the right of residence (if you are an EU citizen)\n- Marriage certificate\n- Birth certificates of your children\n\nNote that foreign documents must be translated into Finnish, Swedish, or English and legalized.\n\nYou can find more information about the registration of foreigners in the population information system and the marking of the home municipality on the Digital and Population Data Services Agency's website.\n\nRegistration of a foreigner's personal data in the Population Information System\n\nPO Box 355, 20101 TURKU Phone (02) 330 000 Open Mon–Fri 9am–1pm turun.kaupunki@turku.fi firstname.lastname@turku.fi (etunimi.sukunimi@testi.fi)"
+        ],
+        "image": "https://www.turku.fi/sites/default/files/styles/og_image/public/image/muutto.png?h=d91475b6&itok=xe-zUJ4F"
+      },
+      {
+        "id": "https://dvv.fi/en/foreigner-registration",
+        "title": "Registration of a foreigner |             Digital and population data services agency",
+        "url": "https://dvv.fi/en/foreigner-registration",
+        "highlights": [
+          "## Who can get a personal identity code?\n\nYou can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as:\n\n- working in Finland and you have the right to work\n- studying in Finland\n- a family member who already has a registered address in Finland\n- a residence permit, residence card or registration certificate of an EU citizen´s right of residence, issued by the Finnish Immigration Service \n\n Do you already have a personal identity code? Click here for instructions. \n\nOnce you have received a Finnish personal identity code and your personal data have been registered into the Population Information System, you can focus on living in Finland. Notify us if your personal data changes or if you want to complete the registered information.\n\nReport us in the following situations:\n\n- You didn´t get a municipality of residence when you received a personal identity code or received a personal identity code from the Finnish Immigration Service or the Tax Administration. You can apply municipality of residence if the conditions for receiving this are met.\n- Your family relationships and marital status have not yet been registered or have changed.\n- Your address has changed.\n\n...\n\nRequest a personal identity code using the form and visit the Digital and Population Data Services Agency within 1 month of submitting the form. This allows us to register your personal data.\n\n## Do the following\n\n1. ### Request a personal identity code by filling out the online form\n\n- If you do not have a Finnish personal identity code, you can apply for a personal identity code and municipality of residense using this form. A municipality of residence may be granted if the conditions for this are met.\n- You can also request a personal identity code on the same form for your child who is under 18 and moving to Finland at the same time with you. Only one of the child's parents request the personal identity code for the child, so please submit only one request for the child.\n\nRequest a personal identity code by filling out the online form\n\nFilling out the form does not require authentication\n\n...\n\n### If required, fill out the forms on your family relationships\n\nYou must also present us with an official certificate showing the information (for example marriage or parenthood). Check if the document must be legalised or translated.\n\n...\n\n3. ### Book an appointment for a personal visit\n\nBook an appointment to the service \"Registration of a foreigner´s personal data\".\n\n- Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children.\n- If you are a student, first check with your educational institution or tutor, if they have booked a joint visit.\n\nSelect \"Book an appointment for one person\" when you are booking an appointment only for yourself. If there are 2-5 persons to be registered, \"Book an appointment for multiple people or a family\". If there are more than 5 persons, book two appointments. Give the names of all persons/your family members, who are coming to the appointment.\n\n...\n\nPlease bring with you the appropriate documents for your situation to your appointment:\n\n- a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino\n- a residence permit card or any other possible proof that you are residing legally in Finland\n- a certificate of registration of the right of residence for EU citizens\n- proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work)\n- if you are also requesting the registration of family relationships in addition to the personal identity code, bring completed forms and, if required, legalised and translated certificates.\n\n...\n\n## Processing time\n\n- Finnish identity code request (work, study) 2–3 weeks\n- Finnish identity code request (other) 3–4 weeks.\n- The processing time begins from the day of the visit."
+        ],
+        "image": "https://dvv.fi/documents/16079645/17654591/DVV-uutisen-placeholder-1600x900-logoton.png/7b8310ba-6768-95da-f82f-be5334e987bf?version=1.0&t=1787294131314&imagePreview=1"
+      },
+      {
+        "id": "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en",
+        "title": "Request a Finnish identity code and registration ...",
+        "url": "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en",
+        "highlights": [
+          "You can use this form to request the registration of your personal data in the Finnish population information system. You will receive a Finnish personal identity code when you register. The code is 11 characters long and its first six digits consist of your date of birth (DDMMYY). If you have a residence permit, it is likely that you already have received a personal identity code from the Finnish Immigration Service. Use the form only if you are a foreign citizen and do not yet have a Finnish personal identity code. \n\nDo as follows:\n\nFirst, read the conditions under which you can get an identity code.\n\nFill in this form and send it. \n\n- You can also request an identity code for your children moving to the same address in Finland at the same time. Persons over 18 years of age fill in and send their own form.\n- If the other parent of the child also requests an identity code at the same time, ask for an identity code for the child only on the form of one parent.\n\nYou will get detailed instructions from the confirmation email that you will receive after submitting the form.\n\nYou must also personally visit us after submitting the form. \n\n- Book an appointment and visit our service location with documents. You will see the detailed list from the booking confirmation.\n- If you requested a personal identity code for your children, they should also visit.\n\nAttach the following documents:\n\n- a picture of your valid travel document\n- a picture of your residence permit if you have one\n- a picture of your employment contract or study certificate if you work or study in Finland\n\n...\n\n| | Less than a year | At least one year. I do not want a Finnish municipality of residence | At least one year. I want a municipality of residence in Finland | I do not intend to live in Finland, but I need a Finnish personal identity code. I will notify a Finnish postal address. | I do not intend to live in Finland, but I need a Finnish personal identity code. |\n| --- | --- | --- | --- | --- | --- |\n| For how long are you planning to live in Finland?\n\n...\n\nPlease enter your address in the correct format so that we can register it. Enter the full address, including the apartment code (letter and number). Example of a specific address: Example street 10 B 17"
+        ]
+      },
+      {
+        "id": "https://dvv.fi/en/personal-identity-code",
+        "title": "Personal identity code | Digital and population data ...",
+        "url": "https://dvv.fi/en/personal-identity-code",
+        "highlights": [
+          "The personal identity code is a means of identification for individuals that is more specific than a name. Several people may have the exact same name but ... The personal identity code is meant to be permanent.\n\nThe personal identity code is used to identify persons in the registers and information systems of different authorities as well as in data communication between them.\n\n...\n\nA personal identity code is issued to a person who is registered in Finland’s Population Information System. Personal identity codes were introduced in Finland in the 1960s.\n\nParents of children born in Finland do not need to take any measures to obtain a personal identity code for the child. The hospital enters the necessary details of all births into the Population Information System, and when the child’s birth is registered, a personal identity code is issued to the child. \n\nFinnish citizens born abroad are issued a personal identity code after the Digital and Population Data Services Agency has registered the child in the Population Information System at the parents’ request. \n\nChildren adopted from abroad to Finland usually receive a personal identity code after arriving in Finland. However, children adopted from some countries will receive a personal identity code before they enter Finland.\n\nA personal identity code is issued to a foreign citizen moving to Finland from abroad after they have been registered in the Population Information System at their own request or at the time they are granted a residence permit.\n\nThe personal identity code is meant to be permanent. It can only be changed if a person’s date of birth or gender has been registered incorrectly or if the person is legally confirmed to be a different gender. Additionally, in very exceptional cases, the personal identity code can be changed to protect a person, if their health or safety is threatened, or if another person has repeatedly misused the original code.\n\n...\n\nThe personal identity code indicates the person's date of birth and the gender as recorded in the Population Information System. \n\nThe personal identity code does not contain any other personal data, such as the person’s nationality, municipality of residence or right of residence in Finland. You cannot prove your identity only by stating your personal identity code."
+        ],
+        "image": "https://dvv.fi/documents/16079645/17654591/DVV-uutisen-placeholder-1600x900-logoton.png/7b8310ba-6768-95da-f82f-be5334e987bf?version=1.0&t=1787294131314&imagePreview=1"
+      },
+      {
+        "id": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "title": "To do as soon as you arrive in Finland - Work in Finland - Suomi.fi",
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/to-do-soon",
+        "highlights": [
+          "If you are going to move to Finland temporarily and need a Finnish personal identity code, you can apply for it with an online form Opens in a new window. from the Digital and Population Data Services Agency. Your municipality of residence will still be in your home country. \n\nWhen visiting the Digital and Population Data Services Agency, bring with you the following documents:\n\n- a passport or a personal identity card,\n- your contract of employment, and\n\n...\n\n### If you apply for a personal identity code, book an appointment and fill in the online form beforehand\n\n...\n\n#### Request a Finnish identity code and registration of personal data via online form Digital and Population Data Services Agency Opens in a new window.\n\nYou can use this online form to request a Finnish identity code and registration of personal data.\n\nGo to the e-service Request a Finnish identity code and registration of personal data via online form Opens in a new window.\n\n## If you move to Finland for less than a year as a citizen of a Nordic country\n\nNotify the Digital and Population Data Services Agency that you are staying in Finland for more than six months. Visit a service location of the Digital and Population Data Services Agency for your identification within one month of your move. At the same time, you will be assigned a Finnish personal identity code, and your information will be registered in the Finnish population information system.\n\nBring with you:\n\n- a passport or a personal identity card,\n- your contract of employment, and\n- a filled-in foreigner registration form Opens in a new window. if you have not submitted an application online in advance.\n\nDuring the same visit, register your address in Finland. The address can be temporary or only used as a postal address. You cannot get a permanent address in Finland, if you live in Finland for less than one year. Your municipality of residence will still be in your home country.\n\n...\n\nIf you are going to live in Finland for more than six months, you must notify the Finnish authorities of your stay. Visit a service location of the Digital and Population Data Services Agency for your identification within one month of your move.\n\nAt the same time, you will be assigned a Finnish personal identity code. If you live in Finland for more than a year, you can also obtain a home municipality in Finland."
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      }
+    ],
+    "searchTime": 10.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

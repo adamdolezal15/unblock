@@ -1,0 +1,136 @@
+{
+  "fetchedAt": "2026-11-14T14:12:02.799Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Identity card for a foreigner living in Finland from the police: who can apply and what is needed",
+    "contextHash": "d93f42fdcc8af5e2",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "ouka.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "378228df846ccdba"
+  },
+  "response": {
+    "data": {
+      "title": "Foreigner's identity card from the police",
+      "claims": [
+        {
+          "kind": "requires",
+          "value": "dvv_registration",
+          "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+          "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered."
+        },
+        {
+          "kind": "requires",
+          "value": "eu_registration",
+          "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+          "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered."
+        },
+        {
+          "kind": "mode",
+          "value": "either",
+          "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+          "quote": "You can apply for a standard identity card online or by visiting the police station of your choice."
+        },
+        {
+          "kind": "document",
+          "value": "Valid passport or identity card (or, if neither, a valid residence permit card or residence card)",
+          "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+          "quote": "When applying for a foreigner’s identity card, you must present a valid passport or identity card."
+        },
+        {
+          "kind": "document",
+          "value": "One passport photograph taken no longer than 6 months earlier",
+          "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+          "quote": "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier."
+        },
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.suomi.fi/services/foreigners-identity-card-the-police/784cf477-b2b0-4799-8e86-c07a2b7d65b1",
+          "quote": "The police can issue identity cards to foreign citizens who reside in Finland permanently, whose details have been entered in the Population Information System, and who have a valid residence permit or residence card or whose right of residence has been registered."
+        },
+        {
+          "kind": "address",
+          "value": "Any police station of your choice, regardless of where you live",
+          "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+          "quote": "You can visit any police station you want regardless of where you live."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+        "title": "How to apply for an identity card - Police",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "You can apply for a standard identity card online or by visiting the police station of your choice. It is easiest to do this online.\n\n1. Have your passport photograph taken. The photography studio sends your passport photograph to the Police electronically. You will receive a photograph retrieval code as a text message or e-mail message for attaching the photograph to the application.\n2. Fill out the application in our online service. Attach the photograph retrieval code you have received to the application. Select delivery time and collection point. The system will tell you if you need to visit a police station. Pay the application fee online. You can also monitor the progress of your application online.\n3. Book an appointment with our online service if you need to visit a police station in order to apply. Remember to take your current passport or identity card with you if you have one.\n4. Pick up your new identity card from the collection point you chose when you receive the collection note.\n\nIf you cannot or do not want to submit the application online, you can also do so at a police station. Please note that submitting the application online is cheaper and quicker.\n\nOnline application forms are available for standard identity cards, a minor's identity card without travel right and a foreigner's identity card. You cannot apply for a temporary identity card online.\n\n...\n\nIdentity cards for Finnish citizens residing abroad are issued by Finnish missions abroad instead of the police. You can get more information on the network of missions and applying for an identity card abroad from the Ministry for Foreign Affairs. Using the police's online services from abroad is not prohibited, but it is not possible to complete the application process without visiting Finland.\n\nYou can submit an identity card application online from abroad if you can sign into the police’s online service using the Suomi.fi e-Identification service. You can use online banking identification, a mobile ID or your identity card’s Citizen Certificate in Suomi.fi.\n\nYou must attach a passport photograph to your online application. The photograph must be transferred to the police’s photograph server before this. Photography studios outside of Finland cannot submit photos to the server directly, but you can submit the photo you have received from the studio to the server using the Suomi.fi e-Identification service.\n\nWhen using the police's online services from abroad, please note that an online application may require you to visit a police station for identification. Finnish missions abroad do not have the necessary equipment for receiving or complementing online applications, so if you are asked to prove your identity by visiting a police station, you must do so in Finland.\n\n...\n\nThe Police online service or permit adviser will tell you if you need to go to the Police station for identification. Often, the visit is not necessary. Read here when the Police station visit is and is not necessary. The requirements of the visit vary by type of ID card because the contents of the cards also vary. In case of ID card for minors, a visit is always required.\n\nWhen you apply for an ID card online, you need not go to the Police station if\n\n- you have seen a processing officer for identification and you have had your fingerprints taken for a passport or ID card within the past 6 years.\n- when you were identified, you were at least 12 years of age.\n- your name is the same as in your previous passport or ID card.\n- the processing officer is able to establish that your new passport photo was taken from the same person as you previous passport photos.\n\nWhen you apply for a foreigner’s ID card online, you need not go to the Police station if\n\n- you have been identified by a processing officer for the purpose of a foreigner’s ID card within the past 6 years.\n- when you were identified, you were at least 12 years of age.\n- your name is the same as in your previous foreigner’s ID card.\n- the processing officer is able to establish that your new passport photo was taken from the same person as you previous passport photos.\n\nFor the two above card types, all four requirements must be fulfilled. In other words, it is not enough that you have once been identified at the Police station but it must have been done within the past six year. Correspondingly, the fingerprints must have been taken within the past six years if you apply for an ID accepted as a travel document.\n\nThis often means that you can get every second ID card without a visit to the Police station. The earlier ID card need not be in force when you apply for a new one. Several subsequent ID cards can be issued without a visit to the Police station if all requirements listed above are met and there is an appropriate reason for applying the ID cards more frequently.\n\nIf the requirements are not met: If the requirements listed above are not met, you can still make an online application but it will be processed only after you have been to the Police station for identification, giving new fingerprints if you apply for an ID card accepted as a travel document. The lower fee charged for online applications will still be valid even if you need to go to the Police station.\n\n...\n\n## At the police station\n\nPlace for service: You can visit any police station you want regardless of where you live. The only exception is the police service point at the Helsinki Airport, which only accepts emergency identity card applications from air passengers transiting through the airport. Police services are also available through mobile permit service units and at some joint service points.\n\nMaking appointments: To book an appointment, go to our online service or call the police helpline at +358 (0)295 419 800 (at standard call rates) from Monday to Friday between 8:00 and 16:15. You may also go to a police station without an appointment, but keep in mind that the waiting times may be long especially in the summer.\n\nVerifying your identity: At the police station, you will be asked to verify your identity using either your valid passport or identity card. If you don’t have either, the police can still verify your identity, but this will take some time. Bring your expired passport, identity card or driving licence, if you have one, and any other documents that you think could be used to verify your identity with you.\n\n...\n\nIf you have submitted an identity card application online and the system tells you that you need to visit a police station, please bring the following with you:\n\n- a previous passport or identity card. For more information, see section Verifying your identity.\n- any appendices the online system has instructed you to bring with you.\n\nIf you apply for an identity card at a police station without using the online service at all:\n\n- one passport photograph. For more information, see section Passport photograph.\n- a previous passport or identity card. For more information, see section Verifying your identity.\n- a bank card or cash. For more information, see Payments.\n- the consent of all guardians if you are applying for an identity card for a minor under the age of 18. If a guardian is not present at the police station, they can provide their consent in writing. For more information see section Identify card for a minor.\n- proof of conscript’s clearance, if you are a conscript between the ages of 23 and 30. For more information, see section Issuing identity cards to conscripts.\n\n...\n\nYou cannot apply for an identity card on behalf of someone else using a power of attorney. The person for whom you are applying an identity card must always be with you when you visit a police station. This includes situations when an online application cannot be completed without a visit to a police station for identification. Having someone assist you is allowed.\n\n...\n\n### Foreigner's identity card\n\nYou can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered. \n\nA foreigner’s identity card is issued for no longer than five years or until the expiry of the applicant’s residence permit or residence card, whichever is sooner. A foreigner’s identity card cannot be used as a travel document and can only be applied for from the police, not from a Finnish mission abroad.\n\nWhen applying for a foreigner’s identity card, you must present a valid passport or identity card. If you don’t have either of these, you must present a valid residence permit card or residence card. In such a case, the authority receiving the application can take your fingerprints and compare them with the fingerprints on the chip of the residence permit card or residence card to verify your identity."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/foreigners-identity-card-the-police/784cf477-b2b0-4799-8e86-c07a2b7d65b1",
+        "title": "Foreigner’s identity card - The Police - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "The police can issue identity cards to foreign citizens who reside in Finland permanently, whose details have been entered in the Population Information System, and who have a valid residence permit or residence card or whose right of residence has been registered. Additionally, it must be possible to verify the person’s identity reliably. A foreigner’s identity card is issued for a period of five ..."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+        "title": "Passport photographs - Police",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier. Almost all photography studios in Finland will send your photo directly to the police electronically.\n\nList of photography studios: For a list of photography studios which can send photos directly to the police, see the list of photography studios (in Finnish).\n\nPhotograph retrieval code: Once the photography studio has sent your photo to the police, you will receive a text message or email with your photograph retrieval code. Enter this code in your online identity card application. You can also use an electronic passport photograph at a police station by giving your code to the person handling passport applications.\n\n...\n\n### What happens if my photo is rejected? \n\nIf your photograph does not fulfil the requirements for a passport photograph, the licence official will ask you to complement your application with a photograph that fulfils the requirements. If this happens, you won’t need to pay the application fee again.\n\nThe quality of the photograph is assessed when the related identity card application is processed. The photographs are not inspected in advance."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://www.suomi.fi/instructions-and-support/identification/information-on-identification-tokens-used-in-suomi-fi-e-identification/using-an-id-card-issued-by-the-police-as-an-identification-token",
+        "title": "Using an ID card issued by the Police as an identification token - Instructions for Suomi.fi e-Identification - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "An ID card issued by the Police is a certificate card that can be used to verify your identity in e-services through the citizen certificate on the card's chip.\n\nAn ID card may be issued to\n\n- a Finnish citizen\n- a foreigner permanently residing in Finland who has been entered in the Finnish Population Information System and who has a valid residence permit or residence card or whose right of residence has been registered.\n\nInstructions for applying for an ID card:\n\n- ID card for a Finnish citizen\n- ID card for a foreigner who is permanently resident in Finland Opens in a new window.\n\nYou can use your ID card for identification after you have activated the citizen certificate. Instructions for activating the citizen certificate on the Digital and Population Data Services Agency's website Opens in a new window."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/wp-content/uploads/newcomersguide.pdf",
+        "title": "Newcomer’s Guide 6th corrected edition",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Why? \nA personal identity code is needed, for example, when dealing with different \nauthorities, opening a bank account, and paying wages. \nHaving a municipality of residence in Finland gives you access to local public \nservices such as daycare, schools, healthcare as well as public transport at a \nlower cost. Municipality of residence is also required if you want to get a Finnish \nidentity card or a driving license. \nWhat? \nYour personal identity code (henkilötunnus) is probably the most important piece\n\n...\n\nForeigner’s identity card\n\nThe Finnish police can issue identity cards to foreign citizens who reside in Finland permanently. The card can be handy, if you don’t want to use your passport to prove your identity. Driving licenses are not accepted as valid proof of identity in Finland. If you are a citizen of a non-EU/EEA country, banks in Finland usually require a Finnish identity card to issue strong electronic identification. You can apply for an identity card at a police station or through the police’s online services. Foreigner’s identity cards cannot be used as travel documents."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 4645,
+      "costUsd": 0.020366000000000002,
+      "cacheHit": false
+    }
+  }
+}
