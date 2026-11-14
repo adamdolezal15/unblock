@@ -137,7 +137,7 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
   }
 
   return (
-    <main className="mx-auto max-w-[1040px] px-6 pb-24">
+    <main className="mx-auto max-w-[1040px] px-4 pb-24 sm:px-6">
       <div className="pt-10">
         {state.profile && (
           <div className="mb-8">

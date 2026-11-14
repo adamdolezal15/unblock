@@ -229,7 +229,7 @@ function OptionalTag() {
 /** An optional step in the timeline: on the day it would be done, one line saying why it can be skipped. */
 function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
   return (
-    <article className="card px-5 py-4 sm:px-6">
+    <article className="card px-4 py-4 sm:px-6">
       {e.steps.map((s, i) => (
         <div key={s.id} className={i > 0 ? "mt-3" : ""}>
           <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -267,7 +267,7 @@ function Row({ entries, first, last, children }: { entries: DayEntry[]; first: b
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
   return (
-    <li className="grid grid-cols-[3rem_16px_minmax(0,1fr)] gap-x-3 sm:grid-cols-[4.5rem_16px_minmax(0,1fr)] sm:gap-x-5" data-end={end ? "" : undefined}>
+    <li className="grid grid-cols-[2.75rem_16px_minmax(0,1fr)] gap-x-2.5 sm:grid-cols-[4.5rem_16px_minmax(0,1fr)] sm:gap-x-5" data-end={end ? "" : undefined}>
       <div className="pt-[12px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
         <p aria-hidden className="daynum num font-display text-[28px] font-bold leading-none tracking-[-0.02em]">
           {dayNum}
@@ -544,7 +544,7 @@ function Details({ ctx, d }: { ctx: Ctx; d: DetailsData }) {
   const label = "text-muted";
 
   return (
-    <div className="space-y-6 border-t border-hairline px-5 py-5 sm:px-6">
+    <div className="space-y-6 border-t border-hairline px-4 py-5 sm:px-6">
       {bring.length > 0 && (
         <section>
           <h4 className="text-[13px] font-semibold text-muted">Bring</h4>
@@ -697,7 +697,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   if (!rest.length) {
     return (
       <article className="card overflow-hidden">
-        <div className="px-5 py-4 sm:px-6">
+        <div className="px-4 py-4 sm:px-6">
           {head}
           <div className="mt-1">
             <StepBody ctx={ctx} s={first} />
@@ -710,14 +710,14 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   }
   return (
     <article className="card">
-      <div className="px-5 pb-5 pt-4 sm:px-6">
+      <div className="px-4 pb-5 pt-4 sm:px-6">
         {head}
         <div className="mt-1">
           <StepBody ctx={ctx} s={first} />
         </div>
       </div>
       <div className="ticket-seam" aria-hidden />
-      <div className={`bg-stub px-5 pb-4 pt-5 sm:px-6 ${open ? "" : "rounded-b-[13px]"}`}>
+      <div className={`bg-stub px-4 pb-4 pt-5 sm:px-6 ${open ? "" : "rounded-b-[13px]"}`}>
         <div className="space-y-4">
           {rest.map((s) => (
             <div key={s.id}>
@@ -753,7 +753,7 @@ function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime on
   const visit = mode === "in_person" || (mode === "either" && /^your bank$/i.test(s.authority));
   return (
     <article className="card overflow-hidden">
-      <div className="px-5 py-4 sm:px-6">
+      <div className="px-4 py-4 sm:px-6">
         <OfficeLine ctx={ctx} office={s.authority} how={visit ? "in person" : "online"} steps={[s]} />
         <div className="mt-1">
           <StepBody ctx={ctx} s={s} />

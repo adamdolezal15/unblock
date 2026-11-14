@@ -76,7 +76,7 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
             <h1 className="relative isolate">
               <span className="block text-[13px] font-semibold uppercase leading-none tracking-[0.08em] text-muted">Set up by{fuzzy ? " about" : ""}</span>{" "}
               <DateRing />
-              <span className="num mt-2 block font-display text-[clamp(44px,6vw,56px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
+              <span className="num mt-2 block font-display text-[clamp(38px,4.6vw,56px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
                 <span className="text-accent">{dayMonth}</span>
                 {year && ` ${year}`}
               </span>
@@ -88,15 +88,19 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
             <Prose segs={doc.letter.headline.slice(1)} />
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <p className="num flex flex-wrap items-baseline text-[17px] font-semibold text-ink" title={metaTitle}>
+            <p className="num text-[17px] font-semibold text-ink" title={metaTitle}>
+              {/* Inline flow: a line breaks only between items (or before "than the usual order"), never after a dot. */}
               {meta.map((segs, i) => (
-                <span key={i} className={`whitespace-nowrap ${i === joined ? "ml-[0.3em]" : ""}`}>
-                  {i > 0 && i !== joined && <Sep />}
-                  <Prose segs={segs} />
+                <span key={i}>
+                  {i === joined && " "}
+                  <span className="whitespace-nowrap">
+                    {i > 0 && i !== joined && <Sep />}
+                    <Prose segs={segs} />
+                  </span>
                 </span>
               ))}
               {/* The key to the colour of the dates in the timeline and in Day by day. */}
-              <span className="mt-1 basis-full text-[15px] font-normal text-muted">Blue dates set your finish date.</span>
+              <span className="mt-1 block text-[15px] font-normal text-muted">Blue dates set your finish date.</span>
             </p>
             {icsUrl && (
               <a
