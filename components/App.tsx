@@ -6,6 +6,7 @@ import { buildLetter } from "@/lib/ui/letter";
 import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
+import { runProgress } from "@/lib/ui/progress";
 import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "./graph/PlanGraph";
 import { Hero } from "./Hero";
@@ -30,7 +31,8 @@ export function App() {
 
   return (
     <div className="min-h-screen">
-      <TopBar onEdit={() => reset(true)} onHome={() => reset(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined} />
+      <TopBar onEdit={() => reset(true)} onHome={() => reset(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
+        progress={state.phase === "running" ? runProgress(state).value : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />

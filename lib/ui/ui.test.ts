@@ -143,3 +143,24 @@ describe("profileParts", () => {
     ).toBe("You're an Indian citizen, working in Helsinki from 21 November. I assumed you are coming to work.");
   });
 });
+
+describe("runProgress", () => {
+  it("moves with the agent's own reported work and never claims done early", async () => {
+    const { runProgress } = await import("./progress");
+    let s = runReducer(initialRunState, { type: "start", text: "x", at: 0 });
+    const status = (message: string) => (s = runReducer(s, { type: "event", event: { type: "status", message }, at: 1 }));
+    const p0 = runProgress(s).value;
+    status("Searching official sources for Tax card…");
+    status("Searching official sources for Bank account…");
+    status("Extracting cited steps from 5 sources (vero.fi)…");
+    const p1 = runProgress(s).value;
+    status("Verifying 12 quotes against the source text…");
+    status("Extracting cited steps from 4 sources (op.fi)…");
+    const p2 = runProgress(s).value;
+    expect(p0).toBeLessThan(p1);
+    expect(p1).toBeLessThan(p2);
+    expect(p2).toBeLessThan(0.99);
+    s = runReducer(s, { type: "event", event: { type: "done", summary: {} as never }, at: 2 });
+    expect(runProgress(s).value).toBe(1);
+  });
+});

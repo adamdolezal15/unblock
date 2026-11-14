@@ -39,7 +39,7 @@ export function Hero({ state, doc, comparison }: { state: RunState; doc: LetterD
 
   return (
     <section className="rise text-center" aria-label="Your answer">
-      <h1 className="font-serif text-[52px] font-semibold leading-[1.05] tracking-[-0.02em] text-ink">
+      <h1 className="font-serif text-[44px] font-semibold leading-[1.1] tracking-[-0.015em] text-ink">
         {end ? (
           <>
             Set up by {fuzzy ? "about " : ""}
@@ -49,14 +49,15 @@ export function Hero({ state, doc, comparison }: { state: RunState; doc: LetterD
           "Your plan"
         )}
       </h1>
-      <p className="mx-auto mt-4 max-w-[34ch] font-serif text-[22px] leading-snug text-muted">
+      <p className="mx-auto mt-3 max-w-[38ch] font-serif text-[20px] leading-snug text-muted">
         <Prose segs={doc.letter.headline.slice(1)} />
       </p>
-      <ul className={`mx-auto mt-9 grid max-w-[880px] gap-3 ${tiles.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-3"}`}>
+      {/* One quiet strip of numbers: small serif figures, hairline dividers. */}
+      <ul className="mx-auto mt-8 inline-grid grid-flow-col divide-x divide-rule rounded-[12px] border border-rule bg-raised">
         {tiles.map((t, i) => (
-          <li key={i} title={t.title} className={`rounded-[12px] border bg-raised px-4 py-4 ${t.strong ? "border-accent/50" : "border-rule"}`}>
-            <p className={`num font-serif text-[38px] font-semibold leading-none ${t.strong ? "text-accent" : "text-ink"}`}>{t.value}</p>
-            <p className="mt-2 text-[14px] leading-snug text-muted">{t.caption}</p>
+          <li key={i} title={t.title} className="px-6 py-3 text-left">
+            <p className={`num font-serif text-[26px] font-semibold leading-none ${t.strong ? "text-accent" : "text-ink"}`}>{t.value}</p>
+            <p className="mt-1 max-w-[13ch] text-[14px] leading-tight text-muted">{t.caption}</p>
           </li>
         ))}
       </ul>
