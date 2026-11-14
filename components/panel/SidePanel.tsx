@@ -13,6 +13,7 @@ import { QuoteCard } from "../letter/QuoteCard";
 import { IconClose, MODE_LABEL } from "../icons";
 import { Help, Term } from "../Help";
 import { disagreeLabel } from "@/lib/ui/glossary";
+import { bookingHref } from "@/lib/calendar/bookingUrl";
 
 type Props = { state: RunState; doc: LetterDoc; selection: NonNullable<Selection>; onSelect: (s: Selection) => void };
 
@@ -244,8 +245,8 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
                 <div key={f.label + f.value}>
                   <dt className="text-[15px] text-muted">{f.label}</dt>
                   <dd className="text-ink">
-                    {f.label === "Booking" ? (
-                      <a href={f.value.startsWith("http") ? f.value : `https://${f.value}`} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 underline-offset-2">
+                    {f.label === "Booking" && bookingHref(f.value) ? (
+                      <a href={bookingHref(f.value)!} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 underline-offset-2">
                         {f.value}
                       </a>
                     ) : (

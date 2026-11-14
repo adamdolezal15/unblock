@@ -251,3 +251,14 @@ describe("eventsFromSchedule", () => {
     expect(eventsFromSchedule(cyc, schedule(buildGraph(cyc), {}, { today: "2026-08-03" }))).toEqual([]);
   });
 });
+
+describe("bookingHref", () => {
+  it("links only link-shaped values, never an instruction", async () => {
+    const { bookingHref } = await import("./bookingUrl");
+    expect(bookingHref("migri.vihta.com")).toBe("https://migri.vihta.com/");
+    expect(bookingHref("https://www.vero.fi/en/contact/book")).toBe("https://www.vero.fi/en/contact/book");
+    expect(bookingHref("call the Tax Administration telephone service 029 497 010 (+358 29 497 010 from abroad) to book an appointment")).toBeNull();
+    expect(bookingHref("Book online")).toBeNull();
+    expect(bookingHref("")).toBeNull();
+  });
+});

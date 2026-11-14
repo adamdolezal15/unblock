@@ -5,6 +5,7 @@
 // "Needs a personal identity code" points at the personal_identity_code milestone, which any step
 // with a verified `provides` claim can satisfy (an any-of group in lib/graph).
 import { cityDomains, officialDomains, PROVIDER, TRUST_RANK, UNIVERSITY } from "../exa/domains";
+import { bookingHref } from "../calendar/bookingUrl";
 import { searchOfficial, searchProvider } from "../exa/search";
 import { extract } from "../llm";
 import { extractStepContext, extractStepTask, StepExtraction } from "../prompts/extractStep";
@@ -115,7 +116,8 @@ function mergeStep(
   const documents = all("document");
   const address = first("address");
   const hours = first("hours");
-  const bookingUrl = first("booking_url");
+  // Prefer a link-shaped booking value; an instruction ("call ... to book") is kept only if there is no link.
+  const bookingUrl = all("booking_url").find((v) => bookingHref(v)) ?? first("booking_url");
   const visitPack =
     documents.length || address || hours || bookingUrl
       ? { documents, ...(address ? { address } : {}), ...(hours ? { hours } : {}), ...(bookingUrl ? { bookingUrl } : {}) }

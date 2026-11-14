@@ -8,6 +8,7 @@ import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
 import { edgeEvidence, stepFacts, unblocks, type Fact } from "./panel";
 import { nodeLabel } from "./graphLayout";
+import { bookingHref } from "@/lib/calendar/bookingUrl";
 
 export type DayStep = {
   id: string;
@@ -29,7 +30,8 @@ export type VisitEntry = {
   address?: { value: string; ref: Ref };
   steps: DayStep[];
   bring: { value: string; ref: Ref }[];
-  booking?: { url: string; ref: Ref };
+  /** A link when the source gives one; otherwise the source's booking instruction as text. */
+  booking?: { url?: string; text: string; ref: Ref };
   calendarUrl?: string;
   /** Tip reminders for this visit (from people who did it). */
   tips: { text: string; ref?: Ref }[];
@@ -125,7 +127,8 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
     const facts = members.map((m) => stepFacts(state.steps[m]));
     const pick = (f: Fact | undefined) => (f ? { value: f.value, ref: ref(f.citation) } : undefined);
     const address = pick(facts.flatMap((f) => f.visit).find((f) => f.label === "Where"));
-    const bookingFact = facts.flatMap((f) => f.visit).find((f) => f.label === "Booking");
+    const bookings = facts.flatMap((f) => f.visit).filter((f) => f.label === "Booking");
+    const bookingFact = bookings.find((f) => bookingHref(f.value)) ?? bookings[0];
     const bring = facts
       .flatMap((f) => f.documents)
       .filter((d, i, all) => all.findIndex((x) => x.value === d.value) === i)
@@ -138,7 +141,9 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
       ...(address ? { address } : {}),
       steps: members.map(dayStep),
       bring,
-      ...(bookingFact ? { booking: { url: bookingFact.value.startsWith("http") ? bookingFact.value : `https://${bookingFact.value}`, ref: ref(bookingFact.citation) } } : {}),
+      ...(bookingFact
+        ? { booking: { ...(bookingHref(bookingFact.value) ? { url: bookingHref(bookingFact.value)! } : {}), text: bookingFact.value, ref: ref(bookingFact.citation) } }
+        : {}),
       ...(event ? { calendarUrl: event.googleTemplateUrl } : {}),
       tips: [],
     });

@@ -1,4 +1,5 @@
 import type { Step } from "../types";
+import { bookingHref } from "./bookingUrl";
 import type { Schedule } from "../graph/types";
 import type { CalEvent } from "./types";
 import { visitPackText } from "./visitPack";
@@ -30,7 +31,7 @@ export function eventsFromSchedule(steps: Step[], sched: Schedule): CalEvent[] {
       durationMinutes: VISIT_MINUTES,
       details: visitPackText(step, { unblocks, estimated: item.estimated }),
       location: step.visitPack?.address,
-      url: step.visitPack?.bookingUrl,
+      ...(bookingHref(step.visitPack?.bookingUrl) ? { url: bookingHref(step.visitPack?.bookingUrl)! } : {}),
       estimated: item.estimated,
     });
 
