@@ -40,3 +40,15 @@ Marta (clean `?demo=marta`): Vero shortcut, 5 visits, 15 days sooner (guarded by
 
 ## Screenshots (`docs/morning/`)
 marta-1440.png, marta-390-header.png, marta-390-timeline.png, empty-1440.png, empty-390.png, map-1440.png, activity-1440.png, india-390.png.
+
+## Redesign (result page, presentation only)
+Revert everything: `git checkout before-redesign` (tag pushed). No changes in lib/agent, lib/exa, lib/graph, demo-cache or any test. Every step green on `npm test` (620) + `npm run build`.
+1. **412665b** Inter body + Space Grotesk headings and date numbers; tokens for rail/dot/stub/amber text; header two columns from 860px.
+2. **74b78c3** Day by day: grey rail fills blue on scroll, hollow dots fill when reached (current 16px with ring, finish green; reduced motion / phones = all filled). Cards: office line, title, one line, action + Details. Details: Bring grid (max 6), Book / Then / calendar line, one key quote + source chips + All quotes, community tips collapsed (the only place they appear). Merged visit = one ticket (dashed seam, notches). "Heads up" removed: the money line is on the tax card, "sources disagree" on its own step (generic: each warning on the step it concerns).
+3. **94dd879** Anytime panel with icon tiles and "from 7 Dec" pills.
+4. **35700e8** Ready to send: two quiet lists (Official forms; Emails and notes), Read · Copy · Open in email.
+5. **a36eabb** One footer row: counts left; Make it more accurate / Watch this plan / All N sources open under it. The header's "how" opens the activity log there.
+6. **f7a0ac3** Visual pass at 1440x900, 880 and 390x844 (16px phone gutters); all four demos without horizontal scroll.
+
+Deviation: the footer says "90 verified quotes, each checked word for word", not "90 quotes checked word for word". `tests/ui/counts.test.tsx` forbids the old "quotes checked" wording and needs "verified quotes", and test expectations were off limits.
+Fonts changed site-wide (also on the landing page), since they come from the root layout.
