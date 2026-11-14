@@ -30,6 +30,14 @@ Other scripts: `npm test`, `npm run warm-demo` (refresh the demo cache with live
 
 A fourth sentence, "Vietnamese nurse moving to Oulu in February", is not on the landing page. It is the golden test for the non-EU rules (permit applied for before travelling, identity code with the permit, police identification).
 
+## Keep watching it (Exa Monitors)
+
+After a plan, "Watch for changes" creates one weekly Exa monitor per key official page of the plan (DVV, Vero, Kela, Migri, police), each scoped with `includeDomains` to that authority. Only on a click, never for a cached demo run on its own, and refused when the server runs offline (`EXA_CACHE=read`). Exa runs return only results earlier runs did not, so what the first run finds is the baseline and later results appear as "Changed since your plan".
+
+- With a public URL, set `MONITOR_WEBHOOK_URL=https://<your-tunnel>` in `.env.local`. Exa posts to `/api/monitors/webhook`, which checks the `Exa-Signature` header against the monitor's secret before storing anything.
+- On localhost there is no public URL: use "Check now", which triggers a run and polls it. Results are stored per plan in `.cache/monitors/` (the webhook secrets stay there, never in the browser).
+- `npx tsx scripts/monitors-smoke.ts` creates one monitor, triggers it, prints the result and deletes it.
+
 ## Architecture
 
 - `lib/exa`: every Exa call (search, contents), the official-domain lists, and the disk cache (`EXA_CACHE=read|write|off`).

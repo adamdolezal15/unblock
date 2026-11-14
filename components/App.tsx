@@ -17,6 +17,7 @@ import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { ErrorState, OutOfScopeState, PartialNotice } from "./States";
 import { Landing } from "./Landing";
+import { Watch } from "./Watch";
 import { SidePanel } from "./panel/SidePanel";
 import { TopBar } from "./TopBar";
 import { DayByDay } from "./views/DayByDay";
@@ -98,6 +99,11 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
         )}
         <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} />
         {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
+        {state.phase === "done" && state.summary?.runId && (
+          <div className="mt-8">
+            <Watch key={state.summary.runId} runId={state.summary.runId} />
+          </div>
+        )}
       </div>
 
       <div className="mt-16">
