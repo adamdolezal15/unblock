@@ -2,6 +2,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useRailProgress } from "../motion/useRailProgress";
 import { PulseOnView } from "../motion/PulseOnView";
+import { JourneyCompass } from "../motion/JourneyCompass";
 import type { LetterDoc, Ref, Seg } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
@@ -52,6 +53,8 @@ type Props = {
   onSources: (id: string) => void;
   extra?: React.ReactNode;
   shortcut?: (id: string) => React.ReactNode;
+  /** Show the floating journey compass (Day by day tab only). */
+  compass?: boolean;
 };
 type Ctx = {
   state: RunState;
@@ -62,7 +65,7 @@ type Ctx = {
 };
 
 /** The plan as you would live it: a timeline of visit cards, online steps on their day, waits on the rail. */
-export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
+export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut, compass }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
   const drafts = useDrafts(state);
@@ -104,6 +107,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
           </Row>
         ))}
       </ol>
+      {compass && <JourneyCompass rail={rail} deps={entries} />}
       {anytime.length > 0 && <AnytimeOnline ctx={ctx} entries={anytime} />}
       {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
       <ReadyToSend drafts={drafts} forms={forms} />
@@ -200,7 +204,11 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
   return (
-    <li className="grid grid-cols-[3.5rem_24px_minmax(0,1fr)] gap-x-2 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)] sm:gap-x-3">
+    <li
+      data-date={entry.date}
+      data-visit={kinds.has("visit") ? entries.filter((x) => x.kind === "visit").length : undefined}
+      data-done={kinds.has("done") ? "" : undefined}
+      className="grid grid-cols-[3.5rem_24px_minmax(0,1fr)] gap-x-2 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)] sm:gap-x-3">
       <div className="num pt-[14px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
         <p aria-hidden className={`text-[28px] font-extrabold leading-none tracking-[-0.02em] ${critical || kinds.has("done") ? "text-accent" : "text-ink"}`}>
           {dayNum}

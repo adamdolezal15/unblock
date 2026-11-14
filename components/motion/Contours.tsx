@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { onScrollFrame } from "@/lib/ui/scrollMotion";
 import { HERO_DEEP, HERO_LAKES, lakeRings, MOBILE_LAKES, RESULT_LAKES, ringPath } from "@/lib/ui/contours";
-import { C, DIAMOND, STATION } from "../line/spec";
+import { C } from "../line/spec";
 import { useMotionAllowed } from "./useMotionAllowed";
 
 // Precomputed once: the same strings on the server and in the browser.
@@ -10,23 +10,6 @@ const HERO = HERO_LAKES.flatMap(lakeRings);
 const HERO_FILL = ringPath(HERO_DEEP, HERO_DEEP.rings - 1);
 const RESULT = RESULT_LAKES.flatMap(lakeRings);
 const MOBILE = MOBILE_LAKES.flatMap(lakeRings);
-
-/**
- * The route between the two east lakes, ending at the right edge of the input card: the logo's ink dots
- * and its blue diamond, 1.5px at 25%. Static.
- */
-function Route() {
-  const r = STATION.r * 0.7;
-  const s = DIAMOND.size * 1.1;
-  return (
-    <g opacity={0.25}>
-      <path d="M1150 150C1150 250 1108 300 1110 362C1112 424 1100 470 1074 484" stroke={C.ink} strokeWidth={1.5} fill="none" />
-      <circle cx={1150} cy={150} r={r} fill={C.ink} />
-      <rect x={1110 - s / 2} y={362 - s / 2} width={s} height={s} transform="rotate(45 1110 362)" fill={C.paper} stroke={C.blue} strokeWidth={1.5} />
-      <circle cx={1074} cy={484} r={r} fill={C.ink} />
-    </g>
-  );
-}
 
 /**
  * Lake contours fixed behind the page, with slow scroll parallax (0.08) and, on the homepage, a 40 s ambient
@@ -66,7 +49,6 @@ export function Contours({ variant }: { variant: "hero" | "result" }) {
             <path key={i} d={d} vectorEffect="non-scaling-stroke" />
           ))}
         </g>
-        {hero && <Route />}
       </svg>
       {/* below 640px: static, four rings, half opacity */}
       <svg className="absolute inset-0 h-full w-full sm:hidden" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" fill="none">

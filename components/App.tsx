@@ -198,6 +198,7 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
               doc={doc}
               onOpen={openStep}
               onSources={openSources}
+              compass
               shortcut={(id) => {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 // A tag only: the answer above already says what the shortcut gains.
