@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { mailtoHref, type DraftOffer } from "@/lib/agent/draftOffers";
 import type { DraftsApi } from "@/lib/ui/useDrafts";
+import type { Step, StepForm } from "@/lib/types";
+import type { FormLine } from "@/lib/ui/forms";
+import { FormRow, SuggestFill } from "../FormRow";
 import { IconExternal } from "../icons";
 
 const primary =
@@ -91,8 +94,8 @@ function DraftCard({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) 
 }
 
 /** "Ready to send": the one place drafts are shown, under the plan. */
-export function ReadyToSend({ drafts }: { drafts: DraftsApi }) {
-  if (!drafts.offers.length) return null;
+export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[] }) {
+  if (!drafts.offers.length && !forms.length) return null;
   return (
     <section aria-label="Ready to send" className="mt-14 border-t border-rule pt-8">
       <h2 className="text-[22px] font-bold text-ink">Ready to send</h2>
@@ -102,6 +105,20 @@ export function ReadyToSend({ drafts }: { drafts: DraftsApi }) {
           <DraftCard key={o.id} offer={o} drafts={drafts} />
         ))}
       </div>
+      {forms.length > 0 && (
+        <div className="mt-8" aria-label="Official forms">
+          <h3 className="text-[18px] font-bold text-ink">Official forms</h3>
+          <ul className="mt-3 space-y-3">
+            {forms.map((f) => (
+              <li key={f.form.id} className="text-[16px] leading-snug text-ink">
+                <FormRow line={f.line} />
+                <span className="block text-[14px] text-muted">For {f.steps.map((s) => s.title).join(" and ")}</span>
+                <SuggestFill />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

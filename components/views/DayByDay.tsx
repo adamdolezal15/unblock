@@ -10,6 +10,8 @@ import { Term } from "../Help";
 import { Marker } from "../line/Marker";
 import { mainLegs } from "../line/legs";
 import { DraftLink, ReadyToSend } from "../drafts/DraftCard";
+import { FormRow } from "../FormRow";
+import { allForms, formLine } from "@/lib/ui/forms";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
 import { IconCalendar, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
 
@@ -41,6 +43,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
   const drafts = useDrafts(state);
+  const forms = useMemo(() => allForms(state).map((f) => ({ ...f, line: formLine(f.form, doc.ref) })), [state, doc]);
   const fallback = fallbackSteps(state);
   if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
   if (!state.schedule) return <DaysSkeleton />;
@@ -68,7 +71,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
           </Row>
         ))}
       </ol>
-      <ReadyToSend drafts={drafts} />
+      <ReadyToSend drafts={drafts} forms={forms} />
       {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
     </section>
   );
@@ -209,6 +212,11 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
       {(s.noSource || s.whyNow.length > 0) && (
         <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
       )}
+      {s.forms.map((f) => (
+        <p key={f.form.id} className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-ink">
+          <FormRow line={f} />
+        </p>
+      ))}
       {ctx.drafts?.forStep(s.id).map((o) => <DraftLink key={o.id} offer={o} drafts={ctx.drafts!} />)}
     </>
   );
@@ -364,10 +372,18 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
 
       {open && (
         <div className="grid gap-x-8 gap-y-5 border-t border-rule px-5 py-4 sm:grid-cols-2">
-          {e.bring.length > 0 && (
+          {(e.bring.length > 0 || e.forms.length > 0) && (
             <section>
               <p className="text-[14px] font-semibold text-muted">Bring</p>
               <ul className="mt-1.5 space-y-1.5 text-[16px] leading-snug text-ink">
+                {e.forms.map((f) => (
+                  <li key={f.form.id} className="flex gap-2.5">
+                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
+                    <span>
+                      <FormRow line={f} />
+                    </span>
+                  </li>
+                ))}
                 {e.bring.map((b) => (
                   <li key={b.value} className="flex gap-2.5">
                     <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />

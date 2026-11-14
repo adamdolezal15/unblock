@@ -35,6 +35,7 @@ export const INVARIANTS = {
   optional: "short study stay: everyday steps optional unless a source says must; optional steps never in the dates, path or counts",
   waits: "a processing time is the step's own, not the wait for another step's result",
   venue: "a check-in event for a step is shown on its card; its date only when it fits the arrival",
+  forms: "a form is shown only with a verified sentence naming it and an official link from the page; never a guessed URL",
   coverage: "a profile feature the pipeline does not handle well gets the amber note with an official link; a covered profile gets none",
 } as const;
 
@@ -125,6 +126,14 @@ export function checkInvariants(state: RunState): Violation[] {
       if (!/^https:\/\/(www\.)?[a-z]+\.fi\b/.test(note.link.url)) add("coverage", `link is not an official Finnish site: ${note.link.url}`);
       if (!coverageSentence(note).startsWith("Some parts of your situation aren't covered yet: ")) add("coverage", "wrong sentence");
     }
+  }
+
+  // --- forms: shown only with a sentence that names the form, and an official https link if any
+  for (const s of steps) for (const f of s.forms ?? []) {
+    if (blank(f.citation.quote) || !f.citation.quote.toLowerCase().includes(f.id.toLowerCase())) add("forms", `${s.id}: form ${f.id} has no sentence naming it`);
+    if (f.url && !f.url.startsWith("https://")) add("forms", `${s.id}: form ${f.id} link is not https`);
+    if (f.url && f.citation.trust !== "official") add("forms", `${s.id}: form ${f.id} not from an official page`);
+    if (!f.url && f.type) add("forms", `${s.id}: form ${f.id} has a type but no link`);
   }
 
   // --- cited: each step card shows a footnoted sentence or says there is no source

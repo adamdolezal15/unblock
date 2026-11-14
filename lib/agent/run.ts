@@ -11,9 +11,10 @@ import { plural } from "../ui/format";
 import { buildGraph, criticalNode, topoOrder } from "../graph";
 import { planCounts, schedulePlan } from "../refine/plan";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
-import type { Actor, Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
+import type { Actor, Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepForm, StepStub, StreamCalEvent, Tip, Trust } from "../types";
 import { detectConflicts } from "./detectConflicts";
 import { attachTips, findCommunityTips, tipTargets, type FindTipsResult } from "./findCommunityTips";
+import { findForms } from "./forms";
 import { findSteps, type FindStepsResult } from "./findSteps";
 import { parseProfile } from "./parseProfile";
 import { partnerDifferences } from "./partnerSteps";
@@ -221,9 +222,19 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     found.conflicts.forEach(addConflict);
 
     // Tips and the conflict check for steps that get no tips start now; the graph needs neither.
+    const formsP = findForms(found.steps, profile.city, onProgress).catch(() => new Map<string, StepForm[]>());
     const targets = new Set(tipTargets(found.steps).map((x) => x.id));
     const tipsP = findCommunityTips(profile, found.steps, { onProgress, ...(opts.today ? { today: opts.today } : {}) });
     const conflictsA = conflictBatch(found.steps.filter((x) => !targets.has(x.id) && !x.derived), []);
+    // Official forms (looked up while tips run): attached in place and each changed step re-sent (step events are upserts), before the graph.
+    const forms = await until(formsP, signal);
+    for (const step of found.steps) {
+      const f = forms.get(step.id);
+      if (!f) continue;
+      step.forms = f;
+      s.stepMap.set(step.id, step);
+      emit({ type: "step", step });
+    }
     sendGraph(found.steps);
 
     try {

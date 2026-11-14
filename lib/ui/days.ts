@@ -11,6 +11,7 @@ import { edgeEvidence, needs, stepFacts, unblocks, type Fact } from "./panel";
 import { nodeLabel } from "./labels";
 import { bookingHref } from "@/lib/calendar/bookingUrl";
 import { venueMonth } from "@/lib/agent/valueFormats";
+import { formLine, type FormLine } from "./forms";
 
 export type DayStep = {
   id: string;
@@ -21,6 +22,8 @@ export type DayStep = {
   /** One sentence, with a footnote. */
   whyNow: Seg[];
   unlocks: string[];
+  /** Official forms this step asks for, each with its footnote. */
+  forms: FormLine[];
   /** True when no verified quote backs this step at all. */
   noSource: boolean;
   wait?: Seg[];
@@ -37,6 +40,8 @@ export type VisitEntry = {
   address?: { value: string; ref: Ref };
   steps: DayStep[];
   bring: { value: string; ref: Ref }[];
+  /** Official forms for this visit (its steps' forms, once each). */
+  forms: FormLine[];
   /** Distinct source pages behind the Bring list and behind the visit details (address, booking). */
   sources: { bring: number; visit: number };
   /** A link when the source gives one; otherwise the source's booking instruction as text. */
@@ -172,6 +177,7 @@ function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]
       short: name(id),
       critical: critical.has(id),
       whyNow,
+      forms: (step.forms ?? []).map((f) => formLine(f, ref)),
       unlocks,
       noSource,
       wait,
@@ -209,6 +215,7 @@ function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]
       ...(address ? { address } : {}),
       steps: members.map(dayStep),
       bring,
+      forms: members.flatMap((m) => state.steps[m].forms ?? []).filter((f, i, all) => all.findIndex((x) => x.id === f.id) === i).map((f) => formLine(f, ref)),
       ...(bookingFact
         ? { booking: { ...(bookingHref(bookingFact.value) ? { url: bookingHref(bookingFact.value)! } : {}), text: bookingFact.value, ref: ref(bookingFact.citation) } }
         : {}),
@@ -216,7 +223,7 @@ function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]
       ...(venue ? { venue } : {}),
       tips: [],
       sources: {
-        bring: new Set(bring.map((b) => b.ref.citation.url)).size,
+        bring: new Set([...bring.map((b) => b.ref.citation.url), ...members.flatMap((m) => (state.steps[m].forms ?? []).map((f) => f.citation.url))]).size,
         visit: new Set([address?.ref.citation.url, bookingFact?.citation.url].filter(Boolean)).size,
       },
     });

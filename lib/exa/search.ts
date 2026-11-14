@@ -130,6 +130,7 @@ export type RawResult = {
   author?: string;
   highlights?: string[];
   text?: string;
+  extras?: { links?: string[] };
 };
 export type RawGrounding = {
   field: string;
@@ -192,6 +193,7 @@ function toDocs(response: RawSearchResponse, fetchedAt: string, extraOfficial: s
     trust: trustOf(r.url, extraOfficial),
     highlights: r.highlights ?? [],
     text: r.text,
+    ...(r.extras?.links ? { links: r.extras.links } : {}),
     publishedDate: r.publishedDate,
     fetchedAt,
   }));
@@ -292,13 +294,14 @@ export async function searchCommunity(args: {
  */
 export async function getPages(
   urls: string[],
-  opts: { maxCharacters?: number; subpages?: number; subpageTarget?: string | string[]; extraOfficial?: string[] } = {},
+  opts: { maxCharacters?: number; subpages?: number; subpageTarget?: string | string[]; extraOfficial?: string[]; /** Ask Exa for the links on each page (ExaDoc.links). */ links?: number } = {},
 ): Promise<{ docs: ExaDoc[]; meta: SearchMeta }> {
   const maxCharacters = opts.maxCharacters ?? 20_000;
   const options = {
     text: { maxCharacters },
     ...(opts.subpages ? { subpages: opts.subpages } : {}),
     ...(opts.subpageTarget ? { subpageTarget: opts.subpageTarget } : {}),
+    ...(opts.links ? { extras: { links: opts.links } } : {}),
   };
   const r = await cached<RawSearchResponse>(
     { endpoint: "contents", urls: [...urls].sort(), ...options },

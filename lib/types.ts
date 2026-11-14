@@ -37,6 +37,20 @@ export type CommunityTip = Citation & {
   remindAt?: string;
 };
 
+/** An official form a step asks for. Shown only with a verified sentence (citation) that says it is needed. */
+export type StepForm = {
+  /** Form number or code as the page writes it ("6150e"), or the name when the page gives none. */
+  id: string;
+  name: string;
+  /** The official link to the form itself; null when the page names the form but gives no link (then the citation page is the pointer). */
+  url: string | null;
+  /** PDF or web form, from the link; null when there is no link. */
+  type: "pdf" | "web" | null;
+  /** What the verified sentence says to do with it, in a few words: "fill in before you go, sign at the office". Null when it does not say. */
+  guidance: string | null;
+  citation: Citation;
+};
+
 export type Step = {
   id: string; // e.g. "dvv_registration"
   title: string;
@@ -70,6 +84,8 @@ export type Step = {
   costOfDelay?: string;
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
+  /** Official forms found on this step's official pages (lib/agent/forms). */
+  forms?: StepForm[];
   communityTips?: CommunityTip[];
   /** Every verified claim behind this step (requires-edges, documents, facts), each with its own citation. */
   claims?: VerifiedClaim[];
@@ -153,6 +169,8 @@ export type ExaDoc = {
   trust: Trust;
   highlights: string[];
   text?: string; // only from getPages()
+  /** Links found on the page; only from getPages({ links }). */
+  links?: string[];
   publishedDate?: string;
   fetchedAt: string; // when Exa returned it (cache write time)
 };
