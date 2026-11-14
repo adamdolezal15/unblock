@@ -224,6 +224,7 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
               running={running}
               elapsedMs={elapsed}
               collapsed={false}
+              embedded
               onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
               activity={state.summary?.activity}
               numbers={numbers}

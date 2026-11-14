@@ -18,10 +18,12 @@ type Props = {
   activity?: RunActivity;
   /** The plan's counts (lib/ui/counts): the same numbers the header and the closing sentence show. */
   numbers?: PlanNumbers;
+  /** Opened from a link that already names it and toggles it: no heading and no second Hide control. */
+  embedded?: boolean;
 };
 
 /** What the agent is doing, newest at the bottom. Collapses to one line when the plan is done. */
-export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle, activity, numbers }: Props) {
+export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle, activity, numbers, embedded }: Props) {
   const list = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
@@ -34,14 +36,16 @@ export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, o
 
   return (
     <section aria-label="What I'm doing" className="flex min-h-0 flex-col">
-      <div className="flex items-baseline justify-between gap-3 border-b border-rule pb-2">
-        <h2 className="text-[17px] font-semibold text-ink">{running ? "What I'm doing" : "How I worked this out"}</h2>
-        {!running && (
-          <button type="button" onClick={onToggle} aria-expanded={!collapsed} className="flex items-center gap-1 text-[13px] link">
-            {collapsed ? "Show" : "Hide"} <IconChevron open={!collapsed} className="h-3.5 w-3.5" />
-          </button>
-        )}
-      </div>
+      {!embedded && (
+        <div className="flex items-baseline justify-between gap-3 border-b border-rule pb-2">
+          <h2 className="text-[17px] font-semibold text-ink">{running ? "What I'm doing" : "How I worked this out"}</h2>
+          {!running && (
+            <button type="button" onClick={onToggle} aria-expanded={!collapsed} className="flex items-center gap-1 text-[13px] link">
+              {collapsed ? "Show" : "Hide"} <IconChevron open={!collapsed} className="h-3.5 w-3.5" />
+            </button>
+          )}
+        </div>
+      )}
       {collapsed ? (
         <p className="num pt-2 text-[13px] text-muted">{summary}.</p>
       ) : (
