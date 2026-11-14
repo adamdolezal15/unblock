@@ -26,6 +26,7 @@ import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { ErrorState, OutOfScopeState, PartialNotice } from "./States";
 import { Landing } from "./Landing";
+import { Contours } from "./motion/Contours";
 import { Watch } from "./Watch";
 import { SidePanel } from "./panel/SidePanel";
 import { TopBar } from "./TopBar";
@@ -66,6 +67,7 @@ export function App() {
 
   return (
     <div className="min-h-screen">
+      <Contours />
       <TopBar demo={demo} onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (

@@ -1,5 +1,6 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useRailProgress } from "../motion/useRailProgress";
 import type { LetterDoc, Ref, Seg } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
@@ -64,6 +65,9 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
   const drafts = useDrafts(state);
+  // Decorative scroll progress on the rail (re-attached whenever the timeline's entries change).
+  const rail = useRef<HTMLOListElement>(null);
+  useRailProgress(rail, entries);
   const forms = useMemo(() => allForms(state).map((f) => ({ ...f, line: formLine(f.form, doc.ref) })), [state, doc]);
   const fallback = fallbackSteps(state);
   if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
@@ -88,7 +92,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
       <p className="mb-6 text-[17px] text-muted">
         {visits} {visits === 1 ? "visit" : "visits"} in order. Open Details on a visit for what to bring and the sources.
       </p>
-      <ol>
+      <ol ref={rail}>
         {groups.map((g, i) => (
           <Row key={i} entries={g} last={i === groups.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
             <div className="space-y-4">
@@ -205,9 +209,9 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
         </p>
       </div>
       <div className="relative flex justify-center">
-        {inLeg !== null && <span className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        {!last && <span className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        <span className="relative z-10 mt-[20px] flex h-7 items-center self-start">{marker}</span>
+        {inLeg !== null && <span data-rail="" className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
+        {!last && <span data-rail="" className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
+        <span data-station="" className="relative z-10 mt-[20px] flex h-7 items-center self-start">{marker}</span>
       </div>
       <div className="min-w-0 pb-4 pt-2">
         {children}

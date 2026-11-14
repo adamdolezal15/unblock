@@ -249,3 +249,24 @@ body {
   outline: none;
   box-shadow: none;
 }
+
+/* Decorative motion (components/motion). Never layout: only background, color and transform. */
+body {
+  background: transparent; /* the html canvas paints the paper, so the fixed contours (z -10) show through */
+}
+[data-progress="on"] [data-rail] {
+  background: linear-gradient(to bottom, var(--color-accent) var(--fill, 0%), var(--color-rule-strong) var(--fill, 0%)) !important;
+}
+[data-progress="on"] [data-station] {
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-progress="on"] [data-station] circle {
+  transition: fill 300ms ease, stroke 300ms ease;
+}
+[data-progress="on"] [data-station][data-passed] g > circle:last-child {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+[data-progress="on"] [data-station][data-current] {
+  transform: scale(1.15);
+}

@@ -4,11 +4,13 @@ import { RunInput } from "./RunInput";
 import { IconCheck } from "./icons";
 import { BrandStripe } from "./brand";
 import { LineMark } from "./line/LineMark";
+import { Contours } from "./motion/Contours";
 
 /** The first screen: name, one-line promise, the field, three examples. Nothing else. */
 export function Landing({ runKey, value = "", onSubmit }: { runKey: number; value?: string; onSubmit: (text: string) => void }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <Contours />
       <BrandStripe />
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="-mt-[6vh] w-full max-w-[680px] text-center">
