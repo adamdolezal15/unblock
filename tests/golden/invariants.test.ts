@@ -36,6 +36,21 @@ describe.each(EVAL_PROFILES)("invariants: $key ($covers)", (p) => {
     expect(Object.keys(state.steps).length).toBeGreaterThan(0);
   });
 
+  it("headline office is the chosen identity-code option's authority", async () => {
+    const { buildLetter } = await import("../../lib/ui/letter");
+    const headline = (buildLetter(state).letter?.headline ?? []).map((s) => ("t" in s ? s.t : "")).join("");
+    const m = headline.match(/Get your .+? at (.+?) on d+ w+, not at /);
+    if (!m) return;
+    const items = state.schedule!.schedule.items;
+    const skipped = state.schedule!.baseline?.skipped ?? [];
+    const chosen = state.graph!.graph.edges
+      .filter((e) => e.anyOf && e.target === "personal_identity_code" && skipped.includes(e.source) && items[e.source])
+      .map((e) => e.source)
+      .sort((a, b) => items[a].readyIndex - items[b].readyIndex)[0];
+    expect(chosen, headline).toBeDefined();
+    expect(m[1].toLowerCase(), headline).toBe(state.steps[chosen].authority.toLowerCase());
+  });
+
   it.each(IDS)("%s", (id) => {
     expect(violations.filter((v) => v.id === id).map((v) => v.detail), INVARIANTS[id]).toEqual([]);
   });

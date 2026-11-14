@@ -7,6 +7,7 @@ import type { RunState } from "./runState";
 import { domainOf } from "./format";
 import { nodeLabel } from "./labels";
 import { waitCitation } from "./days";
+import { BASELINE_ROUTE } from "@/lib/graph/baseline";
 
 export type Source = { n: number; url: string; domain: string; trust: Trust; fetchedAt: string; quotes: string[] };
 export type Ref = { n: number; citation: Citation };
@@ -182,8 +183,13 @@ function findShortcut(ctx: Ctx): Shortcut | null {
     if (opts.length < 2) continue;
     // The code comes with the residence permit: nothing to shortcut.
     if (opts.some((o) => o.id === "residence_permit")) continue;
-    const fast = opts[0];
-    const slow = opts[opts.length - 1];
+    // The gain is made by an option the usual order skips (e.g. Vero), never by a step the usual order needs
+    // anyway (e.g. Migri's EU registration before DVV), even when that one is ready on the same day.
+    const skipped = state.schedule?.baseline?.skipped;
+    const gainers = skipped ? opts.filter((o) => skipped.includes(o.id)) : opts;
+    if (!gainers.length) continue;
+    const fast = gainers[0];
+    const slow = opts.find((o) => o.id === BASELINE_ROUTE) ?? opts[opts.length - 1];
     const gap = slow.readyIndex - fast.readyIndex;
     if (gap < 3 || (best && gap <= best.gap)) continue;
     const ms = state.steps[g.target];
