@@ -44,9 +44,20 @@ type Profile = {
   arrivalDate?: string;       // ISO
   monthlySalaryEur?: number;
   hasFamily?: boolean;
+  temporaryProtection?: boolean;
+  stayMonths?: number;
 };
 
-type Citation = { url: string; quote: string; trust: "official" | "university" | "community"; fetchedAt: string };
+type Citation = { url: string; quote: string; trust: "official" | "provider" | "university" | "news" | "community"; fetchedAt: string };
+
+// Every edge and fact of a Step. `citation.quote` is the matched page text (verbatim), not the extractor's copy.
+type VerifiedClaim = {
+  stepId: string;
+  kind: "applies" | "requires" | "mode" | "document" | "cost_of_delay" | "processing_time" | "address" | "hours" | "booking_url";
+  value: string;               // requires: a canonical step id
+  citation: Citation;
+  matchScore: number;          // 1 exact, >= 0.9 fuzzy
+};
 
 type Step = {
   id: string;                  // e.g. "dvv_registration"
@@ -58,14 +69,17 @@ type Step = {
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
   communityTips?: Citation[];
+  claims?: VerifiedClaim[];    // per-edge / per-fact citations
 };
 
 type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 ```
 
 ## Pipeline
-1. `parseProfile(text)` LLM (Haiku/Sonnet) → Profile
-2. `findSteps(profile)` parallel Exa `auto` searches (one per authority), official domains, `contents.highlights` → Claude extracts steps/edges citing numbered highlight sentences → `verifyCitations` → Step[] with citations. (Not `deep`: its `output.grounding` gives url+title only, no quotes. See docs/exa-response-shapes.md.)
+All LLM-shaped work goes through `lib/llm` `extract(task, input, zodSchema)`. `LLM_PROVIDER=exa` (default): Exa `deep` search + `outputSchema` + `systemPrompt`. `LLM_PROVIDER=anthropic`: Claude Sonnet 5.5, only when `ANTHROPIC_API_KEY` is set (else falls back to exa). Nothing outside `lib/llm` knows which provider ran.
+
+1. `parseProfile(text, today?)` → `{ok, profile, assumptions[]}` | `{ok:false, outOfScope}`. Currently deterministic (word lists, dates, salary); the LLM version keeps the signature.
+2. `findSteps(profile)`: canonical step ids from `lib/agent/stepTaxonomy.ts` (search hints only, **no facts**), selected per profile. Per step, in parallel: `searchOfficial` (+ `searchProvider` for bank steps, + university domains for study steps) → `extract` with one per-step schema (`{title, claims[{kind,value,url,quote}]}`, 6 properties, 2 levels; quotes requested as a field because `output.grounding` has url+title only) → `verifyCitations` (quote must be in Exa text for that URL: highlights in hand, else `getPages`; exact or ≥ 0.9 token overlap; numbers in a value must be in its quote) → Step. A step without a verified `applies` claim becomes a stub "not found, check <url>". Same-step disagreements on mode / processing time / cost of delay → `Conflict`. Cost ≈ $0.15–0.17 per cold run (8 steps: 9 auto + 8 deep + ~8 contents), 0 when cached.
 3. `findCommunityTips(steps)` Exa search without domain filter, forums and guides → tips + conflicts
 4. `lib/graph/` (pure): `buildGraph` (unknown requires → `unresolved` placeholders), `topoOrder` (cycles returned as `Deadlock`, never thrown; UI highlights them), `criticalNode`, `schedule` (Helsinki working days from max(arrival, today), parallel where independent, `durationDays`/`waitDays` from community data else defaults flagged `estimated`), `criticalPath`. Priority = transitive dependents × cost-of-delay urgency.
 5. `toCalendar(steps)` → Google template links + .ics

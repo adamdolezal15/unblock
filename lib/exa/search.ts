@@ -12,6 +12,14 @@ const DEFAULT_TIMEOUT_MS = 25_000;
 const DEEP_TIMEOUT_MS = 60_000;
 const RETRY_BACKOFF_MS = 700;
 
+const RATE_LIMIT_BACKOFF_MS = 1_200;
+const RATE_LIMIT_RETRIES = 3;
+
+function isRateLimited(e: unknown): boolean {
+  const err = e as { status?: number; statusCode?: number; message?: string };
+  return (err?.status ?? err?.statusCode) === 429 || /rate limit/i.test(err?.message ?? "");
+}
+
 function isRetryable(e: unknown): boolean {
   const err = e as { status?: number; statusCode?: number; name?: string; message?: string };
   const status = err?.status ?? err?.statusCode;
@@ -20,14 +28,39 @@ function isRetryable(e: unknown): boolean {
   return /fetch failed|network|ECONN|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|socket/i.test(`${err?.name} ${err?.message}`);
 }
 
-/** Retry once on network error / 5xx with a short backoff. */
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// Exa allows 10 requests/second per team. Space request starts (EXA_MIN_GAP_MS, default 125 ms = 8/s).
+let nextStart = 0;
+async function paced(): Promise<void> {
+  const gap = Number(process.env.EXA_MIN_GAP_MS ?? 125);
+  const now = Date.now();
+  const at = Math.max(now, nextStart);
+  nextStart = at + (Number.isFinite(gap) ? gap : 125);
+  if (at > now) await sleep(at - now);
+}
+
+/** Retry once on network error / 5xx; on 429 back off and retry up to 3 times. Every attempt is paced. */
 async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
-  try {
-    return await fn();
-  } catch (e) {
-    if (!isRetryable(e)) throw e;
-    await new Promise((r) => setTimeout(r, RETRY_BACKOFF_MS));
-    return fn();
+  let rateLimitRetries = 0;
+  let otherRetried = false;
+  for (;;) {
+    await paced();
+    try {
+      return await fn();
+    } catch (e) {
+      if (isRateLimited(e) && rateLimitRetries < RATE_LIMIT_RETRIES) {
+        rateLimitRetries++;
+        await sleep(RATE_LIMIT_BACKOFF_MS * rateLimitRetries);
+        continue;
+      }
+      if (!otherRetried && isRetryable(e)) {
+        otherRetried = true;
+        await sleep(RETRY_BACKOFF_MS);
+        continue;
+      }
+      throw e;
+    }
   }
 }
 
