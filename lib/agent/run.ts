@@ -6,21 +6,18 @@
 // Status lines come from lib/exa and lib/llm themselves (lib/events/context), so the feed shows real work.
 // A global timeout (75 s) never yields a blank result: whatever finished is completed with the pure steps
 // (graph, schedule, calendar), a `partial` event says what is missing, and `done` still follows.
-import { googleTemplateUrl, eventsFromSchedule } from "../calendar";
 import { cleanLine, newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
 import { plural } from "../ui/format";
-import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../graph";
-import { usualOrder } from "../graph/baseline";
+import { buildGraph, criticalNode, topoOrder } from "../graph";
+import { planCounts, schedulePlan } from "../refine/plan";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
 import type { Actor, Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
 import { detectConflicts } from "./detectConflicts";
-import { estimatesWithTips } from "./estimates";
 import { attachTips, findCommunityTips, tipTargets, type FindTipsResult } from "./findCommunityTips";
 import { findSteps, type FindStepsResult } from "./findSteps";
 import { parseProfile } from "./parseProfile";
 import { partnerDifferences } from "./partnerSteps";
 import { newRunId, saveRun, type RunRecord } from "./runStore";
-import { STEP_TAXONOMY } from "./stepTaxonomy";
 import { normalizeUrl } from "./verifyCitations";
 
 export const RUN_TIMEOUT_MS = 75_000;
@@ -46,12 +43,6 @@ export type RunOutcome =
   | { kind: "aborted" };
 
 const TRUSTS: Trust[] = ["official", "provider", "university", "news", "community"];
-
-/** Short lowercase name for visit-choice text ("bank account", "DVV registration"). */
-function shortName(id: string): string {
-  const label = STEP_TAXONOMY.find((d) => d.id === id)?.label ?? id.replace(/_/g, " ");
-  return /^[A-Z][a-z]/.test(label) ? label[0].toLowerCase() + label.slice(1) : label;
-}
 
 /** findSteps / tips / conflicts progress lines, reworded for the feed. Lines lib/llm already covers are skipped. */
 function progressLine(m: string): string | null {
@@ -159,20 +150,10 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
 
   const sendSchedule = (steps: Step[], tips: Tip[]) => {
     const profile = s.profile!;
-    const graph = buildGraph(steps);
-    const schedOpts = { estimates: estimatesWithTips(steps, tips), ...(opts.today ? { today: opts.today } : {}) };
-    const sched = schedule(graph, profile, schedOpts);
-    const baseline = usualOrder(steps, profile, schedOpts);
-    const path = criticalPath(graph, sched);
+    const plan = schedulePlan(steps, tips, profile, opts.today);
+    const { schedule: sched, path, events } = plan;
     emit({ type: "status", message: `Scheduled ${plural(Object.keys(sched.items).length, "step")}, critical path ${plural(path.totalDays, "working day")}`, actor: "check" });
-    emit({
-      type: "schedule",
-      schedule: sched,
-      criticalPath: path,
-      visitChoices: sched.visitChoices.map((c) => ({ ...c, description: describeVisitAlternative(c, shortName) })),
-      ...(baseline ? { baseline } : {}),
-    });
-    const events = eventsFromSchedule(steps, sched).map((e) => ({ ...e, googleTemplateUrl: googleTemplateUrl(e) }));
+    emit({ type: "schedule", schedule: sched, criticalPath: path, visitChoices: plan.visitChoices, ...(plan.baseline ? { baseline: plan.baseline } : {}) });
     emit({ type: "calendar", events, icsUrl: `/api/calendar.ics?runId=${runId}` });
     s.sched = { steps, schedule: sched, path, events };
   };
@@ -339,15 +320,8 @@ function summarize(a: {
   ms: number;
 }): RunSummary {
   const { steps, s, meter } = a;
-  // Optional steps (Step.necessity) are listed apart and never counted as part of the plan.
-  const real = steps.filter((x) => !x.milestone && x.necessity !== "optional");
-  const sched = s.sched?.schedule;
-
-  const visits = new Set<string>();
-  for (const x of real) {
-    const item = sched?.items[x.id];
-    if (x.mode === "in_person" && item) visits.add(item.visitId ?? x.id);
-  }
+  // Optional steps (Step.necessity) are listed apart and never counted as part of the plan (lib/refine/plan).
+  const counts = planCounts(steps, s.sched?.schedule, s.sched?.path, s.sched?.events ?? []);
 
   const citations: Citation[] = [
     ...steps.flatMap((x) => [...x.citations, ...(x.claims ?? []).map((c) => c.citation)]),
@@ -363,28 +337,13 @@ function summarize(a: {
   const sourcesByTrust = Object.fromEntries(TRUSTS.map((t) => [t, 0])) as Record<Trust, number>;
   for (const t of urlTrust.values()) sourcesByTrust[t]++;
 
-  const path = s.sched?.path;
-  const last = path?.stepIds[path.stepIds.length - 1];
-  const events = s.sched?.events ?? [];
   const llm = meter.llmCostUsd;
   const rejected = [...(s.found?.dropped ?? []), ...(s.tipsResult?.dropped ?? []), ...s.conflictDropped];
   return {
     runId: a.runId,
     partial: a.partial,
-    steps: real.length,
-    alreadyDone: steps.filter((x) => x.done).length,
-    optional: steps.filter((x) => x.necessity === "optional").length,
-    online: real.filter((x) => x.mode === "online" || x.mode === "either").length,
-    inPersonVisits: visits.size,
-    inCalendar: events.filter((e) => e.kind === "visit").length,
-    reminders: events.filter((e) => e.kind === "reminder").length,
+    ...counts,
     notFound: a.stubs.length,
-    criticalPath: {
-      stepIds: path?.stepIds ?? [],
-      workingDays: path?.totalDays ?? 0,
-      calendarDays: path?.calendarDays ?? 0,
-      endDate: last && sched ? sched.items[last].doneDate : null,
-    },
     sourcesByTrust,
     verifiedQuotes: quotes.size,
     droppedClaims: rejected.length,

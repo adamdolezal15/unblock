@@ -2,6 +2,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
 import { useRun } from "@/lib/ui/useRun";
+import { refineRows, type RefineKey, type RefineRow } from "@/lib/refine/refine";
+import { refineInput, refineState } from "@/lib/ui/refineState";
+import { useRefinements, writeRefinements } from "@/lib/ui/useRefinements";
 import type { RunState } from "@/lib/ui/runState";
 import { buildLetter } from "@/lib/ui/letter";
 import { fallbackSteps } from "@/lib/ui/days";
@@ -12,6 +15,7 @@ import { runProgress } from "@/lib/ui/progress";
 import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
+import { Refine } from "./Refine";
 import { Closing } from "./letter/Closing";
 import { LetterView } from "./letter/LetterView";
 import { ProfileSentence } from "./letter/ProfileSentence";
@@ -28,7 +32,21 @@ import { ViewTabs } from "./ViewTabs";
 import { Working } from "./Working";
 
 export function App() {
-  const { state, start, reset } = useRun();
+  const { state: run, start, reset } = useRun();
+  // "Make it more accurate": the answers live in the URL; the views read the run with them applied (pure, in the browser).
+  const [answers, setAnswers] = useRefinements();
+  const input = useMemo(() => refineInput(run), [run]);
+  const state = useMemo(() => refineState(run, answers, input), [run, answers, input]);
+  const rows = useMemo(() => (input ? refineRows(input, answers) : []), [input, answers]);
+  // A new sentence is a new plan: its answers do not carry over.
+  const begin = useCallback((text: string, opts?: { fast?: boolean }) => {
+    writeRefinements([]);
+    return start(text, opts);
+  }, [start]);
+  const home = useCallback((keepText: boolean) => {
+    writeRefinements([]);
+    reset(keepText);
+  }, [reset]);
 
   // Demo links: /?demo=marta#days starts that example straight away (&fast=1 skips the replay pauses).
   useEffect(() => {
@@ -37,25 +55,25 @@ export function App() {
     if (key && key in DEMO_SENTENCES) void start(DEMO_SENTENCES[key as DemoKey], { fast: q.get("fast") === "1" });
   }, [start]);
 
-  if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={start} />;
+  if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={begin} />;
 
   return (
     <div className="min-h-screen">
-      <TopBar onEdit={() => reset(true)} onHome={() => reset(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
+      <TopBar onEdit={() => home(true)} onHome={() => home(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
         progress={state.phase === "running" ? runProgress(state).value : undefined}
         running={state.phase === "running"} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
-        <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />
+        <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
       )}
       {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Results state={state} onRerun={(t) => void start(t)} />
+        <Results state={state} rows={rows} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
       )}
     </div>
   );
 }
 
-function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) => void }) {
+function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: RefineRow[]; onAnswer: (keys: RefineKey[]) => void; onRerun: (text: string) => void }) {
   const running = state.phase === "running";
   const doc = useMemo(() => buildLetter(state), [state]);
   const [view, setView] = useView();
@@ -102,6 +120,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
           </div>
         )}
         <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} />
+        {state.phase === "done" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
         {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
         {state.phase === "done" && state.summary?.runId && (
           <div className="mt-8">

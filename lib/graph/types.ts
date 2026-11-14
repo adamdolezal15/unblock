@@ -93,6 +93,8 @@ export type ScheduledStep = {
 export type Schedule = {
   /** First working day on or after max(arrival, today). */
   startDate: string;
+  /** The calendar day the scheduler started from (arrival or today, before skipping weekends and holidays). Re-planning passes it back as "today". */
+  origin?: string;
   items: Record<string, ScheduledStep>;
   /** Scheduled step ids, in topological order. */
   order: string[];

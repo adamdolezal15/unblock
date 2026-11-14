@@ -2,7 +2,7 @@
 // grouped by the day they become possible, quiet lines for waiting, tip reminders, and the finish line.
 // Pure; every sentence that states a fact carries a footnote (Seg ref). A step with no verified source
 // at all says so instead of pretending.
-import type { Citation, Tip } from "@/lib/types";
+import type { Citation, Step, Tip } from "@/lib/types";
 import type { StreamCalEvent } from "@/lib/types";
 import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
@@ -26,6 +26,8 @@ export type DayStep = {
   wait?: Seg[];
   /** Applied for before travelling (a non-EU residence permit). */
   beforeArrival?: boolean;
+  /** Set on optional steps: the one-line reason ("Not needed for a stay under 12 months."). */
+  optional?: string;
 };
 
 export type VisitEntry = {
@@ -48,9 +50,16 @@ export type VisitEntry = {
 export type OnlineEntry = { kind: "online"; date: string; steps: DayStep[] };
 export type ReminderEntry = { kind: "reminder"; date: string; title: string; ref?: Ref };
 export type DoneEntry = { kind: "done"; date: string };
-export type DayEntry = VisitEntry | OnlineEntry | ReminderEntry | DoneEntry;
+/** Steps this person can skip, on the day they would do them: labelled "Optional", never part of the dates. */
+export type OptionalEntry = { kind: "optional"; date: string; steps: DayStep[] };
+export type DayEntry = VisitEntry | OnlineEntry | ReminderEntry | DoneEntry | OptionalEntry;
 
-const ORDER: Record<DayEntry["kind"], number> = { visit: 0, online: 1, reminder: 2, done: 3 };
+const ORDER: Record<DayEntry["kind"], number> = { visit: 0, online: 1, optional: 2, reminder: 3, done: 4 };
+
+/** Why a step is optional, in one line: a short study stay, or the person's own answer (lib/refine). */
+export function optionalReason(step: Pick<Step, "optionalReason">): string {
+  return step.optionalReason === "your_choice" ? "You said you don't need it." : "Not needed for a stay under 12 months.";
+}
 
 export function lowerName(s: string): string {
   return /^[A-Z][a-z]/.test(s) && !/^(DVV|Vero|Kela|Migri|Police|EU|ID|Finnish|Nordic)\b/.test(s) ? s[0].toLowerCase() + s.slice(1) : s;
@@ -156,7 +165,19 @@ function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]
         wait.push({ t: "." });
       }
     }
-    return { id, authority: step.authority, title: step.title, short: name(id), critical: critical.has(id), whyNow, unlocks, noSource, wait, ...(step.beforeArrival ? { beforeArrival: true } : {}) };
+    return {
+      id,
+      authority: step.authority,
+      title: step.title,
+      short: name(id),
+      critical: critical.has(id),
+      whyNow,
+      unlocks,
+      noSource,
+      wait,
+      ...(step.beforeArrival ? { beforeArrival: true } : {}),
+      ...(isOptional(id) ? { optional: optionalReason(step) } : {}),
+    };
   };
 
   const entries: DayEntry[] = [];
@@ -209,6 +230,15 @@ function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]
     online.set(d, [...(online.get(d) ?? []), id]);
   }
   for (const [date, ids] of online) entries.push({ kind: "online", date, steps: ids.map(dayStep) });
+
+  // Optional steps stand on the day they would be done, labelled; they do not move the finish line.
+  const optionalByDay = new Map<string, string[]>();
+  for (const id of optionalIds) {
+    if (!items[id]) continue;
+    const d = items[id].startDate;
+    optionalByDay.set(d, [...(optionalByDay.get(d) ?? []), id]);
+  }
+  for (const [date, ids] of optionalByDay) entries.push({ kind: "optional", date, steps: ids.map(dayStep) });
 
   // Tip reminders go under the visit for their step; any others stand alone.
   for (const e of events.filter((x) => x.kind === "reminder")) {

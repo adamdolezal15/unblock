@@ -25,6 +25,8 @@ export type MetroStation = {
   /** Estimated date or online: drawn hollow. */
   hollow: boolean;
   estimate: boolean;
+  /** Not needed by this person (Step.necessity): a hollow station labelled "Optional", never on the main line. */
+  optional: boolean;
   done: boolean;
   conflict: boolean;
   name: string[];
@@ -278,8 +280,9 @@ export function layoutMetro(input: MetroInput): MetroLayout {
       row: row.get(id)!,
       kind: interchange ? "interchange" : "station",
       main: main.has(id),
-      hollow: !interchange && (!!it?.estimated || node.unresolved || node.mode === "online"),
+      hollow: !interchange && (!!it?.estimated || node.unresolved || node.mode === "online" || step?.necessity === "optional"),
       estimate: !!it?.estimated,
+      optional: step?.necessity === "optional" && !step.done,
       done: !!step?.done,
       conflict: conflictIds.has(id),
       name: wrap(label, maxChars),
@@ -291,7 +294,7 @@ export function layoutMetro(input: MetroInput): MetroLayout {
   });
   const need = Math.max(0, ...drafts.flatMap((d) => [...d.name.map((t) => t.length * CHAR_W), ...(d.office ?? []).map((t) => t.length * 7.4)])) + 14;
   const colW = Math.max(fitW, need);
-  const lineCount = (d: Draft) => d.name.length + (d.office?.length ?? 0) + (d.date ? 1 : 0) + (d.estimate ? 1 : 0);
+  const lineCount = (d: Draft) => d.name.length + (d.office?.length ?? 0) + (d.date ? 1 : 0) + (d.estimate ? 1 : 0) + (d.optional ? 1 : 0);
   const above = Math.max(1, ...drafts.filter((d) => d.labelSide === "above").map(lineCount));
   const below = Math.max(1, ...drafts.filter((d) => d.labelSide === "below").map(lineCount));
   const top = Math.max(TOP, 18 + (above - 1) * LINE_H + 30);

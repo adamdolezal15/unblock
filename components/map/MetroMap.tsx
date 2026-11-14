@@ -157,7 +157,7 @@ function Hint({ s, width }: { s?: MetroStation; width: number }) {
 }
 
 function StationMark({ s, faded, selected, onEnter, onLeave, onOpen }: { s: MetroStation; faded: boolean; selected: boolean; onEnter: () => void; onLeave: () => void; onOpen: () => void }) {
-  const lines = [...s.name.map((t) => ({ t, bold: true })), ...(s.office ?? []).map((t) => ({ t, bold: false })), ...(s.date ? [{ t: s.date, bold: false }] : []), ...(s.estimate ? [{ t: "estimate", bold: false }] : [])];
+  const lines = [...s.name.map((t) => ({ t, bold: true })), ...(s.office ?? []).map((t) => ({ t, bold: false })), ...(s.date ? [{ t: s.date, bold: false }] : []), ...(s.estimate ? [{ t: "estimate", bold: false }] : []), ...(s.optional ? [{ t: "Optional", bold: false }] : [])];
   const LH = LINE_H;
   const top = s.labelSide === "above" ? s.y - 18 - (lines.length - 1) * LH : s.y + 28;
   return (

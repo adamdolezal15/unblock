@@ -55,6 +55,8 @@ export type Step = {
    * you") and never count toward the finish date, the critical path or the visit count. Absent = required.
    */
   necessity?: "required" | "optional";
+  /** Why a step is optional: a short study stay (default when absent), or the person said they do not need it (a refinement). */
+  optionalReason?: "short_stay" | "your_choice";
   /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
   milestone?: boolean;
   /** The person says they already have this (Profile.alreadyDone). No citations: it is their statement, not a claim. */

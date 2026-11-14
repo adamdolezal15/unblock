@@ -22,11 +22,22 @@ export function verifiedMust(step: Step): boolean {
   return (step.claims ?? []).some((c) => (c.kind === "applies" || c.kind === "cost_of_delay") && c.stepId === step.id && MUST.test(c.citation.quote) && !LONG_ONLY.test(c.citation.quote));
 }
 
-export function classifyNecessity(steps: Step[], profile: Profile): Step[] {
+export function classifyNecessity(steps: Step[], profile: Profile, opts: { forcedOptional?: ReadonlySet<string> } = {}): Step[] {
   const short = shortStudyStay(profile);
-  const optional = new Set(
-    steps.filter((s) => short && OPTIONAL_FOR_SHORT_STUDY.has(s.id) && !s.done && !s.milestone && !verifiedMust(s)).map((s) => s.id),
-  );
+  const forced = opts.forcedOptional ?? new Set<string>();
+  const reason = new Map<string, "short_stay" | "your_choice">();
+  const optional = new Set<string>();
+  for (const s of steps) {
+    if (s.done || s.milestone) continue;
+    // "I don't need it" is the person's own statement and outranks a verified "must" (a required step still pulls it back in below).
+    if (forced.has(s.id)) {
+      optional.add(s.id);
+      reason.set(s.id, "your_choice");
+    } else if (short && OPTIONAL_FOR_SHORT_STUDY.has(s.id) && !verifiedMust(s)) {
+      optional.add(s.id);
+      reason.set(s.id, "short_stay");
+    }
+  }
   // Whatever a required step needs is required too (a plain requirement or a one-option group).
   for (let changed = true; changed; ) {
     changed = false;
@@ -37,5 +48,11 @@ export function classifyNecessity(steps: Step[], profile: Profile): Step[] {
       for (const id of needs) if (optional.delete(id)) changed = true;
     }
   }
-  return steps.map((s) => ({ ...s, necessity: optional.has(s.id) ? "optional" : "required" }));
+  return steps.map((s) => {
+    const { optionalReason: _old, ...rest } = s;
+    void _old;
+    return optional.has(s.id)
+      ? { ...rest, necessity: "optional" as const, optionalReason: reason.get(s.id) }
+      : { ...rest, necessity: "required" as const };
+  });
 }

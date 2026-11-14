@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import type { LetterDoc } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
-import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
+import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
 import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/labels";
 import { Prose } from "../letter/LetterView";
@@ -80,17 +80,46 @@ function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
     <section aria-label={OPTIONAL_TITLE} className="mt-14 border-t border-rule pt-8">
       <h2 className="text-[22px] font-bold text-ink">{OPTIONAL_TITLE}</h2>
       <p className="mt-1 max-w-[62ch] text-[16px] text-muted">
-        Not needed for a short study stay, and not part of the dates above. Do them if they help you, for example for online services.
+        Not part of the dates above. Do them if they help you, for example for online services.
       </p>
       <ul className="mt-5 space-y-5">
         {steps.map((s) => (
           <li key={s.id}>
             <StepHead ctx={ctx} s={s} />
-            <p className="mt-1 text-[14px] text-muted">{s.authority}</p>
+            <p className="mt-1 flex flex-wrap items-center gap-x-2 text-[14px] text-muted">
+              <OptionalTag />
+              <span>{s.optional} {s.authority}.</span>
+            </p>
           </li>
         ))}
       </ul>
     </section>
+  );
+}
+
+/** The label on a step this person can skip. */
+function OptionalTag() {
+  return <span className="rounded-[3px] border border-rule-strong px-1.5 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
+}
+
+/** An optional step in the timeline: on the day it would be done, hollow station, one line saying why it can be skipped. */
+function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
+  return (
+    <article className="rounded-[10px] border border-dashed border-rule-strong px-5 py-3.5">
+      {e.steps.map((s, i) => (
+        <div key={s.id} className={i > 0 ? "mt-3" : ""}>
+          <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[18px] font-bold leading-snug text-ink hover:text-accent">
+              {s.title}
+            </button>
+            <OptionalTag />
+          </h3>
+          <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-muted">
+            {s.optional} {s.authority}.
+          </p>
+        </div>
+      ))}
+    </article>
   );
 }
 
@@ -118,7 +147,7 @@ function Row({
   const critical = (entry.kind === "visit" || entry.kind === "online") && entry.steps.some((s) => s.critical);
   // Same stations as the logo and the hero line (components/line).
   const marker = (
-    <Marker kind={entry.kind === "done" ? "end" : entry.kind === "online" ? "hollow" : entry.kind === "reminder" ? "small" : critical ? "main" : "station"} />
+    <Marker kind={entry.kind === "done" ? "end" : entry.kind === "online" || entry.kind === "optional" ? "hollow" : entry.kind === "reminder" ? "small" : critical ? "main" : "station"} />
   );
   // Steps done in one visit often share the same wait line: say it once.
   const waitKey = (s: DayStep) => s.wait!.map((x) => ("t" in x ? x.t : `[${x.ref.n}]`)).join("");
@@ -158,6 +187,8 @@ function Entry({ ctx, entry }: { ctx: Ctx; entry: DayEntry }) {
       return <Visit ctx={ctx} e={entry} />;
     case "online":
       return <Online ctx={ctx} e={entry} />;
+    case "optional":
+      return <OptionalCard ctx={ctx} e={entry} />;
     case "reminder":
       return <p className="pt-3 text-[15px] text-muted">Reminder: {entry.title}</p>;
     case "done":

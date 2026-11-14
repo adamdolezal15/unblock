@@ -243,7 +243,7 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   // Keep items keyed in topological order (stable for consumers), not finalisation order.
   const ordered: Record<string, ScheduledStep> = {};
   for (const id of order) if (items[id]) ordered[id] = items[id];
-  return { startDate: dateAt(0), items: ordered, order, blocked, deadlocks, visitChoices };
+  return { startDate: dateAt(0), origin, items: ordered, order, blocked, deadlocks, visitChoices };
 }
 
 /** How a visit group's members are done: merged into one visit, or one visit each. */

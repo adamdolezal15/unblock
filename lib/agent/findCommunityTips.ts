@@ -10,7 +10,7 @@ import { getPages, searchCommunity } from "../exa/search";
 import { buildGraph, criticalNode, helsinkiDate } from "../graph";
 import { extract } from "../llm";
 import { extractTipsContext, extractTipsTask, TipExtraction } from "../prompts/extractTips";
-import type { CommunityTip, DroppedClaim, ExaDoc, Profile, RawClaim, Step, Tip } from "../types";
+import type { DroppedClaim, ExaDoc, Profile, RawClaim, Step, Tip } from "../types";
 import { mergeDocs } from "./docs";
 import { parseWaitDays } from "./estimates";
 import { STEP_IDS, STEP_TAXONOMY } from "./stepTaxonomy";
@@ -192,12 +192,4 @@ export async function findCommunityTips(profile: Profile, steps: Step[], opts: F
   };
 }
 
-/** Steps with their verified tips as `communityTips` (calendar reminders read `trick` tips from there). */
-export function attachTips(steps: Step[], tips: Tip[]): Step[] {
-  return steps.map((s) => {
-    const mine = tips.filter((t) => t.stepId === s.id);
-    if (!mine.length) return s;
-    const communityTips: CommunityTip[] = mine.map((t) => ({ ...t.citation, kind: t.kind, text: t.tip }));
-    return { ...s, communityTips };
-  });
-}
+export { attachTips } from "./attachTips";
