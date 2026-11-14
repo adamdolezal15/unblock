@@ -72,7 +72,8 @@ export type DropReason =
   | "unknown_step_id"
   | "invalid_value"
   | "too_short"
-  | "merged_sentences";
+  | "merged_sentences"
+  | "value_not_in_quote";
 
 export type DroppedClaim = RawClaim & { reason: DropReason; bestScore?: number };
 
