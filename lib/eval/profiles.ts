@@ -24,6 +24,13 @@ export const EVAL_PROFILES: EvalProfile[] = [
   { key: "norwegian", text: "Norwegian citizen moving to Helsinki in January to live with my Finnish husband", covers: "Nordic · family · Helsinki" },
   { key: "american", text: "American software developer moving to Tampere in March, I already have a residence permit", covers: "non-EU · work · Tampere · has permit" },
   {
+    // Run mwgiunwf-37c4f9759584: a requirement loop (EU registration → enrolment → identity code → DVV →
+    // EU registration) blocked every step, and "next semester" was read as today.
+    key: "czech",
+    text: "I’m Czech, studying at Charles University, and I’m going to the University of Helsinki on Erasmus for next semester.",
+    covers: "EU · study (Erasmus, next semester) · Helsinki via university · requirement loop",
+  },
+  {
     key: "french",
     text: "French citizen moving to Helsinki in January for work, I already have a Finnish personal identity code and a bank account",
     covers: "EU · work · Helsinki · has ID code + bank",

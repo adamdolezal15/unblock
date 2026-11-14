@@ -1,0 +1,129 @@
+{
+  "fetchedAt": "2026-11-14T14:49:40.614Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "New international degree student arriving in Helsinki: enrolment, registration and practical arrival steps",
+    "contextHash": "31a90b63b3625f64",
+    "includeDomains": [
+      "aalto.fi",
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hanken.fi",
+      "hel.fi",
+      "helsinki.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "studies.helsinki.fi",
+      "suomi.fi",
+      "tuni.fi",
+      "uniarts.fi",
+      "vero.fi"
+    ],
+    "docsHash": "b24ff4fa3ce4bbc7"
+  },
+  "response": {
+    "data": {
+      "title": "University enrolment and arrival steps",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+          "quote": "Once you have received a study offer, remember to accept your study place and register as attending for the upcoming academic year."
+        },
+        {
+          "kind": "requires",
+          "value": "personal_identity_code",
+          "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+          "quote": "The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account."
+        },
+        {
+          "kind": "document",
+          "value": "Certificate of student status (from Sisu)",
+          "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+          "quote": "If needed, you can then download your certificate of student status in Sisu."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "No access to some services, such as the student health service account, until the identity code is reported to the university",
+          "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+          "quote": "You cannot access some services before completing this last step, such as logging in to your student health service account."
+        },
+        {
+          "kind": "processing_time",
+          "value": "Up to seven weeks to receive the personal identity code after registering",
+          "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+          "quote": "Important: Up to seven weeks after registering, you will receive your personal identity code via email and/or post."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+        "title": "Register with the authorities: degree students | Instructions | Studies Service | University of Helsinki",
+        "domain": "studies.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "When your studies in Finland last over a year, you should register with a municipality of residence (domicile) at the Digital and Population Data Services Agency (DVV).\n\n- Acquiring a permanent address and place of domicile entitles you to enjoy municipal benefits, including a student discount with HSL (public transport) and the right to use municipal health care (if your studies last at least two years).\n- By registering in the Finnish Population System you will also receive a personal identity code, assuming you haven’t been assigned it by Migri.\n- The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account.\n- Please see here below citizenship specific guidelines.\n\nTo register at the Digital and Population Data Services Agency you need to first apply for registration online. When you visit DVV you must have with you:\n\n- your valid passport or EU citizen’s official identity card with a photograph\n- your residence permit card or some other proof that you have entered Finland legally\n- certificate of student status (can be obtained from your Sisu profile)\n\nVisit the Digital and Population Data Services Agency's website for more information and to book an appointment. We recommend that you book an appointment already before hand from abroad.\n\nPlease note that DVV and Migri (the Finnish Immigration Service) will be present at the Check-In Event and you should register with them there, unless you arrive well before or after the Check-In Event.\n\nOnce you have received your Finnish personal identity code (\"Henkilötunnus\" in Finnish) please remember to update it in the student register. You can do it by sending your code from your helsinki.fi email address to international-studentinfo@helsinki.fi.s (the .s is for secure mail).\n\n...\n\n1. Citizens of EU/EEA countries do not need a residence permit or visa, but you need to first apply for EU registration at the Finnish Immigration Service Migri and then register with a municipality of residence (domicile) at the Digital and Population Data Services Agency (DVV). When you apply for your EU registration at Migri, please apply also for a personal identity code at the same time. \n\n- After you have submitted your form for your EU right of residence, visit Migri to identify yourself. You can either do this at the Check-In Event during Orientation Week or if you arrive earlier in August, book an appointment to Migri before hand.\n\n...\n\nYou should register at DVV by submitting their online form to get a ... If you already completed your registration at Migri you do not need to visit DVV separately."
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://studies.helsinki.fi/instructions/degree-students/new-degree-students",
+        "title": "For new degree students | Instructions | Studies Service | University of Helsinki",
+        "domain": "studies.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "### Register with the authorities: degree students \n\n After arriving in Finland you will have to register with a few relevant authorities within a certain period of time. Please book your appointment(s) well in advance of your arrival in Finland."
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+        "title": "International degree student's journey | Instructions | Studies Service | University of Helsinki",
+        "domain": "studies.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "You will receive your admission result and the decision on the scholarships granted by the University of Helsinki by email. If you have been accepted, the email you receive from us is an official acceptance letter and is suitable for dealing with various authorities such as immigration etc. This same email will also contain instructions for the next steps for confirming your study place and registering your attendance. Make sure you read our newsletters for incoming international students and attend webinars for accepted students to get to know UH better!\n\n...\n\n#### Registering \n\nOnce you have received a study offer, remember to accept your study place and register as attending for the upcoming academic year. When you register as attending, you will become a member of the Student Union HYY by paying their membership fee. If you are liable to pay for tuition, the University will register you as attending once we have received your tuition fee payment, which contains the HYY membership fee. If you are conditionally accepted, you are first required to fulfill the condition by the deadline. In some cases, you may also register as non-attending or apply to defer the beginning of your studies.\n\n- Guide for accepted students, bachelor’s students\n- Guide for accepted students, master’s students\n\nOnce you are registered as attending, you can activate your IT user account and start using your University of Helsinki email! If needed, you can then download your certificate of student status in Sisu. You will find instructions for all of this in the Instructions for students, which is the go-to place for any possible information students might be looking for.\n\n...\n\nKick-start your preparation reading our newsletters for new international degree students. We invite you to commence administrative processes such as applying for a residence permit and getting health insurance as early as possible for a timely arrival. \n\nYou will also receive links to a digital skills course and a pre-arrival course—both of which will help you understand the UH environment better.\n\n...\n\n#### Arriving \n\nAs your journey to the University of Helsinki approaches, we look forward to e-meeting you at the pre-arrival webinar organised for incoming international degree students and invite you to keep yourself updated on the latest student information from the Studies Service (studies.helsinki.fi). If you haven’t done so already, now is the moment to activate your Frank student card and to actively start using your helsinki.fi email account. Please remember that the International Student Advice is here to help you settle in and answer your questions on matters such as registering with the Finnish authorities, opening a bank account, getting student-priced transport tickets, and other topics related to living and studying in Finland."
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+        "title": "Fresher's Handbook - Top Things to Know for First-Year Students",
+        "domain": "blogs.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "After arriving in Finland, you must register your address at the DVV. You can do it by booking an appointment yourself OR by attending the Check-In Event during the orientation week. It is easier and faster to use the services available at the Check-In Event - you’ll need to have some paperwork ready, but attending this event will significantly speed up the processes. The Check-In Event will be held at the Language Center (Fabianinkatu 26) on 28 & 29 August. Each group will have a specific time during these two days: your tutors will inform you of your group time. For this event, please have these documents ready with you:\n\n● Passport or EU Citizen’s ID card \n● Residence permit (for non-EU/EEA students) or EU Citizen’s registration document (if you have one) \n● Your full address, including the apartment/room number \n● Certificate of student status (go to ‘My Profile’ in your Sisu. In the ‘Study rights’ tab, click ‘Form a certificate of student status’) Depending on your home country, the administration process might be slightly different. If you are: \n● a citizen of Nordic countries, complete the electronic form found in this page (under “I am a citizen of a Nordic country or an EU member state”). This form should be filled before the Check-In Event. \n● a citizen of non-EU/EEA countries, complete the electronic form found in this page (under “I am a citizen of some other country”). This form should be filled before the Check-In Event. Even if you already have your personal identity code in your residence 3 \n\npermit, you should still register to the DVV after your arrival in Finland.\n\n● a citizen of EU/EEA countries, you do not need a residence permit or visa to come to Finland. You must however register their EU-right of residence at the Finnish Immigration Office within their first three months and get a permanent address at the Digital and Population Data Services Agency (DVV, used to be called maistraatti). \n\nFill in the Online form + make an appointment already now (Migri has very long queues) and visit your chosen immigration service point. If you cannot find an available appointment, look on Thursdays for cancellation spots. The EU registration costs 54€. Register then your permanent address at the Digital and Population Data Services Agency by email. A permanent address is needed in order to receive a degree student's discount for the travel card (HSL), as well as opening a bank account. The permanent address cannot be registered before the student has done the EU registration.\n\nDue to Migri's long queues, which hinder the whole registration process, it’s important to first visit DVV at the Check-In Event or in their office to get a temporary address, which at least gives the student the right to get a local's travel card prices.\n\nImportant: Up to seven weeks after registering, you will receive your personal identity code via email and/or post. Next, you should inform the International Student Services by sending the last four digits of your personal identity code to international-studentinfo@helsinki.fi.s (s. is for secure mail) from your university email. You should not send your full name and identity code by normal email. You cannot access some services before completing this last step, such as logging in to your student health service account."
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://www.aalto.fi/en/international-students/post-arrival-checklist-for-international-degree-students",
+        "title": "Post-arrival checklist for international degree students | Aalto University",
+        "domain": "aalto.fi",
+        "trust": "university",
+        "highlights": [
+          "| What | When | Actions |\n| --- | --- | --- |\n| Compulsory: | | |\n| 1. Register your right of residence (EU/EEA-citizens only) Non-EU students: this is already covered with your student residence permit. | Soon after arrival Note: Migri is a busy place. It is recommended that you submit the online application and book the meeting already during summer before your arriva l. You can book the visit before your arrival and then make the visit after your arrival. | Online application Book a meeting with Migri Visit Migri office See instructions under Registering with the authorities. |\n| 2. Apply for a municipality of residence (if your studies last longer than one year) | Soon after arrival Note: You must have your own address in Finland. Note: EU-citizens must have the right-of-residence registration certificate from Migri (see number 1). | Online application form Book a meeting with DVV* Visit the DVV office of your city* See instructions under Registering with the authorities. * Note! DVV will be present at the Aalto Welcome fair during the orientation week. |\n| 3. Update your contact information and Finnish ID -code in the Sisu student register. | At the beginning of term Note: You can't use FSHS student health-care without a registered ID -code in Sisu. | Log in to Sisu A secured e-mail OR visit to a student service desk on campus See instructions under Registering with the authorities. |\n| 4. Pay the student health care fee | By 15 November | Bank transfer If you have Finnish online bank credentials, you can also use an online service. If you have an European/Global Health Insurance Card you do not have to pay, but must send a picture of your card to Kela See instructions under new bachelor's or new master's students |\n| Optional: | | |\n| 5. Register your student discount on the HSL public transportation service | After your DVV registration (see number 2) is ready. Note! Double degree students only need a document from Aalto university. | Visit an HSL service point If you have Finnish online banking credentials, do an update in the HSL app See instructions under Local transportation |\n| 6. Open a bank account | After your DVV registration (see number 2) is ready. | Collect the documents Book a meeting with bank Meeting with bank See instructions under Registering with the authorities. |\n| 7. Obtain a Finnish ID-card | After your DVV registration (see number 2) is ready. With steps 6 & 7, you will be able to obtain \" strong authentication\" for different purposes. | Collect documents (eg. digital passport photo) Book a meeting with the police See further under registering with the authorities |\n| 8. Get home insurance | Soon after arrival | (Pre-booked) visit an insurance company See more under Housing for students. |\n| 9. Get a public library card | Soon after arrival | Visit a public library in Helsinki, Espoo, Vantaa, or Kauniainen See intructions on the Helmet network pages. |\n| Optional at the university: | | |\n| 10. Activate campus access (Otaniemi campus only) | At the beginning of term Note: Common study areas do not require an access token. You will receive more information in orientation week. | See instructions under Campus guide |\n| 11. Order a university library card | At the beginning of term | Login to Aalto Primo Visit the Learning Centre See instructions on the Learning centre pages. |"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 10584,
+      "costUsd": 0.029848,
+      "cacheHit": false
+    }
+  }
+}

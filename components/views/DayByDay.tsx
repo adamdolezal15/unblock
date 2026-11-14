@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import type { LetterDoc } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
-import { buildDays, lowerName, type DayEntry, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
+import { buildDays, FALLBACK_NOTE, fallbackSteps, lowerName, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
 import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/labels";
 import { Prose } from "../letter/LetterView";
@@ -36,6 +36,8 @@ type Ctx = {
 /** The plan as you would live it: a timeline of visit cards, online steps grouped, waits on the rail. */
 export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
+  const fallback = fallbackSteps(state);
+  if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
   if (!state.schedule) return <DaysSkeleton />;
   const ctx: Ctx = { state, onOpen, onSources, shortcut };
   const visits = entries.filter((e) => e.kind === "visit").length;
@@ -164,6 +166,31 @@ function SourcesLink({ ctx, id, n }: { ctx: Ctx; id: string; n: number }) {
     >
       Sources ({n})
     </button>
+  );
+}
+
+/** The safety net when no step could be dated: the steps in order, with a calm note. Never an empty plan. */
+function StepList({ steps, onOpen, extra }: { steps: FallbackStep[]; onOpen: (id: string) => void; extra?: React.ReactNode }) {
+  return (
+    <section aria-label="Your steps">
+      {extra}
+      <p className="mb-6 max-w-[62ch] text-[16px] text-muted">{FALLBACK_NOTE}</p>
+      <ol className="space-y-3">
+        {steps.map((s, i) => (
+          <li key={s.id} className="grid grid-cols-[2rem_minmax(0,1fr)] items-baseline gap-x-3">
+            <span className="text-right text-[15px] tabular-nums text-muted">{i + 1}.</span>
+            <div>
+              <button type="button" onClick={() => onOpen(s.id)} className={`text-[18px] ${link}`}>
+                {s.title}
+              </button>
+              <p className="text-[14px] text-muted">
+                {s.authority} · {s.mode === "online" ? "online" : s.mode === "in_person" ? "in person" : "online or in person"}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 

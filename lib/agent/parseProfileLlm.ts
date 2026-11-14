@@ -6,6 +6,7 @@ import { addCalendarDays } from "../graph/dates";
 import { ProfileExtraction, parseProfileTask } from "../prompts/parseProfile";
 import type { Profile } from "../types";
 import { assumptionKind } from "../ui/assumptionLabel";
+import { semesterAssumption, semesterStart } from "./semester";
 
 export type LlmParse =
   | { ok: true; profile: Profile; assumptions: string[]; people: Profile[] }
@@ -58,7 +59,9 @@ export async function parseProfileLlm(text: string, today: string): Promise<LlmP
     city = "Helsinki";
     assumptions.push("No Finnish city named; assumed Helsinki.");
   }
-  const arrival = resolveArrival(d.arrival, today);
+  let arrival = resolveArrival(d.arrival, today);
+  const term = arrival.date ? undefined : semesterStart(text, today);
+  if (term) arrival = { date: term, assumption: semesterAssumption(term) };
   if (arrival.assumption) assumptions.push(arrival.assumption);
 
   const build = (p: (typeof d.people)[number]): Profile => {

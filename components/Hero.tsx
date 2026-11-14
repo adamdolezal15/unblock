@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { countVisits } from "@/lib/graph/baseline";
 import type { Comparison } from "@/lib/ui/compare";
-import { buildDays } from "@/lib/ui/days";
+import { buildDays, FALLBACK_NOTE, fallbackSteps } from "@/lib/ui/days";
 import type { LetterDoc, Seg } from "@/lib/ui/letter";
 import { longDate } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
@@ -13,6 +13,17 @@ import { TransitLine } from "./TransitLine";
 export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void }) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const sched = state.schedule;
+  const fallback = fallbackSteps(state);
+  if (fallback && (sched || state.phase === "done")) {
+    return (
+      <section aria-label="Your answer">
+        <h1 className="display text-[46px] sm:text-[54px]">Your {fallback.length} steps, in order.</h1>
+        <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
+          Start with {fallback[0].title.replace(/^(?=[A-Z][a-z])./, (c) => c.toLowerCase())}. {FALLBACK_NOTE}
+        </p>
+      </section>
+    );
+  }
   if (!sched || !doc.letter) return null;
   const items = sched.schedule.items;
   const path = sched.criticalPath.stepIds;

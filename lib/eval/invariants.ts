@@ -216,7 +216,10 @@ export function checkInvariants(state: RunState): Violation[] {
     if (!assumptionKind(a)) add("assumptions", `not a code label: "${a}"`);
   });
   for (const p of profileParts(profile, assumptions, state.text)) {
-    if ("field" in p && p.field.startsWith("assumption:") && p.value.split(/\s+/).length > 6) add("assumptions", `long label "${p.value}"`);
+    if (!("field" in p) || !p.field.startsWith("assumption:")) continue;
+    if (p.value.split(/\s+/).length > 6) add("assumptions", `long label "${p.value}"`);
+    // A bare kind word says nothing: "Assumed: city" must name the city, "arrival date" must name the day.
+    if (/^(city|arrival date|arrival|citizenship|purpose|date)$/i.test(p.value.trim())) add("assumptions", `bare label "${p.value}"`);
   }
 
   return out;

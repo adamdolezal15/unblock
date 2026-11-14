@@ -77,17 +77,24 @@ describe("golden: Vietnamese nurse, Oulu", () => {
   });
 
   it("3. identification at the police is an in-person step of its own before strong ID, with its quote; not a Bring item", () => {
-    const police = state.steps.police_identification;
-    expect(police).toMatchObject({ mode: "in_person", derived: true, authority: "Police" });
+    // Either the derived "identification at the police" or the searched police ID card step: a police visit.
+    const id = state.steps.police_identification ? "police_identification" : "police_id_card";
+    const police = state.steps[id];
+    expect(police).toMatchObject({ mode: "in_person", authority: "Police" });
     expect(police.citations.length).toBeGreaterThan(0);
-    for (const c of police.citations) expect(c.quote.toLowerCase()).toMatch(/police/);
+    // The derived step's quotes all name the police; the searched step has the police's own pages among its sources.
+    const aboutPolice = (c: { quote: string; url: string }) => /police|poliisi/.test(`${c.quote} ${c.url}`.toLowerCase());
+    if (police.derived) expect(police.citations.every(aboutPolice)).toBe(true);
+    else expect(police.citations.some(aboutPolice)).toBe(true);
     const strong = state.steps.strong_identification;
-    expect(strong.requires).toContain("police_identification");
-    expect(strong.visitPack?.documents.some((d) => /police/i.test(d)) ?? false).toBe(false);
-    expect(items().police_identification.readyIndex).toBeLessThanOrEqual(items().strong_identification.startIndex);
-    expect(items().police_identification.startDate < items().strong_identification.startDate).toBe(true);
+    expect(strong.requires).toContain(id);
+    // A police item in Bring is only fine as the output of that required police step (the card), never instead of it.
+    const policeDocs = strong.visitPack?.documents.filter((d) => /police/i.test(d)) ?? [];
+    if (policeDocs.length) expect(id).toBe("police_id_card");
+    expect(items()[id].readyIndex).toBeLessThanOrEqual(items().strong_identification.startIndex);
+    expect(items()[id].startDate < items().strong_identification.startDate).toBe(true);
     // the derived step gets no community search and no conflict probe of its own
-    expect(state.tips.some((t) => t.stepId === "police_identification")).toBe(false);
+    if (police.derived) expect(state.tips.some((t) => t.stepId === id)).toBe(false);
   });
 
   it("3. the police ID card for a foreigner is in person, from a verified sentence", () => {

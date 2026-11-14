@@ -85,7 +85,7 @@ describe("profile sentence", () => {
     const { profileParts } = await import("../../lib/ui/profileSentence");
     const parts = profileParts(state.profile!.profile, state.profile!.assumptions, MARTA);
     const s = parts.map((p) => ("t" in p ? p.t : p.value)).join("");
-    expect(s).toBe("You're a Czech citizen, working and studying in Helsinki from 1 December, on €3,200 a month (I assumed gross).");
+    expect(s).toBe("You're a Czech citizen, working and studying in Helsinki from 1 December, on €3,200 a month (assumed: gross).");
   });
 });
 

@@ -40,6 +40,11 @@ export type Step = {
   requires: string[]; // step ids, all needed
   /** Alternatives: every group must be met by ANY one of its ids, e.g. [["dvv_registration", "vero_identity_code"]]. */
   requiresAnyOf?: string[][];
+  /**
+   * Requirements dropped from `requires` because they closed a cycle with weaker evidence than the rest
+   * (lib/agent/breakCycles). The verified claim stays in `claims`; this only lets the plan be ordered.
+   */
+  relaxedRequires?: string[];
   /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
   milestone?: boolean;
   /** The person says they already have this (Profile.alreadyDone). No citations: it is their statement, not a claim. */

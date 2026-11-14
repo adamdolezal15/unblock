@@ -1,5 +1,5 @@
 // The parsed profile as one sentence with editable parts ("You're a Czech citizen, working and
-// studying in Helsinki from 1 December, on €3,200 a month (I assumed gross)."). The nationality word is
+// studying in Helsinki from 1 December, on €3,200 a month (assumed: gross)."). The nationality word is
 // taken from the person's own sentence when it names one; otherwise the citizenship group is used.
 import type { Profile } from "@/lib/types";
 import { assumptionPhrase } from "./assumptionLabel";
@@ -40,23 +40,23 @@ export function profileParts(p: Profile, assumptions: string[], text: string): P
   ];
   if (p.arrivalDate) {
     parts.push({ t: " from " }, { field: "arrival", value: longDate(p.arrivalDate) });
-    if (dayIdx >= 0) parts.push({ t: " (I assumed " }, { field: `assumption:${dayIdx}`, value: "the 1st", title: assumptions[dayIdx] }, { t: ")" });
+    if (dayIdx >= 0) parts.push({ t: " (assumed: " }, { field: `assumption:${dayIdx}`, value: "the 1st", title: assumptions[dayIdx] }, { t: ")" });
   }
   if (p.monthlySalaryEur) {
     parts.push({ t: ", on " }, { field: "salary", value: `€${p.monthlySalaryEur.toLocaleString("en-GB")} a month` });
     if (salaryIdx >= 0) {
       const gross = /\bnet\b/i.test(assumptions[salaryIdx]) ? "net" : "gross";
-      parts.push({ t: " (I assumed " }, { field: `assumption:${salaryIdx}`, value: gross, title: assumptions[salaryIdx] }, { t: ")" });
+      parts.push({ t: " (assumed: " }, { field: `assumption:${salaryIdx}`, value: gross, title: assumptions[salaryIdx] }, { t: ")" });
     }
   }
   if (p.hasFamily) parts.push({ t: ", " }, { field: "family", value: "with your family" });
   parts.push({ t: "." });
   const rest = assumptions.map((a, i) => ({ a, i })).filter(({ i }) => i !== salaryIdx && i !== dayIdx);
   if (rest.length) {
-    parts.push({ t: " I assumed " });
+    parts.push({ t: " Assumed: " });
     rest.forEach(({ a, i }, k) => {
-      if (k > 0) parts.push({ t: k === rest.length - 1 ? " and " : ", " });
-      parts.push({ field: `assumption:${i}`, value: assumptionPhrase(a), title: a });
+      if (k > 0) parts.push({ t: ", " });
+      parts.push({ field: `assumption:${i}`, value: assumptionPhrase(a, p), title: a });
     });
     parts.push({ t: "." });
   }

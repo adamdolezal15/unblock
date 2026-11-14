@@ -4,6 +4,7 @@ import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
 import { useRun } from "@/lib/ui/useRun";
 import type { RunState } from "@/lib/ui/runState";
 import { buildLetter } from "@/lib/ui/letter";
+import { fallbackSteps } from "@/lib/ui/days";
 import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
@@ -73,8 +74,11 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const openStep = useCallback((id: string) => select({ kind: "step", id }), [select]);
   const openSources = useCallback((id: string) => select({ kind: "step", id, focus: "sources" }), [select]);
 
+  // Steps but no dated plan (for any reason, once the run has a schedule or is over): the steps as a list.
+  const listOnly = !!fallbackSteps(state) && (!!state.schedule || state.phase === "done");
+
   // Until the schedule exists there is no answer to show: one calm progress card instead.
-  if (!state.schedule || !doc.letter) {
+  if (!listOnly && (!state.schedule || !doc.letter)) {
     return (
       <main className="px-6 pb-24">
         <Working state={state} />
@@ -117,9 +121,14 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
       )}
 
       <div className="mt-8">
-        {view === "summary" && (
+        {view === "summary" && listOnly && (
+          <div className="max-w-[880px]">
+            <DayByDay state={state} doc={doc} onOpen={openStep} onSources={openSources} />
+          </div>
+        )}
+        {view === "summary" && !listOnly && (
           <div className="max-w-[680px]">
-            <LetterView letter={doc.letter} onShow={openStep} headline={false} />
+            <LetterView letter={doc.letter!} onShow={openStep} headline={false} />
           </div>
         )}
         {view === "days" && (
@@ -129,7 +138,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
               doc={doc}
               onOpen={openStep}
               onSources={openSources}
-              extra={<Insights insights={doc.letter.insights} onOpen={openStep} />}
+              extra={doc.letter ? <Insights insights={doc.letter.insights} onOpen={openStep} /> : undefined}
               shortcut={(id) => {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 // A tag only: the answer above already says what the shortcut gains.

@@ -1,0 +1,53 @@
+{
+  "fetchedAt": "2026-11-14T14:49:29.935Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "I’m Czech, studying at Charles University, and I’m going to the University of Helsinki on Erasmus for next semester.",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Helsinki",
+      "arrival": {
+        "kind": "none",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Czech",
+          "citizenship": "EU",
+          "purpose": [
+            "study"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": [
+        "University of Helsinki's city, Helsinki, is used as the destination city."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2506,
+      "costUsd": 0.009824000000000001,
+      "cacheHit": false
+    }
+  }
+}

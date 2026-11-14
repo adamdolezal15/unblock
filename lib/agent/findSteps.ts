@@ -19,6 +19,7 @@ import { citizenshipClass, documentsForClass } from "./applicability";
 import { looksLikeAddress, looksLikeDuration, looksLikeHours } from "./valueFormats";
 import { inPersonFromText, localVisitClaims, permitProvidesCode, policeIdentificationClaims, policeIdentificationStep } from "./derive";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
+import { breakCycles } from "./breakCycles";
 
 export type StepReport = {
   id: string;
@@ -476,10 +477,13 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     const milestone = buildMilestone(id, confirmation, providers, runs);
     if (milestone) steps.push(milestone);
   }
-  for (const s of steps) emit(s); // new steps, and early ones whose final form changed (e.g. a shared visitId)
+  // A requirement cycle would leave every step in it (and behind it) unscheduled: drop its weakest link.
+  const unlocked = breakCycles(steps);
+  for (const r of unlocked.relaxed) onProgress(`Loop in the requirements: ${r.stepId} does not wait for ${r.requires} (weakest source wording)`, "check");
+  for (const s of unlocked.steps) emit(s); // new steps, and early ones whose final form changed (e.g. a shared visitId)
 
   return {
-    steps,
+    steps: unlocked.steps,
     sources: dedupeDocs(runs.flatMap((r) => r.docs)),
     stubs,
     dropped: runs.flatMap((r) => r.dropped),

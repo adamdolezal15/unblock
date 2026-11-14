@@ -1,0 +1,1424 @@
+{
+ "runId": "mwgiunwf-37c4f9759584",
+ "text": "I’m Czech, studying at Charles University, and I’m going to the University of Helsinki on Erasmus for next semester.",
+ "profile": {
+  "citizenship": "EU",
+  "purpose": [
+   "study"
+  ],
+  "city": "Helsinki"
+ },
+ "assumptions": [
+  "University of Helsinki's city, Helsinki, is used as the destination city.",
+  "Arrival date not stated; planning from today."
+ ],
+ "steps": [
+  {
+   "id": "eu_registration",
+   "title": "Register EU citizen's right of residence (EU registration, Migri)",
+   "authority": "Migri",
+   "mode": "in_person",
+   "requires": [
+    "university_enrolment"
+   ],
+   "visitPack": {
+    "documents": [
+     "valid passport or identity card",
+     "proof of sufficient financial resources"
+    ],
+    "hours": "New Migri appointments at IHH open every Thursday 14-16 for the following week",
+    "bookingUrl": "https://migri.vihta.com"
+   },
+   "citations": [
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+     "quote": "If you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://migri.fi/en/registration-of-right-of-residence",
+     "quote": "If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+     "quote": "Then you need to visit Migri’s service point to prove your identity",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+     "quote": "Remember to bring your identity card or passport to your appointment",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+     "quote": "You have sufficient financial resources for living in Finland for yourself and for your family members",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://migri.fi/en/registration-of-right-of-residence",
+     "quote": "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+     "quote": "New appointments to visit Migri at IHH open every Thursday between 14-16 for the following week",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    },
+    {
+     "url": "https://migri.fi/en/registration-of-right-of-residence",
+     "quote": "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.267Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "eu_registration",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+      "quote": "If you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "requires",
+     "value": "university_enrolment",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://migri.fi/en/registration-of-right-of-residence",
+      "quote": "If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "mode",
+     "value": "in_person",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+      "quote": "Then you need to visit Migri’s service point to prove your identity",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "document",
+     "value": "valid passport or identity card",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+      "quote": "Remember to bring your identity card or passport to your appointment",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "document",
+     "value": "proof of sufficient financial resources",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+      "quote": "You have sufficient financial resources for living in Finland for yourself and for your family members",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "booking_url",
+     "value": "https://migri.vihta.com",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://migri.fi/en/registration-of-right-of-residence",
+      "quote": "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "hours",
+     "value": "New Migri appointments at IHH open every Thursday 14-16 for the following week",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+      "quote": "New appointments to visit Migri at IHH open every Thursday between 14-16 for the following week",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    },
+    {
+     "stepId": "eu_registration",
+     "kind": "processing_time",
+     "value": "immediate at the service point if all attachments are in order",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://migri.fi/en/registration-of-right-of-residence",
+      "quote": "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.267Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   },
+   "communityTips": [
+    {
+     "url": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+     "quote": "The Finnish Immigration Service point in Helsinki is very busy and when you book an appointment, the next available time may be several weeks or even a few months away",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T06:37:52.459Z",
+     "kind": "gotcha",
+     "text": "Book your Helsinki appointment as early as you can, because the next free slot can be weeks or even months away."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/eu-registration-finland",
+     "quote": "The practical takeaway: apply early, attach clean documents, and book the in-person appointment as soon as slots allow, because the appointment is often the real bottleneck rather than the decision itself",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:37:52.459Z",
+     "kind": "trick",
+     "text": "Apply early and book the in-person appointment as soon as slots open, since the appointment is often the real bottleneck."
+    }
+   ]
+  },
+  {
+   "id": "dvv_registration",
+   "title": "Register as a resident and get a Finnish personal identity code (DVV)",
+   "authority": "DVV",
+   "mode": "in_person",
+   "requires": [
+    "eu_registration"
+   ],
+   "visitPack": {
+    "documents": [
+     "valid passport or official photo ID card of an EU citizen",
+     "certificate of registration of the right of residence for EU citizens",
+     "proof of studies in Finland, e.g. certificate of student status",
+     "completed online request form for personal identity code"
+    ]
+   },
+   "citations": [
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "You can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+     "quote": "Newcomers moving to Finland need to register their data into the Finnish Population Information system at the Digital and Population Data Services Agency (DVV",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+     "quote": "At International House Helsinki (IHH), the Digital and Population Data Services Agency (DVV) issues personal identity codes and registers personal data into the Finnish Population Information System",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "a certificate of registration of the right of residence for EU citizens",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "If you do not have a Finnish personal identity code, you can apply for a personal identity code and municipality of residense using this form",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "Finnish identity code request (work, study) 2–3 weeks",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    },
+    {
+     "url": "https://dvv.fi/en/foreigner-registration",
+     "quote": "If you are a student, first check with your educational institution or tutor, if they have booked a joint visit",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "dvv_registration",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "You can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+      "quote": "Newcomers moving to Finland need to register their data into the Finnish Population Information system at the Digital and Population Data Services Agency (DVV",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "provides",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+      "quote": "At International House Helsinki (IHH), the Digital and Population Data Services Agency (DVV) issues personal identity codes and registers personal data into the Finnish Population Information System",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "mode",
+     "value": "in_person",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "document",
+     "value": "valid passport or official photo ID card of an EU citizen",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "document",
+     "value": "certificate of registration of the right of residence for EU citizens",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "a certificate of registration of the right of residence for EU citizens",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "document",
+     "value": "proof of studies in Finland, e.g. certificate of student status",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "document",
+     "value": "completed online request form for personal identity code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "If you do not have a Finnish personal identity code, you can apply for a personal identity code and municipality of residense using this form",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "requires",
+     "value": "eu_registration",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "a certificate of registration of the right of residence for EU citizens",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "processing_time",
+     "value": "2–3 weeks for work/study requests, counted from the day of the visit",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "Finnish identity code request (work, study) 2–3 weeks",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    },
+    {
+     "stepId": "dvv_registration",
+     "kind": "same_visit",
+     "value": "university_enrolment",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://dvv.fi/en/foreigner-registration",
+      "quote": "If you are a student, first check with your educational institution or tutor, if they have booked a joint visit",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   },
+   "visitId": "visit:dvv_registration+university_enrolment",
+   "communityTips": [
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+     "quote": "You might find that the first available slot for identity verification is three weeks away, and only after that does the 1–3 week processing clock begin",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.434Z",
+     "kind": "wait_time",
+     "text": "In Helsinki, the first appointment slot can be about three weeks away, and processing starts only after the visit, so book early."
+    },
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+     "quote": "If you submit your request in August or early September, expect the DVV processing times to stretch toward the 4-to-6-week mark",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.434Z",
+     "kind": "gotcha",
+     "text": "If you register in August or early September, expect the processing to take noticeably longer."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+     "quote": "Wait times vary — in Helsinki they can stretch to a few weeks during busy periods",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.434Z",
+     "kind": "gotcha",
+     "text": "Expect the in-person DVV appointment in Helsinki to take a few weeks to get during busy periods."
+    },
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+     "quote": "If you see no appointments in Helsinki, widen your search radius",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.434Z",
+     "kind": "trick",
+     "text": "If Helsinki has no free appointments, search other DVV offices."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+     "quote": "Book the appointment the day you land, even if you submit the form later",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.434Z",
+     "kind": "trick",
+     "text": "Book the DVV appointment as soon as you arrive, even if you haven't submitted the online form yet."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+     "quote": "Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:37:52.358Z",
+     "kind": "trick",
+     "text": "If slots are scarce, check nearby service points and look at the booking system at different times of day."
+    }
+   ]
+  },
+  {
+   "id": "bank_account",
+   "title": "Bank account",
+   "authority": "Your bank",
+   "mode": "in_person",
+   "requires": [
+    "personal_identity_code",
+    "eu_registration"
+   ],
+   "visitPack": {
+    "documents": [
+     "Passport or EU citizen's identity card (official identification document)",
+     "Proof of identity (passport or national ID card)",
+     "Registration of right of residence (EU citizen)"
+    ]
+   },
+   "citations": [
+    {
+     "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+     "quote": "When you have a Finnish personal identity code, you can usually open a bank account",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.066Z"
+    },
+    {
+     "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+     "quote": "You will need an official identification document, such as a passport or EU-citizen`s identity card, to open a bank account",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.066Z"
+    },
+    {
+     "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+     "quote": "Go to an office of that bank and say you want to open an account",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.066Z"
+    },
+    {
+     "url": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+     "quote": "Be prepared to show proof of identity (passport or national ID card), your Finnish personal identity code, proof of your local address, and details of your employment or study arrangements in Finland",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.066Z"
+    },
+    {
+     "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+     "quote": "To prove your right of residence in Finland, you will need one of the following",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:38.793Z"
+    },
+    {
+     "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+     "quote": "If you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:38.793Z"
+    },
+    {
+     "url": "https://danskebank.fi/en/for-you/become-a-customer/basic-banking-services",
+     "quote": "The processing time is a maximum of ten business days and begins once we have received your request and all the documents required to open the services",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:38.793Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "bank_account",
+     "kind": "requires",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+      "quote": "When you have a Finnish personal identity code, you can usually open a bank account",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.066Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "document",
+     "value": "Passport or EU citizen's identity card (official identification document)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+      "quote": "You will need an official identification document, such as a passport or EU-citizen`s identity card, to open a bank account",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.066Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "mode",
+     "value": "in_person",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+      "quote": "Go to an office of that bank and say you want to open an account",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.066Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "document",
+     "value": "Proof of identity (passport or national ID card)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.myhelsinki.fi/live-work/plan-your-move/opening-a-finnish-bank-account/",
+      "quote": "Be prepared to show proof of identity (passport or national ID card), your Finnish personal identity code, proof of your local address, and details of your employment or study arrangements in Finland",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.066Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "document",
+     "value": "Registration of right of residence (EU citizen)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+      "quote": "To prove your right of residence in Finland, you will need one of the following",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:38.793Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "requires",
+     "value": "eu_registration",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+      "quote": "If you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:38.793Z"
+     }
+    },
+    {
+     "stepId": "bank_account",
+     "kind": "processing_time",
+     "value": "Maximum of ten business days after all documents are received",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://danskebank.fi/en/for-you/become-a-customer/basic-banking-services",
+      "quote": "The processing time is a maximum of ten business days and begins once we have received your request and all the documents required to open the services",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:38.793Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "required_by",
+    "stepIds": [
+     "strong_identification",
+     "kela_registration"
+    ],
+    "citations": [
+     {
+      "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+      "quote": "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     },
+     {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "You must have a bank account so that we can pay your benefits to you",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    ]
+   },
+   "visitId": "visit:bank_account+strong_identification",
+   "communityTips": [
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-open-a-bank-account-in-finland/",
+     "quote": "I remember sitting in a lobby for two hours only to be told that the next available slot for an \"onboarding meeting\" was three weeks away",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.948Z",
+     "kind": "wait_time",
+     "text": "Expect a wait of around three weeks for a new-customer bank appointment in a big city, so book early."
+    },
+    {
+     "url": "https://www.finlandforum.org/viewtopic.php?t=104507",
+     "quote": "Although the officer said I will get my bank account no. instantly, I did not get it and he said I just have to wait 3-4 weeks",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.948Z",
+     "kind": "wait_time",
+     "text": "An international student who applied for an S-Pankki account was told it would not be instant and to wait 3-4 weeks."
+    },
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-open-a-bank-account-in-finland/",
+     "quote": "Often, banks will hold \"mass registration\" days at the start of the semester, which can cut your wait time down from weeks to a single afternoon",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.948Z",
+     "kind": "trick",
+     "text": "As a student, check whether your bank holds mass registration days at the start of the semester, which can shorten the wait."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+     "quote": "Book the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.948Z",
+     "kind": "trick",
+     "text": "Book your bank appointment in advance, because walk-ins are not guaranteed and busy branches can add days of waiting."
+    },
+    {
+     "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+     "quote": "The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.927Z",
+     "kind": "gotcha",
+     "text": "An account and online banking codes are separate, so you may leave the branch with an account but no codes; ask specifically for the codes."
+    },
+    {
+     "url": "https://finlandhandbook.com/how-long-does-it-take-to-open-a-bank-account-in-finland/",
+     "quote": "This usually takes 5 to 7 business days after the account is approved",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T14:49:49.948Z",
+     "kind": "wait_time",
+     "text": "After the account is approved, expect the card and PIN to arrive by post in separate envelopes within about 5 to 7 business days."
+    }
+   ]
+  },
+  {
+   "id": "strong_identification",
+   "title": "Strong electronic identification (online banking codes)",
+   "authority": "Your bank",
+   "mode": "in_person",
+   "requires": [
+    "personal_identity_code",
+    "dvv_registration",
+    "bank_account"
+   ],
+   "costOfDelay": "Without strong identification you cannot access most online services in Finland",
+   "visitPack": {
+    "documents": [
+     "Passport or EEA-issued identity card (valid travel document)"
+    ]
+   },
+   "citations": [
+    {
+     "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+     "quote": "However, e-services require a tool that enables you to use strong identification online",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:40.925Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+     "quote": "It is most convenient to get the Finnish ID card first and then go to the bank to open a bank account and strong identification at the same time",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:40.925Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+     "quote": "A visit to the selected bank is required",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:40.925Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+     "quote": "Most of the online services in Finland can be accessed only by using strong identification",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:40.925Z"
+    },
+    {
+     "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+     "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:41.367Z"
+    },
+    {
+     "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+     "quote": "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:41.367Z"
+    },
+    {
+     "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+     "quote": "To become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:41.367Z"
+    },
+    {
+     "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+     "quote": "Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen",
+     "trust": "provider",
+     "fetchedAt": "2026-11-14T00:48:41.367Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "strong_identification",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+      "quote": "However, e-services require a tool that enables you to use strong identification online",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:40.925Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "same_visit",
+     "value": "bank_account",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+      "quote": "It is most convenient to get the Finnish ID card first and then go to the bank to open a bank account and strong identification at the same time",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:40.925Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "mode",
+     "value": "in_person",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+      "quote": "A visit to the selected bank is required",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:40.925Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "cost_of_delay",
+     "value": "Without strong identification you cannot access most online services in Finland",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+      "quote": "Most of the online services in Finland can be accessed only by using strong identification",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:40.925Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "requires",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+      "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "requires",
+     "value": "dvv_registration",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+      "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "requires",
+     "value": "bank_account",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+      "quote": "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "document",
+     "value": "Passport or EEA-issued identity card (valid travel document)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+      "quote": "To become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     }
+    },
+    {
+     "stepId": "strong_identification",
+     "kind": "cost_of_delay",
+     "value": "Without a Finnish personal identity code you only get limited banking codes that don't work for authority services",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+      "quote": "Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   },
+   "visitId": "visit:bank_account+strong_identification",
+   "communityTips": [
+    {
+     "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+     "quote": "This is exactly why some newcomers get an account but find the bank codes take longer",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.218Z",
+     "kind": "gotcha",
+     "text": "Having a bank account does not guarantee you get the online banking codes at the same time, so check on them."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+     "quote": "Book an appointment rather than relying on a walk-in",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.218Z",
+     "kind": "trick",
+     "text": "Book a bank appointment in advance instead of turning up as a walk-in."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+     "quote": "Ask at your appointment specifically when and how you will receive your codes",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:39:22.218Z",
+     "kind": "trick",
+     "text": "At your bank appointment, ask exactly when and how you will receive your codes."
+    },
+    {
+     "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+     "quote": "The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:37:55.196Z",
+     "kind": "gotcha",
+     "text": "You may leave the bank with an account but no usable strong-identification codes, so ask for codes that work in other services."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+     "quote": "Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:37:55.196Z",
+     "kind": "trick",
+     "text": "Ask the bank to confirm that your codes are enabled for strong electronic identification and not just for banking."
+    },
+    {
+     "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+     "quote": "Your codes are probably not activated for e-identification",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T06:37:55.196Z",
+     "kind": "gotcha",
+     "text": "If you have an account but cannot log in to services like OmaVero, your codes may not be enabled for e-identification; call the bank."
+    }
+   ]
+  },
+  {
+   "id": "kela_registration",
+   "title": "Finnish social security coverage (Kela)",
+   "authority": "Kela",
+   "mode": "either",
+   "requires": [
+    "personal_identity_code",
+    "bank_account"
+   ],
+   "visitPack": {
+    "documents": [
+     "Notification form Moving to Finland or employment in Finland Y 77e",
+     "Application Kela card SV 157e"
+    ],
+    "address": "Kela, PL 10, 00056 KELA (postal applications)"
+   },
+   "citations": [
+    {
+     "url": "https://www.kela.fi/moving-to-finland",
+     "quote": "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/moving-to-finland",
+     "quote": "Personal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/moving-to-finland",
+     "quote": "You must have a bank account so that we can pay your benefits to you",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/kela-card",
+     "quote": "You can apply for a Kela card either on a form or in the OmaKela e-service",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/moving-to-finland",
+     "quote": "If you cannot use OmaKela, send your application forms and form Moving to Finland or employment in Finland Y 77e (PDF) to Kela by mail",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/kela-card",
+     "quote": "Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    },
+    {
+     "url": "https://www.kela.fi/kela-card",
+     "quote": "Send the form together with any supporting documents to Kela, PL 10, 00056 KELA",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.584Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "kela_registration",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "requires",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "Personal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "requires",
+     "value": "bank_account",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "You must have a bank account so that we can pay your benefits to you",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "mode",
+     "value": "either",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/kela-card",
+      "quote": "You can apply for a Kela card either on a form or in the OmaKela e-service",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "document",
+     "value": "Notification form Moving to Finland or employment in Finland Y 77e",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "If you cannot use OmaKela, send your application forms and form Moving to Finland or employment in Finland Y 77e (PDF) to Kela by mail",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "document",
+     "value": "Application Kela card SV 157e",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/kela-card",
+      "quote": "Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    },
+    {
+     "stepId": "kela_registration",
+     "kind": "address",
+     "value": "Kela, PL 10, 00056 KELA (postal applications)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://www.kela.fi/kela-card",
+      "quote": "Send the form together with any supporting documents to Kela, PL 10, 00056 KELA",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   }
+  },
+  {
+   "id": "police_id_card",
+   "title": "Identity card for a foreigner (Police)",
+   "authority": "Police",
+   "mode": "in_person",
+   "requires": [
+    "dvv_registration",
+    "eu_registration"
+   ],
+   "visitPack": {
+    "documents": [
+     "valid passport or identity card",
+     "one passport photograph taken no more than 6 months earlier"
+    ]
+   },
+   "citations": [
+    {
+     "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+     "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.043Z"
+    },
+    {
+     "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+     "quote": "When applying for a foreigner’s identity card, you must present a valid passport or identity card",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.043Z"
+    },
+    {
+     "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+     "quote": "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.043Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+     "quote": "The application processing is usually rather straightforward, and you can expect to receive your ID card within 1–2 weeks after your visit to the police station",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:41.043Z"
+    },
+    {
+     "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+     "quote": "Applying for the identity card requires a personal visit at the Police station",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:40.925Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "police_id_card",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+      "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "requires",
+     "value": "dvv_registration",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+      "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "requires",
+     "value": "eu_registration",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+      "quote": "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "document",
+     "value": "valid passport or identity card",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+      "quote": "When applying for a foreigner’s identity card, you must present a valid passport or identity card",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "document",
+     "value": "one passport photograph taken no more than 6 months earlier",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+      "quote": "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "processing_time",
+     "value": "1–2 weeks after the police station visit",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+      "quote": "The application processing is usually rather straightforward, and you can expect to receive your ID card within 1–2 weeks after your visit to the police station",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.043Z"
+     }
+    },
+    {
+     "stepId": "police_id_card",
+     "kind": "mode",
+     "value": "in_person",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+      "quote": "Applying for the identity card requires a personal visit at the Police station",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:40.925Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   },
+   "communityTips": [
+    {
+     "url": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+     "quote": "Nettipalvelun mukaan seuraava vapaa aika olisi ollut 3 kk päässä",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T07:21:08.010Z",
+     "kind": "gotcha",
+     "text": "Online booking for a Helsinki police visit once showed the next free slot about 3 months away, so do not count on getting an appointment quickly."
+    },
+    {
+     "url": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+     "quote": "No, menin vaan laitokselle Pasilaan, jonotin 20 min ja se siitä",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T07:21:08.010Z",
+     "kind": "trick",
+     "text": "If no appointment is free, go to the Pasila police station and queue without one; one person was done after about 20 minutes."
+    },
+    {
+     "url": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+     "quote": "Sama juttu, kyttäsin peruutusaikoja ja 2 viikon päähän tärppäsi",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T07:21:08.010Z",
+     "kind": "trick",
+     "text": "Keep checking the booking system for cancelled slots; one person got a slot about 2 weeks away this way."
+    },
+    {
+     "url": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+     "quote": "Koko prosessissa hakemuksen jättämisestä passin saamiseen meni n. 5 työpäivää",
+     "trust": "community",
+     "fetchedAt": "2026-11-14T07:21:08.010Z",
+     "kind": "gotcha",
+     "text": "One Helsinki applicant who submitted online and queued at Pasila reported about 5 working days from application to receiving a passport."
+    }
+   ]
+  },
+  {
+   "id": "university_enrolment",
+   "title": "University enrolment and arrival steps",
+   "authority": "Your university",
+   "mode": "either",
+   "requires": [
+    "personal_identity_code"
+   ],
+   "costOfDelay": "No access to some services, such as the student health service account, until the identity code is reported to the university",
+   "visitPack": {
+    "documents": [
+     "Certificate of student status (from Sisu)"
+    ]
+   },
+   "citations": [
+    {
+     "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+     "quote": "Once you have received a study offer, remember to accept your study place and register as attending for the upcoming academic year",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T00:48:40.612Z"
+    },
+    {
+     "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+     "quote": "The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T00:48:40.612Z"
+    },
+    {
+     "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+     "quote": "If needed, you can then download your certificate of student status in Sisu",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T00:48:40.612Z"
+    },
+    {
+     "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+     "quote": "You cannot access some services before completing this last step, such as logging in to your student health service account",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T00:48:40.612Z"
+    },
+    {
+     "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+     "quote": "Important: Up to seven weeks after registering, you will receive your personal identity code via email and/or post",
+     "trust": "university",
+     "fetchedAt": "2026-11-14T00:48:40.612Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "university_enrolment",
+     "kind": "applies",
+     "value": "yes",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+      "quote": "Once you have received a study offer, remember to accept your study place and register as attending for the upcoming academic year",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     }
+    },
+    {
+     "stepId": "university_enrolment",
+     "kind": "requires",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+      "quote": "The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     }
+    },
+    {
+     "stepId": "university_enrolment",
+     "kind": "document",
+     "value": "Certificate of student status (from Sisu)",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+      "quote": "If needed, you can then download your certificate of student status in Sisu",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     }
+    },
+    {
+     "stepId": "university_enrolment",
+     "kind": "cost_of_delay",
+     "value": "No access to some services, such as the student health service account, until the identity code is reported to the university",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+      "quote": "You cannot access some services before completing this last step, such as logging in to your student health service account",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     }
+    },
+    {
+     "stepId": "university_enrolment",
+     "kind": "processing_time",
+     "value": "Up to seven weeks to receive the personal identity code after registering",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+      "quote": "Important: Up to seven weeks after registering, you will receive your personal identity code via email and/or post",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "applies"
+   },
+   "visitId": "visit:dvv_registration+university_enrolment"
+  },
+  {
+   "id": "personal_identity_code",
+   "title": "Finnish personal identity code",
+   "authority": "any of the options",
+   "mode": "either",
+   "requires": [],
+   "requiresAnyOf": [
+    [
+     "dvv_registration"
+    ]
+   ],
+   "milestone": true,
+   "citations": [
+    {
+     "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+     "quote": "At International House Helsinki (IHH), the Digital and Population Data Services Agency (DVV) issues personal identity codes and registers personal data into the Finnish Population Information System",
+     "trust": "official",
+     "fetchedAt": "2026-11-14T00:48:39.031Z"
+    }
+   ],
+   "claims": [
+    {
+     "stepId": "dvv_registration",
+     "kind": "provides",
+     "value": "personal_identity_code",
+     "matchScore": 1,
+     "citation": {
+      "url": "https://ihhelsinki.fi/registrations/registration-personal-identity-code-change-of-address/",
+      "quote": "At International House Helsinki (IHH), the Digital and Population Data Services Agency (DVV) issues personal identity codes and registers personal data into the Finnish Population Information System",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.031Z"
+     }
+    }
+   ],
+   "confirmation": {
+    "by": "required_by",
+    "stepIds": [
+     "strong_identification",
+     "kela_registration",
+     "university_enrolment",
+     "bank_account"
+    ],
+    "citations": [
+     {
+      "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+      "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+      "trust": "provider",
+      "fetchedAt": "2026-11-14T00:48:41.367Z"
+     },
+     {
+      "url": "https://www.kela.fi/moving-to-finland",
+      "quote": "Personal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:41.584Z"
+     },
+     {
+      "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+      "quote": "The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account",
+      "trust": "university",
+      "fetchedAt": "2026-11-14T00:48:40.612Z"
+     },
+     {
+      "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+      "quote": "When you have a Finnish personal identity code, you can usually open a bank account",
+      "trust": "official",
+      "fetchedAt": "2026-11-14T00:48:39.066Z"
+     }
+    ]
+   }
+  }
+ ]
+}

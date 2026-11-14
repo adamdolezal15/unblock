@@ -205,6 +205,28 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
   return entries.sort((a, b) => a.date.localeCompare(b.date) || ORDER[a.kind] - ORDER[b.kind]);
 }
 
+export type FallbackStep = { id: string; title: string; authority: string; mode: "online" | "in_person" | "either" };
+
+/**
+ * Safety net: the run found steps but none of them has a date (a schedule that could not be built, or one
+ * that came back empty for any reason). Then the plan is the steps as an ordered list, prerequisites first
+ * where the graph knows the order, never an empty page. Null when the schedule has dated steps (or none exist).
+ */
+export function fallbackSteps(state: RunState): FallbackStep[] | null {
+  const real = state.stepOrder.map((id) => state.steps[id]).filter((s) => s && !s.milestone && !s.done);
+  if (!real.length) return null;
+  const items = state.schedule?.schedule.items ?? {};
+  if (real.some((s) => items[s.id])) return null;
+  const rank = new Map((state.graph?.order ?? []).map((id, i) => [id, i]));
+  const at = (id: string) => rank.get(id) ?? Number.MAX_SAFE_INTEGER;
+  return real
+    .map((s, i) => ({ s, i }))
+    .sort((a, b) => at(a.s.id) - at(b.s.id) || a.i - b.i)
+    .map(({ s }) => ({ id: s.id, title: nodeLabel(s.id, s.title), authority: s.authority, mode: s.mode }));
+}
+
+export const FALLBACK_NOTE = "These steps could not be put on dates this time, so here they are in a sensible order. Each one still links to its sources.";
+
 /** For tests and the panel: the step objects a day entry covers. */
 export function entrySteps(e: DayEntry): DayStep[] {
   return e.kind === "visit" || e.kind === "online" ? e.steps : [];

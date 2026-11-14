@@ -1,0 +1,60 @@
+{
+  "fetchedAt": "2026-11-14T14:49:49.534Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "University enrolment and arrival steps",
+    "contextHash": "7c47c42cba4c3528",
+    "includeDomains": [],
+    "docsHash": "20efe26225289a0e"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://studies.helsinki.fi/instructions/article/international-degree-students-journey",
+        "title": "studies.helsinki.fi",
+        "domain": "studies.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "Once you have received a study offer, remember to accept your study place and register as attending for the upcoming academic year",
+          "If needed, you can then download your certificate of student status in Sisu"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://studies.helsinki.fi/instructions/article/register-authorities-degree-students",
+        "title": "studies.helsinki.fi",
+        "domain": "studies.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "The personal identity code is compulsory to have in case your stay lasts at least three months (obliged by the University of Helsinki) and it is needed for various services in Finland, eg. opening a bank account"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      },
+      {
+        "url": "https://blogs.helsinki.fi/internationalcissi/files/2025/08/Freshers-Handbook-Top-Things-to-Know-for-First-Year-Students.pdf",
+        "title": "blogs.helsinki.fi",
+        "domain": "blogs.helsinki.fi",
+        "trust": "university",
+        "highlights": [
+          "You cannot access some services before completing this last step, such as logging in to your student health service account",
+          "Important: Up to seven weeks after registering, you will receive your personal identity code via email and/or post"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.612Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1707,
+      "costUsd": 0.00399,
+      "cacheHit": false
+    }
+  }
+}

@@ -79,12 +79,12 @@ describe("profileParts", () => {
         ["The wife's nationality is assumed to be Brazilian like the writer.", "A PhD is treated as study.", "Only the month was given; assumed the 1st (2027-01-01)."],
         "Brazilian PhD student moving to Tampere with my wife in January",
       ),
-    ).toBe("You're a Brazilian citizen, studying in Tampere from 1 January (I assumed the 1st), with your family. I assumed your partner has the same citizenship and your PhD counts as study.");
+    ).toBe("You're a Brazilian citizen, studying in Tampere from 1 January (assumed: the 1st), with your family. Assumed: partner has your citizenship, PhD counts as study.");
   });
   it("never shows a truncated assumption", async () => {
     expect(
       await read({ citizenship: "NON_EU", purpose: ["work"], city: "Helsinki", arrivalDate: "2026-11-21" }, ["Software engineer interpreted as moving to Finland for work."], "Indian software engineer"),
-    ).toBe("You're an Indian citizen, working in Helsinki from 21 November. I assumed you are coming to work.");
+    ).toBe("You're an Indian citizen, working in Helsinki from 21 November. Assumed: coming to work.");
   });
 });
 
