@@ -113,7 +113,8 @@ async function main() {
   // --- totals
   const stats = exaStats();
   const verified = result.steps.reduce((n, s) => n + (s.milestone ? 0 : (s.claims?.length ?? 0)), 0); // milestone claims are the providers' own
-  const verifiedInStubs = result.reports.reduce((n, r) => n + r.verified, 0) - verified;
+  const stubIds = new Set(result.stubs.map((s) => s.id));
+  const verifiedInStubs = result.reports.reduce((n, r) => n + (stubIds.has(r.id) ? r.verified : 0), 0);
   const byReason: Record<string, number> = {};
   for (const d of result.dropped) byReason[d.reason] = (byReason[d.reason] ?? 0) + 1;
   const total = verified + verifiedInStubs + result.dropped.length;
