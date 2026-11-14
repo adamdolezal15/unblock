@@ -105,7 +105,13 @@ async function main() {
   for (const [h, v] of Object.entries(stats.byHelper)) {
     console.log(`    ${h.padEnd(15)} live ${v.live}  cached ${v.cached}  $${v.costUsd.toFixed(3)}`);
   }
-  console.log(`  cost this run: $${stats.costUsd.toFixed(3)} (cache hits are free)`);
+  // Exa deep extraction is already in exaStats; only non-Exa extractor cost is added on top.
+  const llmProvider = result.reports.find((r) => r.llm)?.llm?.provider ?? "none";
+  const llmExtra = result.reports.reduce((n, r) => n + (r.llm && r.llm.provider !== "exa" ? (r.llm.costUsd ?? 0) : 0), 0);
+  console.log(`  extractor: ${llmProvider}`);
+  console.log(`  exa cost this run: $${stats.costUsd.toFixed(3)} (cache hits are free)`);
+  if (llmExtra) console.log(`  ${llmProvider} cost this run: $${llmExtra.toFixed(3)} (estimated from token usage)`);
+  console.log(`  total cost this run: $${(stats.costUsd + llmExtra).toFixed(3)}`);
   console.log(
     `  claims: ${total} extracted, ${verified + verifiedInStubs} verified (${verified} shown, ${verifiedInStubs} in unconfirmed steps), ${result.dropped.length} dropped` +
       (total ? ` → ${Math.round(((verified + verifiedInStubs) / total) * 100)}% verified` : ""),
@@ -122,6 +128,16 @@ async function main() {
     for (const d of result.dropped.slice(0, 5)) {
       console.log(`    - [${d.reason}${d.bestScore !== undefined ? ` ${d.bestScore}` : ""}] ${d.stepId}.${d.kind}="${wrap(d.value, 40)}" "${wrap(d.quote, 100)}" ${d.url}`);
     }
+  }
+
+  // Machine-readable dump for comparisons (RUN_JSON=path).
+  if (process.env.RUN_JSON) {
+    const { writeFile } = await import("node:fs/promises");
+    await writeFile(
+      process.env.RUN_JSON,
+      JSON.stringify({ profile: parsed.profile, result, graph, topo, crit, path, stats, llmExtra, ms }, null, 2),
+      "utf8",
+    );
   }
 }
 
