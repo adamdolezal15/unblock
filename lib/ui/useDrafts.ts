@@ -1,9 +1,9 @@
 "use client";
 // Drafts in the browser: which ones this plan can offer, and one shared store per run so a draft prepared
 // from a day card shows the same text in the "Ready to send" section.
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { draftOffers, type Draft, type DraftOffer, type DraftSource } from "@/lib/agent/draftOffers";
-import type { RunState } from "./runState";
+import { isReplaying, type RunState } from "./runState";
 
 /** The run cut down to what drafts read (POST /api/drafts). Steps in run order, communityTips left out. */
 export function draftSource(state: RunState): DraftSource | null {
@@ -56,6 +56,19 @@ export function useDrafts(state: RunState): DraftsApi {
     },
     [source, set],
   );
+
+  // A saved demo replay: its drafts are in demo-cache, so load them all up front (no click, no live call).
+  const replay = isReplaying(state.statuses);
+  const asked = useRef<{ runKey: number; ids: Set<string> }>({ runKey: -1, ids: new Set() });
+  useEffect(() => {
+    if (!replay || !source) return;
+    if (asked.current.runKey !== state.runKey) asked.current = { runKey: state.runKey, ids: new Set() };
+    for (const o of offers) {
+      if (asked.current.ids.has(o.id)) continue;
+      asked.current.ids.add(o.id);
+      void prepare(o.id);
+    }
+  }, [replay, source, offers, prepare, state.runKey]);
 
   return {
     offers,
