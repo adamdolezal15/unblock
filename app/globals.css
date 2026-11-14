@@ -142,3 +142,24 @@ body {
 .plan-graph .react-flow__edge {
   cursor: pointer;
 }
+
+/* Map edges and focus (hover / selection rules are injected by PlanGraph; no React re-render). */
+.plan-graph .pg-edge .react-flow__edge-path {
+  fill: none;
+  transition: stroke 120ms, stroke-width 120ms;
+}
+.plan-graph .pg-quiet .react-flow__edge-path {
+  stroke: #a29c90;
+  stroke-width: 1.5px;
+}
+.plan-graph .pg-crit .react-flow__edge-path {
+  stroke: #003580;
+  stroke-width: 3px;
+}
+.plan-graph .pg-back .react-flow__edge-path {
+  stroke-dasharray: 6 5;
+}
+.plan-graph .pg-node,
+.plan-graph .pg-edge {
+  transition: opacity 120ms;
+}
