@@ -273,8 +273,39 @@ export function remapIdentityCode(c: VerifiedClaim): VerifiedClaim {
   return aboutCode && !aboutRegistration ? { ...c, value: "personal_identity_code" } : c;
 }
 
-/** The milestone node: met by ANY step with a verified `provides` claim. Null when no source names one. */
-function buildMilestone(id: string, confirmation: Confirmation, providers: VerifiedClaim[]): Step | null {
+/**
+ * Documents that are the OUTPUT of another step. When a verified `document` claim asks for one, the
+ * step requires that other step; the new `requires` claim carries the same verified citation.
+ * Classification only: no fact is added that the quote does not state.
+ */
+const DOCUMENT_FROM_STEP: { pattern: RegExp; stepId: string }[] = [
+  { pattern: /(registration (certificate )?of (an? |the )?(eu citizen.{0,3}s )?right of residence|certificate of registration of the right of residence)/i, stepId: "eu_registration" },
+  { pattern: /\bresidence permit( card)?\b/i, stepId: "residence_permit" },
+];
+
+export function requiresFromDocuments(stepId: string, claims: VerifiedClaim[], available: ReadonlySet<string>): VerifiedClaim[] {
+  const have = new Set(claims.filter((c) => c.kind === "requires").map((c) => c.value));
+  const out: VerifiedClaim[] = [];
+  for (const c of claims) {
+    if (c.kind !== "document") continue;
+    const text = `${c.value} ${c.citation.quote}`;
+    for (const { pattern, stepId: target } of DOCUMENT_FROM_STEP) {
+      if (target === stepId || !available.has(target) || have.has(target) || !pattern.test(text)) continue;
+      have.add(target);
+      out.push({ ...c, kind: "requires", value: target });
+    }
+  }
+  return out;
+}
+
+/**
+ * The milestone node: met by ANY step with a verified `provides` claim. A provider that itself requires
+ * the milestone can't satisfy it, so it is not an option. Null when no source names a usable option.
+ */
+function buildMilestone(id: string, confirmation: Confirmation, providers: VerifiedClaim[], runs: StepRun[]): Step | null {
+  const needsItself = (stepId: string) =>
+    runs.some((r) => r.def.id === stepId && r.verified.some((c) => c.kind === "requires" && c.value === id));
+  providers = providers.filter((c) => !needsItself(c.stepId));
   if (providers.length === 0) return null; // leave it to buildGraph as an `unresolved` placeholder
   return {
     id,
@@ -295,7 +326,11 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const selected = selectSteps(profile);
   const fetchPage = createPageFetcher(cityDomains(profile.city));
   const runs = await Promise.all(selected.map((def) => runStep(def, profile, selected, fetchPage, onProgress)));
-  for (const r of runs) r.verified = r.verified.map(remapIdentityCode);
+  const available = new Set(runs.map((r) => r.def.id));
+  for (const r of runs) {
+    r.verified = r.verified.map(remapIdentityCode);
+    r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
+  }
   const confirmed = confirmSteps(runs.map((r) => ({ id: r.def.id, verified: r.verified })));
 
   const steps: Step[] = [];
@@ -322,7 +357,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     const providers = runs.flatMap((r) =>
       confirmed.has(r.def.id) ? r.verified.filter((c) => c.kind === "provides" && c.value === id) : [],
     );
-    const milestone = buildMilestone(id, confirmation, providers);
+    const milestone = buildMilestone(id, confirmation, providers, runs);
     if (milestone) steps.push(milestone);
   }
 

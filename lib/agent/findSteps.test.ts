@@ -68,3 +68,20 @@ describe("estimates from cited processing times", () => {
     expect(parseWaitDays("The processing time starts when you have proved your identity")).toBeUndefined();
   });
 });
+
+describe("requiresFromDocuments", () => {
+  it("a document that another step produces becomes a cited requirement on that step", async () => {
+    const { requiresFromDocuments } = await import("./findSteps");
+    const doc = (quote: string): VerifiedClaim => ({ ...claim("dvv_registration", "document", "certificate"), citation: { ...claim("x", "applies").citation, quote } });
+    const out = requiresFromDocuments(
+      "dvv_registration",
+      [doc("a certificate of registration of the right of residence for EU citizens"), doc("a valid passport")],
+      new Set(["eu_registration", "dvv_registration"]),
+    );
+    expect(out.map((c) => [c.kind, c.value, c.citation.quote])).toEqual([
+      ["requires", "eu_registration", "a certificate of registration of the right of residence for EU citizens"],
+    ]);
+    // target step not in this plan -> nothing
+    expect(requiresFromDocuments("dvv_registration", [doc("a residence permit card")], new Set(["dvv_registration"]))).toEqual([]);
+  });
+});
