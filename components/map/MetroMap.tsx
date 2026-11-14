@@ -76,12 +76,26 @@ export function MetroMap({ graph, steps, items, criticalPath, conflicts, selecti
   const touches = (e: MetroEdge) => !!focus && (e.source === focus || e.target === focus);
   const selectedEdge = selection?.kind === "edge" ? selection.id : null;
 
+  // Real bounding box of stations, their labels, routes and pills, so nothing is clipped at any width.
+  const box = useMemo(() => {
+    let x0 = 0, y0 = 0, x1 = L.width, y1 = L.height;
+    for (const s of L.stations) {
+      const ls = [...s.name.map((t) => t.length * 8.6), ...(s.office ?? []).map((t) => t.length * 7.8), ...(s.date ? [s.date.length * 7.8] : []), ...(s.estimate ? [60] : [])];
+      const hw = Math.max(40, ...ls) / 2 + 6;
+      x0 = Math.min(x0, s.x - hw);
+      x1 = Math.max(x1, s.x + hw);
+    }
+    for (const e of L.edges) for (const q of e.points) { x0 = Math.min(x0, q.x - 8); x1 = Math.max(x1, q.x + 8); y0 = Math.min(y0, q.y - 8); y1 = Math.max(y1, q.y + 8); }
+    for (const p of L.pills) { x0 = Math.min(x0, p.x - 4); x1 = Math.max(x1, p.x + p.w + 4); }
+    return { x: x0 - 12, y: y0, w: x1 - x0 + 24, h: y1 - y0 };
+  }, [L]);
+
   const open = (id: string) => onSelect({ kind: "step", id });
   const edgeEls = [...L.edges].sort((a, b) => Number(a.main) - Number(b.main));
 
   return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${L.width} ${L.height}`} className="block h-auto w-full" style={{ minWidth: L.width > 1000 ? L.width : undefined }} role="group" aria-label="Map of your plan">
+    <div>
+      <svg viewBox={`${box.x} ${box.y} ${box.w} ${box.h}`} preserveAspectRatio="xMinYMin meet" className="block h-auto w-full" style={{ width: "100%" }} role="group" aria-label="Map of your plan">
         {/* Routes: the main line drawn last so it sits on top. */}
         <g>
           {edgeEls.map((e) => {
