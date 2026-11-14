@@ -9,6 +9,7 @@ import { salvage } from "./salvage";
 
 export const exaProvider: LlmProvider = {
   name: "exa",
+  model: "exa-deep",
   async extract<T>(task: LlmTask, input: ExtractInput, schema: z.ZodType<T>): Promise<ExtractResult<T>> {
     const t0 = Date.now();
     const { content, docs, meta } = await searchDeep({

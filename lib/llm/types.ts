@@ -1,7 +1,8 @@
 import type { ExaDoc } from "../types";
 
 /** A named extraction task. Prompt text lives in lib/prompts/*. */
-export type LlmTask = { name: string; systemPrompt: string };
+/** A named extraction task. Bump `version` when the prompt or schema meaning changes (it is part of the LLM cache key). */
+export type LlmTask = { name: string; version: string; systemPrompt: string };
 
 /**
  * What the extractor gets. Each provider uses what it needs:
@@ -30,5 +31,7 @@ export type ExtractResult<T> = {
 
 export interface LlmProvider {
   name: "exa" | "anthropic";
+  /** Model id (part of the LLM cache key). */
+  model: string;
   extract<T>(task: LlmTask, input: ExtractInput, schema: import("zod").ZodType<T>): Promise<ExtractResult<T>>;
 }

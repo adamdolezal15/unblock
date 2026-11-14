@@ -31,6 +31,7 @@ function renderDocs(docs: ExaDoc[]): string {
 
 export const anthropicProvider: LlmProvider = {
   name: "anthropic",
+  model: MODEL,
   async extract<T>(task: LlmTask, input: ExtractInput, schema: z.ZodType<T>): Promise<ExtractResult<T>> {
     const t0 = Date.now();
     const response = await anthropic().beta.messages.parse({

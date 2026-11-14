@@ -41,6 +41,7 @@ export type StepExtraction = z.infer<typeof StepExtraction>;
 
 export const extractStepTask: LlmTask = {
   name: "extractStep",
+  version: "2",
   systemPrompt: `You extract facts about ONE bureaucratic step for a person moving to Finland, from official sources only.
 
 Return claims. Each claim has a kind, a value, the url of the page, and a quote.
