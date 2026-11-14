@@ -15,7 +15,8 @@ export function daysBetween(a: string, b: string): number {
 }
 
 export type Shortcut = { id: string; text: Seg[] };
-export type Comparison = { sentence: Seg[]; shortcuts: Shortcut[] };
+/** gain: the headline number for a tile ("15 days" + "sooner than the usual order"). */
+export type Comparison = { sentence: Seg[]; shortcuts: Shortcut[]; gain: { days: number; caption: string } };
 
 const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 
@@ -59,6 +60,7 @@ export function compareWithUsual(state: RunState, ref: (c: Citation) => Ref): Co
         ...why,
       ],
       shortcuts,
+      gain: { days: gainEnd, caption: "sooner than the usual order" },
     };
   }
   if (gainEnd < 0) return null;
@@ -75,5 +77,6 @@ export function compareWithUsual(state: RunState, ref: (c: Citation) => Ref): Co
   return {
     sentence: [{ t: `The usual order (DVV first) also finishes on ${longDate(bl.endDate)}, but in your order you can start ${list.join(" and ")}.` }, ...why],
     shortcuts,
+    gain: { days: gains[0].n, caption: `sooner for the ${name(gains[0].id)}` },
   };
 }

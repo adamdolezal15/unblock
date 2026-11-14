@@ -4,7 +4,7 @@ import { VIEWS, type View } from "@/lib/ui/useView";
 /** Plain text tabs, the active one underlined. */
 export function ViewTabs({ view, onChange }: { view: View; onChange: (v: View) => void }) {
   return (
-    <nav aria-label="Views" className="flex gap-7 border-b border-rule">
+    <nav aria-label="Views" className="flex justify-center gap-9 border-b border-rule">
       {VIEWS.map((v) => {
         const active = v.id === view;
         return (

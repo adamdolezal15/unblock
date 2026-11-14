@@ -7,35 +7,35 @@ import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { ActivityFeed } from "./ActivityFeed";
-import { Header } from "./Header";
 import type { Selection } from "./graph/PlanGraph";
+import { Hero } from "./Hero";
 import { Closing } from "./letter/Closing";
-import { LetterSkeleton, LetterView, Prose } from "./letter/LetterView";
+import { LetterView, Prose } from "./letter/LetterView";
 import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
-import { RunInput } from "./RunInput";
 import { ErrorState, OutOfScopeState, PartialNotice } from "./States";
 import { Landing } from "./Landing";
 import { SidePanel } from "./panel/SidePanel";
-import { StepsPreview } from "./StepsPreview";
+import { TopBar } from "./TopBar";
 import { DayByDay } from "./views/DayByDay";
 import { Insights } from "./views/Insights";
 import { MapView } from "./views/MapView";
 import { ViewTabs } from "./ViewTabs";
+import { Working } from "./Working";
 
 export function App() {
   const { state, start, reset } = useRun();
-  const running = state.phase === "running";
 
-  if (state.phase === "idle") return <Landing runKey={state.runKey} onSubmit={start} />;
+  if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={start} />;
 
   return (
-    <div className="min-h-screen pb-24">
-      <Header onHome={reset} />
-      <RunInput key={state.runKey} value={state.text} running={running} compact onSubmit={start} />
+    <div className="min-h-screen">
+      <TopBar onEdit={() => reset(true)} onHome={() => reset(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
-      {state.phase === "error" && state.stepOrder.length === 0 && <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />}
-      {(running || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
+      {state.phase === "error" && state.stepOrder.length === 0 && (
+        <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />
+      )}
+      {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
         <Results state={state} onRerun={(t) => start(t)} />
       )}
     </div>
@@ -48,9 +48,9 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const [view, setView] = useView();
   const comparison = useMemo(() => compareWithUsual(state, doc.ref), [state, doc]);
 
-  // Feed collapses by itself when the run is done; the user can reopen it (per run).
-  const [feedPref, setFeedPref] = useState<{ runKey: number; collapsed: boolean } | null>(null);
-  const collapsed = feedPref?.runKey === state.runKey ? feedPref.collapsed : state.phase === "done";
+  // "How I worked this out": closed by default once the plan is shown.
+  const [feedOpen, setFeedOpen] = useState<{ runKey: number; open: boolean } | null>(null);
+  const showFeed = feedOpen?.runKey === state.runKey && feedOpen.open;
   const elapsed = state.summary?.totalMs ?? (state.finishedAt ? state.finishedAt - state.startedAt : undefined);
 
   // Selection for the details drawer (per run). Clicking a step in any view opens it.
@@ -60,79 +60,97 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const select = useCallback((selection: Selection) => setSel({ runKey, selection }), [runKey]);
   const openStep = useCallback((id: string) => select({ kind: "step", id }), [select]);
 
+  // Until the schedule exists there is no answer to show: one calm progress card instead.
+  if (!state.schedule || !doc.letter) {
+    return (
+      <main className="px-6 pb-24">
+        <Working state={state} />
+        {state.error && <p className="mx-auto mt-6 max-w-[560px] text-center text-[16px] text-ink">{state.error}</p>}
+      </main>
+    );
+  }
+
   return (
-    <main className="px-8">
-      <div className="grid gap-x-14 gap-y-8 pt-8 lg:grid-cols-[minmax(0,880px)_minmax(240px,340px)]">
-        <div className="min-w-0 space-y-7">
-          {state.profile ? (
+    <main className="mx-auto max-w-[1040px] px-6 pb-24">
+      <div className="pt-12">
+        {state.profile && (
+          <div className="mx-auto mb-8 max-w-[700px] text-center [&_p]:text-[15px]">
             <ProfileSentence
               profile={state.profile}
               text={state.text}
               disabled={running}
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />
-          ) : (
-            <div className="skeleton h-5 w-3/4 rounded" aria-hidden />
-          )}
-          <ViewTabs view={view} onChange={setView} />
-          {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
-          {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
-          {view === "summary" && (doc.letter ? <LetterView letter={doc.letter} onShow={openStep} /> : <LetterSkeleton />)}
-          {view === "days" &&
-            (state.schedule ? (
-              <DayByDay
-                state={state}
-                doc={doc}
-                onOpen={openStep}
-                extra={
-                  <>
-                    {doc.letter && <Insights insights={doc.letter.insights} onOpen={openStep} />}
-                    {comparison && (
-                      <p className="mb-6 rounded-[8px] border border-rule bg-raised px-5 py-4 text-[17px] leading-[1.6] text-ink">
-                        <Prose segs={comparison.sentence} />
-                      </p>
-                    )}
-                  </>
-                }
-                shortcut={(id) => {
-                  const sc = comparison?.shortcuts.find((x) => x.id === id);
-                  return sc ? (
-                    <p className="mt-1 text-[15px] text-ink">
-                      <span className="mr-2 rounded-[3px] border border-accent px-1.5 py-[1px] text-[14px] font-semibold text-accent">Shortcut</span>
-                      <Prose segs={sc.text} />
-                    </p>
-                  ) : null;
-                }}
-              />
-            ) : (
-              <StepsPreview steps={state.stepOrder.map((id) => state.steps[id])} stubs={state.stubs} running={running} />
-            ))}
-        </div>
-        <aside className="lg:sticky lg:top-6 lg:self-start">
-          <ActivityFeed
-            statuses={state.statuses}
-            notes={state.notes}
-            running={running}
-            elapsedMs={elapsed}
-            collapsed={collapsed}
-            onToggle={() => setFeedPref({ runKey: state.runKey, collapsed: !collapsed })}
-          />
-        </aside>
+          </div>
+        )}
+        <Hero state={state} doc={doc} comparison={comparison} />
+        {running && <p className="mt-6 text-center text-[15px] text-muted">Still cross-checking sources…</p>}
       </div>
 
-      {view === "map" && (
-        <div className="mt-8">
-          <MapView state={state} selection={selection} onSelect={select} />
+      <div className="mt-14">
+        <ViewTabs view={view} onChange={setView} />
+      </div>
+      {(state.partial || state.error) && (
+        <div className="mx-auto mt-6 max-w-[680px] space-y-3">
+          {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
+          {state.error && <p className="text-[16px] text-ink">{state.error}</p>}
         </div>
       )}
 
-      {state.summary && (
-        <div className="mt-12 max-w-[680px] border-t border-rule pt-6">
-          <Closing summary={state.summary} />
-        </div>
-      )}
+      <div className="mt-8">
+        {view === "summary" && (
+          <div className="mx-auto max-w-[680px]">
+            <LetterView letter={doc.letter} onShow={openStep} />
+          </div>
+        )}
+        {view === "days" && (
+          <div className="mx-auto max-w-[860px]">
+            <DayByDay
+              state={state}
+              doc={doc}
+              onOpen={openStep}
+              extra={<Insights insights={doc.letter.insights} onOpen={openStep} />}
+              shortcut={(id) => {
+                const sc = comparison?.shortcuts.find((x) => x.id === id);
+                return sc ? (
+                  <p className="mt-1 text-[15px] text-ink">
+                    <span className="mr-2 rounded-[3px] border border-accent px-1.5 py-[1px] text-[14px] font-semibold text-accent">Shortcut</span>
+                    <Prose segs={sc.text} />
+                  </p>
+                ) : null;
+              }}
+            />
+          </div>
+        )}
+        {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
+      </div>
+
+      <footer className="mx-auto mt-20 max-w-[680px] border-t border-rule pt-8 text-center">
+        {state.summary && <Closing summary={state.summary} />}
+        <button
+          type="button"
+          onClick={() => setFeedOpen({ runKey: state.runKey, open: !showFeed })}
+          aria-expanded={showFeed}
+          className="mt-3 text-[15px] text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent"
+        >
+          {showFeed ? "Hide how I worked this out" : "How I worked this out"}
+        </button>
+        {showFeed && (
+          <div className="mt-4 text-left">
+            <ActivityFeed
+              statuses={state.statuses}
+              notes={state.notes}
+              running={running}
+              elapsedMs={elapsed}
+              collapsed={false}
+              onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
+            />
+          </div>
+        )}
+      </footer>
+
       {state.phase === "done" && doc.sources.length > 0 && (
-        <div className="mt-12">
+        <div className="mx-auto mt-12 max-w-[880px]">
           <SourcesList sources={doc.sources} />
         </div>
       )}

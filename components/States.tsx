@@ -4,7 +4,7 @@ export function OutOfScopeState({ message }: { message: string }) {
   return (
     <Note title="That's outside what I can plan">
       <p>{message}</p>
-      <p>I plan the paperwork for moving to Finland: registration, tax card, bank, Kela and permits. Try one of the examples above.</p>
+      <p>I plan the paperwork for moving to Finland: registration, tax card, bank, Kela and permits. Use “Edit your situation” to try again.</p>
     </Note>
   );
 }
@@ -34,7 +34,7 @@ export function PartialNotice({ missing }: { message: string; missing: string[] 
 
 function Note({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="max-w-[680px] px-8 pt-10">
+    <section className="mx-auto max-w-[620px] px-6 pt-20 text-center">
       <h1 className="font-serif text-[34px] font-semibold leading-tight text-ink">{title}</h1>
       <div className="mt-4 space-y-4 text-[18px] leading-[1.65] text-ink">{children}</div>
     </section>

@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import type { Trust } from "@/lib/types";
 import type { Source } from "@/lib/ui/letter";
 import { quoteLink } from "./QuoteCard";
@@ -22,38 +24,56 @@ function pathOf(url: string): string {
 
 /** All sources of the run, numbered like the footnotes, grouped by trust tier. */
 export function SourcesList({ sources }: { sources: Source[] }) {
+  // Collapsed by default: the numbers in the text already open each quote.
+  const [open, setOpen] = useState(false);
+  const official = sources.filter((s) => s.trust === "official").length;
   return (
-    <section aria-labelledby="sources" className="border-t border-rule pt-8">
-      <h2 id="sources" className="font-serif text-[26px] font-semibold text-ink">
+    <section aria-labelledby="sources" className="text-center">
+      <h2 id="sources" className="font-serif text-[24px] font-semibold text-ink">
         Sources
       </h2>
-      <p className="mt-1 max-w-[680px] text-[16px] text-muted">
-        Every number in the text points to one of these pages. Each quote was checked word for word against the page text.
+      <p className="mt-1 text-[16px] text-muted">
+        {sources.length} pages, {official} of them official. Each quote was checked word for word.
       </p>
-      <div className="mt-6 grid gap-x-12 gap-y-8 md:grid-cols-2">
-        {GROUPS.map((g) => {
-          const list = sources.filter((s) => s.trust === g.trust).sort((a, b) => a.n - b.n);
-          if (!list.length) return null;
-          return (
-            <div key={g.trust}>
-              <h3 className="text-[16px] font-semibold text-ink">
-                {g.title} <span className="num font-normal text-muted">({list.length})</span>
-              </h3>
-              <ol className="mt-2 space-y-1.5">
-                {list.map((s) => (
-                  <li key={s.n} id={`source-${s.n}`} className="flex gap-3 text-[15px] leading-snug">
-                    <span className="num w-7 shrink-0 text-right text-muted">{s.n}.</span>
-                    <a href={quoteLink(s.url, s.quotes[0] ?? "")} target="_blank" rel="noreferrer" className="min-w-0 break-words text-ink underline decoration-rule-strong underline-offset-2 hover:decoration-ink">
-                      {s.domain}
-                      <span className="text-muted">{pathOf(s.url)}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          );
-        })}
-      </div>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="mt-3 rounded-[8px] border border-rule-strong bg-raised px-4 py-2 text-[15px] font-medium text-ink hover:border-ink"
+      >
+        {open ? "Hide sources" : `Show all ${sources.length} sources`}
+      </button>
+      {open && (
+        <div className="mt-8 grid gap-x-12 gap-y-8 text-left md:grid-cols-2">
+          {GROUPS.map((g) => {
+            const list = sources.filter((s) => s.trust === g.trust).sort((a, b) => a.n - b.n);
+            if (!list.length) return null;
+            return (
+              <div key={g.trust}>
+                <h3 className="text-[16px] font-semibold text-ink">
+                  {g.title} <span className="num font-normal text-muted">({list.length})</span>
+                </h3>
+                <ol className="mt-2 space-y-1.5">
+                  {list.map((s) => (
+                    <li key={s.n} id={`source-${s.n}`} className="flex gap-3 text-[15px] leading-snug">
+                      <span className="num w-7 shrink-0 text-right text-muted">{s.n}.</span>
+                      <a
+                        href={quoteLink(s.url, s.quotes[0] ?? "")}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="min-w-0 break-words text-ink underline decoration-rule-strong underline-offset-2 hover:decoration-ink"
+                      >
+                        {s.domain}
+                        <span className="text-muted">{pathOf(s.url)}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

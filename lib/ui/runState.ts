@@ -56,7 +56,8 @@ export const initialRunState: RunState = {
 
 export type RunAction =
   | { type: "start"; text: string; at: number }
-  | { type: "reset" }
+  /** Back to the first screen; keepText leaves the last sentence in the field for editing. */
+  | { type: "reset"; keepText?: boolean }
   | { type: "event"; event: PipelineEvent; at: number }
   /** The stream ended (normally after `done`). */
   | { type: "end"; at: number }
@@ -67,7 +68,7 @@ export function runReducer(s: RunState, a: RunAction): RunState {
     case "start":
       return { ...initialRunState, phase: "running", text: a.text, runKey: s.runKey + 1, startedAt: a.at };
     case "reset":
-      return { ...initialRunState, runKey: s.runKey + 1 };
+      return { ...initialRunState, runKey: s.runKey + 1, text: a.keepText ? s.text : "" };
     case "fail":
       return { ...s, phase: "error", error: a.message, finishedAt: a.at };
     case "end":

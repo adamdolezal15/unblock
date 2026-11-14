@@ -34,9 +34,9 @@ export function useRun() {
     }
   }, []);
 
-  const reset = useCallback(() => {
+  const reset = useCallback((keepText = false) => {
     ctrl.current?.abort();
-    dispatch({ type: "reset" });
+    dispatch({ type: "reset", keepText });
   }, []);
 
   useEffect(() => () => ctrl.current?.abort(), []);
