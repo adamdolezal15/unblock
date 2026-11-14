@@ -46,7 +46,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
         <label htmlFor="situation" className="sr-only">
           Describe your move in one sentence
         </label>
-        <div className="flex items-end gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-5 text-left shadow-[0_1px_0_rgba(26,36,51,0.04),0_18px_40px_-18px_rgba(26,36,51,0.25)] transition-colors focus-within:border-accent">
+        <div className="flex items-center gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-5 text-left shadow-[0_1px_0_rgba(26,36,51,0.04),0_18px_40px_-18px_rgba(26,36,51,0.25)] transition-colors focus-within:border-accent">
           <textarea
             ref={field}
             id="situation"
@@ -61,7 +61,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
             rows={1}
             maxLength={2000}
             placeholder="Where are you moving, when, and why?"
-            className="min-w-0 flex-1 resize-none self-center overflow-hidden bg-transparent py-2.5 text-[19px] leading-7 text-ink placeholder:text-faint focus:outline-none"
+            className="min-w-0 flex-1 resize-none overflow-hidden border-0 shadow-none bg-transparent py-2.5 text-[19px] leading-7 text-ink placeholder:text-faint"
           />
           <button
             type="submit"
