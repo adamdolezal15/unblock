@@ -53,6 +53,9 @@ async function main() {
   console.log(`\n=== STEPS (${result.steps.length}) ===`);
   for (const s of result.steps) {
     console.log(`\n● ${s.title}  (${s.id} · ${s.authority} · ${s.mode})`);
+    if (s.confirmation?.by === "required_by") {
+      console.log(`  ├ confirmed because required by: ${s.confirmation.stepIds.join(", ")}`);
+    }
     const claims = s.claims ?? [];
     for (const c of claims.filter((c) => c.kind === "applies")) printClaim("  ├ applies: ", c);
     for (const c of claims.filter((c) => c.kind === "requires")) printClaim(`  ├ REQUIRES → ${c.value}: `, c);

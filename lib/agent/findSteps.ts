@@ -7,7 +7,7 @@ import { searchOfficial, searchProvider } from "../exa/search";
 import { extract } from "../llm";
 import { extractStepContext, extractStepTask, StepExtraction } from "../prompts/extractStep";
 import type {
-  Citation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
+  Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
 import { authorityOf } from "./authority";
 import { selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
@@ -85,11 +85,20 @@ function detectConflicts(stepId: string, claims: VerifiedClaim[]): Conflict[] {
   return out;
 }
 
-function mergeStep(def: StepDef, title: string | undefined, claims: VerifiedClaim[]): Step {
+function mergeStep(
+  def: StepDef,
+  title: string | undefined,
+  claims: VerifiedClaim[],
+  checkUrl: string | undefined,
+  confirmation: Confirmation,
+): Step {
   const sorted = [...claims].sort(byTrust);
   const first = (kind: VerifiedClaim["kind"]) => sorted.find((c) => c.kind === kind)?.value;
   const all = (kind: VerifiedClaim["kind"]) => [...new Set(sorted.filter((c) => c.kind === kind).map((c) => c.value))];
-  const anchor = sorted.find((c) => c.kind === "applies") ?? sorted[0];
+  const anchorUrl = (sorted.find((c) => c.kind === "applies") ?? sorted[0])?.citation.url ?? checkUrl;
+  // A step confirmed only by another step's requirement still carries that citation.
+  const ownCitations = uniqueCitations(sorted);
+  const citations = ownCitations.length || confirmation.by === "applies" ? ownCitations : confirmation.citations;
 
   const documents = all("document");
   const address = first("address");
@@ -103,23 +112,34 @@ function mergeStep(def: StepDef, title: string | undefined, claims: VerifiedClai
   return {
     id: def.id,
     title: title?.trim() || def.label,
-    authority: authorityOf(anchor.citation.url),
+    authority: anchorUrl ? authorityOf(anchorUrl) : "unknown",
     mode: (first("mode") as Step["mode"] | undefined) ?? "either",
     requires: all("requires"),
     ...(first("cost_of_delay") ? { costOfDelay: first("cost_of_delay") } : {}),
     ...(visitPack ? { visitPack } : {}),
-    citations: uniqueCitations(sorted),
+    citations,
     claims: sorted,
   };
 }
 
+type StepRun = {
+  def: StepDef;
+  title?: string;
+  verified: VerifiedClaim[];
+  dropped: DroppedClaim[];
+  report: StepReport;
+  checkUrl?: string;
+  error?: string;
+};
+
+/** Search, extract and verify one step. Does not decide whether the step is confirmed. */
 async function runStep(
   def: StepDef,
   profile: Profile,
   selected: StepDef[],
   fetchPage: PageFetcher,
   onProgress: (m: string) => void,
-): Promise<{ step?: Step; stub?: StepStub; dropped: DroppedClaim[]; conflicts: Conflict[]; report: StepReport }> {
+): Promise<StepRun> {
   const t0 = Date.now();
   const extraOfficial = cityDomains(profile.city);
   const includeDomains = [
@@ -148,9 +168,11 @@ async function runStep(
   } catch (e) {
     const error = (e as Error).message;
     return {
-      stub: { id: def.id, label: def.label, message: `Extraction failed (${error}). Check the official source.`, checkUrl },
+      def,
+      verified: [],
       dropped: [],
-      conflicts: [],
+      checkUrl,
+      error,
       report: { id: def.id, ms: Date.now() - t0, extracted: 0, verified: 0, dropped: 0, sources: docs.length, error },
     };
   }
@@ -164,21 +186,50 @@ async function runStep(
     fetchPage,
   });
 
-  const report: StepReport = {
-    id: def.id,
-    ms: Date.now() - t0,
-    extracted: raw.length,
-    verified: verified.length,
-    dropped: dropped.length,
-    sources: dedupeDocs([...docs, ...result.sources]).length,
-    llm: { provider: result.meta.provider, ms: result.meta.ms, costUsd: result.meta.costUsd },
+  return {
+    def,
+    title: result.data?.title,
+    verified,
+    dropped,
+    checkUrl,
+    report: {
+      id: def.id,
+      ms: Date.now() - t0,
+      extracted: raw.length,
+      verified: verified.length,
+      dropped: dropped.length,
+      sources: dedupeDocs([...docs, ...result.sources]).length,
+      llm: { provider: result.meta.provider, ms: result.meta.ms, costUsd: result.meta.costUsd },
+    },
   };
+}
 
-  if (!verified.some((c) => c.kind === "applies")) {
-    const message = checkUrl ? `Not found in sources, check ${checkUrl}` : "Not found in sources.";
-    return { stub: { id: def.id, label: def.label, message, checkUrl }, dropped, conflicts: [], report };
+/**
+ * Confirmation rule: a step is confirmed if it has its own verified `applies` claim, OR a confirmed
+ * step requires it with a verified citation. Iterated to a fixpoint (requirements can chain).
+ */
+export function confirmSteps(runs: { id: string; verified: VerifiedClaim[] }[]): Map<string, Confirmation> {
+  const ids = new Set(runs.map((r) => r.id));
+  const confirmed = new Map<string, Confirmation>();
+  for (const r of runs) if (r.verified.some((c) => c.kind === "applies")) confirmed.set(r.id, { by: "applies" });
+  for (let changed = true; changed; ) {
+    changed = false;
+    for (const r of runs) {
+      if (!confirmed.has(r.id)) continue;
+      for (const c of r.verified) {
+        if (c.kind !== "requires" || !ids.has(c.value)) continue;
+        const existing = confirmed.get(c.value);
+        if (!existing) {
+          confirmed.set(c.value, { by: "required_by", stepIds: [r.id], citations: [c.citation] });
+          changed = true;
+        } else if (existing.by === "required_by" && !existing.stepIds.includes(r.id)) {
+          existing.stepIds.push(r.id);
+          existing.citations.push(c.citation);
+        }
+      }
+    }
   }
-  return { step: mergeStep(def, result.data?.title, verified), dropped, conflicts: detectConflicts(def.id, verified), report };
+  return confirmed;
 }
 
 export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): Promise<FindStepsResult> {
@@ -186,12 +237,31 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const selected = selectSteps(profile);
   const fetchPage = createPageFetcher(cityDomains(profile.city));
   const runs = await Promise.all(selected.map((def) => runStep(def, profile, selected, fetchPage, onProgress)));
+  const confirmed = confirmSteps(runs.map((r) => ({ id: r.def.id, verified: r.verified })));
+
+  const steps: Step[] = [];
+  const stubs: StepStub[] = [];
+  const conflicts: Conflict[] = [];
+  for (const r of runs) {
+    const confirmation = confirmed.get(r.def.id);
+    if (confirmation) {
+      steps.push({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation), confirmation });
+      conflicts.push(...detectConflicts(r.def.id, r.verified));
+    } else {
+      const message = r.error
+        ? `Extraction failed (${r.error}). Check the official source.`
+        : r.checkUrl
+          ? `Not found in sources, check ${r.checkUrl}`
+          : "Not found in sources.";
+      stubs.push({ id: r.def.id, label: r.def.label, message, checkUrl: r.checkUrl });
+    }
+  }
 
   return {
-    steps: runs.flatMap((r) => (r.step ? [r.step] : [])),
-    stubs: runs.flatMap((r) => (r.stub ? [r.stub] : [])),
+    steps,
+    stubs,
     dropped: runs.flatMap((r) => r.dropped),
-    conflicts: runs.flatMap((r) => r.conflicts),
+    conflicts,
     reports: runs.map((r) => r.report),
   };
 }

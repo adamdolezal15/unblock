@@ -38,7 +38,13 @@ export type Step = {
   communityTips?: CommunityTip[];
   /** Every verified claim behind this step (requires-edges, documents, facts), each with its own citation. */
   claims?: VerifiedClaim[];
+  /** Why this step is shown: its own `applies` sentence, or a confirmed step's verified requirement. */
+  confirmation?: Confirmation;
 };
+
+export type Confirmation =
+  | { by: "applies" }
+  | { by: "required_by"; stepIds: string[]; citations: Citation[] };
 
 /** What a claim asserts about a step. For `requires`, value = a canonical step id. */
 export type ClaimKind =
