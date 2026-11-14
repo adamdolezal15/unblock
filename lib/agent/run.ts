@@ -222,7 +222,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     found.conflicts.forEach(addConflict);
 
     // Tips and the conflict check for steps that get no tips start now; the graph needs neither.
-    const formsP = findForms(found.steps, profile.city, onProgress).catch(() => new Map<string, StepForm[]>());
+    const formsP = findForms(found.steps, profile.city, onProgress, profile).catch(() => new Map<string, StepForm[]>());
     const targets = new Set(tipTargets(found.steps).map((x) => x.id));
     const tipsP = findCommunityTips(profile, found.steps, { onProgress, ...(opts.today ? { today: opts.today } : {}) });
     const conflictsA = conflictBatch(found.steps.filter((x) => !targets.has(x.id) && !x.derived), []);

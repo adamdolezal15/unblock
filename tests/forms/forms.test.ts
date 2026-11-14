@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findQuote, MATCH_THRESHOLD } from "../../lib/agent/verifyCitations";
-import { formsFromPages, guidanceOf, linkFor, sentences, type FormPage } from "../../lib/agent/forms";
+import { audienceFits, formsFromPages, guidanceOf, linkFor, sentences, type FormPage } from "../../lib/agent/forms";
 import { allForms, formLine, requiredForms } from "../../lib/ui/forms";
 import { initialRunState, type RunState } from "../../lib/ui/runState";
 import type { Step, StepForm } from "../../lib/types";
@@ -98,11 +98,26 @@ describe("forms: two adjacent sentences, and unnumbered official links", () => {
     const text = "Do not sign the form until at the tax office.\nNon-resident's application for tax at source card, tax card, tax prepayment or tax number (5057e)";
     expect(formsFromPages([{ url: VERO2, text, links: [], fetchedAt: "" }])).toEqual([]);
   });
-  it("accepts an unnumbered official PDF when a sentence on the page names it and says to fill it in", () => {
+  it("drops the Finnish-citizen-family supplement: conditional on a status the profile does not have", () => {
     const text = "If you are a family member of a Finnish citizen, fill in the supplement form Suomen kansalaisen vapaan liikkumisoikeuden käyttö (pdf).";
     const pdf = "https://migri.fi/documents/1/SK_LIITE_Suomen+kansalaisen+vapaan+liikkumisoikeuden+käyttö_en.pdf?t=1";
-    const [f] = formsFromPages([{ url: "https://migri.fi/en/x", text, links: [pdf, "https://example.com/SK_LIITE_Suomen+kansalaisen+vapaan+liikkumisoikeuden+käyttö_en.pdf"], fetchedAt: "" }]);
-    expect(f).toMatchObject({ id: "Suomen kansalaisen vapaan liikkumisoikeuden käyttö", url: pdf, type: "pdf" });
+    const page = { url: "https://migri.fi/en/x", text, links: [pdf], fetchedAt: "" };
+    expect(formsFromPages([page], [], undefined, { citizenship: "EU", purpose: ["work"] })).toEqual([]);
+    expect(formsFromPages([page])).toEqual([]);
+  });
+  it("audienceFits: a form must match the profile's citizenship class and purpose", () => {
+    const eu: { citizenship: "EU"; purpose: ("work" | "study" | "family")[] } = { citizenship: "EU", purpose: ["work"] };
+    expect(audienceFits("If you are a non-EU citizen, fill in form 1234x.", eu)).toBe(false);
+    expect(audienceFits("If you are a student, submit form 1234x.", eu)).toBe(false);
+    expect(audienceFits("If you are a student, submit form 1234x.", { citizenship: "EU", purpose: ["study"] })).toBe(true);
+    expect(audienceFits("If you are an EU citizen, fill in form 1234x.", { citizenship: "NON_EU", purpose: ["work"] })).toBe(false);
+    expect(audienceFits("Fill in form 6150e before you go.", eu)).toBe(true);
+  });
+  it("accepts an unnumbered official PDF when an unconditional sentence names it and says to fill it in", () => {
+    const text = "Fill in the application form Hakemus oleskelukortin saamiseksi (pdf) and attach it to your application.";
+    const pdf = "https://migri.fi/documents/1/Hakemus+oleskelukortin+saamiseksi_en.pdf?t=1";
+    const [f] = formsFromPages([{ url: "https://migri.fi/en/x", text, links: [pdf, "https://example.com/Hakemus+oleskelukortin+saamiseksi_en.pdf"], fetchedAt: "" }]);
+    expect(f).toMatchObject({ id: "Hakemus oleskelukortin saamiseksi", url: pdf, type: "pdf" });
     expect(formsFromPages([{ url: "https://migri.fi/en/x", text, links: [], fetchedAt: "" }])).toEqual([]);
   });
   it("accepts one official online form when a sentence says to request something using it", () => {

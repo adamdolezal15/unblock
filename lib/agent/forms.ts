@@ -6,7 +6,7 @@
 import type { Progress } from "../events/context";
 import { cityDomains, trustOf } from "../exa/domains";
 import { getPages } from "../exa/search";
-import type { Citation, ExaDoc, Step, StepForm } from "../types";
+import type { Citation, ExaDoc, Profile, Step, StepForm } from "../types";
 import { findQuote, MATCH_THRESHOLD, MIN_QUOTE_TOKENS, normalizeUrl } from "./verifyCitations";
 
 /** "form 6150e", "Form OL 1", "lomake 6150e", "application form 4001". Group 1 is the form's number. */
@@ -21,6 +21,27 @@ const TITLE_CODE = /^(.{8,120}?)\s*\(((?:[A-Z]{1,3}[ _-]?)?\d{3,5}[a-z]?)\)\.?$/
 const FILL_FORM = /\b(fill(ed)? (it )?(in|out)|filling (in|out)|complete[d]?|submit(ted)?|attach(ed)?)\b/i;
 /** A sentence about a form that has no number but a link: it says to use, fill in, submit or request the form. */
 const USES_FORM = /\b(fill(ed|ing)? (it )?(in|out)|complete[d]?|submit(ted)?|attach(ed)?|using|use|request|apply|send)\b/i;
+
+type Audience = Pick<Profile, "citizenship" | "purpose">;
+
+/**
+ * A form must match the profile's citizenship class and purpose. A sentence that makes the form conditional on a
+ * status ("If you are a family member of a Finnish citizen, fill in the supplement...") is shown only when the
+ * profile is known to have that status. No profile says "family member of a Finnish citizen", so those always drop.
+ */
+export function audienceFits(sentence: string, profile?: Audience): boolean {
+  const s = sentence.toLowerCase();
+  if (/\b(family member|spouse|partner|child|relative)s?\b[^.]{0,30}\bof (a|an|the)? ?(finnish|finland)\b[^.]{0,20}\bcitizen|\bfinnish citizen'?s? (family|spouse|partner|child)|suomen kansalaisen (perheenjäsen|puoliso)/.test(s)) return false;
+  if (!profile) return true;
+  const cond = /\bif you (are|'re|come|have|hold|apply)\b[^,.;]{0,80}/.exec(s)?.[0] ?? "";
+  if (!cond) return true;
+  if (/\b(non-eu|third[- ]country|outside the eu)\b/.test(cond) && profile.citizenship !== "NON_EU") return false;
+  if (/\b(eu|eea) (citizen|national)/.test(cond) && !/non-/.test(cond) && profile.citizenship === "NON_EU") return false;
+  if (/nordic (citizen|national)/.test(cond) && profile.citizenship !== "NORDIC") return false;
+  if (/\b(student|studying|studies)\b/.test(cond) && !profile.purpose.includes("study")) return false;
+  if (/\b(employee|employed|working|worker)\b/.test(cond) && !profile.purpose.includes("work")) return false;
+  return true;
+}
 
 const MAX_PAGES_PER_STEP = 3;
 const MAX_FORMS_PER_STEP = 3;
@@ -83,7 +104,7 @@ const isPdf = (url: string) => /\.pdf(\?|#|$)/i.test(url);
  * Forms named on a step's official pages. Pure: pages with their text and links in, forms out.
  * A form needs a verified sentence; its link, if any, must come from the same pages.
  */
-export function formsFromPages(pages: FormPage[], extraOfficial: string[] = [], now = new Date().toISOString()): StepForm[] {
+export function formsFromPages(pages: FormPage[], extraOfficial: string[] = [], now = new Date().toISOString(), profile?: Audience): StepForm[] {
   const out = new Map<string, StepForm>();
   for (const page of pages) {
     if (trustOf(page.url, extraOfficial) !== "official") continue;
@@ -98,6 +119,7 @@ export function formsFromPages(pages: FormPage[], extraOfficial: string[] = [], 
         if (findQuote(sentence, page.text).score < MATCH_THRESHOLD) continue;
         // The sentence must say the applicant needs or uses the form, not merely mention it.
         if (!NEEDED.test(sentence)) continue;
+        if (!audienceFits(sentence, profile)) continue;
         const url = linkFor(id, page.links, extraOfficial);
         const citation: Citation = { url: page.url, quote: sentence, trust: "official", fetchedAt: page.fetchedAt || now };
         const form: StepForm = { id, name: nameOf(id, sentence), url, type: url ? (isPdf(url) ? "pdf" : "web") : null, guidance: guidanceOf(sentence), citation };
@@ -109,7 +131,7 @@ export function formsFromPages(pages: FormPage[], extraOfficial: string[] = [], 
   }
   for (const page of pages) {
     if (trustOf(page.url, extraOfficial) !== "official") continue;
-    for (const f of [...pairedForms(page, extraOfficial, now), ...linkedForms(page, extraOfficial, now)]) {
+    for (const f of [...pairedForms(page, extraOfficial, now), ...linkedForms(page, extraOfficial, now)].filter((x) => audienceFits(x.citation.quote, profile))) {
       const key = compact(f.id);
       const prev = out.get(key);
       if (!prev || score(f) > score(prev)) out.set(key, { ...f, url: f.url ?? prev?.url ?? null, type: f.type ?? prev?.type ?? null });
@@ -222,7 +244,7 @@ export function officialUrls(step: Step, extraOfficial: string[] = []): string[]
 }
 
 /** Look up forms for every required step (one getPages call per step). Failures leave a step without forms. */
-export async function findForms(steps: Step[], city: string, onProgress?: Progress): Promise<Map<string, StepForm[]>> {
+export async function findForms(steps: Step[], city: string, onProgress?: Progress, profile?: Audience): Promise<Map<string, StepForm[]>> {
   const extraOfficial = cityDomains(city);
   const result = new Map<string, StepForm[]>();
   await Promise.all(
@@ -240,7 +262,7 @@ export async function findForms(steps: Step[], city: string, onProgress?: Progre
       for (const c of [...step.citations, ...(step.claims ?? []).map((x) => x.citation)]) {
         if (!pages.some((p) => normalizeUrl(p.url) === normalizeUrl(c.url))) pages.push({ url: c.url, text: c.quote, links: [], fetchedAt: c.fetchedAt });
       }
-      const forms = formsFromPages(pages, extraOfficial);
+      const forms = formsFromPages(pages, extraOfficial, undefined, profile);
       if (forms.length) result.set(step.id, forms);
     }),
   );
