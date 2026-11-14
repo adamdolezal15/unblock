@@ -11,16 +11,25 @@ Testy: 403 z 404 prochází. Padá `tests/golden/vietnam.test.ts` (krok 3, ident
 - Demo replay se dá vypnout `DEMO_REPLAY=off` a UI řekne „Replaying a saved run“.
 - Nové: filtr podle třídy občanství u dokumentů, kontrola tvaru adresy/hodin/doby, invariantní eval nad 12 profily, Exa Monitors s podepsaným webhookem.
 
-## 1. Soulad se zadáním (nejdůležitější)
+## 1. Soulad se zadáním: The Internet Butler (Exa), id 298
 
-Přes MCP (`junction`) jsem našel akci Junction 2026 (event 45, tým DataShort, check-in hotov). Zjištění:
+Zadání je výzva **The Internet Butler / Your Personal Assistant** od Exa (tým ji má mezi oblíbenými). Na platformě existuje jen prázdný koncept „Butler Joe“ (projekt 2196, výzva 298, bez odkazů). Unblock tam zatím není. Odevzdání: do 2026-11-15 08:00 UTC.
 
-- **Mezi 19 hlavními a 19 vedlejšími výzvami není žádná od Exa.** `CLAUDE.md` pořád říká „Junction 2026, Exa challenge“. Nejbližší webová výzva je **The Web Is Your Real-Time Database (id 332, Context.dev)**: živá data z webu, monitory se změnami, „Truth at Internet Speed“ (zdroje a fact-checking). Unblock do ní tematicky zapadá (citace, ověřování, monitory), ale poskytovatelem je Context.dev, ne Exa.
-- **Unblock není mezi projekty týmu.** `get_my_projects` vrací jen tři koncepty: Butler Joe (298), VC blind spot (350) a Decode the noise (357). Žádný není Unblock, žádný nemá odkaz na repo. Nic není odevzdané (`submitted: false`).
-- **Okno odevzdání:** 2026-11-14 10:00 UTC až 2026-11-15 08:00 UTC (v Helsinkách 12:00 až 10:00). Povolen je víc projektů.
-- Bonus: tým má na Context.dev 50 000 kreditů (kód `JUNCTION26`). Použití Context.dev (news search, monitory, scrape) vedle Exa by otevřelo i vedlejší výzvu „Best Use of Context.dev“, pokud to jde bez velkého přepisu.
+Hodnocení po 20 % (srovnáno s kódem):
 
-**Co udělat:** potvrdit, pod kterou výzvu Unblock jde, založit projekt na platformě a vyplnit odkazy (repo, demo, video). Tohle jsem nedělal, protože odevzdání mění data na platformě a je to rozhodnutí týmu.
+| Kritérium | Stav | Poznámka |
+|---|---|---|
+| Use of Exa | Silné | Živé stránky úřadů (`includeDomains`), highlights i plný text, monitory. Informace v tréninku modelu být nemusí (aktuální pravidla a lhůty). Nevyužito: Websets, `deep` režim, historie verzí stránek (hodilo by se k „co se změnilo“). |
+| Usefulness | Dobré, ale slabší u „hotovo za uživatele“ | Konkrétní skupina (lidé stěhující se do Finska). Zadání chce agenta, který úkol dotáhne co nejblíž k hotovému a nechá uživateli jen schválení. Unblock dnes dělá **plán + kalendář + sada na návštěvu**, ale nic nepřipraví k odeslání (koncept žádosti, e-mailu, předvyplněný seznam dokladů, odkaz na rezervaci s termínem). |
+| Clarity of sources | Nejsilnější stránka | Poznámky pod čarou, ověřené citáty, štítky důvěry, odkaz na větu na stránce. |
+| Originality | Dobré | Graf závislostí, „zkratka“ oproti obvyklému pořadí, rozpory mezi zdroji. |
+| Working implementation | **Největší riziko** | Porota zkouší vlastní dotazy naživo. Studený běh stojí $0,55 až 0,80 a každý účastník má jen $50 kreditů Exa (asi 60 až 90 běhů celkem). `/api/run` nemá rate limit. Běh má strop 75 s. Neznámé město a dotazy mimo Finsko skončí hláškou. Na masteru padá vietnam test. |
+
+**Co udělat:**
+1. Přejmenovat koncept „Butler Joe“ na Unblock a vyplnit repo a demo (nebo založit nový projekt k výzvě 298).
+2. Do příběhu a UI dostat „butler“ prvek: u každé návštěvy tlačítko „připravit koncept“ (e-mail na úřad, seznam dokladů k vytištění), které ukáže, že agent úkol dotáhl, a schválení nechá na uživateli.
+3. Chránit živé dotazy porotců (rate limit, denní strop, ukázka z cache jako záloha).
+4. Doplnit do `CLAUDE.md` správný název výzvy.
 
 ## 2. Rizika pro demo a rozpočet
 
