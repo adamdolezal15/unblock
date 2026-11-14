@@ -18,6 +18,7 @@ import { ErrorState, LandingNote, OutOfScopeState, PartialNotice } from "./State
 import { SidePanel } from "./panel/SidePanel";
 import { StepsPreview } from "./StepsPreview";
 import { DayByDay } from "./views/DayByDay";
+import { Insights } from "./views/Insights";
 import { MapView } from "./views/MapView";
 import { ViewTabs } from "./ViewTabs";
 
@@ -93,11 +94,16 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
                 state={state}
                 doc={doc}
                 onOpen={openStep}
-                extra={comparison && (
-                  <p className="mb-6 rounded-[8px] border border-rule bg-raised px-5 py-4 text-[17px] leading-[1.6] text-ink">
-                    <Prose segs={comparison.sentence} />
-                  </p>
-                )}
+                extra={
+                  <>
+                    {doc.letter && <Insights insights={doc.letter.insights} onOpen={openStep} />}
+                    {comparison && (
+                      <p className="mb-6 rounded-[8px] border border-rule bg-raised px-5 py-4 text-[17px] leading-[1.6] text-ink">
+                        <Prose segs={comparison.sentence} />
+                      </p>
+                    )}
+                  </>
+                }
                 shortcut={(id) => {
                   const sc = comparison?.shortcuts.find((x) => x.id === id);
                   return sc ? (

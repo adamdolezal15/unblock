@@ -10,8 +10,9 @@ import { nodeLabel } from "./graphLayout";
 export type Source = { n: number; url: string; domain: string; trust: Trust; fetchedAt: string; quotes: string[] };
 export type Ref = { n: number; citation: Citation };
 export type Seg = { t: string } | { ref: Ref };
-export type Para = { key: string; segs: Seg[]; stepId?: string };
-export type Letter = { headline: Seg[]; paras: Para[] };
+export type Para = { key: string; segs: Seg[]; stepId?: string; /** One-line version for the key insights card. */ insight?: Seg[] };
+/** insights: at most 3 one-liners (shortcut, money at stake, conflict), each with its footnote and step. */
+export type Letter = { headline: Seg[]; paras: Para[]; insights: Para[] };
 export type LetterDoc = { letter: Letter | null; sources: Source[]; ref: (c: Citation) => Ref };
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -109,14 +110,22 @@ function writeLetter(ctx: Ctx): Letter {
     }
   }
 
-  if (shortcut) paras.push(shortcutPara(ctx, shortcut));
+  if (shortcut) {
+    const p = shortcutPara(ctx, shortcut);
+    p.insight = [
+      { t: `Get your ${shortcut.label} at ${who(shortcut.fast.authority)} on ${day(shortcut.fast.start)}, ${shortcut.gap} working days sooner than through ${who(shortcut.slow.authority)}.` },
+      ...(shortcut.fastRef ? [{ ref: shortcut.fastRef }] : []),
+    ];
+    paras.push(p);
+  }
   const money = moneyPara(ctx);
   if (money) paras.push(money);
   const conflict = conflictPara(ctx);
   if (conflict) paras.push(conflict);
   const estimates = estimatePara(ctx);
   if (estimates) paras.push(estimates);
-  return { headline, paras };
+  const insights = paras.filter((p) => p.insight).slice(0, 3).map((p) => ({ key: p.key, segs: p.insight!, stepId: p.stepId }));
+  return { headline, paras, insights };
 }
 
 type Option = { id: string; authority: string; start: string; ready: string; readyIndex: number };
@@ -227,6 +236,11 @@ function moneyPara(ctx: Ctx): Para | null {
           { ref: ctx.reg.ref(c.citation) },
           { t: `. On €${salary.toLocaleString("en-GB")} a month that is €${eur.toLocaleString("en-GB")}.` },
         ],
+        insight: [
+          { t: `Without the ${lowerFirst(ctx.short(id))}, ${pct}% of your salary is withheld` },
+          { ref: ctx.reg.ref(c.citation) },
+          { t: `: €${eur.toLocaleString("en-GB")} of your €${salary.toLocaleString("en-GB")} a month.` },
+        ],
       };
     }
   }
@@ -283,7 +297,12 @@ function conflictPara(ctx: Ctx): Para | null {
     const k = conflicts.length - 1;
     segs.push({ t: ` I found ${k} more disagreement${k === 1 ? "" : "s"}; ${k === 1 ? "it is" : "they are"} marked on the map.` });
   }
-  return { key: "conflict", segs, stepId: c.stepId };
+  const insight: Seg[] = [
+    { t: `${c.a.trust === "official" && c.b.trust === "official" ? "Official sources disagree" : "Sources disagree"} on ${topicText(c.topic, ctx.short)}.` },
+    { ref: ctx.reg.ref(c.a) },
+    { ref: ctx.reg.ref(c.b) },
+  ];
+  return { key: "conflict", segs, stepId: c.stepId, insight };
 }
 
 function estimatePara(ctx: Ctx): Para | null {

@@ -134,3 +134,16 @@ describe("usual order vs your order: Marta", () => {
     expect(text(c.shortcuts[0].text as never)).toMatch(/^Gets you the personal identity code 21 days before DVV would\[\d+\]\.$/);
   });
 });
+
+describe("key insights: Marta", () => {
+  it("has at most three one-liners from run data, each footnoted and linked to a step", () => {
+    const ins = doc.letter!.insights;
+    expect(ins.map((i) => i.key)).toEqual(["shortcut", "money", "conflict"]);
+    expect(text(ins[0].segs)).toMatch(/^Get your Finnish personal identity code at Vero on 1 December, 13 working days sooner than through DVV\.\[\d+\]$/);
+    expect(text(ins[1].segs)).toMatch(/^Without the tax card, 60% of your salary is withheld\[\d+\]: €1,920 of your €3,200 a month\.$/);
+    for (const i of ins) {
+      expect(i.segs.some((x) => "ref" in x)).toBe(true);
+      expect(i.stepId).toBeTruthy();
+    }
+  });
+});
