@@ -13,7 +13,7 @@ import { draftAnchor, draftLabel, ReadyToSend } from "../drafts/DraftCard";
 import { FormRow } from "../FormRow";
 import { allForms, formLine } from "@/lib/ui/forms";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
-import { IconBank, IconCalendar, IconCap, IconDocument, IconExternal, IconOnline, IconPencil, IconShield, IconSpeech } from "../icons";
+import { IconBank, IconCalendar, IconCap, IconClock, IconDocument, IconExternal, IconOnline, IconPencil, IconShield, IconSpeech } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const dow = (iso: string) => {
@@ -121,18 +121,75 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   );
 }
 
-/** Online steps that do not move the finish date: one group without dates; each card says when it first becomes possible. */
+/**
+ * Online steps that do not move the finish date: one quiet white panel without dates. Each row: an icon tile
+ * (bank, university, insurance or online), the title and one line, "from <first possible day>", the action.
+ */
 function AnytimeOnline({ ctx, entries }: { ctx: Ctx; entries: OnlineEntry[] }) {
+  const rows = entries.flatMap((e) => e.steps.map((s) => ({ s, from: e.date })));
   return (
-    <section aria-label="Anytime online" className="mt-12">
-      <h2 className="flex items-center gap-2 text-[28px] font-bold text-ink">
-        Anytime online
-      </h2>
-      <p className="mt-1 max-w-[62ch] text-[17px] text-muted">No fixed date. Do these when it suits you.</p>
-      <div className="mt-4 space-y-4">
-        {entries.flatMap((e) => e.steps.map((s) => <OnlineStep key={s.id} ctx={ctx} s={s} from={e.date} />))}
-      </div>
+    <section aria-label="Anytime" className="relative mt-12 overflow-hidden rounded-[20px] border border-hairline bg-surface px-5 py-6 shadow-card sm:px-8 sm:py-7">
+      <CornerContours />
+      <header className="relative flex items-center gap-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-hairline text-accent" aria-hidden>
+          <IconClock className="h-[18px] w-[18px]" />
+        </span>
+        <h2 className="text-[28px] font-bold leading-tight text-ink">Anytime</h2>
+      </header>
+      <p className="relative mt-2 text-[15px] text-muted">No fixed date. Do these when it suits you.</p>
+      <ul className="relative mt-4 divide-y divide-hairline">
+        {rows.map(({ s, from }) => (
+          <AnytimeRow key={s.id} ctx={ctx} s={s} from={from} />
+        ))}
+      </ul>
     </section>
+  );
+}
+
+/** Faint lake contours in the panel's top-right corner (decoration, Finnish blue at 10%). */
+function CornerContours() {
+  return (
+    <svg aria-hidden viewBox="0 0 220 160" className="pointer-events-none absolute -right-6 -top-6 h-[160px] w-[220px] text-accent opacity-10" fill="none" stroke="currentColor" strokeWidth="1.2">
+      <path d="M220 0c-44 2-86 24-98 60-12 38 16 70 56 80 16 4 30 4 42 2" />
+      <path d="M220 18c-30 4-58 20-66 44-8 26 10 46 36 52 12 3 24 2 30 0" />
+      <path d="M220 40c-20 4-38 14-42 30-5 17 8 30 26 33 6 1 12 1 16 0" />
+      <path d="M220 62c-10 3-18 8-20 16-2 9 5 15 13 16" />
+      <path d="M196 0c-56 8-100 40-104 82-4 44 34 70 80 78" />
+    </svg>
+  );
+}
+
+function AnytimeRow({ ctx, s, from }: { ctx: Ctx; s: DayStep; from: string }) {
+  const forms = uniqueForms(s.forms);
+  const offers = ctx.drafts?.forStep(s.id) ?? [];
+  const action = primaryAction(forms, offers);
+  const money = ctx.notes.get(s.id)?.money;
+  const why = reasonOf(s);
+  return (
+    <li className="grid grid-cols-[40px_minmax(0,1fr)] gap-x-4 py-4 sm:grid-cols-[40px_minmax(0,1fr)_auto] sm:items-center">
+      <span className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-hairline text-ink" aria-hidden>
+        <AnytimeIcon s={s} />
+      </span>
+      <div className="min-w-0">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[17px] font-semibold leading-snug text-ink hover:text-accent">
+            {s.title}
+          </button>
+          <span className="num whitespace-nowrap rounded-full bg-accent-soft px-2 py-[1px] text-[13px] font-semibold text-accent">from {fmtDay(from)}</span>
+        </p>
+        {money ? <MoneyLine text={money} /> : why && <p className="mt-0.5 text-[15px] leading-normal text-muted">{why}</p>}
+        <Warnings ctx={ctx} id={s.id} />
+      </div>
+      <div className="col-start-2 mt-2 sm:col-start-3 sm:mt-0 sm:max-w-[260px] sm:pl-4">
+        {action ? (
+          <PrimaryAction action={action} drafts={ctx.drafts} />
+        ) : (
+          <button type="button" onClick={() => ctx.onOpen(s.id)} className={`text-[15px] ${link}`}>
+            Details
+          </button>
+        )}
+      </div>
+    </li>
   );
 }
 
@@ -675,13 +732,14 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   );
 }
 
-/** Which small picture an "Anytime" step gets: bank, university, insurance, else the online screen. */
-export function anytimeIcon(s: { title: string; authority: string }) {
+/** The small picture an "Anytime" step gets: bank, university, insurance, else the online screen. */
+function AnytimeIcon({ s }: { s: { title: string; authority: string } }) {
   const t = `${s.title} ${s.authority}`.toLowerCase();
-  if (/\bbank|banking/.test(t)) return IconBank;
-  if (/universit|student|enrol|study|studies|school/.test(t)) return IconCap;
-  if (/kela|social security|insurance|health/.test(t)) return IconShield;
-  return IconOnline;
+  const c = "h-5 w-5";
+  if (/\bbank|banking/.test(t)) return <IconBank className={c} />;
+  if (/universit|student|enrol|study|studies|school/.test(t)) return <IconCap className={c} />;
+  if (/kela|social security|insurance|health/.test(t)) return <IconShield className={c} />;
+  return <IconOnline className={c} />;
 }
 
 /** An online step: on the timeline when it is on the slowest chain; otherwise in "Anytime online" with its first possible day. */
