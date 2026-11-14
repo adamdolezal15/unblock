@@ -56,7 +56,7 @@ export function RunInput({ value, running, compact, onSubmit }: Props) {
           <button
             type="submit"
             disabled={running || !draft.trim()}
-            className={`shrink-0 rounded-md bg-accent px-5 font-medium text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong ${
+            className={`inline-flex shrink-0 items-center justify-center self-stretch rounded-md border border-accent bg-accent px-6 font-semibold text-white shadow-sm transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong ${
               compact ? "text-[15px]" : "text-[17px]"
             }`}
           >

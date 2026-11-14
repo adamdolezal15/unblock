@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { Profile } from "@/lib/types";
 import type { ProfileEvent } from "@/lib/ui/runState";
 import { fmtDate, fmtEur } from "@/lib/ui/format";
+import { assumptionLabel } from "@/lib/ui/assumptionLabel";
 import { IconPencil } from "./icons";
 
 const CITIZENSHIP: Record<Profile["citizenship"], string> = { EU: "EU citizen", NON_EU: "Non-EU citizen", NORDIC: "Nordic citizen" };
@@ -90,11 +91,12 @@ function AssumptionChip({ text, disabled, onSave }: { text: string; disabled: bo
       type="button"
       disabled={disabled}
       onClick={() => setEditing(true)}
-      title="This was assumed. Click to correct it and re-plan."
+      title={`${text} (click to correct it and re-plan)`}
+      aria-label={`Assumed: ${text} Click to correct it.`}
       className="flex items-center gap-1.5 rounded-full border border-dashed border-rule-strong px-3 py-1 text-left text-[14px] text-muted hover:border-accent hover:text-accent disabled:opacity-60"
     >
       <span>
-        <span className="font-medium">Assumed:</span> {text}
+        <span className="font-medium">Assumed:</span> {assumptionLabel(text)}
       </span>
       <IconPencil className="h-3.5 w-3.5 shrink-0" />
     </button>

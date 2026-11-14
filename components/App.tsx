@@ -63,7 +63,7 @@ function Workspace({ state, onCorrect }: { state: RunState; onCorrect: (correcti
               ))}
             </ul>
           )}
-          <StepsPreview steps={steps} stubs={state.stubs} running={running} />
+          <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} order={state.graph?.order} />
         </main>
       </div>
     </div>

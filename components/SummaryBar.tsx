@@ -79,7 +79,7 @@ function RejectedList({ summary, onClose }: { summary: RunSummary; onClose: () =
 
   const shown = summary.rejected ?? [];
   return (
-    <div ref={ref} role="dialog" aria-label="Rejected claims" className="absolute right-0 top-full z-30 mt-2 w-[min(36rem,90vw)] rounded-md border border-rule-strong bg-raised p-4 text-left shadow-[0_8px_24px_rgba(22,24,29,0.12)]">
+    <div ref={ref} role="dialog" aria-label="Rejected claims" className="overlay left-0 top-full mt-2 flex max-h-[min(60vh,32rem)] w-[min(40rem,90vw)] flex-col p-4 text-left">
       <div className="mb-1 flex items-start justify-between gap-4">
         <h3 className="text-[16px] font-semibold">Claims we threw away</h3>
         <button type="button" onClick={onClose} className="text-muted hover:text-ink" aria-label="Close">
@@ -89,7 +89,7 @@ function RejectedList({ summary, onClose }: { summary: RunSummary; onClose: () =
       <p className="mb-3 text-[14px] text-muted">
         The extractor proposed these, but the quote did not hold up against the page text Exa returned. They are not used anywhere in your plan.
       </p>
-      <ul className="max-h-[50vh] space-y-3 overflow-y-auto">
+      <ul className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
         {shown.map((r, i) => (
           <li key={i} className="border-t border-rule pt-3">
             <p className="text-[14px] font-medium text-ink">{REASON[r.reason] ?? r.reason}</p>

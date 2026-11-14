@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /* Nordic civic document: warm paper, near-black ink, one accent (Finnish blue) for the critical path and
-   primary actions. Amber only for conflicts, muted green only for "done". Light only (projectors). */
+   primary actions. Amber only for conflicts, muted green only for "done".
+   Light only, on purpose (projectors wash out dark UIs): no prefers-color-scheme rules anywhere. */
 @theme {
   --color-paper: #f7f5f0;
   --color-raised: #ffffff;
@@ -23,19 +24,22 @@
   --color-done-line: #a9c2b0;
 }
 
+/* Neutralise the `dark:` variant: nothing on the page ever sets data-theme="dark". */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme inline {
   --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light only;
 }
 
 html,
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: #f7f5f0;
+  color: #16181d;
 }
 
 body {
@@ -50,12 +54,24 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid #003580;
   outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--color-accent-soft);
+  background: #e6ecf5;
+}
+
+/* Every overlay (popover, tooltip, side panel) is opaque paper with a 1px rule border. */
+@layer components {
+  .overlay {
+    position: absolute;
+    z-index: 50;
+    background: #f7f5f0;
+    border: 1px solid #c4bdb0;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(22, 24, 29, 0.14);
+  }
 }
 
 @keyframes rise {
@@ -82,7 +98,7 @@ body {
   }
 }
 .skeleton {
-  background: var(--color-sunk);
+  background: #efece5;
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
