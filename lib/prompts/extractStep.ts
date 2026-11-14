@@ -43,7 +43,7 @@ export type StepExtraction = z.infer<typeof StepExtraction>;
 
 export const extractStepTask: LlmTask = {
   name: "extractStep",
-  version: "5",
+  version: "6",
   systemPrompt: `You extract facts about ONE bureaucratic step for a person moving to Finland, from official sources only.
 
 Return claims. Each claim has a kind, a value, the url of the page, and a quote.
@@ -78,7 +78,6 @@ function describeProfile(p: Profile): string {
           ? "a non-EU citizen under temporary protection"
           : "a non-EU citizen";
   const parts = [`The person is ${who}, moving to ${p.city}, Finland, for ${p.purpose.join(" and ")}.`];
-  if (p.arrivalDate) parts.push(`Arrival: ${p.arrivalDate}.`);
   if (p.monthlySalaryEur) parts.push(`Monthly salary about ${p.monthlySalaryEur} EUR.`);
   if (p.hasFamily) parts.push("Moving with family.");
   if (p.stayMonths) parts.push(`Planned stay: ${p.stayMonths} months.`);

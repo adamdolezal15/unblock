@@ -11,6 +11,8 @@ import type { ExtractInput, ExtractResult, LlmProvider, LlmTask } from "./types"
 export type { ExtractInput, ExtractResult, LlmTask } from "./types";
 
 const CACHE_DIR = path.join(process.cwd(), ".cache", "llm");
+/** Git-tracked entries for the demo sentences (npm run warm-demo). */
+export const DEMO_CACHE_DIR = path.join(process.cwd(), "demo-cache", "llm");
 let warned = false;
 
 /** Which provider will run, resolved from env. Exported for tests. */
@@ -58,7 +60,7 @@ export function llmCacheKey(p: Pick<LlmProvider, "name" | "model">, task: LlmTas
 export async function extract<T>(task: LlmTask, input: ExtractInput, schema: z.ZodType<T>): Promise<ExtractResult<T>> {
   const p = await provider();
   const r = await cachedCall(
-    { dir: CACHE_DIR, mode: modeFromEnv("LLM_CACHE"), label: "LLM_CACHE" },
+    { dir: CACHE_DIR, mode: modeFromEnv("LLM_CACHE"), label: "LLM_CACHE", fallbackDir: DEMO_CACHE_DIR },
     llmCacheKey(p, task, input, schema),
     () => p.extract(task, input, schema),
   );

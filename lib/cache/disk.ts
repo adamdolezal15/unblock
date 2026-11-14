@@ -3,6 +3,7 @@
 //   write (default) - return cached response if present, otherwise call and store it
 //   read            - cache only; a miss throws (offline demo)
 //   off             - always call, never read or write
+// A miss in `dir` falls back to `fallbackDir` (the git-tracked demo-cache/) before calling or failing.
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -12,6 +13,18 @@ export type CacheMode = "read" | "write" | "off";
 export type CacheEntry<T> = { fetchedAt: string; request: unknown; response: T };
 
 export type CachedResult<T> = CacheEntry<T> & { hit: boolean; ms: number };
+
+/** Every cache file read or written in this process, so a demo run can export exactly what it used. */
+const used = new Map<string, { label: string; file: string; name: string }>();
+export function usedCacheEntries(): { label: string; file: string; name: string }[] {
+  return [...used.values()];
+}
+export function resetUsedCacheEntries(): void {
+  used.clear();
+}
+function markUsed(label: string, file: string) {
+  used.set(file, { label, file, name: path.basename(file) });
+}
 
 export function modeFromEnv(envVar: string): CacheMode {
   const m = (process.env[envVar] ?? "write").toLowerCase();
@@ -39,21 +52,26 @@ export function sha(value: unknown, length = 32): string {
  * contain an API key. `label` names the cache in error messages.
  */
 export async function cachedCall<T>(
-  opts: { dir: string; mode: CacheMode; label: string },
+  opts: { dir: string; mode: CacheMode; label: string; fallbackDir?: string },
   request: unknown,
   call: () => Promise<T>,
 ): Promise<CachedResult<T>> {
-  const file = path.join(opts.dir, `${sha(request)}.json`);
+  const name = `${sha(request)}.json`;
+  const file = path.join(opts.dir, name);
   const t0 = Date.now();
 
   if (opts.mode !== "off") {
-    try {
-      const entry = JSON.parse(await readFile(file, "utf8")) as CacheEntry<T>;
-      return { ...entry, hit: true, ms: Date.now() - t0 };
-    } catch {
-      if (opts.mode === "read") {
-        throw new Error(`${opts.label}=read and no cached response for ${stable(request).slice(0, 200)}`);
+    for (const candidate of [file, ...(opts.fallbackDir ? [path.join(opts.fallbackDir, name)] : [])]) {
+      try {
+        const entry = JSON.parse(await readFile(candidate, "utf8")) as CacheEntry<T>;
+        markUsed(opts.label, candidate);
+        return { ...entry, hit: true, ms: Date.now() - t0 };
+      } catch {
+        // try the next location
       }
+    }
+    if (opts.mode === "read") {
+      throw new Error(`${opts.label}=read and no cached response for ${stable(request).slice(0, 200)}`);
     }
   }
 
@@ -64,6 +82,7 @@ export async function cachedCall<T>(
     try {
       await mkdir(opts.dir, { recursive: true });
       await writeFile(file, JSON.stringify(entry, null, 2), "utf8");
+      markUsed(opts.label, file);
     } catch (e) {
       // Read-only filesystem (e.g. serverless): serve the live result anyway.
       console.warn(`[${opts.label.toLowerCase()}] could not write ${path.basename(file)}: ${(e as Error).message}`);
