@@ -112,3 +112,13 @@ describe("layoutGraph", () => {
     expect(L.edges.every((e) => !e.backward)).toBe(true);
   });
 });
+
+describe("viewFromHash", () => {
+  it("reads the view from the URL hash, defaulting to Day by day", async () => {
+    const { viewFromHash } = await import("./useView");
+    expect(viewFromHash("#map")).toBe("map");
+    expect(viewFromHash("#summary")).toBe("summary");
+    expect(viewFromHash("")).toBe("days");
+    expect(viewFromHash("#nonsense")).toBe("days");
+  });
+});
