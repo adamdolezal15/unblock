@@ -9,6 +9,7 @@ export const CLAIM_KINDS = [
   "applies",
   "requires",
   "provides",
+  "same_visit",
   "mode",
   "document",
   "cost_of_delay",
@@ -28,7 +29,7 @@ export const StepExtraction = z.object({
         value: z
           .string()
           .describe(
-            "requires: exactly one id from the allowed list; provides: personal_identity_code; mode: online | in_person | either; applies: yes; otherwise a short plain-English value",
+            "requires: exactly one id from the allowed list; provides: personal_identity_code; same_visit: the other step's id; mode: online | in_person | either; applies: yes; otherwise a short plain-English value",
           ),
         url: z.string().describe("URL of the page the quote is copied from"),
         quote: z
@@ -42,7 +43,7 @@ export type StepExtraction = z.infer<typeof StepExtraction>;
 
 export const extractStepTask: LlmTask = {
   name: "extractStep",
-  version: "4",
+  version: "5",
   systemPrompt: `You extract facts about ONE bureaucratic step for a person moving to Finland, from official sources only.
 
 Return claims. Each claim has a kind, a value, the url of the page, and a quote.
@@ -59,6 +60,7 @@ Kinds:
   When in doubt, leave the requires claim out.
   Personal identity code: if the sentence says you need a Finnish personal identity code (henkilötunnus) for this step, ALWAYS make a requires claim with value personal_identity_code, even when this same authority can issue the code (the exclusions above do not apply here; the plan handles where the code comes from). NEVER use dvv_registration for this. Use dvv_registration only when the sentence requires being registered in the Population Information System or having a municipality of residence.
 - provides: a sentence stating that this step gives the person a Finnish personal identity code (it is issued during or as a result of this step). value = personal_identity_code.
+- same_visit: a sentence stating that this step and another step from the allowed list can be done at the same service desk in ONE visit (for example getting a personal identity code and a tax card at the same Vero desk). value = the id of that other step; for getting the identity code at the same desk use the step that issues it there (e.g. vero_identity_code), never personal_identity_code. Only when the sentence says both happen at the same place in the same visit.
 - document: something to bring or attach (passport, employment contract, lease...). value = the document.
 - mode: whether it is done online, in person, or either. value = online | in_person | either.
 - cost_of_delay: what happens if this step is late or missing (penalty, extra tax withheld, no access to a service). value = short consequence.

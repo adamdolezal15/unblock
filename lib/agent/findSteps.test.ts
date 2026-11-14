@@ -85,3 +85,15 @@ describe("requiresFromDocuments", () => {
     expect(requiresFromDocuments("dvv_registration", [doc("a residence permit card")], new Set(["dvv_registration"]))).toEqual([]);
   });
 });
+
+describe("sameVisits", () => {
+  it("groups steps linked by verified same_visit claims (transitively), ignoring unknown steps", async () => {
+    const { sameVisits } = await import("./findSteps");
+    const v = sameVisits([
+      { id: "tax_card", claims: [claim("tax_card", "same_visit", "vero_identity_code")] },
+      { id: "vero_identity_code", claims: [] },
+      { id: "kela_registration", claims: [claim("kela_registration", "same_visit", "not_in_plan")] },
+    ]);
+    expect([...v.entries()]).toEqual([["visit:tax_card+vero_identity_code", ["tax_card", "vero_identity_code"]]]);
+  });
+});

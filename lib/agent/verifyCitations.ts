@@ -145,6 +145,10 @@ function cleanValue(
 ): string | null | "unknown_id" {
   const v = value.trim();
   if (!v) return null;
+  if (kind === "same_visit") {
+    const id = v.toLowerCase();
+    return knownIds.has(id) && !milestoneIds.has(id) && id !== stepId ? id : "unknown_id";
+  }
   if (kind === "provides") {
     const id = v.toLowerCase();
     return milestoneIds.has(id) ? id : "unknown_id";

@@ -273,6 +273,34 @@ export function remapIdentityCode(c: VerifiedClaim): VerifiedClaim {
   return aboutCode && !aboutRegistration ? { ...c, value: "personal_identity_code" } : c;
 }
 
+/** visitId -> members, from verified same_visit claims between confirmed steps (union-find). */
+export function sameVisits(steps: Pick<Step, "id" | "claims">[]): Map<string, string[]> {
+  const ids = new Set(steps.map((s) => s.id));
+  const parent = new Map<string, string>();
+  const find = (x: string): string => {
+    const p = parent.get(x) ?? x;
+    if (p === x) return x;
+    const r = find(p);
+    parent.set(x, r);
+    return r;
+  };
+  for (const s of steps) {
+    for (const c of s.claims ?? []) {
+      if (c.kind === "same_visit" && ids.has(c.value)) parent.set(find(s.id), find(c.value));
+    }
+  }
+  const groups = new Map<string, string[]>();
+  for (const id of ids) {
+    const r = find(id);
+    groups.set(r, [...(groups.get(r) ?? []), id]);
+  }
+  const out = new Map<string, string[]>();
+  for (const members of groups.values()) {
+    if (members.length > 1) out.set(`visit:${[...members].sort().join("+")}`, members);
+  }
+  return out;
+}
+
 /**
  * Documents that are the OUTPUT of another step. When a verified `document` claim asks for one, the
  * step requires that other step; the new `requires` claim carries the same verified citation.
@@ -349,6 +377,11 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
           : "Not found in sources.";
       stubs.push({ id: r.def.id, label: r.def.label, message, checkUrl: r.checkUrl });
     }
+  }
+
+  // Shared visits: union confirmed steps linked by a verified same_visit claim.
+  for (const [visitId, members] of sameVisits(steps)) {
+    for (const s of steps) if (members.includes(s.id)) s.visitId = visitId;
   }
 
   for (const id of MILESTONE_IDS) {

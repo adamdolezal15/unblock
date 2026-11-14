@@ -67,7 +67,9 @@ async function main() {
     for (const c of claims.filter((c) => c.kind === "applies")) printClaim("  ├ applies: ", c);
     for (const c of claims.filter((c) => c.kind === "requires")) printClaim(`  ├ REQUIRES → ${c.value}: `, c);
     for (const c of claims.filter((c) => c.kind === "provides")) printClaim(`  ├ PROVIDES ${c.value}: `, c);
-    for (const c of claims.filter((c) => !["applies", "requires", "provides"].includes(c.kind))) {
+    for (const c of claims.filter((c) => c.kind === "same_visit")) printClaim(`  ├ SAME VISIT as ${c.value}: `, c);
+    if (s.visitId) console.log(`  ├ visit: ${s.visitId}`);
+    for (const c of claims.filter((c) => !["applies", "requires", "provides", "same_visit"].includes(c.kind))) {
       printClaim(`  ├ ${c.kind} = ${wrap(c.value, 60)}: `, c);
     }
   }
@@ -96,18 +98,19 @@ async function main() {
   console.log("\n=== GRAPH ===");
   console.log(`  nodes ${graph.nodes.length} (${graph.nodes.filter((n) => n.unresolved).length} unresolved), edges ${graph.edges.length}`);
   for (const e of graph.edges) console.log(`  ${e.source} → ${e.target}${e.anyOf ? "   (any-of)" : ""}`);
-  console.log("  schedule (working-day index; wait from a cited processing time, else default 5 = est.):");
+  console.log("  schedule (working day N from the start; wait from a cited processing time, else default 5 = est.):");
   for (const id of sched.order) {
     const it = sched.items[id];
     if (!it) continue;
     const cited = estimates[id] ? "cited" : it.estimated ? "est." : "";
-    console.log(`    day ${String(it.startIndex).padStart(3)} → ready day ${String(it.readyIndex).padStart(3)}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""})`);
+    const visit = it.visitId ? `, ${it.visitId}` : "";
+    console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})`);
   }
   console.log(`  order: ${topo.order.join(" → ") || "(none)"}`);
   for (const d of topo.deadlocks) console.log(`  DEADLOCK: ${d.stepIds.join(" → ")}: ${d.explanation}`);
   console.log(`  critical node: ${crit ?? "(none: no dependencies found)"}`);
   console.log(
-    `  critical path: ${path.stepIds.join(" → ") || "(empty)"}  (${path.totalDays} working days, ${path.calendarDays} calendar days from ${sched.startDate})`,
+    `  critical path: ${path.stepIds.map((id) => `${id} [${sched.items[id].startDate} → ${sched.items[id].readyDate}]`).join(" → ") || "(empty)"}\n    (${path.totalDays} working days, ${path.calendarDays} calendar days, ${sched.startDate} → ${path.stepIds.length ? sched.items[path.stepIds[path.stepIds.length - 1]].doneDate : sched.startDate})`,
   );
 
   // --- totals
