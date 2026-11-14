@@ -67,7 +67,7 @@ type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 1. `parseProfile(text)` LLM (Haiku/Sonnet) → Profile
 2. `findSteps(profile)` parallel Exa `auto` searches (one per authority), official domains, `contents.highlights` → Claude extracts steps/edges citing numbered highlight sentences → `verifyCitations` → Step[] with citations. (Not `deep`: its `output.grounding` gives url+title only, no quotes. See docs/exa-response-shapes.md.)
 3. `findCommunityTips(steps)` Exa search without domain filter, forums and guides → tips + conflicts
-4. `buildGraph(steps)` → topological order, critical node, critical path length
+4. `lib/graph/` (pure): `buildGraph` (unknown requires → `unresolved` placeholders), `topoOrder` (cycles returned as `Deadlock`, never thrown; UI highlights them), `criticalNode`, `schedule` (Helsinki working days from max(arrival, today), parallel where independent, `durationDays`/`waitDays` from community data else defaults flagged `estimated`), `criticalPath`. Priority = transitive dependents × cost-of-delay urgency.
 5. `toCalendar(steps)` → Google template links + .ics
 
 Stream progress to UI ("searching dvv.fi…", "reading kela.fi…").
