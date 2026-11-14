@@ -25,6 +25,12 @@
       "skillPath": "skills/exa-search/SKILL.md",
       "computedHash": "79e732e0be4fd8fc7bd339cf3ac412bee7e1a0e74b1a97cff2b94855c64553a4"
     },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c"
+    },
     "lead-generation": {
       "source": "exa-labs/agent-skills",
       "sourceType": "github",
