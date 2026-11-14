@@ -28,8 +28,8 @@ export function SourcesList({ sources }: { sources: Source[] }) {
   const [open, setOpen] = useState(false);
   const official = sources.filter((s) => s.trust === "official").length;
   return (
-    <section aria-labelledby="sources" className="text-center">
-      <h2 id="sources" className="font-serif text-[24px] font-semibold text-ink">
+    <section aria-labelledby="sources">
+      <h2 id="sources" className="text-[24px] font-bold text-ink">
         Sources
       </h2>
       <p className="mt-1 text-[16px] text-muted">

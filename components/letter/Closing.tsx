@@ -42,7 +42,7 @@ export function Closing({ summary }: { summary: RunSummary }) {
       {summary.partial ? "I stopped early, so this is a partial plan." : `It took ${fmtSeconds(summary.totalMs)}.`}
       {anchor && (
         <Popover anchor={anchor} onClose={() => setAnchor(null)} label="Rejected claims" width={560}>
-          <h3 className="font-serif text-[20px] font-semibold text-ink">Claims I threw away</h3>
+          <h3 className="text-[20px] font-bold text-ink">Claims I threw away</h3>
           <p className="mt-1 text-[15px] text-muted">
             The extractor proposed these, but the quote did not hold up against the page text. None of them is used in your plan.
           </p>

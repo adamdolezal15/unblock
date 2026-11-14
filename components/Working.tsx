@@ -11,7 +11,7 @@ export function Working({ state }: { state: RunState }) {
 
   return (
     <section aria-live="polite" className="mx-auto mt-16 max-w-[560px] text-center">
-      <h1 className="font-serif text-[34px] font-semibold text-ink">Working out your plan</h1>
+      <h1 className="text-[34px] font-bold text-ink">Working out your plan</h1>
       <p className="mt-2 text-[16px] text-muted">{label}…</p>
       <div className="mx-auto mt-6 flex max-w-[400px] items-center gap-3">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-sunk" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>

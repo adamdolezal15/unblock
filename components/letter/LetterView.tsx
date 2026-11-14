@@ -24,7 +24,7 @@ export function Prose({ segs, big }: { segs: Seg[]; big?: boolean }) {
 export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId: string) => void }) {
   return (
     <div className="rise max-w-[680px]">
-      <h1 className="font-serif text-[38px] font-semibold leading-[1.18] tracking-[-0.01em] text-ink">
+      <h1 className="text-[38px] font-bold leading-[1.18] tracking-[-0.01em] text-ink">
         <Prose segs={letter.headline} big />
       </h1>
       <div className="mt-6 space-y-4 text-[18px] leading-[1.65] text-ink">
@@ -49,7 +49,7 @@ export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId
 export function LetterSkeleton() {
   return (
     <div aria-hidden>
-      <p className="font-serif text-[38px] font-semibold leading-[1.18] text-faint">Working out your plan…</p>
+      <p className="text-[38px] font-bold leading-[1.18] text-faint">Working out your plan…</p>
       <div className="mt-6 space-y-3">
         {[100, 94, 97, 60].map((w, i) => (
           <div key={i} className="skeleton h-[18px] rounded" style={{ width: `${w}%` }} />

@@ -147,3 +147,15 @@ describe("key insights: Marta", () => {
     }
   });
 });
+
+describe("transit line: Marta", () => {
+  it("has one stop per visit in date order and ends at 'Set up' on the finish date", async () => {
+    const { buildDays } = await import("../../lib/ui/days");
+    const { stopsFrom } = await import("../../components/TransitLine");
+    const stops = stopsFrom(buildDays(state, doc.ref));
+    expect(stops[0]).toMatchObject({ date: "2026-12-01", critical: true });
+    expect(stops.map((s) => s.label)).toContain("Vero");
+    expect(stops[stops.length - 1]).toMatchObject({ label: "Set up", date: "2027-01-13", end: true });
+    expect(stops.map((s) => s.date)).toEqual([...stops.map((s) => s.date)].sort());
+  });
+});

@@ -16,7 +16,7 @@ export function TopBar({ onEdit, onHome, icsUrl, progress }: { onEdit: () => voi
         </button>
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2.5" aria-label="Unblock, start over">
           <MiniMark />
-          <span className="font-serif text-[22px] font-semibold text-ink">Unblock</span>
+          <span className="text-[22px] font-bold text-ink">Unblock</span>
         </button>
         <div className="justify-self-end">
           {icsUrl && (

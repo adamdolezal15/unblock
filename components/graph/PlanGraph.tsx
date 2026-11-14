@@ -23,7 +23,7 @@ type Props = {
 };
 
 const ACCENT = "#003580";
-const QUIET = "#a29c90";
+const QUIET = "#9aa7b6";
 
 /** Class-safe token for an id (ids can contain ":" or "#"). */
 const tok = (id: string) => id.replace(/[^a-zA-Z0-9_-]/g, "_");
@@ -79,11 +79,11 @@ function focusCss(layout: Layout, focus: string | null, selection: Selection): s
       [...near].map((id) => `.plan-graph .pg-n-${tok(id)}`).join(",") + `{opacity:1}`,
       `.plan-graph .pg-edge{opacity:.15}`,
       `.plan-graph .pg-s-${f},.plan-graph .pg-t-${f}{opacity:1}`,
-      `.plan-graph .pg-quiet.pg-s-${f} .react-flow__edge-path,.plan-graph .pg-quiet.pg-t-${f} .react-flow__edge-path{stroke:#3f444d;stroke-width:2.25px}`,
+      `.plan-graph .pg-quiet.pg-s-${f} .react-flow__edge-path,.plan-graph .pg-quiet.pg-t-${f} .react-flow__edge-path{stroke:#3a4556;stroke-width:2.25px}`,
     );
   }
   if (selection?.kind === "step") rules.push(`.plan-graph .pg-n-${tok(selection.id)} > div{box-shadow:0 0 0 3px rgba(0,53,128,.28)}`);
-  if (selection?.kind === "edge") rules.push(`.plan-graph .pg-e-${tok(selection.id)}{opacity:1} .plan-graph .pg-e-${tok(selection.id)} .react-flow__edge-path{stroke:#16181d;stroke-width:3px}`);
+  if (selection?.kind === "edge") rules.push(`.plan-graph .pg-e-${tok(selection.id)}{opacity:1} .plan-graph .pg-e-${tok(selection.id)} .react-flow__edge-path{stroke:#1a2433;stroke-width:3px}`);
   return rules.join("\n");
 }
 

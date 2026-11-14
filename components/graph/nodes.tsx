@@ -33,7 +33,7 @@ export function StepNode({ data, selected }: NodeProps<StepNodeData & Extra>) {
     <div
       style={{ width: NODE_W, height: data.height }}
       className={`relative flex cursor-pointer flex-col justify-between rounded-[5px] px-2.5 py-1.5 transition-[opacity,box-shadow] duration-150 ${critical ? "border-2" : "border"} ${tone} ${
-        selected ? "shadow-[0_0_0_3px_rgba(0,53,128,0.25)]" : "hover:shadow-[0_1px_6px_rgba(22,24,29,0.12)]"
+        selected ? "shadow-[0_0_0_3px_rgba(0,53,128,0.25)]" : "hover:shadow-[0_1px_6px_rgba(26,36,51,0.12)]"
       } ${data.faded ? "opacity-45" : ""}`}
       title={data.title}
     >

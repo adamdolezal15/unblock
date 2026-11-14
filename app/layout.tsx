@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { Overpass, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const plex = IBM_Plex_Sans({
-  variable: "--font-plex",
+// Overpass: after the Highway Gothic road-sign lettering, for the whole UI and the headlines. The plan
+// reads like wayfinding, so its type does too.
+const overpass = Overpass({
+  variable: "--font-overpass",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: "variable",
 });
 
 // Only for quoted source sentences, so citations read as documents.
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${plex.variable} ${serif.variable} h-full`}>
+    <html lang="en" className={`${overpass.variable} ${serif.variable} h-full`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

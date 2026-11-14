@@ -74,11 +74,11 @@ function Row({ entry, last, children }: { entry: DayEntry; last: boolean; childr
         <IconCheck className="h-4 w-4" />
       </span>
     ) : entry.kind === "online" ? (
-      <span className={`h-3.5 w-3.5 rounded-full border-2 bg-paper ${critical ? "border-accent" : "border-ink/60"}`} />
+      <span className={`h-3 w-3 rounded-full border-2 bg-paper ${critical ? "border-accent" : "border-rule-strong"}`} />
     ) : entry.kind === "reminder" ? (
       <span className="h-2 w-2 rounded-full bg-rule-strong" />
     ) : (
-      <span className={`h-3.5 w-3.5 rounded-full ${critical ? "bg-accent" : "bg-ink"}`} />
+      <span className={`h-4 w-4 rounded-full border-[3px] bg-raised ${critical ? "border-accent" : "border-ink"}`} />
     );
   const waits = entry.kind === "visit" || entry.kind === "online" ? entry.steps.filter((s) => s.wait) : [];
 
@@ -86,7 +86,7 @@ function Row({ entry, last, children }: { entry: DayEntry; last: boolean; childr
     <li className="grid grid-cols-[6.5rem_28px_minmax(0,1fr)] gap-x-3">
       <div className="num pt-4 text-right">
         <p className="text-[14px] text-muted">{entry.kind === "online" ? "From" : dow(entry.date)}</p>
-        <p className="font-serif text-[22px] font-semibold leading-tight text-ink">{fmtDay(entry.date)}</p>
+        <p className="text-[22px] font-bold leading-tight text-ink">{fmtDay(entry.date)}</p>
       </div>
       <div className="relative flex justify-center">
         {!last && <span className="absolute bottom-0 top-0 border-l-2 border-rule" aria-hidden />}
@@ -121,7 +121,7 @@ function Entry({ ctx, entry, defaultOpen }: { ctx: Ctx; entry: DayEntry; default
         </p>
       );
     case "done":
-      return <p className="pt-3 font-serif text-[24px] font-semibold text-done">You&apos;re fully set up</p>;
+      return <p className="pt-3 text-[24px] font-bold text-done">You&apos;re fully set up</p>;
   }
 }
 
@@ -132,7 +132,7 @@ function StepHead({ ctx, s, compact = false }: { ctx: Ctx; s: DayStep; compact?:
         <button
           type="button"
           onClick={() => ctx.onOpen(s.id)}
-          className="text-left font-serif text-[20px] font-semibold leading-snug text-ink hover:text-accent"
+          className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent"
         >
           {s.title}
         </button>
@@ -145,7 +145,7 @@ function StepHead({ ctx, s, compact = false }: { ctx: Ctx; s: DayStep; compact?:
         <button
           type="button"
           onClick={() => ctx.onOpen(s.id)}
-          className="text-left font-serif text-[21px] font-semibold leading-snug text-ink hover:text-accent"
+          className="text-left text-[21px] font-bold leading-snug text-ink hover:text-accent"
         >
           {s.title}
         </button>
@@ -166,9 +166,7 @@ function Unlocks({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
       <ul className="mt-1.5 space-y-1 text-[16px]">
         {ids.map((id) => (
           <li key={id} className="flex items-baseline gap-2">
-            <span className="text-muted" aria-hidden>
-              →
-            </span>
+            <span className="mt-[7px] h-2 w-2 shrink-0 self-start rounded-full border-2 border-rule-strong" aria-hidden />
             <button type="button" onClick={() => ctx.onOpen(id)} className={link}>
               {name(id)}
             </button>
@@ -209,7 +207,7 @@ function Visit({ ctx, e, defaultOpen }: { ctx: Ctx; e: VisitEntry; defaultOpen: 
     e.steps.length > 1 ? "both in one visit" : null,
   ].filter(Boolean);
   return (
-    <article className={`rounded-[8px] border bg-raised ${critical ? "border-accent/50" : "border-rule"}`}>
+    <article className={`rounded-[10px] bg-raised ${critical ? "border border-l-[5px] border-rule border-l-accent" : "border border-rule"}`}>
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-rule px-5 py-3">
         <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
           <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
@@ -328,17 +326,17 @@ function Visit({ ctx, e, defaultOpen }: { ctx: Ctx; e: VisitEntry; defaultOpen: 
 function Online({ ctx, e, defaultOpen }: { ctx: Ctx; e: OnlineEntry; defaultOpen: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <article className="rounded-[8px] border border-dashed border-rule-strong">
-      <header className="flex items-center justify-between gap-2 border-b border-dashed border-rule px-5 py-3 text-[15px] text-muted">
+    <article>
+      <header className="flex items-center justify-between gap-2 pb-1 pt-3 text-[15px] text-muted">
         <span className="flex items-center gap-2">
           <IconOnline className="h-4 w-4 text-ink" />
           <span className="font-semibold text-ink">Online</span> any time from {fmtDay(e.date)}
         </span>
         <Toggle open={open} onClick={() => setOpen((o) => !o)} />
       </header>
-      <div className="divide-y divide-dashed divide-rule">
+      <div className="divide-y divide-rule">
         {e.steps.map((s) => (
-          <div key={s.id} className="px-5 py-4">
+          <div key={s.id} className="py-3">
             <StepHead ctx={ctx} s={s} compact={!open} />
             {open && s.unlocks.length > 0 && (
               <div className="mt-3">

@@ -1,15 +1,17 @@
 "use client";
+import { useMemo } from "react";
 import { countVisits } from "@/lib/graph/baseline";
 import type { Comparison } from "@/lib/ui/compare";
-import type { LetterDoc } from "@/lib/ui/letter";
+import { buildDays } from "@/lib/ui/days";
+import type { LetterDoc, Seg } from "@/lib/ui/letter";
 import { longDate } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { Prose } from "./letter/LetterView";
+import { TransitLine } from "./TransitLine";
 
-type Tile = { value: string; caption: React.ReactNode; strong?: boolean; title?: string };
-
-/** The answer first: when you are set up, where to start, and the few numbers that matter. */
-export function Hero({ state, doc, comparison }: { state: RunState; doc: LetterDoc; comparison: Comparison | null }) {
+/** The answer first: when you are set up, where to start, and the route as a transit line. */
+export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void }) {
+  const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const sched = state.schedule;
   if (!sched || !doc.letter) return null;
   const items = sched.schedule.items;
@@ -23,44 +25,30 @@ export function Hero({ state, doc, comparison }: { state: RunState; doc: LetterD
   const visits = countVisits(steps, items);
   const online = steps.filter((s) => s.mode !== "in_person").length;
 
-  const tiles: Tile[] = [
-    { value: String(visits), caption: visits === 1 ? "visit in person" : "visits in person" },
-    { value: String(online), caption: online === 1 ? "step you can do online" : "steps you can do online" },
-  ];
+  // The numbers as one plain sentence under the line, not a stats strip.
+  const facts: Seg[] = [{ t: `${visits} ${visits === 1 ? "visit" : "visits"} in person, ${online} ${online === 1 ? "step" : "steps"} online.` }];
   if (comparison) {
-    tiles.push({
-      value: `${comparison.gain.days} days`,
-      caption: comparison.gain.caption,
-      strong: true,
-      title: comparison.sentence.map((x) => ("t" in x ? x.t : "")).join(""),
-    });
+    const ref = comparison.sentence.find((x) => "ref" in x);
+    const caption = comparison.gain.caption === "sooner than the usual order" ? "sooner than the usual order (DVV first)" : comparison.gain.caption;
+    facts.push({ t: ` ${comparison.gain.days} days ${caption}` });
+    if (ref) facts.push(ref);
+    facts.push({ t: "." });
   }
-  if (state.summary) tiles.push({ value: String(state.summary.verifiedQuotes), caption: "quotes checked word for word" });
 
   return (
-    <section className="rise text-center" aria-label="Your answer">
-      <h1 className="font-serif text-[44px] font-semibold leading-[1.1] tracking-[-0.015em] text-ink">
-        {end ? (
-          <>
-            Set up by {fuzzy ? "about " : ""}
-            <span className="text-accent">{longDate(end, startYear)}</span>
-          </>
-        ) : (
-          "Your plan"
-        )}
+    <section aria-label="Your answer">
+      <h1 className="text-[46px] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-[54px]">
+        {end ? `Set up by ${fuzzy ? "about " : ""}${longDate(end, startYear)}.` : "Your plan."}
       </h1>
-      <p className="mx-auto mt-3 max-w-[38ch] font-serif text-[20px] leading-snug text-muted">
+      <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
         <Prose segs={doc.letter.headline.slice(1)} />
       </p>
-      {/* One quiet strip of numbers: small serif figures, hairline dividers. */}
-      <ul className="mx-auto mt-8 inline-grid grid-flow-col divide-x divide-rule rounded-[12px] border border-rule bg-raised">
-        {tiles.map((t, i) => (
-          <li key={i} title={t.title} className="px-6 py-3 text-left">
-            <p className={`num font-serif text-[26px] font-semibold leading-none ${t.strong ? "text-accent" : "text-ink"}`}>{t.value}</p>
-            <p className="mt-1 max-w-[13ch] text-[14px] leading-tight text-muted">{t.caption}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-10">
+        <TransitLine entries={entries} onOpen={onOpen} />
+      </div>
+      <p className="mt-5 text-[16px] text-muted">
+        <Prose segs={facts} />
+      </p>
     </section>
   );
 }

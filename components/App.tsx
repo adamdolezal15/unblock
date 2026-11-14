@@ -76,7 +76,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
     <main className="mx-auto max-w-[1040px] px-6 pb-24">
       <div className="pt-12">
         {state.profile && (
-          <div className="mx-auto mb-8 max-w-[700px] text-center [&_p]:text-[15px]">
+          <div className="mb-6 max-w-[720px] [&_p]:text-[15px]">
             <ProfileSentence
               profile={state.profile}
               text={state.text}
@@ -85,15 +85,15 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
             />
           </div>
         )}
-        <Hero state={state} doc={doc} comparison={comparison} />
-        {running && <p className="mt-6 text-center text-[15px] text-muted">Still cross-checking sources…</p>}
+        <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} />
+        {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
       </div>
 
       <div className="mt-14">
         <ViewTabs view={view} onChange={setView} />
       </div>
       {(state.partial || state.error) && (
-        <div className="mx-auto mt-6 max-w-[680px] space-y-3">
+        <div className="mt-6 max-w-[680px] space-y-3">
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
           {state.error && <p className="text-[16px] text-ink">{state.error}</p>}
         </div>
@@ -101,12 +101,12 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
 
       <div className="mt-8">
         {view === "summary" && (
-          <div className="mx-auto max-w-[680px]">
+          <div className="max-w-[680px]">
             <LetterView letter={doc.letter} onShow={openStep} />
           </div>
         )}
         {view === "days" && (
-          <div className="mx-auto max-w-[860px]">
+          <div className="max-w-[880px]">
             <DayByDay
               state={state}
               doc={doc}
@@ -116,7 +116,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 return sc ? (
                   <p className="mt-1 text-[15px] text-ink">
-                    <span className="mr-2 rounded-[3px] border border-accent px-1.5 py-[1px] text-[14px] font-semibold text-accent">Shortcut</span>
+                    <span className="mr-2 rounded-[3px] bg-accent px-1.5 py-[2px] text-[14px] font-bold text-white">Shortcut</span>
                     <Prose segs={sc.text} />
                   </p>
                 ) : null;
@@ -127,7 +127,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
 
-      <footer className="mx-auto mt-20 max-w-[680px] border-t border-rule pt-8 text-center">
+      <footer className="mt-20 max-w-[680px] border-t border-rule pt-8">
         {state.summary && <Closing summary={state.summary} />}
         <button
           type="button"
@@ -152,7 +152,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
       </footer>
 
       {state.phase === "done" && doc.sources.length > 0 && (
-        <div className="mx-auto mt-12 max-w-[880px]">
+        <div className="mt-12 max-w-[880px]">
           <SourcesList sources={doc.sources} />
         </div>
       )}

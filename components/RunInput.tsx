@@ -66,17 +66,14 @@ export function RunInput({ value, running, compact, onSubmit }: Props) {
           <label htmlFor="situation" className="sr-only">
             Describe your move in one sentence
           </label>
-          <div className="flex items-end gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-5 text-left shadow-[0_1px_0_rgba(22,24,29,0.04),0_18px_40px_-18px_rgba(22,24,29,0.25)] transition-colors focus-within:border-accent">
+          <div className="flex items-end gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-5 text-left shadow-[0_1px_0_rgba(26,36,51,0.04),0_18px_40px_-18px_rgba(26,36,51,0.25)] transition-colors focus-within:border-accent">
             {textarea("self-center bg-transparent py-2.5 text-[19px] leading-7", "Where are you moving, when, and why?")}
             <button
               type="submit"
               disabled={running || !draft.trim()}
-              className="inline-flex h-12 shrink-0 items-center gap-2 rounded-[11px] bg-accent px-5 text-[16px] font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong"
+              className="inline-flex h-12 shrink-0 items-center rounded-[10px] bg-accent px-6 text-[16px] font-bold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong"
             >
               Plan my move
-              <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
             </button>
           </div>
         </form>

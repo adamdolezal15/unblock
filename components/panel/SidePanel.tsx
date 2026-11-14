@@ -56,7 +56,7 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
     <aside
       ref={scroller}
       aria-label="Details"
-      className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(22,24,29,0.12)]"
+      className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(26,36,51,0.12)]"
     >
       <button ref={closeRef} type="button" onClick={() => onSelect(null)} className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
         <IconClose className="h-5 w-5" />
@@ -143,7 +143,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
   if (!step) {
     return (
       <div className="pr-8">
-        <h2 className="font-serif text-[24px] font-semibold leading-tight text-ink">{stub?.label ?? ctx.name(id)}</h2>
+        <h2 className="text-[24px] font-bold leading-tight text-ink">{stub?.label ?? ctx.name(id)}</h2>
         <p className="mt-3 text-[16px] leading-relaxed text-ink">
           Not found in any source I could verify.{" "}
           {stub?.checkUrl && (
@@ -180,7 +180,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
           </span>
         )}
       </p>
-      <h2 className="mt-1 pr-8 font-serif text-[26px] font-semibold leading-[1.2] text-ink">
+      <h2 className="mt-1 pr-8 text-[26px] font-bold leading-[1.2] text-ink">
         {step.title}
         {ctx.cite(applies)}
       </h2>
@@ -363,7 +363,7 @@ function MilestoneView({ ctx, id }: { ctx: Ctx; id: string }) {
       <p className="pr-8 text-[15px] text-muted">
         <Term term="either" />
       </p>
-      <h2 className="mt-1 pr-8 font-serif text-[26px] font-semibold leading-[1.2] text-ink">{ms?.title ?? ctx.name(id)}</h2>
+      <h2 className="mt-1 pr-8 text-[26px] font-bold leading-[1.2] text-ink">{ms?.title ?? ctx.name(id)}</h2>
       <H>Ways to get it</H>
       <ul className="mt-2 space-y-2 text-[16px] text-ink">
         {options
@@ -394,7 +394,7 @@ function EdgeView({ ctx, source, target }: { ctx: Ctx; source: string; target: s
   return (
     <div>
       <p className="pr-8 text-[15px] text-muted">{anyOf ? "One of the ways to get it" : "Why this order"}</p>
-      <h2 className="mt-1 pr-8 font-serif text-[24px] font-semibold leading-[1.25] text-ink">
+      <h2 className="mt-1 pr-8 text-[24px] font-bold leading-[1.25] text-ink">
         {anyOf ? (
           <>
             <StepLink ctx={ctx} id={source} /> gives you your {lower(ctx.state.steps[target]?.title ?? ctx.name(target))}
