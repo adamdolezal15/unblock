@@ -8,23 +8,22 @@ import { longDate } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { Prose } from "./letter/LetterView";
 import { TransitLine } from "./TransitLine";
-import { CoverageNotice } from "./CoverageNotice";
 import { exaLine } from "@/lib/ui/format";
-import type { Coverage } from "@/lib/ui/coverage";
+import { RouteMark } from "./line/RouteMark";
 
-/** The answer first: when you are set up, where to start, and the route as a transit line. */
-export function Hero({ state, doc, comparison, onOpen, coverage, onShowFeed }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void; coverage?: Coverage | null; onShowFeed?: () => void }) {
+/** The answer first, on the blue band: when you are set up, where to start, and the route as a timetable. */
+export function Hero({ state, doc, comparison, onOpen, onShowFeed }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void; onShowFeed?: () => void }) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const sched = state.schedule;
   const fallback = fallbackSteps(state);
   if (fallback && (sched || state.phase === "done")) {
     return (
-      <section aria-label="Your answer">
-        <h1 className="display text-[46px] sm:text-[54px]">Your {fallback.length} steps, in order.</h1>
-        <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
+      <section aria-label="Your answer" className="relative">
+        <RouteMark onBand top={14} />
+        <h1 className="display text-[46px] sm:text-[64px]">Your {fallback.length} steps, in order.</h1>
+        <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-white/85">
           Start with {fallback[0].title.replace(/^(?=[A-Z][a-z])./, (c) => c.toLowerCase())}. {FALLBACK_NOTE}
         </p>
-        {coverage && <CoverageNotice coverage={coverage} />}
       </section>
     );
   }
@@ -52,21 +51,28 @@ export function Hero({ state, doc, comparison, onOpen, coverage, onShowFeed }: {
   }
 
   return (
-    <section aria-label="Your answer">
-      <h1 className="display text-[46px] sm:text-[54px]">
-        {end ? `Set up by ${fuzzy ? "about " : ""}${longDate(end, startYear)}.` : "Your plan."}
-      </h1>
-      <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
+    <section aria-label="Your answer" className="relative">
+      <RouteMark onBand top={14} />
+      {end ? (
+        <h1>
+          <span className="block text-[22px] font-semibold leading-tight text-white/85 sm:text-[26px]">Set up by {fuzzy ? "about" : ""}</span>{" "}
+          <span className="display num mt-1 block text-[64px] sm:text-[96px] xl:text-[112px]" style={{ lineHeight: 0.95 }}>
+            {longDate(end, startYear)}
+          </span>
+        </h1>
+      ) : (
+        <h1 className="display text-[46px] sm:text-[64px]">Your plan.</h1>
+      )}
+      <p className="mt-6 max-w-[58ch] text-[20px] leading-snug text-white">
         <Prose segs={doc.letter.headline.slice(1)} />
       </p>
-      <ExaLine state={state} onShowFeed={onShowFeed} />
-      {coverage && <CoverageNotice coverage={coverage} />}
-      <div className="mt-10">
-        <TransitLine entries={entries} onOpen={onOpen} />
+      <div className="mt-8">
+        <TransitLine entries={entries} onOpen={onOpen} onBand />
       </div>
-      <p className="mt-5 text-[16px] text-muted">
+      <p className="mt-5 text-[16px] text-white/85">
         <Prose segs={facts} />
       </p>
+      <ExaLine state={state} onShowFeed={onShowFeed} />
     </section>
   );
 }
@@ -76,12 +82,12 @@ function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => vo
   const line = state.summary ? exaLine(state.summary) : null;
   if (!line) return null;
   return (
-    <p className="num mt-2 text-[14px] text-muted">
+    <p className="num mt-2 text-[14px] text-white/80">
       {line}
       {onShowFeed && (
         <>
           {" · "}
-          <button type="button" onClick={onShowFeed} className="text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent">
+          <button type="button" onClick={onShowFeed} className="text-white underline decoration-white/50 underline-offset-[3px] hover:decoration-white">
             see the activity
           </button>
         </>

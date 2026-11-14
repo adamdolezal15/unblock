@@ -14,6 +14,7 @@ import { FormRow } from "../FormRow";
 import { allForms, formLine } from "@/lib/ui/forms";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
 import { IconCalendar, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
+import { RouteMark } from "../line/RouteMark";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const dow = (iso: string) => {
@@ -66,13 +67,20 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
       </div>
       <ol>
         {entries.map((e, i) => (
-          <Row key={i} entry={e} last={i === entries.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
+          <Row
+            key={i}
+            entry={e}
+            last={i === entries.length - 1}
+            mainLeg={!!legs[i]}
+            inLeg={i === 0 ? null : !!legs[i - 1]}
+            shortcut={(e.kind === "visit" || e.kind === "online") && e.steps.some((s) => shortcut?.(s.id) != null)}
+          >
             <Entry ctx={ctx} entry={e} />
           </Row>
         ))}
       </ol>
-      <ReadyToSend drafts={drafts} forms={forms} />
       {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
+      <ReadyToSend drafts={drafts} forms={forms} />
     </section>
   );
 }
@@ -80,7 +88,8 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
 /** Steps this profile does not need (Step.necessity): apart from the plan, not counted in its dates or visits. */
 function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
   return (
-    <section aria-label={OPTIONAL_TITLE} className="mt-14 border-t border-rule pt-8">
+    <section aria-label={OPTIONAL_TITLE} className="relative mt-14 border-t border-rule pt-8">
+      <RouteMark top={34} />
       <h2 className="text-[22px] font-bold text-ink">{OPTIONAL_TITLE}</h2>
       <p className="mt-1 max-w-[62ch] text-[16px] text-muted">
         Not part of the dates above. Do them if they help you, for example for online services.
@@ -139,12 +148,15 @@ function Row({
   last,
   mainLeg,
   inLeg,
+  shortcut,
   children,
 }: {
   entry: DayEntry;
   last: boolean;
   mainLeg: boolean;
   inLeg: boolean | null;
+  /** A step here is the shortcut: the logo's diamond on the route line. */
+  shortcut: boolean;
   children: React.ReactNode;
 }) {
   const critical = (entry.kind === "visit" || entry.kind === "online") && entry.steps.some((s) => s.critical);
@@ -158,11 +170,16 @@ function Row({
     (s, i, all) => all.findIndex((o) => waitKey(o) === waitKey(s)) === i,
   );
 
+  // The calendar spine: day number big, month and weekday small.
+  const [dayNum, month] = fmtDay(entry.date).split(" ");
   return (
-    <li className="grid grid-cols-[6.5rem_28px_minmax(0,1fr)] gap-x-3">
-      <div className="num pt-4 text-right">
-        <p className="text-[14px] text-muted">{entry.kind === "online" ? "From" : dow(entry.date)}</p>
-        <p className="text-[22px] font-bold leading-tight text-ink">{fmtDay(entry.date)}</p>
+    <li className="relative grid grid-cols-[4.5rem_28px_minmax(0,1fr)] gap-x-3 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)]">
+      {shortcut && <RouteMark kind="diamond" top={22} />}
+      <div className="num pt-[14px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
+        <p aria-hidden className="text-[40px] font-extrabold leading-none tracking-[-0.02em] text-ink">{dayNum}</p>
+        <p aria-hidden className="mt-1 text-[14px] leading-tight text-muted">
+          {entry.kind === "online" ? `from ${month}` : `${month} · ${dow(entry.date).slice(0, 3)}`}
+        </p>
       </div>
       <div className="relative flex justify-center">
         {inLeg !== null && <span className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
@@ -213,9 +230,7 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
         <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
       )}
       {s.forms.map((f) => (
-        <p key={f.form.id} className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-ink">
-          <FormRow line={f} />
-        </p>
+        <FormRow key={f.form.id} line={f} variant="card" />
       ))}
       {ctx.drafts?.forStep(s.id).map((o) => <DraftLink key={o.id} offer={o} drafts={ctx.drafts!} />)}
     </>
@@ -377,11 +392,8 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
               <p className="text-[14px] font-semibold text-muted">Bring</p>
               <ul className="mt-1.5 space-y-1.5 text-[16px] leading-snug text-ink">
                 {e.forms.map((f) => (
-                  <li key={f.form.id} className="flex gap-2.5">
-                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
-                    <span>
-                      <FormRow line={f} />
-                    </span>
+                  <li key={f.form.id}>
+                    <FormRow line={f} variant="inline" />
                   </li>
                 ))}
                 {e.bring.map((b) => (

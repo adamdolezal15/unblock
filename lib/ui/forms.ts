@@ -4,16 +4,34 @@ import type { Citation, Step, StepForm } from "@/lib/types";
 import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
 
-export type FormLine = { form: StepForm; segs: Seg[]; /** The link: the form itself, else the official page that names it. */ href: string; linkLabel: string };
+export type FormLine = {
+  form: StepForm;
+  segs: Seg[];
+  /** The form's name, set in bold ("Form 6150e"). */
+  name: string;
+  /** What to do with it, sentence case, with its footnote ("Fill in before you go¹"); just the footnote when none. */
+  guide: Seg[];
+  /** The link: the form itself, else the official page that names it. */
+  href: string;
+  linkLabel: string;
+  /** The link as the row shows it: "Open", "Open (PDF)", "Official page". */
+  shortLabel: string;
+};
+
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** "Form 6150e: fill in before you go, sign at the office" + its footnote. */
 export function formLine(form: StepForm, ref: (c: Citation) => Ref): FormLine {
   const text = form.guidance ? `${form.name}: ${form.guidance}` : form.name;
+  const r = ref(form.citation);
   return {
     form,
-    segs: [{ t: text }, { ref: ref(form.citation) }],
+    segs: [{ t: text }, { ref: r }],
+    name: form.name,
+    guide: form.guidance ? [{ t: cap(form.guidance.trim()) }, { ref: r }] : [{ ref: r }],
     href: form.url ?? form.citation.url,
     linkLabel: form.url ? (form.type === "pdf" ? "Open official form (PDF)" : "Open official form") : "Open the official page",
+    shortLabel: form.url ? (form.type === "pdf" ? "Open (PDF)" : "Open") : "Official page",
   };
 }
 

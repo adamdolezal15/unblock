@@ -10,8 +10,9 @@ describe("footnotes in prose", () => {
     const html = renderToStaticMarkup(<Prose segs={[{ t: "Proof of your right of residence " }, { ref: ref(10) }, { t: " in Finland. Ask anyway " }, { ref: ref(11) }, { t: "." }]} />);
     const text = html.replace(/<[^>]+>/g, "");
     expect(text).toBe("Proof of your right of residence in Finland. Ask anyway.10");
-    expect(html.match(/<sup/g)).toHaveLength(1);
-    expect(html).toMatch(/<span class="whitespace-nowrap">anyway\.<sup[^>]*style="line-height:0;vertical-align:super/);
+    expect(html.match(/class="fn-group"/g)).toHaveLength(1);
+    // The number is a solid blue circle glued to the last word.
+    expect(html).toMatch(/<span class="whitespace-nowrap">anyway\.<span class="fn-group"><button[^>]*class="fn num/);
   });
 
   it("renders plain text when there is no source", () => {

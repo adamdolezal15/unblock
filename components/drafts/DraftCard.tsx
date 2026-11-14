@@ -4,7 +4,8 @@ import { mailtoHref, type DraftOffer } from "@/lib/agent/draftOffers";
 import type { DraftsApi } from "@/lib/ui/useDrafts";
 import type { Step, StepForm } from "@/lib/types";
 import type { FormLine } from "@/lib/ui/forms";
-import { FormRow, SuggestFill } from "../FormRow";
+import { FormRow } from "../FormRow";
+import { RouteMark } from "../line/RouteMark";
 import { IconExternal } from "../icons";
 
 const primary =
@@ -97,26 +98,33 @@ function DraftCard({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) 
 export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[] }) {
   if (!drafts.offers.length && !forms.length) return null;
   return (
-    <section aria-label="Ready to send" className="mt-14 border-t border-rule pt-8">
+    // Last section on the route line: the line ends at its mark.
+    <section aria-label="Ready to send" className="route-end relative mt-14 border-t border-rule pt-8" style={{ ["--route-end" as string]: "46px" }}>
+      <RouteMark top={34} />
       <h2 className="text-[22px] font-bold text-ink">Ready to send</h2>
-      <p className="mt-1 max-w-[62ch] text-[16px] text-muted">Written only from the verified facts in your plan. Nothing is sent for you.</p>
-      <div className="mt-5 space-y-4">
-        {drafts.offers.map((o) => (
-          <DraftCard key={o.id} offer={o} drafts={drafts} />
-        ))}
-      </div>
       {forms.length > 0 && (
-        <div className="mt-8" aria-label="Official forms">
+        <div className="mt-5" aria-label="Official forms">
           <h3 className="text-[18px] font-bold text-ink">Official forms</h3>
+          <p className="mt-1 max-w-[62ch] text-[16px] text-muted">Forms you need to bring or fill in online.</p>
           <ul className="mt-3 space-y-3">
             {forms.map((f) => (
-              <li key={f.form.id} className="text-[16px] leading-snug text-ink">
-                <FormRow line={f.line} />
-                <span className="block text-[14px] text-muted">For {f.steps.map((s) => s.title).join(" and ")}</span>
-                <SuggestFill />
+              <li key={f.form.id} className="rounded-[8px] border border-rule bg-raised px-4 py-3">
+                <FormRow line={f.line} variant="list" />
+                <span className="mt-1 block pl-[28px] text-[14px] text-muted">For {f.steps.map((s) => s.title).join(" and ")}</span>
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {drafts.offers.length > 0 && (
+        <div className={forms.length > 0 ? "mt-10" : "mt-5"}>
+          {forms.length > 0 && <h3 className="text-[18px] font-bold text-ink">Drafts</h3>}
+          <p className="mt-1 max-w-[62ch] text-[16px] text-muted">Written only from the verified facts in your plan. Nothing is sent for you.</p>
+          <div className="mt-4 space-y-4">
+            {drafts.offers.map((o) => (
+              <DraftCard key={o.id} offer={o} drafts={drafts} />
+            ))}
+          </div>
         </div>
       )}
     </section>

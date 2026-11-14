@@ -64,27 +64,31 @@ function rowText(s: Stop): string {
 }
 
 /** The route as a timetable: date, then what you do; waits are a quiet line between rows. */
-export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: (id: string) => void }) {
+export function TransitLine({ entries, onOpen, onBand = false }: { entries: DayEntry[]; onOpen: (id: string) => void; onBand?: boolean }) {
   const stops = stopsFrom(entries);
   if (stops.length < 2) return null;
+  // On the blue answer band: white text, white hairlines.
+  const t = onBand
+    ? { rule: "border-white/25", muted: "text-white/80", ink: "text-white", hover: "hover:bg-white/10" }
+    : { rule: "border-rule", muted: "text-muted", ink: "text-ink", hover: "hover:bg-sunk/60" };
   return (
-    <ol className="max-w-[58ch] border-t border-rule" aria-label="Your visits in order">
+    <ol className={`max-w-[58ch] border-t ${t.rule}`} aria-label="Your visits in order">
       {stops.map((s, i) => {
         const gap = i > 0 ? calendarDaysBetween(stops[i - 1].date, s.date) : 0;
         const row = (
           <>
-            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? "font-bold text-ink" : "text-muted"}`}>{fmtDay(s.date)}</span>
-            <span className={`text-[17px] leading-snug text-ink`}>{rowText(s)}</span>
+            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? `font-bold ${t.ink}` : t.muted}`}>{fmtDay(s.date)}</span>
+            <span className={`text-[17px] leading-snug ${t.ink} ${s.end ? "font-bold" : ""}`}>{rowText(s)}</span>
           </>
         );
         return (
           <li key={i}>
             {gap >= WAIT_DAYS && (
-              <p className="border-b border-rule py-2 pl-[80px] text-[15px] italic text-muted">{waitLabel(gap, stops[i - 1].label)}</p>
+              <p className={`border-b ${t.rule} py-2 pl-[80px] text-[15px] italic ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
             )}
-            <div className="border-b border-rule">
+            <div className={`border-b ${t.rule}`}>
               {s.stepId ? (
-                <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${rowText(s)}: show details`} className="flex w-full items-baseline py-3 text-left hover:bg-sunk/60">
+                <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${rowText(s)}: show details`} className={`flex w-full items-baseline py-3 text-left ${t.hover}`}>
                   {row}
                 </button>
               ) : (

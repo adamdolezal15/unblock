@@ -16,6 +16,8 @@ import { coverage as coverageOf } from "@/lib/ui/coverage";
 import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
+import { CoverageNotice } from "./CoverageNotice";
+import { RouteMark } from "./line/RouteMark";
 import { Refine } from "./Refine";
 import { Closing } from "./letter/Closing";
 import { LetterView } from "./letter/LetterView";
@@ -115,10 +117,10 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
   }
 
   return (
-    <main className="mx-auto max-w-[1040px] px-6 pb-24">
-      <div className="pt-12">
-        {state.profile && (
-          <div className="mb-6 max-w-[720px]">
+    <main className="pb-24">
+      {state.profile && (
+        <div className="mx-auto max-w-[1040px] px-6 pb-6 pt-8">
+          <div className="max-w-[720px] pl-[44px] max-[480px]:pl-[32px]">
             <ProfileSentence
               profile={state.profile}
               text={state.text}
@@ -127,20 +129,34 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />
           </div>
-        )}
-        <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} coverage={coverage} onShowFeed={state.phase === "done" ? showAndScrollFeed : undefined} />
-        {state.phase === "done" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
-        {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
-        {state.phase === "done" && state.summary?.runId && (
-          <div className="mt-8">
-            <Watch key={state.summary.runId} runId={state.summary.runId} />
+        </div>
+      )}
+      {/* The single bold moment: the answer on a full-width Finnish-blue band. The route line starts here. */}
+      <div className="band">
+        <div className="mx-auto max-w-[1040px] px-6 pt-12">
+          <div className="route pb-12">
+            <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} onShowFeed={state.phase === "done" ? showAndScrollFeed : undefined} />
           </div>
-        )}
+        </div>
       </div>
 
-      <div className="mt-16">
-        <ViewTabs view={view} onChange={setView} />
-      </div>
+      <div className="mx-auto max-w-[1040px] px-6">
+      <div className="route">
+        <div className="pt-6">
+          {coverage && <CoverageNotice coverage={coverage} />}
+          {state.phase === "done" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
+          {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
+          {state.phase === "done" && state.summary?.runId && (
+            <div className="mt-8">
+              <Watch key={state.summary.runId} runId={state.summary.runId} />
+            </div>
+          )}
+        </div>
+
+        <div className="relative mt-16">
+          <RouteMark top={4} />
+          <ViewTabs view={view} onChange={setView} />
+        </div>
       {(state.partial || state.error) && (
         <div className="mt-6 max-w-[680px] space-y-3">
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
@@ -181,7 +197,9 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
         )}
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
+      </div>
 
+      <div className="pl-[44px] max-[480px]:pl-[32px]">
       <footer id="activity-feed" className="mt-16 max-w-[680px] border-t border-rule pt-8">
         {state.summary && <Closing summary={state.summary} />}
         <button
@@ -212,6 +230,8 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
           <SourcesList sources={doc.sources} />
         </div>
       )}
+      </div>
+      </div>
       {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
     </main>
   );

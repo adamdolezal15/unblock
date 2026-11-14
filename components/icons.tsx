@@ -40,6 +40,14 @@ export const IconExternal = (p: P) => (
   </Svg>
 );
 
+/** An official form: a page with a folded corner and lines. */
+export const IconDocument = (p: P) => (
+  <Svg {...p}>
+    <path d="M9.25 1.75H4a.75.75 0 0 0-.75.75v11a.75.75 0 0 0 .75.75h8a.75.75 0 0 0 .75-.75V5.25z" />
+    <path d="M9.25 1.75v3.5h3.5M5.75 8.25h4.5M5.75 10.75h4.5" />
+  </Svg>
+);
+
 export const IconPencil = (p: P) => (
   <Svg {...p}>
     <path d="m10.5 2.75 2.75 2.75L6 12.75l-3.25.5.5-3.25z" />
