@@ -19,6 +19,7 @@ export function draftSource(state: RunState): DraftSource | null {
       }),
     conflicts: state.conflicts,
     dates: Object.fromEntries(Object.entries(items).map(([id, it]) => [id, it.startDate])),
+    visits: Object.fromEntries(Object.entries(items).flatMap(([id, it]) => (it.visitId ? [[id, it.visitId]] : []))),
   };
 }
 

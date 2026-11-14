@@ -32,12 +32,8 @@ beforeAll(async () => {
 }, 120_000);
 
 describe("drafts: Marta (works and studies, Helsinki)", () => {
-  it("offers the employer email, the bank email and booking notes for office visits", () => {
-    const ids = [...drafts.keys()];
-    expect(ids).toEqual(expect.arrayContaining(["employer", "bank", "booking:dvv_registration", "booking:eu_registration"]));
-    expect(ids.every((id) => ["employer", "bank"].includes(id) || id.startsWith("booking:"))).toBe(true);
-    // A postal address alone is not an office visit.
-    expect(ids).not.toContain("booking:kela_registration");
+  it("offers at most 3 drafts: employer email, bank email, then the first visit that needs booking", () => {
+    expect([...drafts.keys()]).toEqual(["employer", "bank", "booking:eu_registration"]);
   });
 
   it("every draft was written by Claude from the cache (none fell back to the template)", () => {
@@ -103,6 +99,32 @@ describe("drafts: offers follow the facts", () => {
   it("no tax card step, no employer email, even for a worker", () => {
     const offers = draftOffers({ profile: { ...run.profile, purpose: ["work"] }, steps: run.steps, conflicts: [], dates: {} });
     expect(offers.map((o) => o.id)).not.toContain("employer");
+  });
+});
+
+describe("booking notes: one per visit, only where booking is needed", () => {
+  const claim = (stepId: string, kind: string, value: string) => ({ stepId, kind, value, matchScore: 1, citation: { url: "https://vero.fi/x", quote: value, trust: "official", fetchedAt: "" } });
+  const step = (id: string, kinds: [string, string][]) =>
+    ({ id, title: id, authority: "Vero", mode: "in_person", requires: [], citations: [], claims: kinds.map(([k, v]) => claim(id, k, v)) }) as unknown as Step;
+  const base: DraftSource = {
+    profile: { citizenship: "EU", purpose: ["study"], city: "Helsinki" },
+    steps: [step("vero_identity_code", [["booking_url", "vero.fi/book"]]), step("tax_card", [["hours", "weekdays 9:00-16:00"]]), step("police_id_card", [["hours", "Mon-Fri 8:00-16:15"]])],
+    conflicts: [],
+    dates: { vero_identity_code: "2026-12-01", tax_card: "2026-12-01", police_id_card: "2026-12-10" },
+    visits: { vero_identity_code: "visit:v", tax_card: "visit:v" },
+  };
+  it("a merged visit gets one note covering both steps; a visit with hours only gets none", () => {
+    const offers = draftOffers(base);
+    expect(offers.map((o) => o.id)).toEqual(["booking:vero_identity_code"]);
+    expect(offers[0].stepIds.sort()).toEqual(["tax_card", "vero_identity_code"]);
+    expect(offers[0].title).toBe("Booking note: Vero visit");
+    const facts = draftFacts(base, offers[0]).map((f) => f.text);
+    expect(facts).toEqual(expect.arrayContaining(["How to book: vero.fi/book", "Opening hours: weekdays 9:00-16:00"]));
+    expect(new Set(facts).size).toBe(facts.length);
+  });
+  it("never more than 3", () => {
+    const many = { ...base, visits: {}, steps: ["a", "b", "c", "d"].map((id) => step(id, [["booking_url", "x.fi"]])), dates: { a: "2026-12-01", b: "2026-12-02", c: "2026-12-03", d: "2026-12-04" } };
+    expect(draftOffers(many).map((o) => o.id)).toEqual(["booking:a", "booking:b", "booking:c"]);
   });
 });
 

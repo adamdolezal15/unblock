@@ -14,6 +14,8 @@ export type DraftSource = {
   conflicts: Conflict[];
   /** Planned start date per step id (the schedule). */
   dates: Record<string, string>;
+  /** Shared visit id per step (schedule), so a merged visit gets one booking note. */
+  visits?: Record<string, string>;
 };
 
 export type DraftFact = {
@@ -31,6 +33,8 @@ export type DraftOffer = {
   kind: DraftKind;
   /** The step whose day card shows this draft. */
   stepId: string;
+  /** Every step the draft covers (all members of a merged visit). */
+  stepIds: string[];
   title: string;
   /** An email (Copy + Open in email) or a note (Copy only). */
   email: boolean;
@@ -66,28 +70,44 @@ const has = (s: Step, ...kinds: VerifiedClaim["kind"][]) => (s.claims ?? []).som
 const byId = (src: DraftSource) => new Map(src.steps.map((s) => [s.id, s]));
 
 /** Drafts this run can back with facts. A student without a job gets no employer email, and so on. */
+/** At most this many drafts per run: employer email, then bank email, then booking notes by date. */
+export const MAX_DRAFTS = 3;
+
+/** Drafts this run can back with facts. A student without a job gets no employer email, and so on. */
 export function draftOffers(src: DraftSource): DraftOffer[] {
   const steps = byId(src);
   const out: DraftOffer[] = [];
   const tax = steps.get("tax_card");
   const working = src.profile.purpose.includes("work");
   if (working && usable(tax) && has(tax, "cost_of_delay", "applies")) {
-    out.push({ id: "employer", kind: "employer", stepId: "tax_card", title: "Email to your employer", email: true });
+    out.push({ id: "employer", kind: "employer", stepId: "tax_card", stepIds: ["tax_card"], title: "Email to your employer", email: true });
   }
   const bank = steps.get("bank_account");
   if (bank && !bank.done && !bank.milestone && has(bank, "document", "processing_time", "requires")) {
-    out.push({ id: "bank", kind: "bank", stepId: "bank_account", title: "Email to the bank", email: true });
+    out.push({ id: "bank", kind: "bank", stepId: "bank_account", stepIds: ["bank_account"], title: "Email to the bank", email: true });
   }
+  // One note per office visit (a merged visit is one), and only for visits a source says need booking.
+  const visits = new Map<string, Step[]>();
   for (const s of src.steps) {
-    // An office visit: in person (or either) with a way to book or opening hours. A postal address alone is not a visit.
-    if (!usable(s) || s.mode === "online" || !has(s, "booking_url", "hours") || !src.dates[s.id]) continue;
-    out.push({ id: `booking:${s.id}`, kind: "booking", stepId: s.id, title: `Booking note: ${s.title}`, email: false });
+    if (!usable(s) || s.mode === "online" || !src.dates[s.id]) continue;
+    const v = src.visits?.[s.id] ?? s.id;
+    visits.set(v, [...(visits.get(v) ?? []), s]);
   }
-  return out;
+  const notes = [...visits.values()]
+    .filter((members) => members.some((m) => has(m, "booking_url")))
+    .map((members) => {
+      const date = members.map((m) => src.dates[m.id]).sort()[0];
+      const lead = members.find((m) => has(m, "booking_url"))!;
+      const title = members.length > 1 ? `Booking note: ${lead.authority} visit` : `Booking note: ${lead.title}`;
+      return { date, offer: { id: `booking:${lead.id}`, kind: "booking" as const, stepId: lead.id, stepIds: members.map((m) => m.id), title, email: false } };
+    })
+    .sort((x, y) => x.date.localeCompare(y.date));
+  out.push(...notes.map((n) => n.offer));
+  return out.slice(0, MAX_DRAFTS);
 }
 
 /** The numbered facts one draft may use (F = verified source, P = profile / plan). Order is stable. */
-export function draftFacts(src: DraftSource, offer: Pick<DraftOffer, "kind" | "stepId">): DraftFact[] {
+export function draftFacts(src: DraftSource, offer: Pick<DraftOffer, "kind" | "stepId"> & { stepIds?: string[] }): DraftFact[] {
   const steps = byId(src);
   const facts: DraftFact[] = [];
   const seen = new Set<string>();
@@ -98,7 +118,7 @@ export function draftFacts(src: DraftSource, offer: Pick<DraftOffer, "kind" | "s
     seen.add(key);
     facts.push({ id: `F${facts.filter((x) => x.id.startsWith("F")).length + 1}`, text: t, quote: c.citation.quote, url: c.citation.url, trust: c.citation.trust });
   };
-  const p = (text: string) => facts.push({ id: `P${facts.filter((x) => x.id.startsWith("P")).length + 1}`, text });
+  const p = (text: string) => !facts.some((x) => x.text === text) && facts.push({ id: `P${facts.filter((x) => x.id.startsWith("P")).length + 1}`, text });
   const claims = (id: string, ...kinds: VerifiedClaim["kind"][]) => (steps.get(id)?.claims ?? []).filter((c) => kinds.includes(c.kind));
   const prof = src.profile;
   const who = prof.citizenship === "EU" ? "an EU citizen" : prof.citizenship === "NORDIC" ? "a Nordic citizen" : "a non-EU citizen";
@@ -123,9 +143,10 @@ export function draftFacts(src: DraftSource, offer: Pick<DraftOffer, "kind" | "s
     }
     planned("bank_account", "to visit the bank");
   } else {
-    const s = steps.get(offer.stepId);
-    if (s) {
-      p(`I am ${who}, moving to ${prof.city} for ${prof.purpose.join(" and ")}.`);
+    const members = (offer.stepIds ?? [offer.stepId]).map((id) => steps.get(id)).filter((x): x is Step => !!x);
+    if (members.length) p(`I am ${who}, moving to ${prof.city} for ${prof.purpose.join(" and ")}.`);
+    if (members.length > 1) p(`In this one visit: ${members.map((m) => m.title).join("; ")}.`);
+    for (const s of members) {
       for (const c of claims(s.id, "booking_url")) f(c, `How to book: ${c.value}`);
       for (const c of claims(s.id, "hours")) f(c, `Opening hours: ${c.value}`);
       for (const c of claims(s.id, "address")) f(c, `Where: ${c.value}`);

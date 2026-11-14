@@ -9,7 +9,7 @@ import { Prose } from "../letter/LetterView";
 import { Term } from "../Help";
 import { Marker } from "../line/Marker";
 import { mainLegs } from "../line/legs";
-import { DraftCard, ReadyToSend } from "../drafts/DraftCard";
+import { DraftLink, ReadyToSend } from "../drafts/DraftCard";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
 import { IconCalendar, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
 
@@ -178,7 +178,7 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
       {(s.noSource || s.whyNow.length > 0) && (
         <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
       )}
-      {ctx.drafts?.forStep(s.id).map((o) => <DraftCard key={o.id} offer={o} drafts={ctx.drafts!} compact />)}
+      {ctx.drafts?.forStep(s.id).map((o) => <DraftLink key={o.id} offer={o} drafts={ctx.drafts!} />)}
     </>
   );
 }
