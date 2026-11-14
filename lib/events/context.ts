@@ -55,7 +55,7 @@ export function throwIfAborted(): void {
 }
 
 /** One line of text: leading/trailing whitespace gone, any run of whitespace (incl. newlines) a single space. */
-export const cleanLine = (s: string) => s.replace(/s+/g, " ").trim();
+export const cleanLine = (s: string) => s.replace(/\s+/g, " ").trim();
 
 /** One activity-feed line. `actor` is set by the caller, which is the code doing the work. */
 export function emitStatus(message: string, extra: { actor: Actor; domain?: string; cached?: boolean }): void {
