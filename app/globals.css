@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Nordic civic document: warm paper, near-black ink, one accent (Finnish blue) for the critical path and
+   primary actions. Amber only for conflicts, muted green only for "done". Light only (projectors). */
+@theme {
+  --color-paper: #f7f5f0;
+  --color-raised: #ffffff;
+  --color-sunk: #efece5;
+  --color-ink: #16181d;
+  --color-muted: #50555f;
+  --color-faint: #8a8e96;
+  --color-rule: #ddd8ce;
+  --color-rule-strong: #c4bdb0;
+  --color-accent: #003580;
+  --color-accent-hover: #00285f;
+  --color-accent-soft: #e6ecf5;
+  --color-amber: #8f5300;
+  --color-amber-dot: #d98a00;
+  --color-amber-soft: #fbf1df;
+  --color-amber-line: #e6bf73;
+  --color-done: #3f6b4b;
+  --color-done-soft: #e6eee8;
+  --color-done-line: #a9c2b0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 220ms ease-out both;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.skeleton {
+  background: var(--color-sunk);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .skeleton {
+    animation: none;
+  }
 }
