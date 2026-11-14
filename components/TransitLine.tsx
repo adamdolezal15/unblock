@@ -68,28 +68,31 @@ export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: 
   const stops = stopsFrom(entries);
   if (stops.length < 2) return null;
   const t = { rule: "border-rule", muted: "text-muted", ink: "text-ink", hover: "hover:bg-sunk/60" };
+  const gapAt = (i: number) => (i > 0 && i < stops.length ? calendarDaysBetween(stops[i - 1].date, stops[i].date) : 0);
   return (
     <ol className={`max-w-[58ch] border-t ${t.rule}`} aria-label="Your visits in order">
       {stops.map((s, i) => {
-        const gap = i > 0 ? calendarDaysBetween(stops[i - 1].date, s.date) : 0;
+        const gap = gapAt(i);
+        // A step and the wait that follows it read as one row: no rule between them.
+        const waitFollows = gapAt(i + 1) >= WAIT_DAYS;
         const row = (
           <>
-            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? `font-bold ${t.ink}` : t.muted}`}>{fmtDay(s.date)}</span>
+            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? "font-bold text-accent" : t.muted}`}>{fmtDay(s.date)}</span>
             <span className={`text-[17px] leading-snug ${t.ink} ${s.end ? "font-bold" : ""}`}>{rowText(s)}</span>
           </>
         );
         return (
           <li key={i}>
             {gap >= WAIT_DAYS && (
-              <p className={`border-b ${t.rule} py-2 pl-[80px] text-[15px] italic ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
+              <p className={`border-b ${t.rule} pb-2.5 pl-[96px] text-[13px] italic leading-snug ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
             )}
-            <div className={`border-b ${t.rule}`}>
+            <div className={waitFollows ? "" : `border-b ${t.rule}`}>
               {s.stepId ? (
-                <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${rowText(s)}: show details`} className={`flex w-full items-baseline py-3 text-left ${t.hover}`}>
+                <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${rowText(s)}: show details`} className={`flex w-full items-baseline text-left ${waitFollows ? "pb-1 pt-3" : "py-3"} ${t.hover}`}>
                   {row}
                 </button>
               ) : (
-                <div className="flex items-baseline py-3">{row}</div>
+                <div className={`flex items-baseline ${waitFollows ? "pb-1 pt-3" : "py-3"}`}>{row}</div>
               )}
             </div>
           </li>

@@ -116,7 +116,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
     <main className="mx-auto max-w-[1040px] px-6 pb-24">
       <div className="pt-10">
         {state.profile && (
-          <div className="mb-8 max-w-[720px]">
+          <div className="mb-8">
             <ProfileSentence
               profile={state.profile}
               text={state.text}

@@ -11,7 +11,7 @@ export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md
   const parts = profileParts(profile.profile, profile.assumptions, text);
 
   return (
-    <div className={`max-w-[720px] leading-[1.7] text-muted ${size === "sm" ? "text-[15px]" : "text-[17px]"}`}>
+    <div className={`leading-[1.7] text-muted ${size === "sm" ? "text-[15px]" : "max-w-[720px] text-[17px]"}`}>
       <div>
         {parts.map((p, i) =>
           "t" in p ? (
