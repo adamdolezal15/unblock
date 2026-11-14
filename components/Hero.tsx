@@ -93,6 +93,8 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
                   <Prose segs={segs} />
                 </span>
               ))}
+              {/* The key to the colour of the dates in the timeline and in Day by day. */}
+              <span className="mt-1 basis-full text-[15px] font-normal text-muted">Blue dates set your finish date.</span>
             </p>
             {icsUrl && (
               <a

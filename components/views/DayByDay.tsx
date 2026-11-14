@@ -164,7 +164,7 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
   const kinds = new Set(entries.map((x) => x.kind));
   // Same stations as the logo and the hero line (components/line).
   const marker = (
-    <Marker kind={kinds.has("done") ? "end" : critical ? "main" : kinds.has("visit") ? "station" : kinds.size === 1 && kinds.has("reminder") ? "small" : "hollow"} />
+    <Marker kind={kinds.has("done") ? "end" : critical ? "main" : kinds.size === 1 && kinds.has("reminder") ? "small" : "hollow"} />
   );
   // At most one wait line per day: the slowest chain's (it is what moves the next date). Every other wait,
   // and the "no official figure" note, is in the card's Details.
@@ -177,7 +177,7 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
   return (
     <li className="grid grid-cols-[3.5rem_24px_minmax(0,1fr)] gap-x-2 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)] sm:gap-x-3">
       <div className="num pt-[14px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
-        <p aria-hidden className="text-[28px] font-extrabold leading-none tracking-[-0.02em] text-ink">
+        <p aria-hidden className={`text-[28px] font-extrabold leading-none tracking-[-0.02em] ${critical || kinds.has("done") ? "text-accent" : "text-ink"}`}>
           {dayNum}
         </p>
         <p aria-hidden className="mt-1 text-[13px] leading-tight text-muted">
@@ -422,16 +422,15 @@ function SourceQuotes({ refs }: { refs: Ref[] }) {
   );
 }
 
-/** At most one badge: Shortcut, else "On the slowest chain" (plain text; its explanation is in Details). */
+/** At most one badge: the Shortcut tag. (The slowest chain is shown by blue dates and filled dots, not a label.) */
 function Badge({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
   const sc = steps.map((s) => ctx.shortcut?.(s.id)).find((x) => x != null);
   if (sc) return <>{sc}</>;
-  if (steps.some((s) => s.critical)) return <span className="text-[13px] text-accent">On the slowest chain</span>;
   return null;
 }
 
 /** Title and one plain reason line, no source numbers (they are behind "Sources (n)"). */
-function StepLine({ s, big = true }: { s: DayStep; big?: boolean }) {
+function StepLine({ s }: { s: DayStep; big?: boolean }) {
   const why = s.noSource ? "No official source found." : plain(s.whyNow);
   return (
     <div>
@@ -498,7 +497,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   const restOffers = action?.kind === "draft" ? offers.slice(1) : offers;
 
   return (
-    <article className={`card ${critical ? "border-l-[4px] border-l-accent" : ""}`}>
+    <article className="card">
       <div className="px-4 pb-4 pt-4 sm:px-6">
         <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
