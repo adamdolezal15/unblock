@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
 
 export const EXAMPLES: { key: DemoKey; label: string }[] = [
@@ -20,6 +20,14 @@ type Props = {
 export function RunInput({ value, running, compact, onSubmit }: Props) {
   // Local draft; the parent re-keys this component per run so it shows that run's sentence.
   const [draft, setDraft] = useState(value);
+  // Auto-growing field: height follows the text, never a scrollbar.
+  const field = useRef<HTMLTextAreaElement>(null);
+  useLayoutEffect(() => {
+    const el = field.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight + 2}px`;
+  }, [draft, compact]);
   const submit = (t: string) => {
     if (t.trim() && !running) onSubmit(t);
   };
@@ -37,6 +45,7 @@ export function RunInput({ value, running, compact, onSubmit }: Props) {
         </label>
         <div className="flex items-stretch gap-3">
           <textarea
+            ref={field}
             id="situation"
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
@@ -46,17 +55,17 @@ export function RunInput({ value, running, compact, onSubmit }: Props) {
                 submit(draft);
               }
             }}
-            rows={compact ? 1 : 2}
+            rows={1}
             maxLength={2000}
             placeholder="e.g. I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR"
-            className={`min-w-0 flex-1 resize-none rounded-[5px] border border-rule-strong bg-raised px-4 text-ink placeholder:text-faint focus:border-accent focus:outline-none ${
+            className={`min-w-0 flex-1 resize-none overflow-hidden rounded-[5px] border border-rule-strong bg-raised px-4 text-ink placeholder:text-faint focus:border-accent focus:outline-none ${
               compact ? "py-2 text-[16px] leading-6" : "py-3 text-[19px] leading-8"
             }`}
           />
           <button
             type="submit"
             disabled={running || !draft.trim()}
-            className={`inline-flex shrink-0 items-center justify-center self-stretch rounded-[5px] border border-accent bg-accent px-6 font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:border-rule-strong disabled:bg-rule-strong ${
+            className={`inline-flex min-h-[42px] shrink-0 items-center justify-center self-stretch rounded-[5px] border border-accent bg-accent px-6 font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:border-rule-strong disabled:bg-rule-strong ${
               compact ? "text-[15px]" : "text-[17px]"
             }`}
           >
