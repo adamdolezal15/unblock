@@ -46,6 +46,23 @@ describe("findQuote", () => {
     expect(m.span).toContain("you can usually open a bank account");
   });
 
+  it("fuzzy match may not drop a negation", () => {
+    const page = "Residents from the EU do not need a residence permit to work in Finland for three months.";
+    expect(findQuote("Residents from the EU need a residence permit to work in Finland for three months.", page).score).toBeLessThan(0.9);
+    expect(findQuote("Residents from the EU do not need a residence permit to work in Finland for three months.", page).score).toBe(1);
+  });
+
+  it("fuzzy match may not add a negation or restriction", () => {
+    const page = "You can register your address online at the Digital and Population Data Services Agency website.";
+    for (const q of [
+      "You cannot register your address online at the Digital and Population Data Services Agency website.",
+      "You can only register your address online at the Digital and Population Data Services Agency website.",
+      "You can't register your address online at the Digital and Population Data Services Agency website.",
+    ]) {
+      expect(findQuote(q, page).score).toBeLessThan(0.9);
+    }
+  });
+
   it("paraphrase fails", () => {
     const m = findQuote("A bank account requires a personal identity code in Finland.", PAGE);
     expect(m.score).toBeLessThan(0.9);
@@ -64,6 +81,17 @@ describe("verifyCitations", () => {
       "When you have a Finnish personal identity code, you can usually open a bank account",
     );
     expect(verified[0].citation.trust).toBe("official");
+  });
+
+  it("rejects a claim whose quote dropped a \"not\"", async () => {
+    const page = "Citizens of EU countries do not need a residence permit, but they must register their right of residence.";
+    const { verified, dropped } = await verifyCitations(
+      [claim({ url: "https://migri.fi/eu", quote: "Citizens of EU countries need a residence permit, but they must register their right of residence." })],
+      [doc("https://migri.fi/eu", [page])],
+      { ...opts, allowedDomains: ["migri.fi"] },
+    );
+    expect(verified).toEqual([]);
+    expect(dropped[0].reason).toBe("quote_not_found");
   });
 
   it("falls back to fetching the page", async () => {

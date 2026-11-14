@@ -1,7 +1,7 @@
 // Every quote shown to a user must appear in text Exa actually returned for that URL.
 // Check order per claim: highlights already in hand (free) -> full page via getPages (cached).
 // Match: exact normalised token sequence (score 1), else best sliding window with multiset token
-// overlap >= 0.9. The shown quote is replaced by the matched span of the page, so displayed text is
+// overlap >= 0.9 whose negation/restriction tokens equal the quote's exactly. The shown quote is replaced by the matched span of the page, so displayed text is
 // always the page's own words.
 import { getPages } from "../exa/search";
 import { trustOf } from "../exa/domains";
@@ -48,6 +48,18 @@ export function onDomains(url: string, domains: readonly string[]): boolean {
 
 export type Match = { score: number; span: string };
 
+/**
+ * Negation and restriction words. Fuzzy matching may never add, drop or reorder them: "you can apply"
+ * vs "you cannot apply" differ by one token but mean the opposite. "t" is the tail of n't contractions
+ * (can't, don't) after tokenizing. Finnish: the negation verb ei and its person forms.
+ */
+export const CRITICAL_TOKENS: ReadonlySet<string> = new Set([
+  "not", "no", "never", "cannot", "t", "without", "only", "except", "unless",
+  "ei", "en", "et", "emme", "ette", "eivät",
+]);
+
+const criticalSeq = (tokens: readonly string[]) => tokens.filter((t) => CRITICAL_TOKENS.has(t)).join(" ");
+
 /** Find `quote` in `text`. Returns the best score and the matched original span (whitespace collapsed). */
 export function findQuote(quote: string, text: string): Match {
   const q = tokenize(quote).map((x) => x.t);
@@ -66,6 +78,9 @@ export function findQuote(quote: string, text: string): Match {
 
   // Pass 2: sliding windows of length n-1..n+2, score = multiset overlap / max(n, window).
   // Multisets ignore order, so equal scores are tie-broken by shared bigrams (prefers the aligned window).
+  // A window only counts if its negation/restriction tokens equal the quote's exactly, in order.
+  const qCritical = criticalSeq(q);
+  const criticalOk = (i: number, len: number) => criticalSeq(words.slice(i, i + len)) === qCritical;
   const need = new Map<string, number>();
   for (const w of q) need.set(w, (need.get(w) ?? 0) + 1);
   const qBigrams = new Set(q.slice(1).map((w, i) => `${q[i]} ${w}`));
@@ -93,7 +108,7 @@ export function findQuote(quote: string, text: string): Match {
     for (let i = 0; i < len; i++) add(words[i]);
     for (let i = 0; ; i++) {
       const score = overlap / Math.max(n, len);
-      if (score > best.score || (score === best.score && score > 0)) {
+      if ((score > best.score || (score === best.score && score > 0)) && criticalOk(i, len)) {
         const bg = bigramHits(i, len);
         if (score > best.score || bg > bestBigrams) {
           best = { score, span: spanOf(i, len) };
