@@ -52,6 +52,12 @@ describe("police identification", () => {
     expect(step).toMatchObject({ id: "police_identification", mode: "in_person", derived: true });
     expect(step.confirmation).toMatchObject({ by: "required_by", stepIds: ["bank_account"] });
   });
+  it("needs the police in the quote, not only in the extracted value", () => {
+    const valueOnly = claim("document", "Foreigner's identity card issued by the Finnish police", "Banks require a foreigner's identity card issued by the Finnish authorities for strong identification.");
+    const runs = [{ id: "strong_identification", verified: [valueOnly] }];
+    expect(policeIdentificationClaims({ citizenship: "NON_EU" }, runs)).toEqual([]);
+    expect(runs[0].verified).toEqual([valueOnly]);
+  });
 });
 
 describe("sentencesOf", () => {

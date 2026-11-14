@@ -96,7 +96,9 @@ export function policeIdentificationClaims(
   const out: { stepId: string; requires: VerifiedClaim }[] = [];
   for (const r of runs) {
     if (r.id !== "strong_identification" && r.id !== "bank_account") continue;
-    const hit = r.verified.find((c) => c.kind === "document" && POLICE.test(`${c.value} ${c.citation.quote}`) && IDENTIFY.test(`${c.value} ${c.citation.quote}`));
+    // The quote itself must say it: a value like "card issued by the police" over a quote that never names
+    // the police would give the derived step a citation that does not support it.
+    const hit = r.verified.find((c) => c.kind === "document" && POLICE.test(c.citation.quote) && IDENTIFY.test(c.citation.quote));
     if (!hit) continue;
     r.verified = r.verified.filter((c) => c !== hit);
     out.push({ stepId: r.id, requires: { ...hit, kind: "requires", value: POLICE_IDENTIFICATION } });
