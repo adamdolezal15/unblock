@@ -12,6 +12,14 @@ const DEFAULT_TIMEOUT_MS = 25_000;
 const DEEP_TIMEOUT_MS = 60_000;
 const RETRY_BACKOFF_MS = 700;
 
+const RATE_LIMIT_BACKOFF_MS = 1_200;
+const RATE_LIMIT_RETRIES = 3;
+
+function isRateLimited(e: unknown): boolean {
+  const err = e as { status?: number; statusCode?: number; message?: string };
+  return (err?.status ?? err?.statusCode) === 429 || /rate limit/i.test(err?.message ?? "");
+}
+
 function isRetryable(e: unknown): boolean {
   const err = e as { status?: number; statusCode?: number; name?: string; message?: string };
   const status = err?.status ?? err?.statusCode;
@@ -20,19 +28,93 @@ function isRetryable(e: unknown): boolean {
   return /fetch failed|network|ECONN|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|socket/i.test(`${err?.name} ${err?.message}`);
 }
 
-/** Retry once on network error / 5xx with a short backoff. */
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// Exa allows 10 requests/second per team. Space request starts (EXA_MIN_GAP_MS, default 125 ms = 8/s).
+let nextStart = 0;
+async function paced(): Promise<void> {
+  const gap = Number(process.env.EXA_MIN_GAP_MS ?? 125);
+  const now = Date.now();
+  const at = Math.max(now, nextStart);
+  nextStart = at + (Number.isFinite(gap) ? gap : 125);
+  if (at > now) await sleep(at - now);
+}
+
+/** Retry once on network error / 5xx; on 429 back off and retry up to 3 times. Every attempt is paced. */
 async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
-  try {
-    return await fn();
-  } catch (e) {
-    if (!isRetryable(e)) throw e;
-    await new Promise((r) => setTimeout(r, RETRY_BACKOFF_MS));
-    return fn();
+  let rateLimitRetries = 0;
+  let otherRetried = false;
+  for (;;) {
+    await paced();
+    try {
+      return await fn();
+    } catch (e) {
+      if (isRateLimited(e) && rateLimitRetries < RATE_LIMIT_RETRIES) {
+        rateLimitRetries++;
+        await sleep(RATE_LIMIT_BACKOFF_MS * rateLimitRetries);
+        continue;
+      }
+      if (!otherRetried && isRetryable(e)) {
+        otherRetried = true;
+        await sleep(RETRY_BACKOFF_MS);
+        continue;
+      }
+      throw e;
+    }
   }
 }
 
-/** One log line per call. Never includes keys. */
+// In-flight limiter for live Exa calls (cache hits never take a slot). EXA_CONCURRENCY, default 6.
+let active = 0;
+const waiting: (() => void)[] = [];
+function maxConcurrency(): number {
+  const n = Number(process.env.EXA_CONCURRENCY);
+  return Number.isFinite(n) && n > 0 ? n : 6;
+}
+async function limited<T>(fn: () => Promise<T>): Promise<T> {
+  if (active >= maxConcurrency()) await new Promise<void>((r) => waiting.push(r));
+  active++;
+  try {
+    return await fn();
+  } finally {
+    active--;
+    waiting.shift()?.();
+  }
+}
+
+/** Per-run meter: what the pipeline spent on Exa. Reset at the start of a run. */
+export type ExaStats = {
+  calls: number; // every helper call, cached or live
+  live: number;
+  cached: number;
+  costUsd: number; // live calls only (cache hits are free)
+  byHelper: Record<string, { live: number; cached: number; costUsd: number }>;
+};
+let stats: ExaStats = emptyStats();
+function emptyStats(): ExaStats {
+  return { calls: 0, live: 0, cached: 0, costUsd: 0, byHelper: {} };
+}
+export function resetExaStats(): void {
+  stats = emptyStats();
+}
+export function exaStats(): ExaStats {
+  return structuredClone(stats);
+}
+
+/** One log line per call (EXA_LOG=0 silences it) and one meter entry. Never includes keys. */
 function logCall(helper: string, query: string, meta: SearchMeta, results: number) {
+  stats.calls++;
+  const h = (stats.byHelper[helper] ??= { live: 0, cached: 0, costUsd: 0 });
+  if (meta.hit) {
+    stats.cached++;
+    h.cached++;
+  } else {
+    stats.live++;
+    h.live++;
+    stats.costUsd += meta.costUsd ?? 0;
+    h.costUsd += meta.costUsd ?? 0;
+  }
+  if (process.env.EXA_LOG === "0") return;
   const cost = meta.costUsd !== undefined ? ` cost=$${meta.costUsd}` : "";
   console.log(`[exa] ${helper} "${query.slice(0, 80)}" ${meta.ms}ms results=${results}${cost}${meta.hit ? " (cache)" : ""}`);
 }
@@ -83,7 +165,7 @@ export async function exaSearch(req: SearchRequest): Promise<{ response: RawSear
   const timeout = req.type?.startsWith("deep") ? DEEP_TIMEOUT_MS : DEFAULT_TIMEOUT_MS;
   const r = await cached<RawSearchResponse>({ endpoint: "search", ...req }, async () => {
     // exa-js overloads are keyed on the contents generic; our request type is the narrower contract.
-    const res = await withRetry(() => exa().search(query, { ...options, timeout } as never));
+    const res = await limited(() => withRetry(() => exa().search(query, { ...options, timeout } as never)));
     return JSON.parse(JSON.stringify(res)) as RawSearchResponse;
   });
   return {
@@ -188,11 +270,47 @@ export async function getPages(
   const r = await cached<RawSearchResponse>(
     { endpoint: "contents", urls: [...urls].sort(), ...options },
     async () => {
-      const res = await withRetry(() => exa().getContents(urls, { ...options, timeout: DEFAULT_TIMEOUT_MS } as never));
+      const res = await limited(() =>
+        withRetry(() => exa().getContents(urls, { ...options, timeout: DEFAULT_TIMEOUT_MS } as never)),
+      );
       return JSON.parse(JSON.stringify(res)) as RawSearchResponse;
     },
   );
   const meta: SearchMeta = { hit: r.hit, ms: r.ms, requestId: r.response.requestId, costUsd: r.response.costDollars?.total, fetchedAt: r.fetchedAt };
   logCall("getPages", urls.join(","), meta, r.response.results.length);
   return { docs: toDocs(r.response, r.fetchedAt, opts.extraOfficial ?? []), meta };
+}
+
+/**
+ * Deep search with structured output (used by lib/llm's exa provider for extraction).
+ * Returns the parsed `output.content` plus the result docs Exa read, so callers can verify quotes
+ * against them. `output.grounding` is url+title only (no quotes), so it is not used for verification.
+ */
+export async function searchDeep(args: {
+  query: string;
+  systemPrompt: string;
+  outputSchema: Record<string, unknown>;
+  includeDomains: string[];
+  extraOfficial?: string[];
+  numResults?: number;
+}): Promise<{ content: unknown; docs: ExaDoc[]; meta: SearchMeta }> {
+  const { response, meta } = await exaSearch({
+    query: args.query,
+    type: "deep",
+    numResults: args.numResults ?? DEFAULT_NUM_RESULTS,
+    includeDomains: args.includeDomains,
+    systemPrompt: args.systemPrompt,
+    outputSchema: args.outputSchema,
+    contents: { highlights: true },
+  });
+  logCall("searchDeep", args.query, meta, response.results.length);
+  let content: unknown = response.output?.content ?? null;
+  if (typeof content === "string") {
+    try {
+      content = JSON.parse(content);
+    } catch {
+      // leave as string; caller's schema validation reports it
+    }
+  }
+  return { content, docs: toDocs(response, meta.fetchedAt, args.extraOfficial ?? []), meta };
 }
