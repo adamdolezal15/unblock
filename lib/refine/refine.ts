@@ -100,6 +100,23 @@ function applyAnswers(input: RefineInput, keys: readonly RefineKey[]): { steps: 
 
 /** The plan with these answers applied. With no answers it is the run's own plan, recomputed. */
 export function refine(input: RefineInput, keys: readonly RefineKey[]): RefinedPlan {
+  const r = replan(input, keys);
+  // The run compared itself with the usual order, and the person already holds the identity code: nothing is
+  // left to route differently, so both orders coincide. Keep the comparison ("matches the usual order")
+  // instead of silently dropping it, and never fall back to another yardstick.
+  if (keys.length && !r.plan.baseline && keys.includes("has_code") && replan(input, []).plan.baseline) {
+    const startDates: Record<string, string> = {};
+    const readyDates: Record<string, string> = {};
+    for (const [id, it] of Object.entries(r.plan.schedule.items)) {
+      startDates[id] = it.startDate;
+      readyDates[id] = it.readyDate;
+    }
+    return { ...r, plan: { ...r.plan, baseline: { endDate: r.counts.criticalPath.endDate, visits: r.counts.inPersonVisits, startDates, readyDates, skipped: [] } } };
+  }
+  return r;
+}
+
+function replan(input: RefineInput, keys: readonly RefineKey[]): RefinedPlan {
   const applied = applyAnswers(input, keys);
   const steps = classifyNecessity(applied.steps, applied.profile, { forcedOptional: applied.forcedOptional });
   const graph = buildGraph(steps);
@@ -115,13 +132,13 @@ export function refine(input: RefineInput, keys: readonly RefineKey[]): RefinedP
   };
 }
 
-/** What the person would notice about the plan: its dates, its required steps, its visits. Optional / done labels do not count. */
+/** What the person would notice about the plan: when it is done, how many visits, which steps are required. Nothing else counts. */
 export function planSignature(r: RefinedPlan): string {
   const required = r.steps.filter((s) => !s.milestone && !s.done && s.necessity !== "optional");
   return JSON.stringify({
     end: r.counts.criticalPath.endDate,
     visits: r.counts.inPersonVisits,
-    steps: required.map((s) => [s.id, r.plan.schedule.items[s.id]?.startDate ?? null]).sort(),
+    steps: required.map((s) => s.id).sort(),
   });
 }
 
@@ -143,7 +160,7 @@ export function toggleRefinement(active: readonly RefineKey[], key: RefineKey): 
 
 /**
  * At most `max` questions for this plan, those already answered always among them. A question is only asked when
- * the answer would change the plan (its dates, required steps or visits), and only about something this run
+ * the answer would change the plan ("Set up by", the number of visits, or which steps are required), and only about something this run
  * could not know or assumed: the personal identity code, the bank account, the stay length.
  */
 export function refineRows(input: RefineInput, active: readonly RefineKey[], max = 3): RefineRow[] {
@@ -158,7 +175,8 @@ export function refineRows(input: RefineInput, active: readonly RefineKey[], max
     { id: "no_bank", key: "no_bank", label: REFINE_LABEL.no_bank, applies: hasStep(BANK) },
   ];
   const rows = candidates
-    .filter((c) => c.applies && (active.includes(c.key) || planSignature(refine(input, [c.key])) !== base))
+    // Only a question whose answer visibly changes this plan; an answer that would change nothing is not shown, even if the URL holds it.
+    .filter((c) => c.applies && planSignature(refine(input, [c.key])) !== base)
     .map((c) => ({
       answered: active.includes(c.key),
       row: { id: c.id, label: c.label, checked: c.invert ? !active.includes(c.key) : active.includes(c.key), next: toggleRefinement(active, c.key) } satisfies RefineRow,

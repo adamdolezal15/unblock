@@ -38,12 +38,13 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
 
   // The numbers as one plain sentence under the line, not a stats strip.
   const facts: Seg[] = [{ t: `${visits} ${visits === 1 ? "visit" : "visits"} in person, ${online} ${online === 1 ? "step" : "steps"} online.` }];
-  if (comparison) {
+  if (comparison?.gain) {
     const ref = comparison.sentence.find((x) => "ref" in x);
-    const caption = comparison.gain.caption === "sooner than the usual order" ? "sooner than the usual order (DVV first)" : comparison.gain.caption;
-    facts.push({ t: ` ${comparison.gain.days} days ${caption}` });
+    facts.push({ t: ` ${comparison.gain.days} days sooner than the usual order (DVV first)` });
     if (ref) facts.push(ref);
     facts.push({ t: "." });
+  } else if (comparison) {
+    facts.push({ t: " Your order matches the usual order (DVV first)." });
   }
 
   return (

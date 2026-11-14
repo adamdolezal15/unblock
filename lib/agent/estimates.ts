@@ -67,8 +67,10 @@ export function estimatesWithTips(steps: Step[], tips: Pick<Tip, "stepId" | "kin
     out[id] = { ...e, waitSource: c?.citation.trust ?? "official", note: `wait from a cited processing time (${c ? hostOf(c.citation.url) : "source"})` };
   }
   const byStep = new Map<string, { days: number; url: string; trust: Tip["citation"]["trust"] }[]>();
+  // A step the person already did (or a milestone) waits for nothing, whatever others reported for it.
+  const noWait = new Set(steps.filter((s) => s.done || s.milestone).map((s) => s.id));
   for (const t of tips) {
-    if (t.kind !== "wait_time" || t.waitDays === undefined || out[t.stepId]) continue;
+    if (t.kind !== "wait_time" || t.waitDays === undefined || out[t.stepId] || noWait.has(t.stepId)) continue;
     byStep.set(t.stepId, [...(byStep.get(t.stepId) ?? []), { days: t.waitDays, url: t.citation.url, trust: t.citation.trust }]);
   }
   for (const [id, waits] of byStep) {

@@ -135,6 +135,70 @@ describe("Marta (job + master's, Czech, Helsinki)", () => {
   });
 });
 
+describe("one yardstick: the usual order", () => {
+  const cmp = (st: RunState) => import("../../lib/ui/compare").then((c) => c.compareWithUsual(st, m.letter.buildLetter(st).ref));
+  const sentence = (c: Awaited<ReturnType<typeof cmp>>) => (c ? c.sentence.map((x) => ("t" in x ? x.t : "")).join("") : null);
+
+  it("Marta: with no answer 'N days sooner'; with either answer 'matches', never 'sooner for the tax card'", async () => {
+    expect((await cmp(marta))!.gain).toMatchObject({ days: 15, caption: "sooner than the usual order" });
+    for (const keys of [["has_code"], ["has_bank"], ["has_code", "has_bank"]] as RefineKey[][]) {
+      const c = await cmp(m.rs.refineState(marta, keys));
+      expect(sentence(c), keys.join()).toBe("Your order matches the usual order.");
+      expect(c!.gain).toBeNull();
+      expect(c!.shortcuts).toEqual([]);
+    }
+  });
+
+  it("'I already have a personal identity code' keeps the tax card in the timetable and on the map", () => {
+    const st = m.rs.refineState(marta, ["has_code"]);
+    expect(st.steps.tax_card).toBeDefined();
+    expect(st.steps.tax_card.done).toBeFalsy();
+    const ids = m.days.buildDays(st, m.letter.buildLetter(st).ref).flatMap((e) => (e.kind === "visit" || e.kind === "online" ? e.steps.map((s) => s.id) : []));
+    expect(ids).toContain("tax_card");
+    expect(st.graph!.graph.nodes.some((n) => n.id === "tax_card")).toBe(true);
+  });
+
+  it("a step the person already did never waits on other people's reports (no later 'Set up by' for ticking it)", () => {
+    for (const st of [marta, erasmus]) {
+      const done = m.rs.refineState(st, ["has_bank"]);
+      if (!done.steps.bank_account?.done) continue;
+      const it = done.schedule!.schedule.items.bank_account;
+      expect(it.waitDays).toBe(0);
+      expect(headlineDate(done) <= headlineDate(st)).toBe(true);
+    }
+  });
+});
+
+describe("a toggle is only shown when it visibly changes this run", () => {
+  const visible = (st: RunState, k: RefineKey) => {
+    const a = m.rs.refineState(st, []);
+    const b = m.rs.refineState(st, [k]);
+    const req = (x: RunState) => Object.values(x.steps).filter((s) => !s.milestone && !s.done && s.necessity !== "optional").map((s) => s.id).sort().join();
+    return headlineDate(a) !== headlineDate(b) || a.summary!.inPersonVisits !== b.summary!.inPersonVisits || req(a) !== req(b);
+  };
+
+  it("Marta: the code and the bank answer change visits / required steps and are shown; 'no bank' changes nothing and is not", () => {
+    expect(rowIds(marta)).toEqual(["has_code", "has_bank"]);
+    expect(visible(marta, "has_code")).toBe(true); // one visit fewer
+    expect(visible(marta, "has_bank")).toBe(true); // one required step fewer
+    expect(visible(marta, "no_bank")).toBe(false);
+  });
+
+  it("Erasmus: only the stay length changes anything", () => {
+    expect(visible(erasmus, "long_stay")).toBe(true);
+    for (const k of ["has_code", "has_bank", "no_bank"] as const) expect(visible(erasmus, k), k).toBe(false);
+  });
+
+  it("Erasmus shows only the stay length: nothing else would change its plan", () => {
+    expect(rowIds(erasmus)).toEqual(["stay"]);
+  });
+
+  it("an answer that would change nothing is hidden even when the URL holds it; with nothing to ask the block is empty", () => {
+    expect(rowIds(erasmus, ["has_code"])).toEqual(["stay"]);
+    expect(rowIds(marta, ["no_bank"])).not.toContain("no_bank");
+  });
+});
+
 describe("Erasmus run (Czech, one semester, study only)", () => {
   it("shows the assumed one-term stay as a checked answer, and nothing about steps that are already optional", () => {
     const rows = m.refine.refineRows(m.rs.refineInput(erasmus)!, []);

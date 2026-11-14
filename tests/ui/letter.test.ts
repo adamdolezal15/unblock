@@ -145,11 +145,14 @@ describe("usual order vs your order: Marta", () => {
 });
 
 describe("gain threshold", () => {
-  it("says nothing when the usual order is less than 3 working days behind", async () => {
+  it("says it matches (never another yardstick) when the usual order is less than 3 working days behind", async () => {
     const { compareWithUsual } = await import("../../lib/ui/compare");
     const bl = state.schedule!.baseline!;
     const close = { ...state, schedule: { ...state.schedule!, baseline: { ...bl, endDate: "2027-01-14" } } }; // yours: 13 January
-    expect(compareWithUsual(close, doc.ref)).toBeNull();
+    const c = compareWithUsual(close, doc.ref)!;
+    expect(c.gain).toBeNull();
+    expect(c.shortcuts).toEqual([]);
+    expect(text(c.sentence as never)).toBe("Your order matches the usual order.");
   });
 });
 
