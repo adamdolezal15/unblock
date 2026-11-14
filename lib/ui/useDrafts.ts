@@ -5,14 +5,20 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { draftOffers, type Draft, type DraftOffer, type DraftSource } from "@/lib/agent/draftOffers";
 import { isReplaying, type RunState } from "./runState";
 
-/** The run cut down to what drafts read (POST /api/drafts). Steps in run order, communityTips left out. */
+/**
+ * The run cut down to what drafts read (POST /api/drafts), communityTips left out. Steps in the schedule's
+ * order (deterministic), not in the order they streamed in: two visits on the same day otherwise swap places
+ * between runs, and with them which visit gets the booking note.
+ */
 export function draftSource(state: RunState): DraftSource | null {
   const profile = state.profile?.profile;
   if (!profile || state.phase !== "done") return null;
   const items = state.schedule?.schedule.items ?? {};
+  const rank = new Map((state.schedule?.schedule.order ?? []).map((id, i) => [id, i]));
+  const ordered = [...state.stepOrder].sort((a, b) => (rank.get(a) ?? Infinity) - (rank.get(b) ?? Infinity) || state.stepOrder.indexOf(a) - state.stepOrder.indexOf(b));
   return {
     profile,
-    steps: state.stepOrder.map((id) => state.steps[id]).filter(Boolean).map((s) => {
+    steps: ordered.map((id) => state.steps[id]).filter(Boolean).map((s) => {
         const slim = { ...s };
         delete slim.communityTips;
         return slim;
