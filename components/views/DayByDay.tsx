@@ -429,14 +429,62 @@ function Badge({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
   return null;
 }
 
+const SKIP = /^If you skip it:\s*/i;
+const SKIP_MAX = 72;
+/**
+ * "If you skip it: <consequence>" as one short line, "Skip it: <consequence>". A long consequence loses its
+ * "such as …" aside, then is cut at a clause boundary (if / until / because / that / when / a comma), else at a
+ * word with "…". `cut` is true when the line is shorter than the source sentence (the full one is in Details).
+ */
+export function skipLine(text: string): { line: string; cut: boolean } | null {
+  if (!SKIP.test(text)) return null;
+  const full = text.replace(SKIP, "").trim().replace(/\.$/, "");
+  let c = full.replace(/,\s*such as [^,]+,/i, "").replace(/\s*\([^)]*\)/g, "").trim();
+  if (c.length > SKIP_MAX) {
+    const at = [" if ", " until ", " because ", " that ", " when ", ", "]
+      .map((b) => c.indexOf(b))
+      .filter((i) => i >= 20 && i <= SKIP_MAX)
+      .sort((a, b) => a - b)[0];
+    c = at !== undefined ? c.slice(0, at) : `${c.slice(0, c.lastIndexOf(" ", SKIP_MAX))}…`;
+  }
+  return { line: `Skip it: ${c.replace(/[,;:]$/, "")}${c.endsWith("…") ? "" : "."}`, cut: c !== full };
+}
+
+/** A step's reason as the card shows it: the short "Skip it" line for a consequence, else the sentence. */
+const reasonOf = (s: DayStep) => {
+  if (s.noSource) return { text: "No official source found.", skip: false };
+  const why = plain(s.whyNow);
+  const sk = skipLine(why);
+  return sk ? { text: sk.line, skip: true } : { text: why, skip: false };
+};
+
 /** Title and one plain reason line, no source numbers (they are behind "Sources (n)"). */
 function StepLine({ s }: { s: DayStep; big?: boolean }) {
-  const why = s.noSource ? "No official source found." : plain(s.whyNow);
+  const why = reasonOf(s);
   return (
     <div>
       <h3 className={`text-[20px] font-bold leading-snug text-ink`}>{s.title}</h3>
-      {why && <p className="mt-1 max-w-[62ch] text-[17px] leading-snug text-muted">{why}</p>}
+      {why.text && <p className={`mt-1 max-w-[62ch] leading-normal text-muted ${why.skip ? "text-[15px]" : "text-[17px]"}`}>{why.text}</p>}
     </div>
+  );
+}
+
+/** The full "If you skip it" sentences that a card shortened, for its Details. */
+function SkipDetails({ steps }: { steps: DayStep[] }) {
+  const long = steps.filter((s) => !s.noSource && skipLine(plain(s.whyNow))?.cut);
+  if (!long.length) return null;
+  return (
+    <section className="sm:col-span-2">
+      <p className="text-[13px] font-semibold text-muted">If you skip it</p>
+      <ul className="mt-2 space-y-1 text-[15px] leading-normal text-ink">
+        {long.map((s) => (
+          <li key={s.id}>
+            {long.length > 1 && <span className="font-semibold">{s.short}: </span>}
+            {plain(s.whyNow).replace(SKIP, "").replace(/^./, (ch) => ch.toUpperCase())}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -450,16 +498,16 @@ function withoutOffice(short: string, authority: string): string {
 function MergedVisit({ e }: { e: VisitEntry }) {
   const [first, ...rest] = e.steps;
   const names = e.steps.map((s, i) => (i ? lowerName(withoutOffice(s.short, e.authority)) : withoutOffice(s.short, e.authority)));
-  const why = first.noSource ? "No official source found." : plain(first.whyNow);
+  const why = reasonOf(first);
   return (
     <div className="mt-2">
       <h3 className="text-[20px] font-bold leading-snug text-ink">
         {e.authority}: {names.join(" + ")}
       </h3>
-      {why && <p className="mt-1 max-w-[62ch] text-[17px] leading-normal text-muted">{why}</p>}
+      {why.text && <p className={`mt-1 max-w-[62ch] leading-normal text-muted ${why.skip ? "text-[15px]" : "text-[17px]"}`}>{why.text}</p>}
       <ul className="mt-3 space-y-2">
         {rest.map((s) => {
-          const r = s.noSource ? "No official source found." : plain(s.whyNow);
+          const r = reasonOf(s).text;
           return (
             <li key={s.id} className="flex gap-2 text-[17px] leading-normal">
               <span className="mt-[5px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-hairline-strong" aria-hidden />
@@ -581,6 +629,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
               </ul>
             </details>
           )}
+          <SkipDetails steps={e.steps} />
           <Waits steps={e.steps} />
           <SourceQuotes refs={refs} />
         </div>
@@ -631,6 +680,7 @@ function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
               <Term term="slowest" long />
             </p>
           )}
+          <SkipDetails steps={[s]} />
           <Waits steps={[s]} />
           <SourceQuotes refs={refs} />
         </div>
