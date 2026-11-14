@@ -116,6 +116,8 @@ Civic document, not a dashboard: light paper theme only, Finnish blue (#003580) 
 - Answer first: a letter (`lib/ui/letter.ts`, pure, run data only): headline (set-up date from the critical path; the any-of shortcut when one option is ready >= 3 working days earlier, else the first critical step), then paragraphs: shortcut, money at stake (only from a verified cost_of_delay quote stating a % of salary, times the stated salary), the first conflict, community-sourced waits and estimated dates. Closing stats sentence with the rejected-claims list.
 - Footnotes are per source page, numbered in reading order (letter first, then every other citation), shared by the letter, the side panel and the Sources list (grouped by trust tier). A footnote opens the verified quote; links use a URL text fragment to scroll to the sentence.
 - Profile as one sentence with editable parts; an edit appends a correction to the original sentence and re-runs.
+- Views: Summary (the letter), Day by day (default; one entry per visit, online steps grouped, waits as quiet lines, every step footnoted or "No official source found"), Map; the view is in the URL hash.
+- Usual order (lib/graph/baseline.ts, emitted as schedule.baseline): same steps and waits, identity code only via DVV, no merged visits. Day by day says how much sooner your order is (and any extra visits) only when it is actually better, and marks the shortcut step.
 - Your map: React Flow, x = scheduled start (one column per date), lanes by authority (StepDef.authority), short labels (StepDef.short), orthogonal routes that never cross a node, any-of diamonds, merged visits in a frame (the requirement met inside the visit is not drawn).
 
 ## Out of scope

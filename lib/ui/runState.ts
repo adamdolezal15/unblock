@@ -106,7 +106,7 @@ function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
     case "conflict":
       return { ...s, conflicts: [...s.conflicts, e.conflict] };
     case "schedule":
-      return { ...s, schedule: { schedule: e.schedule, criticalPath: e.criticalPath, visitChoices: e.visitChoices } };
+      return { ...s, schedule: { schedule: e.schedule, criticalPath: e.criticalPath, visitChoices: e.visitChoices, baseline: e.baseline } };
     case "calendar":
       return { ...s, calendar: { events: e.events, icsUrl: e.icsUrl } };
     case "partial":

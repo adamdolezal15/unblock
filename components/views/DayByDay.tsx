@@ -91,8 +91,8 @@ function StepBlock({ ctx, s, first }: { ctx: Ctx; s: DayStep; first: boolean }) 
         <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left font-serif text-[21px] font-semibold leading-snug text-ink hover:text-accent hover:underline hover:decoration-accent/40 hover:underline-offset-4">
           {s.title}
         </button>
-        {ctx.shortcut?.(s.id)}
       </h3>
+      {ctx.shortcut?.(s.id)}
       <p className="mt-1 text-[16px] leading-relaxed text-ink">
         {s.noSource ? <span className="text-muted">No official source found.</span> : <Prose segs={s.whyNow} />}
       </p>

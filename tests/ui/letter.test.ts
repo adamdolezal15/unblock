@@ -116,3 +116,21 @@ describe("day by day: Marta", () => {
     expect(days.map((d) => d.date)).toEqual([...days.map((d) => d.date)].sort());
   });
 });
+
+describe("usual order vs your order: Marta", () => {
+  it("the usual order (DVV only, nothing merged) finishes later with one visit fewer", () => {
+    const bl = state.schedule!.baseline!;
+    expect(bl.skipped).toEqual(["vero_identity_code"]);
+    expect(bl.endDate).toBe("2027-01-28");
+    expect(bl.visits).toBe(3);
+    expect(bl.startDates.tax_card > state.schedule!.schedule.items.tax_card.startDate).toBe(true);
+  });
+
+  it("says how much sooner, what it costs, and marks the step that creates the gain", async () => {
+    const { compareWithUsual } = await import("../../lib/ui/compare");
+    const c = compareWithUsual(state, doc.ref)!;
+    expect(text(c.sentence as never)).toMatch(/^The usual order \(DVV first\) gets you set up by 28 January\. Your order: 13 January, 15 days sooner, for 1 extra visit\.\[\d+\]$/);
+    expect(c.shortcuts.map((s) => s.id)).toEqual(["vero_identity_code"]);
+    expect(text(c.shortcuts[0].text as never)).toMatch(/^Gets you the personal identity code 21 days before DVV would\[\d+\]\.$/);
+  });
+});

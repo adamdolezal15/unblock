@@ -215,6 +215,8 @@ export type PipelineEvent =
       schedule: import("./graph/types").Schedule;
       criticalPath: import("./graph/types").CriticalPath;
       visitChoices: (import("./graph/schedule").VisitChoice & { description: string })[];
+      /** The usual order (identity code only via DVV, no merged visits) for comparison; absent when there is no alternative route. */
+      baseline?: import("./graph/baseline").Baseline;
     }
   | { type: "calendar"; events: StreamCalEvent[]; icsUrl: string }
   | { type: "partial"; reason: "timeout"; message: string; missing: string[] }

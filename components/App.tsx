@@ -5,11 +5,12 @@ import type { RunState } from "@/lib/ui/runState";
 import { buildLetter } from "@/lib/ui/letter";
 import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
+import { compareWithUsual } from "@/lib/ui/compare";
 import { ActivityFeed } from "./ActivityFeed";
 import { Header, PROMISE } from "./Header";
 import type { Selection } from "./graph/PlanGraph";
 import { Closing } from "./letter/Closing";
-import { LetterSkeleton, LetterView } from "./letter/LetterView";
+import { LetterSkeleton, LetterView, Prose } from "./letter/LetterView";
 import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { RunInput } from "./RunInput";
@@ -54,6 +55,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const running = state.phase === "running";
   const doc = useMemo(() => buildLetter(state), [state]);
   const [view, setView] = useView();
+  const comparison = useMemo(() => compareWithUsual(state, doc.ref), [state, doc]);
 
   // Feed collapses by itself when the run is done; the user can reopen it (per run).
   const [feedPref, setFeedPref] = useState<{ runKey: number; collapsed: boolean } | null>(null);
@@ -87,7 +89,25 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
           {view === "summary" && (doc.letter ? <LetterView letter={doc.letter} onShow={openStep} /> : <LetterSkeleton />)}
           {view === "days" &&
             (state.schedule ? (
-              <DayByDay state={state} doc={doc} onOpen={openStep} />
+              <DayByDay
+                state={state}
+                doc={doc}
+                onOpen={openStep}
+                extra={comparison && (
+                  <p className="mb-6 border-l-2 border-ink pl-4 text-[18px] leading-[1.6] text-ink">
+                    <Prose segs={comparison.sentence} />
+                  </p>
+                )}
+                shortcut={(id) => {
+                  const sc = comparison?.shortcuts.find((x) => x.id === id);
+                  return sc ? (
+                    <p className="mt-1 text-[15px] text-ink">
+                      <span className="mr-2 rounded-[3px] border border-accent px-1.5 py-[1px] text-[14px] font-semibold text-accent">Shortcut</span>
+                      <Prose segs={sc.text} />
+                    </p>
+                  ) : null;
+                }}
+              />
             ) : (
               <StepsPreview steps={state.stepOrder.map((id) => state.steps[id])} stubs={state.stubs} running={running} />
             ))}

@@ -9,6 +9,7 @@
 import { googleTemplateUrl, eventsFromSchedule } from "../calendar";
 import { newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
 import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../graph";
+import { usualOrder } from "../graph/baseline";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
 import type { Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
 import { detectConflicts } from "./detectConflicts";
@@ -158,16 +159,16 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
   const sendSchedule = (steps: Step[], tips: Tip[]) => {
     const profile = s.profile!;
     const graph = buildGraph(steps);
-    const sched = schedule(graph, profile, {
-      estimates: estimatesWithTips(steps, tips),
-      ...(opts.today ? { today: opts.today } : {}),
-    });
+    const schedOpts = { estimates: estimatesWithTips(steps, tips), ...(opts.today ? { today: opts.today } : {}) };
+    const sched = schedule(graph, profile, schedOpts);
+    const baseline = usualOrder(steps, profile, schedOpts);
     const path = criticalPath(graph, sched);
     emit({
       type: "schedule",
       schedule: sched,
       criticalPath: path,
       visitChoices: sched.visitChoices.map((c) => ({ ...c, description: describeVisitAlternative(c, shortName) })),
+      ...(baseline ? { baseline } : {}),
     });
     const events = eventsFromSchedule(steps, sched).map((e) => ({ ...e, googleTemplateUrl: googleTemplateUrl(e) }));
     emit({ type: "calendar", events, icsUrl: `/api/calendar.ics?runId=${runId}` });
