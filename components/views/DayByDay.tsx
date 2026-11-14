@@ -5,6 +5,7 @@ import type { RunState } from "@/lib/ui/runState";
 import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
 import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/labels";
+import { dedupeBring } from "@/lib/ui/bring";
 import type { FormLine } from "@/lib/ui/forms";
 import type { DraftOffer } from "@/lib/agent/draftOffers";
 import { Prose } from "../letter/LetterView";
@@ -12,11 +13,11 @@ import { QuoteCard } from "../letter/QuoteCard";
 import { Term } from "../Help";
 import { Marker } from "../line/Marker";
 import { mainLegs } from "../line/legs";
-import { draftAnchor, DraftLink, ReadyToSend } from "../drafts/DraftCard";
+import { draftAnchor, draftLabel, DraftLink, ReadyToSend } from "../drafts/DraftCard";
 import { FormRow } from "../FormRow";
 import { allForms, formLine } from "@/lib/ui/forms";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
-import { IconCalendar, IconDocument, IconExternal, IconInPerson, IconOnline, IconPencil } from "../icons";
+import { IconCalendar, IconCheck, IconDocument, IconExternal, IconInPerson, IconOnline, IconPencil } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const dow = (iso: string) => {
@@ -110,10 +111,9 @@ function AnytimeOnline({ ctx, entries }: { ctx: Ctx; entries: OnlineEntry[] }) {
   return (
     <section aria-label="Anytime online" className="mt-12">
       <h2 className="flex items-center gap-2 text-[28px] font-bold text-ink">
-        <IconOnline className="h-6 w-6" />
         Anytime online
       </h2>
-      <p className="mt-1 max-w-[62ch] text-[17px] text-muted">No visit and no fixed date. Do these whenever it suits you; they don&apos;t change your finish date.</p>
+      <p className="mt-1 max-w-[62ch] text-[17px] text-muted">No fixed date. Do these when it suits you.</p>
       <div className="mt-4 space-y-4">
         {entries.flatMap((e) => e.steps.map((s) => <OnlineStep key={s.id} ctx={ctx} s={s} from={e.date} />))}
       </div>
@@ -200,8 +200,8 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
         <p aria-hidden className={`text-[28px] font-extrabold leading-none tracking-[-0.02em] ${critical || kinds.has("done") ? "text-accent" : "text-ink"}`}>
           {dayNum}
         </p>
-        <p aria-hidden className="mt-1 text-[13px] leading-tight text-muted">
-          {entry.kind === "online" ? `from ${month}` : `${month} · ${dow(entry.date).slice(0, 3)}`}
+        <p aria-hidden className="mt-1 whitespace-nowrap text-[13px] leading-tight text-muted">
+          {entry.kind === "online" ? `from ${month}` : (<>{month}<span className="mx-1">·</span>{dow(entry.date).slice(0, 3)}</>)}
         </p>
       </div>
       <div className="relative flex justify-center">
@@ -360,12 +360,11 @@ function PrimaryAction({ action, drafts }: { action: Action; drafts?: DraftsApi 
           document.getElementById(draftAnchor(o.id))?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
       >
-        {status === "ready" ? `Draft ready: ${lowerFirst(o.title)}` : status === "loading" ? `Preparing ${lowerFirst(o.title)}…` : `Prepare ${lowerFirst(o.title)}`}
+        {draftLabel(o, status)}
       </button>
     </p>
   );
 }
-const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
 
 /** The bottom row of a collapsed card: the one action on the left; "Sources (n)" and Details on the right. */
 function ActionRow({ action, drafts, sources, onSources, open, onToggle }: { action: Action | null; drafts?: DraftsApi; sources: number; onSources: () => void; open: boolean; onToggle: () => void }) {
@@ -388,19 +387,18 @@ function ActionRow({ action, drafts, sources, onSources, open, onToggle }: { act
   );
 }
 
-/** Secondary forms and drafts: everything the primary action did not take, in Details. */
-function MoreToDo({ forms, offers, drafts }: { forms: FormLine[]; offers: DraftOffer[]; drafts?: DraftsApi }) {
-  if (!forms.length && !offers.length) return null;
+/** Secondary forms, in Details (drafts live on the card's action and in "Ready to send"). */
+function MoreToDo({ forms }: { forms: FormLine[] }) {
+  if (!forms.length) return null;
   return (
     <section>
-      <p className="text-[13px] font-semibold text-muted">Also for this {forms.length + offers.length === 1 ? "step" : "visit"}</p>
+      <p className="text-[13px] font-semibold text-muted">Also for this {forms.length === 1 ? "step" : "visit"}</p>
       <ul className="mt-2 space-y-2">
         {forms.map((f) => (
           <li key={f.form.id}>
             <FormRow line={f} variant="inline" />
           </li>
         ))}
-        {drafts && offers.map((o) => <li key={o.id}><DraftLink offer={o} drafts={drafts} /></li>)}
       </ul>
     </section>
   );
@@ -530,7 +528,7 @@ function MergedVisit({ e }: { e: VisitEntry }) {
           const r = reasonOf(s).text;
           return (
             <li key={s.id} className="flex gap-2 text-[17px] leading-normal">
-              <span className="mt-[5px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-hairline-strong" aria-hidden />
+              <IconCheck className="mt-[5px] h-4 w-4 shrink-0 text-muted" />
               <span className="min-w-0">
                 <span className="font-semibold text-ink">{s.title}</span>
                 {r && <span className="block text-[15px] text-muted">{r}</span>}
@@ -562,7 +560,6 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
     ...e.tips.map((t) => t.ref),
   ]);
   const restForms = action?.kind === "form" ? forms.slice(1) : forms;
-  const restOffers = action?.kind === "draft" ? offers.slice(1) : offers;
 
   return (
     <article className="card">
@@ -571,7 +568,11 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
           <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
             <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
             {e.steps.length > 1 ? (
-              <span>In person, {e.steps.length === 2 ? "both" : `all ${e.steps.length}`} in one visit</span>
+              <>
+                <span className="font-semibold text-ink">{e.authority}</span>
+                <span aria-hidden>·</span>
+                <span>{e.steps.length === 2 ? "both" : `all ${e.steps.length}`} in one visit</span>
+              </>
             ) : (
               <span className="font-semibold text-ink">{e.authority}</span>
             )}
@@ -594,7 +595,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
             <section>
               <p className="text-[13px] font-semibold text-muted">Bring</p>
               <ul className="mt-2 space-y-2 text-[17px] leading-snug text-ink">
-                {e.bring.map((b) => (
+                {dedupeBring(e.bring).map((b) => (
                   <li key={b.value} className="flex gap-2">
                     <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-rule-strong" aria-hidden />
                     <span>{b.value}</span>
@@ -604,7 +605,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
             </section>
           )}
           {unlocks.length > 0 && <Unlocks ctx={ctx} ids={unlocks} />}
-          <MoreToDo forms={restForms} offers={restOffers} drafts={ctx.drafts} />
+          <MoreToDo forms={restForms} />
           <section className="space-y-2 text-[17px] text-ink sm:col-span-2">
             <p className="text-[13px] font-semibold text-muted">Visit</p>
             {e.address && <p>{e.address.value}</p>}
@@ -675,6 +676,21 @@ function Online({ ctx, e }: { ctx: Ctx; e: OnlineEntry }) {
   );
 }
 
+/**
+ * How an "Anytime online" step is done: "Online", or "Visit your bank" when it takes a visit. A bank account
+ * ("either" in the sources) is opened in person by a newcomer (identification at the branch), so it says so.
+ */
+function HowLine({ ctx, s }: { ctx: Ctx; s: DayStep }) {
+  const mode = ctx.state.steps[s.id]?.mode;
+  const visit = mode === "in_person" || (mode === "either" && /^your bank$/i.test(s.authority));
+  return (
+    <p className="mb-2 flex items-center gap-2 text-[15px] text-muted">
+      {visit ? <IconInPerson className="h-4 w-4 shrink-0 text-ink" /> : <IconOnline className="h-4 w-4 shrink-0 text-ink" />}
+      <span className="font-semibold text-ink">{visit ? `Visit ${s.authority.replace(/^Your /, "your ")}` : "Online"}</span>
+    </p>
+  );
+}
+
 function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime online": the first day it is possible. */ from?: string }) {
   const [open, setOpen] = useState(false);
   const forms = uniqueForms(s.forms);
@@ -684,6 +700,7 @@ function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime on
   const badge = <Badge ctx={ctx} steps={[s]} />;
   return (
     <article className="card px-4 py-4 sm:px-6">
+      {from && <HowLine ctx={ctx} s={s} />}
       <div className="flex flex-wrap items-start justify-between gap-x-4">
         <div className="min-w-0 flex-1">
           <StepLine s={s} big={false} />
@@ -695,7 +712,7 @@ function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime on
       {open && (
         <div className="mt-3 grid gap-x-8 gap-y-4 border-t border-rule pt-3 sm:grid-cols-2">
           {s.unlocks.length > 0 && <Unlocks ctx={ctx} ids={s.unlocks} />}
-          <MoreToDo forms={action?.kind === "form" ? forms.slice(1) : forms} offers={action?.kind === "draft" ? offers.slice(1) : offers} drafts={ctx.drafts} />
+          <MoreToDo forms={action?.kind === "form" ? forms.slice(1) : forms} />
           {s.critical && (
             <p className="text-[15px] text-muted sm:col-span-2">
               <Term term="slowest" long />

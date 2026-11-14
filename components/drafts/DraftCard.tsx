@@ -10,6 +10,15 @@ const secondary =
   "btn-secondary";
 const link = "text-[15px] link";
 
+const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
+/** What a draft is, in a few words: "Booking note", "Email to the bank", "Email to your employer". */
+const draftKindName = (o: DraftOffer) => (o.kind === "booking" ? "Booking note" : o.title);
+/** "Prepare booking note" / "Preparing booking note…" / "Booking note ready". */
+export function draftLabel(o: DraftOffer, status?: string): string {
+  const name = draftKindName(o);
+  return status === "ready" ? `${name} ready` : status === "loading" ? `Preparing ${lowerFirst(name)}…` : `Prepare ${lowerFirst(name)}`;
+}
+
 export const draftAnchor = (offerId: string) => `draft-${offerId.replace(/[^\w-]/g, "-")}`;
 
 /** On a day card: a small link to the draft in "Ready to send" (prepares it on the way if needed). */
@@ -24,7 +33,7 @@ export function DraftLink({ offer, drafts }: { offer: DraftOffer; drafts: Drafts
         document.getElementById(draftAnchor(offer.id))?.scrollIntoView({ behavior: "smooth", block: "start" });
       }}
     >
-      {status === "ready" ? "Draft ready →" : status === "loading" ? "Preparing draft →" : "Prepare draft →"}
+      {draftLabel(offer, status)}
     </button>
   );
 }
