@@ -1,0 +1,74 @@
+{
+  "fetchedAt": "2026-11-14T15:40:34.944Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: An email to a Finnish bank asking for an appointment to open an account with basic banking services (peruspankkipalvelut). Say what the person will bring, as stated in the facts. If a fact quotes the Finnish Financial Supervisory Authority (FIN-FSA) about what banks may require, mention it politely and quote it.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nP2: I am an EU citizen moving to Helsinki.\nF1: To open an account: Passport or EU-citizen identity card (a driving license alone is not enough)\nF2: To open an account: Proof of identity, Finnish personal identity code, proof of local address, and details of employment or study arrangements\nF3: Maximum ten business days after the bank has received the request and all required documents\nF4: FIN-FSA: \"The FIN-FSA states as its interpretation that banks may not require a Finnish personal identity code as a precondition for opening basic banking services\"\nP3: I plan to visit the bank on 7 December 2026.",
+    "contextHash": "e6847ebb7aef00de",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Request for an appointment to open a basic bank account",
+      "sentences": [
+        {
+          "text": "I am an EU citizen moving to Helsinki, and I would like to book an appointment to open an account with basic banking services (peruspankkipalvelut).",
+          "factIds": [
+            "P2"
+          ]
+        },
+        {
+          "text": "I arrive in Helsinki on 1 December 2026 and plan to visit the bank on 7 December 2026.",
+          "factIds": [
+            "P1",
+            "P3"
+          ]
+        },
+        {
+          "text": "I will bring my passport or EU-citizen identity card, since I understand a driving license alone is not enough.",
+          "factIds": [
+            "F1"
+          ]
+        },
+        {
+          "text": "I understand that the bank usually asks for proof of identity, a Finnish personal identity code, proof of local address, and details of employment or study arrangements.",
+          "factIds": [
+            "F2"
+          ]
+        },
+        {
+          "text": "I will bring what I have, and my employer or study place is [Employer or school name].",
+          "factIds": []
+        },
+        {
+          "text": "I have also read that the Finnish Financial Supervisory Authority says: \"The FIN-FSA states as its interpretation that banks may not require a Finnish personal identity code as a precondition for opening basic banking services\".",
+          "factIds": [
+            "F4"
+          ]
+        },
+        {
+          "text": "I would be grateful if you could tell me whether this applies to my situation and which documents you need from me.",
+          "factIds": []
+        },
+        {
+          "text": "I also understand the account should be opened within a maximum of ten business days after the bank has received the request and all required documents.",
+          "factIds": [
+            "F3"
+          ]
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 4704,
+      "costUsd": 0.007794,
+      "cacheHit": false
+    }
+  }
+}
