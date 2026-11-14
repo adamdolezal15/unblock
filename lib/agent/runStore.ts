@@ -27,7 +27,7 @@ export type RunRecord = {
 
 export const RUN_ID = /^[A-Za-z0-9_-]{1,64}$/;
 
-const dirs = () => [path.join(process.cwd(), ".cache", "runs"), path.join(os.tmpdir(), "unblock-runs")];
+const dirs = () => [...(process.env.VERCEL ? [] : [path.join(process.cwd(), ".cache", "runs")]), path.join(os.tmpdir(), "unblock-runs")];
 
 /** Sortable and unguessable enough for a demo: time in base36 + 6 random bytes. */
 export function newRunId(): string {

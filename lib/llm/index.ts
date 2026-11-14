@@ -20,7 +20,9 @@ let warned = false;
 export function resolveProviderName(env: Record<string, string | undefined> = process.env): "exa" | "anthropic" {
   const wanted = (env.LLM_PROVIDER ?? "anthropic").toLowerCase();
   if (wanted === "anthropic") {
-    if (env.ANTHROPIC_API_KEY || (env.LLM_CACHE ?? "").toLowerCase() === "read") return "anthropic";
+    // Cache-only (LLM_CACHE=read, or a saved demo on Vercel): no API call, so no key needed.
+    const mode = env === process.env ? modeFromEnv("LLM_CACHE") : (env.LLM_CACHE ?? "").toLowerCase();
+    if (env.ANTHROPIC_API_KEY || mode === "read") return "anthropic";
     if (!warned) {
       console.warn("[llm] anthropic extractor selected but ANTHROPIC_API_KEY is not set; falling back to exa");
       warned = true;

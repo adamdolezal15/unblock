@@ -1,3 +1,4 @@
+import { DEMO_TODAY } from "../demo/sentences";
 // The invariant matrix (scripts/eval-invariants.ts, tests/golden/invariants.test.ts): citizenship class ×
 // purpose × city × "already has X". The four demo sentences are reused as-is (their runs are already cached).
 import { DEMO_SENTENCES } from "../demo/sentences";
@@ -9,7 +10,7 @@ export type EvalProfile = {
   covers: string;
 };
 
-export const EVAL_TODAY = "2026-11-14";
+export const EVAL_TODAY = DEMO_TODAY;
 
 export const EVAL_PROFILES: EvalProfile[] = [
   { key: "marta", text: DEMO_SENTENCES.marta, covers: "EU · work+study · Helsinki" },

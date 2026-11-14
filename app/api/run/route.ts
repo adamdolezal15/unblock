@@ -1,12 +1,27 @@
 // POST /api/run  {text}  ->  NDJSON stream of PipelineEvent (lib/types.ts), one JSON object per line.
+// Body may carry {passcode}: with env LIVE_PASSCODE set, a live (non-demo) run needs it; demo sentences never do.
 // ?fast=1 skips the demo replay delays. The run stops when the client disconnects; a global 75 s timeout
 // (lib/agent/run.ts) ends it with a partial result, never a blank response.
+import { timingSafeEqual } from "node:crypto";
 import { RUN_TIMEOUT_MS } from "@/lib/agent/run";
+import { isDemoSentence } from "@/lib/demo/sentences";
 import { encodeEvent, runStream } from "@/lib/agent/runStream";
 import type { PipelineEvent } from "@/lib/types";
 
-// Seconds. Pipeline deadline (75 s) + demo replay budget headroom; within Vercel's limits with Fluid compute.
-export const maxDuration = 120;
+// Seconds. Pipeline deadline (75 s) + replay budget, with ample headroom (Vercel Hobby with Fluid compute allows 300).
+export const maxDuration = 300;
+
+/** Shown on the first screen next to the demo links when a live run is refused. */
+export const LOCKED_MESSAGE = "Live planning is limited during the hackathon. Try a saved demo:";
+
+function passcodeOk(given: unknown): boolean {
+  const want = process.env.LIVE_PASSCODE?.trim();
+  if (!want) return true;
+  if (typeof given !== "string") return false;
+  const a = Buffer.from(given.trim());
+  const b = Buffer.from(want);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
 
 const MAX_TEXT = 2000;
 
@@ -35,6 +50,10 @@ export async function POST(request: Request) {
   }
   if (text.length > MAX_TEXT) {
     return single(413, { type: "error", message: `Please keep it under ${MAX_TEXT} characters.`, recoverable: true });
+  }
+
+  if (!isDemoSentence(text) && !passcodeOk((body as { passcode?: unknown }).passcode)) {
+    return single(401, { type: "locked", message: LOCKED_MESSAGE });
   }
 
   const fast = new URL(request.url).searchParams.get("fast") === "1";

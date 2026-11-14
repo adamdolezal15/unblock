@@ -17,7 +17,7 @@ import { attachTips, findCommunityTips } from "../lib/agent/findCommunityTips";
 import { findSteps } from "../lib/agent/findSteps";
 import { parseProfile } from "../lib/agent/parseProfile";
 import { resetUsedCacheEntries, usedCacheEntries } from "../lib/cache/disk";
-import { DEMO_SENTENCES, type DemoKey } from "../lib/demo/sentences";
+import { DEMO_SENTENCES, DEMO_TODAY, type DemoKey } from "../lib/demo/sentences";
 import { exaStats, resetExaStats } from "../lib/exa/search";
 import { readEvents, runStream } from "../lib/agent/runStream";
 import { EVAL_PROFILES, EVAL_TODAY } from "../lib/eval/profiles";
@@ -38,10 +38,10 @@ async function main() {
   let llmCost = 0;
   for (const key of keys) {
     const t0 = Date.now();
-    const parsed = await parseProfile(DEMO_SENTENCES[key]);
+    const parsed = await parseProfile(DEMO_SENTENCES[key], DEMO_TODAY); // the date the app replays demos at
     if (!parsed.ok) throw new Error(`${key}: out of scope`);
     const r = await findSteps(parsed.profile);
-    const t = await findCommunityTips(parsed.profile, r.steps);
+    const t = await findCommunityTips(parsed.profile, r.steps, { today: DEMO_TODAY });
     const c = await detectConflicts(attachTips(r.steps, t.tips), t.tips, { profile: parsed.profile });
     const cost = r.reports.reduce((n, x) => n + (x.llm && x.llm.provider !== "exa" ? (x.llm.costUsd ?? 0) : 0), 0);
     llmCost += cost;

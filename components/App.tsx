@@ -43,7 +43,7 @@ export function App() {
   const state = useMemo(() => refineState(run, answers, input), [run, answers, input]);
   const rows = useMemo(() => (input ? refineRows(input, answers) : []), [input, answers]);
   // A new sentence is a new plan: its answers do not carry over.
-  const begin = useCallback((text: string, opts?: { fast?: boolean }) => {
+  const begin = useCallback((text: string, opts?: { fast?: boolean; passcode?: string }) => {
     writeRefinements([]);
     return start(text, opts);
   }, [start]);
@@ -59,7 +59,7 @@ export function App() {
     if (key && key in DEMO_SENTENCES) void start(DEMO_SENTENCES[key as DemoKey], { fast: q.get("fast") === "1" });
   }, [start]);
 
-  if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={begin} />;
+  if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} locked={state.locked} onSubmit={(text, passcode) => begin(text, { passcode })} />;
 
   // A saved demo (/?demo=marta): nothing on the page pretends it can be edited. (Only reached in the browser:
   // the server renders the idle landing page.)

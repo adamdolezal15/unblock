@@ -3,7 +3,7 @@
 // of its own; with no record the duration is omitted, never guessed.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { modeFromEnv } from "../cache/disk";
+import { modeFromEnv, onVercel } from "../cache/disk";
 import type { RunSummary } from "../types";
 import { DEMO_SENTENCES, type DemoKey } from "./sentences";
 
@@ -36,7 +36,7 @@ export async function liveDuration(text: string, s: Pick<RunSummary, "totalMs" |
   if (liveCalls(calls) === 0) return (await readLiveRun(text))?.totalMs;
   const key = keyOf(text);
   const mostlyLive = liveCalls(calls) * 2 >= calls.exa + calls.llm;
-  if (key && mostlyLive && !s.partial && modeFromEnv("EXA_CACHE") !== "read") {
+  if (key && mostlyLive && !s.partial && !onVercel() && modeFromEnv("EXA_CACHE") !== "read") {
     const prev = await readLiveRun(text);
     if (!prev || liveCalls(calls) > liveCalls(prev)) {
       const rec: LiveRunRecord = { totalMs: s.totalMs, ...calls, recordedAt: new Date().toISOString() };

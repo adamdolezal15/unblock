@@ -4,9 +4,13 @@
 //   read            - cache only; a miss throws (offline demo)
 //   off             - always call, never read or write
 // A miss in `dir` falls back to `fallbackDir` (the git-tracked demo-cache/) before calling or failing.
+// On Vercel (env VERCEL): the filesystem is read-only, so nothing is ever written and only `fallbackDir`
+// (demo-cache/) is read. With the env var unset the mode there is "read" for a demo sentence (never a live
+// call), "off" for a live run, and outside a run (e.g. /api/drafts) demo-cache first, then live.
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { runContext } from "../events/context";
 
 export type CacheMode = "read" | "write" | "off";
 
@@ -26,8 +30,16 @@ function markUsed(label: string, file: string) {
   used.set(file, { label, file, name: path.basename(file) });
 }
 
+/** Deployed on Vercel: read-only filesystem, demo-cache/ only. */
+export const onVercel = (): boolean => !!process.env.VERCEL;
+
 export function modeFromEnv(envVar: string): CacheMode {
-  const m = (process.env[envVar] ?? "write").toLowerCase();
+  const set = process.env[envVar]?.trim();
+  if (onVercel() && !set) {
+    const ctx = runContext();
+    return !ctx ? "write" : ctx.demo ? "read" : "off";
+  }
+  const m = (set || "write").toLowerCase();
   return m === "read" || m === "off" ? m : "write";
 }
 
@@ -59,9 +71,10 @@ export async function cachedCall<T>(
   const name = `${sha(request)}.json`;
   const file = path.join(opts.dir, name);
   const t0 = Date.now();
+  const vercel = onVercel();
 
   if (opts.mode !== "off") {
-    for (const candidate of [file, ...(opts.fallbackDir ? [path.join(opts.fallbackDir, name)] : [])]) {
+    for (const candidate of [...(vercel ? [] : [file]), ...(opts.fallbackDir ? [path.join(opts.fallbackDir, name)] : [])]) {
       try {
         const entry = JSON.parse(await readFile(candidate, "utf8")) as CacheEntry<T>;
         markUsed(opts.label, candidate);
@@ -78,7 +91,7 @@ export async function cachedCall<T>(
   const response = await call();
   const entry: CacheEntry<T> = { fetchedAt: new Date().toISOString(), request, response };
 
-  if (opts.mode === "write") {
+  if (opts.mode === "write" && !vercel) {
     try {
       await mkdir(opts.dir, { recursive: true });
       await writeFile(file, JSON.stringify(entry, null, 2), "utf8");

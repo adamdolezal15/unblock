@@ -7,7 +7,7 @@ import { LineMark } from "./line/LineMark";
 import { Contours } from "./motion/Contours";
 
 /** The first screen: name, one-line promise, the field, three examples. Nothing else. */
-export function Landing({ runKey, value = "", onSubmit }: { runKey: number; value?: string; onSubmit: (text: string) => void }) {
+export function Landing({ runKey, value = "", locked, onSubmit }: { runKey: number; value?: string; locked?: string; onSubmit: (text: string, passcode?: string) => void }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Contours variant="hero" />
@@ -18,7 +18,7 @@ export function Landing({ runKey, value = "", onSubmit }: { runKey: number; valu
           <h1 className="display mt-8 text-[56px]">Unblock</h1>
           <p className="mx-auto mt-4 max-w-[40ch] text-[20px] leading-normal text-muted">{PROMISE}</p>
           <div className="mt-10">
-            <RunInput key={runKey} value={value} running={false} onSubmit={onSubmit} />
+            <RunInput key={runKey} value={value} running={false} locked={locked} onSubmit={onSubmit} />
           </div>
         </div>
       </main>

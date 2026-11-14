@@ -25,6 +25,8 @@ export type RunContext = {
   onStatus?: (e: StatusEvent) => void;
   signal?: AbortSignal;
   meter: RunMeter;
+  /** The run is a saved demo sentence (on Vercel: served from demo-cache/ only). */
+  demo?: boolean;
 };
 
 const storage = new AsyncLocalStorage<RunContext>();

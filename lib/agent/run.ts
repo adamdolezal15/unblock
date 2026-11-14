@@ -19,6 +19,7 @@ import { findSteps, type FindStepsResult } from "./findSteps";
 import { parseProfile } from "./parseProfile";
 import { partnerDifferences } from "./partnerSteps";
 import { liveDuration } from "../demo/liveRuns";
+import { DEMO_TODAY, isDemoSentence } from "../demo/sentences";
 import { newRunId, saveRun, type RunRecord } from "./runStore";
 import { normalizeUrl } from "./verifyCitations";
 
@@ -71,6 +72,8 @@ const conflictKey = (c: Conflict) =>
   [`${normalizeUrl(c.a.url)}|${c.a.quote}`, `${normalizeUrl(c.b.url)}|${c.b.quote}`].sort().join("||");
 
 export async function run(text: string, opts: RunOptions = {}): Promise<RunOutcome> {
+  // A saved demo replays as of the day it was recorded (its cache entries depend on that date).
+  if (!opts.today && isDemoSentence(text)) opts = { ...opts, today: DEMO_TODAY };
   const t0 = Date.now();
   const runId = opts.runId ?? newRunId();
   const meter = opts.meter ?? newMeter();
@@ -259,7 +262,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
   let outOfScope: string | null = null;
   let timedOut = false;
   try {
-    outOfScope = await withRunContext({ onStatus: emit, signal, meter }, pipeline);
+    outOfScope = await withRunContext({ onStatus: emit, signal, meter, demo: isDemoSentence(text) }, pipeline);
   } catch (e) {
     if (clientGone()) return { kind: "aborted" };
     if (signal.aborted) timedOut = true;

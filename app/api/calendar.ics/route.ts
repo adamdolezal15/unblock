@@ -5,6 +5,9 @@ import { eventsFromSchedule, toIcs } from "@/lib/calendar";
 import { buildGraph, schedule as buildSchedule } from "@/lib/graph";
 import { parseRefinements, refine, REFINE_PARAM } from "@/lib/refine/refine";
 
+// Seconds (Vercel). Live Exa calls can be slow.
+export const maxDuration = 300;
+
 
 function text(status: number, message: string): Response {
   return new Response(message + "\n", { status, headers: { "content-type": "text/plain; charset=utf-8" } });

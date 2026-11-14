@@ -279,6 +279,10 @@ export type PipelineEvent =
   | { type: "calendar"; events: StreamCalEvent[]; icsUrl: string }
   | { type: "partial"; reason: "timeout"; message: string; missing: string[] }
   | { type: "error"; message: string; recoverable: boolean }
+  /** Keep-alive while a run works (every 15 s); carries nothing. */
+  | { type: "ping" }
+  /** A live run on a deployment with LIVE_PASSCODE set, sent without the right passcode. Nothing else follows. */
+  | { type: "locked"; message: string }
   | { type: "done"; summary: RunSummary };
 
 export type PipelineEventType = PipelineEvent["type"];

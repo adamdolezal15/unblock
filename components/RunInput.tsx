@@ -1,6 +1,8 @@
 "use client";
 // The one field of the first screen: an auto-growing sentence with the primary action inside, and three
 // example moves. (Results have no field: "Edit your situation" brings you back here with your sentence.)
+// The examples open the saved demos (/?demo=<key>), never a live run. When the server refuses a live run
+// (LIVE_PASSCODE on the deployment), a small Passcode field appears with links to the demos.
 import { useLayoutEffect, useRef, useState } from "react";
 import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
 
@@ -10,15 +12,21 @@ export const EXAMPLES: { key: DemoKey; short: string }[] = [
   { key: "india", short: "Indian engineer, arriving next week" },
 ];
 
+/** Where an example chip goes: the saved demo, replayed from demo-cache/ (no passcode, no live calls). */
+export const demoHref = (key: DemoKey) => `/?demo=${key}`;
+
 type Props = {
   /** Sentence to start from (when coming back to edit). */
   value: string;
   running: boolean;
-  onSubmit: (text: string) => void;
+  /** Set when a live run needs the passcode: the message to show above the demo links. */
+  locked?: string;
+  onSubmit: (text: string, passcode?: string) => void;
 };
 
-export function RunInput({ value, running, onSubmit }: Props) {
+export function RunInput({ value, running, locked, onSubmit }: Props) {
   const [draft, setDraft] = useState(value);
+  const [passcode, setPasscode] = useState("");
   // Height follows the text, never a scrollbar.
   const field = useRef<HTMLTextAreaElement>(null);
   useLayoutEffect(() => {
@@ -28,11 +36,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
     el.style.height = `${el.scrollHeight}px`;
   }, [draft]);
   const submit = (t: string) => {
-    if (t.trim() && !running) onSubmit(t);
-  };
-  const pick = (key: DemoKey) => {
-    setDraft(DEMO_SENTENCES[key]);
-    submit(DEMO_SENTENCES[key]);
+    if (t.trim() && !running) onSubmit(t, locked ? passcode : undefined);
   };
 
   return (
@@ -71,20 +75,42 @@ export function RunInput({ value, running, onSubmit }: Props) {
             Plan my move
           </button>
         </div>
+        {locked && (
+          <div className="mt-3 flex items-center justify-center gap-2 text-[15px]">
+            <label htmlFor="passcode" className="text-muted">
+              Passcode
+            </label>
+            <input
+              id="passcode"
+              type="password"
+              autoComplete="off"
+              value={passcode}
+              onChange={(e) => setPasscode(e.target.value)}
+              className="w-40 rounded-[8px] border border-rule-strong bg-raised px-3 py-1 text-ink focus:border-accent"
+            />
+          </div>
+        )}
       </form>
+      {locked && (
+        <p role="status" className="mt-4 text-[15px] text-ink">
+          {locked}{" "}
+          {EXAMPLES.map((ex, i) => (
+            <span key={ex.key}>
+              {i > 0 && <span aria-hidden className="mx-2 inline-block text-muted">·</span>}
+              <a href={demoHref(ex.key)} className="link">
+                {ex.short}
+              </a>
+            </span>
+          ))}
+        </p>
+      )}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[15px]">
         <span className="mr-1 text-muted">Try</span>
         {EXAMPLES.map((ex) => (
-          <button
-            key={ex.key}
-            type="button"
-            disabled={running}
-            onClick={() => pick(ex.key)}
-            title={DEMO_SENTENCES[ex.key]}
-            className="rounded-[8px] px-2 py-1 link disabled:opacity-50"
-          >
+          // A full page load on purpose: /?demo=<key> starts the saved demo (read-only result page).
+          <a key={ex.key} href={demoHref(ex.key)} title={DEMO_SENTENCES[ex.key]} className="inline-block rounded-[8px] px-2 py-1 link">
             {ex.short}
-          </button>
+          </a>
         ))}
       </div>
     </div>

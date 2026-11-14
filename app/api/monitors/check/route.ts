@@ -4,6 +4,9 @@ import { RUN_ID } from "@/lib/agent/runStore";
 import { triggerCheck } from "@/lib/exa/monitors";
 import { publicView, saveStore, withStore } from "@/lib/exa/monitorStore";
 
+// Seconds (Vercel). Live Exa calls can be slow.
+export const maxDuration = 300;
+
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => null)) as { runId?: unknown } | null;
   const runId = String(body?.runId ?? "");

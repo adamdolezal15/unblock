@@ -75,7 +75,7 @@ export function publicView(s: MonitorStore): PublicStore {
   };
 }
 
-const dirs = () => [path.join(process.cwd(), ".cache", "monitors"), path.join(os.tmpdir(), "unblock-monitors")];
+const dirs = () => [...(process.env.VERCEL ? [] : [path.join(process.cwd(), ".cache", "monitors")]), path.join(os.tmpdir(), "unblock-monitors")];
 
 export async function saveStore(s: MonitorStore): Promise<void> {
   if (!RUN_ID.test(s.runId)) throw new Error("invalid runId");

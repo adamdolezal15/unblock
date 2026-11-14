@@ -1,0 +1,112 @@
+{
+  "fetchedAt": "2026-11-14T21:39:11.662Z",
+  "request": {
+    "endpoint": "contents",
+    "urls": [
+      "https://dvv.fi/en/foreigner-registration",
+      "https://dvv.fi/en/personal-identity-code",
+      "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41"
+    ],
+    "text": {
+      "maxCharacters": 20000
+    },
+    "extras": {
+      "links": 100
+    }
+  },
+  "response": {
+    "requestId": "c9fd14b4cedba9310ece42134b6e4b16",
+    "results": [
+      {
+        "id": "https://dvv.fi/en/foreigner-registration",
+        "title": "Registration of a foreigner |             Digital and population data services agency",
+        "url": "https://dvv.fi/en/foreigner-registration",
+        "author": null,
+        "text": "Registration of a foreigner | Digital and population data services agency \n\n## Who can get a personal identity code?\n\nYou can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as:\n\n- working in Finland and you have the right to work\n- studying in Finland\n- a family member who already has a registered address in Finland\n- a residence permit, residence card or registration certificate of an EU citizen´s right of residence, issued by the Finnish Immigration Service \n\n Do you already have a personal identity code? Click here for instructions. \n\nOnce you have received a Finnish personal identity code and your personal data have been registered into the Population Information System, you can focus on living in Finland. Notify us if your personal data changes or if you want to complete the registered information.\n\nReport us in the following situations:\n\n- You didn´t get a municipality of residence when you received a personal identity code or received a personal identity code from the Finnish Immigration Service or the Tax Administration. You can apply municipality of residence if the conditions for receiving this are met.\n- Your family relationships and marital status have not yet been registered or have changed.\n- Your address has changed.\n\nApply for municipality of residence\n\nFamily relationships and marital status\n\nNotification of address change\n\n### Other change in personal information\n\n- Registration of Citizenship\n- Change of name\n- Affirmation of gender\n- Death and estate inventory\n\nRequest a personal identity code using the form and visit the Digital and Population Data Services Agency within 1 month of submitting the form. This allows us to register your personal data.\n\n## Do the following\n\n1. ### Request a personal identity code by filling out the online form\n\n- If you do not have a Finnish personal identity code, you can apply for a personal identity code and municipality of residense using this form. A municipality of residence may be granted if the conditions for this are met.\n- You can also request a personal identity code on the same form for your child who is under 18 and moving to Finland at the same time with you. Only one of the child's parents request the personal identity code for the child, so please submit only one request for the child.\n\nRequest a personal identity code by filling out the online form\n\nFilling out the form does not require authentication\n\nIf you are not able to use the online form, print out and deliver the filled-out paper form. You will find a link to the paper form at the bottom of the page.\n2. ### If required, fill out the forms on your family relationships\n\nYou must also present us with an official certificate showing the information (for example marriage or parenthood). Check if the document must be legalised or translated.\n\nLegalisation of foreign documents\n\n Notification of marriage outside Finland Nofification of a child born outside Finland \n\n### Read more\n\nMarriage concluded abroad\n\nRegistering a child born abroad\n3. ### Book an appointment for a personal visit\n\nBook an appointment to the service \"Registration of a foreigner´s personal data\".\n\n- Everyone who requests a personal identity code must visit in person within 1 month of submitting the form, including children.\n- If you are a student, first check with your educational institution or tutor, if they have booked a joint visit.\n\nSelect \"Book an appointment for one person\" when you are booking an appointment only for yourself. If there are 2-5 persons to be registered, \"Book an appointment for multiple people or a family\". If there are more than 5 persons, book two appointments. Give the names of all persons/your family members, who are coming to the appointment.\n\nBook an appointment for one person\n\nBook an appointment for multiple people or a family\n\nPlease bring with you the appropriate documents for your situation to your appointment:\n\n- a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino\n- a residence permit card or any other possible proof that you are residing legally in Finland\n- a certificate of registration of the right of residence for EU citizens\n- proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work)\n- if you are also requesting the registration of family relationships in addition to the personal identity code, bring completed forms and, if required, legalised and translated certificates.\n\n Why do I need a Finnish personal identify number? \n\nYou need a personal identity code so that your educational institution can give you a transcript of records and you can use the services of Finnish authorities.\n\n I am attending a short course / short training. Can I get a personal identity code? \n\nA short-term course or training are sufficient reasons for obtaining a personal identity code, if one is needed to participate in the training.\n\n How do I get a student discount for public transport? \n\nIn some municipalities, acquiring a student discount may require a municipality of residence and a permanent address and/or studies of a certain type or length. For more information, contact the transport agency in your area. \n\n## Processing time\n\n- Finnish identity code request (work, study) 2–3 weeks\n- Finnish identity code request (other) 3–4 weeks.\n- The processing time begins from the day of the visit.\n\n## Price\n\nFree of charge\n\nAliens Act\n\nMunicipality of Residence Act (in Finnish)\n\n## Customer service\n\nYou can find the average processing times on our website. \n\n### Telephone\n\nTelephone service number is +358 295 536 320\n\nService hours: Mon–Fri 9–15. \n\nThe call and the waiting time will cost you the local and mobile rates agreed with your operator.\n\n### Email\n\nPlease use secure email if your message contains personal or otherwise confidential information. Please choose this address as the recipient: international@dvv.fi",
+        "image": "https://dvv.fi/documents/16079645/17654591/DVV-uutisen-placeholder-1600x900-logoton.png/7b8310ba-6768-95da-f82f-be5334e987bf?version=1.0&t=1787294131314&imagePreview=1",
+        "extras": {
+          "links": [
+            "https://dvv.fi/en/municipality-of-residence",
+            "https://dvv.fi/en/family-relationships-and-marital-status",
+            "https://dvv.fi/international-moving",
+            "https://dvv.fi/en/registration-of-citizenship",
+            "https://dvv.fi/en/names",
+            "https://dvv.fi/en/confirmation-of-gender",
+            "https://dvv.fi/en/death-and-estate-inventory",
+            "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en",
+            "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en",
+            "https://dvv.fi/en/instructions-for-legalisation",
+            "https://dvv.fi/documents/16079645/17653494/Notification+of+marriage+outside+Finland.pdf/affe7b49-6df8-870e-4170-3e1b707508c9?t=1766401974017",
+            "https://dvv.fi/documents/16079645/17653494/Notification+of+child+born+outside+Finland.pdf/2dd64d48-e001-a72e-e91e-45087c81634a?t=1769508785696",
+            "https://dvv.fi/en/notification-of-a-marriage-concluded-abroad",
+            "https://dvv.fi/en/registration-of-a-child-born-abroad1",
+            "https://secure.vihta.com/public-ng/dvv/#/reservation?service=HLO&language=en",
+            "https://secure.vihta.com/public-ng/dvv/#/reservation?service=HLORYHMA&language=en",
+            "https://www.finlex.fi/fi/lainsaadanto/2004/301",
+            "https://www.finlex.fi/fi/lainsaadanto/1994/201",
+            "https://dvv.fi/en/processing-times",
+            "https://dvv.fi/cdn-cgi/l/email-protection#a7cec9d3c2d5c9c6d3cec8c9c6cbe7c3d1d189c1ce"
+          ]
+        }
+      },
+      {
+        "id": "https://dvv.fi/en/personal-identity-code",
+        "title": "Personal identity code |             Digital and population data services agency",
+        "url": "https://dvv.fi/en/personal-identity-code",
+        "author": null,
+        "text": "Personal identity code | Digital and population data services agency \n\n# The personal identity code\n\nThe personal identity code is a means of identification for individuals that is more specific than a name. Several people may have the exact same name but there are no two persons with exactly the same personal identity code. The personal identity code is meant to be permanent.\n\nThe personal identity code is used to identify persons in the registers and information systems of different authorities as well as in data communication between them. Some private sector actors such as banks, insurance companies, and private healthcare service providers may also need your personal identity code to ensure that information is registered for the correct person. \n\nA personal identity code is issued to a person who is registered in Finland’s Population Information System. Personal identity codes were introduced in Finland in the 1960s.\n\nParents of children born in Finland do not need to take any measures to obtain a personal identity code for the child. The hospital enters the necessary details of all births into the Population Information System, and when the child’s birth is registered, a personal identity code is issued to the child. \n\nFinnish citizens born abroad are issued a personal identity code after the Digital and Population Data Services Agency has registered the child in the Population Information System at the parents’ request. \n\nChildren adopted from abroad to Finland usually receive a personal identity code after arriving in Finland. However, children adopted from some countries will receive a personal identity code before they enter Finland.\n\nA personal identity code is issued to a foreign citizen moving to Finland from abroad after they have been registered in the Population Information System at their own request or at the time they are granted a residence permit.\n\nThe personal identity code is meant to be permanent. It can only be changed if a person’s date of birth or gender has been registered incorrectly or if the person is legally confirmed to be a different gender. Additionally, in very exceptional cases, the personal identity code can be changed to protect a person, if their health or safety is threatened, or if another person has repeatedly misused the original code.\n\n## Links to Acts related to the matter\n\nSection 11 of the Act on the Population Information System and Certificate Services Provided by the Digital and Population Data Agency (661/2009) 661/2009\n\n What is a personal identity code needed for? \n\nThe personal identity code is necessary to apply for pensions and other benefits, among other things. It is also needed for the payment of salaries and wages to ensure that the money is paid to the correct person.\n\nA responsible use of the personal identity code reduces the possibility of errors in registers and, thus, improves the protection of the individual’s privacy. \n\nThe personal identity code or a combination of the personal identity code and the name may not be used as the only means of identifying a person, but other personal data is also needed for reliable identification (Section 29(5) of the Data Protection Act (1050/2018)). \n\n What does the personal identity code tell us? \n\nThe personal identity code indicates the person's date of birth and the gender as recorded in the Population Information System. \n\nThe personal identity code does not contain any other personal data, such as the person’s nationality, municipality of residence or right of residence in Finland. You cannot prove your identity only by stating your personal identity code.\n\nAnna Suomalainen’s personal identity code is 131052-308T. The first part – 131052 – tells us the day, month and year of her birth, in the form ddmmyy. Thus, her date of birth is 13 October -52.\n\nThe separator after the date of birth tells us the century in which she was born. In Anna’s case, the sign is a hyphen (-), which means she was born in the 1900s, i.e., 1952. For people born in the 19th century, the separator is a plus sign (+), for people born in the 20th century, a hyphen (-) or the letter Y, and for those born in the 21st century, the letter A. In the future, other separators can also be introduced to ensure there are enough personal identity codes (see section 2 of the Decree on the Population Information System, in Finnish).\n\nThe individual number, which for Anna is 308, distinguishes between persons with the same date of birth. Men have an odd number and women an even number. In practice, all individual numbers issued are between 002 and 899.\n\n How is the control character for a personal identity code calculated? \n\nThe control character is a number or a letter and the final character in a personal identity code. It is established by dividing the nine-digit number consisting of a person’s date of birth and individual number by 31.\n\nThe control character is determined on the basis of the remainder according to the table to the left:\n\nRemainder = control character\n\n 0 = 0 \n\n 1 = 1 \n\n 2 = 2 \n\n 3 = 3 \n\n 4 = 4 \n\n 5 = 5 \n\n 6 = 6 \n\n 7 = 7 \n\n 8 = 8 \n\n 9 = 9 \n\n 10 = A \n\n 11 = B \n\n 12 = C \n\n 13 = D \n\n 14 = E \n\n 15 = F \n\n 16 = H \n\n 17 = J \n\n 18 = K \n\n 19 = L \n\n 20 = M \n\n 21 = N \n\n 22 = P \n\n 23 = R \n\n 24 = S \n\n 25 = T \n\n 26 = U \n\n 27 = V \n\n 28 = W \n\n 29 = X \n\n30 = Y\n\nWhen calculating the remainder which is equal to the personal identity code’s control character with a calculator and when the result is a decimal number, the remainder is established as follows: the decimals following the whole number are multiplied by 31 and the resulting number is rounded to the nearest whole number according to the following example.\n\nAnna Suomalainen’s personal identity code is 131052-308T. The T is derived by taking the number 131052308 and dividing it by 31. The result of the division, depending on the precision of the calculator, may appear as 4227493.8064516129032258064516129.\n\nWhen the series of numbers following the full number 0.8064516129032258064516129 is multiplied by 31 the result is 24.9999999999999999999999999. This is rounded to the closest full number, which in this case is 25. The control character for 25 is T.\n\n How is a child be issued a personal identity code, if they are born at home or elsewhere with the assistance of a healthcare professional? \n\nIf a child is born at home or in a place other than a healthcare unit, but with the assistance of a doctor, midwife, public health nurse, nurse or other healthcare professional, this healthcare professional must then notify the Digital and Population Data Services Agency of the birth of a live child.\n\nThe notification is submitted with the Notification of Birth to the Population Information System form. The notification is filled in and sent to the Digital and Population Data Services Agency no later than the day after the birth or no later than a day after the healthcare unit or healthcare professional has been notified of the birth. If the healthcare unit has permission to submit information on the birth electronically, the paper form is generally not used. Forms are available at the Digital and Population Data Services Agency.\n\n How is a child issued a personal identity code, if they are born at home or elsewhere without the assistance of a healthcare professional? \n\nIf there is no healthcare professional present at birth, notify the hospital or a doctor, midwife, public health nurse or nurse of the birth of the child. The hospital or healthcare professional will advise you on how to submit the notification. Healthcare professionals notify us of birth. We will register the child in the Population Information System, and he or she will receive a personal identity code.",
+        "image": "https://dvv.fi/documents/16079645/17654591/DVV-uutisen-placeholder-1600x900-logoton.png/7b8310ba-6768-95da-f82f-be5334e987bf?version=1.0&t=1787294131314&imagePreview=1",
+        "extras": {
+          "links": [
+            "https://dvv.fi/en/registration-of-a-child-born-abroad1",
+            "https://dvv.fi/en/foreigner-registration",
+            "https://dvv.fi/en/changing-your-personal-identity-code",
+            "https://www.finlex.fi/fi/laki/ajantasa/2009/20090661",
+            "http://finlex.fi/fi/laki/ajantasa/2009/20090661",
+            "https://www.finlex.fi/en/laki/kaannokset/2018/en20181050.pdf",
+            "https://finlex.fi/fi/laki/ajantasa/2010/20100128"
+          ]
+        }
+      },
+      {
+        "id": "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41",
+        "title": "Request a Finnish identity code and registration of personal data via online form - Digital and Population Data Services Agency - Suomi.fi",
+        "url": "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41",
+        "author": null,
+        "text": "Request a Finnish identity code and registration of personal data via online form - Digital and Population Data Services Agency - Suomi.fi\n\n# Request a Finnish identity code and registration of personal data via online form\n\n- E-services\n\nYou can use this online form to request a Finnish identity code and registration of personal data. After submitting the form, you must visit our service location in person.\n\n## Use the e-service\n\nText edited by: Digital and Population Data Services Agency Updated: 15/10/2026\n\n### Basic information\n\n#### Responsible for the service \n\nDigital and Population Data Services Agency\n\n#### Area \n\nWhole Finland\n\n#### Available languages\n\nFinnish, Swedish, English\n\nCall: \n\n+358 295 000 Opens in a new window.\n\n+358 295 000\n\nCall: \n\n+358 295 535 115 Opens in a new window.\n\n+358 295 535 115\n\nCall: \n\n+358 295 020 500 Opens in a new window.\n\n+358 295 020 500",
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png",
+        "extras": {
+          "links": [
+            "tel:+358 295 000",
+            "tel:+358 295 535 115",
+            "tel:+358 295 020 500"
+          ]
+        }
+      }
+    ],
+    "statuses": [
+      {
+        "id": "https://dvv.fi/en/foreigner-registration",
+        "status": "success",
+        "source": "cached"
+      },
+      {
+        "id": "https://dvv.fi/en/personal-identity-code",
+        "status": "success",
+        "source": "cached"
+      },
+      {
+        "id": "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41",
+        "status": "success",
+        "source": "cached"
+      }
+    ],
+    "costDollars": {
+      "total": 0.003,
+      "contents": {
+        "text": 0.003
+      }
+    },
+    "searchTime": 16.101901999907568
+  }
+}

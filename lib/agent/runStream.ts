@@ -4,7 +4,7 @@
 // The moment any live (uncached) Exa / LLM call happens, the spacing stops: real work is slow enough.
 // Paced lines carry `replay: true` so the UI can say it is replaying a saved run.
 // `fast` or env DEMO_REPLAY=off skips the spacing entirely.
-import { DEMO_SENTENCES } from "../demo/sentences";
+import { isDemoSentence } from "../demo/sentences";
 import { newMeter } from "../events/context";
 import type { PipelineEvent } from "../types";
 import { run, type RunOptions } from "./run";
@@ -19,14 +19,13 @@ export type RunStreamOptions = Pick<RunOptions, "signal" | "timeoutMs" | "today"
 /** Total replay delay cap, so a long cached run never drags on stage. */
 export const REPLAY_BUDGET_MS = 10_000;
 
-const DEMO_TEXTS: ReadonlySet<string> = new Set(Object.values(DEMO_SENTENCES));
-
 export const replayEnabled = (env: Record<string, string | undefined> = process.env) =>
   env.DEMO_REPLAY?.trim().toLowerCase() !== "off";
 
-export function isDemoSentence(text: string): boolean {
-  return DEMO_TEXTS.has(text.trim());
-}
+export { isDemoSentence };
+
+/** A keep-alive line this often while a run works, so proxies and the browser never see an idle connection. */
+export const KEEPALIVE_MS = 15_000;
 
 const sleep = (ms: number, signal: AbortSignal) =>
   new Promise<void>((resolve) => {
@@ -77,9 +76,12 @@ export function runStream(text: string, opts: RunStreamOptions = {}): ReadableSt
         });
       };
 
+      // Keep-alive: written straight to the stream (never queued behind a paced status line).
+      const ping = setInterval(() => write({ type: "ping" }), KEEPALIVE_MS);
       run(text, { ...opts, signal: gone.signal, meter, onEvent: push })
         .catch((err) => (console.error("[unblock] stream failed:", (err as Error).message), push({ type: "error", message: "Something went wrong on our side. Please try again.", recoverable: false })))
         .finally(() => {
+          clearInterval(ping);
           tail.then(() => {
             opts.signal?.removeEventListener("abort", onRequestAbort);
             if (!gone.signal.aborted) controller.close();

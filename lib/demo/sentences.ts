@@ -10,3 +10,16 @@ export const DEMO_SENTENCES = {
 } as const;
 
 export type DemoKey = keyof typeof DEMO_SENTENCES;
+
+/**
+ * The day the saved demos were recorded (npm run warm-demo). A demo sentence always runs as of this day, so its
+ * relative dates ("next week") and every cache key match demo-cache/ on any later day: the replay never goes live.
+ */
+export const DEMO_TODAY = "2026-11-14";
+
+const DEMO_TEXTS: ReadonlySet<string> = new Set(Object.values(DEMO_SENTENCES));
+
+/** True for the exact text of a saved demo (these runs replay from demo-cache/, no passcode needed). */
+export function isDemoSentence(text: string): boolean {
+  return DEMO_TEXTS.has(text.trim());
+}

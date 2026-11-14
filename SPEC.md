@@ -151,3 +151,12 @@ Lease checking, Websets, full benefits engine, Google OAuth, chat UI as main scr
 3. Community layer + conflict (OP vs FIN-FSA on personal ID code for basic banking).
 4. "Plan it" → calendar fills.
 5. Judge tries their own situation.
+
+## Deployment (Vercel)
+
+See DEPLOY.md. Decisions:
+- Saved demos (`lib/demo/sentences.ts`) always run as of `DEMO_TODAY` and, on Vercel, read only the git-tracked
+  `demo-cache/` (never a live call, no passcode). The homepage examples link to `/?demo=<key>`.
+- With `LIVE_PASSCODE` set, `/api/run` refuses a live (non-demo) run without it: one `locked` event, HTTP 401.
+- On Vercel nothing is written to `.cache/`; live runs default to `EXA_CACHE=off` / `LLM_CACHE=off`.
+- `/api/run` streams a `ping` event every 15 s; API routes allow `maxDuration = 300`.

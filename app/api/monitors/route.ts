@@ -6,6 +6,9 @@ import { collectPending } from "@/lib/exa/monitorSync";
 import { createPlanMonitors, monitorTopics, WebhookNotConfigured } from "@/lib/exa/monitors";
 import { loadStore, publicView, saveStore, withStore } from "@/lib/exa/monitorStore";
 
+// Seconds (Vercel). Live Exa calls can be slow.
+export const maxDuration = 300;
+
 const json = (status: number, body: unknown) => Response.json(body, { status, headers: { "cache-control": "no-store" } });
 const calm = (status: number, message: string) => json(status, { error: message });
 

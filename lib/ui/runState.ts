@@ -38,6 +38,8 @@ export type RunState = {
   error?: string;
   outOfScope?: string;
   summary?: RunSummary;
+  /** The server asked for the live-run passcode (LIVE_PASSCODE): back on the first screen with the field shown. */
+  locked?: string;
 };
 
 export const initialRunState: RunState = {
@@ -119,6 +121,10 @@ function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
         return nothingYet ? { ...s, phase: "error", error: e.message, finishedAt: at } : { ...s, notes: [...s.notes, e.message] };
       }
       return { ...s, error: e.message };
+    case "ping":
+      return s;
+    case "locked":
+      return { ...initialRunState, runKey: s.runKey + 1, text: s.text, locked: e.message };
     case "done": {
       const nothing = s.stepOrder.length === 0;
       if (nothing && s.stubs.length > 0 && !s.error)
