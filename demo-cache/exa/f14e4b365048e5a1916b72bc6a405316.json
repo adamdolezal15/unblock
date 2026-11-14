@@ -1,0 +1,97 @@
+{
+  "fetchedAt": "2026-11-14T07:20:37.183Z",
+  "request": {
+    "endpoint": "search",
+    "query": "tampere.fi Register as a resident and get a Finnish personal identity code Tampere, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Register as a resident and get a Finnish personal identity code\" (tampere.fi) in Tampere, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "4f82d8188ae0634de3e62c4df690033f",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/a-foreigner-can-apply-for-a-personal-identity-code-and-municipality-of-residence-online",
+        "title": "A foreigner can apply for a personal identity code and municipality of residence online - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/a-foreigner-can-apply-for-a-personal-identity-code-and-municipality-of-residence-online",
+        "publishedDate": "2024-05-14T06:43:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "The everyday life of a foreigner moving to Finland is made easier when their details are registered in the Population Information System. The Digital and Population Data Services Agency (DVV) maintains this information and has now made it possible for a foreigner to apply for a personal identity code and municipality of residence online. If you fill in the online form before you go in person, it is easier to obtain your personal identity code and municipality of residence.\n\nThe online forms for applying for a personal identity code and municipality of residence are available to all foreigners and do not require strong identification to fill them in. Once a foreigner has submitted an application for a personal identity code or municipality of residence online, they usually also have to visit the Digital and Population Digital Services Agency in person. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer.\n\nA new online form to apply for a personal identity code is being introduced on 13 May 2024. The submission of the preliminary information in digital format allows the customer's case to be dealt with more quickly during a customer service visit. The Digital and Population Data Services Agency Is piloting the provision of personal identity codes during customer service visits in some municipalities during the summer. This is possible for customers who have filled in the online form and made an appointment in advance in Helsinki, Turku, Tampere, Jyväskylä and Oulu."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Register with DVV in two stages: submit the free online foreigner registration form at dvv.fi/en/foreigner-registration (no authentication needed), then visit a DVV service point in person within 1 month with your passport, residence permit or EU registration certificate, and proof of work or study. Processing then takes 2–3 weeks for work and study cases, 3–4 weeks otherwise. There is no fee — the registration and your henkilötunnus (personal identity code) are completely free.\n\n...\n\nAfter the form, you must visit a DVV service point in person, and you must do so within one month of submitting. The in-person step is non-negotiable — it is where DVV verifies your identity against your documents. Appointments at the busy Helsinki-area locations can fill up, so book as early as you can rather than leaving it to the end of the one-month window.\n\n### Step 3 — Bring the right documents\n\nTake, at minimum:\n\n- A valid passport or EU/EEA photo ID\n- Your residence permit card or EU registration certificate — or proof that you have applied for one\n- Proof of your grounds for staying: an employment contract, a study certificate, or similar\n- Any legalised certificates for family relationships you want recorded (marriage, birth)\n\nDocuments in languages other than Finnish, Swedish, or English may need an official translation, and foreign civil-status certificates often need legalisation (an apostille). If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment.\n\n...\n\nHere is the distinction that catches almost everyone out. Being entered into the Population Information System and receiving a personal identity code is not the same as having a municipality of residence. As InfoFinland puts it, when you receive a personal identity code you are not yet automatically registered as a resident of a specific municipality. DVV makes a separate decision about your kotikunta.\n\nThis matters because the kotikunta is what most public services key off. According to DVV and InfoFinland, having a municipality of residence is what gives you:\n\n- The right to use your municipality's services — schools, early childhood education, employment and integration services\n- Health and social services through your hyvinvointialue (wellbeing services county), which since 2023 runs public healthcare rather than the municipalities directly\n- Eligibility for a Finnish identity card and a Finnish driving licence\n- Broadly, the same rights, services, and obligations as a permanent resident\n\nTo be assigned a kotikunta, the core requirement is that you have moved to Finland intending to stay for at least one year and are legally resident. On top of that, DVV looks for at least one qualifying ground, such as:\n\n...\n\nDVV operates service points across Finland — major cities including Helsinki, Tampere, Turku, and Oulu have offices, and there are around a dozen physical locations nationally. You can also reach DVV by telephone on +358 295 536 320 (Mon–Fri 9–15) and through secure email for questions about your case.\n\n...\n\nRegistration is not a one-time event. Once you have a personal identity code, Finnish law requires you to keep your address current by filing a notification of move (muuttoilmoitus) whenever you move within Finland permanently or temporarily for over 3 months.\n\nThe rule, according to DVV, is that you submit the notification at the earliest one month before you move and no later than one week after the move. You can do it online at muuttoilmoitus.fi or on a paper form available from DVV and Posti (the postal service) service points. The same online notification can go to both DVV and Posti, or to just one of them."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.enb.fi/guides/finland-dvv-personal-identity-code-municipality-address-registration-2026-complete-guide/",
+        "title": "DVV Registration in Finland 2026: Identity Code | ENB",
+        "url": "https://www.enb.fi/guides/finland-dvv-personal-identity-code-municipality-address-registration-2026-complete-guide/",
+        "publishedDate": "2026-08-24T00:35:53.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "Separate four DVV concepts: the personal identity code is an identifier; an address is an entry in the Population Information System; municipality of residence is the person's Finnish municipal-residence status; and family registration covers civil-status links such as marriage, parenthood and guardianship. They may be completed at different times. A personal identity code can already appear on a residence-permit card without a municipality of residence. To apply for a municipality of residence, the person generally needs a Finnish personal identity code, intends to stay in Finland for at least one year and has a qualifying ground such as an appropriate residence permit, EU registration, Nordic citizenship or family relationship. After submitting the DVV form, a personal visit to a service location is required in many cases within one month. A retroactive municipality/address date cannot predate the date on which the conditions were met and DVV's form generally limits retroactive registration to 30 days before submission.\n\n...\n\n## 2. How to get a Finnish personal identity code\n\nMany residence-permit applicants receive a personal identity code during the Migri process and it appears on the permit card. If not, it can be requested through DVV foreigner registration; in some work/tax cases Vero can also be involved in issuing a code.\n\nDVV registration requires reliable identity and a genuine Finnish connection. Passport/official ID, residence status and work/study/family documents may be required.\n\n...\n\nAfter submitting the municipality-of-residence form, follow DVV's confirmation instructions. The current form requires many applicants to visit a DVV service location in person within one month.\n\nKeep a valid passport/ID and original documents supporting the application ground ready for identity verification. Booking before arrival can reduce delays.\n\n...\n\n### Checklist\n\n- Personal identity code available?\n- Personal ID on permit card not confused with municipality of residence?\n- Planning to stay at least one year?\n\n...\n\n- Passport/ID + original supporting documents ready?\n- Temporary or permanent address?\n- Retroactive date within eligibility/30-day limits?\n- Marriage/birth/custody originals legalised/translated where needed?\n- Future address changes handled with notification of move?"
+        ],
+        "image": "https://www.enb.fi/services/enb-fi-market-square-harbour.jpg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "First 30 Days in Finland: The Complete Expat Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "publishedDate": "2026-06-14T01:37:42.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Without it, you cannot open a Finnish bank account, get a tax card, register with Kela, or access most government digital services.\n\nThe henkilötunnus is issued by the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency) when you register as a foreign national. There are two steps: submit the online foreigner registration form at dvv.fi, then attend an in-person appointment at a DVV service point.\n\n...\n\nA Finnish henkilökortti (identity card) is not strictly required — you can use your passport or EU ID card indefinitely — but it is a practical document to have. It is accepted as ID everywhere in Finland, fits in a wallet, is cheaper to replace than a passport, and is the credential some government services prefer for strong identification.\n\nApply in person at a DVV service point. Processing takes 2–4 weeks, which is why you apply in week 4 rather than waiting. The card will arrive within your first two months if you apply now.\n\nWhat you need:\n\n- Your passport or current EU identity card\n- Your henkilötunnus\n- A confirmed municipality of residence registered with DVV\n- The application fee (check the current amount at dvv.fi — fees are updated periodically)\n\nChildren under 15 need a guardian present. There is no minimum\n\n...\n\nDVV appointment wait is too long. DVV service point wait times vary significantly by city. Helsinki is the worst; Espoo, Vantaa, and smaller cities are often faster. If you have flexibility, check DVV's online booking system for all service points within commuting distance and book at whichever has the earliest slot.\n\nBank refuses to open an account without a longer tenancy contract. Some banks want to see a 12-month rental agreement rather than a short-term lease. If you are in temporary housing, ask your employer for a letter confirming your employment and address — many banks accept this. Alternatively, start with Nordea or Danske, which have slightly more flexible documentation policies for international employees.\n\nTax card not arriving in time for payroll. If you ordered your verokortti but payroll is running before it is on file, contact your HR or payroll department immediately. OmaVero allows you to download the card as a PDF once issued. Share that directly with payroll — they can apply it manually.\n\nKela rejects your application because your stay is considered temporary. Kela applies a residency test. If your employment contract is short-term or your visa is time-limited, Kela may classify your stay as temporary and decline full coverage. In that case, EU citizens fall back on their EHIC, and non-EU citizens should maintain travel or expat health insurance such as SafetyWing until the residency status is confirmed. Appeal or reapply once your contract is extended.\n\nPankkitunnukset not working on government sites. Each bank's credentials are accepted differently. If your bank's mobile app method is not accepted on a particular portal, try the code calculator method instead, or check whether the portal lists which banks it supports. Not every portal accepts every Finnish bank's credentials."
+        ],
+        "image": "https://nordicexpat.com/finland/first-month-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.enb.fi/guides/moving-to-tampere-living-guide-2026/",
+        "title": "Moving to and Living in Tampere 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/moving-to-tampere-living-guide-2026/",
+        "publishedDate": "2026-08-24T01:20:31.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "## Short answer\n\nWhen relocating to Tampere, the order of formalities matters: immigration status → DVV/personal identity code/municipality of residence → Vero → Kela → banking/strong authentication → housing/utilities → local services. International House Tampere provides local guidance for international newcomers. A city guide does not replace permit or benefit rules; always verify personal eligibility with Migri, DVV, Vero and Kela.\n\n...\n\n## 2. First 2–4 weeks: formalities\n\nMunicipality-of-residence registration matters for local public services; having a Finnish personal identity code does not always mean that a municipality of residence has been registered. Kela eligibility is also not automatic merely from an address registration.\n\nDo not delay the tax card when starting work. Strong electronic identification makes access to many public and private services easier.\n\n### Checklist\n\n- Confirm residence permit / EU registration status\n- Complete DVV personal identity code and municipality-of-residence registration\n- Arrange tax card / Vero matters\n- Check Kela eligibility\n- Set up bank account and strong authentication\n- Arrange housing contract, electricity and home insurance\n- Plan public transport / driving\n- Apply early for daycare/school if needed\n- Register with employment/integration services where relevant\n- Use the local newcomer service for initial guidance\n\n...\n\n### Checklist\n\n- Confusing personal identity code with municipality of residence\n- Assuming Kela starts automatically\n- Delaying tax card\n- Assuming bank KYC finishes immediately\n- Leaving school/daycare too late\n- Missing legalisation/translation of foreign civil-status documents\n- Treating local guidance as a Migri/DVV decision-maker\n- Choosing housing based only on rent"
+        ],
+        "image": "https://www.enb.fi/cities/tampere.jpg"
+      }
+    ],
+    "searchTime": 1425.2,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

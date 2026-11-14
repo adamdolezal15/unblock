@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T07:20:38.750Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Police appointment for Identity card for a foreigner in Tampere, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Identity card for a foreigner\" (Police) in Tampere, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "7cc86889a9c0791b06fe41a72aeca50b",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "title": "Police to provide more appointment times for passport and ID card applicants - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "publishedDate": "2025-04-15T10:04:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "The police are addressing efficient licensing services by increasing the number of appointments for passport and identity card customers. Save time and money by booking an appointment easily online.\n\n...\n\n“To achieve this goal, police licensing services will increase the number of appointments for customers. We recommend that all customers book an appointment rather than just turning up at a police station,” says Hanna Piipponen, Chief of Licence Administration at the National Police Board.\n\n## You can find more slots on the website\n\nMore appointment times will be available to passport and ID card applicants. Appointment times can also be found beyond the opening hours of the police station. The police will add more slots to the booking system on a daily and weekly basis, depending on the police station. \n\nIf you can’t find a suitable time straight away, check out the situation later. \n\nYou can freely choose the most convenient police station for you anywhere in Finland. You can find available appointments and service points at: asiointi.poliisi.fi \n\n“When applicants initiate their passport or ID card application online, the system automatically directs them to appointment booking if they need to visit a police station in person,” says Hanna Piipponen.\n\nInitiating an application online in advance makes for quick, effortless contact rather than having to perhaps wait in a queue for hours without an appointment. If you need to visit a police station for identification purposes, you can complete your visit in less than ten minutes with an appointment.\n\n...\n\nBook an appointment online and avoid queuing. You can plan in advance when you interact and how you will spend your time."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://www.nokianuutiset.fi/uutiset/art-2000011078815.html",
+        "title": "Passiaikaa ei enää tarvitse odottaa kuukausitolkulla Tampereella - Nokian Uutiset",
+        "url": "https://www.nokianuutiset.fi/uutiset/art-2000011078815.html",
+        "publishedDate": "2025-03-06T12:00:00.000Z",
+        "author": "Liisa Kauppinen",
+        "highlights": [
+          "Aiempaa harvemmalle poliisiasemalle pääsee asioimaan jonottamalla. Silloin aikoja on myös varattavissa etukäteen enemmän kuin ennen. Enää passi- tai henkilökorttiaikaa ei tarvitse odottaa kuukausitolkulla.\n\n...\n\nPassi- ja henkilökorttijonot ovat lyhentyneet merkittävästi Pirkanmaan alueella viime vuoteen verrattuna.\n\nLupapäällikkö Hannele Koskela Sisä-Suomen poliisilaitokselta kertoo, että asiointiaikoja saa nyt nopeasti useimmille poliisiasemille.\n\nJonojen lyhenemisen syinä ovat henkilöstön työpanoksen kohdentaminen ja matkustusasiakirjojen hakemusmäärien väheneminen.\n\nNyt palvellaan numeroa 228, masiina tulostaa numeron 243.\n\nKeskiviikkona lounasaikaan Tampereen poliisiasemalla ei ole tietoakaan viime vuosien kestopiinasta, pitkistä passijonoista. Hieman kello yhdentoista jälkeen arvioitu odotusaika passi- ja henkilökorttiasiointiin on noin puoli tuntia, aulassa on kourallinen ihmisiä.\n\n...\n\n### Pitkät jonot tiessään\n\nKeskiviikkona 5. maaliskuuta 2025 ajan sai varattua Tampereen poliisiasemalle alle kahden viikon päähän. Kangasalan poliisiasemalla ensimmäinen vapaa aika löytyi huhtikuun puolivälin tienoilta. Valkeakosken asemalle haluava joutui odottamaan asiointiaikaansa pitkälle toukokuuta.\n\nOdottavan aika on kuitenkin huomattavasti lyhyempi kuin maaliskuussa 2024. Tuolloin muun muassa Nokian Uutiset kertoi, että passin ja henkilökortin hakemiseen liittyvän asiointiajan sai varattua Tampereelle ja Kangasalle aikaisintaan saman vuoden elokuulle. Valkeakoskelle aikoja ei ollut tarjolla lainkaan.\n\nLisäksi ainakin huhtikuussa 2022 ja kesäkuussa 2024 saatiin nähdä pitkiä jonoja Tampereen poliisitalon edessä.\n\n...\n\nKoskela kertoo, että ajanvaraustilannetta on helpottanut panostus etukäteen varattaviin aikoihin. Poliisi on ohjannut siihen asiakaspalvelu­henkilöstön työpanosta ja seuraa ajanvarausviivettä säännöllisesti. Esimerkiksi Valkeakosken, Sastamalan ja Ikaalisten poliisiasemilla aika on aina varattava etukäteen. Tällä tavoin aikoja on myös tarjolla lukumäärällisesti enemmän kuin ennen.\n\nToinen syy jonojen hellittämiseen on yksinkertaisempi. Matkustusasiakirjoja haetaan nyt vähemmän kuin viime vuosina. Koskelan mukaan tämä liittyy myös uusimissykliin. Henkilökortit ja passit ovat voimassa viisi vuotta kerrallaan. Nyt uusitaan vuonna 2020 myönnettyjä matkustusasiakirjoja, ja koronaviruspandemian ja matkustusrajoitusten alkaessa niitä oli tavanomaista vähemmän.\n\n...\n\nPoliisiasemien sähköinen ajanvaraus on mahdollista internetissä poliisi.fi-sivustolla.\n\nVaihtoehtoisesti asiointiajan voi varata puhelimitse poliisin neuvontapalvelusta numerosta 0295 419 800 arkisin kello 8–16.15.\n\nMatkustusasiakirjan hakeminen ei välttämättä edellytä käyntiä poliisiasemalla.\n\nVaikka asemalla olisi käytävä, hakemuksen täyttäminen sähköisesti nopeuttaa ja halventaa asiointia.\n\nLähde: Poliisi.\n\n...\n\nKaikkein joutuisimmin matkustusasiakirjat saa uusittua, kun hakemuksen täyttää ensin sähköisesti netissä, vinkkaa Koskela.\n\n”Tarkista asiakirjan voimassaolo hyvissä ajoin ennen matkaa, laita hakemus vireille ja varaa aika asiointiin”, hän opastaa.\n\nNoin joka kolmannessa tapauksessa sähköinen hakemus riittää. Poliisiasemalla on käytävä tunnistautumassa ja antamassa sormenjäljet, jos edellisestä käynnistä on kulunut yli kuusi vuotta tai jos esimerkiksi nimi on vaihtunut.\n\nJos ajanvaraustilanteen hellittämisestä huolimatta oma tilanne ei mahdollista viikkojen odottelua, Tampereella ja Kangasalla poliisiasemilla asioimaan pääsee edelleen marssimalla asemalle ja ottamalla jonotuslapun. Jonotusaika vaihtelee paljon ajankohdan mukaan.\n\nKoskelan mukaan hiihtolomaviikolla tavanomainen odotusaika oli Tampereella tunnista kahteen. Kuluvalla viikolla vuoroaan tiskille on joutunut odottamaan yleensä puolesta tunnista puoleentoista tuntia."
+        ],
+        "image": "https://images.sanoma-sndp.fi/6b19922a975047630334946767031219/some/nu.jpg"
+      },
+      {
+        "id": "https://yle.fi/a/74-20088359",
+        "title": "Passin uusimisajan saa nopeimmillaan huomiselle ja hitaimmillaan lokakuulle – katso jonotusajat eri puolilla Suomea | Kotimaa | Yle",
+        "url": "https://yle.fi/a/74-20088359",
+        "publishedDate": "2024-05-16T08:13:26.000Z",
+        "author": "Arvo Vuorela",
+        "highlights": [
+          "Passeja ja henkilökortteja haetaan nyt selvästi vähemmän kuin ruuhkavuonna 2022, mutta ajanvaraus lupapalveluihin kangertelee yhä.\n\nJos aikaa passin uusimiselle ei saa varattua riittävän ajoissa, kannattaa mennä aamulla jonottamaan poliisiasemalle. Video: Isto Janhunen\n\n...\n\nPassien ja henkilökorttien hakemisen ajanvarausjonot vaihtelevat suuresti poliisiasemilla eri puolilla Suomea.\n\nPistokokeessa 13. toukokuuta pisimmät ajanvarausjonot olivat Sisä-Suomen poliisilaitoksella Tampereella ja Jyväskylässä sekä Lounais-Suomessa Turussa. Näihin aikoja ei saanut ennen lokakuuta.\n\nYlitarkastaja Juhani Ruutu Poliisihallituksesta kiteyttää, että suurempien kaupunkien poliisiasemilla on huonompi tilanne kuin pienemmillä paikkakunnilla.\n\n– Isommissa kaupungeissa kysyntää on enemmän eikä pystytä tarjoamaan riittävästi palvelua, jos henkilöstön ja kiinteistöjen kapasiteetti on rajallinen.\n\nHakemusmäärät vaihtelevat suuresti kuukausittain. Kiireistä asemilla on varsinkin keväällä ja kesällä.\n\nAjanvarauksissa ei ollut lainkaan jonoa Kemijärvellä, Kittilässä, Torniossa ja Ylivieskassa. Näissä vapaita aikoja löytyi jo seuraavalle päivälle.\n\nToukokuulle aikoja oli vapaana myös Raahessa, Kajaanissa, Kotkassa, Ranualla ja Haapajärvellä.\n\nKesäkuulle aikoja löytyi muun muassa Kouvolassa, Lappeenrannassa, Pietarsaaressa, Rovaniemellä, Raumalla, Joensuussa, Kuopiossa, Hyvinkäällä, Järvenpäässä, Kankaanpäässä, Vaasassa, Kokkolassa, Riihimäella ja Oulussa.\n\nElo-syyskuussa oli aikoja vapaina Vantaalla, Valkeakoskella ja Kangasalla.\n\n## Seuraavat vapaat passiajat eri puolilla Suomea (13.5. tilanne)\n\n14.05. Ylivieska, Kemijärvi, Kittilä, Tornio 20.05. Raahe 22.05. Kajaani 23.05. Kotka 27.05. Ranua 28.05. Haapajärvi\n\n04.06. Kouvola 05.06. Lappeenranta 07.06. Pietarsaari 12.06. Kitee, Imatra, Rovaniemi 13.06. Rauma, Joensuu 19.06. Kuopio 20.06. Hyvinkää 24.06. Järvenpää, Kankaanpää, Vaasa, Kokkola 25.06. Riihimäki 26.06. Oulu\n\n02.07. Hämeenlinna 05.07. Lohja, Mikkeli 10.07. Lahti, Seinäjoki 15.07. Helsinki, Espoo 16.07. Kokemäki 23.07. Pori 30.07. Forssa, Heinola\n\n12.8. Vantaa\n\n03.09. Valkeakoski 11.09. Kangasala\n\nLokakuu: Turku, Tampere, Jyväskylä\n\n## Aikoja vapautuu varattavaksi päivittäin\n\nYlitarkastaja Ruutu muistuttaa, että uusia aikoja tulee tarjolle päivittäin, joten niitä kannattaa käydä katsomassa usein.\n\n– Jos näyttää, että seuraava vapaa-aika on vasta elokuussa, niin aikoja voi avautua lähipäiville, kun aseman henkilöstötilanne varmistuu.\n\nVuosina 2018–2019 myönnettiin ennätysmäärä viiden vuoden henkilökortteja. Ruuhka syntyi, kun suuri joukko suomalaisia uusii henkilökorttejaan juuri nyt.\n\nKortin suosiosta on lisännyt se, että pankit eivät enää hyväksy ajokorttia henkilötodistukseksi. Elokuusta 2021 lähtien henkilökortin uusiminen on vaatinut käyntiä poliisiasemalla, koska kortteihin tallennetaan myös sormenjäljet.\n\nJos on kiire saada passi, poliisihallitus suosittelee menemään ilman ajanvarausta poliisiasemalle. Lyhyimmät jonot ovat pienten paikkakuntien asemilla.\n\n– Toisinaan voi joutua jonottamaan vähän pidempään, mutta yleensä palvelun saa kohtuullisessa ajassa, kertoo Ruutu."
+        ],
+        "image": "https://img.img-cdn.yle.fi/crop_extract,w_3300,h_1856,x_312,y_279/crop_fill,w_1200,h_628/f_auto/39-1285205664452bdf382e/1734671443"
+      },
+      {
+        "id": "https://www.icontentic.com/move-to-finland/",
+        "title": "Move to Finland - IContentIC",
+        "url": "https://www.icontentic.com/move-to-finland/",
+        "publishedDate": "2026-04-09T21:07:16.000Z",
+        "highlights": [
+          "## Population Registration\n\n The Finnish Digital and Population Information Service maintains personal data in the population information system. You need to have a residence permit and a valid address for at least SIX months to be eligible for registration (Postal Address and Phone SIM Card) \n\n🟢 Digi- ja väestötietovirasto: \n\nIt determines your residency in Municipality in Tampere City) for: a) Access to local services, b) Healthcare region, c) Voting rights (later stage). For the first time, you need to register your address in person (e.g., DVV in Tampere)\n\n🟢 Citizen Certificate \n\nAn identity card is a document that certifies your identity when you use different services. You can find the requirements in the Police Portal. 🟢 Apply for an ID card\n\nThe first ID card is issued in person at the police centre in the city. (e.g., the Police Department in Tampere)"
+        ],
+        "image": "https://www.icontentic.com/wp-content/uploads/2026/07/cropped-Picture1-1-1.png"
+      },
+      {
+        "id": "https://documentsfolders.com/sl/get-a-finnish-id-card/",
+        "title": "How to Get a Finnish ID Card: Requirements & Process",
+        "url": "https://documentsfolders.com/sl/get-a-finnish-id-card/",
+        "publishedDate": "2026-02-04T09:40:14.000Z",
+        "highlights": [
+          "## Finnish ID Card Appointment: What You Should Know\n\nA Finnish ID card appointment is often required to verify identity and submit biometric data. Appointment availability can vary significantly depending on location and season.\n\nCommon challenges include:\n\n- Long waiting times\n- Limited appointment slots\n- Incomplete document checks\n- Last-minute cancellations\n\nWith professional assistance, you avoid unnecessary delays by ensuring everything is correct before the appointment, reducing the risk of repeat visits.\n\n## Finnish ID Card Processing Time\n\nThe Finnish ID card processing time depends on:\n\n- Application volume\n- Applicant nationality\n- Completeness of documentation\n- Seasonal demand\n\nOn average, processing may take several weeks, but delays are common if documents are missing or incorrect.\n\nOur role is to help prevent avoidable delays by ensuring your application is prepared correctly the first time."
+        ],
+        "image": "https://documentsfolders.com/wp-content/uploads/2026/02/Finnish_identity_card.jpg"
+      }
+    ],
+    "searchTime": 1171.9,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

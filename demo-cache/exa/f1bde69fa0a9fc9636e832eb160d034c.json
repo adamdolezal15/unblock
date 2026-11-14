@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T07:21:07.733Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Suomi.fi appointment for Residence permit in Helsinki, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Residence permit\" (Suomi.fi) in Helsinki, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "c6623107527aaf014dc4dbb383306339",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://exa.ai/library/place/xv1lszgfgn7",
+        "title": "Finnish Immigration Service Point",
+        "url": "https://exa.ai/library/place/xv1lszgfgn7",
+        "publishedDate": "2026-09-23T12:00:00.000Z",
+        "highlights": [
+          "> Their services really vary a lot. Once I went there and the lady processing my documents was rude and said she had doubts I would be staying in Finland. FYI I am employed and had all my documentation right. Other times I got adequate non-nationalistic people. Although once there was a guy who could barely read, so I spent 1,5h there instead of 30 min, because he struggled to read my work contract. I normally wait 3-4 months to get me residence permit extended. I wish they had the budget to update their systems and to arrange workplace training for their personnel.\n>\n> — 3 out of 5, 2019-09-09"
+        ]
+      },
+      {
+        "id": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "title": "Migri Processing Times 2026: Fast Track 14 Days, Family 9 Months | ENB",
+        "url": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "publishedDate": "2026-09-05T16:05:02.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "Checked against Migri on 14 October 2026: first permits for employed persons (TTOL) that ended in a positive decision took an average of 17 days in July 2026, specialists usually get a decision in about two weeks, and Fast Track for specialists, EU Blue Card holders and start-up entrepreneurs has a 14-day target. About 82% of positive decisions on first student permits come within 30 days. Family-based applications have a statutory maximum of nine months, and Migri has reported backlogs in them. The clock starts when you prove your identity, not when you submit, and the card takes about two more weeks after the decision. Migri publishes two estimates per application type — most cases and a minority of cases — and if yours has not been taken up within the shorter one, the longer applies. Statutory maximums are a separate thing: two months for work-based permits, three for studies and nine for family ties. If you applied for an extension before the old permit expired, you may keep working while you wait. Migri asks you not to call when an estimate is exceeded; if a statutory maximum is exceeded, a free complaint to the Parliamentary Ombudsman is possible, but the Ombudsman cannot change a decision.\n\n...\n\n| Application | What Migri reports | Limit in law or service target |\n| --- | --- | --- |\n| Employed person (TTOL), first permit | Most cases one month, a minority two months; positive decisions averaged 17 days in July 2026 | Two months in law, counted from the biometrics visit; Migri's own goal is one month |\n| Employed person (TTOL), extended permit | Averages for July 2026: 37 days for positive decisions, 162 days for refusals | Two months in law |\n| Specialist | About two weeks in most cases, up to two months in a minority | Two months in law; Fast Track target 14 days for a first permit |\n| EU Blue Card | First permits can go through Fast Track; for extensions, read the live estimate | Two months in law; Fast Track target 14 days for a first permit |\n| Start-up entrepreneur | Can go through Fast Track once Business Finland has issued its statement | Fast Track target 14 days |\n| Studies, first permit | About 82% of positive decisions within 30 days; with no decision by then, Migri's estimate is 90 days | Three months in law |\n| Family ties, first permit | Migri has reported backlogs; read the live estimate for your exact family category | Nine months in law; 90 days for a student's family member when no additional information is needed |\n| Permanent residence permit | No figure verified; read the live estimate. The requirements changed on 8 January 2026 | No general maximum in law; six months for the EU long-term resident's permit |\n| Finnish citizenship | Migri has reported a backlog that it is clearing; read the live estimate | No general maximum in law; 12 months for persons under protection |\n| EU citizen, registration of right of residence | Listed under EU citizens in Migri's table; read the live estimate | Six months for the residence card of an EU citizen's family member |\n\n...\n\nThe most common misunderstanding is that the clock starts the moment you submit. According to Migri the processing time starts when you have proved your identity, which happens at a service point visit or, for some online applications, on submission in Enter Finland. The time ends when the decision is ready.\n\nThe card has to be counted in as well. After the decision, producing and posting the residence permit card takes about two more weeks. \"The decision is out\" and \"the card is in my hand\" are therefore not the same day, and travel or a starting date at work should be planned around the card.\n\nFor work-based permits the Aliens Act says this in so many words: the decision is due within two months of the authority receiving a properly completed application with its attachments, and the time is counted from the visit at which you give your fingerprints and other biometrics — at a Finnish mission or an external service provider abroad, or at a Migri service point in Finland. Migri also says it can start on an employed person's application before identity has been proved, and that an employer who submits the terms of employment without delay speeds the processing up.\n\n...\n\nFor each application type Migri publishes not one time but two estimates: the processing time in most cases and the processing time in a minority of cases. The rule is plain: if your application has not been taken up during the shorter estimate, the longer estimate in the table is the one that applies in your case.\n\nThe estimates are based on how long most decisions took in the preceding months and how many similar applications arrived in the past two months; they are updated every two months. The time spent in the queue is included in the estimate. If no additional information has to be requested, the shorter estimate will most likely apply.\n\n...\n\n### Checklist\n\n- Residence permits on the basis of work: 2 months, counted from the visit at which biometrics are given\n- Residence permit on the basis of studies: 3 months\n- Residence permit on the basis of family ties: 9 months\n- A student's family member: 90 days from a complete application\n- Residence card of an EU citizen's family member: 6 months\n- EU long-term resident's residence permit: 6 months\n- Citizenship application of persons under protection: 12 months\n- Asylum: 18 months where the investigation requires it, and 21 months where the situation in the country of departure is unstable"
+        ],
+        "image": "https://www.enb.fi/services/enb-fi-senate-square-people.jpg"
+      },
+      {
+        "id": "https://tem.fi/en/-/permit-processing-time-reduces-by-half-automation-speeds-up-decisions",
+        "title": "Permit processing time reduces by half — automation speeds up decisions -             Ministry of Economic Affairs and Employment",
+        "url": "https://tem.fi/en/-/permit-processing-time-reduces-by-half-automation-speeds-up-decisions",
+        "publishedDate": "2024-03-25T07:18:00.000Z",
+        "highlights": [
+          "The development measures of the employment and economic development services (TE services), the Finnish Immigration Service and the Ministry of Economic Affairs and Employment reduced the processing time of residence permits for employed persons to an average of 41 days in February 2024 from the previous year’s figure of 77 days.\n\nA faster processing time for favourable decisions is particularly significant. In February 2024, the average processing time was 23 days for first permits and 21 days for extended permits. “The Finnish Immigration Service and TE Offices have done excellent work. We aim to ensure that permit applicants and employers can rely on the promise of a one-month maximum processing time, as outlined in the Government Programme. At the core of this work will continue to be ensuring that abuses are prevented throughout the permit procedure,” says Minister of Employment Arto Satonen. \n\nIn February 2024, TE Offices made a favourable partial decision on first and extended permits in 12 days on average. The Finnish Immigration Service then took, on average, 9 days to make a favourable decision. In February 2023, favourable partial decisions were processed in 44 days and the total processing time was 66 days."
+        ],
+        "image": "https://tem.fi/documents/1410877/2118334/kädet_työntekijä_työnteko_1000.jpg/27fd7a26-73a3-7b9c-9005-44d7c8acafbc?t=1768396448132"
+      },
+      {
+        "id": "https://www.finlandforum.org/viewtopic.php?start=60&t=105867",
+        "title": "Current Average Processing Times for Spouse of Finnish Citizen RP. NON-EU - Page 5 - Finland Forum",
+        "url": "https://www.finlandforum.org/viewtopic.php?start=60&t=105867",
+        "publishedDate": "2025-01-31T00:00:00.000Z",
+        "author": "Post by Edin0408 » Fri",
+        "highlights": [
+          "> madridista86 wrote: ↑\n> \n> Thu Jan 30, 2025 3:12 pm\n> \n> Hello , My application moved from waiting for process to decision ready in same day. Today i had the answer we was waiting from 05-11-2024 Thanks god approved now I should prepare myself to be with my love. I am from Morocco\n\n...\n\nCongratulations to all of you who have got your permits. I have also applied through enter Finland on January 16 .2025 and waiting for an appointment to go to the embassy to proove my identity.\n\n Post by Theruu » Tue Feb 04, 2025 11:40 am \n\nHei, Finally, I received the decision today. It took almost three months. I filed the application on 06.11.2024. Note: My wife is not a Finnish citizen.\n\n Post by Edin0408 » Wed Feb 05, 2025 3:13 am \n\nHi I received the decision yesterday ...the whole process 30.10.2024 We have received the processing fee for your application. €470 30.10.2024 We have received your application and it is pending. 08.11.2024 A customer number has been created for you. You can see your customer number at the top of the page. 08.11.2024 A diary number has been created for your application. You can see the diary number at the top of the page. Your application has been placed in the processing queue. We will contact you if we need more information from you. Our processing times can be found on our website at www.migri.fi 15.11.2024 You have sent additional information for the application. We have received it. The documents you sent are displayed in the application information. 04.02.2025 The decision has been made. If you cannot see the document concerning your decision, please wait patiently. You will be contacted. 04.02.2025 The decision can be read on your user account. 04.02.2025 You have received the decision. 05.02.2025 The card has been ordered\n\n...\n\nAre there any people who applied in Helsinki? And has already received or waiting for a decision.\n\n...\n\nPost by Edin0408 » Mon Feb 10, 2025 11:39 am \n\nHello. One last update, Today I received an email from the consulate that I can get my permit card That's only 5 days after the judgement. Good luck everyone..\n\n...\n\nCongratulations to everyone who either got the residence permit themselves or their spouse did. For us, we are still waiting. I'm a Finnish citizen and my wife is Moroccoan who went to the embassy in Morocco on 01.10.2024. ... So while we were waiting for the decision to come any day, it took almost a month but eventually the application went to 2nd stage. So the latest update is that one week after it went to that stage (at the end of January), I received a letter stating that I need to bring the marriage contract back for them to check it again. I have no idea why but what I know is that since the first time I brought it to them (2.5 months ago) until now it has been one person who has been investigating it. ... It should not take almost 3 months to investigate this matter. I believe that this investigator has ... You can check my previous posts for more detailed understanding.\n\n...\n\nPost by kuusipalaa » Mon Feb 17, 2025 9:53 am \n\nconfirmed identity on 20.09 in Helsinki (my wife is in Finland, she has another residence permit that is not based on family ties, she applied for an extended one but changed the reason for the residence permit.), and we will be waiting for 5 months soon. no updates.\n\n...\n\nHi! I’m an applicant for a residence permit as the spouse of a Finnish citizen. I submitted my documents at the embassy in the third week of January 2025. At the same appointment, there was another applicant from my home country applying for the same type of residence permit. We sat at the same table—my appointment was first, followed by hers. A few days ago, she received a positive decision exactly nine weeks after our appointment, while I haven’t received mine yet. However, we’re staying optimistic that ours will be processed soon, given that we applied for the same type of permit and her decision came relatively quickly."
+        ],
+        "image": "https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f44f.svg"
+      },
+      {
+        "id": "https://silvianguyen.blogspot.com/2025/08/my-residence-permit-in-finland-is-valid.html",
+        "title": "Silvia Nguyen: My Residence Permit in Finland is Valid From Today",
+        "url": "https://silvianguyen.blogspot.com/2025/08/my-residence-permit-in-finland-is-valid.html",
+        "publishedDate": "2025-08-01T00:00:00.000Z",
+        "author": "Silvia Nguyen",
+        "highlights": [
+          "### How I applied on enterfinland.fi\n\nI hit \"submit\" the application and paid application fee on May 8th. I created an account with just my email address long before that and drafted my application. The site autosaves every time you fill in something new.\n\nThe next period waiting for an appointment to prove our identity at the embassy felt really really long. Since nothing was certain, we didn't buy stuff. But we learned a lot of Finnish together. Facebook groups were full of posts asking if anyone received a decision. Such anxious time. Near the end of June I gave up on expecting the email and thought \"ugh whatever\" then it came.\n\nOn June 23rd, we went to the embassy with all the documents submitted online and scanned our fingerprints.\n\nJust five days later, my hubby's application was approved. Two weeks later, his card arrived and my application was approved. It took my card another two weeks to arrive.\n\nSo our application process was nearly three months in total. Although my husband received his decision a few weeks before me, we still can fly together. Mahtava!\n\nIf your family submit applications all on the same day, it's likely you two can get the cards in time to go on the same flight."
+        ],
+        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKpHznYMXKVOQXVX8k5YEaMxPWOm-1H1Qd12Aeg3-MKweTMra50QK86r2rmEeVBqMVs0TTU-j1DKO9QhudDDfYRLTGnamreEx2_zh6OjzB0acM97tkrED8EPSpU2YFVFPyu49TpFo9kK-fFgNbNp0k-4u6QGnkmzS50tj1ilDEiCChaOL8WIiGg7Qab68/w1200-h630-p-k-no-nu/1000008334.jpg"
+      }
+    ],
+    "searchTime": 1645.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

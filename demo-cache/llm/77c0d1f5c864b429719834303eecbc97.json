@@ -1,0 +1,62 @@
+{
+  "fetchedAt": "2026-11-14T07:21:24.715Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "dc9984b23022217a",
+    "includeDomains": [],
+    "docsHash": "315b477a0ba25b21"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/registrations/social-security-benefits/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "You must notify Kela of your move to Finland when you apply for benefits or for a Kela card (Kela-kortti"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Working in Finland qualifies you for Kela benefits only if you earn at least EUR 800.02 per month in salary or wages from the work you do in Finland",
+          "You must also have a residence permit granted by the Finnish Immigration Service (migri.fi) if you need one to stay or work in Finland before you can get benefits from Kela",
+          "You must have a bank account so that we can pay your benefits to you",
+          "If you cannot use OmaKela, send your application forms and form Moving to Finland or employment in Finland Y 77e (PDF) to Kela by mail",
+          "Print out the forms and send them and any supporting documents to the address Kela, PL 10, 00056 KELA"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Also notify us of your move to Finland in the OmaKela e-service or file the form Moving to Finland or employment in Finland Y 77e (PDF) with Kela, if you have not done that already"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1748,
+      "costUsd": 0.0038359999999999996,
+      "cacheHit": false
+    }
+  }
+}

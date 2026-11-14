@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T07:21:08.010Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Police appointment for Identity card for a foreigner in Helsinki, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Identity card for a foreigner\" (Police) in Helsinki, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "fa51ed4611a89a6b917714f583d48806",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "title": "Police to provide more appointment times for passport and ID card applicants - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/police-to-provide-more-appointment-times-for-passport-and-id-card-applicants",
+        "publishedDate": "2025-04-15T10:04:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "The police are addressing efficient licensing services by increasing the number of appointments for passport and identity card customers. Save time and money by booking an appointment easily online.\n\n...\n\n“To achieve this goal, police licensing services will increase the number of appointments for customers. We recommend that all customers book an appointment rather than just turning up at a police station,” says Hanna Piipponen, Chief of Licence Administration at the National Police Board.\n\n## You can find more slots on the website\n\nMore appointment times will be available to passport and ID card applicants. Appointment times can also be found beyond the opening hours of the police station. The police will add more slots to the booking system on a daily and weekly basis, depending on the police station. \n\nIf you can’t find a suitable time straight away, check out the situation later. \n\nYou can freely choose the most convenient police station for you anywhere in Finland. You can find available appointments and service points at: asiointi.poliisi.fi \n\n“When applicants initiate their passport or ID card application online, the system automatically directs them to appointment booking if they need to visit a police station in person,” says Hanna Piipponen.\n\nInitiating an application online in advance makes for quick, effortless contact rather than having to perhaps wait in a queue for hours without an appointment. If you need to visit a police station for identification purposes, you can complete your visit in less than ten minutes with an appointment.\n\n...\n\nBook an appointment online and avoid queuing. You can plan in advance when you interact and how you will spend your time."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+        "title": "Keskustelu - Kuinka nopesti ootte saaneet passin/henkilökortin tän kesän aikana? | Aihe vapaa | Vauva",
+        "url": "https://www.vauva.fi/keskustelu/5696222/kuinka-nopesti-ootte-saaneet-passinhenkilokortin-tan-kesan-aikana",
+        "publishedDate": "2024-08-12T13:36:31.000Z",
+        "highlights": [
+          "Mä hain henkilökortin ja lupapalveluun sain ekan ajan lokakuun loppuun. Onneksi ei oo kiire.\n\n...\n\n12.08.2024 | 14:23 \n\nOnko joka paikassa yhtä pitkät jonot?\n\n12.08.2024 | 14:32 \n\nEi todellakaan kannata varata aikas lupaspalvelusta jos sinun siis pitää käydä sormenjäljjet antamassa. Laita sähköinen hakemus ja mene lähimmälle poliisilaitokselle jonottamaan. Itse hain juuri uutta passia Helsingissä ja se vaati asemalla käynnin. Nettipalvelun mukaan seuraava vapaa aika olisi ollut 3 kk päässä. No, menin vaan laitokselle Pasilaan, jonotin 20 min ja se siitä. Passi tuli parin päivän päästä. Koko prosessissa hakemuksen jättämisestä passin saamiseen meni n. 5 työpäivää. \n\nJos luette tarkkaan sen nettisivun, niin siellähän sanotaan, että \"voit myös käydä poliisiasemalla jonottamassa\". Ei Suomessa mene millään asemalla mitään tuntikausia siinä jonottamisessa.\n\n...\n\nKomppaan tätä. Helsingissä myös, 3 työpäivää meni hakemus-kuva-asema-passi -prosessiin. Asemalle jonoon ~20min ennen avaamista, hyvällä tuurilla voi päästä kymmenessä minuutissa.\n\n...\n\nJoo, aamulla vaan sinne asemalle, ei kellään ole mennyt yli kahta tuntia, useimmiten menee alle puoli tuntia. En ymmärrä miksi siellä ylipäätään on se varaussysteemi kun ei niitä aikoja koskaan missään ole ja jonottamalla pääsee nopeasti.\n\n12.08.2024 | 14:45 \n\nMinä kävin Pasilan poliisiasemalla ja jonotin 15 min. Tupa oli täynnä perheitä ties millä asialla, mutta suomalaisille passinhakijoille oli ihan oma luukku ja oma jonotuslippuautomaatti. Nopeasti ja sujuvasti kävi sormenjälkien antaminen, passin hain pari päivää myöhemmin R-kioskilta. \n\nMiksi ihmeessä jotkut varailevat niitä nettiaikoja kuukausien päähän?\n\n...\n\nKävin jonottamassa, ei mennyt kauan, passi ja henkkarit tuli viidessä päivässä.\n\n12.08.2024 | 14:52 \n\nHuikean nopeasti, alle viikossa. Sain varmaan jonkin peruutusajan kun perjantaina varasin- maanantaille. Ihan huippua!\n\n...\n\nAlkukesästä Espoossa ajan sain kolmen viikon päähän kun etsin netissä aikaa. Paikan päällä oli kymmeniä ihmisiä jonossa, kun kävin antamassa uuden sormenjäljen.\n\n...\n\n12.08.2024 | 15:03 \n\n3 vrk sai postista hakea passin.\n\n12.08.2024 | 16:26 \n\nMinulla kesti Pasilassa jonotus ja sormenjäljet yht noin 40min. 3 päivän päästä paperit olivat R-kiskalla.\n\n12.08.2024 | 16:29 \n\n> Vierailija kirjoitti:\n> \n> Ei todellakaan kannata varata aikas lupaspalvelusta jos sinun siis pitää käydä sormenjäljjet antamassa. Laita sähköinen hakemus ja mene lähimmälle poliisilaitokselle jonottamaan. Itse hain juuri uutta passia Helsingissä ja se vaati asemalla käynnin. Nettipalvelun mukaan seuraava vapaa aika olisi ollut 3 kk päässä. No, menin vaan laitokselle Pasilaan, jonotin 20 min ja se siitä. Passi tuli parin päivän päästä. Koko prosessissa hakemuksen jättämisestä passin saamiseen meni n. 5 työpäivää. \n> \n> Jos luette tarkkaan sen nettisivun, niin siellähän sanotaan, että \"voit myös käydä poliisiasemalla jonottamassa\". Ei Suomessa mene millään asemalla mitään tuntikausia siinä jonottamisessa.\n\nMikään ihmekkää jos palveluissa kestää kun \"noku mä ihan vähä vain tuun täsä välissä\" minäminät siellä käyvät poukkelehtimassa.\n\n...\n\n12.08.2024 | 16:49 \n\nKesäkuussa tein hakemuksen ja varasin ajan parin päivän päähän. Olisi saanut samallekin päivälle. Passi taisi tulla alle viikon päästä tuosta käynnistä. \n\nSama perheenjäsenellä parin viikon päästä. \n\nPienen kaupungin etuja."
+        ],
+        "image": "https://www.vauva.fimodules/custom/vauva_node/assets/img/discussion_share.jpg"
+      },
+      {
+        "id": "https://demokraatti.fi/vastaavaa-ruuhkaa-ei-ole-ennen-nahty-passia-voi-joutua-odottamaan-helsingissa-kuusi-viikkoa",
+        "title": "”Vastaavaa ruuhkaa ei ole ennen nähty” – passia voi joutua odottamaan Helsingissä kuusi viikkoa | Demokraatti.fi",
+        "url": "https://demokraatti.fi/vastaavaa-ruuhkaa-ei-ole-ennen-nahty-passia-voi-joutua-odottamaan-helsingissa-kuusi-viikkoa",
+        "publishedDate": "2025-12-18T06:59:27.000Z",
+        "author": "Demokraatti Demokraatti",
+        "highlights": [
+          "## 4.3.2022 10:40 ・ Päivitetty: 4.3.2022 10:40\n\n# ”Vastaavaa ruuhkaa ei ole ennen nähty” – passia voi joutua odottamaan Helsingissä kuusi viikkoa\n\nHelsingin poliisilaitoksen lupapalveluissa joudutaan säännöstelemään sisään otettavien asiakkaiden määrää.\n\nLupapalveluissa osoitteessa Pasilanraitio 11 on tänään perjantaina ollut ennennäkemätön ruuhka. Asiakkaat voivat joutua jonottamaan vuoroaan ulkona ja jonotusaika saattaa venyä yli kahteen tuntiin.\n\n– Jos ei ole aivan pakottavaa tarvetta hakea passia nyt, niin ei kannata tulla tänään paikan päälle. Koko viikon meillä on ollut kova ruuhka, 800 asiakasta päivässä. Tänään asiakkaita on ollut aamusta lähtien niin paljon, että vastaavaa ruuhkaa ei ole ennen nähty, ylikomisario Pekka Kallio toteaa tiedotteessa.\n\nLupapalveluiden henkilöstö palvelee sekä ajanvarauksella että vuoronumerolla asioivia asiakkaita.\n\nAjanvarauksen kautta sovitun ajan henkilökortin tai passin uusimiseen saa Helsingissä tällä hetkellä kuuden viikon päähän.\n\nPoliisin mukaan ajanvaraukseen vapautuu myös peruutusaikoja ja viikon alussa myönnetään aikoja viikonlopuille, joten asiakkaiden kannattaa seurata tilannetta aktiivisesti poliisi.fi-sivuilta Ajanvaraus | Poliisin sähköinen asiointi"
+        ],
+        "image": "https://wp.demokraatti.fi/wp-content/uploads/2022/03/iStock-144210606-350x200.jpg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "title": "First 30 Days in Finland: The Complete Expat Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-month-finland-checklist",
+        "publishedDate": "2026-06-14T01:37:42.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Apply at DVV once you have a henkilötunnus and kotikunta — takes 2–4 weeks; apply in week 3–4\n\n...\n\nEverything in Finland eventually traces back to your henkilötunnus — the Finnish\n\n...\n\nThe henkilötunnus is issued by the DVV (Digi- ja väestötietovirasto, the Digital and Population Data Services Agency) when you register as a foreign national. There are two steps: submit the online foreigner registration form at dvv.fi, then attend an in-person appointment at a DVV service point.\n\nThe in-person appointment is the bottleneck. Wait times vary — in Helsinki they can stretch to a few weeks during busy periods. Book the appointment the day you land, even if you submit the form later.\n\n...\n\nBook an in-person appointment — walk-ins are rarely accepted. Expect a wait of a few days to a week. During the appointment, the bank will also issue your pankkitunnukset (online banking credentials), which is a separate and critical item covered below.\n\n...\n\n## Week 4: Finnish ID Card, Suomi.fi, and Tax Card Review\n\n### Apply for your Finnish identity card\n\nA Finnish henkilökortti (identity card) is not strictly required — you can use your passport or EU ID card indefinitely — but it is a practical document to have. It is accepted as ID everywhere in Finland, fits in a wallet, is cheaper to replace than a passport, and is the credential some government services prefer for strong identification.\n\nApply in person at a DVV service point. Processing takes 2–4 weeks, which is why you apply in week 4 rather than waiting. The card will arrive within your first two months if you apply now.\n\nWhat you need:\n\n- Your passport or current EU identity card\n- Your henkilötunnus\n- A confirmed municipality of residence registered with DVV\n- The application fee (check the current amount at dvv.fi — fees are updated periodically)\n\nChildren under 15 need a guardian present. There is no minimum age requirement.\n\n...\n\nDVV appointment wait is too long. DVV service point wait times vary significantly by city. Helsinki is the worst; Espoo, Vantaa, and smaller cities are often faster. If you have flexibility, check DVV's online booking system for all service points within commuting distance and book at whichever has the earliest slot.\n\n...\n\nBy the end of day 30, you should have:\n\n...\n\n- Finnish bank account open with pankkitunnukset active\n- Kela application submitted; Kelakortti requested\n\n...\n\n- Finnish SIM on a contract plan\n- Registered at terveyskeskus in your municipality\n\n...\n\n- Finnish ID card application submitted at DVV\n\n...\n\nHow soon can I apply for a Finnish ID card?\n\nYou can apply for a Finnish identity card (henkilökortti) at a DVV service point once you have a henkilötunnus and a registered municipality of residence. The card takes 2–4 weeks to arrive, so apply in week 3 or 4 to have it within your first two months."
+        ],
+        "image": "https://nordicexpat.com/finland/first-month-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/sv/-/25235045/i-tillstandstjansterna-vid-polisinrattningen-i-helsingfors-har-oppnats-rikligt-med-tidsbestallningstider-for-varmanaderna",
+        "title": "I tillståndstjänsterna vid Polisinrättningen i Helsingfors har öppnats rikligt med tidsbeställningstider för vårmånaderna - Statsrådet",
+        "url": "https://valtioneuvosto.fi/sv/-/25235045/i-tillstandstjansterna-vid-polisinrattningen-i-helsingfors-har-oppnats-rikligt-med-tidsbestallningstider-for-varmanaderna",
+        "publishedDate": "2025-01-31T07:23:00.000Z",
+        "author": "Polisen",
+        "highlights": [
+          "Utgivningsdatum 31.1.2025 9.23 \n\nGör dig redo för vårens och sommarens resor i god tid genom att förnya ditt pass eller identitetskort som går ut. Utan tidsbokning kan du identifiera dig vid tillståndstjänsterna i Helsingfors i allmänhet på mindre än en timme. När du bokar tid får hanteringen av ditt ärende snabbare.\n\nDet lönar sig alltid att inleda ansökan av ett nytt resedokument på webben på adressen poliisi.fi. Att förnya ditt pass eller identitetskort kräver inte alltid ett besök på polisstationen. Polisens elektroniska ärendehanteringssystem meddelar om du behöver besöka polisstationen för att identifiera dig.\n\nIdentifieringen kan göras antingen genom att boka en tid i förväg eller genom att köa till en tillståndsenhet utan tidsbokning. I Helsingfors betjänar polisens tillståndsenhet på huvudpolisstationen i Böle.\n\nEfterfrågan på resedokument är alltid störst före semesterperioder. Du kan förbereda dig för vårens och sommarens resor i god tid i förväg genom att boka en tid till polisstationen för att förnya ditt pass- eller identitetskort. Ett stort antal tidsbeställningstider för vårmånaderna har nu öppnats vid tillståndsenheten i Böle.\n\n– Det är en bra idé att boka tid i förväg, eftersom de som köar för att sköta ärenden får vänta i en dryg halvtimme i genomsnitt. Under dagar eller tider då det är rusning kan väntetiden bli längre, säger kommissarie Satu Mäkinen vid funktionen Tillståndsärenden vid polisen i Helsingfors.\n\nI allmänhet har tillståndstjänsterna i Böle det största antalet kunder på måndagar och fredagar. De livligaste tiderna på dagen är öppnings- och stängningstiderna, klockan 8.00 och 16.00, samt lunchtid mellan klockan 11.00 och 13.00 .\n\n...\n\nI den elektroniska ärendehanteringstjänsten kan du välja från vilket avhämtningsställe du vill hämta ditt färdiga pass eller identitetskort. Du ska ha med dig försändelsekoden i ankomstmeddelandet, och ett pass eller identitetskort som utfärdats av en finsk myndighet. Ett pass eller identitetskort vars giltighetstid gått ut för mindre än ett år sedan duger också för att styrka din identitet.\n\nDu kan ge fullmakt åt en annan person för att denna avhämtar ditt pass. Då måste personen som avhämtar passet ha med sig fullmakt, försändelsekod och ett giltigt finländskt pass eller identitetskort. Fullmaktsmallen kan skrivas ut till exempel från polisens webbplats: Leverans av pass.\n\n# Gör så här när du behöver ett nytt pass eller identitetskort\n\n- Innan du ansöker om pass eller identitetskort ska du ta reda på vilken typ av resedokument du behöver för resmålet. Du kan resa till EU-länderna och några andra europeiska länder utöver med pass även med identitetskort.\n- Gå på passfotografering. Fotot som fogas till passansökan får vara högst 6 månader gammalt.\n- Börja med ansökan av pass eller identitetskort i polisens elektroniska ärendehanteringssystem. Om du inte kan ansöka om resedokument på nätet, kan du lämna in din ansökan på polisstationen. Det är billigare och snabbare att lämna in ansökan på nätet.\n- Identifiera dig vid behov på polisstationen genom att antingen i förväg reservera tid på nätet för att identifiera dig eller genom att köa med könummer.\n- Kom ihåg att avbeställa tiden som du bokat till tillståndstjänsterna om du inte kan närvara.\n- Pass, identitetskort och tillstånd\n- Polisinrättningen i Helsingfors, verksamhetsställen och tjänster"
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      }
+    ],
+    "searchTime": 1396.2,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

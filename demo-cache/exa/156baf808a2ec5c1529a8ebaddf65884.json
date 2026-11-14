@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T07:21:07.935Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi Residence permit Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Residence permit\" (Suomi.fi) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "160ec6a2e32087f55850655a2c6a1d2e",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://valtioneuvosto.fi/en/-/5202425/student-this-is-what-you-should-do-to-apply-for-a-residence-permit",
+        "title": "Student: this is what you should do to apply for a residence permit - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/5202425/student-this-is-what-you-should-do-to-apply-for-a-residence-permit",
+        "publishedDate": "2025-04-22T13:36:00.000Z",
+        "highlights": [
+          "You can receive a residence permit for studies if\n\n...\n\n- you participate in an exchange programme between educational institutions or some other exchange programme. For more information on exchange programmes, please contact your educational institution.\n\nApply for a residence permit for studies in the Enter Finland online service. Fill in the application carefully and add all the necessary attachments. Make sure that any attachments have been translated into Finnish, Swedish or English.\n\nIf your family members are applying with you, make sure that \n\n- documents related to the family relationship have been legalised\n- all the attachments have been translated into Finnish, Swedish or English\n- the applications contain the necessary reports on adequate financial resources.\n\n## Book an appointment to prove your identity\n\nOnce you have submitted your application in Enter Finland, book an appointment for identification, i.e., to prove your identity. Book the appointment as soon as possible because embassies or consulates may be busy during the summer when many students are applying for their first residence permit. Check the Ministry for Foreign Affairs’ website Finland abroad (finlandabroad.fi), to see which embassy you should visit to prove your identity.\n\n...\n\nAt the moment, approximately 75% of those applying for the first residence permit for studies receive a decision within 30 days. \n\nWe aim to process the family members’ applications at the same time as the student’s application if the family members have visited to prove their identity at the same time as the student and their applications contain all the necessary information and attachments. We process family members’ applications within 90 days of submitting a fully completed application. A fully completed application means that the application has been duly filled in and contains all the necessary attachments. Documents related to family relationships must also be legalised.\n\n...\n\nWe will contact you if we need more information on your application."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://www.enb.fi/guides/moving-to-helsinki-living-guide-2026/",
+        "title": "Moving to and Living in Helsinki 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/moving-to-helsinki-living-guide-2026/",
+        "publishedDate": "2026-08-24T19:42:41.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "## Short answer\n\nWhen relocating to Helsinki, the order of formalities matters: immigration status → DVV/personal identity code/municipality of residence → Vero → Kela → banking/strong authentication → housing/utilities → local services. International House Helsinki / Helsinki-info provides local guidance for international newcomers. A city guide does not replace permit or benefit rules; always verify personal eligibility with Migri, DVV, Vero and Kela.\n\n...\n\nNon-EU nationals should confirm the correct residence permit; EU citizens should check whether registration of the right of residence is required for stays over three months.\n\n...\n\nCommon early bottlenecks include civil-status documents, legalisation/translation, DVV appointments, housing and bank KYC. Check marriage/birth-certificate requirements before arrival.\n\n...\n\nMunicipality-of-residence registration matters for local public services; having a Finnish personal identity code does not always mean that a municipality of residence has been registered. Kela eligibility is also not automatic merely from an address registration.\n\nDo not delay the tax card when starting work. Strong electronic identification makes access to many public and private services easier.\n\n### Checklist\n\n- Confirm residence permit / EU registration status\n- Complete DVV personal identity code and municipality-of-residence registration\n- Arrange tax card / Vero matters\n- Check Kela eligibility\n- Set up bank account and strong authentication\n- Arrange housing contract, electricity and home insurance\n- Plan public transport / driving\n- Apply early for daycare/school if needed\n- Register with employment/integration services where relevant\n- Use the local newcomer service for initial guidance\n\n...\n\nSource check: 24 August 2026.\n\n...\n\n### Checklist\n\n- Confusing personal identity code with municipality of residence\n- Assuming Kela starts automatically\n- Delaying tax card\n- Assuming bank KYC finishes immediately\n- Leaving school/daycare too late\n- Missing legalisation/translation of foreign civil-status documents\n- Treating local guidance as a Migri/DVV decision-maker\n- Choosing housing based only on rent"
+        ],
+        "image": "https://www.enb.fi/cities/helsinki.jpg"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/5202425/information-about-stricter-requirements-for-issuing-residence-permits",
+        "title": "Information about stricter requirements for issuing residence permits - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/5202425/information-about-stricter-requirements-for-issuing-residence-permits",
+        "publishedDate": "2024-08-30T11:54:00.000Z",
+        "author": "Maahanmuuttovirasto",
+        "highlights": [
+          "### 1. You have applied for a first residence permit in Finland\n\nAccording to the Aliens Act, an application for a first residence permit must usually be submitted outside Finland. Once the legislative amendments have entered into force, we will apply a stricter approach to applications for a first residence permit that have been submitted in Finland.\n\n- You can get a negative residence permit decision if you apply for a first residence permit in Finland.\n- There are certain situations where you can apply for a first residence permit in Finland, for example if \n\n- you are a family member of a Finnish citizen\n- you apply for a residence permit for a child born in Finland\n- you apply for a residence permit for studies or you are a family member of a student\n- you apply for a residence permit for a researcher or you are a family member of a researcher\n- Each application will be examined individually. When making a decision on your residence permit application, all facts and circumstances affecting your situation will be taken into account. On that basis, we will assess whether it is unreasonable to reject your residence permit application and whether there are obstacles to issuing a residence permit with regard to general obedience to the law, managed migration or internal security.\n- As before, the following can be applied for only in Finland: an extended permit, a permanent residence permit, registration of an EU citizen, international protection, temporary protection, a residence permit for a victim of human trafficking, a residence permit due to misconduct of the employer and a residence permit on a discretionary basis on humanitarian grounds.\n\n### 2. You have applied for a residence permit without having a passport issued by your country of nationality\n\n- When you apply for a residence permit, you must usually have a valid passport issued by your country of nationality. If you, for instance, have a refugee travel document or an alien’s passport issued by Finland or some other country, you will not necessarily be able to get a residence permit in Finland.\n- For more information, see our customer bulletin: Stricter identification requirements for residence permit applicants\n\n...\n\n## Your own actions will be given more weight when your application is being examined\n\nThe following situations, for example, can result in a negative residence permit decision:\n\n- You have given the authorities false information about your identity or nationality or the true purpose of your stay in Finland, for example.\n- You have presented forged documents.\n- You have resided in Finland illegally. \n- You have knowingly worked in Finland illegally, that is without having the right to work. \n- You have submitted a manifestly unfounded application so that you would not have to leave the country.\n- You have tried to mislead the authorities in some other way.\n\n...\n\nApply for an extended permit or a permanent residence permit before your current residence permit expires. You can get a negative decision if you apply for an extended permit or a permanent residence permit after your previous permit has expired. \n\n- If you have sent your application in the online service Enter Finland before the expiry of your previous permit, you have applied for a new permit in time."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "title": "Moving to Finland – the first 30 days, step by step",
+        "url": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "publishedDate": "2026-09-25T09:08:59.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "Citizens ... Everyone else applies to Migri (Finnish Immigration Service; Migrationsverket in Swedish) before coming, because a first permit for work cannot be applied for from inside Finland – see part 2.\n\nHave birth, marriage and divorce certificates and diplomas legalised and translated before you leave: the authorities accept Finnish, Swedish or English, nothing else. Removal goods from outside the EU customs territory need a customs declaration within 12 months of the move, and pets fall under the Finnish Food Authority’s rules, which often require vaccinations.\n\n...\n\n| 3 | Get the personal identity code, unless Migri issued it | DVV, or a tax office for tax purposes |\n| 4 | Apply for a municipality of residence – a separate step | DVV |\n| 5 | Get a verokortti (tax card) | Vero (Tax Administration) |\n| 6 | Open a bank account; ask for online banking codes | Your bank; part 4 |\n| 7 | Tell Kela about your move; apply for the Kela card | OmaKela or form Y 77e |\n| 8 | Register as a jobseeker if you have no work | Your municipality’s employment services |\n| 9 | Find your terveysasema (health station) | Your hyvinvointialue (wellbeing services county) |\n| 10 | Phone, foreigner’s identity card and, if needed, a licence exchange | An operator; the police; Ajovarma |\n\n...\n\nIn Helsinki one address covers most of week one. International House Helsinki, at Ratapihantie 7 in Pasila since 1 June 2026, handles EU registration for Migri, the code and municipality of residence for DVV, the tax card for Vero, jobseeker registration and Kela by remote service, Monday to Friday 9.00–16.00. Identity cards are the exception: newcomers go to the Helsinki Police Department at Pasilanraitio 11. Espoo and Vantaa residents use the same house, because DVV’s Espoo office has closed permanently.\n\n...\n\nIf Migri grants you a residence permit, EU registration or a residence card, you are registered automatically and the code comes with the decision. Otherwise you request it from DVV with an online form and visit in person within one month, every family member included; it is free and takes two to three weeks in work and study cases. Tax offices in larger cities issue codes for tax purposes only, usually within one to three business days. Neither of those codes gives you a municipality of residence – for that you still apply to DVV, as part 3 explains.\n\n...\n\n## Three mistakes that cost time or money\n\n| Mistake | What happens | How to avoid it |\n| --- | --- | --- |\n| Assuming the code from Migri or Vero makes you a resident | No kotikunta, so no health station, school place or residence-based benefits | Apply for the municipality of residence at DVV |\n| Submitting DVV’s form and forgetting the visit | The visit must take place within one month of the form, for every person | Book the appointment when you submit |\n| EU citizen letting three months pass | You are staying without registering and cannot get a kotikunta | Apply to Migri within three months of arrival |\n\nSource: InfoFinland, DVV and Migri, read 24 September 2026."
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-moving-to-finland-first-30-days-checklist-in-the-r.jpg"
+      },
+      {
+        "id": "https://kamu.uef.fi/en/tietopankki/degree-student/new-students/orientation-and-starting-your-studies/residence-permit-and-official-matters-for-new-students/",
+        "title": "Residence permit and official matters for new students - UEF Kamu",
+        "url": "https://kamu.uef.fi/en/tietopankki/degree-student/new-students/orientation-and-starting-your-studies/residence-permit-and-official-matters-for-new-students/",
+        "publishedDate": "2026-04-27T08:29:21.000Z",
+        "highlights": [
+          "Required steps\n\n1. Submit the residence permit application online. Start the application process as early as possible.\n2. Visit a Finnish embassy or consulate (opens in a new tab) within 3 months to verify your identity. There may not be a Finnish mission in your country or residence. You may need to travel to another country.\n\n...\n\n#### What is required for the residence permit application?\n\nYou will need\n\n- online application (opens in a new tab)\n- a valid passport\n- health insurance covering medical treatment\n- letter of acceptance from UEF\n- proof of sufficient funds\n- tuition fee or scholarship information (if applicable)\n\nProcessing time\n\n- typically 1-3 months, depending on your country\n- Do not book flights before your residence permit is granted.\n- Late or incomplete applications may cause delays.\n\n...\n\nAll students staying over 3 months must have a Finnish personal identity code. You might have it on your residence permit card already.\n\nIf you don’t have the Finnish personal identity code, you must visit the Digital and Population Data Services Agency (DVV) (opens in a new tab) in person to\n\n- register as a foreigner (opens in a new tab)\n- obtain the Finnish Personal Identity Code (opens in a new tab)\n- (if eligible) apply for a municipality of residence (opens in a new tab)\n- submit a notification of move (opens in a new tab)\n\nBring with you\n\n- passport or official ID\n- UEF study certificate\n- residence permit (if applicable)\n- If family members move with you: marriage and children’s birth certificates\n\nAfter receiving your Finnish personal identity code, inform the UEF Student and Learning Services about it.\n\nYou should always use your Finnish personal identity code in all the official matters in Finland. For example when visiting a doctor, opening a bank account, getting your medical prescription, getting a Finnish tax card etc. This code differentiates persons from each other in all Finnish data bases."
+        ]
+      }
+    ],
+    "searchTime": 1822.4,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

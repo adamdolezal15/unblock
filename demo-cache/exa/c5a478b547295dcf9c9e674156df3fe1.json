@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T07:20:39.099Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Police Identity card for a foreigner Tampere, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Identity card for a foreigner\" (Police) in Tampere, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "2791cbf3418c0c64b69173a17262490a",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "title": "Finnish ID Card for Foreigners (Ulkomaalaisen Henkilökortti)",
+        "url": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "publishedDate": "2026-11-11T21:00:31.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Foreigners who live in Finland can get a Finnish identity card from the police, called the foreigner's identity card (ulkomaalaisen henkilökortti). The rules sit in the Identity Card Act (henkilökorttilaki 663/2016): you need a valid residence permit or residence card (or a registered right of residence), a municipality of residence (kotikunta) in Finland, and your details in the Population Information System. In 2026 the card costs EUR 59, or EUR 53 if you apply electronically.\n\n...\n\nTwo things set the foreigner's card apart:\n\n- It is not a travel document. The Act requires the foreigner's identity card to carry a note that it cannot be used as a travel document (§ 4). For travel you still need your passport.\n- It follows your permit. It is issued for five years, but never for longer than your residence permit or residence card is valid (§ 19).\n\n...\n\n3.\n\n...\n\nUnder the Act, identity cards are applied for from the police, and the application can be started electronically (henkilökorttilaki § 9). The 2026 fee table charges less for an electronic application.\n\n### Visit in person, at least the first time\n\nThe applicant must come in person to complete the application. For a foreigner's identity card, the Act lets you skip the visit only if all of these apply (§ 10):\n\n- you were issued a foreigner's identity card within the previous six years, and you visited the authority in person for that application,\n- you were over 12 when that card was issued, and\n- you gave a signature sample within the previous six years and your surname or first name has not changed since.\n\nThe police can still ask you to come in to identify you, give a new signature sample or for another special reason. In practice, your first foreigner's identity card means a visit.\n\n### Bring ID, give fingerprints\n\nYou must show a valid identity document, such as your passport. If you have none, a foreigner must show a valid residence permit card or residence card, and the police may compare your fingerprints with those stored on it (§ 11). Fingerprints are taken from everyone applying for an identity card, except applicants under 12 or people who cannot give them because of age, disability, illness or a similar reason (§ 9 a).\n\n### Receive the card\n\nThe card is sent as a registered letter or a similar trackable item (§ 21). In special cases the police hand it over instead. Your previous identity card stops being valid when the new card is handed over to you.\n\n...\n\nThe Act says an identity card includes the citizen certificate (kansalaisvarmenne) issued by DVV, which is used for electronic identification. The minor's identity card and the temporary identity card do not include it (§ 3). For how certificate cards work with Suomi.fi services, see our Suomi.fi e-identification guide.\n\n...\n\n## When the card is cancelled\n\nSection 26 lists when a foreigner's identity card is revoked. The ones most likely to affect you:\n\n- your residence permit, registered right of residence or residence card is revoked, or you are deported,\n- you no longer have a municipality of residence in Finland,\n- you ask for it to be cancelled, or\n- you report it lost or stolen.\n\nIf you move away from Finland and no longer have a municipality of residence here, the Act says the card is revoked.\n\n## Common problems and fixes\n\n- \"The police said I have no municipality of residence.\" The card requires a kotikunta. Our DVV registration guide explains population registration.\n- \"My card expires when my permit does.\" That is the rule: the Act caps the card at the validity of your residence permit or residence card.\n- \"I tried to travel with it.\" The foreigner's card is marked as not valid for travel. Carry your passport.\n- \"My old card stopped working.\" The previous card's validity ends when the new card is handed over to you.\n\n...\n\nConfirm you have a residence permit (or registered right of residence), a municipality of residence, and your details in the Population Information System. Then start the application with the police, who handle identity cards (henkilökorttilaki § 9); their website is poliisi.fi. If you have strong electronic identification (see our guide to Finnish online banking IDs), you can apply online for the lower fee. Then book your in-person visit."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://hokuowhguide.com/finland-id-card-application/",
+        "title": "ワーホリ滞在者必見！フィンランドIDカードの作り方と申請手順【警察署での申請ガイド】",
+        "url": "https://hokuowhguide.com/finland-id-card-application/",
+        "publishedDate": "2025-10-15T21:01:56.000Z",
+        "author": "Lana",
+        "highlights": [
+          "警察の公式サイト（poliisi.fi）から申請可能で、手数料は48ユーロ。 ただし、ログインにはフィンランドの銀行ID（Bank ID）が必要です。\n\nつまり、銀行口座を持っていない人はオンライン申請できません。\n\nワーホリのように「これからIDカードを作って銀行口座を開く」段階の人は、 まず対面申請から始めましょう。\n\n...\n\n誰でも利用でき、手数料はオンラインより少し高い 55ユーロ。 予約なしで必要書類を持って最寄りの警察署（Poliisi）へ行くだけでOKです。\n\n...\n\n## 警察署に持っていくもの\n\n申請に必要な持ち物は次の通りです。\n\n| 持ち物 | 説明 |\n| --- | --- |\n| パスポート（原本） | 本人確認に必要。 |\n| 個人識別番号の証明書 | DVV登録後にもらえる書類。 |\n| 証明写真 | 写真館または証明写真機で撮影 （次の章で詳しく説明します） |\n| 申請手数料の55ユーロ | 現金またはカードでその場で支払い。 |\n\nまだDVV登録が済んでいない人へ IDカード申請には、DVVで住民登録を完了し個人識別番号を持っている必要があります。\n\n...\n\nIDカードの写真はその場では撮影できません。 事前に撮影し、デジタル形式（photo code）または印刷写真を準備しておく必要があります。\n\n撮影方法は主に写真館で撮る方法と、証明写真機の2種類があります。 それぞれについて以下で詳しく紹介していきます。\n\n### まず知っておきたい：「photo code」とは？\n\n日本では証明写真をプリントして提出するのが一般的ですが、 フィンランドでは多くの場合、「photo code（フォトコード）」というデジタル方式が使われています。\n\nこれは、撮影した写真データを直接警察のシステムに送信する仕組みで、 撮影後に受け取る英数字のコード（例：AB12-3CDE-FG45）を警察署で伝えるだけでOKです。\n\nこのコードを提出すれば、紙の写真を持って行く必要はありません。\n\nphoto codeの有効期限は数日〜1週間ほどなので、撮影後は早めに申請しましょう。\n\n### 写真館（Valokuvaamo）\n\n街中のフォトスタジオ（Valokuvaamo）で「IDカード用の写真を撮りたい」と伝えればOKす。\n\n英語で言う場合は：“I need a photo for Finnish ID card.”\n\n撮影後は通常、数分でphoto codeを発行してくれます。 料金は約20〜25ユーロが目安です。\n\nお店によっては、撮影時に「printed photo（プリント写真）」か「photo code（コード）」のどちらが欲しいか、または両方欲しいか聞かれます。\n\n両方を選ぶと、 2〜5ユーロほど追加料金がかかる場合があります。\n\nどちらか一方だけでも問題ないので、用途に合わせて選びましょう。\n\n写真館の探し方は「valokuvaamo + 町の名前」（例：valokuvaamo Helsinki） などと検索すると近くの写真館が見つかります。\n\n...\n\nフィンランドの警察署は、平日の日中でも混み合うことが多いです。 特にヘルシンキなどの都市部では、朝から行列ができるほど。\n\n可能であれば、開館の10〜15分前に到着して並びましょう。それだけで待ち時間が1時間以上変わることもあります。\n\n### 申請の流れ\n\n1. 整理番号を取る 入口近くにあるタッチパネル機で「ID card application」を選び、番号を受け取ります。 画面言語は英語に切り替えることができるので心配ありません。 \n2. 呼ばれるまで待機 モニターに自分の番号が表示されるまで待ちます。 混雑時は1-2時間待つこともあります。 \n3. 窓口で申請手続き 順番が来たら指定の窓口に行き、パスポート・DVV書類・写真またはphoto codeを提出。 担当スタッフが内容を確認し、登録を進めます。 \n4. 支払い 申請料（55ユーロ）をその場で支払います。現金・カードどちらもOK。 \n5. 控え（レシート）を受け取る レシートには追跡番号が書かれています。 発行状況の確認に使うので、なくさないようにしましょう。 \n\n順番が来てからの手続きは10分ほどですぐに終わります。\n\n...\n\n申請から受け取りまでの期間は、通常1〜3週間ほど。 発行が完了すると、登録したメールまたはSMSで通知が届きます。\n\n本人が警察署に直接行って受け取る必要があります。 パスポートを持参し、受付で「I’m here to pick up my ID card.」と言えばOK。\n\n郵送受け取りはできません。 申請時に希望すれば、別の都市の警察署で受け取ることも可能です。"
+        ],
+        "image": "https://hokuowhguide.com/wp-content/uploads/2025/10/IDカード.png"
+      },
+      {
+        "id": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "title": "7 Steps for a Smooth Start After Moving to Finland - Life Away",
+        "url": "https://lifeaway.blog/checklist-for-newcomers-in-finland/",
+        "publishedDate": "2025-03-09T11:57:08.000Z",
+        "author": "Katlyn Vuorenpää",
+        "highlights": [
+          "#### 3) Get Your Picture Taken \n\nGet a passport picture taken in preparation for your Finnish identity card. Your picture will be sent directly to the police for approval. Once approved you will receive a share code over text message. \n\nKeep this share code! \n\nThe code is valid for up to 6 months and it can be used for other applications that require your photo, such as your residence permit extension. \n\nYou can also have the picture printed out. I used Passikuva.\n\n...\n\n1. Buy a travel card if you’ll be using public transportation. In Tampere this can be used on the bus and tram and can be bought in-person from any of these locations for 6€. Choose your zones and top-up your card online with card payment or at a sale point. For Tampere, top-up your card here. In Helsinki, you can get a HSL travel card here. Using a travel card is much cheaper than buying single tickets! \n2. Get a library card. Libraries aren’t just for borrowing books! Some have baking equipment, gym equipment or even 3D printers that you can use and borrow. For example, at Tampere’s Metso Library, you can book music rooms to practice playing instruments and borrow their music equipment. The card is free, but you will need to show a photo ID so bring your passport, EU country ID card, Finnish residence permit or Finnish driver’s license. For Tampere check here. For Helsinki, check here.\n\n#### 4) Make an Appointment to Apply for a Finnish Identity Card (Henkilökortti)\n\nOnce you have your passport photo share code, book an appointment for the Finnish identity card (sometimes referred to as Police ID) online. A Finnish identity card is a photo ID that is accepted across Finland and is required for enabling strong identification. The card is usually valid for 5 years. \n\nUseful: once you have this, you won’t need to carry your passport as proof of age or identity when buying alcohol, for instance. \n\nImportant: the identity card is only valid for as long as your residence permit is valid. You must apply for a new identity card when your residence permit expires, so be strategic about when you apply. If you want to apply for a Finnish identity card, but your residence permit is expiring soon, get your new residence card first and then get the ID card so you won’t end up paying twice in one year. (It’s about 67€ for the card)\n\nBook an appointment with a police station here. You can make an appointment at any police station, but make sure it’s accessible by public transportation if you don’t drive (you may need to collect the card from the same police station, so make sure it’s not too difficult to get to).\n\nBring your photo share code, DVV certificate, passport, and residence permit to your appointment. You will pay for the card at the appointment. It’s 67€ in person and 63€ online (you can apply online with strong identification when you need a new card).\n\nExtra Important – The card will not be mailed to your home, but to a pick-up point of your choosing. Only someone with a Finnish-issued ID can collect the police card from the pick-up point. \n\nIf you do not have a Finnish-issued ID (residence permit does not count) and you don’t know someone who does so that you can grant them power of attorney, then you must collect from the police station. Speak to a member of staff in order to arrange the collection. In either case, you will be mailed/e-mailed a notification with a tracking number that you must also bring with you and show when picking up the card. Read more about it here. \n\nMy Finnish husband had to collect the card for me at a pick-up location and it took about a week for the card to arrive.\n\n...\n\nOnce you\n\n...\n\nYou can open a bank account whenever you want. However, if you don’t have the Finnish identity card when you go to the appointment, your bank will not enable strong identification. You will have to book another appointment to get it enabled.\n\nI chose Nordea and was able to book an appointment over the phone in English. The process was simple enough, but the wait times were a little long. This all occurred in April 2024 in Tampere, so wait times may be quicker where you are or with a different bank. \n\nThe appointment to open a bank account took two weeks from when I called. It took a week after the appointment to receive the security code in the mail and then another week to receive the debit card. When I made an appointment to enable strong identification it was another 2 week wait. \n\nThis is why I recommend you wait until you have the Finnish identity card first before opening a bank account. It’s much quicker and more efficient to make one appointment and get everything done at the same time."
+        ],
+        "image": "https://lifeaway.blog/wp-content/uploads/2025/03/food-delivery-robot-in-finland-inline.jpg"
+      },
+      {
+        "id": "https://www.icontentic.com/move-to-finland/",
+        "title": "Move to Finland - IContentIC",
+        "url": "https://www.icontentic.com/move-to-finland/",
+        "publishedDate": "2026-04-09T21:07:16.000Z",
+        "highlights": [
+          "The Finnish Digital and Population Information Service maintains personal data in the population information system. You need to have a residence permit and a valid address for at least SIX months to be eligible for registration (Postal Address and Phone SIM Card) \n\n🟢 Digi- ja väestötietovirasto: \n\nIt determines your residency in Municipality in Tampere City) for: a) Access to local services, b) Healthcare region, c) Voting rights (later stage). For the first time, you need to register your address in person (e.g., DVV in Tampere)\n\n🟢 Citizen Certificate \n\nAn identity card is a document that certifies your identity when you use different services. You can find the requirements in the Police Portal. 🟢 Apply for an ID card\n\nThe first ID card is issued in person at the police centre in the city. (e.g., the Police Department in Tampere)\n\n...\n\n1. ... 2. ... 4."
+        ],
+        "image": "https://www.icontentic.com/wp-content/uploads/2026/07/cropped-Picture1-1-1.png"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Step 3 — Bring the right documents\n\nTake, at minimum:\n\n- A valid passport or EU/EEA photo ID\n- Your residence permit card or EU registration certificate — or proof that you have applied for one\n- Proof of your grounds for staying: an employment contract, a study certificate, or similar\n- Any legalised certificates for family relationships you want recorded (marriage, birth)\n\nDocuments in languages other than Finnish, Swedish, or English may need an official translation, and foreign civil-status certificates often need legalisation (an apostille). If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      }
+    ],
+    "searchTime": 1438.8,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

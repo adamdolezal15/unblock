@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T07:21:09.507Z",
+  "request": {
+    "endpoint": "search",
+    "query": "International House Helsinki Strong electronic identification (online banking codes) Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Strong electronic identification (online banking codes)\" (International House Helsinki) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "bb26d86dc048907f4673247ad77fa6a2",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "Finnish Personal Identity Code (Henkilötunnus) Guide | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "publishedDate": "2026-06-04T18:43:45.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "-\n\n...\n\n- Enrol children in school or day care.\n\nA practical note on the chicken-and-egg gap many face: you often need the henkilötunnus before a Finnish bank will open a full account, but you may need a way to receive salary or pay rent in the meantime. A multi-currency account such as Wise or Revolut is a common bridge for those first weeks — useful as interim cover, not a permanent replacement for a Finnish account once your code comes through.\n\n...\n\n## Common Problems and Fixes\n\n- \"My permit was granted but I never got a code.\" Automatic issuance needs your identity to have been verified by a Finnish authority and your details to match your passport exactly. If it did not happen, request the code from DVV in person after you arrive — do not wait for it to appear on its own.\n- \"I have a henkilötunnus but the health centre says I'm not covered.\" You almost certainly have the code but not a kotikunta. Apply for the municipality of residence with DVV; until then, non-emergency public care may not be available at subsidised rates.\n- \"My name is spelled wrong / my date of birth is incorrect.\" Errors trace back to the source documents and identity check. Contact DVV to correct registered details; in narrow cases the code itself can be changed (e.g. wrong date of birth recorded).\n- \"I couldn't get a DVV appointment within a month of submitting the form.\" Appointment availability varies by city and season. Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day.\n- \"A bank refused me because I only have a foreigner's identity number.\" That is expected — it is not a full henkilötunnus. Use a Wise or Revolut account as interim banking, and apply for the full code once you qualify."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-personal-identity-code/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "Finnish Online Banking IDs (Pankkitunnukset) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "publishedDate": "2026-05-16T21:03:26.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "What makes them special is not the technology but the legal status. In Finland, banking codes are one of the accepted tokens for strong electronic identification (vahva sähköinen tunnistaminen). That means the state, municipalities and regulated companies treat a login with your banking codes as legally reliable proof of identity — the digital equivalent of showing your passport at a counter.\n\n...\n\nThere is an important distinction that trips up newcomers: opening a bank account and getting identification-enabled banking codes are not the same thing. The requirements for issuing identification-enabled online banking codes are stricter than those for opening an account: under the Act on Strong Electronic Identification, banks have a legal obligation to verify the applicant's identity in person or to an equivalent electronic standard — normally from a passport or identity card issued by an EEA state, Switzerland or San Marino — before their codes can be used for e-identification.\n\n...\n\n### 2. Become a bank customer\n\nOpen an account with a Finnish bank — common choices for newcomers include Nordea, OP, S-Pankki, Danske Bank and Aktia. Bring an accepted identity document and proof of your right to reside in Finland (a residence permit card or EU registration). Banks differ on what they accept and whether you can start online or must visit a branch.\n\n### 3. Confirm the codes are identification-enabled\n\nWhen you become a customer you typically receive an account, online access codes and a debit card together. Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking. Suomi.fi stresses that, to be valid for e-identification, the codes must be \"suitable for electronic identification in other services in addition to banking transactions,\" and they must have been issued personally to you — company or association codes do not count, and on a joint account only the named account holder can use them.\n\n### 4. If you lack accepted documents\n\nThis is the hard case that catches many non-EU arrivals. If you do not have an ID document the bank accepts, you may not be able to activate e-identification straight away. Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated. Banks also commonly send an activation code and a temporary PIN by SMS and by post as part of setting up their identification app.\n\nBecause rules and accepted documents vary between banks and change over time, confirm the current requirements with your chosen bank before you go in.\n\n...\n\nModern Finnish banking codes almost always involve an app on your phone for the confirmation step rather than a paper code list. Setup usually means installing the bank's identification app, registering it once, and choosing a PIN. After that, logging in to any Suomi.fi-connected service follows the same rhythm: choose your bank, enter your user ID and password, then approve the login in the app or with a one-time code.\n\nA few habits keep this smooth:\n\n- Keep your phone and SIM working. App-based confirmation depends on your device; a lost or wiped phone means re-registering the app with your bank.\n- Don't rely on a single method. Many residents also activate a mobile certificate as a backup, so a phone problem doesn't lock them out of tax or healthcare.\n- Mind the personal-use rule. Never let anyone else use your codes, even a spouse on a joint account — it breaks both the bank's terms and the identification rules.\n\n...\n\n## Common Problems and How to Avoid Them\n\nA few situations recur often enough to flag:\n\n- \"I have an account but can't log in to OmaVero.\" Your codes are probably not activated for e-identification. Call the bank and ask them to enable identification use.\n- A lost or new phone. Re-register the bank's identification app, or fall back to a mobile certificate if you set one up. Plan for this before it happens.\n- Forgotten codes. Suomi.fi's guidance is simple: if you don't remember your online banking codes, contact your bank — neither Suomi.fi nor the public service can recover them.\n- Sharing codes. Letting a family member log in \"just this once\" with your codes breaches the personal-use rule and can put your bank relationship at risk."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "title": "Bank account in Finland – online banking codes",
+        "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "publishedDate": "2026-09-25T09:06:30.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "In Finland the bank account and the online banking codes (verkkopankkitunnukset) that come with it are two different things. The codes are the everyday electronic identity: they log you in to Suomi.fi e-Identification, the shared login for public e-services, and so to Kela (Social Insurance Institution), Vero (Tax Administration) and the police. Opening a bank account in Finland is a legal right for anyone legally resident in the EEA, and strong identification can be refused only on narrow grounds. The rules are national, set in the Act on Credit Institutions and supervised by the Financial Supervisory Authority (Finanssivalvonta).\n\n...\n\nBecause the law treats them separately. The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes. A bank may refuse strong electronic identification – codes that work in other services, not only its own – if, for example, you have no Finnish personal identity code or are not in the Population Information System. It must then offer a limited electronic ID for its own services; once your code and registration are in place, ask again. Codes used for Suomi.fi must be issued personally to you and be suitable for other services.\n\nTake phishing seriously: the Financial Supervisory Authority calls the fishing of online banking codes the most common scam in Finland. No bank or authority ever asks for your codes by phone or e-mail, so never log in through a link in a message, and never let anyone take remote control of your device.\n\n...\n\nThe ID card is the alternative worth planning for. The police issue a foreigner's identity card if your identity can be reliably verified, you hold a valid residence permit, residence card or registered right of residence, and you have a kotikunta (municipality of residence) and are entered in the Population Information System. It proves your identity in Finland – at the bank, for instance – but is not a travel document; it is usually valid for five years and expires if your permit or registration is cancelled. Apply online with Suomi.fi identification or at any police station; the helpline for appointments is +358 (0)295 419 800, Monday to Friday 8.00–16.15. In Helsinki, newcomers go to the Helsinki Police Department at Pasilanraitio 11, not to International House Helsinki.\n\n...\n\n## What to do now\n\n| Step | What | When |\n| --- | --- | --- |\n| 1 | Get your henkilötunnus and DVV registration (part 3) | Before you book the bank |\n| 2 | Book an in-person appointment; bring your passport or foreigner's ID card | Your first week |\n| 3 | Answer the know-your-customer questions; ask for codes usable in other services | At the appointment |\n| 4 | If refused: ask for the reason in writing and a limited e-ID | When the bank answers – at most ten banking days |\n| 5 | Apply for the foreigner's ID card as a second token (€53 online) | Once you have a kotikunta |\n| 6 | Activate a mobile certificate, then MobilePay | When the codes work |\n\nSource: the Financial Supervisory Authority, the Finnish Police and Suomi.fi, read 24 September 2026."
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-bank-account-finland-online-banking-codes-strong-i.jpg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "title": "Your First Week in Finland: An Arrival Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "publishedDate": "2026-05-14T21:02:43.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "A Finnish bank account is essential for receiving salary, paying rent, and — just as importantly — getting online banking codes (pankkitunnukset), which double as your strong electronic identification across Suomi.fi, OmaVero, and Kela. This is one of the steps you genuinely cannot rush, because banks have their own rules.\n\nBanks may not make a henkilötunnus a condition for basic banking services, though they can require one before issuing online banking codes, and for a first account they usually want you to come into a branch in person rather than opening everything online. Nordea, for example, has you book a branch appointment, bring a valid identity document and proof of your right of residence (a residence permit or a certificate of a pending application for non-EU citizens, or registration of the right of residence for EU citizens), and get service in Finnish, Swedish or English.\n\nBecause online banking codes can wait on your henkilötunnus, the bank step often lands later in your first week or just after. In the meantime, do not let the gap strand you: a multi-currency account such as Wise or Revolut lets you spend, hold euros, and receive money with an account you can open quickly from your phone, which keeps daily life running until your Finnish account and its banking codes are live."
+        ],
+        "image": "https://nordicexpat.com/finland/first-week-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://hyy.fi/en/news/basic-banking-services-for-international-students-must-be-secured/",
+        "title": "Basic banking services for international students must be secured – Student Union of the University of Helsinki",
+        "url": "https://hyy.fi/en/news/basic-banking-services-for-international-students-must-be-secured/",
+        "publishedDate": "2024-07-19T16:41:52.000Z",
+        "highlights": [
+          "We support the measures to expand the reach of customer service, such as including the obligation to provide customer service within a reasonable time in the Act on Credit Institutions. Customer service should include both responding to contacts from customers and services provided at the bank’s branches. Foreign citizens almost always have to arrange a meeting at one of the bank’s branches in order to open a bank account. Due to the small number of available times for meetings in English, opening an account takes a long time. However, foreign citizens do not have other options because of identification practices. Delays in responses to contacts also delay the entire process.\n\n...\n\nThe report also does not account for the role banks have in strong identification. In Finland, online banking IDs are used for identification and signing in to services fairly extensively. They make it possible for people to participate in Finnish society. Foreign citizens have significant difficulties with receiving these IDs within a reasonable time. International students from outside EU/EEA countries, for instance, have been required to have a Finnish ID card in order to receive online banking IDs. However, the Financial Supervisory Authority has stated that electronic identification services may only be refused if the person does not have a social security code or if they have not been included in the population information system. Students are not aware of this and end up acquiring an ID card. Getting the card takes several months, which further delays the process of getting online banking IDs as well as creates unnecessary additional costs.\n\nFor good reason, people have considered the process too long, confusing and stressful. With online banking IDs used to identify oneself in services provided by the authorities, banks should have a strong obligation to offer the IDs to all customers under the same terms and in a reasonable time."
+        ],
+        "image": "https://hyy.fi/app/uploads/2024/05/web-51-169.jpg"
+      }
+    ],
+    "searchTime": 1599.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

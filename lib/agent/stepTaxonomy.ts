@@ -7,6 +7,8 @@ export type StepDef = {
   id: string;
   /** Neutral label used for progress messages and stubs; the shown title comes from sources. */
   label: string;
+  /** Who you deal with for this step: graph lane + display label (a name, not a claim about the step). */
+  authority: string;
   appliesTo: (p: Profile) => boolean;
   /** Search query (Exa auto + the deep extraction query). */
   query: (p: Profile) => string;
@@ -32,6 +34,7 @@ const shortStay = (p: Profile) => p.stayMonths !== undefined && p.stayMonths < 1
 export const STEP_TAXONOMY: StepDef[] = [
   {
     id: "eu_registration",
+    authority: "DVV",
     label: "Register EU citizen's right of residence",
     appliesTo: (p) => p.citizenship === "EU",
     query: (p) => `How does an EU citizen register their right of residence after moving to ${p.city}, Finland`,
@@ -39,6 +42,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "nordic_registration",
+    authority: "DVV",
     label: "Nordic citizen registration",
     appliesTo: (p) => p.citizenship === "NORDIC",
     query: (p) => `How does a citizen of a Nordic country register as a resident after moving to ${p.city}, Finland`,
@@ -46,6 +50,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "residence_permit",
+    authority: "Migri",
     label: "Residence permit",
     appliesTo: (p) => p.citizenship === "NON_EU" && !p.temporaryProtection,
     query: (p) =>
@@ -54,6 +59,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "temporary_protection",
+    authority: "Migri",
     label: "Temporary protection",
     appliesTo: (p) => !!p.temporaryProtection,
     query: () => "Applying for temporary protection in Finland: where to apply, residence permit card, municipality of residence",
@@ -61,6 +67,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "family_member_permit",
+    authority: "Migri",
     label: "Family member's residence",
     appliesTo: (p) => !!p.hasFamily,
     query: (p) =>
@@ -71,6 +78,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "dvv_registration",
+    authority: "DVV",
     label: "Register as a resident and get a Finnish personal identity code",
     appliesTo: () => true,
     query: (p) =>
@@ -79,6 +87,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "tax_card",
+    authority: "Vero",
     label: "Tax card",
     appliesTo: working,
     query: () => "How to get a Finnish tax card when moving to Finland to work, and what happens if you do not have one",
@@ -86,6 +95,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "vero_identity_code",
+    authority: "Vero",
     label: "Personal identity code from a Vero tax office",
     appliesTo: working,
     query: () =>
@@ -95,6 +105,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "bank_account",
+    authority: "Your bank",
     label: "Bank account",
     appliesTo: () => true,
     provider: true,
@@ -117,6 +128,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "strong_identification",
+    authority: "Your bank",
     label: "Strong electronic identification (online banking codes)",
     appliesTo: () => true,
     provider: true,
@@ -139,6 +151,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "kela_registration",
+    authority: "Kela",
     label: "Finnish social security coverage (Kela)",
     appliesTo: (p) => !shortStay(p),
     query: () => "Applying for Finnish social security coverage from Kela when moving to Finland, and the Kela card",
@@ -146,6 +159,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "police_id_card",
+    authority: "Police",
     label: "Identity card for a foreigner",
     appliesTo: (p) => !shortStay(p),
     query: () => "Identity card for a foreigner living in Finland from the police: who can apply and what is needed",
@@ -153,6 +167,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "university_enrolment",
+    authority: "Your university",
     label: "University enrolment and arrival steps",
     appliesTo: studying,
     university: true,

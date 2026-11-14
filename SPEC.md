@@ -108,7 +108,7 @@ All LLM-shaped work goes through `lib/llm` `extract(task, input, zodSchema)`. `L
 - Status lines come from inside `lib/exa` and `lib/llm` (`lib/events/context.ts`, AsyncLocalStorage per run: status sink, abort signal, cost/cache meter), so the feed shows real work ("Found 5 official sources: dvv.fi, …", "Reading dvv.fi…", "Extracting cited steps from 5 sources…"). Outside a run they are no-ops.
 - `POST /api/run {text}` → NDJSON (`lib/agent/runStream.ts`). Client disconnect aborts: no new Exa / LLM call starts and nothing more is emitted. Global timeout 75 s: what finished is completed with the pure stages (graph, schedule, calendar), then `partial {missing[]}` and `done` (never a blank response). `maxDuration = 120`. Out of scope → exactly one `out_of_scope` event. Per-step failures inside a stage → `error {recoverable: true}`.
 - Every run with a profile is saved to `.cache/runs/<runId>.json` (OS temp dir if read-only); `done.summary.runId`; `GET /api/calendar.ics?runId=` reads it.
-- Demo replay: an exact demo sentence served fully from cache spaces status lines 150–400 ms apart (capped at 20 s in total); spacing stops at the first live call. `?fast=1` skips it.
+- Demo replay: an exact demo sentence served fully from cache spaces status lines 70–180 ms apart (~9 s for Marta, capped at 10 s in total); spacing stops at the first live call. `?fast=1` skips it.
 - `npx tsx scripts/run.ts [--fast] [--json] "<sentence>"` prints the stream.
 
 ## Out of scope

@@ -5,6 +5,7 @@
 // and the extractor judged them a genuine contradiction (precision over recall). Side `a` is the more
 // trusted one (TRUST_RANK).
 import { cityDomains, TRUST_RANK } from "../exa/domains";
+import { sourceAuthority } from "./authority";
 import { searchOfficial, searchProvider } from "../exa/search";
 import { extract } from "../llm";
 import { ConflictExtraction, detectConflictsContext, detectConflictsTask } from "../prompts/detectConflicts";
@@ -94,7 +95,7 @@ async function conflictsForStep(
   try {
     result = await extract(
       detectConflictsTask,
-      { query: step.title, context: detectConflictsContext(profile, step), includeDomains: [], docs },
+      { query: step.title, context: detectConflictsContext(profile, { ...step, authority: sourceAuthority(step) }), includeDomains: [], docs },
       ConflictExtraction,
     );
   } catch (e) {

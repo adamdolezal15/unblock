@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T07:21:09.086Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Police Identity card for a foreigner Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Identity card for a foreigner\" (Police) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "dacc757648f4f8d34fe5c5bb098d321d",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "title": "Finnish ID Card for Foreigners (Ulkomaalaisen Henkilökortti)",
+        "url": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "publishedDate": "2026-11-11T21:00:31.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Foreigners who live in Finland can get a Finnish identity card from the police, called the foreigner's identity card (ulkomaalaisen henkilökortti). The rules sit in the Identity Card Act (henkilökorttilaki 663/2016): you need a valid residence permit or residence card (or a registered right of residence), a municipality of residence (kotikunta) in Finland, and your details in the Population Information System. In 2026 the card costs EUR 59, or EUR 53 if you apply electronically.\n\n...\n\nTwo things set the foreigner's card apart:\n\n- It is not a travel document. The Act requires the foreigner's identity card to carry a note that it cannot be used as a travel document (§ 4). For travel you still need your passport.\n- It follows your permit. It is issued for five years, but never for longer than your residence permit or residence card is valid (§ 19).\n\n...\n\nSection 14 of the Identity Card Act lists three conditions for a foreigner's identity card, on top of the Act's general rules:\n\n1. You have a valid residence permit or residence card, or your right of residence has been registered (for EU citizens, see our EU registration guide).\n2. You have a municipality of residence (kotikunta) in Finland under the Municipality of Residence Act.\n3. Your details have been entered in the Population Information System.\n\nConditions 2 and 3 mean the card comes after your population registration. If you have not registered yet, start with our guides to DVV registration and the Finnish personal identity code. Non-EU citizens who are still waiting for a permit should read our residence permit guide first.\n\n...\n\nCheck the current fee with the police (poliisi.fi)\n\n...\n\nUnder the Act, identity cards are applied for from the police, and the application can be started electronically (henkilökorttilaki § 9). The 2026 fee table charges less for an electronic application.\n\n### Visit in person, at least the first time\n\nThe applicant must come in person to complete the application. For a foreigner's identity card, the Act lets you skip the visit only if all of these apply (§ 10):\n\n- you were issued a foreigner's identity card within the previous six years, and you visited the authority in person for that application,\n- you were over 12 when that card was issued, and\n- you gave a signature sample within the previous six years and your surname or first name has not changed since.\n\nThe police can still ask you to come in to identify you, give a new signature sample or for another special reason. In practice, your first foreigner's identity card means a visit.\n\n### Bring ID, give fingerprints\n\nYou must show a valid identity document, such as your passport. If you have none, a foreigner must show a valid residence permit card or residence card, and the police may compare your fingerprints with those stored on it (§ 11). Fingerprints are taken from everyone applying for an identity card, except applicants under 12 or people who cannot give them because of age, disability, illness or a similar reason (§ 9 a).\n\n### Receive the card\n\nThe card is sent as a registered letter or a similar trackable item (§ 21). In special cases the police hand it over instead. Your previous identity card stops being valid when the new card is handed over to you.\n\n...\n\nThe Act says an identity card includes the citizen certificate (kansalaisvarmenne) issued by DVV, which is used for electronic identification. The minor's identity card and the temporary identity card do not include it (§ 3). For how certificate cards work with Suomi.fi services, see our Suomi.fi e-identification guide.\n\nAn amendment in force from 1 October 2026 (823/2026) adds that the foreigner's identity card includes the right to take into use the digital identity document under the separate Act on digital identity documents (812/2026) (§ 1 a).\n\n## When the card is cancelled\n\nSection 26 lists when a foreigner's identity card is revoked. The ones most likely to affect you:\n\n- your residence permit, registered right of residence or residence card is revoked, or you are deported,\n- you no longer have a municipality of residence in Finland,\n- you ask for it to be cancelled, or\n- you report it lost or stolen.\n\nIf you move away from Finland and no longer have a municipality of residence here, the Act says the card is revoked.\n\n## Common problems and fixes\n\n- \"The police said I have no municipality of residence.\" The card requires a kotikunta. Our DVV registration guide explains population registration.\n- \"My card expires when my permit does.\" That is the rule: the Act caps the card at the validity of your residence permit or residence card.\n- \"I tried to travel with it.\" The foreigner's card is marked as not valid for travel. Carry your passport.\n- \"My old card stopped working.\" The previous card's validity ends when the new card is handed over to you.\n\n## Your next step\n\nConfirm you have a residence permit (or registered right of residence), a municipality of residence, and your details in the Population Information System. Then start the application with the police, who handle identity cards (henkilökorttilaki § 9); their website is poliisi.fi. If you have strong electronic identification (see our guide to Finnish online banking IDs), you can apply online for the lower fee. Then book your in-person visit."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/passports-and-identity-cards-can-be-quickly-renewed-by-queuing-in-helsinki",
+        "title": "Passports and identity cards can be quickly renewed by queuing in Helsinki - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/passports-and-identity-cards-can-be-quickly-renewed-by-queuing-in-helsinki",
+        "publishedDate": "2024-03-28T13:00:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "Before applying for a passport or identity card, identify what travel document you will need at your destination. Does the passport have to remain valid for a certain period after your trip? Do you need a visa?\n\nYou only need an identity card when going to the EU member states and a few other European countries. As a rule, travel documents are not checked when crossing the border in Schengen countries, but you need to show it when asked to do so. While no travel documents are needed when travelling in the Nordic countries, you need to prove your identity at request.\n\n“The quickest way to get a new passport or identity card is to complete the application online and identify yourself in the licence services of the Helsinki Police Department if required. The typical waiting time with a queue number is 30–60 minutes. The busiest hours are at 8 am, between 11 am and 1 pm, and at 4 pm. Lunch hours are the most congested,” says Chief Inspector Satu Mäkinen.\n\nIf you cannot or do not want to apply for a passport or identity card online, you can also complete an application at a police station. Online applications are quicker and carry a lower charge.\n\n## Instructions for applying for travel documents in Helsinki\n\n- Before applying for a passport or identity card, identify what travel document you will need at your destination. You only need an identity card when going to the EU member states and a few other European countries.\n- Start to apply for a passport or identity card online.\n- Identify yourself at a police station if required. The quickest way to identify yourself is to use the queue number system. \n- Remember to cancel your booked appointment if you are unable to show up.\n- Passports, identity cards and permits - Police (poliisi.fi)\n- Helsinki Police Department, units and services - Police (poliisi.fi)"
+        ],
+        "image": "https://valtioneuvosto.fi/documents/25235045/49668640/Lupapalvelut.jpg/7679c536-822f-d6a1-ac75-aacdfa0d92eb?t=1711631311007"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/many-new-appointments-made-available-in-the-helsinki-police-department-s-licence-services-for-the-spring",
+        "title": "Many new appointments made available in the Helsinki Police Department’s licence services for the spring - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/many-new-appointments-made-available-in-the-helsinki-police-department-s-licence-services-for-the-spring",
+        "publishedDate": "2025-01-31T07:23:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "Get ready for spring and summer travels well beforehand by applying for a new passport and identity card. Without any appointment, your identity will usually be verified in the Helsinki Police Department’s licence services in less than an hour. If you book an appointment, the process will be quicker.\n\nYou should always apply for a new travel document online at poliisi.fi. To have a new passport or identity card, you do not always need to visit a police station. The police’s online services will tell you if you need to visit a police station to verify your identity.\n\nYou can have your identity verified by booking an appointment or visiting licence services without any appointment. The Helsinki Police Department’s licence services are at the central police station in Pasila.\n\nDemand for travel documents is always highest before holiday seasons. You can get ready for your spring and summer travels by booking an appointment for a new passport or identity card at the police station. Many new appointments have been made available in the Pasila licence services for the spring.\n\n“We recommend that you book an appointment, because without it, you may have to wait for more than half an hour. During busiest days and hours, the waiting time may be longer,” says Chief Inspector Satu Mäkinen from the Helsinki Police Department’s licence services.\n\nTypically, the Pasila licence services have the highest number of customers on Mondays and Fridays. The busiest hours are around opening and closing times at 8 am and 4 pm, as well as around lunch hours from 11 am to 1 pm.\n\n# Keep your previous travel document to pick up your new one\n\nIn the online services, you can choose the location from which to pick up your new passport or identity card. When picking up your new travel document, you need the delivery ID included in the pick-up notification, as well as a passport or identity card granted by a Finnish authority. You can use a passport or identity card expired less than a year ago to prove your identity.\n\nYou can also authorise another person to pick up your passport. In this case, the person who picks up your passport requires a power of attorney, the delivery ID and a valid Finnish passport or identity card. You can print a template of a power of attorney on the police’s website: Passport delivery.\n\n# Do this when you need a new passport or identity card\n\n- Before applying for a passport or identity card, identify what travel document you will need at your destination. You can travel to the EU member states and a few other European countries with a passport or an identity card.\n- Have your passport photo taken. The photo attached to your passport application cannot be older than six months.\n- Apply for a passport or identity card in the police’s online services. If you cannot apply for a travel document online, you can also complete an application at a police station. Online applications are quicker and carry a lower charge.\n- If required, verify your identity at a police station by booking an appointment or using the queue number system.\n- Remember to cancel your appointment if you cannot make it.\n- Passports, identity cards and permits\n- Helsinki Police Department, units and services"
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://en.wikipedia.org/wiki/Finnish_identity_card",
+        "title": "Finnish identity card",
+        "url": "https://en.wikipedia.org/wiki/Finnish_identity_card",
+        "publishedDate": "2026-10-10T23:35:03.000Z",
+        "highlights": [
+          "The Finnish identity card (Finnish: henkilökortti; Swedish: identitetskort) is one of two official identity documents in Finland, the other being the Finnish passport. Any citizen or resident can get an identification card. [3] Finnish citizens will get indication of citizenship on the card. It is available as an electronic ID card (Finnish: sähköinen henkilökortti; Swedish: elektroniskt identitetskort), which enables logging into certain services on the Internet, local computers or adding digital signatures into LibreOffice ODF documents or creating DigiDoc formatted containers that also allows encryption during content transfer. ID card is applied at a police station and it is issued by the police. \n\nPossession of an ID card or any ID document is non-compulsory in Finland, though interactions with officials and companies, like voting, picking up a parcel from Posti offices or buying alcohol when a salesperson suspects buyer to be under 18 or 30 years old, can be difficult or impossible without an ID card, a passport or a driving licence."
+        ]
+      },
+      {
+        "id": "https://mediamaailma.fi/poliisi-muistuttaa-tarkista-passin-ja-henkilokortin-voimassaolo-ennen-syksyn-ja-talven-matkoja/",
+        "title": "Poliisi muistuttaa: tarkista passin ja henkilökortin voimassaolo ennen syksyn ja talven matkoja - Mediamaailma",
+        "url": "https://mediamaailma.fi/poliisi-muistuttaa-tarkista-passin-ja-henkilokortin-voimassaolo-ennen-syksyn-ja-talven-matkoja/",
+        "publishedDate": "2025-09-25T07:23:52.000Z",
+        "author": "Mediamaailma",
+        "highlights": [
+          "Helsingin poliisilaitos kehottaa matkailijoita tarkistamaan passin tai henkilökortin voimassaolon hyvissä ajoin ennen ulkomaanmatkaa. Poliisin lupapalveluissa on tällä hetkellä runsaasti vapaita ajanvarausaikoja, ja asiointi onnistuu nopeimmillaan jo saman tai seuraavan päivän aikana.\n\nHakemus kannattaa tehdä verkossa poliisin asiointipalvelussa, jossa matkustusasiakirjan hinta on myös hieman edullisempi kuin poliisiasemalla. Jos järjestelmä ohjaa tunnistautumaan poliisiasemalle, ajan voi varata helposti sähköisen ajanvarausjärjestelmän kautta.\n\n– Suosittelemme ajanvarauksen tekemistä etukäteen. Ilman varausta voi joutua jonottamaan päivästä ja kellonajasta riippuen jopa yli tunnin, kertoo Helsingin poliisilaitoksen lupa-asioista vastaava ylikomisario Jari Friman.\n\n...\n\n#### Näin uusit passin tai henkilökortin\n\n1. Käy kuvattavana. Hakemukseen liitettävä kuva saa olla enintään 6 kuukautta vanha.\n2. Aloita hakemus osoitteessa asiointi.poliisi.fi Jos järjestelmä vaatii tunnistautumista poliisiasemalla, varaa aika etukäteen ja muista perua se, jos et pääse paikalle."
+        ]
+      }
+    ],
+    "searchTime": 1297,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

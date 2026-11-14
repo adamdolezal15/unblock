@@ -11,7 +11,6 @@ import { extractStepContext, extractStepTask, StepExtraction } from "../prompts/
 import type {
   Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
-import { authorityOf } from "./authority";
 import { whatToDoByTrust } from "./detectConflicts";
 import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
@@ -109,7 +108,6 @@ function mergeStep(
   const sorted = [...claims].sort(byTrust);
   const first = (kind: VerifiedClaim["kind"]) => sorted.find((c) => c.kind === kind)?.value;
   const all = (kind: VerifiedClaim["kind"]) => [...new Set(sorted.filter((c) => c.kind === kind).map((c) => c.value))];
-  const anchorUrl = (sorted.find((c) => c.kind === "applies") ?? sorted[0])?.citation.url ?? checkUrl;
   // A step confirmed only by another step's requirement still carries that citation.
   const ownCitations = uniqueCitations(sorted);
   const citations = ownCitations.length || confirmation.by === "applies" ? ownCitations : confirmation.citations;
@@ -126,7 +124,7 @@ function mergeStep(
   return {
     id: def.id,
     title: title?.trim() || def.label,
-    authority: anchorUrl ? authorityOf(anchorUrl) : "unknown",
+    authority: def.authority,
     mode: (first("mode") as Step["mode"] | undefined) ?? "either",
     requires: all("requires"),
     ...(first("cost_of_delay") ? { costOfDelay: first("cost_of_delay") } : {}),

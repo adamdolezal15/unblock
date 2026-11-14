@@ -38,3 +38,13 @@ export function authorityOf(url: string): string {
   }
   return host;
 }
+
+/**
+ * The organisation behind a step's anchor source (its `applies` sentence, else its first claim / citation).
+ * Used in search queries and LLM context (tips, conflicts) so their cache keys stay stable; the shown
+ * `step.authority` comes from the step taxonomy instead.
+ */
+export function sourceAuthority(step: { claims?: { kind: string; citation: { url: string } }[]; citations: { url: string }[] }): string {
+  const url = (step.claims?.find((c) => c.kind === "applies") ?? step.claims?.[0])?.citation.url ?? step.citations[0]?.url;
+  return url ? authorityOf(url) : "unknown";
+}

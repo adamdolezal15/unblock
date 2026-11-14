@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T07:20:37.037Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Migri appointment for Residence permit in Tampere, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Residence permit\" (Migri) in Tampere, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "602d97599147160ed567cc48b54e81e2",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.finlandforum.org/viewtopic.php?t=108534",
+        "title": "Chancellor of Justice/Ombudsman Complaint on Migri Delay - Finland Forum",
+        "url": "https://www.finlandforum.org/viewtopic.php?t=108534",
+        "publishedDate": "2025-07-08T00:00:00.000Z",
+        "author": "Post by canocano » Tue",
+        "highlights": [
+          "> canocano wrote: ↑\n> \n> Thu Jul 03, 2025 1:53 pm\n> \n> I have applied for a residence permit on other grounds—intimate relationship 3 months ago.\n\n...\n\nOn what basis? The residence permit on other grounds has an expected processing time of about 4-8 months, and no maximum processing time.\n\n...\n\nIntimate relationship. The current estimate is 15 months. We have been waiting for around 13 months (my other post said 3 months; that's a typo, and I fixed it now). Migri is useless when we call or email them.\n\n...\n\nProcessing times of over a year were common even for spouse residence permits before a recent change of the law limited these to 9 months. Citizenship applications currently have an expected processing time of 31 months.\n\n...\n\nThe time you are waiting is not exceptionally long, and there is no maximum processing time in the law. The actual legal obligation for Migri is to prioritize applications that might otherwise exceed their maximum processing time over your application. Migri has a backlog of ten thousands of applications, if you think someone will make your application skip the queue and give it immediate processing after you wrote you complaint then you are mistaken."
+        ]
+      },
+      {
+        "id": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "title": "Migri Processing Times 2026: Fast Track 14 Days, Family 9 Months | ENB",
+        "url": "https://www.enb.fi/guides/migri-processing-times-and-delays-2026/",
+        "publishedDate": "2026-09-05T16:05:02.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "Checked against Migri on 14 October 2026: first permits for employed persons (TTOL) that ended in a positive decision took an average of 17 days in July 2026, specialists usually get a decision in about two weeks, and Fast Track for specialists, EU Blue Card holders and start-up entrepreneurs has a 14-day target. About 82% of positive decisions on first student permits come within 30 days. Family-based applications have a statutory maximum of nine months, and Migri has reported backlogs in them. The clock starts when you prove your identity, not when you submit, and the card takes about two more weeks after the decision. Migri publishes two estimates per application type — most cases and a minority of cases — and if yours has not been taken up within the shorter one, the longer applies. Statutory maximums are a separate thing: two months for work-based permits, three for studies and nine for family ties. If you applied for an extension before the old permit expired, you may keep working while you wait. Migri asks you not to call when an estimate is exceeded; if a statutory maximum is exceeded, a free complaint to the Parliamentary Ombudsman is possible, but the Ombudsman cannot change a decision.\n\n...\n\n| Application | What Migri reports | Limit in law or service target |\n| --- | --- | --- |\n| Employed person (TTOL), first permit | Most cases one month, a minority two months; positive decisions averaged 17 days in July 2026 | Two months in law, counted from the biometrics visit; Migri's own goal is one month |\n| Employed person (TTOL), extended permit | Averages for July 2026: 37 days for positive decisions, 162 days for refusals | Two months in law |\n| Specialist | About two weeks in most cases, up to two months in a minority | Two months in law; Fast Track target 14 days for a first permit |\n| EU Blue Card | First permits can go through Fast Track; for extensions, read the live estimate | Two months in law; Fast Track target 14 days for a first permit |\n| Start-up entrepreneur | Can go through Fast Track once Business Finland has issued its statement | Fast Track target 14 days |\n| Studies, first permit | About 82% of positive decisions within 30 days; with no decision by then, Migri's estimate is 90 days | Three months in law |\n| Family ties, first permit | Migri has reported backlogs; read the live estimate for your exact family category | Nine months in law; 90 days for a student's family member when no additional information is needed |\n| Permanent residence permit | No figure verified; read the live estimate. The requirements changed on 8 January 2026 | No general maximum in law; six months for the EU long-term resident's permit |\n| Finnish citizenship | Migri has reported a backlog that it is clearing; read the live estimate | No general maximum in law; 12 months for persons under protection |\n| EU citizen, registration of right of residence | Listed under EU citizens in Migri's table; read the live estimate | Six months for the residence card of an EU citizen's family member |\n\n...\n\nThe most common misunderstanding is that the clock starts the moment you submit. According to Migri the processing time starts when you have proved your identity, which happens at a service point visit or, for some online applications, on submission in Enter Finland. The time ends when the decision is ready.\n\nThe card has to be counted in as well. After the decision, producing and posting the residence permit card takes about two more weeks. \"The decision is out\" and \"the card is in my hand\" are therefore not the same day, and travel or a starting date at work should be planned around the card.\n\nFor work-based permits the Aliens Act says this in so many words: the decision is due within two months of the authority receiving a properly completed application with its attachments, and the time is counted from the visit at which you give your fingerprints and other biometrics — at a Finnish mission or an external service provider abroad, or at a Migri service point in Finland. Migri also says it can start on an employed person's application before identity has been proved, and that an employer who submits the terms of employment without delay speeds the processing up.\n\n...\n\nFor each application type Migri publishes not one time but two estimates: the processing time in most cases and the processing time in a minority of cases. The rule is plain: if your application has not been taken up during the shorter estimate, the longer estimate in the table is the one that applies in your case.\n\nThe estimates are based on how long most decisions took in the preceding months and how many similar applications arrived in the past two months; they are updated every two months. The time spent in the queue is included in the estimate. If no additional information has to be requested, the shorter estimate will most likely apply.\n\n...\n\n- Residence permits on the basis of work: 2 months, counted from the visit at which biometrics are given\n- Residence permit on the basis of studies: 3 months\n- Residence permit on the basis of family ties: 9 months\n- A student's family member: 90 days from a complete application\n- Residence card of an EU citizen's family member: 6 months\n- EU long-term resident's residence permit: 6 months\n- Citizenship application of persons under protection: 12 months\n- Asylum: 18 months where the investigation requires it, and 21 months where the situation in the country of departure is unstable\n\n...\n\nFor a first permit as an employed person (TTOL), Migri reported an average of 17 days for positive decisions in July 2026, and its table puts most cases at one month. Specialists usually get a decision in about two weeks, and Fast Track has a 14-day target. The legal maximum for work-based permits is two months, counted from the biometrics visit."
+        ],
+        "image": "https://www.enb.fi/services/enb-fi-senate-square-people.jpg"
+      },
+      {
+        "id": "https://perhetalvisaraihmisoikeudet.blogspot.com/2024/10/ensimmainen-migrin-kaynti.html",
+        "title": "Ensimmäinen migrin käynti! Muukalaispassin odotteluun!",
+        "url": "https://perhetalvisaraihmisoikeudet.blogspot.com/2024/10/ensimmainen-migrin-kaynti.html",
+        "publishedDate": "2024-10-11T15:17:00.000Z",
+        "author": "lokakuuta 11, 2024",
+        "highlights": [
+          "10 tunnin yöunen jälkeen herään ja tuntuu, että silmiä ei saa auki. Pikku flunssa väsyttää ja yöllä Eevakin herätteli toistuvasti. Nopeasti kylmään suihkuun ja Eevaa huutaa kovalla äänellä kuin komentaen, että nyt tänne. \n\nPanen mutterin suihkun jälkeen kiehumaan ja saan aamukahvit. Eeva tulee syliin, kun juon nopean kupillisen kahvia. Meillä alkaa olla kiire Migriin oleskelulupakortin uusimiseen ja muukalaispassin hakuun. \n\nMenemme edeltä Eevan kanssa autoon ja Fai käy pesutuvalla. Ajelemme autolla tallista ulos niin, että Eeva saa ohjata. On kovasti innostunut tilanteesta. Pian hän siirtyy omaan turvaistuimeensa, mihin on tottunut ja lähdemme ajotielle koulukadun kautta kohti migriä. Parkkihalliin auto migrin viereen ja menemme sisälle itse toimistoon. Jonotusnumero onkin heti seuraava sisäänpääsevä numero, joten satuimme tulemaan hyvään aikaan. \n\nHankalien migrikokemusten jälkeen odotamme hieman jännittyneenä tämän päiväistä kohtelua. Ystävällinen naisvirkailija hoitaa asiamme tyylikkäästi. Saamme haettua uuden oleskelulupakortin ja muukalaispassin samalla kertaa ja koko touhu odotuksineen on alle tunnin mittainen. Ainoa mikä askarruttaa on se, että muukalaispassin myöntämisessä maksimi aika on 5 kk. Viimeksi migrin kanssa maksimiaikakin ylittyi, mistä olemme maksaneet ison taloudellisen kuin psykofyysisen terveyden hinnan. Toivotaan, että nyt asiat hoituisivat nopeasti."
+        ],
+        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEit-X0-ZMps3l0bXFc9mzKrUKrfeN1lBvyQ_O_GmJE1s8vy5E1j6wmnxSrIDM-f6mYRNmsNyURWE4iLIJVFVwF8szDPERfST_uQ99pKVd-InEgAVpKjzXBVzEI0BaFf2TsGr96nBC9n9PIK9YnMbhgUcUCsMTJGewJTcjtF7YuynH9wu42B7uNYWyPN0zmQ/w1200-h630-p-k-no-nu/IMG_0903.jpeg"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "title": "How Do I Book a Migri Appointment at migri.vihta.com? - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-do-i-book-a-migri-appointment-at-migri-vihta-com/",
+        "publishedDate": "2026-07-12T14:28:27.000Z",
+        "author": "Markus Weber",
+        "highlights": [
+          "The tricky part? Demand for these appointments is huge, especially in larger cities like Helsinki, Tampere, or Turku. You're not alone if you've stared at a\n\n...\n\nOnce you land on the page, you'll be greeted with a selection of service points across Finland. These are essentially the physical Migri offices where you'll go for your appointment. It's crucial to select the correct one. Typically, you'll choose the service point closest to your place of residence or the one you designated in your original application. The main service points are located in:\n\n- Helsinki\n- Tampere\n- Turku\n- Oulu\n- Rovaniemi (limited services)\n- Vaasa (limited services)\n\nChoosing the right service point is important because appointments are tied to specific locations. While theoretically you could book an appointment in another city if you're desperate and willing to travel, it's generally recommended to stick to your local one. However, if you're hitting a wall with availability in, say, Helsinki, and you have the means to travel to Tampere, it might be worth checking their calendar too.\n\n...\n\n| Service Point | Common Appointment Types | Typical Availability (Subject to Change) | Notes for Expats |\n| --- | --- | --- | --- |\n| Helsinki | All (RP, Citizenship, Interviews) | Very Limited, high demand | Requires persistence, check constantly. |\n| Tampere | All (RP, Citizenship, Interviews) | Limited, but sometimes better than Helsinki | Consider if living in Pirkanmaa region. |\n| Turku | All (RP, Citizenship, Interviews) | Moderate, good alternative to Helsinki | Good for those in Southwest Finland. |\n| Oulu | All (RP, Citizenship, Interviews) | Generally better, but still competitive | Best for northern Finland residents. |\n| Rovaniemi | RP, Limited Citizenship | Better, but fewer staff/slots | Primarily serves Lapland region. |\n| Vaasa | RP, Limited Citizenship | Better, but fewer staff/slots | Good for Ostrobothnia region. |\n\n...\n\n- Aggressive Refreshing (The F5 Dance): Seriously, this isn't a joke. Sometimes, new slots appear for a fleeting moment due to cancellations or system updates. Many people set aside 10-15 minutes a few times a day to just refresh the page.\n- Timing is Key: New slots are often released at specific times, though these are rarely officially announced. Anecdotal evidence suggests checking first thing in the morning (e.g., 8:00 AM EET) or late in the evening can yield results, as these might be when daily allocations are updated or when others cancel.\n- Expand Your Search: If you absolutely cannot find a slot in your preferred city, consider if you can travel to another service point. For example, if you live in Helsinki, check Tampere or Turku. While it requires a train ticket, getting the appointment secured might be worth the cost and hassle compared to delays in your permit process.\n- Don't Procrastinate: As soon as you submit your application via Enter Finland and get the notification that you need an appointment, start looking. Do not wait until the last minute. The earlier you start, the more chances you have.\n- Understand the \"Treatment Guarantee\" (Hoitotakuu) Mentality: While not directly related to appointments, Finland operates with a \"treatment guarantee\" for healthcare, meaning you shouldn't wait endlessly for critical services. For immigration, while there isn't a strict legal guarantee for appointment times, Migri does aim to process applications within reasonable timeframes. If you've been searching for an excessively long time and are facing an imminent expiry of your current permit or visa, it might be worth contacting Migri's customer service directly to explain your situation, though this is a last resort. Keep evidence of your attempts to book."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/07/output1-278.webp"
+      },
+      {
+        "id": "https://yle.fi/a/74-20256821",
+        "title": "Ombudsman finds significant problems with Migri | Yle News | Yle",
+        "url": "https://yle.fi/a/74-20256821",
+        "publishedDate": "2026-11-13T10:39:35.000Z",
+        "highlights": [
+          "The biggest problems were found in residence permit applications based on family ties. Only 61 percent of these applications were processed within the statutory nine-month deadline in 2026.\n\nAccording to the Deputy Parliamentary Ombudsman, the delays are due to the number of applications exceeding Migri's capacity to process them."
+        ],
+        "image": "https://img.img-cdn.yle.fi/crop_extract,w_5999,h_3374,x_0,y_478/crop_fill,w_1200,h_628/f_auto/39-1480799684be270aee77/1752489257"
+      }
+    ],
+    "searchTime": 1326.7,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

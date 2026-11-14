@@ -168,6 +168,8 @@ export type RunSummary = {
   verifiedQuotes: number;
   /** Extracted claims whose quote was not found in the source text (never shown). */
   droppedClaims: number;
+  /** The rejected claims themselves (first 50), shown on request: honesty about what was thrown away. */
+  rejected: Pick<DroppedClaim, "stepId" | "kind" | "url" | "quote" | "reason">[];
   tips: number;
   conflicts: number;
   totalMs: number;

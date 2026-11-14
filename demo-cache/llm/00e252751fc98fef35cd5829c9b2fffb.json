@@ -1,0 +1,82 @@
+{
+  "fetchedAt": "2026-11-14T07:20:56.557Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Residence permit on the basis of family ties",
+    "contextHash": "4d87f2fd56f2d667",
+    "includeDomains": [],
+    "docsHash": "7327e7af97fe7e04"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/moving-to-finland-to-be-with-a-family-member",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If you have a family member who lives in Finland and you want to move in to live with him or her, you need a residence permit on the basis of family ties"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.370Z"
+      },
+      {
+        "url": "https://migri.fi/en/information-bank/family-reunification",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "The sponsor does not have to move to Finland before the family members: the whole family can apply for their residence permits at the same time",
+          "This proof is usually a document, such as a marriage certificate or a child’s birth certificate"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.370Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eServices/info/familytiespermit",
+        "title": "enterfinland.fi",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "Before you can be granted a residence permit, your sponsor must have a residence permit in Finland or he or she must apply for a residence permit at the same time as you and be granted a residence permit",
+          "All applicants who are 18 or older must have their own user account"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.370Z"
+      },
+      {
+        "url": "https://migri.fi/en/spouse-in-finland-with-a-residence-permit",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If you apply for this permit as a first residence permit, you must submit the application abroad",
+          "You can prove that you meet the income requirement by submitting evidence of your or your spouse’s salary or income from business activities, for example"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.370Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eServices/info/childspermit",
+        "title": "enterfinland.fi",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "You must have, at least, the child's valid passport (or a passport that includes the child) and",
+          "Otherwise, your child does not have the right to reside in Finland"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.370Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2190,
+      "costUsd": 0.005184,
+      "cacheHit": false
+    }
+  }
+}

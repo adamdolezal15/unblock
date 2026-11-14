@@ -4,6 +4,7 @@
 // Trust comes from the URL (trustOf): university guides are "university", forums and blogs "community".
 // waitDays is parsed from the VERIFIED quote (estimates.parseWaitDays), never taken from the extractor.
 import { cityDomains } from "../exa/domains";
+import { sourceAuthority } from "./authority";
 import { getPages, searchCommunity } from "../exa/search";
 import { buildGraph, criticalNode, helsinkiDate } from "../graph";
 import { extract } from "../llm";
@@ -57,15 +58,16 @@ function labelOf(step: Step): string {
 /** Two lived-experience searches per step: waiting / appointments, and tricks / what people forgot. */
 function tipQueries(step: Step, profile: Profile): { query: string; objective: string }[] {
   const label = labelOf(step);
+  const authority = sourceAuthority(step);
   const where = `${profile.city}, Finland`;
   return [
     {
-      query: `How many days or weeks did you wait for a ${step.authority} appointment for ${label} in ${profile.city}, and how long until it was done?`,
-      objective: `Forum posts, Reddit threads, blogs and university guides from people who did "${label}" (${step.authority}) in ${where}: how long they waited for an appointment or for the result, and appointment availability.`,
+      query: `How many days or weeks did you wait for a ${authority} appointment for ${label} in ${profile.city}, and how long until it was done?`,
+      objective: `Forum posts, Reddit threads, blogs and university guides from people who did "${label}" (${authority}) in ${where}: how long they waited for an appointment or for the result, and appointment availability.`,
     },
     {
-      query: `${step.authority} ${label} ${where} tips, what to bring, what I forgot, problems`,
-      objective: `First-hand experiences and newcomer guides about "${label}" (${step.authority}) in ${where}: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.`,
+      query: `${authority} ${label} ${where} tips, what to bring, what I forgot, problems`,
+      objective: `First-hand experiences and newcomer guides about "${label}" (${authority}) in ${where}: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.`,
     },
   ];
 }
@@ -113,7 +115,7 @@ async function tipsForStep(
   try {
     result = await extract(
       extractTipsTask,
-      { query: queries[0].query, context: extractTipsContext(profile, step, label), includeDomains: [], docs },
+      { query: queries[0].query, context: extractTipsContext(profile, { ...step, authority: sourceAuthority(step) }, label), includeDomains: [], docs },
       TipExtraction,
     );
   } catch (e) {

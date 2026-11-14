@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T07:20:38.435Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi Strong electronic identification (online banking codes) Tampere, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Strong electronic identification (online banking codes)\" (Suomi.fi) in Tampere, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "0533d024bbb9e26595c8405616a85693",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.countrytolive.com/knowledge/finland/set-up-suomi-fi-finland",
+        "title": "How do you set up Suomi.fi identification in Finland in 2026? | Country Answers | Country To Live",
+        "url": "https://www.countrytolive.com/knowledge/finland/set-up-suomi-fi-finland",
+        "publishedDate": "2026-07-20T14:34:28.000Z",
+        "highlights": [
+          "Order matters. You normally need a henkilötunnus (Finnish personal identity code) and a Finnish bank relationship before banking codes exist. Online “become a customer” flows that already demand Suomi.fi login are the chicken-and-egg newcomers hit. Use the branch identity path described in Open bank account, then ask the bank to activate banking codes once the account is open. Keep a Finnish mobile number for SMS codes and callbacks: Get a mobile phone.\n\n...\n\nKeep banking codes personal. Only ... If you change phones or lose a code device, use the bank’s re-issue flow rather than sharing someone else’s login.\n\n...\n\nBook a bank appointment in Helsinki, Tampere, or your local branch while you still have weekday flexibility. Bring the documents your bank lists for newcomers. Ask explicitly for banking codes once the account is open. Test a low-stakes login (your bank app, then Kela or OmaVero) before you need it for a hard deadline such as a benefit claim or clinic booking."
+        ],
+        "image": "https://www.countrytolive.com/flags/fi.svg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "Finnish Online Banking IDs (Pankkitunnukset) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "publishedDate": "2026-05-16T21:03:26.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### 3. Confirm the codes are identification-enabled\n\nWhen you become a customer you typically receive an account, online access codes and a debit card together. Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking. Suomi.fi stresses that, to be valid for e-identification, the codes must be \"suitable for electronic identification in other services in addition to banking transactions,\" and they must have been issued personally to you — company or association codes do not count, and on a joint account only the named account holder can use them.\n\n### 4. If you lack accepted documents\n\nThis is the hard case that catches many non-EU arrivals. If you do not have an ID document the bank accepts, you may not be able to activate e-identification straight away. Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated. Banks also commonly send an activation code and a temporary PIN by SMS and by post as part of setting up their identification app.\n\nBecause rules and accepted documents vary between banks and change over time, confirm the current requirements with your chosen bank before you go in.\n\n...\n\nModern Finnish banking codes almost always involve an app on your phone for the confirmation step rather than a paper code list. Setup usually means installing the bank's identification app, registering it once, and choosing a PIN. After that, logging in to any Suomi.fi-connected service follows the same rhythm: choose your bank, enter your user ID and password, then approve the login in the app or with a one-time code.\n\nA few habits keep this smooth:\n\n- Keep your phone and SIM working. App-based confirmation depends on your device; a lost or wiped phone means re-registering the app with your bank.\n- Don't rely on a single method. Many residents also activate a mobile certificate as a backup, so a phone problem doesn't lock them out of tax or healthcare.\n- Mind the personal-use rule. Never let anyone else use your codes, even a spouse on a joint account — it breaks both the bank's terms and the identification rules.\n\n...\n\n## Common Problems and How to Avoid Them\n\nA few situations recur often enough to flag:\n\n- \"I have an account but can't log in to OmaVero.\" Your codes are probably not activated for e-identification. Call the bank and ask them to enable identification use.\n- A lost or new phone. Re-register the bank's identification app, or fall back to a mobile certificate if you set one up. Plan for this before it happens.\n- Forgotten codes. Suomi.fi's guidance is simple: if you don't remember your online banking codes, contact your bank — neither Suomi.fi nor the public service can recover them.\n- Sharing codes. Letting a family member log in \"just this once\" with your codes breaches the personal-use rule and can put your bank relationship at risk."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "title": "Bank account in Finland – online banking codes",
+        "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "publishedDate": "2026-09-25T09:06:30.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "In Finland the bank account and the online banking codes (verkkopankkitunnukset) that come with it are two different things. The codes are the everyday electronic identity: they log you in to Suomi.fi e-Identification, the shared login for public e-services, and so to Kela (Social Insurance Institution), Vero (Tax Administration) and the police. Opening a bank account in Finland is a legal right for anyone legally resident in the EEA, and strong identification can be refused only on narrow grounds. The rules are national, set in the Act on Credit Institutions and supervised by the Financial Supervisory Authority (Finanssivalvonta).\n\n...\n\nBecause the law treats them separately. The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes. A bank may refuse strong electronic identification – codes that work in other services, not only its own – if, for example, you have no Finnish personal identity code or are not in the Population Information System. It must then offer a limited electronic ID for its own services; once your code and registration are in place, ask again. Codes used for Suomi.fi must be issued personally to you and be suitable for other services.\n\nTake phishing seriously: the Financial Supervisory Authority calls the fishing of online banking codes the most common scam in Finland. No bank or authority ever asks for your codes by phone or e-mail, so never log in through a link in a message, and never let anyone take remote control of your device.\n\n...\n\nSuomi.fi e-Identification is free for private individuals and accepts several tokens.\n\n| Token | Who can use it | What you need |\n| --- | --- | --- |\n| Finnish online banking codes | Bank customers with a personal identity code | Personal codes suitable for other services |\n| Mobile certificate (mobiilivarmenne) | Customers of DNA, Elisa or Telia | Finnish online banking codes to activate it; not on a prepaid subscription |\n| Finnish ID card with citizen certificate | Finnish citizens; foreigners permanently resident with a valid permit or registered right of residence | Activate the certificate, then use the mobile app or a card reader with DVV's free software |\n| Tokens of 21 other European countries (eIDAS) | Citizens of, for example, Estonia, Germany, Sweden and Spain | Only in e-services that allow foreign users |\n| Finnish Authenticator app | Foreigners aged 18 or over with no Finnish code or token | A passport or EU, EEA, UK or Swiss ID card to photograph; not strong identification |\n\n...\n\n## What to do now\n\n| Step | What | When |\n| --- | --- | --- |\n| 1 | Get your henkilötunnus and DVV registration (part 3) | Before you book the bank |\n| 2 | Book an in-person appointment; bring your passport or foreigner's ID card | Your first week |\n| 3 | Answer the know-your-customer questions; ask for codes usable in other services | At the appointment |\n| 4 | If refused: ask for the reason in writing and a limited e-ID | When the bank answers – at most ten banking days |\n| 5 | Apply for the foreigner's ID card as a second token (€53 online) | Once you have a kotikunta |\n| 6 | Activate a mobile certificate, then MobilePay | When the codes work |\n\nSource: the Financial Supervisory Authority, the Finnish Police and Suomi.fi, read 24 September 2026."
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-bank-account-finland-online-banking-codes-strong-i.jpg"
+      },
+      {
+        "id": "https://helloexpat.eu/fi/blog/digital-id-in-finland",
+        "title": "Digital ID in Finland: bank codes and the new wallet | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/digital-id-in-finland",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "The usual methods are:\n\n- Bank codes (pankkitunnukset): the codes your Finnish bank gives you under a contract. They must be personal and enabled for electronic identification; business codes do not count.\n- Mobile certificate (mobiilivarmenne): a certificate on the SIM card of a DNA, Elisa or Telia subscription, activated with your bank codes. It does not work on a prepaid card; for an eSIM, ask the operator.\n- Police identity card: foreign residents who live in Finland permanently, are in the population register, have a registered right of residence and a municipality of residence can apply for a police-issued identity card. You activate its certificate and use it with a card reader or the hightrust.id app.\n- hightrust.id: a free wallet app that can be activated with a police identity card issued after 31 August 2021, including the residence card for foreigners.\n\n...\n\nNot much, and that is the awkward part. Before you have a personal identity code, you cannot get bank codes. Before you have bank codes, you cannot get the mobile certificate. See the Finnish personal identity code and opening a bank account in Finland for the first two steps.\n\nFor the gap, there is Finnish Authenticator, a free app for foreigners who have no Finnish identification. You create a foreigner identifier with your email, then prove your identity in the app by photographing your passport, or your national identity card if you are a citizen of the EU, the EEA, Switzerland or the UK, and taking a selfie. A driving licence is not accepted.\n\nTwo cautions. Each service decides whether it accepts Finnish Authenticator. Vero says that OmaVero accepts personal bank codes, the mobile certificate, certificate cards and hightrust.id, and that Finnish Authenticator is there for foreign company representatives with a Suomi.fi authorisation. Private persons from another EU country can use their own eIDAS identity for a limited set of functions. And the account is blocked if unused for four years.\n\n...\n\nBecause the conditions are stricter. A foreigner can sometimes hold an account yet not receive codes. Under Finnish law a bank may refuse codes only where you do not have a personal identity code or are not registered in the population register, and it must then offer you a limited identification method for use of the account. Ask the bank in writing if you are refused.\n\nYour bank codes also work as an electronic signature. Never lend them, not even to a partner. A joint account's codes serve only the holder to whom they were issued.\n\n...\n\n## How do you get your digital ID in Finland in practice?\n\n1. Get your identity code and a municipality of residence.\n2. Open a bank account and ask explicitly for online banking codes.\n3. Activate a mobile certificate on a subscription, not a prepaid card.\n4. Once you qualify, apply for the police identity card for foreigners and activate its certificate.\n5. Keep two different methods. Losing your phone or changing your bank can lock you out of OmaVero and OmaKela.\n\n...\n\n## How do you avoid scams around digital ID?\n\nThe Tax Administration warns on its own website that scam messages have been sent in its name, and similar messages circulate in the name of Kela and banks. The rule is the same as anywhere: do not click a link in a message, open the service by typing the address or using the official app, and never read out an authorisation code to a caller. If you lose your phone, call your bank's helpline at once to block your codes.\n\n## Which mistakes do newcomers make?\n\nCounting on a French or other national eID without checking the list. Buying a prepaid SIM and expecting a mobile certificate. Believing every service accepts Finnish Authenticator. Letting the app account sleep. And lending codes, which is both unwise and against the bank's terms."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      },
+      {
+        "id": "https://www.enb.fi/guides/strong-electronic-identification-finland/",
+        "title": "Strong Identification Finland: EUR 53 ID Card Option | ENB",
+        "url": "https://www.enb.fi/guides/strong-electronic-identification-finland/",
+        "publishedDate": "2026-08-21T10:42:44.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "The identity code is a population identifier; bank credentials, mobile certificates and certificate cards are separately issued authentication tools.\n\n...\n\nSuomi.fi's 2026 guidance lists personal Finnish online banking credentials, mobile certificates from DNA/Elisa/Telia, police-issued certificate cards, Hightrust.id and supported foreign identification methods among the available tokens. The e-service uses Suomi.fi to verify the selected method.\n\n...\n\n## 4. A bank account and strong bank identification are not the same service\n\nA Finnish bank can provide a payment account while strong personal banking credentials suitable for e-identification remain subject to separate conditions. Suomi.fi states that banking credentials used for electronic identification must be issued personally to you and enabled for identification in services beyond ordinary banking transactions.\n\nAccess to a joint account or company online banking does not automatically create personal strong identification. Ask the bank specifically whether the credentials are enabled for strong electronic identification in external services.\n\n...\n\nBank user IDs, passwords, code lists, mobile-certificate PINs and authentication approvals are personal. If a consultant, accountant, employer or family member needs to act on your behalf, use a lawful authorisation mechanism rather than sharing authentication credentials."
+        ],
+        "image": "https://www.enb.fi/services/enb-img-27.jpg"
+      }
+    ],
+    "searchTime": 1058.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

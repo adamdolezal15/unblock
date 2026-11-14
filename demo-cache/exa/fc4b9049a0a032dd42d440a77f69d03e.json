@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T07:21:07.513Z",
+  "request": {
+    "endpoint": "search",
+    "query": "DVV Bank account Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Bank account\" (DVV) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "c128605a4478d6416d255dd04c8c34cb",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "Opening a Bank Account in Finland as a Foreigner | NordicExpat",
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "publishedDate": "2026-06-04T14:39:47.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Getting your paperwork right before you book an appointment is the single biggest time-saver. Across OP and Nordea the required documents are essentially the same.\n\n### Mandatory\n\n- Finnish personal identity code (henkilötunnus) — required by all major banks for standard onboarding. You receive it when you register your residence and kotikunta (municipality of residence) with the Digital and Population Data Services Agency (DVV). If you have not got yours yet, start with our guide to the Finnish personal identity code — almost nothing in Finnish life works smoothly without it.\n- Valid passport or EEA national ID card — Nordea, for example, accepts a passport or an identity card issued in the EEA (including San Marino and Switzerland). An alien's passport is generally not accepted as the sole identity document.\n- Proof of your right of residence — for non-EU citizens, a residence permit card or a certificate of a pending application; for EU/EEA citizens, your registration of right of residence.\n\n### Usually Required\n\n- Proof of Finnish address — your address as registered with DVV, a rental agreement, or a confirmation letter.\n- Details of employment or study — an employment contract, a letter from your employer, or a student enrolment confirmation. Banks ask this partly for customer due diligence (the anti-money-laundering checks every EU bank must run).\n\nA practical tip: fill in any customer-information form your chosen bank provides before the appointment, and bring it with you. OP notes that the most common reason applications are delayed is incorrect or incomplete registration details, so it is worth double-checking that your name and address at DVV exactly match what you give the bank.\n\n...\n\nThe practical catch: where you have no henkilötunnus or are not yet in the population register, the bank can decline to give you the standard strong-authentication online banking ID and must instead offer \"a more limited electronic identification method applicable only for using a payment account with basic features and related services.\" So the right exists, but it is narrow, it is not what a front-line teller will reach for by default, and you may have to escalate. For most people the faster route is still to get the henkilötunnus first. If you want the full detail on this edge case, see our guide to opening a Finnish bank account before you have a henkilötunnus.\n\n...\n\nEven when you start an application online, all major Finnish banks require an in-person identity-verification visit for a first Finnish account — partly because, until you hold strong electronic identification, you cannot legally sign the documents online. At the branch:\n\n1. Bring every required document — passport or EEA ID card, henkilötunnus, residence document, and proof of address.\n2. Identity verification — a bank employee checks and copies your documents and confirms your identity in person.\n3. Sign the agreements — you sign the account agreement and the related services agreement.\n4. Wait for the post — account details, your debit card, and your online banking codes are typically mailed.\n\nBook the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days. For service in English, ask for it when you book; Nordea has a dedicated English line.\n\n...\n\n## Common Problems and Fixes\n\n- \"The bank says I need a henkilötunnus and I don't have one yet.\" That is correct for a standard account. Get the identity code via DVV first; only fall back on the basic-payment-account right (above) if you genuinely cannot, and expect to escalate.\n- \"My application got delayed.\" The usual cause is mismatched or incomplete registration details. Make sure your name and address at the bank exactly match DVV's records.\n- \"S-Pankki wouldn't serve me in English.\" Documented behaviour — its legal documents are in Finnish/Swedish and staff may require an interpreter. Try Nordea or OP if language is a barrier.\n- \"I was refused outright.\" Ask for the reason in writing. Refusals for a basic account should, per FIN-FSA, generally only happen for anti-money-laundering reasons such as unverifiable identity. Try another bank — risk appetites for new-to-Finland customers differ.\n- \"I can't log in to OmaVero / Kela yet.\" You need active pankkitunnukset (or a mobiilivarmenne). Until your codes arrive and are activated, you cannot use most Finnish online government services."
+        ],
+        "image": "https://nordicexpat.com/finland/opening-bank-account-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://aleksihimself.com/how-to-open-a-bank-account-in-finland-a-step-by-step-guide/",
+        "title": "How to Open a Bank Account in Finland: A Step-by-Step Guide",
+        "url": "https://aleksihimself.com/how-to-open-a-bank-account-in-finland-a-step-by-step-guide/",
+        "publishedDate": "2024-08-11T17:15:37.000Z",
+        "author": "Aleksi Himself",
+        "highlights": [
+          "Without a Personal Identity Code, you won’t be able to access many Finnish services, so it’s crucial to get this as soon as possible. Be careful with this code—only disclose it when necessary, such as dealing with the public sector or signing contracts.\n\n...\n\nThe Police booking system is often full for months. However, you can arrive early, around 7:30 AM, for a walk-in appointment. Many people use this strategy, so be prepared to wait. I recently guided a newcomer.\n\n...\n\nIf you opt for R-kioski, someone with a Finnish passport or ID card must collect it. If you don’t have a trusted person to do this, it’s safer to choose the police station as the pickup location.\n4. Collect the Card. You will get an SMS and email when your card is ready to collect."
+        ],
+        "image": "https://aleksihimself.com/wp-content/uploads/2024/08/5.png"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "title": "Bank account in Finland – online banking codes",
+        "url": "https://relocateineurope.com/moving-to-finland/bank-account-finland-online-banking-codes-strong-identification-mobilepay/",
+        "publishedDate": "2026-09-25T09:06:30.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "In Finland the bank account and the online banking codes (verkkopankkitunnukset) that come with it are two different things. The codes are the everyday electronic identity: they log you in to Suomi.fi e-Identification, the shared login for public e-services, and so to Kela (Social Insurance Institution), Vero (Tax Administration) and the police. Opening a bank account in Finland is a legal right for anyone legally resident in the EEA, and strong identification can be refused only on narrow grounds. The rules are national, set in the Act on Credit Institutions and supervised by the Financial Supervisory Authority (Finanssivalvonta).\n\nKela pays no benefits in cash, so it wants a Finnish bank account and a henkilötunnus (personal identity code) before you apply for anything – and DVV (Digital and Population Data Services Agency, in Swedish Myndigheten för digitalisering och befolkningsdata) will not speed up your registration because a bank is waiting.\n\n...\n\nBring a passport, a foreigner's identity card or another official identity document; InfoFinland, the authorities' joint guidance service, is blunt that a driving licence will not do, and each bank decides which documents it accepts. Some banks also accept an alien's passport or a refugee travel document issued by a Finnish authority. Opening an account takes an in-person appointment, says the City of Helsinki's Newcomer's Guide. By law the bank must know its customer: it will ask what the account is for, may check your credit history, and may not open the account if you do not answer.\n\n...\n\n| --- | --- |\n| Name, address, personal identity code or other ID number, nationality | Anti-money-laundering law |\n| Whether you hold a prominent public position | Politically exposed persons are checked more closely |\n| Your situation – employee, student, pensioner – and whether this is your main bank | Normal use of the account |\n| Where your money comes from and your regular payment flows | Origin of funds |\n| Expected volume of payments, including foreign payments and their purpose | To spot unusual activity |\n\n...\n\nBecause the law treats them separately. The requirements for online banking credentials are stricter than for the account, so some newcomers leave the branch with an account and no codes. A bank may refuse strong electronic identification – codes that work in other services, not only its own – if, for example, you have no Finnish personal identity code or are not in the Population Information System. It must then offer a limited electronic ID for its own services; once your code and registration are in place, ask again. Codes used for Suomi.fi must be issued personally to you and be suitable for other services.\n\nTake phishing seriously: the Financial Supervisory Authority calls the fishing of online banking codes the most common scam in Finland. No bank or authority ever asks for your codes by phone or e-mail, so never log in through a link in a message, and never let anyone take remote control of your device.\n\n...\n\n## What to do now\n\n| Step | What | When |\n| --- | --- | --- |\n| 1 | Get your henkilötunnus and DVV registration (part 3) | Before you book the bank |\n| 2 | Book an in-person appointment; bring your passport or foreigner's ID card | Your first week |\n| 3 | Answer the know-your-customer questions; ask for codes usable in other services | At the appointment |\n| 4 | If refused: ask for the reason in writing and a limited e-ID | When the bank answers – at most ten banking days |\n| 5 | Apply for the foreigner's ID card as a second token (€53 online) | Once you have a kotikunta |\n| 6 | Activate a mobile certificate, then MobilePay | When the codes work |\n\nSource: the Financial Supervisory Authority, the Finnish Police and Suomi.fi, read 24 September 2026."
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-bank-account-finland-online-banking-codes-strong-i.jpg"
+      },
+      {
+        "id": "https://www.countrytolive.com/knowledge/finland/open-bank-account-finland",
+        "title": "How can a newcomer open a bank account in Finland in 2026? | Country Answers | Country To Live",
+        "url": "https://www.countrytolive.com/knowledge/finland/open-bank-account-finland",
+        "publishedDate": "2026-07-20T03:13:51.000Z",
+        "highlights": [
+          "InfoFinland and DVV both stress that a henkilötunnus is the number you need when dealing with banks and employers. In practice, most full-service onboarding expects that code plus a valid passport or EEA national ID, proof of lawful stay (residence permit card or EU registration certificate), and Finnish address details. Non-EU movers should bring the Migri (Finnish Immigration Service) card when they have one. Banks ask source-of-funds and purpose-of-account questions. Answer with facts from your contract or savings trail rather than vague tourist language.\n\nExpect an in-person identity check at a branch for the first account. Appointment availability in Helsinki, Espoo, Tampere, or Turku can stretch, so book early after your henkilötunnus arrives. Do not invent monthly account fees from memory. Ask the bank for its current basic-account pricing when you book.\n\n...\n\nTell your employer which account to use only after you have IBAN details and can log in. Keep a foreign buffer account available until the Finnish account accepts deposits. City choice affects branch density more than the legal rules; see Living in Helsinki or Living in Tampere once housing is settled.\n\nIf one bank declines, try another major retail bank with the same document pack. Refusal often tracks incomplete identity evidence or an unclear Finland connection, not a personal judgment."
+        ],
+        "image": "https://www.countrytolive.com/flags/fi.svg"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "A useful detail: according to DVV, submitting this form does not require online authentication, so you can complete it before you have any Finnish bank credentials. If your registration involves family relationships, you submit the supporting documents at this stage.\n\n### Step 2 — Book an in-person appointment within one month\n\nAfter the form, you must visit a DVV service point in person, and you must do so within one month of submitting. The in-person step is non-negotiable — it is where DVV verifies your identity against your documents. Appointments at the busy Helsinki-area locations can fill up, so book as early as you can rather than leaving it to the end of the one-month window.\n\n### Step 3 — Bring the right documents\n\nTake, at minimum:\n\n- A valid passport or EU/EEA photo ID\n- Your residence permit card or EU registration certificate — or proof that you have applied for one\n- Proof of your grounds for staying: an employment contract, a study certificate, or similar\n- Any legalised certificates for family relationships you want recorded (marriage, birth)\n\nDocuments in languages other than Finnish, Swedish, or English may need an official translation, and foreign civil-status certificates often need legalisation (an apostille). If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment.\n\n...\n\nDVV operates service points across Finland — major cities including Helsinki, Tampere, Turku, and Oulu have offices, and there are around a dozen physical locations nationally. You can also reach DVV by telephone on +358 295 536 320 (Mon–Fri 9–15) and through secure email for questions about your case.\n\nFor anyone in the capital region, the standout resource is International House Helsinki (ihhelsinki.fi), a single building where DVV, the Tax Administration, Kela, and other authorities share a service point aimed ... It is designed to let you handle registration, tax card, and social-insurance steps in roughly one visit rather than several, and the staff are used to dealing with people in English."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      }
+    ],
+    "searchTime": 971.9,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

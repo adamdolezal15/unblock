@@ -1,0 +1,84 @@
+{
+  "fetchedAt": "2026-11-14T07:21:25.840Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Residence permit for an employed person",
+    "contextHash": "3bf85cd7d332cba8",
+    "includeDomains": [],
+    "docsHash": "34fb5b9b02351132"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/checklist",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "You will probably need a residence permit to work in Finland if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway or Switzerland"
+        ],
+        "fetchedAt": "2026-11-14T06:12:15.161Z"
+      },
+      {
+        "url": "https://migri.fi/en/faq-residence-permits",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "To be allowed to move to Finland for longer than 90 days, you need a residence permit",
+          "In contrast, if you apply for a residence permit on some other grounds while in Finland, the decision will usually be negative"
+        ],
+        "fetchedAt": "2026-11-14T06:12:15.161Z"
+      },
+      {
+        "url": "https://migri.fi/en/residence-permit-for-an-employed-person",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "You can fill in the application online in Enter Finland",
+          "A valid passport issued by your country of nationality. For more information, see the page Passports and other travel documents. Show the passport when you visit a service point to prove your identity",
+          "The passport photo must be no more than 6 months old",
+          "Colour copies of the passport page containing personal data and of all passport pages that contain notes",
+          "Document showing that you are legally staying in the country where you submit the application",
+          "After you have submitted your application in Enter Finland, your employer must add your terms of employment and other required documents to your application using Enter Finland for Employers"
+        ],
+        "fetchedAt": "2026-11-14T06:12:15.161Z"
+      },
+      {
+        "url": "https://migri.fi/en/identification",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "When you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person"
+        ],
+        "fetchedAt": "2026-11-14T06:12:15.161Z"
+      },
+      {
+        "url": "https://exa.ai/library/place/xv1lszgfgn7",
+        "title": "exa.ai",
+        "domain": "exa.ai",
+        "trust": "community",
+        "highlights": [
+          "I normally wait 3-4 months to get me residence permit extended"
+        ],
+        "fetchedAt": "2026-11-14T07:21:07.733Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2893,
+      "costUsd": 0.006116,
+      "cacheHit": false
+    }
+  }
+}

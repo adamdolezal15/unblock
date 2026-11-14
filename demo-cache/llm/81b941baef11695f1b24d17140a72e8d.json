@@ -1,0 +1,51 @@
+{
+  "fetchedAt": "2026-11-14T07:20:55.871Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "University enrolment and arrival steps (Tampere University)",
+    "contextHash": "961adbf858c29739",
+    "includeDomains": [],
+    "docsHash": "8b949ace1b26cdf8"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+        "title": "opiskelijanopas.tuni.fi",
+        "domain": "opiskelijanopas.tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "All students need to register as an attending (present) or non-attending (absent) student each academic year",
+          "For all new students in the degree programmes in English the registration takes place online",
+          "If you do not register at all by the given deadline, you lose your right to study",
+          "You need to be registered as present in order to participate in education, take exams and complete studies"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      },
+      {
+        "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/permits-and-processes/registration-authorities-new-degree-students",
+        "title": "opiskelijanopas.tuni.fi",
+        "domain": "opiskelijanopas.tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "Therefore, once you have been granted a Finnish personal identity code, you should present the document along with your passport/identity card at the Student Affairs Office"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1494,
+      "costUsd": 0.0035099999999999997,
+      "cacheHit": false
+    }
+  }
+}

@@ -10,7 +10,7 @@ import { googleTemplateUrl, eventsFromSchedule } from "../calendar";
 import { newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
 import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../graph";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
-import type { Citation, Conflict, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
+import type { Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
 import { detectConflicts } from "./detectConflicts";
 import { estimatesWithTips } from "./estimates";
 import { attachTips, findCommunityTips, tipTargets, type FindTipsResult } from "./findCommunityTips";
@@ -115,7 +115,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     tipsDone: boolean;
     conflicts: Conflict[];
     conflictKeys: Set<string>;
-    conflictDropped: number;
+    conflictDropped: DroppedClaim[];
     conflictsDone: boolean;
     graphSent: boolean;
     sched?: { steps: Step[]; schedule: Schedule; path: CriticalPath; events: StreamCalEvent[] };
@@ -127,7 +127,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     tipsDone: false,
     conflicts: [],
     conflictKeys: new Set(),
-    conflictDropped: 0,
+    conflictDropped: [],
     conflictsDone: false,
     graphSent: false,
   };
@@ -189,7 +189,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     detectConflicts(steps, tips, { profile: s.profile!, onProgress }).then(
       (r) => {
         if (signal.aborted) return;
-        s.conflictDropped += r.dropped.length;
+        s.conflictDropped.push(...r.dropped);
         r.conflicts.forEach(addConflict);
         reportFailures("Conflict check", r.reports);
       },
@@ -330,7 +330,7 @@ function summarize(a: {
   partial: boolean;
   steps: Step[];
   stubs: StepStub[];
-  s: { tips: Tip[]; conflicts: Conflict[]; found?: FindStepsResult; tipsResult?: FindTipsResult; conflictDropped: number; sched?: { schedule: Schedule; path: CriticalPath; events: StreamCalEvent[] } };
+  s: { tips: Tip[]; conflicts: Conflict[]; found?: FindStepsResult; tipsResult?: FindTipsResult; conflictDropped: DroppedClaim[]; sched?: { schedule: Schedule; path: CriticalPath; events: StreamCalEvent[] } };
   meter: RunMeter;
   ms: number;
 }): RunSummary {
@@ -362,6 +362,7 @@ function summarize(a: {
   const last = path?.stepIds[path.stepIds.length - 1];
   const events = s.sched?.events ?? [];
   const llm = meter.llmCostUsd;
+  const rejected = [...(s.found?.dropped ?? []), ...(s.tipsResult?.dropped ?? []), ...s.conflictDropped];
   return {
     runId: a.runId,
     partial: a.partial,
@@ -380,7 +381,8 @@ function summarize(a: {
     },
     sourcesByTrust,
     verifiedQuotes: quotes.size,
-    droppedClaims: (s.found?.dropped.length ?? 0) + (s.tipsResult?.dropped.length ?? 0) + s.conflictDropped,
+    droppedClaims: rejected.length,
+    rejected: rejected.slice(0, MAX_REJECTED).map(({ stepId, kind, url, quote, reason }) => ({ stepId, kind, url, quote, reason })),
     tips: s.tips.length,
     conflicts: s.conflicts.length,
     totalMs: a.ms,
@@ -388,5 +390,8 @@ function summarize(a: {
     calls: { exa: meter.exaCalls, exaLive: meter.exaLive, llm: meter.llmCalls, llmLive: meter.llmLive },
   };
 }
+
+/** Rejected claims listed in the summary (the count covers all of them). */
+const MAX_REJECTED = 50;
 
 const round = (n: number) => Math.round(n * 10000) / 10000;

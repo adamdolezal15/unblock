@@ -1,6 +1,6 @@
 // run() as an NDJSON byte stream (one PipelineEvent per line), shared by POST /api/run and scripts/run.ts.
 // Demo replay: for an exact demo sentence served entirely from cache the pipeline finishes in about a
-// second, so status lines are spaced 150–400 ms apart to keep the activity feed readable on stage.
+// second, so status lines are spaced 70–180 ms apart (~9 s for Marta's ~73 lines) to keep the activity feed readable on stage.
 // The moment any live (uncached) Exa / LLM call happens, the spacing stops: real work is slow enough.
 // `fast` skips the spacing (tests).
 import { DEMO_SENTENCES } from "../demo/sentences";
@@ -11,12 +11,12 @@ import { run, type RunOptions } from "./run";
 export type RunStreamOptions = Pick<RunOptions, "signal" | "timeoutMs" | "today" | "runId" | "persist"> & {
   /** Skip demo replay delays. */
   fast?: boolean;
-  /** Override the replay delay (ms) per status line; default 150–400 ms at random. */
+  /** Override the replay delay (ms) per status line; default 70–180 ms at random. */
   replayDelay?: () => number;
 };
 
 /** Total replay delay cap, so a long cached run never drags on stage. */
-export const REPLAY_BUDGET_MS = 20_000;
+export const REPLAY_BUDGET_MS = 10_000;
 
 const DEMO_TEXTS: ReadonlySet<string> = new Set(Object.values(DEMO_SENTENCES));
 
@@ -44,7 +44,7 @@ export function runStream(text: string, opts: RunStreamOptions = {}): ReadableSt
 
   const meter = newMeter();
   const replay = !opts.fast && isDemoSentence(text);
-  const delay = opts.replayDelay ?? (() => 150 + Math.random() * 250);
+  const delay = opts.replayDelay ?? (() => 70 + Math.random() * 110);
   let spent = 0;
 
   return new ReadableStream<Uint8Array>({
