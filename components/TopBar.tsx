@@ -1,6 +1,5 @@
 "use client";
 import { BrandStripe } from "./brand";
-import { LineMark } from "./line/LineMark";
 import { IconDownload } from "./icons";
 
 /** Results header: back to edit the situation, the wordmark, and the calendar download. No prompt field. */
@@ -18,7 +17,6 @@ export function TopBar({ onEdit, onHome, icsUrl, progress, running }: Props) {
           Edit your situation
         </button>
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2.5" aria-label="Unblock, start over">
-          <LineMark spinning={running} className="h-[14px] w-[110px]" />
           <span className="text-[22px] font-bold text-ink">Unblock</span>
         </button>
         <div className="justify-self-end">
