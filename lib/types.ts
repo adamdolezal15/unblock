@@ -13,6 +13,10 @@ export type Profile = {
   temporaryProtection?: boolean;
   /** Planned stay length when stated ("5 months"). */
   stayMonths?: number;
+  /** Step / milestone ids the person says they already have ("I already have a bank account"). Not searched; shown as done. */
+  alreadyDone?: string[];
+  /** Only on entries of ProfileResult.people: how this person relates to the main applicant. */
+  relation?: "self" | "spouse" | "child" | "other";
 };
 
 export type Citation = { url: string; quote: string; trust: Trust; fetchedAt: string };
@@ -38,6 +42,8 @@ export type Step = {
   requiresAnyOf?: string[][];
   /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
   milestone?: boolean;
+  /** The person says they already have this (Profile.alreadyDone). No citations: it is their statement, not a claim. */
+  done?: boolean;
   /** Shared by steps a verified source says can be done in one visit at the same desk. */
   visitId?: string;
   costOfDelay?: string;

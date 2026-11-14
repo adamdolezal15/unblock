@@ -13,7 +13,7 @@ import type {
 } from "../types";
 import { authorityOf } from "./authority";
 import { whatToDoByTrust } from "./detectConflicts";
-import { MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 
 export type StepReport = {
@@ -357,7 +357,8 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const selected = selectSteps(profile);
   const fetchPage = createPageFetcher(cityDomains(profile.city));
   const runs = await Promise.all(selected.map((def) => runStep(def, profile, selected, fetchPage, onProgress)));
-  const available = new Set(runs.map((r) => r.def.id));
+  const done = doneSteps(profile);
+  const available = new Set([...runs.map((r) => r.def.id), ...done.map((s) => s.id)]);
   for (const r of runs) {
     r.verified = r.verified.map(remapIdentityCode);
     r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
@@ -387,9 +388,10 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     for (const s of steps) if (members.includes(s.id)) s.visitId = visitId;
   }
 
+  steps.push(...done);
   for (const id of MILESTONE_IDS) {
     const confirmation = confirmed.get(id);
-    if (!confirmation) continue;
+    if (!confirmation || done.some((s) => s.id === id)) continue;
     const providers = runs.flatMap((r) =>
       confirmed.has(r.def.id) ? r.verified.filter((c) => c.kind === "provides" && c.value === id) : [],
     );

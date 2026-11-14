@@ -1,0 +1,51 @@
+{
+  "fetchedAt": "2026-11-14T06:52:05.831Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Swedish citizen moving to Espoo for work",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Espoo",
+      "arrival": {
+        "kind": "none",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Swedish",
+          "citizenship": "NORDIC",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": []
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1816,
+      "costUsd": 0.00929,
+      "cacheHit": false
+    }
+  }
+}

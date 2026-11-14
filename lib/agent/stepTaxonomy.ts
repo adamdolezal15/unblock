@@ -1,7 +1,7 @@
 // Canonical step ids + how to look them up. This file carries NO facts about the steps
 // (no requirements, documents, deadlines, offices). `appliesTo` only decides what to search for;
 // a step reaches the user only if a live source sentence confirms it applies (an `applies` claim).
-import type { Profile } from "../types";
+import type { Profile, Step } from "../types";
 
 export type StepDef = {
   id: string;
@@ -173,6 +173,30 @@ export const MILESTONE_IDS: ReadonlySet<string> = new Set(Object.keys(MILESTONES
 /** Ids a `requires` claim may name: steps and milestones. */
 export const STEP_IDS: ReadonlySet<string> = new Set([...STEP_TAXONOMY.map((s) => s.id), ...MILESTONE_IDS]);
 
+/** Steps to research for this profile. Steps the person says they already have (Profile.alreadyDone) are not searched. */
 export function selectSteps(profile: Profile): StepDef[] {
-  return STEP_TAXONOMY.filter((s) => s.appliesTo(profile));
+  const done = new Set(profile.alreadyDone ?? []);
+  return STEP_TAXONOMY.filter(
+    (s) =>
+      s.appliesTo(profile) &&
+      !done.has(s.id) &&
+      // an identity code from a Vero tax office is pointless to someone who already has one
+      !(s.id === "vero_identity_code" && done.has("personal_identity_code")),
+  );
+}
+
+/** Steps for what the person says they already have: no search, no citations (their statement, not a claim). */
+export function doneSteps(profile: Profile): Step[] {
+  return [...new Set(profile.alreadyDone ?? [])]
+    .filter((id) => STEP_IDS.has(id))
+    .map((id) => ({
+      id,
+      title: `${MILESTONES[id]?.label ?? STEP_TAXONOMY.find((s) => s.id === id)?.label ?? id} (already done)`,
+      authority: "You",
+      mode: "online" as const,
+      requires: [],
+      milestone: true, // takes no time, no visit, never the critical node
+      done: true,
+      citations: [],
+    }));
 }

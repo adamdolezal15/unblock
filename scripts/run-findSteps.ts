@@ -6,6 +6,7 @@ config({ path: ".env.local" });
 process.env.EXA_LOG ??= "0";
 
 import { parseProfile } from "../lib/agent/parseProfile";
+import { partnerDifferences } from "../lib/agent/partnerSteps";
 import { findSteps } from "../lib/agent/findSteps";
 import { cacheMode } from "../lib/exa/cache";
 import { exaStats, resetExaStats } from "../lib/exa/search";
@@ -57,8 +58,9 @@ async function main() {
     console.log(`OUT OF SCOPE: ${parsed.outOfScope}`);
     return;
   }
-  console.log("profile:", JSON.stringify(parsed.profile));
+  console.log(`profile (${parsed.source}):`, JSON.stringify(parsed.profile));
   for (const a of parsed.assumptions) console.log(`  assumption: ${a}`);
+  for (const d of partnerDifferences(parsed.people)) console.log(`  partner: ${d.summary}`);
 
   resetExaStats();
   const onProgress = (m: string) => console.log(`  … ${m}`);

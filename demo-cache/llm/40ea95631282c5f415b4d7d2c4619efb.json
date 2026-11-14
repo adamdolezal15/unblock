@@ -1,0 +1,51 @@
+{
+  "fetchedAt": "2026-11-14T06:52:22.030Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Jsem občan České republiky a v lednu se stěhuji do Turku na studium",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Turku",
+      "arrival": {
+        "kind": "date",
+        "day": null,
+        "month": 1,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Czech",
+          "citizenship": "EU",
+          "purpose": [
+            "study"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": []
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1838,
+      "costUsd": 0.009264,
+      "cacheHit": false
+    }
+  }
+}

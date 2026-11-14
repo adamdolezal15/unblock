@@ -1,0 +1,53 @@
+{
+  "fetchedAt": "2026-11-14T06:52:18.022Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "im a swedsh citzen movng to Tmpere for a jbo next wek",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Tampere",
+      "arrival": {
+        "kind": "relative",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": 7
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Swedish",
+          "citizenship": "NORDIC",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": [
+        "Interpreted the typos as 'Swedish citizen', 'Tampere', 'job' and 'next week'."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2067,
+      "costUsd": 0.009688,
+      "cacheHit": false
+    }
+  }
+}

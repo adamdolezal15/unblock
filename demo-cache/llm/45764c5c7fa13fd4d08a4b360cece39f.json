@@ -1,0 +1,51 @@
+{
+  "fetchedAt": "2026-11-14T06:52:20.188Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Olen ruotsalainen ja muutan Ouluun tammikuussa töihin, palkka 4000 euroa kuussa",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Oulu",
+      "arrival": {
+        "kind": "date",
+        "day": null,
+        "month": 1,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Swedish",
+          "citizenship": "NORDIC",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": 4000,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": []
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2158,
+      "costUsd": 0.009356,
+      "cacheHit": false
+    }
+  }
+}

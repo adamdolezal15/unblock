@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DEMO_SENTENCES } from "../demo/sentences";
-import { parseDate, parseProfile, parseSalary } from "./parseProfile";
+import { parseDate, parseProfileDeterministic as parseProfile, parseSalary } from "./parseProfile";
 
 const TODAY = "2026-11-14";
 

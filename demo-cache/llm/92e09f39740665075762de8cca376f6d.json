@@ -1,0 +1,53 @@
+{
+  "fetchedAt": "2026-11-14T06:52:07.832Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Indian software engineer, arriving in Helsinki next week, no residence permit card yet",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Helsinki",
+      "arrival": {
+        "kind": "relative",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": 7
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Indian",
+          "citizenship": "NON_EU",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": [
+        "Software engineer interpreted as moving to Finland for work."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1996,
+      "costUsd": 0.009514,
+      "cacheHit": false
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "fetchedAt": "2026-11-14T06:52:30.122Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "I'm Swedish, my wife is Brazilian, we're moving to Espoo in March for my job",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Espoo",
+      "arrival": {
+        "kind": "date",
+        "day": null,
+        "month": 3,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Swedish",
+          "citizenship": "NORDIC",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        },
+        {
+          "relation": "spouse",
+          "nationality": "Brazilian",
+          "citizenship": "NON_EU",
+          "purpose": [
+            "family"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": []
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2275,
+      "costUsd": 0.010062,
+      "cacheHit": false
+    }
+  }
+}

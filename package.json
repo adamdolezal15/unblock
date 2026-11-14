@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "warm-demo": "tsx scripts/warm-demo.ts"
+    "warm-demo": "tsx scripts/warm-demo.ts",
+    "parse-table": "tsx scripts/parse-table.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

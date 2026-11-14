@@ -20,3 +20,6 @@ Check for every query:
 - community tips are labelled as community
 - calendar links open with correct title, date and location
 - total time < 60 s, progress streams
+
+## parseProfile inputs (18)
+`tests/parse/inputs.ts`: rows 1-8 above, then 10 adversarial ones (typos, Finnish, Czech, vague, other city + yearly salary, "I already have a bank account", Swedish + Brazilian wife, injection + real content, injection only, leaving Finland). Answers are cached in `demo-cache/llm`; `npm run parse-table` prints them as a table (`LLM_CACHE=read` for cache only, `-- --export` to refresh the tracked cache).

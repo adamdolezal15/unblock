@@ -1,14 +1,24 @@
-// Pipeline step 1 (temporary, deterministic). Same signature the LLM version will have.
+// Pipeline step 1: text -> Profile. LLM first (parseProfileLlm, cached through lib/llm); the deterministic
+// parser below is the fallback when there is no key, the cache misses in read mode, or the LLM fails.
 // Everything not stated in the text and filled by a default goes into `assumptions`.
+import { resolveProviderName } from "../llm";
 import type { Profile } from "../types";
+import { parseProfileLlm } from "./parseProfileLlm";
 import {
   EEA_TERMS, EU_TERMS, FINLAND_TERMS, FINNISH_CITIES, FINNISH_CITIZEN_TERMS, MONTHS, MOVE_TERMS, NON_EU_TERMS,
   NORDIC_TERMS, PURPOSE_TERMS, TEMPORARY_PROTECTION_TERMS, UNIVERSITY_CITY,
 } from "./profileLexicon";
 
 export type ProfileResult =
-  | { ok: true; profile: Profile; assumptions: string[] }
-  | { ok: false; outOfScope: string };
+  | {
+      ok: true;
+      profile: Profile;
+      assumptions: string[];
+      /** Everyone moving, main applicant first (equal to `profile`); the rest are spouse/children with their own citizenship. */
+      people: Profile[];
+      source: "llm" | "deterministic";
+    }
+  | { ok: false; outOfScope: string; source: "llm" | "deterministic" };
 
 export const SCOPE_MESSAGE =
   "Unblock plans the official steps for moving to a Finnish city (registration, permits, tax card, bank, Kela). " +
@@ -101,11 +111,38 @@ function parseStayMonths(text: string): number | undefined {
   return undefined;
 }
 
+/** "I already have a bank account / personal identity code / residence permit" -> step ids. */
+export function parseAlreadyDone(text: string): string[] {
+  const t = text.toLowerCase();
+  const have = String.raw`(?:already\s+(?:have|got|hold|opened|registered)|i\s+(?:have|got)\s+(?:a|an|my)|got\s+(?:a|an|my))`;
+  const out: string[] = [];
+  const add = (id: string, thing: string) => {
+    if (new RegExp(`${have}[^.;]{0,40}${thing}`).test(t) && !out.includes(id)) out.push(id);
+  };
+  add("bank_account", String.raw`bank\s+account`);
+  add("personal_identity_code", String.raw`(?:personal\s+identity\s+code|henkilötunnus|finnish\s+id\s+code|hetu)`);
+  add("residence_permit", String.raw`residence\s+permit(?!\s+card\s+yet)`);
+  return out;
+}
+
 function helsinkiToday(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Helsinki" }).format(new Date());
 }
 
 export async function parseProfile(text: string, today: string = helsinkiToday()): Promise<ProfileResult> {
+  if (resolveProviderName() === "anthropic") {
+    try {
+      const r = await parseProfileLlm(text.trim(), today);
+      return { ...r, source: "llm" };
+    } catch (e) {
+      console.warn(`[parseProfile] LLM parse failed (${e instanceof Error ? e.message.slice(0, 120) : "error"}); using the deterministic parser`);
+    }
+  }
+  return parseProfileDeterministic(text, today);
+}
+
+/** Word lists and regexes only. English input; no typos, no partner with a different citizenship. */
+export function parseProfileDeterministic(text: string, today: string = helsinkiToday()): ProfileResult {
   const assumptions: string[] = [];
   const t = text.trim();
 
@@ -114,7 +151,7 @@ export async function parseProfile(text: string, today: string = helsinkiToday()
   const uniKey = Object.keys(UNIVERSITY_CITY).find((k) => has(t, k));
   const mentionsFinland = FINLAND_TERMS.some((k) => has(t, k));
   const moving = MOVE_TERMS.some((k) => has(t, k));
-  if (!cityKey && !uniKey && !(mentionsFinland && moving)) return { ok: false, outOfScope: SCOPE_MESSAGE };
+  if (!cityKey && !uniKey && !(mentionsFinland && moving)) return { ok: false, outOfScope: SCOPE_MESSAGE, source: "deterministic" };
 
   let city: string;
   if (cityKey) city = FINNISH_CITIES[cityKey];
@@ -166,6 +203,7 @@ export async function parseProfile(text: string, today: string = helsinkiToday()
   const monthlySalaryEur = parseSalary(t);
   const stayMonths = parseStayMonths(t);
 
+  const alreadyDone = parseAlreadyDone(t);
   const profile: Profile = {
     citizenship,
     purpose,
@@ -175,6 +213,7 @@ export async function parseProfile(text: string, today: string = helsinkiToday()
     ...(hasFamily ? { hasFamily } : {}),
     ...(temporaryProtection ? { temporaryProtection } : {}),
     ...(stayMonths ? { stayMonths } : {}),
+    ...(alreadyDone.length ? { alreadyDone } : {}),
   };
-  return { ok: true, profile, assumptions };
+  return { ok: true, profile, assumptions, people: [profile], source: "deterministic" };
 }

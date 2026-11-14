@@ -1,0 +1,54 @@
+{
+  "fetchedAt": "2026-11-14T06:52:01.728Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Helsinki",
+      "arrival": {
+        "kind": "date",
+        "day": 1,
+        "month": 12,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Czech",
+          "citizenship": "EU",
+          "purpose": [
+            "work",
+            "study"
+          ],
+          "monthlySalaryEur": 3200,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": [
+        "Salary of 3200 EUR is treated as gross per month."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2109,
+      "costUsd": 0.009554,
+      "cacheHit": false
+    }
+  }
+}

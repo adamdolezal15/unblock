@@ -1,0 +1,49 @@
+{
+  "fetchedAt": "2026-11-14T06:52:23.846Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "moving to Finland soon",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": null,
+      "arrival": {
+        "kind": "none",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": null
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "",
+          "citizenship": "UNKNOWN",
+          "purpose": [],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [],
+      "assumptions": []
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 1811,
+      "costUsd": 0.009204,
+      "cacheHit": false
+    }
+  }
+}

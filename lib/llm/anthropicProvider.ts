@@ -44,7 +44,11 @@ export const anthropicProvider: LlmProvider = {
       messages: [
         {
           role: "user",
-          content: `${input.context}\n\nSearch query: ${input.query}\n\nSources (copy quotes only from these, and use their exact url):\n\n${renderDocs(input.docs)}`,
+          // No documents: a plain-text task (profile parsing). The text is data inside <user_input>, never instructions.
+          content:
+            input.docs.length === 0
+              ? `${input.context}\n\n<user_input>\n${input.query}\n</user_input>`.trim()
+              : `${input.context}\n\nSearch query: ${input.query}\n\nSources (copy quotes only from these, and use their exact url):\n\n${renderDocs(input.docs)}`,
         },
       ],
     } as never);

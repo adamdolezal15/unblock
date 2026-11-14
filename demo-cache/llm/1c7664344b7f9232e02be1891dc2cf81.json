@@ -1,0 +1,56 @@
+{
+  "fetchedAt": "2026-11-14T06:52:27.843Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "parseProfile@3",
+    "promptHash": "22e679eea06b339e",
+    "schemaHash": "fbbe55a92ec9b9aa",
+    "query": "Indian engineer moving to Vantaa in two weeks, I already have a Finnish bank account and a personal identity code",
+    "contextHash": "e3b0c44298fc1c14",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "outOfScope": false,
+      "reason": "",
+      "city": "Vantaa",
+      "arrival": {
+        "kind": "relative",
+        "day": null,
+        "month": null,
+        "year": null,
+        "offsetDays": 14
+      },
+      "people": [
+        {
+          "relation": "self",
+          "nationality": "Indian",
+          "citizenship": "NON_EU",
+          "purpose": [
+            "work"
+          ],
+          "monthlySalaryEur": null,
+          "temporaryProtection": false,
+          "stayMonths": null
+        }
+      ],
+      "alreadyDone": [
+        "bank_account",
+        "personal_identity_code"
+      ],
+      "assumptions": [
+        "Moving as an engineer is interpreted as coming to Finland for work."
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2124,
+      "costUsd": 0.009703999999999999,
+      "cacheHit": false
+    }
+  }
+}
