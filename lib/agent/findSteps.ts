@@ -38,7 +38,14 @@ export type FindStepsResult = {
   sources: ExaDoc[];
 };
 
-export type FindStepsOptions = { onProgress?: (message: string) => void };
+export type FindStepsOptions = {
+  onProgress?: (message: string) => void;
+  /**
+   * Called as soon as a step is confirmed, and again if its final form differs (consumers upsert by id).
+   * Every step in the returned `steps` has been passed here in its final form.
+   */
+  onStep?: (step: Step) => void;
+};
 
 function dedupeDocs(docs: ExaDoc[]): ExaDoc[] {
   const seen = new Set<string>();
@@ -356,13 +363,30 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const onProgress = opts.onProgress ?? (() => {});
   const selected = selectSteps(profile);
   const fetchPage = createPageFetcher(cityDomains(profile.city));
-  const runs = await Promise.all(selected.map((def) => runStep(def, profile, selected, fetchPage, onProgress)));
   const done = doneSteps(profile);
-  const available = new Set([...runs.map((r) => r.def.id), ...done.map((s) => s.id)]);
-  for (const r of runs) {
-    r.verified = r.verified.map(remapIdentityCode);
-    r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
-  }
+  const available = new Set([...selected.map((d) => d.id), ...done.map((s) => s.id)]);
+  // Steps with their own verified `applies` claim are confirmed the moment their run finishes: report
+  // them right away. Everything else (required_by, milestones, shared visitIds) is known only after all runs.
+  const emitted = new Map<string, string>();
+  const emit = (s: Step) => {
+    const json = JSON.stringify(s);
+    if (emitted.get(s.id) === json) return;
+    emitted.set(s.id, json);
+    opts.onStep?.(s);
+  };
+  const runs = await Promise.all(
+    selected.map((def) =>
+      runStep(def, profile, selected, fetchPage, onProgress).then((r) => {
+        r.verified = r.verified.map(remapIdentityCode);
+        r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
+        if (r.verified.some((c) => c.kind === "applies")) {
+          const confirmation: Confirmation = { by: "applies" };
+          emit({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation), confirmation });
+        }
+        return r;
+      }),
+    ),
+  );
   const confirmed = confirmSteps(runs.map((r) => ({ id: r.def.id, verified: r.verified })));
 
   const steps: Step[] = [];
@@ -398,6 +422,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     const milestone = buildMilestone(id, confirmation, providers, runs);
     if (milestone) steps.push(milestone);
   }
+  for (const s of steps) emit(s); // new steps, and early ones whose final form changed (e.g. a shared visitId)
 
   return {
     steps,

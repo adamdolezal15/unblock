@@ -103,7 +103,13 @@ All LLM-shaped work goes through `lib/llm` `extract(task, input, zodSchema)`. `L
 4. `lib/graph/` (pure): `buildGraph` (unknown requires → `unresolved` placeholders), `topoOrder` (cycles returned as `Deadlock`, never thrown; UI highlights them), `criticalNode`, `schedule` (Helsinki working days from max(arrival, today), parallel where independent, `durationDays`/`waitDays` from community data else defaults flagged `estimated`), `criticalPath`. Priority = transitive dependents × cost-of-delay urgency.
 5. `toCalendar(steps)` → Google template links + .ics
 
-Stream progress to UI ("searching dvv.fi…", "reading kela.fi…").
+### Orchestration and streaming
+`lib/agent/run.ts` `run(text, {signal, onEvent, timeoutMs, today})`: parseProfile → findSteps (each step is emitted as soon as its own `applies` claim verifies; re-sent if its final form changes, so `step` events are upserts by id) → graph (pure, at once) ∥ findCommunityTips ∥ detectConflicts for steps that get no tips → schedule + calendar (need the tips' waits) ∥ detectConflicts for the tip steps → persist → `done`. Events: `PipelineEvent` in `lib/types.ts` (status, profile, step, stub, graph, tip, conflict, schedule, calendar, partial, out_of_scope, error, done with `RunSummary`).
+- Status lines come from inside `lib/exa` and `lib/llm` (`lib/events/context.ts`, AsyncLocalStorage per run: status sink, abort signal, cost/cache meter), so the feed shows real work ("Found 5 official sources: dvv.fi, …", "Reading dvv.fi…", "Extracting cited steps from 5 sources…"). Outside a run they are no-ops.
+- `POST /api/run {text}` → NDJSON (`lib/agent/runStream.ts`). Client disconnect aborts: no new Exa / LLM call starts and nothing more is emitted. Global timeout 75 s: what finished is completed with the pure stages (graph, schedule, calendar), then `partial {missing[]}` and `done` (never a blank response). `maxDuration = 120`. Out of scope → exactly one `out_of_scope` event. Per-step failures inside a stage → `error {recoverable: true}`.
+- Every run with a profile is saved to `.cache/runs/<runId>.json` (OS temp dir if read-only); `done.summary.runId`; `GET /api/calendar.ics?runId=` reads it.
+- Demo replay: an exact demo sentence served fully from cache spaces status lines 150–400 ms apart (capped at 20 s in total); spacing stops at the first live call. `?fast=1` skips it.
+- `npx tsx scripts/run.ts [--fast] [--json] "<sentence>"` prints the stream.
 
 ## Out of scope
 Lease checking, Websets, full benefits engine, Google OAuth, chat UI as main screen, OCR.

@@ -5,6 +5,7 @@
 import path from "node:path";
 import { z } from "zod";
 import { cachedCall, modeFromEnv, sha } from "../cache/disk";
+import { domainList, emitStatus, meterLlm, throwIfAborted } from "../events/context";
 import { salvage } from "./salvage";
 import type { ExtractInput, ExtractResult, LlmProvider, LlmTask } from "./types";
 
@@ -56,14 +57,37 @@ export function llmCacheKey(p: Pick<LlmProvider, "name" | "model">, task: LlmTas
   };
 }
 
+/** Activity-feed line for an extraction about to run (the task name says what is being read). */
+function statusLine(task: string, n: number, domains: string): string {
+  const src = `${n} source${n === 1 ? "" : "s"}${domains ? ` (${domains})` : ""}`;
+  switch (task) {
+    case "parseProfile":
+      return "Understanding your situation…";
+    case "extractStep":
+      return `Extracting cited steps from ${src}…`;
+    case "extractTips":
+      return `Extracting community tips from ${src}…`;
+    case "detectConflicts":
+      return `Comparing ${src} for disagreements…`;
+    default:
+      return `Reading ${src}…`;
+  }
+}
+
 /** Structured extraction. Output is validated with `schema`; invalid parts are dropped, never guessed. */
 export async function extract<T>(task: LlmTask, input: ExtractInput, schema: z.ZodType<T>): Promise<ExtractResult<T>> {
   const p = await provider();
+  const domains = input.docs.map((d) => d.domain);
+  emitStatus(statusLine(task.name, input.docs.length, domainList(domains)), { domain: domains[0] });
   const r = await cachedCall(
     { dir: CACHE_DIR, mode: modeFromEnv("LLM_CACHE"), label: "LLM_CACHE", fallbackDir: DEMO_CACHE_DIR },
     llmCacheKey(p, task, input, schema),
-    () => p.extract(task, input, schema),
+    () => {
+      throwIfAborted();
+      return p.extract(task, input, schema);
+    },
   );
+  meterLlm(r.hit, r.hit ? 0 : (r.response.meta.costUsd ?? 0), p.name);
   if (!r.hit) return r.response;
   return {
     data: salvage(schema, r.response.data),

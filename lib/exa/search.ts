@@ -1,6 +1,7 @@
 // Typed, cached wrappers around Exa /search and /contents. All Exa traffic goes through here.
 // Request shapes follow .agents/skills/build-with-exa: highlights inside `contents`,
 // `objective` on every pipeline search, includeDomains only for the official layer.
+import { domainList, emitStatus, meterExa, throwIfAborted } from "../events/context";
 import type { ExaDoc } from "../types";
 import { cached } from "./cache";
 import { exa } from "./client";
@@ -103,6 +104,7 @@ export function exaStats(): ExaStats {
 
 /** One log line per call (EXA_LOG=0 silences it) and one meter entry. Never includes keys. */
 function logCall(helper: string, query: string, meta: SearchMeta, results: number) {
+  meterExa(meta.hit, meta.costUsd ?? 0);
   stats.calls++;
   const h = (stats.byHelper[helper] ??= { live: 0, cached: 0, costUsd: 0 });
   if (meta.hit) {
@@ -165,6 +167,7 @@ export async function exaSearch(req: SearchRequest): Promise<{ response: RawSear
   const { query, ...options } = req;
   const timeout = req.type?.startsWith("deep") ? DEEP_TIMEOUT_MS : DEFAULT_TIMEOUT_MS;
   const r = await cached<RawSearchResponse>({ endpoint: "search", ...req }, async () => {
+    throwIfAborted();
     // exa-js overloads are keyed on the contents generic; our request type is the narrower contract.
     const res = await limited(() => withRetry(() => exa().search(query, { ...options, timeout } as never)));
     return JSON.parse(JSON.stringify(res)) as RawSearchResponse;
@@ -194,6 +197,23 @@ function toDocs(response: RawSearchResponse, fetchedAt: string, extraOfficial: s
   }));
 }
 
+/** One activity-feed line per call, naming the domains Exa actually returned. */
+function reportFound(docs: ExaDoc[], meta: SearchMeta, noun: (n: number) => string, empty: string) {
+  const domains = docs.map((d) => d.domain);
+  emitStatus(docs.length ? `Found ${docs.length} ${noun(docs.length)}: ${domainList(domains)}` : empty, {
+    domain: domains[0],
+    cached: meta.hit,
+  });
+}
+const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+const hostOf = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+};
+
 /** Official layer: hard allowlist = SPEC official domains + the profile city's municipal domain. */
 export async function searchOfficial(args: {
   query: string;
@@ -216,7 +236,9 @@ export async function searchOfficial(args: {
     contents: { highlights: true },
   });
   logCall("searchOfficial", args.query, meta, response.results.length);
-  return { docs: toDocs(response, meta.fetchedAt, cityDomains(args.city)), meta };
+  const docs = toDocs(response, meta.fetchedAt, cityDomains(args.city));
+  reportFound(docs, meta, (n) => plural(n, "official source", "official sources"), `No official sources on ${domainList(includeDomains, 2)} for this search`);
+  return { docs, meta };
 }
 
 /** Provider layer: only bank / service-provider domains, to find what providers themselves state. */
@@ -233,7 +255,9 @@ export async function searchProvider(
     contents: { highlights: true },
   });
   logCall("searchProvider", query, meta, response.results.length);
-  return { docs: toDocs(response, meta.fetchedAt, []), meta };
+  const docs = toDocs(response, meta.fetchedAt, []);
+  reportFound(docs, meta, (n) => plural(n, "bank / provider page", "bank / provider pages"), "No bank / provider pages for this search");
+  return { docs, meta };
 }
 
 /** Community layer: no domain filter; source preference lives in `objective`. */
@@ -255,7 +279,9 @@ export async function searchCommunity(args: {
     contents: { highlights: true },
   });
   logCall("searchCommunity", args.query, meta, response.results.length);
-  return { docs: toDocs(response, meta.fetchedAt, cityDomains(args.city)), meta };
+  const docs = toDocs(response, meta.fetchedAt, cityDomains(args.city));
+  reportFound(docs, meta, (n) => plural(n, "community post", "community posts"), "No recent community posts for this search");
+  return { docs, meta };
 }
 
 /**
@@ -275,6 +301,7 @@ export async function getPages(
   const r = await cached<RawSearchResponse>(
     { endpoint: "contents", urls: [...urls].sort(), ...options },
     async () => {
+      throwIfAborted();
       const res = await limited(() =>
         withRetry(() => exa().getContents(urls, { ...options, timeout: DEFAULT_TIMEOUT_MS } as never)),
       );
@@ -283,6 +310,11 @@ export async function getPages(
   );
   const meta: SearchMeta = { hit: r.hit, ms: r.ms, requestId: r.response.requestId, costUsd: r.response.costDollars?.total, fetchedAt: r.fetchedAt };
   logCall("getPages", urls.join(","), meta, r.response.results.length);
+  const hosts = urls.map(hostOf);
+  emitStatus(urls.length === 1 ? `Reading ${hosts[0]}…` : `Reading ${urls.length} pages in full: ${domainList(hosts)}…`, {
+    domain: hosts[0],
+    cached: meta.hit,
+  });
   return { docs: toDocs(r.response, r.fetchedAt, opts.extraOfficial ?? []), meta };
 }
 
@@ -309,6 +341,7 @@ export async function searchDeep(args: {
     contents: { highlights: true },
   });
   logCall("searchDeep", args.query, meta, response.results.length);
+  emitStatus(`Deep search read ${response.results.length} sources`, { cached: meta.hit });
   let content: unknown = response.output?.content ?? null;
   if (typeof content === "string") {
     try {

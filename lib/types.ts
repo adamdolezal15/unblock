@@ -144,13 +144,79 @@ export type SearchSpec = {
   layer: "official" | "community";
 };
 
+/** Counts for the final summary (SPEC F3: done online / visits / in calendar / critical path length). */
+export type RunSummary = {
+  runId: string;
+  /** true when the run stopped early (timeout); the counts cover what was finished. */
+  partial: boolean;
+  /** Actionable steps found and confirmed (milestones and already-done items excluded). */
+  steps: number;
+  alreadyDone: number;
+  /** Steps that can be done online (mode online or either). */
+  online: number;
+  /** Distinct in-person visits as scheduled (steps merged into one visit count once). */
+  inPersonVisits: number;
+  /** Visit events in the calendar (+ tip reminders, counted separately). */
+  inCalendar: number;
+  reminders: number;
+  /** Steps searched but not confirmed by any source ("not found, check <url>"). */
+  notFound: number;
+  criticalPath: { stepIds: string[]; workingDays: number; calendarDays: number; endDate: string | null };
+  /** Distinct source URLs behind the citations shown, by trust tier. */
+  sourcesByTrust: Record<Trust, number>;
+  /** Distinct verified quotes shown (step claims, tips, both sides of conflicts). */
+  verifiedQuotes: number;
+  /** Extracted claims whose quote was not found in the source text (never shown). */
+  droppedClaims: number;
+  tips: number;
+  conflicts: number;
+  totalMs: number;
+  costUsd: { exa: number; llm: number; total: number };
+  calls: { exa: number; exaLive: number; llm: number; llmLive: number };
+};
+
+/** A calendar event as streamed: the CalEvent plus its Google Calendar template link. */
+export type StreamCalEvent = import("./calendar/types").CalEvent & { googleTemplateUrl: string };
+
+/**
+ * NDJSON events from POST /api/run (lib/agent/run.ts). Order: status* → profile → (status | step | stub)*
+ * → graph → (status | tip)* → schedule → calendar → (status | conflict)* → [partial] → done.
+ * `step` events are upserts keyed by step.id (a step can be re-sent when its final form changes).
+ * An out-of-scope input yields a single `out_of_scope` event and nothing else.
+ */
 export type PipelineEvent =
-  | { type: "progress"; message: string }
-  | { type: "profile"; profile: Profile }
+  | { type: "status"; message: string; domain?: string; cached?: boolean }
+  | {
+      type: "profile";
+      profile: Profile;
+      assumptions: string[];
+      /** Everyone moving, main applicant first. */
+      people: Profile[];
+      /** Per partner: which citizenship-path steps differ (not researched for them). */
+      partnerNotes: string[];
+      source: "llm" | "deterministic";
+    }
   | { type: "out_of_scope"; message: string }
-  | { type: "docs"; layer: "official" | "community"; count: number }
-  | { type: "steps"; steps: Step[] }
-  | { type: "conflicts"; conflicts: Conflict[] }
-  | { type: "graph"; order: string[]; criticalNodeId: string | null; criticalPath: string[]; lengthDays: number }
-  | { type: "error"; message: string }
-  | { type: "done"; elapsedMs: number };
+  | { type: "step"; step: Step }
+  | { type: "stub"; stub: StepStub }
+  | {
+      type: "graph";
+      graph: import("./graph/types").Graph;
+      criticalNode: string | null;
+      order: string[];
+      deadlocks: import("./graph/types").Deadlock[];
+    }
+  | { type: "tip"; tip: Tip }
+  | { type: "conflict"; conflict: Conflict }
+  | {
+      type: "schedule";
+      schedule: import("./graph/types").Schedule;
+      criticalPath: import("./graph/types").CriticalPath;
+      visitChoices: (import("./graph/schedule").VisitChoice & { description: string })[];
+    }
+  | { type: "calendar"; events: StreamCalEvent[]; icsUrl: string }
+  | { type: "partial"; reason: "timeout"; message: string; missing: string[] }
+  | { type: "error"; message: string; recoverable: boolean }
+  | { type: "done"; summary: RunSummary };
+
+export type PipelineEventType = PipelineEvent["type"];
