@@ -37,7 +37,7 @@ async function main() {
   }
   const t0 = Date.now();
   console.log(`input: ${sentence}`);
-  console.log(`EXA_CACHE=${cacheMode()}  LLM_PROVIDER=${process.env.LLM_PROVIDER ?? "exa"}\n`);
+  console.log(`EXA_CACHE=${cacheMode()}  LLM_PROVIDER=${process.env.LLM_PROVIDER ?? "anthropic (default)"}\n`);
 
   const parsed = await parseProfile(sentence);
   if (!parsed.ok) {

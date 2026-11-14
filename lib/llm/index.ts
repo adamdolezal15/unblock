@@ -1,6 +1,6 @@
 // The single entry point for LLM-shaped work. Callers never learn which provider ran.
-//   LLM_PROVIDER=exa (default)  -> Exa deep search + outputSchema
-//   LLM_PROVIDER=anthropic      -> Claude; needs ANTHROPIC_API_KEY unless LLM_CACHE=read (no API calls then)
+//   LLM_PROVIDER=anthropic (default) -> Claude Sonnet 5.5; needs ANTHROPIC_API_KEY unless LLM_CACHE=read (no API calls then)
+//   LLM_PROVIDER=exa                 -> Exa deep search + outputSchema (also the fallback when Claude is unavailable)
 // Every extraction goes through a disk cache: .cache/llm/, LLM_CACHE=read|write|off (default write).
 import path from "node:path";
 import { z } from "zod";
@@ -15,11 +15,11 @@ let warned = false;
 
 /** Which provider will run, resolved from env. Exported for tests. */
 export function resolveProviderName(env: Record<string, string | undefined> = process.env): "exa" | "anthropic" {
-  const wanted = (env.LLM_PROVIDER ?? "exa").toLowerCase();
+  const wanted = (env.LLM_PROVIDER ?? "anthropic").toLowerCase();
   if (wanted === "anthropic") {
     if (env.ANTHROPIC_API_KEY || (env.LLM_CACHE ?? "").toLowerCase() === "read") return "anthropic";
     if (!warned) {
-      console.warn("[llm] LLM_PROVIDER=anthropic but ANTHROPIC_API_KEY is not set; using exa");
+      console.warn("[llm] anthropic extractor selected but ANTHROPIC_API_KEY is not set; falling back to exa");
       warned = true;
     }
   }

@@ -19,7 +19,11 @@ describe("toExaSchema", () => {
 });
 
 describe("resolveProviderName", () => {
-  it("defaults to exa", () => expect(resolveProviderName({})).toBe("exa"));
+  it("defaults to anthropic when keyed, else exa", () => {
+    expect(resolveProviderName({ ANTHROPIC_API_KEY: "x" })).toBe("anthropic");
+    expect(resolveProviderName({})).toBe("exa");
+    expect(resolveProviderName({ LLM_PROVIDER: "exa", ANTHROPIC_API_KEY: "x" })).toBe("exa");
+  });
   it("anthropic needs a key", () => {
     expect(resolveProviderName({ LLM_PROVIDER: "anthropic" })).toBe("exa");
     expect(resolveProviderName({ LLM_PROVIDER: "anthropic", ANTHROPIC_API_KEY: "x" })).toBe("anthropic");
