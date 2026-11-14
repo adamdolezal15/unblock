@@ -23,7 +23,7 @@ export function Prose({ segs, big }: { segs: Seg[]; big?: boolean }) {
 
 export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId: string) => void }) {
   return (
-    <div className="rise">
+    <div className="rise max-w-[680px]">
       <h1 className="font-serif text-[38px] font-semibold leading-[1.18] tracking-[-0.01em] text-ink">
         <Prose segs={letter.headline} big />
       </h1>

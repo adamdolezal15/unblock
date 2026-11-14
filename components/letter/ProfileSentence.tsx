@@ -11,7 +11,7 @@ export function ProfileSentence({ profile, text, disabled, onCorrect }: Props) {
   const parts = profileParts(profile.profile, profile.assumptions, text);
 
   return (
-    <div className="text-[17px] leading-[1.7] text-muted">
+    <div className="max-w-[720px] text-[17px] leading-[1.7] text-muted">
       <p>
         {parts.map((p, i) =>
           "t" in p ? (

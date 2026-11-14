@@ -71,7 +71,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
 
   return (
     <main className="px-8">
-      <div className="grid gap-x-14 gap-y-8 pt-8 lg:grid-cols-[minmax(0,680px)_minmax(260px,380px)]">
+      <div className="grid gap-x-14 gap-y-8 pt-8 lg:grid-cols-[minmax(0,880px)_minmax(240px,340px)]">
         <div className="min-w-0 space-y-7">
           {state.profile ? (
             <ProfileSentence
@@ -94,7 +94,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
                 doc={doc}
                 onOpen={openStep}
                 extra={comparison && (
-                  <p className="mb-6 border-l-2 border-ink pl-4 text-[18px] leading-[1.6] text-ink">
+                  <p className="mb-6 rounded-[8px] border border-rule bg-raised px-5 py-4 text-[17px] leading-[1.6] text-ink">
                     <Prose segs={comparison.sentence} />
                   </p>
                 )}
