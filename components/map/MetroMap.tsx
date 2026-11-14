@@ -4,7 +4,7 @@
 import { useMemo, useState } from "react";
 import type { Graph, ScheduledStep } from "@/lib/graph/types";
 import type { Conflict, Step } from "@/lib/types";
-import { layoutMetro, type MetroEdge, type MetroStation, type Point } from "@/lib/ui/metroLayout";
+import { LINE_H, layoutMetro, type MetroEdge, type MetroStation, type Point } from "@/lib/ui/metroLayout";
 import type { Selection } from "@/lib/ui/selection";
 import { Interchange, Station } from "../line/primitives";
 import { C, LINE } from "../line/spec";
@@ -19,7 +19,46 @@ type Props = {
   onSelect: (s: Selection) => void;
 };
 
-const path = (pts: Point[]) => pts.map((p, i) => `${i ? "L" : "M"}${p.x} ${p.y}`).join(" ");
+const R = 9; // corner radius
+const TIP_GAP = 13; // arrow tip stops this far from the station's centre
+const ARROW = { len: 7, half: 4 };
+
+/** Route with rounded corners, shortened at the end so the arrowhead sits just before the station. */
+function roundedPath(pts: Point[]): string {
+  const p = [...pts];
+  const n = p.length;
+  const last = p[n - 1];
+  const prev = p[n - 2];
+  const len = Math.hypot(last.x - prev.x, last.y - prev.y) || 1;
+  const cut = TIP_GAP + ARROW.len - 1;
+  p[n - 1] = { x: last.x - ((last.x - prev.x) / len) * cut, y: last.y - ((last.y - prev.y) / len) * cut };
+  let d = `M${p[0].x} ${p[0].y}`;
+  for (let i = 1; i < p.length - 1; i++) {
+    const a = p[i - 1];
+    const b = p[i];
+    const c = p[i + 1];
+    const l1 = Math.hypot(b.x - a.x, b.y - a.y);
+    const l2 = Math.hypot(c.x - b.x, c.y - b.y);
+    const r = Math.min(R, l1 / 2, l2 / 2);
+    const s = { x: b.x - ((b.x - a.x) / l1) * r, y: b.y - ((b.y - a.y) / l1) * r };
+    const e = { x: b.x + ((c.x - b.x) / l2) * r, y: b.y + ((c.y - b.y) / l2) * r };
+    d += ` L${s.x} ${s.y} Q${b.x} ${b.y} ${e.x} ${e.y}`;
+  }
+  const end = p[p.length - 1];
+  return `${d} L${end.x} ${end.y}`;
+}
+
+/** Small filled triangle at the target end, pointing along the last segment. */
+function arrowHead(pts: Point[]): string {
+  const b = pts[pts.length - 1];
+  const a = pts[pts.length - 2];
+  const len = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+  const ux = (b.x - a.x) / len;
+  const uy = (b.y - a.y) / len;
+  const tip = { x: b.x - ux * TIP_GAP, y: b.y - uy * TIP_GAP };
+  const base = { x: tip.x - ux * ARROW.len, y: tip.y - uy * ARROW.len };
+  return `${tip.x},${tip.y} ${base.x - uy * ARROW.half},${base.y + ux * ARROW.half} ${base.x + uy * ARROW.half},${base.y - ux * ARROW.half}`;
+}
 
 export function MetroMap({ graph, steps, items, criticalPath, conflicts, selection, onSelect }: Props) {
   const L = useMemo(() => layoutMetro({ graph, steps, items, criticalPath, conflicts, width: 1000 }), [graph, steps, items, criticalPath, conflicts]);
@@ -48,6 +87,7 @@ export function MetroMap({ graph, steps, items, criticalPath, conflicts, selecti
           {edgeEls.map((e) => {
             const faded = !!focus && !touches(e);
             const sel = selectedEdge === e.id;
+            const color = sel ? C.ink : e.main ? C.blue : touches(e) ? "#7d7768" : C.grey;
             return (
               <g
                 key={e.id}
@@ -55,15 +95,9 @@ export function MetroMap({ graph, steps, items, criticalPath, conflicts, selecti
                 style={{ opacity: faded ? 0.18 : 1, transition: "opacity 140ms" }}
                 onClick={() => onSelect({ kind: "edge", id: e.id, source: e.source, target: e.target })}
               >
-                <path d={path(e.points)} fill="none" stroke="transparent" strokeWidth={16} />
-                <path
-                  d={path(e.points)}
-                  fill="none"
-                  stroke={sel ? C.ink : e.main ? C.blue : touches(e) ? "#7d7768" : C.grey}
-                  strokeWidth={e.main ? LINE.main : touches(e) || sel ? 3 : LINE.branch}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d={roundedPath(e.points)} fill="none" stroke="transparent" strokeWidth={16} />
+                <path d={roundedPath(e.points)} fill="none" stroke={color} strokeWidth={e.main ? LINE.main : touches(e) || sel ? 3 : LINE.branch} strokeLinecap="butt" strokeLinejoin="round" />
+                <polygon points={arrowHead(e.points)} fill={color} />
               </g>
             );
           })}
@@ -85,14 +119,32 @@ export function MetroMap({ graph, steps, items, criticalPath, conflicts, selecti
             onOpen={() => open(s.id)}
           />
         ))}
+
+        {/* One-line hint for the station under the pointer. */}
+        {hover && <Hint s={L.stations.find((s) => s.id === hover)} width={L.width} />}
       </svg>
     </div>
   );
 }
 
+function Hint({ s, width }: { s?: MetroStation; width: number }) {
+  if (!s) return null;
+  const w = Math.min(s.hint.length * 6.9 + 20, width - 8);
+  const x = Math.max(4, Math.min(s.x - w / 2, width - w - 4));
+  const y = s.labelSide === "above" ? s.y + 20 : s.y - 44;
+  return (
+    <g pointerEvents="none" role="tooltip">
+      <rect x={x} y={y} width={w} height={26} rx={6} fill={C.ink} />
+      <text x={x + 10} y={y + 17.5} fontSize={13} fill={C.white}>
+        {s.hint}
+      </text>
+    </g>
+  );
+}
+
 function StationMark({ s, faded, selected, onEnter, onLeave, onOpen }: { s: MetroStation; faded: boolean; selected: boolean; onEnter: () => void; onLeave: () => void; onOpen: () => void }) {
-  const lines = [...s.name.map((t) => ({ t, bold: true })), ...(s.office ? [{ t: s.office, bold: false }] : []), ...(s.date ? [{ t: s.date, bold: false }] : []), ...(s.estimate ? [{ t: "estimate", bold: false }] : [])];
-  const LH = 16;
+  const lines = [...s.name.map((t) => ({ t, bold: true })), ...(s.office ?? []).map((t) => ({ t, bold: false })), ...(s.date ? [{ t: s.date, bold: false }] : []), ...(s.estimate ? [{ t: "estimate", bold: false }] : [])];
+  const LH = LINE_H;
   const top = s.labelSide === "above" ? s.y - 18 - (lines.length - 1) * LH : s.y + 28;
   return (
     <g

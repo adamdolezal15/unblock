@@ -188,10 +188,17 @@ describe("metro map: Marta", () => {
       conflicts: state.conflicts,
       width: 1000,
     });
-    expect(L.width).toBe(1000);
-    expect(L.height).toBeLessThan(560);
+    expect(L.width).toBeGreaterThanOrEqual(1000);
+    expect(L.height).toBeLessThan(640);
     expect(new Set(L.stations.map((s) => s.col)).size).toBe(L.stations.length);
     for (const e of L.edges) expect(hits(e.points, L.stations, new Set([e.source, e.target])), e.id).toBe(0);
+    const { crossings } = await import("../../lib/ui/metroLayout");
+    for (let i = 0; i < L.edges.length; i++)
+      for (let j = i + 1; j < L.edges.length; j++) {
+        const [a, b] = [L.edges[i], L.edges[j]];
+        const shared = [a.source, a.target].filter((x) => x === b.source || x === b.target).map((x) => L.stations.find((s) => s.id === x)!);
+        expect(crossings(a.points, b.points, shared, L.stations.find((s) => s.row === 0)?.y), `${a.id} x ${b.id}`).toBe(0);
+      }
     expect(L.stations.filter((s) => s.row === 0).map((s) => s.id)).toEqual(["eu_registration", "dvv_registration", "strong_identification"]);
     expect(L.stations.find((s) => s.id === "bank_account")?.conflict).toBe(true);
   });

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Graph, ScheduledStep } from "@/lib/graph/types";
-import { hits, layoutMetro, wrap } from "./metroLayout";
+import { crossings, hits, layoutMetro, wrap } from "./metroLayout";
 
 const node = (id: string, authority: string, milestone = false) => ({ id, title: id, authority, mode: "in_person" as const, unresolved: false, milestone });
 const graph: Graph = {
@@ -26,6 +26,18 @@ const items = {
   strong: it_(17, "2026-12-28"),
 };
 
+export function expectNoCrossings(L: ReturnType<typeof layoutMetro>) {
+  const at = new Map(L.stations.map((s) => [s.id, s]));
+  for (let i = 0; i < L.edges.length; i++) {
+    for (let j = i + 1; j < L.edges.length; j++) {
+      const a = L.edges[i];
+      const b = L.edges[j];
+      const shared = [a.source, a.target].filter((x) => x === b.source || x === b.target).map((x) => at.get(x)!);
+      expect(crossings(a.points, b.points, shared, L.stations.find((s) => s.row === 0)?.y), `${a.id} x ${b.id}`).toBe(0);
+    }
+  }
+}
+
 describe("layoutMetro", () => {
   const L = layoutMetro({ graph, steps: {}, items, criticalPath: ["reg", "strong"], width: 1000 });
   const at = (id: string) => L.stations.find((s) => s.id === id)!;
@@ -48,18 +60,19 @@ describe("layoutMetro", () => {
     expect(at("bank")).toMatchObject({ hollow: true, estimate: true });
   });
 
-  it("hides only redundant edges and routes the rest octilinearly through no other station", () => {
+  it("hides only redundant edges and routes the rest horizontally and vertically, through no station, crossing nothing", () => {
     expect(L.hidden).toContain("code->strong"); // code -> bank -> strong already says it
     for (const e of L.edges) {
-      e.points.slice(1).forEach((b, i) => {
-        const a = e.points[i];
-        const dx = Math.abs(b.x - a.x);
-        const dy = Math.abs(b.y - a.y);
-        expect(dx === 0 || dy === 0 || Math.abs(dx - dy) < 0.5, e.id).toBe(true);
-      });
+      e.points.slice(1).forEach((b, i) => expect(b.x === e.points[i].x || b.y === e.points[i].y, e.id).toBe(true));
       expect(hits(e.points, L.stations, new Set([e.source, e.target])), e.id).toBe(0);
     }
     expect(L.edges.find((e) => e.id === "reg->strong")?.main).toBe(true);
+    expectNoCrossings(L);
+  });
+
+  it("explains each station on hover", () => {
+    expect(at("code").hint).toBe("Needs: either reg or vero. Unlocks: tax, bank, strong.");
+    expect(at("vero").hint).toMatch(/^Needs: nothing first\. Unlocks: /);
   });
 
   it("is deterministic", () => {
@@ -68,9 +81,11 @@ describe("layoutMetro", () => {
 });
 
 describe("wrap", () => {
-  it("keeps labels to two short lines", () => {
+  it("keeps labels to two lines and never truncates", () => {
     expect(wrap("DVV registration", 12)).toEqual(["DVV", "registration"]);
     expect(wrap("Tax card", 12)).toEqual(["Tax card"]);
-    expect(wrap("a very long label that goes on and on", 10)).toHaveLength(2);
+    const long = wrap("a very long label that goes on and on", 10);
+    expect(long).toHaveLength(2);
+    expect(long.join(" ")).toBe("a very long label that goes on and on");
   });
 });

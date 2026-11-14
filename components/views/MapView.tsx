@@ -55,7 +55,7 @@ export function MapView({ state, selection, onSelect }: { state: RunState; selec
   return (
     <section aria-label="Map">
       <p className="max-w-[680px] text-[16px] text-muted">
-        {state.graph ? "Your plan as a metro line. The blue line decides when you are done; grey routes branch off it. Click a station for its sources." : "Stations appear here as I confirm them."}
+        {state.graph ? "Read left to right. A line means you need the earlier step first." : "Stations appear here as I confirm them."}
       </p>
       <div className="mt-4">{state.graph && <Legend />}</div>
       <div className="mt-6">
