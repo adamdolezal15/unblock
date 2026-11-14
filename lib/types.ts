@@ -17,9 +17,11 @@ export type Profile = {
 
 export type Citation = { url: string; quote: string; trust: Trust; fetchedAt: string };
 
+export type TipKind = "wait_time" | "trick" | "gotcha" | "document";
+
 /** A community tip. `trick` tips can become calendar reminders (e.g. "check for cancelled slots at 23:00"). */
 export type CommunityTip = Citation & {
-  kind?: "wait_time" | "trick" | "gotcha";
+  kind?: TipKind;
   /** Short actionable text, used as the reminder title for `trick` tips. */
   text?: string;
   /** Helsinki wall-clock time "HH:MM" the reminder should fire at. Defaults to 09:00. */
@@ -94,7 +96,24 @@ export type DroppedClaim = RawClaim & { reason: DropReason; bestScore?: number }
 /** A step we searched for but could not confirm from any source. Never shown as a fact. */
 export type StepStub = { id: string; label: string; message: string; checkUrl?: string };
 
-export type Conflict = { topic: string; a: Citation; b: Citation; note: string };
+/**
+ * Lived-experience tip for a step (lib/agent/findCommunityTips). `citation.quote` is verified page text.
+ * `waitDays` (working days) is parsed from the verified quote itself, never taken from the extractor.
+ */
+export type Tip = {
+  stepId: string;
+  tip: string;
+  kind: TipKind;
+  waitDays?: number;
+  citation: Citation;
+  matchScore: number;
+};
+
+/**
+ * Two verified sources disagreeing on one fact of a step. `a` is the higher-trust side (TRUST_RANK).
+ * `whatToDo` is guidance on which source to rely on and why, not legal advice.
+ */
+export type Conflict = { stepId: string; topic: string; a: Citation; b: Citation; note: string; whatToDo: string };
 
 /** One Exa result normalised for the pipeline. Text here is what citations are verified against. */
 export type ExaDoc = {

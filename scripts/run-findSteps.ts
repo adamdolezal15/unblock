@@ -21,7 +21,9 @@ const SHORT: Record<string, string> = {
   kela_registration: "Kela",
   police_id_card: "the police ID card",
 };
-import { estimatesFromSteps } from "../lib/agent/estimates";
+import { estimatesWithTips } from "../lib/agent/estimates";
+import { attachTips, findCommunityTips } from "../lib/agent/findCommunityTips";
+import { detectConflicts } from "../lib/agent/detectConflicts";
 import type { Citation, VerifiedClaim } from "../lib/types";
 
 const BADGE: Record<Citation["trust"], string> = {
@@ -59,7 +61,12 @@ async function main() {
   for (const a of parsed.assumptions) console.log(`  assumption: ${a}`);
 
   resetExaStats();
-  const result = await findSteps(parsed.profile, { onProgress: (m) => console.log(`  … ${m}`) });
+  const onProgress = (m: string) => console.log(`  … ${m}`);
+  const result = await findSteps(parsed.profile, { onProgress });
+  const tipsResult = await findCommunityTips(parsed.profile, result.steps, { onProgress });
+  const steps = attachTips(result.steps, tipsResult.tips);
+  const conflictResult = await detectConflicts(steps, tipsResult.tips, { profile: parsed.profile, onProgress });
+  const conflicts = [...result.conflicts, ...conflictResult.conflicts];
   const ms = Date.now() - t0;
 
   console.log(`\n=== STEPS (${result.steps.length}) ===`);
@@ -90,34 +97,49 @@ async function main() {
     for (const s of result.stubs) console.log(`  ○ ${s.id}: ${s.message}`);
   }
 
-  if (result.conflicts.length) {
-    console.log(`\n=== CONFLICTS (${result.conflicts.length}) ===`);
-    for (const c of result.conflicts) {
-      console.log(`  ! ${c.topic}: ${c.note}`);
-      console.log(`    a [${BADGE[c.a.trust]}] "${wrap(c.a.quote, 110)}" ${c.a.url}`);
-      console.log(`    b [${BADGE[c.b.trust]}] "${wrap(c.b.quote, 110)}" ${c.b.url}`);
+  console.log(`\n=== COMMUNITY TIPS (${tipsResult.tips.length}, steps searched: ${tipsResult.reports.map((r) => r.stepId).join(", ")}) ===`);
+  for (const [stepId, tips] of Object.entries(tipsResult.byStep)) {
+    console.log(`  ${stepId}:`);
+    for (const t of tips) {
+      const wait = t.waitDays !== undefined ? ` (waitDays ${t.waitDays})` : "";
+      console.log(`    - ${t.kind}${wait}: ${wrap(t.tip, 140)}`);
+      console.log(`      "${wrap(t.citation.quote, 140)}"`);
+      console.log(`      [${BADGE[t.citation.trust]}]${t.matchScore < 1 ? ` ~${t.matchScore}` : ""} ${t.citation.url}`);
     }
   }
 
+  if (conflicts.length) {
+    console.log(`\n=== CONFLICTS (${conflicts.length}) ===`);
+    for (const c of conflicts) {
+      console.log(`  ! ${c.stepId} · ${c.topic}: ${c.note}`);
+      console.log(`    a [${BADGE[c.a.trust]}] "${wrap(c.a.quote, 140)}" ${c.a.url}`);
+      console.log(`    b [${BADGE[c.b.trust]}] "${wrap(c.b.quote, 140)}" ${c.b.url}`);
+      console.log(`    what to do: ${c.whatToDo}`);
+    }
+  } else {
+    console.log("\n=== CONFLICTS (0) ===");
+  }
+
   // --- graph
-  const graph = buildGraph(result.steps);
+  const graph = buildGraph(steps);
   const topo = topoOrder(graph);
   const crit = criticalNode(graph);
-  const estimates = estimatesFromSteps(result.steps);
+  const estimates = estimatesWithTips(steps, tipsResult.tips);
   const sched = schedule(graph, parsed.profile, { estimates });
   const path = criticalPath(graph, sched);
   console.log("\n=== GRAPH ===");
   console.log(`  nodes ${graph.nodes.length} (${graph.nodes.filter((n) => n.unresolved).length} unresolved), edges ${graph.edges.length}`);
   for (const e of graph.edges) console.log(`  ${e.source} → ${e.target}${e.anyOf ? "   (any-of)" : ""}`);
-  console.log("  schedule (working day N from the start; wait from a cited processing time, else default 5 = est.):");
+  console.log("  schedule (working day N from the start; wait cited > community-reported > default 5 = est.):");
   for (const id of sched.order) {
     const it = sched.items[id];
     if (!it) continue;
-    const cited = estimates[id] ? "cited" : it.estimated ? "est." : "";
+    const cited = it.waitSource === "community" ? "COMMUNITY" : it.waitSource ? "cited" : it.estimated ? "est." : "";
     const visit = it.visitId ? `, ${it.visitId}` : "";
     const fmt = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
     const moved = it.movedBy ? `  ← moved from ${fmt(it.movedBy.from)}: ${it.movedBy.holiday}` : "";
     console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})${moved}`);
+    if (it.note) console.log(`             note: ${it.note}`);
   }
   for (const c of sched.visitChoices) {
     console.log(`  visit ${c.visitId}: chose ${c.chosen.mode} (${c.chosen.visits} visit${c.chosen.visits === 1 ? "" : "s"}), plan ends ${c.chosen.planEnd}`);
@@ -163,6 +185,14 @@ async function main() {
       `    ${r.id.padEnd(22)} extracted ${String(r.extracted).padStart(2)}  verified ${String(r.verified).padStart(2)}  dropped ${String(r.dropped).padStart(2)}  sources ${r.sources}  ${(r.ms / 1000).toFixed(1)}s${r.error ? `  ERROR ${r.error}` : ""}`,
     );
   }
+  console.log("  community tips per step:");
+  for (const r of tipsResult.reports) {
+    console.log(`    ${r.stepId.padEnd(22)} sources ${String(r.sources).padStart(2)}  extracted ${String(r.extracted).padStart(2)}  verified ${String(r.verified).padStart(2)}  ${(r.ms / 1000).toFixed(1)}s${r.error ? `  ERROR ${r.error}` : ""}`);
+  }
+  console.log("  conflict checks per step:");
+  for (const r of conflictResult.reports) {
+    console.log(`    ${r.stepId.padEnd(22)} sources ${String(r.sources).padStart(2)}  proposed ${r.proposed}  kept ${r.kept}  ${(r.ms / 1000).toFixed(1)}s${r.error ? `  ERROR ${r.error}` : ""}`);
+  }
   if (result.dropped.length) {
     console.log("  sample dropped:");
     for (const d of result.dropped.slice(0, 5)) {
@@ -175,7 +205,7 @@ async function main() {
     const { writeFile } = await import("node:fs/promises");
     await writeFile(
       process.env.RUN_JSON,
-      JSON.stringify({ profile: parsed.profile, result, graph, topo, crit, path, stats, llmExtra, ms }, null, 2),
+      JSON.stringify({ profile: parsed.profile, result, tips: tipsResult, conflicts, graph, topo, crit, path, stats, llmExtra, ms }, null, 2),
       "utf8",
     );
   }

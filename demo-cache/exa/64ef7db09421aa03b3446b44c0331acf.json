@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T06:39:21.636Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a International House Helsinki appointment for Register EU citizen's right of residence in Helsinki, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Register EU citizen's right of residence\" (International House Helsinki) in Helsinki, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "a4fb0fb575d5deca8b2554b4caf5cc68",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.byteseu.com/357526/",
+        "title": "Finnish Immigration Service - Bytes Europe",
+        "url": "https://www.byteseu.com/357526/",
+        "publishedDate": "2024-08-22T08:51:16.000Z",
+        "author": "BYTESEU",
+        "highlights": [
+          "Hey everyone! I have a quick question regarding EU registration at Finnish Immigration Service. Is it true that I can book an appointment in any of their offices to register my right of residence? \n\nThe reason I am asking is that I live in Espoo, and the soonest time to attend the office in Helsinki is in the mid-November. That’s why I started considering attending the office in Lahti, where the soonest possible appointment is in the beginning of September. However, when booking an appointment on Migri.fi, I noticed the following note (attached screenshot). \n\nIs this note is made just to specify that the only office in Helsinki is IHH or that I cannot register my right of residence in other offices?"
+        ],
+        "image": "https://www.byteseu.com/wp-content/uploads/2024/08/j3qf4mmri6kd1.jpeg"
+      },
+      {
+        "id": "https://www.visahq.news/2026-06-01/fi/international-house-helsinki-relocates-to-pasila-suomi-piste-service-hub/",
+        "title": "International House Helsinki Relocates to Pasila ‘Suomi-piste’ Service Hub",
+        "url": "https://www.visahq.news/2026-06-01/fi/international-house-helsinki-relocates-to-pasila-suomi-piste-service-hub/",
+        "publishedDate": "2026-06-02T11:49:21.000Z",
+        "author": "Visas, Immigration Team @ VisaHQ",
+        "highlights": [
+          "Helsinki’s one-stop service centre for newcomers, International House Helsinki (IHH), opened its doors this morning at a new address—Ratapihantie 7 in the rapidly developing Pasila business district. The relocation, effective 1 June 2026, brings IHH under the roof of the government’s brand-new Suomi-piste (“Finland-Point”) customer-service concept, which gathers multiple public bodies in a single accessible building next to Pasila rail station. IHH is best known among expatriates and global mobility teams for handling EU-citizen registration appointments, issuing Finnish personal identity codes, and providing multilingual advice on taxation, social security and local employment rules. All these services continue unchanged, but visitors now benefit from extended opening hours (09:00–16:00 Monday-Wednesday and Friday; 10:30–16:00 Thursday), barrier-free access and direct rail links to Helsinki Airport and city-centre hotels. According to the Finnish Immigration Service, the move is part of a broader digital-first overhaul of customer service. The Suomi-piste model co-locates Migri desk officers with staff from the Tax Administration, the Digital and Population Data Services Agency (DVV) and the Social Insurance Institution (Kela). New arrivals can therefore register their right of residence, obtain a tax card, apply for a social-security number and receive orientation counselling in a single visit. For employers, the consolidation promises faster onboarding of foreign hires. Whereas previously an assignee might have needed three separate appointments across town, HR teams can now book one time slot through Migri’s online system and track progress via Enter Finland. Early feedback from pilot users indicates that average time-to-ID-number issuance has dropped from ten days to three. Companies should update welcome packs, relocation guides and map links immediately. The old IHH premises on Lintulahdenkuja will close permanently and no longer accept walk-in visitors. Those with appointments booked before 1 June have been automatically re-scheduled to the Pasila site, and confirmation messages have been sent to the email address on file."
+        ],
+        "image": "https://www.visahq.news/images/visahq_logo_share.png"
+      },
+      {
+        "id": "https://flytorelocation.com/fi/moving-to-helsinki-2026/",
+        "title": "Moving to Helsinki (2026): The Complete Relocation Guide - Flyto",
+        "url": "https://flytorelocation.com/fi/moving-to-helsinki-2026/",
+        "publishedDate": "2026-09-01T08:18:28.000Z",
+        "author": "Flyto Editorial Team",
+        "highlights": [
+          "How long does the move take? Road moves from within the EU are usually a few days to about two weeks door-to-door; overseas sea freight runs several weeks. The two Helsinki-specific quirks everyone underestimates: nearly half of the city’s apartment buildings have no lift (Helsinki city statistics), so a bulky sofa often has to go in through a window on an external furniture lift (muuttonostin); and there is no free ”book a spot” for the truck — for a disruptive move you take out a paid permit to use the public area (City of Helsinki area-use permit).\n\n...\n\n- Nearly half of Helsinki’s apartment buildings have no lift. At the end of 2018 about 46% of the city’s apartment buildings — roughly 4,900 buildings holding some 90,000 flats — had no elevator, most of them older or mid-century walk-ups (Helsinki city statistics). This is exactly why an external furniture lift (muuttonostin / ulkohissi) is so often needed.\n- Your moving truck cannot just reserve the kerb. You may briefly stop to load bulky items, but for a genuinely disruptive move you need a paid permit to take a street or public area into temporary use, granted by the Urban Environment Division (suomi.fi; application via hel.fi).\n- Winter is a real operational factor. Permanent snow cover in the capital region normally sets in only after Christmas and clears on average around the turn of March–April (Finnish Meteorological Institute) — snow, ice and short, dark days make winter loading slower and worth planning carefully.\n- Register at DVV to get your kotikunta and henkilötunnus. Newcomers register in the Population Information System at DVV — in Helsinki mainly by appointment at International House Helsinki — where you also apply for a personal identity code (henkilötunnus) and municipality of residence (kotikunta), which unlocks public healthcare, daycare and much else (International House Helsinki).\n- Deposit is capped and usually 1–2 months. A rental deposit (vuokravakuus) is legally limited to at most three months’ rent (Act on Residential Leases, §8), and in practice landlords typically ask for one to two months (Vuokralaiset ry).\n\n...\n\n- What you register. Newcomers enter their details in the Population Information System and, in the same visit, apply for a personal identity code (henkilötunnus) and a municipality of residence (kotikunta). DVV decides whether you can be given a kotikunta; with one, you are in most cases entitled to municipal services such as public healthcare and daycare (DVV — international moving).\n- Where to do it in Helsinki. DVV serves newcomers mainly by appointment at International House Helsinki, a one-stop service point that also brings together the Tax Administration, Kela, pension and employment advice — a single visit covers much of the bureaucracy (International House Helsinki).\n- What to bring. A valid passport or ID, and situation-specific documents (EU/EEA registration certificate or residence permit, proof of the reason for moving, and originals of foreign certificates where life events are being recorded). Book the appointment in advance and complete the form beforehand.\n- If you are leaving Finland instead of arriving, the same identity code follows you — see our guide to your henkilötunnus after moving abroad. And if you are importing household goods from outside the EU, read our Finnish customs guide for household goods."
+        ],
+        "image": "https://flytorelocation.com/wp-content/uploads/2025/10/03182741/FLYTO_-_International_removals_-_Kuvaaja_Nuuti_Paananen_23_2_optimized_1000.jpg"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "title": "Moving to Finland – the first 30 days, step by step",
+        "url": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "publishedDate": "2026-09-25T09:08:59.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "Several rules changed just before you arrived: since 1 January 2025 you register as a jobseeker with your municipality, not a state TE Office, and on 1 June 2026 International House Helsinki moved to Pasila; part 2 covers the 2025–2026 permit reforms. The order of your first 30 days is unchanged, and it matters.\n\n...\n\nCitizens of the Nordic countries, the EU, Liechtenstein and Switzerland need no residence permit and arrive with a valid identity card or passport. Everyone else applies to Migri (Finnish Immigration Service; Migrationsverket\n\n...\n\n## The first 30 days in Finland, in order\n\nInfoFinland, the official guide run by the City of Helsinki with the ministries, and the agencies themselves give this order; each row has its own part later in the series.\n\n| Step | What | Where |\n| --- | --- | --- |\n| 1 | Settle your right to stay | Migri; DVV for Nordic citizens; a permit before travel for others |\n| 2 | Secure an address | Landlord; part 5 |\n| 3 | Get the personal identity code, unless Migri issued it | DVV, or a tax office for tax purposes |\n| 4 | Apply for a municipality of residence – a separate step | DVV |\n| 5 | Get a verokortti (tax card) | Vero (Tax Administration) |\n| 6 | Open a bank account; ask for online banking codes | Your bank; part 4 |\n| 7 | Tell Kela about your move; apply for the Kela card | OmaKela or form Y 77e |\n| 8 | Register as a jobseeker if you have no work | Your municipality’s employment services |\n| 9 | Find your terveysasema (health station) | Your hyvinvointialue (wellbeing services county) |\n| 10 | Phone, foreigner’s identity card and, if needed, a licence exchange | An operator; the police; Ajovarma |\n\n...\n\n## Week one: your right to stay and where to go\n\nEU citizens staying more than three months register their right of residence with Migri within three months of arrival, only after moving, for 53 euros. Nordic citizens instead register in person at DVV within one month of moving if they stay more than six months. Permit holders get a residence permit card, delivered to a collection point in Finland within about two weeks of the decision; it is not an identity document.\n\nIn Helsinki one address covers most of week one. International House Helsinki, at Ratapihantie 7 in Pasila since 1 June 2026, handles EU registration for Migri, the code and municipality of residence for DVV, the tax card for Vero, jobseeker registration and Kela by remote service, Monday to Friday 9.00–16.00. Identity cards are the exception: newcomers go to the Helsinki Police Department at Pasilanraitio 11. Espoo and Vantaa residents use the same house, because DVV’s Espoo office has closed permanently.\n\n| City | Migri service point | DVV service location | Tax office |\n| --- | --- | --- | --- |\n| Helsinki | Kaupparaitti 10 (Malmi); EU registration also at International House | Ratapihantie 7, floor K1, appointments Mon–Fri 9.00–16.15 | Ratapihantie 7, Mon–Fri 9.00–16.00 |\n| Tampere | Tekniikankatu 1, wing A | Hatanpään valtatie 36, appointments Tue–Fri 9.00–16.00 | Hatanpään valtatie 36 |\n| Turku | Nallinkatu 8 in Raisio – none in Turku itself | Kulttuurikuja 1, Mon–Fri 9.00–16.00 | Kulttuurikuja 1, Suomi-piste |\n| Oulu | Albertinkatu 4 B | Viestikatu 1, Tue–Wed and Fri 9.00–16.00 | Uusikatu 52 |\n\nSource: Migri, DVV and the Finnish Tax Administration, read 24 September 2026.\n\n## Weeks two to four: what needs the personal identity code\n\nIf Migri grants you a residence permit, EU registration or a residence card, you are registered automatically and the code comes with the decision. Otherwise you request it from DVV with an online form and visit in person within one month, every family member included; it is free and takes two to three weeks in work and study cases. Tax offices in larger cities issue codes for tax purposes only, usually within one to three business days. Neither of those codes gives you a municipality of residence – for that you still apply to DVV, as part 3 explains.\n\n...\n\n| Mistake | What happens | How to avoid it |\n| --- | --- | --- |\n| Assuming the code from Migri or Vero makes you a resident | No kotikunta, so no health station, school place or residence-based benefits | Apply for the municipality of residence at DVV |\n| Submitting DVV’s form and forgetting the visit | The visit must take place within one month of the form, for every person | Book the appointment when you submit |\n| EU citizen letting three months pass | You are staying without registering and cannot get a kotikunta | Apply to Migri within three months of arrival |\n\n...\n\n## What to do now\n\n| Step | What | When |\n| --- | --- | --- |\n| 1 | Check your route to residence (part 2); legalise your certificates | Before you book the move |\n| 2 | Secure an address | Before you register |\n| 3 | Register your right of residence, or visit DVV as a Nordic citizen | Within three months, or one month for Nordic citizens |\n| 4 | Request the personal identity code and the municipality of residence | Right after arrival; visit DVV within one month |\n| 5 | Collect your tax card and open a bank account | Before your first payday |\n| 6 | Notify Kela, register as a jobseeker if needed, find your health station | During your first weeks |\n| 7 | Apply for the foreigner’s identity card online | Once the kotikunta is registered |"
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-moving-to-finland-first-30-days-checklist-in-the-r.jpg"
+      },
+      {
+        "id": "https://www.diak.fi/en/student-guide/study-path/international-student-journey/",
+        "title": "International student journey - Diakonia-ammattikorkeakoulu",
+        "url": "https://www.diak.fi/en/student-guide/study-path/international-student-journey/",
+        "publishedDate": "2026-06-23T05:30:50.000Z",
+        "highlights": [
+          "EU registration\n\nIf you are an EU citizen planning to stay in Finland for longer than three months, you must register your right of residence. This registration is necessary to stay in Finland legally and access local services. The process is straightforward and can be completed through the Finnish Immigration Service (Migri).\n\nFor detailed steps, eligibility, and required documents, please visit the official Migri EU registration page.\n\nNordic citizens do not need to apply for EU registration at the Finnish Immigration Service. If you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency\n\n...\n\n### After arrival\n\nRegister your residency at DVV\n\nAll international students have to register at Digital and Population Data Services Agency (DVV). It is recommended to book an appointment to avoid queues. \n\nRead more about the registration here."
+        ],
+        "image": "https://www.diak.fi/wp-content/uploads/2026/02/8365-scaled.jpg"
+      }
+    ],
+    "searchTime": 1046.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

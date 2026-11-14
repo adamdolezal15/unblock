@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T06:39:40.211Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register EU citizen's right of residence",
+    "contextHash": "e37e9b28b9f8e0f9",
+    "includeDomains": [],
+    "docsHash": "b24fbfa0c5d73276"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence",
+          "Remember to bring your identity card or passport to your appointment",
+          "If you do not pay the application fee in EnterFinland, you will also need a debit or credit card in your appointment",
+          "New appointments to visit Migri at IHH open every Thursday between 14-16 for the following week"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Then you need to visit Migri’s service point to prove your identity"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "You have grounds for your residence in Finland",
+          "You have sufficient financial resources for living in Finland for yourself and for your family members"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "migri.fi",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator",
+          "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity",
+          "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service"
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "title": "aalto.fi",
+        "domain": "aalto.fi",
+        "trust": "university",
+        "highlights": [
+          "The Finnish Immigration Service point in Helsinki is very busy and when you book an appointment, the next available time may be several weeks or even a few months away"
+        ],
+        "fetchedAt": "2026-11-14T06:37:52.459Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/eu-registration-finland",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Slots in busy service points (Helsinki especially) can be the long pole; the online application and the 53-euro fee are quick by comparison",
+          "Registering with Migri does not automatically register you with DVV — these are different systems, and you must do the DVV step yourself"
+        ],
+        "fetchedAt": "2026-11-14T06:37:52.459Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 3381,
+      "costUsd": 0.007658,
+      "cacheHit": false
+    }
+  }
+}

@@ -42,6 +42,10 @@ export type DurationEstimate = {
   durationDays?: number;
   /** Working days waiting for the authority afterwards (processing, card in the mail). */
   waitDays?: number;
+  /** Where waitDays comes from. Community-sourced waits must be labelled as such to the user. */
+  waitSource?: import("../types").Trust;
+  /** Provenance shown with the schedule item, e.g. "wait from community reports (reddit.com), not official". */
+  note?: string;
 };
 
 export type ScheduleOptions = {
@@ -73,8 +77,11 @@ export type ScheduledStep = {
   readyIndex: number;
   durationDays: number;
   waitDays: number;
-  /** true when either duration fell back to a default. */
+  /** true when the wait fell back to a default (no cited or community-reported wait). */
   estimated: boolean;
+  /** Provenance of waitDays, copied from the estimate. */
+  waitSource?: import("../types").Trust;
+  note?: string;
   /** Set when a public holiday pushed this step's start, e.g. { from: "2026-12-24", holiday: "Christmas Eve" }. */
   movedBy?: { from: string; holiday: string };
   /** Set when this step is done in a shared visit (same start day as its visit-mates). */

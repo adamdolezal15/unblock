@@ -88,7 +88,10 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
       readyIndex,
       durationDays,
       waitDays,
-      estimated: !isMilestone && (dur === undefined || wait === undefined),
+      // The 1-day effort default is a planning convention; only an unknown wait makes the dates estimates.
+      estimated: !isMilestone && wait === undefined,
+      ...(wait !== undefined && known.waitSource ? { waitSource: known.waitSource } : {}),
+      ...(wait !== undefined && known.note ? { note: known.note } : {}),
       ...(movedBy(startIndex) ? { movedBy: movedBy(startIndex) } : {}),
       ...(visitOf.has(id) ? { visitId: visitOf.get(id) } : {}),
     });

@@ -1,0 +1,79 @@
+{
+  "fetchedAt": "2026-11-14T06:38:12.497Z",
+  "request": {
+    "endpoint": "search",
+    "query": "open a bank account without a Finnish personal identity code requirements foreigner",
+    "objective": "Bank pages stating whether a Finnish personal identity code is required to open an account or get basic banking services.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "op.fi",
+      "nordea.fi",
+      "s-pankki.fi",
+      "danskebank.fi",
+      "spankki.fi",
+      "poppankki.fi",
+      "aktia.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "e275fce3e2f632c495db872a43488e68",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://danskebank.fi/en/for-you/become-a-customer/basic-banking-services",
+        "title": "Basic banking services",
+        "url": "https://danskebank.fi/en/for-you/become-a-customer/basic-banking-services",
+        "highlights": [
+          "## Who is entitled to basic banking services?\n\nDanske Bank offers basic banking services on an equal and non-discriminatory basis to all individuals who are legally resident in the European Economic Area (EEA).\n\nYou can also apply for basic banking services if you live in Finland and have applied for, for example, asylum, temporary protection, or another type of residence permit, but your application is still being processed.\n\nA Finnish personal identity code is not required to open basic banking services. Please note that there are separate requirements for issuing online bank identifiers.\n\nWhen you bank with us, we will need your ID for identification. Read more about the documents you can use to verify your identity.\n\n## What do basic banking services include?\n\n- A Danske account – an everyday current account to manage day-to-day money matters.\n- Bank identifiers for online banking and e-identification purposes.\n- Mastercard Debit card for everyday payment transactions.\n\n## Processing time for basic banking services\n\nRequests to open basic banking services will be processed as soon as possible. The processing time is a maximum of ten business days and begins once we have received your request and all the documents required to open the services.\n\nWe will inform you of our decision as soon as we have made it.\n\n...\n\nIf we are unable to open basic banking services for you, we will send you a written decision by post."
+        ],
+        "image": "https://danskebank.fi/-/media/danske-bank-images/global/images/generic/man-sitting-in-sofa-with-computer.jpg?rev=d22ecc044b5c4656a7a92ac950cf97d6"
+      },
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "Banking services for those new to Finland | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "highlights": [
+          "## A Finnish bank account, debit card and online banking credentials for new customers\n\nIf you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland. Having a Finnish personal identity number will speed up the process. \n\nYou can book an appointment at one of our branches to become a customer. After the meeting, we will set up a current account, a debit card and online banking credentials for you.\n\nOur daily banking services are free of charge for the first three months, and you can access additional services online once you have become a customer.\n\n...\n\n## How to sign up as our customer\n\nMake sure you have the following documents for the meeting:\n\n- A valid identity document and a residence permit for Finland. Read more about the documents we accept\n- The form below completed. Please bring it with you to the meeting. \n\nComplete form\n\nBook an in-branch appointment by calling us.\n\n- We provide customer service in Finnish, Swedish and English. \n- If you don’t speak these languages, you will need to bring an interpreter.\n- At the branch, we’ll review your banking needs and help you complete your application.\n\n### After the meeting\n\nWe’ll contact you by phone after the meeting if needed. \n\n- Once we’ve set up your services, you’ll receive the agreements to your home address by post.\n- Activate your digital and other banking services.\n\n...\n\n## Accepted identity documents\n\nTo become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland:\n\n- a passport (not an alien’s passport) or\n- an identity card issued in the EEA (incl. San Marino and Switzerland).\n\nRead more about the documents we accept\n\n## Proof of right of residence\n\nTo prove your right of residence in Finland, you will need one of the following:\n\n- a residence permit or a certificate of a pending application (if you are a non-EU citizen) or\n- registration of the right of residence (if you are an EU citizen).\n\nThe Finnish Immigration Service helps people who are applying for asylum or a residence permit.\n\nIt also offers a payment card during the asylum application process, for example for receiving reception allowance. If you have this card, you may not need to open banking services right away.\n\n## Finnish personal identity number\n\nFor becoming our customer, it’s recommended that you have a Finnish personal identity number. If you don’t have a Finnish personal identity number, you should apply for one before you start banking with us. \n\nDepending on your situation, you can apply for a personal identity number through the Digital and Population Data Services Agency, the Finnish Tax Administration or the Finnish Immigration Service. \n\n## Strong electronic identification\n\nIn Finland, online banking credentials are also accepted as a means of electronic identification for many services beyond the banking services we provide. You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose. \n\nIf you do not have a passport or identity card issued by an EEA (European Economic Area) country, Switzerland or San Marino, you should be prepared to verify your identity at a police station."
+        ],
+        "image": "https://www.nordea.fi/Images/147-572897/Man in apron and glasses smiling and working in industry location - large.jpg"
+      },
+      {
+        "id": "https://www.aktia.fi/fi/usein-kysytyt-kysymykset/kategoria/tilit/avaa-tili/voinko-avata-tilin-aktiassa-toisen-maan-kansalaisena",
+        "title": "Voinko avata tilin Aktiassa toisen maan kansalaisena?",
+        "url": "https://www.aktia.fi/fi/usein-kysytyt-kysymykset/kategoria/tilit/avaa-tili/voinko-avata-tilin-aktiassa-toisen-maan-kansalaisena",
+        "highlights": [
+          "Päätös tilin avaamisesta tehdään aina paikallisesti. Yleissääntö on kuitenkin se, että laillisesti ETA-alueella asuva henkilö on oikeutettu peruspankkipalveluihin.\n\nThe decision to open an account is made locally. Standard procedure is that legal residents in the EEA-zone (The European Economic Area) have the right to basic banking services.\n\n### Hyvä pankki. Ja erinomainen varainhoitaja.\n\n#### Asiakaspalvelu\n\nHenkilöasiakkaat ark. 8-18 010 247 010 \n\nYritysasiakkaat ark. 9-16 010 247 6700 \n\nVakuutusasiat, Aktia Henkivakuutus Oy ark. 9-15 010 247 8300\n\nKorttivakuutukset, tarkista yhteystiedot korttisi sivulta. \n\nAktia Finnair Visa asiakaspalvelu ark. 8-18 010 247 050"
+        ]
+      },
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/how-to-bank-with-us/living-abroad.html",
+        "title": "Banking from abroad | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/how-to-bank-with-us/living-abroad.html",
+        "highlights": [
+          "## Regulation limits banking services for customers living abroad\n\nBanking and financial services are heavily regulated across the world. Nordea’s products and services are designed to comply with Nordic regulation and taxation. For this reason, our full service selection is available to you only when your country of residence is Finland, Sweden, Denmark or Norway.\n\nIf you live outside the Nordic countries, you should be prepared for the possibility that you may not be able to open new banking services with us.\n\n## Moving abroad temporarily or permanently?\n\nIf you are moving abroad temporarily, you should make sure that your current banking services meet your needs and that your payment cards are valid. After moving abroad, opening new services may be complicated due to regulation that differs from the Nordic countries. \n\nIf you are moving abroad for work, you may also want to consider opening an account with a local bank, for example for salary payments.\n\nIf you are settling permanently in your new country of residence, you can close any banking services in Finland that you no longer need.\n\n## Checklist for those planning a move abroad\n\n- Make sure your debit and credit cards are valid and work as expected.\n- Install the Nordea ID app on more than one device.\n- Make sure you remember your online banking credentials.\n- Update your contact details once you have settled in your new country of residence.\n\n...\n\n## Opening new services while living abroad\n\nWe are a Nordic bank, and our products and services are designed to comply with Nordic regulation and taxation. Regulation in other countries may differ significantly. For this reason, we generally do not open new services for customers who live outside the EU/EEA. \n\nYou do not need to notify us of your move abroad. We verify your customer details in connection with your other banking or at regular intervals via the Digital and Population Data Services Agency, and we will contact you if needed.\n\n...\n\n## Basic banking services are available to you within the EEA\n\nIf you live in a country within the European Economic Area (EEA), you have the right to open basic banking services. The basic banking services we offer include a current account, a debit card, Nordea Mobile and Netbank, and the Nordea ID app or device.\n\n...\n\n## Outside the EEA, we can open services for you only in exceptional cases\n\nIf you live outside the European Economic Area (EEA), we are generally unable to open new services for you, even if you are already a customer. In such cases, opening new services is also blocked in Nordea Mobile and Netbank. However, we may continue your customer relationship if there are grounds for doing so. We will review your overall situation when updating your customer details or in connection with your other banking.\n\nIf you live outside the EEA, we are also generally unable to open a new customer relationship for you. We can open customer relationships or new services for customers living outside the EEA only in exceptional circumstances, based on an overall assessment. \n\nWhen we assess your situation, we look at things such as whether your stay abroad is temporary (for work or studies), whether you receive a salary or pension from Finland, and how strong your ties to Finland are. However, owning assets in Finland is not sufficient grounds by itself for approving a new customer relationship or new services. \n\nCountries outside"
+        ],
+        "image": "https://www.nordea.fi/Images/147-562961/Young-woman-sitting-on-the-couch-using-laptop-Large.jpg"
+      },
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "title": "How to become a customer online | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "highlights": [
+          "You can sign up as a Nordea customer online if:\n\n- you are an adult residing in Finland\n- you have a valid Finnish passport or identity card\n- you have online banking credentials from another Finnish bank\n- you have a Finnish phone number\n- you have a clean credit record.\n\nPlease note that for the time being, you can’t access either application form with online banking credentials from POP Bank. If you are unable to sign up as a customer online for this or some other reason, please book an appointment at a Nordea branch by contacting us.\n\n...\n\nLog in to the online application form using another Finnish bank’s online banking credentials. \n\n- Make sure you have a moment to fill in your details. \n- All services available in the application are free of charge for the first three months. You can also get a Nordea Debit card in addition to online banking credentials and accounts. \n\nOpen the application to sign up for services\n\n### Set up these services by filling in the application form\n\nWe will set up a current account and Nordea access codes for you automatically when you become a customer. We recommend that you order a Nordea Debit card for your new current account. \n\nWith the old application form you can still apply for a PerkAccount, which is a good option for regular saving and building a financial buffer.\n\n...\n\n### 2. You will receive an SMS and access to our services\n\nWe will process your request to become a customer within a few banking days. \n\n- Once we have approved your application, you’ll receive an SMS in which we ask you to log in again to the application. \n- After you’ve done this, you’ll receive a Nordea user ID, which you will need to do your banking.\n\n...\n\n### 3. Download the Nordea ID app \n\n \n\nIn addition to your user ID, you also need the Nordea ID app or another means of identification in order to get the Nordea access codes. \n\n- When strong identification is required, the Nordea ID app is the fastest and easiest means of identification for most people. \n- Alternatively, you can order from us a Nordea ID device or a Nordea ID Talk Device intended for our visually impaired customers.\n\n...\n\n### 4. Start using Nordea Mobile\n\n \n\nWhen you have Nordea access codes, you can log in to Nordea Mobile or Netbank. \n\n- If you have not downloaded Nordea Mobile yet, you can do it after you have received your Nordea access codes.\n- As a Nordea Mobile user, you can get your daily banking services at a low package price. If you are 65 or older, you don't need to use our mobile banking app to qualify for a service package.\n\n...\n\nRead more about our savings accounts\nWhat identity documents do I need if I want to become a Nordea customer?\n: If you use our online service to become a customer, you must have a valid Finnish passport or ID card. Note that a driving licence is not a sufficient document for verifying your identity in this context.\n\nIf you can’t fill in the online application, you can visit one of our branches to sign up as a customer. Book an appointment in branch in advance and remember to bring a valid Finnish passport or ID card with you to the appointment.\n\nRead more about the identity documents we accept\n\nAre you a foreign national? If you live in Finland, you can become a customer with Nordea.\n\nRead our instructions for foreign customers\nWhy does Nordea need my information?\n: Nordea has a statutory obligation to know its customers. When we know our customers, we can ensure that your banking is secure and reduce the risk of fraud. We ask questions in the application so we can better understand you and your current situation."
+        ],
+        "image": "https://www.nordea.fi/Images/147-515776/Young-woman-working-small.jpg"
+      }
+    ],
+    "searchTime": 1191.3,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

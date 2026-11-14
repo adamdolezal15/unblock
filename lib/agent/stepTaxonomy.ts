@@ -18,6 +18,11 @@ export type StepDef = {
   university?: true;
   /** Additional targeted searches for this step (run in parallel with the main one). */
   extraSearches?: { layer: "official" | "provider"; query: string; objective: string }[];
+  /**
+   * Searches run by detectConflicts to get both sides of a fact sources are known to state differently.
+   * `domains` narrows an official search (e.g. to the regulator). Search hints only, no facts.
+   */
+  conflictSearches?: { layer: "official" | "provider"; query: string; objective: string; domains?: string[] }[];
 };
 
 const studying = (p: Profile) => p.purpose.includes("study");
@@ -95,6 +100,20 @@ export const STEP_TAXONOMY: StepDef[] = [
     provider: true,
     query: () => "Opening a bank account in Finland as a newcomer: what you need, personal identity code, basic banking services",
     objective: "Official and bank pages stating what a newcomer needs to open a bank account in Finland, whether a Finnish personal identity code is required, and the right to basic banking services.",
+    conflictSearches: [
+      {
+        layer: "official",
+        domains: ["finanssivalvonta.fi"],
+        query: "right to basic banking services without a Finnish personal identity code, opening a bank account",
+        objective:
+          "Finnish Financial Supervisory Authority (FIN-FSA) pages on the right to basic banking services and whether a bank may require a Finnish personal identity code to open an account.",
+      },
+      {
+        layer: "provider",
+        query: "open a bank account without a Finnish personal identity code requirements foreigner",
+        objective: "Bank pages stating whether a Finnish personal identity code is required to open an account or get basic banking services.",
+      },
+    ],
   },
   {
     id: "strong_identification",

@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T06:37:53.578Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Vero (Tax Administration) Personal identity code from a Vero tax office Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Personal identity code from a Vero tax office\" (Vero (Tax Administration)) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "6bf524b6168415224a7c326edbdccb0e",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/henkilotunnus-finland-personal-identity-code-dvv-registration-kotikunta/",
+        "title": "Henkilötunnus and DVV registration",
+        "url": "https://relocateineurope.com/moving-to-finland/henkilotunnus-finland-personal-identity-code-dvv-registration-kotikunta/",
+        "publishedDate": "2026-09-25T09:08:02.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "The henkilötunnus (personal identity code) is issued when you are entered in the Population Information System, kept by DVV (Digital and Population Data Services Agency; Myndigheten för digitalisering och befolkningsdata in Swedish). Two things changed in 2026: on 1 June International House Helsinki moved to Ratapihantie 7 in Pasila, where DVV’s desk is open Monday to Friday 9.00–16.15, and DVV’s Espoo office closed permanently. An unused appointment costs 50 euros.\n\n...\n\nThe code is permanent. It shows only your date of birth and gender, not nationality, municipality or right of residence, and under section 29 of the Data Protection Act (1050/2018) it cannot on its own prove your identity. Its legal basis is section 11 of the Act on the Population Information System (661/2009).\n\n...\n\nIf Migri (Finnish Immigration Service; Migrationsverket in Swedish) grants you a residence permit, a residence card or EU registration and a Finnish authority verified your identity, the code comes with the decision; if you proved your identity at a VFS centre abroad, you book a DVV appointment after arrival. Otherwise you go to DVV, or – for tax purposes only – to a tax office.\n\n| Route | Who | How | Time and cost |\n| --- | --- | --- | --- |\n| Automatically from Migri | Anyone granted a residence permit, residence card or EU registration, identity verified by a Finnish authority | Nothing to do; the code arrives with the decision | No separate fee |\n| DVV | Everyone else residing legally with grounds: work, studies, a family member with a registered address, or a Migri decision; all children | Online form without login, then a visit within one month – every person, children included | Free; 2–3 weeks for work or study, 3–4 weeks for others |\n| Tax office | Workers who need a code only for a tax card or tax number | Form 6150e plus 5057e or 5042e; appointment on 029 497 010 | Usually 1–3 business days; only Helsinki Pasila, Kuopio, Oulu, Rovaniemi, Seinäjoki, Tampere, Turku and Mariehamn; not for children under 15 |\n\nSource: DVV, Migri and the Finnish Tax Administration, read 24 September 2026.\n\nFor the DVV visit bring a valid passport or an official photo identity card of an EU, Icelandic, Norwegian, Liechtenstein, Swiss or San Marino citizen, your residence permit card or EU registration certificate, an employment contract or certificate of studies and, to have family relationships recorded, original certificates that are legalised and translated – an Apostille for Hague Convention countries, none for EU public documents. Registration cannot be sped up except for very weighty reasons; opening a bank account is not one.\n\n...\n\nA code from Migri or the tax office does not give you a kotikunta. You must usually also apply for a municipality of residence with DVV’s online form – not with a change-of-address notification – and a visit usually follows. The rules are national: section 4 of the Municipality of Residence Act (201/1994) requires that you have arrived, intend to live in Finland for at least a year and stay legally, plus one of the conditions below.\n\n...\n\n| Step | What | When |\n| --- | --- | --- |\n| 1 | Check whether Migri’s decision already gave you a code | When the decision arrives |\n| 2 | Otherwise submit DVV’s online form for every family member | Right after arrival |\n| 3 | Visit DVV with original documents, everyone present | Within one month of the form |\n| 4 | Apply for a kotikunta with the online form | As soon as your permit or registration allows |\n| 5 | Order the foreigner’s identity card online | Once the kotikunta is registered |\n| 6 | Activate the Citizen Certificate, or ask your bank for codes usable in Suomi.fi | When the card or account arrives |\n| 7 | Questions: DVV’s line for foreign citizens is +358 295 536 320 | Mon–Fri 9–15 |"
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-henkilotunnus-finland-personal-identity-code-dvv-r.jpg"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "title": "Streamlined services for issuing personal identity codes and municipality of residence for foreign citizens - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/16079645/streamlined-services-for-issuing-personal-identity-codes-and-municipality-of-residence-for-foreign-citizens",
+        "publishedDate": "2025-04-28T07:45:00.000Z",
+        "author": "Digi- ja väestötietovirasto",
+        "highlights": [
+          "To receive their personal identity code during the visit, the customer must first submit their data to the Digital and Population Data Services Agency using an online form and book an appointment online. They must also meet the requirements for obtaining a personal identity code. However, a personal identity code cannot always be issued during a visit if the matter requires further clarification. \n\nThe online form for obtaining a personal identity code is available to all foreigners, and it does not require strong identification. You can use the same form to request a municipality of residence if you are intending to stay in Finland for more than one year. The conditions for obtaining a personal identity code and municipality of residence are examined individually for each customer.\n\n...\n\nHaving a Finnish personal identity code makes many everyday matters possible, such as dealing with the authorities, opening a bank account and receiving wages. In addition to the Digital and Population Data Services Agency, a foreigner may in certain situations receive a personal identity code from the Tax Administration or the Finnish Immigration Service."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "title": "Moving to Finland – the first 30 days, step by step",
+        "url": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "publishedDate": "2026-09-25T09:08:59.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "| Step | What | Where |\n| --- | --- | --- |\n| 1 | Settle your right to stay | Migri; DVV for Nordic citizens; a permit before travel for others |\n| 2 | Secure an address | Landlord; part 5 |\n| 3 | Get the personal identity code, unless Migri issued it | DVV, or a tax office for tax purposes |\n| 4 | Apply for a municipality of residence – a separate step | DVV |\n| 5 | Get a verokortti (tax card) | Vero (Tax Administration) |\n| 6 | Open a bank account; ask for online banking codes | Your bank; part 4 |\n| 7 | Tell Kela about your move; apply for the Kela card | OmaKela or form Y 77e |\n| 8 | Register as a jobseeker if you have no work | Your municipality’s employment services |\n| 9 | Find your terveysasema (health station) | Your hyvinvointialue (wellbeing services county) |\n| 10 | Phone, foreigner’s identity card and, if needed, a licence exchange | An operator; the police; Ajovarma |\n\n...\n\nIn Helsinki one address covers most of week one. International House Helsinki, at Ratapihantie 7 in Pasila since 1 June 2026, handles EU registration for Migri, the code and municipality of residence for DVV, the tax card for Vero, jobseeker registration and Kela by remote service, Monday to Friday 9.00–16.00. Identity cards are the exception: newcomers go to the Helsinki Police Department at Pasilanraitio 11. Espoo and Vantaa residents use the same house, because DVV’s Espoo office has closed permanently.\n\n| City | Migri service point | DVV service location | Tax office |\n| --- | --- | --- | --- |\n| Helsinki | Kaupparaitti 10 (Malmi); EU registration also at International House | Ratapihantie 7, floor K1, appointments Mon–Fri 9.00–16.15 | Ratapihantie 7, Mon–Fri 9.00–16.00 |\n| Tampere | Tekniikankatu 1, wing A | Hatanpään valtatie 36, appointments Tue–Fri 9.00–16.00 | Hatanpään valtatie 36 |\n| Turku | Nallinkatu 8 in Raisio – none in Turku itself | Kulttuurikuja 1, Mon–Fri 9.00–16.00 | Kulttuurikuja 1, Suomi-piste |\n| Oulu | Albertinkatu 4 B | Viestikatu 1, Tue–Wed and Fri 9.00–16.00 | Uusikatu 52 |\n\nSource: Migri, DVV and the Finnish Tax Administration, read 24 September 2026.\n\n## Weeks two to four: what needs the personal identity code\n\nIf Migri grants you a residence permit, EU registration or a residence card, you are registered automatically and the code comes with the decision. Otherwise you request it from DVV with an online form and visit in person within one month, every family member included; it is free and takes two to three weeks in work and study cases. Tax offices in larger cities issue codes for tax purposes only, usually within one to three business days. Neither of those codes gives you a municipality of residence – for that you still apply to DVV, as part 3 explains.\n\n| Task | Code needed? | What applies |\n| --- | --- | --- |\n| Prepaid SIM card | No | Sold at R-kiosks and supermarkets; no address needed either |\n| Registering as a jobseeker | Yes, in practice | Job Market Finland asks for a DVV extract or Kela card as proof; non-EU citizens also need a valid residence permit |\n| Bank account | Yes, in practice | The bank needs your name, code and address; a driving licence is not accepted as ID |\n| Online banking codes | Yes | A bank may refuse them if you have no code or are not in the Population Information System |\n| Kela benefits and the Kela card | Yes, plus a bank account | Kela pays nothing in cash |\n| Contract phone subscription | Yes, plus an address | A credit check follows; otherwise you pay in advance |\n\n...\n\nEveryone with income in Finland needs a tax card from Vero; new arrivals get it at a service point, and if you do not show it to your employer, 60 per cent of your pay is deducted as tax. The tax-card phone line is 029 497 050.\n\n...\n\n## Three mistakes that cost time or money\n\n| Mistake | What happens | How to avoid it |\n| --- | --- | --- |\n| Assuming the code from Migri or Vero makes you a resident | No kotikunta, so no health station, school place or residence-based benefits | Apply for the municipality of residence at DVV |\n| Submitting DVV’s form and forgetting the visit | The visit must take place within one month of the form, for every person | Book the appointment when you submit |\n| EU citizen letting three months pass | You are staying without registering and cannot get a kotikunta | Apply to Migri within three months of arrival |\n\n...\n\n| 6 | Notify Kela, register as"
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-moving-to-finland-first-30-days-checklist-in-the-r.jpg"
+      },
+      {
+        "id": "https://tuulikka.com/archives/26139",
+        "title": "Finnish Identity Code（Social Security Number）取得までの流れ | Tuulikka",
+        "url": "https://tuulikka.com/archives/26139",
+        "publishedDate": "2026-09-30T18:15:56.000Z",
+        "highlights": [
+          "※フィンランドの行政などの窓口は担当者によって対応が分かれたり、ルールが変更されたりすることがあるそうです。申請や取得時期に関してはケースバイケースになる可能性があることをご留意ください。\n\n...\n\n★ポイント\n\n- フィンランドに来る前から予約しておくのもあり\n- 予約が取れなくても、朝一から出向いて待てばOK\n- 直近の予約が取れなかったら予約なしで行くのがおすすめ（できるだけ早く申請して、少しでも早くFinnish Identity Codeをもらうことが最優先！）\n- わたしはホステルの住所を利用し、問題なく登録処理された\n- 心配であればホステルのオーナーに、過去に利用した人がいるかなど確認してみるべし\n- 家探しをしていると、たまに条件として「No DVV」と記載しているオーナーもちらほらいるので、要確認\n\n## Digital and Population Data Services Agencyへ！\n\n時差ぼけで、夜中の2時に起床。\n\nGoogleマップでは、Digital and Population Data Services Agency, Helsinkiではなく、同じ建物内にある Helsinki Area Tax Office, Hämeentieで検索した方が正確な位置に案内してもらえます。\n\n他の方の情報ではすごい行列だったとのことでしたが、わたしが到着した7:50くらいには、まずまずの列。\n\n正式なオープンは9時ですが、8時に扉がオープンして、中に入ることができます。\n\nスタッフに何しに来たかを尋ねられ、番号を印刷してもらいます。スタッフが不在の時は、タッチパネルが設置されているので、英語を選択して利用することもできます。基本的にスタッフが近くにいて、親切に教えてくれることがほとんどです。（これまで複数回お世話になっていますが、フィンランド語が話せなくても、皆さんとても親切です。訪問者は私たちのような移民の方の割合が多いです。）\n\nInternational mattersは結構待ち時間が長い印象。\n\nあとは、番号が表示されるまでひたすら待ちます。ポンという音と共にどんどん追加で表示されていく形なので、前後の番号を見ながら適宜確認する必要があります。\n\n...\n\nEメールで送られてきたリンクを開き、電話番号で認証コードをもらって、ファイルを開いて確認するというものでした。セキュリティがしっかりしている感じがしますね。\n\nPDFとして保存しておく形になります。紙媒体が届くことはありません。\n\nその後の様々な手続きでも、基本的にFinnish Identity Codeを確認する場面が多く、在留カードにFinnish Identity Codeが載っていないので、担当スタッフが「カードに書いてないね？」と少し戸惑われます。カードに記載されているのが一般的のようで、わたしも後から追加で記載したり、新しくカードを作り直してもらえるのか調べてみたのですが、そのようなサービスはないみたいです。\n\nFinnish Identity Codeは要所要所で聞かれることが多いので、カードに記載されていれば便利だなと思ったのですが、残念です。覚えにくい番号でもないので、そんなに困ることはありません。ただ、できたら楽だなと思ったのでした。"
+        ],
+        "image": "https://tuulikka.com/wp-content/uploads/2026/10/R4035489-scaled.jpeg"
+      },
+      {
+        "id": "https://movetoeu.eu/guides/finland/",
+        "title": "Moving to Finland: Tax Card & Verokortti - Full Guide 2026",
+        "url": "https://movetoeu.eu/guides/finland/",
+        "publishedDate": "2026-06-11T22:19:04.000Z",
+        "author": "MoveToEu Team",
+        "highlights": [
+          "### Tax Card (Verokortti)\n\nTax Card (Verokortti) in Finland: Set up before your first payday, without a tax card, your employer must apply a high default withholding rate. Your Finnish tax card (verokortti), managed through MyTax (OmaVero), tells your employer the correct withholding rate for your salary. Employees who already have a Finnish personal identity code do not need to visit a Vero service point in person to obtain a tax card, it can be requested via MyTax once your identity code is active. International experts and key employees may be eligible for special source-tax arrangements.\n\nFinnish Tax Administration (Verohallinto, Vero)\n\nDeadline: Set up before your first payday, without a tax card, your employer must apply a high default withholding rate.\n\nProcessing Time: Tax cards requested via MyTax (OmaVero) are typically issued immediately or within a short processing time once your personal identity code is active.\n\n💰 Fees: Free.\n\n📅 Appointment: Not required if you have a personal identity code, request your tax card online via MyTax (vero.fi). Without a personal identity code, a visit to a Vero service point may be necessary.\n\nRequired Documents:\n\n- Personal identity code\n- Online banking codes or a mobile certificate for MyTax authentication\n- Estimated annual income for setting the correct withholding percentage\n\nWhere to Do It:\n\nOnline via MyTax (OmaVero) at vero.fi, or in person at a Vero service point if you do not yet have a personal identity code.\n\nIf You Don't Do It: Without an active tax card, your employer must withhold tax at a higher default rate than your actual liability, meaning you receive less in each paycheque until the tax card is set up and any overpayment is reconciled in your annual tax assessment."
+        ],
+        "image": "https://movetoeu.eu/og-image.jpg"
+      }
+    ],
+    "searchTime": 1701.8,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

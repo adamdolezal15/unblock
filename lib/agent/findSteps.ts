@@ -12,6 +12,7 @@ import type {
   Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
 import { authorityOf } from "./authority";
+import { whatToDoByTrust } from "./detectConflicts";
 import { MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 
@@ -65,7 +66,7 @@ function uniqueCitations(claims: VerifiedClaim[]): Citation[] {
 const digits = (s: string) => (s.match(/\d+(?:[.,]\d+)?/g) ?? []).sort().join(",");
 
 /** Same step, same single-valued kind, different values from different pages -> show both. */
-function detectConflicts(stepId: string, claims: VerifiedClaim[]): Conflict[] {
+function claimConflicts(stepId: string, claims: VerifiedClaim[]): Conflict[] {
   const out: Conflict[] = [];
   for (const kind of ["mode", "processing_time", "cost_of_delay"] as const) {
     const cs = claims.filter((c) => c.kind === kind).sort(byTrust);
@@ -77,10 +78,12 @@ function detectConflicts(stepId: string, claims: VerifiedClaim[]): Conflict[] {
         const differ = kind === "mode" ? a.value !== b.value : digits(a.value) !== digits(b.value) && !!digits(a.value) && !!digits(b.value);
         if (differ) {
           out.push({
+            stepId,
             topic: `${stepId}.${kind}`,
             a: a.citation,
             b: b.citation,
             note: `Sources disagree: "${a.value}" vs "${b.value}".`,
+            whatToDo: whatToDoByTrust(a.citation, b.citation),
           });
         }
       }
@@ -368,7 +371,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     const confirmation = confirmed.get(r.def.id);
     if (confirmation) {
       steps.push({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation), confirmation });
-      conflicts.push(...detectConflicts(r.def.id, r.verified));
+      conflicts.push(...claimConflicts(r.def.id, r.verified));
     } else {
       const message = r.error
         ? `Extraction failed (${r.error}). Check the official source.`

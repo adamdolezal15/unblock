@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-14T06:37:52.459Z",
+  "request": {
+    "endpoint": "search",
+    "query": "International House Helsinki Register EU citizen's right of residence Helsinki, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Register EU citizen's right of residence\" (International House Helsinki) in Helsinki, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "7eacd57bc25d60f02cef932051b03d7e",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/eu-registration-finland",
+        "title": "EU Citizens: Registering Your Right of Residence in Finland | NordicExpat",
+        "url": "https://nordicexpat.com/finland/eu-registration-finland",
+        "publishedDate": "2026-05-14T21:02:04.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "- You should apply before the three months are up, not after.\n\n...\n\nEU free movement does not give an unconditional right to settle indefinitely without any basis. To stay longer than three months, you need grounds for residence. According to Migri and InfoFinland, the qualifying grounds are:\n\n- Work — you are employed or you are self-employed in Finland.\n- Study — you are enrolled at an educational institution and can support yourself for the duration.\n- Sufficient resources — you have enough means to support yourself (and family) without recourse to Finnish social assistance, plus health insurance coverage.\n- Family ties — you are joining a family member who is an EU citizen exercising free movement in Finland.\n\nThe \"sufficient resources\" route matters for people who are not working straight away — early retirees, accompanying partners, or those job-hunting on savings. There is no single published income figure you must clear; Migri assesses sufficiency case by case, and you generally must not be reliant on social assistance. The health-insurance expectation is part of this test, which is worth bearing in mind during the gap before you are inside the Finnish system — travel or expat health cover can bridge that period until your residence and Kela coverage are sorted.\n\n...\n\n### 1. Apply online through Enter Finland\n\nCreate an account in the Enter Finland e-service (enterfinland.fi) and complete the application for registration of an EU citizen's right of residence. You attach digital copies of your supporting documents here. You pay the processing fee when you submit.\n\n### 2. Pay the processing fee\n\nAccording to Migri's fee schedule, the processing fee for registering an EU citizen's right of residence is 53 euros, and it is the same 53 euros whether you apply electronically or on paper (as of 2026 — confirm the current figure on migri.fi). For reference, Migri lists the same 53-euro fee for a residence card for a family member of an EU citizen and for a certificate of permanent right of residence.\n\n### 3. Book an appointment and verify your identity in person\n\nAfter submitting online, you book an appointment in Migri's appointment system (migri.vihta.com) and attend a Migri service point in person. The in-person visit is to prove your identity and present the originals of your attachments. Bring your valid passport or national identity card.\n\n### 4. Show your grounds for residence\n\nAt the appointment, you present evidence of your basis for staying. Depending on your situation, that means:\n\n- Employees: an employment contract or a written statement from your employer.\n- Self-employed: documentation of your business, such as a trade register extract.\n- Students: a certificate of study and an assurance of sufficient funds.\n- Family members: a marriage certificate or other proof of the family relationship.\n\n### 5. Receive your registration certificate\n\nOnce you have shown sufficient evidence, Migri issues a certificate of registration of your right of residence. As noted, it is valid until further notice. Keep it — you may be asked for it when dealing with other authorities.\n\n...\n\nProcessing time depends heavily on your grounds and on whether your documentation is complete. Migri does not publish a single fixed processing time for EU registration the way it gives week-ranges for some other cases; for straightforward, well-documented applications a certificate can often be issued at or shortly after the in-person visit, while more complex cases take longer. Migri publishes current processing-time information per application type — check migri.fi for the up-to-date estimate for registrations before you plan anything time-sensitive around it. The practical takeaway: apply early, attach clean documents, and book the in-person appointment as soon as slots allow, because the appointment is often the real bottleneck rather than the decision itself.\n\n...\n\n## EU Registration vs. DVV vs. the Tax Office\n\nA recurring source of confusion is that Finland makes you deal with three separate offices, and EU registration is only one of them. Keeping them distinct saves a lot of wasted trips:\n\n- Migri confirms your right to reside (the EU registration in this guide).\n- DVV runs the population register: it issues your personal identity code (henkilötunnus) and records your municipality of residence (kotikunta) if you are moving for at least a year. Registering with Migri does not automatically register you with DVV — these are different systems, and you must do the DVV step yourself.\n- The Tax Administration (Verohallinto, via vero.fi/OmaVero) issues your tax card (verokortti), which everyone working in Finland needs.\n\nMigri's FAQ is explicit that having a personal identity code does not, on its own, prove your right of residence — you still need the registration certificate. And conversely, the registration certificate is not a personal identity code. You will generally want all three: the registration, the henkilötunnus, and the tax card, in roughly that order of logical priority though they often overlap in practice.\n\nIn the Helsinki capital region, International House Helsinki brings several of these services under one roof, which can make the sequence less painful for newcomers in that area.\n\n...\n\n## Practical Tips Before You Apply\n\n- Sort your documents before you start the online form. A clean employment contract, proof of study, or evidence of resources plus health insurance is what unblocks the whole process.\n- Book the in-person appointment early. Slots in busy service points (Helsinki especially) can be the long pole; the online application and the 53-euro fee are quick by comparison.\n- Do the DVV step too — don't assume Migri covers it. Your personal identity code and municipality of residence come from DVV, and without them, banking, healthcare and tax all stall.\n- Mind the health-cover gap. Until your Finnish residence and Kela coverage are in place, you are expected to have health insurance, and it is also part of the \"sufficient resources\" grounds — interim travel or expat health cover is a sensible bridge.\n- Keep the registration certificate safe. It is valid until further notice but you will be asked to produce it by other authorities, so store it where you can find it."
+        ],
+        "image": "https://nordicexpat.com/finland/eu-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "title": "Moving to Finland – the first 30 days, step by step",
+        "url": "https://relocateineurope.com/moving-to-finland/moving-to-finland-first-30-days-checklist-in-the-right-order/",
+        "publishedDate": "2026-09-25T09:08:59.000Z",
+        "author": "VOR Media Technologies",
+        "highlights": [
+          "EU citizens staying more than three months register their right of residence with Migri within three months of arrival, only after moving, for 53 euros. Nordic citizens instead register in person at DVV within one month of moving if they stay more than six months. Permit holders get a residence permit card, delivered to a collection point in Finland within about two weeks of the decision; it is not an identity document.\n\nIn Helsinki one address covers most of week one. International House Helsinki, at Ratapihantie 7 in Pasila since 1 June 2026, handles EU registration for Migri, the code and municipality of residence for DVV, the tax card for Vero, jobseeker registration and Kela by remote service, Monday to Friday 9.00–16.00. Identity cards are the exception: newcomers go to the Helsinki Police Department at Pasilanraitio 11. Espoo and Vantaa residents use the same house, because DVV’s Espoo office has closed permanently.\n\n| City | Migri service point | DVV service location | Tax office |\n| --- | --- | --- | --- |\n| Helsinki | Kaupparaitti 10 (Malmi); EU registration also at International House | Ratapihantie 7, floor K1, appointments Mon–Fri 9.00–16.15 | Ratapihantie 7, Mon–Fri 9.00–16.00 |\n| Tampere | Tekniikankatu 1, wing A | Hatanpään valtatie 36, appointments Tue–Fri 9.00–16.00 | Hatanpään valtatie 36 |\n| Turku | Nallinkatu 8 in Raisio – none in Turku itself | Kulttuurikuja 1, Mon–Fri 9.00–16.00 | Kulttuurikuja 1, Suomi-piste |\n| Oulu | Albertinkatu 4 B | Viestikatu 1, Tue–Wed and Fri 9.00–16.00 | Uusikatu 52 |\n\n...\n\n## Three mistakes that cost time or money\n\n| Mistake | What happens | How to avoid it |\n| --- | --- | --- |\n| Assuming the code from Migri or Vero makes you a resident | No kotikunta, so no health station, school place or residence-based benefits | Apply for the municipality of residence at DVV |\n| Submitting DVV’s form and forgetting the visit | The visit must take place within one month of the form, for every person | Book the appointment when you submit |\n| EU citizen letting three months pass | You are staying without registering and cannot get a kotikunta | Apply to Migri within three months of arrival |\n\nSource: InfoFinland, DVV and Migri, read 24 September 2026."
+        ],
+        "image": "https://relocateineurope.com/assets/brand/rie-og-moving-to-finland-first-30-days-checklist-in-the-r.jpg"
+      },
+      {
+        "id": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "title": "Arrival at Aalto University | Aalto University",
+        "url": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "publishedDate": "2026-11-11T00:00:00.000Z",
+        "highlights": [
+          "### EU/EEA citizens: registering right of residence \n\nEU/EEA, Switzerland and Liechtenstein citizens do not need a residence permit, instead they register their right of residence at the Finnish Immigration Service. The registration is required if you are staying in Finland for over 90 days without leaving the country. You can also obtain the Finnish personal identity code in connection with the registration.\n\nYou can fill in the online application once your study right has started and then book the appointment to visit the service point in Helsinki. The Finnish Immigration Service point in Helsinki is very busy and when you book an appointment, the next available time may be several weeks or even a few months away. \n\nYou can watch this video on how to fill in the application form in Enter Finland\n\n...\n\nI am an EU citizen and studying in Finland for six months. If I visit Estonia twice during the six months, do I need to register my right of residence in Finland? \n\nYou do not need to do so if you do not stay in Finland without a break for over three months. If, for example, you arrive in Finland in January and travel outside Finland in March and May, you do not need to register your residence. Keep the receipt or tickets of your journey, in case you need to prove later that you travelled abroad.\n\n...\n\nBy presenting the European Health Insurance Card, you can prove the right to medically necessary treatment in Finland. The card must be valid for the whole duration of your exchange. We strongly recommend purchasing private health insurance as well, because it is significantly easier and faster to make an appointment at a private clinic.\n\n...\n\n### Documents you may need \n\nWhen you come to Finland, please remember to bring with you at least:\n\n- A valid passport (recommended over other forms of ID)\n- The Letter of Admission from Aalto University\n- Proof of your insurances\n\n...\n\n- Proof of financial means to support your stay (e.g. a certificate of an Erasmus grant)\n- Prescriptions if you are on medication\n\nIt is also good to have with you a payment card and some cash (euros)."
+        ],
+        "image": "https://www.aalto.fi/sites/default/files/styles/1_91_1200w_630h_n/public/2022-12/Student_Guide_Use_Only_Kansainvaliset%20opiskelijat_Wide_White%20BG_1.png?h=f267d9cc&itok=FdPlfUOa"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/moving-to-finland-guide",
+        "title": "Moving to Finland — Complete Expat Guide 2026 | NordicExpat",
+        "url": "https://nordicexpat.com/finland/moving-to-finland-guide",
+        "publishedDate": "2026-06-11T00:45:36.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "to gather\n\nPrepare originals and certified translations of:\n\n- Passport (national ID for EU citizens)\n- Birth certificate\n- Marriage certificate if applicable\n...\n- Employment contract or job offer from a Finnish employer\n- For non-EU citizens: your Migri"
+        ],
+        "image": "https://nordicexpat.com/finland/moving-to-finland-guide/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://www.enb.fi/guides/moving-to-helsinki-living-guide-2026/",
+        "title": "Moving to and Living in Helsinki 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/moving-to-helsinki-living-guide-2026/",
+        "publishedDate": "2026-08-24T19:42:41.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "When relocating to Helsinki, the order of formalities matters: immigration status → DVV/personal identity code/municipality of residence → Vero → Kela → banking/strong authentication → housing/utilities → local services. International House Helsinki / Helsinki-info provides local guidance for international newcomers. A city guide does not replace permit or benefit rules; always verify personal eligibility with Migri, DVV, Vero and Kela.\n\n...\n\nNon-EU nationals should confirm the correct residence permit; EU citizens should check whether registration of the right of residence is required for stays over three months. Nordic rules are separate.\n\nCommon early bottlenecks include civil-status documents, legalisation/translation, DVV appointments, housing and bank KYC. Check marriage/birth-certificate requirements before arrival.\n\n...\n\n- Set up bank account and strong authentication\n\n...\n\n- Plan public transport / driving\n- Apply early for daycare/school if needed\n- Register with employment/integration services where relevant\n\n...\n\nInternational House Helsinki moved to Ratapihantie 7 in Pasila on 1 June 2026. The service ecosystem brings together guidance and services relating to Migri EU registration, DVV personal data/personal identity code/municipality registration, tax cards, employment and Kela matters.\n\nThese services generally do not make immigration decisions; they provide guidance on authorities, forms/appointments, housing, employment, education, daycare and everyday life.\n\n...\n\n### Checklist\n\n- Confusing personal identity code with municipality of residence\n- Assuming Kela starts automatically\n- Delaying tax card\n- Assuming bank KYC finishes immediately\n- Leaving school/daycare too late\n- Missing legalisation/translation of foreign civil-status documents\n- Treating local guidance as a Migri/DVV decision-maker\n- Choosing housing based only on rent"
+        ],
+        "image": "https://www.enb.fi/cities/helsinki.jpg"
+      }
+    ],
+    "searchTime": 1410.2,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

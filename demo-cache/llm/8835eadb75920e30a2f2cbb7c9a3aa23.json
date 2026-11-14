@@ -1,0 +1,116 @@
+{
+  "fetchedAt": "2026-11-14T06:39:44.469Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Strong electronic identification (online banking codes)",
+    "contextHash": "7a8ff0e36519866f",
+    "includeDomains": [],
+    "docsHash": "709fec0cb419efe9"
+  },
+  "response": {
+    "data": {
+      "conflicts": [
+        {
+          "topic": "whether a Finnish personal identity code is needed to get strong electronic identification from a bank",
+          "aUrl": "https://www.poppankki.fi/en/services/basic-banking-services",
+          "aQuote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+          "bUrl": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+          "bQuote": "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose",
+          "verdict": "nuance",
+          "note": "Poppankki says a Finnish personal identity code and Population Information System registration are required for strong identification; Nordea only mentions a valid identity document and does not say whether a personal identity code is also needed.",
+          "whatToDo": "Nordea does not rule out a personal identity code requirement, so these are probably not incompatible. Banks set their own onboarding rules, so ask your chosen bank directly before the appointment whether you need a personal identity code, and which documents to bring. Registering with DVV to get the code first is the safer route, and you should ask explicitly for codes that work for strong electronic identification, not only for online banking."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "However, e-services require a tool that enables you to use strong identification online"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.925Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "A visit to the selected bank is required"
+        ],
+        "fetchedAt": "2026-11-14T00:48:40.925Z"
+      },
+      {
+        "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+        "title": "poppankki.fi",
+        "domain": "poppankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System",
+          "A passport or identity card issued by an authority in the European Economic Area (EEA), Switzerland or San Marino",
+          "We process applications for basic banking services as quickly as possible and no later than within 10 banking days from the date on which all required information and documents have been received"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "nordea.fi",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose",
+          "After the meeting, we will set up a current account, a debit card and online banking credentials for you"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+        "title": "s-pankki.fi",
+        "domain": "s-pankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/best-bank-account-finland-expat",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "This is exactly why some newcomers get an account but find the bank codes take longer",
+          "Book an appointment rather than relying on a walk-in"
+        ],
+        "fetchedAt": "2026-11-14T06:39:22.218Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking",
+          "Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated",
+          "Many residents also activate a mobile certificate as a backup, so a phone problem doesn't lock them out of tax or healthcare",
+          "Your codes are probably not activated for e-identification"
+        ],
+        "fetchedAt": "2026-11-14T06:37:55.196Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 7636,
+      "costUsd": 0.014504000000000001,
+      "cacheHit": false
+    }
+  }
+}

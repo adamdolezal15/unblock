@@ -84,7 +84,11 @@ type Step = {
 // Schedule.visitChoices[].alternative (member dates, visits, plan-end shift); text via describeVisitAlternative().
 // Finnish public holidays (+ Christmas Eve, Midsummer Eve) are skipped by default; pushed steps carry movedBy.
 
-type Conflict = { topic: string; a: Citation; b: Citation; note: string };
+// Lived-experience tip (findCommunityTips). waitDays = working days parsed from the VERIFIED quote, never the extractor.
+type Tip = { stepId: string; tip: string; kind: "wait_time" | "trick" | "gotcha" | "document"; waitDays?: number; citation: Citation; matchScore: number };
+
+// a = the more trusted side (TRUST_RANK). whatToDo = which source to rely on and why; guidance, not legal advice.
+type Conflict = { stepId: string; topic: string; a: Citation; b: Citation; note: string; whatToDo: string };
 ```
 
 ## Pipeline
@@ -92,7 +96,8 @@ All LLM-shaped work goes through `lib/llm` `extract(task, input, zodSchema)`. `L
 
 1. `parseProfile(text, today?)` → `{ok, profile, assumptions[]}` | `{ok:false, outOfScope}`. Currently deterministic (word lists, dates, salary); the LLM version keeps the signature.
 2. `findSteps(profile)`: canonical step ids from `lib/agent/stepTaxonomy.ts` (search hints only, **no facts**), selected per profile. Per step, in parallel: `searchOfficial` (+ `searchProvider` for bank steps, + university domains for study steps) → `extract` with one per-step schema (`{title, claims[{kind,value,url,quote}]}`, 6 properties, 2 levels; quotes requested as a field because `output.grounding` has url+title only) → `verifyCitations` (quote must be in Exa text for that URL: highlights in hand, else `getPages`; exact or ≥ 0.9 token overlap; numbers in a value must be in its quote) → Step. A step without a verified `applies` claim becomes a stub "not found, check <url>". Same-step disagreements on mode / processing time / cost of delay → `Conflict`. Cost ≈ $0.15–0.17 per cold run (8 steps: 9 auto + 8 deep + ~8 contents), 0 when cached.
-3. `findCommunityTips(steps)` Exa search without domain filter, forums and guides → tips + conflicts
+3. `findCommunityTips(profile, steps)`: for the critical node and every in-person step, two `searchCommunity` queries (wait / appointments; tricks / what people forgot), official domains excluded, `startPublishedDate` = 1 Jan two years back (year granularity keeps cache keys stable), full text for the top 3 wait-query pages → `extract` (`lib/prompts/extractTips.ts`) → `verifyCitations` per tip → `Tip[]`. Trust from the URL (university guides = "university"). `estimatesWithTips`: cited processing time first, else the median verified community wait, labelled in the schedule item's `note`/`waitSource`; only steps with neither stay `estimated`.
+   `detectConflicts(steps, tips, {profile})`: per step, its verified claims + tips + the taxonomy's `conflictSearches` (bank_account: `searchOfficial` on finanssivalvonta.fi and `searchProvider`) → `extract` (`lib/prompts/detectConflicts.ts`) proposes pairs → kept only if verdict is "contradiction", both quotes verify, and the pages differ.
 4. `lib/graph/` (pure): `buildGraph` (unknown requires → `unresolved` placeholders), `topoOrder` (cycles returned as `Deadlock`, never thrown; UI highlights them), `criticalNode`, `schedule` (Helsinki working days from max(arrival, today), parallel where independent, `durationDays`/`waitDays` from community data else defaults flagged `estimated`), `criticalPath`. Priority = transitive dependents × cost-of-delay urgency.
 5. `toCalendar(steps)` → Google template links + .ics
 

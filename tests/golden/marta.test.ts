@@ -19,20 +19,42 @@ let m: Modules;
 let result: Awaited<ReturnType<Modules["agent"]["findSteps"]>>;
 let g: ReturnType<Modules["graph"]["buildGraph"]>;
 let sched: ReturnType<Modules["graph"]["schedule"]>;
+let tips: Awaited<ReturnType<typeof import("../../lib/agent/findCommunityTips")["findCommunityTips"]>>;
+let conflicts: Awaited<ReturnType<typeof import("../../lib/agent/detectConflicts")["detectConflicts"]>>;
 
 const hardEdge = (source: string, target: string) => g.edges.some((e) => !e.anyOf && e.source === source && e.target === target);
 
 beforeAll(async () => {
   const { parseProfile } = await import("../../lib/agent/parseProfile");
-  const { estimatesFromSteps } = await import("../../lib/agent/estimates");
+  const { estimatesWithTips } = await import("../../lib/agent/estimates");
+  const { attachTips, findCommunityTips } = await import("../../lib/agent/findCommunityTips");
+  const { detectConflicts } = await import("../../lib/agent/detectConflicts");
   const MARTA = (await import("../../lib/demo/sentences")).DEMO_SENTENCES.marta;
   m = { graph: await import("../../lib/graph"), agent: await import("../../lib/agent/findSteps") };
   const parsed = await parseProfile(MARTA, TODAY);
   if (!parsed.ok) throw new Error("Marta parsed as out of scope");
   result = await m.agent.findSteps(parsed.profile);
-  g = m.graph.buildGraph(result.steps);
-  sched = m.graph.schedule(g, parsed.profile, { today: TODAY, estimates: estimatesFromSteps(result.steps) });
-}, 60_000);
+  tips = await findCommunityTips(parsed.profile, result.steps, { today: TODAY });
+  const steps = attachTips(result.steps, tips.tips);
+  conflicts = await detectConflicts(steps, tips.tips, { profile: parsed.profile });
+  g = m.graph.buildGraph(steps);
+  sched = m.graph.schedule(g, parsed.profile, { today: TODAY, estimates: estimatesWithTips(steps, tips.tips) });
+}, 120_000);
+
+/** Every Exa text in hand for a URL (search highlights + full text), else the cached page. */
+async function pageTexts(url: string, docs: { url: string; highlights: string[]; text?: string }[]): Promise<string[]> {
+  const { normalizeUrl } = await import("../../lib/agent/verifyCitations");
+  const { getPages } = await import("../../lib/exa/search");
+  const k = normalizeUrl(url);
+  const inHand = docs.filter((d) => normalizeUrl(d.url) === k).flatMap((d) => [...d.highlights, ...(d.text ? [d.text] : [])]);
+  const page = (await getPages([url], { maxCharacters: 50_000 }).catch(() => null))?.docs[0]?.text;
+  return [...inHand, ...(page ? [page] : [])];
+}
+
+async function reFound(c: { url: string; quote: string }, docs: Parameters<typeof pageTexts>[1]): Promise<boolean> {
+  const { findQuote } = await import("../../lib/agent/verifyCitations");
+  return (await pageTexts(c.url, docs)).some((t) => findQuote(c.quote, t).score >= 0.9);
+}
 
 describe("golden: Marta", () => {
   it("eu_registration -> dvv_registration", () => {
@@ -49,25 +71,61 @@ describe("golden: Marta", () => {
     expect(hardEdge("dvv_registration", "tax_card")).toBe(false);
   });
 
-  it("bank account + strong ID merged into one visit on 10 Dec; alternative = separate", () => {
+  it("bank account + strong ID: separate visits chosen (DVV's community wait makes merging later); alternative = merged", () => {
+    // With DVV's reported ~3-week wait, strong ID (needs DVV registration) can't happen before 28 Dec.
+    // The account opens on 7 Dec via the Vero ID code; merging would hold it back to 28 Dec.
     const bank = sched.items.bank_account;
     const sid = sched.items.strong_identification;
-    expect(bank).toMatchObject({ startDate: "2026-12-10" });
-    expect(sid).toMatchObject({ startDate: "2026-12-10" });
-    expect(bank.visitId).toBeDefined();
-    expect(sid.visitId).toBe(bank.visitId);
+    expect(bank).toMatchObject({ startDate: "2026-12-07" });
+    expect(sid.startIndex).toBeGreaterThanOrEqual(sched.items.dvv_registration.readyIndex);
+    expect(bank.visitId).toBeUndefined();
 
     const choice = sched.visitChoices.find((c) => c.members.includes("bank_account"))!;
-    expect(choice.chosen).toMatchObject({ mode: "merged", visits: 1 });
+    expect(choice.chosen).toMatchObject({ mode: "separate", visits: 2 });
     const alt = choice.alternative;
-    expect(alt).toMatchObject({ mode: "separate", visits: 2 });
-    // separately the account opens earlier (7 Dec, via the Vero ID code) and is ready sooner…
-    expect(alt.members.bank_account.startDate).toBe("2026-12-07");
-    expect(alt.memberShift.bank_account.readyDays).toBeLessThan(0);
-    // …but strong ID then waits for the account, and the whole plan ends later
-    expect(alt.memberShift.strong_identification.readyDays).toBeGreaterThan(0);
+    expect(alt).toMatchObject({ mode: "merged", visits: 1 });
+    expect(alt.members.bank_account.startDate).toBe(sid.startDate);
+    expect(alt.memberShift.bank_account.readyDays).toBeGreaterThan(0);
     expect(alt.planEndShift.calendarDays).toBeGreaterThan(0);
   });
+
+  it("community: at least one verified wait_time tip for DVV, fed into the schedule labelled community", async () => {
+    const dvv = tips.byStep.dvv_registration ?? [];
+    const waits = dvv.filter((t) => t.kind === "wait_time" && t.waitDays !== undefined);
+    expect(waits.length).toBeGreaterThan(0);
+    for (const t of waits) {
+      expect(["community", "university"]).toContain(t.citation.trust);
+      expect(await reFound(t.citation, tips.sources), t.citation.quote).toBe(true);
+    }
+    const item = sched.items.dvv_registration;
+    expect(item.waitSource).toBe("community");
+    expect(item.note).toMatch(/community/);
+    expect(item.estimated).toBe(false);
+    expect(waits.map((t) => t.waitDays)).toContain(item.waitDays);
+  }, 60_000);
+
+  it("community: tips only for the critical node and in-person steps; every tip quote re-found", async () => {
+    const { tipTargets } = await import("../../lib/agent/findCommunityTips");
+    const targets = new Set(tipTargets(result.steps).map((s) => s.id));
+    expect(targets.has(m.graph.criticalNode(g)!)).toBe(true);
+    for (const t of tips.tips) {
+      expect(targets.has(t.stepId), t.stepId).toBe(true);
+      expect(await reFound(t.citation, tips.sources), `${t.stepId}: ${t.citation.quote}`).toBe(true);
+    }
+  }, 60_000);
+
+  it("conflict: DVV/banks say an ID code is needed for an account vs FIN-FSA on basic banking services", async () => {
+    const bank = conflicts.conflicts.filter((c) => c.stepId === "bank_account");
+    const fsa = bank.find((c) => [c.a, c.b].some((s) => s.url.includes("finanssivalvonta.fi")));
+    expect(fsa, JSON.stringify(bank, null, 2)).toBeDefined();
+    const other = [fsa!.a, fsa!.b].find((s) => !s.url.includes("finanssivalvonta.fi"))!;
+    expect(other.url).toMatch(/dvv\.fi|op\.fi|nordea\.fi|s-pankki\.fi|danskebank\.fi|spankki\.fi|poppankki\.fi|aktia\.fi/);
+    expect(`${fsa!.a.quote} ${fsa!.b.quote}`.toLowerCase()).toMatch(/identity code|henkilötunnu/);
+    expect(fsa!.whatToDo.length).toBeGreaterThan(20);
+    const docs = [...conflicts.sources, ...result.sources];
+    expect(await reFound(fsa!.a, docs)).toBe(true);
+    expect(await reFound(fsa!.b, docs)).toBe(true);
+  }, 60_000);
 
   it("tax card visit: merged is chosen, separate is the alternative", () => {
     const choice = sched.visitChoices.find((c) => c.members.includes("tax_card"))!;

@@ -68,7 +68,7 @@ Kinds:
 - address, hours, booking_url: where and when to do it in person, and the booking link, for the person's city.`,
 };
 
-function describeProfile(p: Profile): string {
+export function describeProfile(p: Profile): string {
   const who =
     p.citizenship === "EU"
       ? "an EU citizen (not from a Nordic country)"

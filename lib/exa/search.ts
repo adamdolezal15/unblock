@@ -154,6 +154,7 @@ export type SearchRequest = {
   numResults?: number;
   includeDomains?: string[];
   excludeDomains?: string[];
+  startPublishedDate?: string;
   outputSchema?: Record<string, unknown>;
   systemPrompt?: string;
   contents?: { highlights?: true; text?: { maxCharacters: number } };
@@ -199,12 +200,13 @@ export async function searchOfficial(args: {
   objective: string;
   city?: string;
   includeUniversities?: boolean;
+  /** Narrow to these official domains (e.g. ["finanssivalvonta.fi"]). Non-official entries are ignored. */
+  onlyDomains?: string[];
   numResults?: number;
 }): Promise<{ docs: ExaDoc[]; meta: SearchMeta }> {
-  const includeDomains = [
-    ...officialDomains(args.city),
-    ...(args.includeUniversities ? UNIVERSITY : []),
-  ];
+  const official = officialDomains(args.city);
+  const narrowed = args.onlyDomains?.filter((d) => official.includes(d));
+  const includeDomains = narrowed?.length ? narrowed : [...official, ...(args.includeUniversities ? UNIVERSITY : [])];
   const { response, meta } = await exaSearch({
     query: args.query,
     objective: args.objective,
@@ -240,6 +242,8 @@ export async function searchCommunity(args: {
   objective: string;
   city?: string;
   numResults?: number;
+  /** ISO date; Exa drops pages published earlier (and undated ones). */
+  startPublishedDate?: string;
 }): Promise<{ docs: ExaDoc[]; meta: SearchMeta }> {
   const { response, meta } = await exaSearch({
     query: args.query,
@@ -247,6 +251,7 @@ export async function searchCommunity(args: {
     type: "auto",
     numResults: args.numResults ?? DEFAULT_NUM_RESULTS,
     excludeDomains: officialDomains(args.city),
+    ...(args.startPublishedDate ? { startPublishedDate: args.startPublishedDate } : {}),
     contents: { highlights: true },
   });
   logCall("searchCommunity", args.query, meta, response.results.length);

@@ -1,0 +1,53 @@
+{
+  "fetchedAt": "2026-11-14T06:38:13.729Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Finnish social security coverage (Kela)",
+    "contextHash": "7593372255c50211",
+    "includeDomains": [],
+    "docsHash": "3e8927fb3b7c8ce5"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move",
+          "Working in Finland qualifies you for Kela benefits only if you earn at least EUR 800.02 per month in salary or wages from the work you do in Finland",
+          "You must have a bank account so that we can pay your benefits to you"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      },
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "kela.fi",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF",
+          "You can apply for a Kela card either on a form or in the OmaKela e-service",
+          "Send the form together with any supporting documents to Kela, PL 10, 00056 KELA",
+          "You need a Kela card to prove that you have the right to Kela reimbursements when you go see a private doctor or a private dentist who cannot check your information electronically"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.584Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2821,
+      "costUsd": 0.0036479999999999998,
+      "cacheHit": false
+    }
+  }
+}
