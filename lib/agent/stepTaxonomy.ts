@@ -16,6 +16,8 @@ export type StepDef = {
   provider?: true;
   /** Also allow university domains. */
   university?: true;
+  /** Additional targeted searches for this step (run in parallel with the main one). */
+  extraSearches?: { layer: "official" | "provider"; query: string; objective: string }[];
 };
 
 const studying = (p: Profile) => p.purpose.includes("study");
@@ -101,6 +103,20 @@ export const STEP_TAXONOMY: StepDef[] = [
     provider: true,
     query: () => "How to get strong electronic identification (online banking credentials) in Finland as a foreigner",
     objective: "Official and bank pages on getting strong electronic identification in Finland, what is required, and what services need it.",
+    extraSearches: [
+      {
+        layer: "official",
+        query: "online banking credentials strong electronic identification requirements",
+        objective:
+          "Official pages stating what is required to get online banking credentials / strong electronic identification in Finland, including whether you must first be a customer of the bank with a bank account.",
+      },
+      {
+        layer: "provider",
+        query: "online banking credentials strong electronic identification requirements for a new customer bank account",
+        objective:
+          "Bank pages stating the requirements for getting online banking credentials and a strong electronic ID, including whether you need a bank account or customer relationship with the bank first.",
+      },
+    ],
   },
   {
     id: "kela_registration",

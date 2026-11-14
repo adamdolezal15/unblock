@@ -159,6 +159,11 @@ async function runStep(
   const searches = await Promise.allSettled([
     searchOfficial({ query, objective: def.objective, city: profile.city, includeUniversities: !!def.university }),
     ...(def.provider ? [searchProvider(query, { objective: def.objective })] : []),
+    ...(def.extraSearches ?? []).map((s) =>
+      s.layer === "provider"
+        ? searchProvider(s.query, { objective: s.objective })
+        : searchOfficial({ query: s.query, objective: s.objective, city: profile.city }),
+    ),
   ]);
   const docs = dedupeDocs(searches.flatMap((s) => (s.status === "fulfilled" ? s.value.docs : [])));
   const checkUrl = docs.find((d) => d.trust === "official")?.url ?? docs[0]?.url;
