@@ -1,0 +1,97 @@
+{
+  "fetchedAt": "2026-11-14T13:18:02.912Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Police Identity card for a foreigner Oulu, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Identity card for a foreigner\" (Police) in Oulu, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "1ab99587300b241b810d2f577bffa395",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "title": "Finnish ID Card for Foreigners (Ulkomaalaisen Henkilökortti)",
+        "url": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti",
+        "publishedDate": "2026-11-11T21:00:31.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Foreigners who live in Finland can get a Finnish identity card from the police, called the foreigner's identity card (ulkomaalaisen henkilökortti). The rules sit in the Identity Card Act (henkilökorttilaki 663/2016): you need a valid residence permit or residence card (or a registered right of residence), a municipality of residence (kotikunta) in Finland, and your details in the Population Information System. In 2026 the card costs EUR 59, or EUR 53 if you apply electronically.\n\n...\n\nTwo things set the foreigner's card apart:\n\n- It is not a travel document. The Act requires the foreigner's identity card to carry a note that it cannot be used as a travel document (§ 4). For travel you still need your passport.\n- It follows your permit. It is issued for five years, but never for longer than your residence permit or residence card is valid (§ 19).\n\n...\n\nSection 14 of the Identity Card Act lists three conditions for a foreigner's identity card, on top of the Act's general rules:\n\n1. You have a valid residence permit or residence card, or your right of residence has been registered (for EU citizens, see our EU registration guide).\n2. You have a municipality of residence (kotikunta) in Finland under the Municipality of Residence Act.\n3. Your details have been entered in the Population Information System.\n\nConditions 2 and 3 mean the card comes after your population registration. If you have not registered yet, start with our guides to DVV registration and the Finnish personal identity code. Non-EU citizens who are still waiting for a permit should read our residence permit guide first.\n\n...\n\n| Card | In person | Electronic application |\n| --- | --- | --- |\n| Foreigner's identity card | EUR 59 | EUR 53 |\n| Foreigner's rapid identity card (pikahenkilökortti) | EUR 77 | EUR 71 |\n| Foreigner's express identity card | EUR 96 | EUR 90 |\n\nCheck the current fee with the police (poliisi.fi) before you apply, because this fee decree covers 2026.\n\n...\n\n### Start online or at the police\n\nUnder the Act, identity cards are applied for from the police, and the application can be started electronically (henkilökorttilaki § 9). The 2026 fee table charges less for an electronic application.\n\n### Visit in person, at least the first time\n\nThe applicant must come in person to complete the application. For a foreigner's identity card, the Act lets you skip the visit only if all of these apply (§ 10):\n\n- you were issued a foreigner's identity card within the previous six years, and you visited the authority in person for that application,\n- you were over 12 when that card was issued, and\n- you gave a signature sample within the previous six years and your surname or first name has not changed since.\n\nThe police can still ask you to come in to identify you, give a new signature sample or for another special reason. In practice, your first foreigner's identity card means a visit.\n\n### Bring ID, give fingerprints\n\nYou must show a valid identity document, such as your passport. If you have none, a foreigner must show a valid residence permit card or residence card, and the police may compare your fingerprints with those stored on it (§ 11). Fingerprints are taken from everyone applying for an identity card, except applicants under 12 or people who cannot give them because of age, disability, illness or a similar reason (§ 9 a).\n\n### Receive the card\n\nThe card is sent as a registered letter or a similar trackable item (§ 21). In special cases the police hand it over instead. Your previous identity card stops being valid when the new card is handed over to you.\n\n...\n\nThe Act says an identity card includes the citizen certificate (kansalaisvarmenne) issued by DVV, which is used for electronic identification. The minor's identity card and the temporary identity card do not include it (§ 3). For how certificate cards work with Suomi.fi services, see our Suomi.fi e-identification guide.\n\nAn amendment in force from 1 October 2026 (823/2026) adds that the foreigner's identity card includes the right to take into use the digital identity document under the separate Act on digital identity documents (812/2026) (§ 1 a).\n\n## When the card is cancelled\n\nSection 26 lists when a foreigner's identity card is revoked. The ones most likely to affect you:\n\n- your residence permit, registered right of residence or residence card is revoked, or you are deported,\n- you no longer have a municipality of residence in Finland,\n- you ask for it to be cancelled, or\n- you report it lost or stolen.\n\nIf you move away from Finland and no longer have a municipality of residence here, the Act says the card is revoked.\n\n## Common problems and fixes\n\n- \"The police said I have no municipality of residence.\" The card requires a kotikunta. Our DVV registration guide explains population registration.\n- \"My card expires when my permit does.\" That is the rule: the Act caps the card at the validity of your residence permit or residence card.\n- \"I tried to travel with it.\" The foreigner's card is marked as not valid for travel. Carry your passport.\n- \"My old card stopped working.\" The previous card's validity ends when the new card is handed over to you.\n\n## Your next step\n\nConfirm you have a residence permit (or registered right of residence), a municipality of residence, and your details in the Population Information System. Then start the application with the police, who handle identity cards (henkilökorttilaki § 9); their website is poliisi.fi. If you have strong electronic identification (see our guide to Finnish online banking IDs), you can apply online for the lower fee. Then book your in-person visit."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-identity-card-henkilokortti/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "DVV Registration Finland: Get Your Henkilötunnus (2026) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "publishedDate": "2026-05-14T21:02:30.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### Step 3 — Bring the right documents\n\nTake, at minimum:\n\n- A valid passport or EU/EEA photo ID\n- Your residence permit card or EU registration certificate — or proof that you have applied for one\n- Proof of your grounds for staying: an employment contract, a study certificate, or similar\n- Any legalised certificates for family relationships you want recorded (marriage, birth)\n\nDocuments in languages other than Finnish, Swedish, or English may need an official translation, and foreign civil-status certificates often need legalisation (an apostille). If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment.\n\n...\n\nHere is the distinction that catches almost everyone out. Being entered into the Population Information System and receiving a personal identity code is not the same as having a municipality of residence. As InfoFinland puts it, when you receive a ... DVV makes a separate decision about your kotikunta."
+        ],
+        "image": "https://nordicexpat.com/finland/dvv-registration-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://oulu.com/en/ihoulu/news-events/tips-for-relocating-to-oulu/",
+        "title": "Tips for Relocating to Oulu - – Oulu",
+        "url": "https://oulu.com/en/ihoulu/news-events/tips-for-relocating-to-oulu/",
+        "publishedDate": "2026-04-08T11:08:12.000Z",
+        "author": "Local Author­i­ties",
+        "highlights": [
+          "It is impor­tant to make sure the required doc­u­ments are in order before arriv­ing in Oulu, Fin­land, if com­ing from abroad. This will make it eas­i­er to take care of offi­cial mat­ters. Thus, make sure you:\n\n- Pre­pare the orig­i­nal doc­u­ments, for exam­ple: birth cer­tiﬁ­cate, mar­riage cer­tiﬁ­cate, pass­port, ID card, driver’s license, edu­ca­tion cer­tiﬁ­cates, job- relat­ed doc­u­ments (con­tracts, pro­fes­sion­al qual­iﬁ­ca­tions), and health-relat­ed doc­u­ments.\n- Check if some of them need to be trans­lat­ed and legal­ized: Instruc­tions for legal­iza­tion | Dig­i­tal and pop­u­la­tion data ser­vices agency | dvv.\n\n...\n\nDepend­ing on your sit­u­a­tion, you may need to inter­act with the Finnish Immi­gra­tion Ser­vice (Migri) and The Dig­i­tal and Pop­u­la­tion Data Ser­vices Agency (DVV).\n\nIf you plan to stay in Fin­land for more than three months, vis­it DVV to reg­is­ter your tem­po­rary or per­ma­nent address in Fin­land. DVV can also issue a per­son­al iden­ti­ty code (”henkilö­tun­nus ” in Finnish) for you, if you haven’t received it ear­li­er. This code is essen­tial for every­day mat­ters in Fin­land, such as open­ing a bank account, access­ing health­care ser­vices, and sign­ing employ­ment con­tracts.\n\nFor­eign­er’s Iden­ti­ty Card\n\nIt cer­tiﬁes your iden­ti­ty when you use dif­fer­ent ser­vices. The police can issue the card for for­eign\n\ncit­i­zens who reside in Fin­land per­ma­nent­ly. Banks might also require it if you want to have access to full bank­ing ser­vices.\n\n- Learn more: Apply for an iden­ti­ty card — Police | poliisi.ﬁ\n\n...\n\n### Police\n\nThe police pro­vide a range of pub­lic ser­vices, includ­ing issu­ing iden­ti­ty doc­u­ments and var­i­ous per­mits. Many ser­vices require an appoint­ment, which can be booked online. How­ev­er, if you are only col­lect­ing com­plet­ed doc­u­ments, such as pass­port or ID card, you can usu­al­ly vis­it the ser­vice point with­out an appoint­ment and take a queue num­ber.\n\nThe police han­dle mat­ters such as:\n\n- Pass­ports and iden­ti­ty cards\n- Licens­es (e.g. dri­ving, firearms)\n- Event per­mits\n- Traf­fic-relat­ed mat­ters\n- Crim­i­nal reports and inves­ti­ga­tions\n\nPolice cus­tomer ser­vice in Oulu:\n\nAdress: : Kirkkokatu 13, Oulu\n\nPhone: +358 (0) 295 419 800 (week­days 8:00–16:15)\n\nOnline ser­vices: asiointi.poliisi.fi\n\nPolice of Fin­land: poliisi.fi"
+        ],
+        "image": "https://oulu.com/wp-content/uploads/2026/03/businessasema_5d2a4962-1-e1774852311431.jpg"
+      },
+      {
+        "id": "https://yle.fi/a/74-20088220",
+        "title": "Henkilökorttien kasvanut kysyntä ruuhkauttaa nyt poliisin lupapalveluja | Pohjois-Pohjanmaa | Yle",
+        "url": "https://yle.fi/a/74-20088220",
+        "publishedDate": "2024-05-13T04:47:13.000Z",
+        "author": "Roosa Sarajärvi",
+        "highlights": [
+          "Poliisin lupapalvelut ovat ruuhkautuneet eri puolilla Suomea. Jonoja syntyy erityisesti suuren henkilökorttikysynnän vuoksi, joita poliisi myönsi vuosina 2018–2019 ennätysmäärän.\n\nPoliisi suositteleekin asiakkaita varaamaan ajan lupa-asiointiin.\n\nOulun keskustassa sijaitsevalla poliisiasemalla seuraavat vapaat ajat henkilöllisyystodistuksen hakemiseen löytyvät kesäkuun puolenvälin jälkeen.\n\nSen sijaan muilla poliisiasemilla vapaita aikoja löytyy vajaan kahden viikon päästä. Varauskalenteria kannattaa kuitenkin seurata aktiivisesti, sillä varausaikoja vapautuu peruutusten vuoksi lähes päivittäin.\n\nPoliisiasemalla voi asioida myös ilman etukäteen tehtyä ajanvarausta, jolloin asiointi tapahtuu paikan päällä saatavan vuoronumeron mukaan.\n\n– Oulun keskustan poliisiasemalla lupapalveluihin on ajan varanneiden asiakkaiden lisäksi saapunut päivittäin noin 300 asiakasta ilman varattua aikaa. Tällöin jonotusajassa ei valitettavasti puhuta minuuteista, kertoo ylikomisario Antero Aulakoski poliisin tiedotteessa.\n\nPassi- ja henkilökorttiasiointeja ei kuitenkaan ole pakko hoitaa lähimmällä poliisiasemalla, vaan hakemuksen voi jättää millä tahansa Suomen poliisiasemalla.\n\nVuodesta 2021 lähtien asiakkaan on täytynyt asioida poliisiasemalla uusiakseen henkilökorttinsa, koska henkilökortteihin tallennetaan nykyään myös sormenjäljet."
+        ],
+        "image": "https://img.img-cdn.yle.fi/crop_extract,w_4242,h_2386,x_0,y_219/crop_fill,w_1200,h_628/f_auto/39-8593326152f01c83184/1739977221"
+      },
+      {
+        "id": "https://valtioneuvosto.fi/en/-/25235045/start-of-holiday-season-check-the-validity-of-your-passport-or-id-card-now",
+        "title": "Start of holiday season – check the validity of your passport or ID card now - Finnish Government",
+        "url": "https://valtioneuvosto.fi/en/-/25235045/start-of-holiday-season-check-the-validity-of-your-passport-or-id-card-now",
+        "publishedDate": "2024-04-11T11:20:00.000Z",
+        "author": "Police",
+        "highlights": [
+          "It is advisable to start renewing your passport and identity card electronically at poliisi.fi. Submitting an electronic application makes it easier and faster to use the services, even if personal services at the police station are needed. When using an electronic application, the fee is also lower. The e-service also informs the applicant if personal services are required. ”If you can’t find a suitable appointment time in the system immediately, it’s advisable to check the appointment times again, for example, the next day. Appointments are added to the service daily and weekly, depending on the police department. It’s also worth remembering that even if the police department is only open for part of the day, it may also offer appointments outside opening hours,” Senior Adviser Mika Hansson points out. There are currently no delays in the delivery of travel documents. Depending on the delivery time selected, passports and ID cards can be obtained within 1-8 working days. Checklist when applying for a travel document:\n\n1. Before applying for a passport or identity card, find out which travel document you need for your destination. You can travel to EU countries and some other European countries with an ID card.\n2. Have your photograph taken.\n3. Start applying for a passport or identity card online on the poliisi.fi website and submit your application electronically.\n4. If a visit to a police station is needed, book an appointment via the poliisi.fi website. It is also possible to use services by queuing. \n5. Remember to cancel your appointment if you are unable to keep it.\n\n“Even with the holiday season in mind, it’s worth remembering that you can visit any police department around Finland. However, it’s advisable to check the opening hours of the offices beforehand online at poliisi.fi/en/contact-information,” says Senior Adviser Mika Hansson.\n\nIf you prefer not to or are unable to apply for a passport or identity card electronically, you can also apply at a police station.\n\nIf necessary, the Police Customer Helpline Service can provide advice on booking appointments and other matters on 029 5419 800."
+        ],
+        "image": "https://valtioneuvosto.fi/documents/194055633/210081688/valtioneuvosto-sosiaalinen-media-korttikuva.jpg/61d96af1-94f4-fe8c-147e-44472f25b5e5?version=1.0&t=1714636860126&imagePreview=1"
+      }
+    ],
+    "searchTime": 1234.7,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

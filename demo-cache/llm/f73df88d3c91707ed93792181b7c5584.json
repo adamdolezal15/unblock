@@ -1,0 +1,152 @@
+{
+  "fetchedAt": "2026-11-14T13:17:48.771Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Applying for Finnish social security coverage from Kela when moving to Finland, and the Kela card",
+    "contextHash": "62c9ce071f2b1587",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "ouka.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "0cc4a416f5ac85aa"
+  },
+  "response": {
+    "data": {
+      "title": "Finnish social security coverage (Kela) and Kela card",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.kela.fi/moving-to-finland",
+          "quote": "When you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move."
+        },
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+          "quote": "Also notify us of your move to Finland in the OmaKela e-service or file the form Moving to Finland or employment in Finland Y 77e (PDF) with Kela, if you have not done that already."
+        },
+        {
+          "kind": "requires",
+          "value": "residence_permit",
+          "url": "https://www.kela.fi/moving-to-finland",
+          "quote": "However, if you need a residence permit granted by the Finnish Immigration Service (migri.fi) to stay or work in Finland, you must get one before you can qualify for benefits from Kela."
+        },
+        {
+          "kind": "requires",
+          "value": "bank_account",
+          "url": "https://www.kela.fi/moving-to-finland",
+          "quote": "You must have a bank account so that we can pay your benefits to you."
+        },
+        {
+          "kind": "requires",
+          "value": "personal_identity_code",
+          "url": "https://www.kela.fi/moving-to-finland",
+          "quote": "Personal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi)."
+        },
+        {
+          "kind": "document",
+          "value": "Form Moving to Finland or employment in Finland Y 77e (if applying by post)",
+          "url": "https://www.kela.fi/kela-card",
+          "quote": "Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF)."
+        },
+        {
+          "kind": "mode",
+          "value": "either",
+          "url": "https://www.kela.fi/kela-card",
+          "quote": "You can apply for a Kela card either on a form or in the OmaKela e-service."
+        },
+        {
+          "kind": "address",
+          "value": "Kela, PL 10, 00056 KELA (postal applications)",
+          "url": "https://www.kela.fi/kela-card",
+          "quote": "Send the form together with any supporting documents to Kela, PL 10, 00056 KELA."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Without a Kela card, you cannot get direct reimbursement at private clinics that cannot check your information electronically",
+          "url": "https://www.kela.fi/kela-card",
+          "quote": "You need a Kela card to prove that you have the right to Kela reimbursements when you go see a private doctor or a private dentist who cannot check your information electronically."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.kela.fi/kela-card",
+        "title": "Kela card | Our Services | Kela",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "## What is the Kela card?\n\nYour Kela card proves that you have the right to health insurance reimbursements paid by Kela. These are called Kela reimbursements (Kela-korvaus).\n\nHowever, you do not usually need to show your Kela card because your right to Kela reimbursements can be checked electronically when you show your official ID card or driver’s license.\n\nKela will send a Kela card automatically to\n\n- everyone who is covered under the Finnish national health insurance scheme\n- newborn children after the Digital and Population Data Services Agency has told Kela about the child’s birth.\n\nThe Kela card is not an official ID card. There is no electronic version of the Kela card. Kela photocards are no longer being issued.\n\n...\n\nYou need a Kela card to prove that you have the right to Kela reimbursements when you go see a private doctor or a private dentist who cannot check your information electronically.\n\nYou have to prove that you have the right to Kela reimbursements to get direct reimbursement (suorakorvaus) for the costs of your medical care. Direct reimbursement means that the amount covered by Kela will be deducted from the cost of your care directly at the private clinic and you pay the rest as a copayment (omavastuu).\n\nIf you cannot get direct reimbursement at the private clinic, you can apply for it afterwards from Kela.\n\n...\n\n## When can you not use the Kela card?\n\nMoving abroad may affect your right to use the Kela card. If you move abroad temporarily or on a permanent basis, let us know of this in the OmaKela e-service (available only in Finnish and Swedish). Go to ‘Ilmoita muutoksista’ (Notify Kela of changes) and select ‘Suomesta ulkomaille tai ulkomailta Suomeen’ (Leaving Finland or coming to Finland). Kela will check if you are covered under the Finnish national health insurance scheme and if you are entitled to benefits from Kela.\n\nYou cannot use the Kela card in the following situations:\n\n- You have moved from Finland to another country and you are therefore not covered under the Finnish national health insurance system.\n- You have been granted a Kela card on the basis of employment in Finland, but you no longer earn enough for you to be covered under the Finnish national health insurance system.\n- You need a residence permit in Finland, but your residence permit is not extended or the permit is cancelled.\n\nYou can see your right to benefits from Kela in the OmaKela e-service by going to ‘Päivitä omia tietojasi’ (Update your information).\n\n...\n\n## Kela card for persons who move to Finland\n\nYou can apply for a Kela card either on a form or in the OmaKela e-service. OmaKela is currently only available in Finnish and Swedish. Kela’s forms are also available in English.\n\n1. If you are moving to Finland or coming to work in Finland, you can apply for a Kela card in OmaKela (available in Finnish and Swedish).\n2. Let us also know in OmaKela that you are moving to Finland.\n\nGo to OmaKela to see if Kela has made a decision on your application. In OmaKela, you can also give consent for Kela to send you messages. This will help make your application process and other contacts with Kela quicker.\n\n## Apply for Kela card and let us know that you are moving to Finland\n\nSubmit your application online.\n\nLog in to the OmaKela e-service (available in Finnish and Swedish)\n\n## If you cannot use OmaKela, send your application to Kela by post\n\nDo as follows if you cannot use OmaKela:\n\n1. Apply for a Kela card on the form Application Kela card SV 157e (PDF). Let us also know that you are moving to Finland with the form Notification - Moving to Finland or employment in Finland Y 77e (PDF).\n2. Save the blank form to your device. Do not fill in the form directly in the browser because some of the information may not be saved that way.\n3. Fill in the form and print it out. Remember to sign the form.\n4. Send the form together with any supporting documents to Kela, PL 10, 00056 KELA.\n\nThe decision notice is only in Finnish or Swedish. If you need help with something, you can call one of our English language customer service numbers."
+        ],
+        "publishedDate": "2026-06-12T12:11:00.000Z",
+        "fetchedAt": "2026-11-14T13:17:43.030Z"
+      },
+      {
+        "url": "https://www.kela.fi/moving-to-finland",
+        "title": "Moving to Finland | Our Services | Kela",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "You can get benefits from Kela in many different life situations.\n\nWhen you move to Finland, you can usually qualify for benefits from Kela and a Kela card starting from the day of the move. This is possible if you meet either one of the following criteria:\n\n- Kela considers you to be living in Finland on a permanent basis\n- you work in Finland.\n\nThe Kela benefits you can qualify for change depending on if you live in Finland permanently or if you only work here. You can qualify for more benefits if you live in Finland on a permanent basis. \n\nYou can get more information on Kela benefits on our website at kela.fi or by calling us.\n\n...\n\nYou can get benefits from Kela if we consider you to be living in Finland permanently. We assess every customer’s situation on a case-by-case basis.\n\nWhen Kela assesses if you are living in Finland on a permanent basis, we check for factors such as these:\n\n- duration of your stay in Finland\n- your family ties in Finland and elsewhere\n- employment in Finland or in other countries and the duration of your employment\n- previous residence in Finland \n- permanent home in Finland or in another country.\n\n### Working in Finland\n\nEven if you do not live in Finland permanently, you can qualify for certain Kela benefits if you work in Finland.\n\nIf you only work in Finland without living here permanently, you can get fewer benefits than you would if you also lived here on a permanent basis.\n\nWorking in Finland qualifies you for Kela benefits only if you earn at least EUR 800.02 per month in salary or wages from the work you do in Finland.\n\n### Did\n\n...\n\nYour citizenship does not affect your right to Kela benefits. You can be a Finnish citizen or the citizen of any other country.\n\nHowever, if you need a residence permit granted by the Finnish Immigration Service (migri.fi) to stay or work in Finland, you must get one before you can qualify for benefits from Kela.\n\n## How to apply for benefits for the first time\n\nAfter you move to Finland, you can apply for Kela benefits and a Kela card if necessary. We will check your right to Kela benefits based on your application. You need to fill out the right form for each benefit you want to apply for.\n\nDo this when you apply for benefits for the first time:\n\n1. Apply for benefits and a Kela card in the OmaKela e-service (available in Finnish and Swedish). You can get more information about Kela benefits from our website.\n2. Tell Kela that you have moved to Finland by submitting a notification in OmaKela.\n\nIf you cannot use OmaKela, send your application forms and form Moving to Finland or employment in Finland Y 77e (PDF) to Kela by mail. Save the forms to your device and fill them in after saving them. Print out the forms and send them and any supporting documents to the address Kela, PL 10, 00056 KELA.\n\n### Do this before you apply\n\nBefore you submit an application to Kela, make sure you have\n\n- a Finnish personal identity code\n- a bank account.\n\nPersonal identity codes are issued by the Digital and Population Data Services Agency (dvv.fi). You must have a bank account so that we can pay your benefits to you. We do not pay benefits in cash.\n\nYou must also have a residence permit granted by the Finnish Immigration Service (migri.fi) if you need one to stay or work in Finland before you can get benefits from Kela.\n\n...\n\nSome of the benefits paid by Kela may affect eligibility for Finnish citizenship or residence permits. Kela cannot answer questions about residence permits or citizenship applications. For more information about the way benefits affect residence permits and citizenship applications, see the website of the Finnish Immigration Service (migri.fi).\n\n...\n\n### The purpose of a Kela card\n\nYou need a Kela card to prove that you have the right to have Kela cover part of the cost of your appointments with a doctor or dentist in the private sector (Kela reimbursement) if they cannot check your information electronically.\n\nThe Kela card does not affect your right to use public healthcare services. You also cannot use your Kela card to prove that you have the right to other Kela benefits."
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.030Z"
+      },
+      {
+        "url": "https://www.kela.fi/coming-to-finland",
+        "title": "Coming to Finland | Our Services | Kela",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "## When you move to Finland\n\n1. Can you get Kela benefits? When you move to Finland, we will determine whether you can get benefits. We have compiled information on the most common situations in which you may be coming to Finland. Select the situation that concerns you and check whether you can get benefits and medical care.\n2. Notify us of your move to Finland when you apply for benefits from Kela or for a Kela card (Kela-kortti) You can get Kela benefits when you live in Finland permanently or work in Finland. File a notification of your move in the OmaKela e-service (in Finnish or Swedish) or on the form Moving to Finland or employment in Finland Y 77e (PDF).\n3. When necessary, contact the Finnish Immigration Service already before coming to Finland Check with the Finnish Immigration Service what you have to do when you come to Finland. Go to the website of the Finnish Immigration Service (migri.fi).\n4. Notify the Digital and Population Data Services Agency if you move to Finland for 1 year or more The Digital and Population Data Services Agency can grant you a Finnish personal identity code and a municipality of residence. Go to the website of the Digital and Population Data Services Agency (dvv.fi)."
+        ],
+        "publishedDate": "2010-02-01T00:00:00.000Z",
+        "fetchedAt": "2026-11-14T13:17:43.030Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/social-security-benefits/",
+        "title": "Social security and benefits - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "You must notify Kela of your move to Finland when you apply for benefits or for a Kela card (Kela-kortti). You can do this by calling Kela or using Kela’s remote service at IHH.\n\n...\n\nAt the Kela remote service in IHH, you can get help with your applications to Kela. Our specialists can help you understand which form you need and help you complete it. Please note that you can’t submit completed applications at IHH.\n\nBefore your visit, choose the relevant forms for your situation and fill them in as much as you can.\n\nHere are the most common applications for international newcomers:\n\n- Notification form – Moving to Finland or employment in Finland\n- Application form – Kela card\n- Different Kela application forms based on personal situations\n- Application form – European Health Insurance Card\n\n### Please note!\n\nYou cannot submit your completed applications to Kela at IHH. \n\nTo submit your applications to Kela, you can mail them and any necessary documents to: Kela, PL 10, 00056 KELA.\n\nFor help with all Kela benefits and services, you can also contact Kela by phone in English.\n\nAfter submitting your application, Kela will send you a written decision. When your application has been processed, you will receive the decision in OmaKela e-service (in Finnish or Swedish, requires strong identification) or by post.\n\n...\n\nWhat is a Kela card and where can I get one? \n\nAll permanent residents of Finland are issued a personal health insurance card aka Kela card. If you move to Finland from another country or if you start working in Finland, Kela can assess whether you will be covered by the Finnish social security coverage. For this, please submit the Moving to Finland form at Kela desk at IHH. You can also submit an application for a Kela card at the same time.\n\nKela card cannot be used as proof of identity. With your Kela card, you will be reimbursed for your expenses at many private clinics and for prescription drugs at pharmacies. Then, you only have to pay the deductible."
+        ],
+        "publishedDate": "2022-08-26T08:49:55.000Z",
+        "fetchedAt": "2026-11-14T13:17:43.030Z"
+      },
+      {
+        "url": "https://www.kela.fi/can-you-get-benefits-when-you-move-to-finland",
+        "title": "Can you get benefits from Kela when you move to Finland? | Our Services | Kela",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "#### Can you get Kela benefits on the basis of employment?\n\nIf you work in Finland and your wage amounts to EUR 800.02 per month or more, you can get certain Kela benefits as from the start of the employment, for instance sickness allowance (sairauspäiväraha). You can also get a Kela card (Kela-kortti). This applies regardless of the country from which you move to Finland.\n\nThe payment of other benefits is affected by, for instance, whether you come from another EU or EEA country, Switzerland or the United Kingdom, or from some other country. You can get more information about Kela benefits from our website at kela.fi or by calling us.\n\nWhen you work in Finland and you need a benefit, you can apply for the benefit\n\n- in the OmaKela e-service (in Finnish or Swedish)\n- on an application form.\n\nAlso notify us of your move to Finland in the OmaKela e-service or file the form Moving to Finland or employment in Finland Y 77e (PDF) with Kela, if you have not done that already.\n\n...\n\nIn such cases, you cannot, as a rule, get benefits from Kela."
+        ],
+        "publishedDate": "2010-02-01T00:00:00.000Z",
+        "fetchedAt": "2026-11-14T13:17:43.030Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 5735,
+      "costUsd": 0.022008,
+      "cacheHit": false
+    }
+  }
+}

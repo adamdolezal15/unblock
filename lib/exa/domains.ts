@@ -47,34 +47,65 @@ export const TRUST_RANK: Record<Trust, number> = {
   community: 0,
 };
 
-// Cities whose municipal domain is not simply <slug>.fi.
-const CITY_DOMAIN_OVERRIDES: Record<string, string> = {
+// Whitelist: the ~20 largest Finnish municipalities and their real municipal domains (Finnish and
+// Swedish names). A city not on the list gets no city domain, so nothing of it is labelled official.
+// Never guess "<city>.fi": oulu.fi is the university, not the City of Oulu (ouka.fi).
+export const CITY_DOMAINS: Readonly<Record<string, string>> = {
   helsinki: "hel.fi",
   helsingfors: "hel.fi",
+  espoo: "espoo.fi",
   esbo: "espoo.fi",
-  vanda: "vantaa.fi",
+  tampere: "tampere.fi",
   tammerfors: "tampere.fi",
-  åbo: "turku.fi",
+  vantaa: "vantaa.fi",
+  vanda: "vantaa.fi",
+  oulu: "ouka.fi",
+  uleaborg: "ouka.fi",
+  turku: "turku.fi",
   abo: "turku.fi",
-  uleåborg: "oulu.fi",
+  jyvaskyla: "jyvaskyla.fi",
+  kuopio: "kuopio.fi",
+  lahti: "lahti.fi",
+  lahtis: "lahti.fi",
+  pori: "pori.fi",
+  bjorneborg: "pori.fi",
+  kouvola: "kouvola.fi",
+  joensuu: "joensuu.fi",
+  lappeenranta: "lappeenranta.fi",
+  villmanstrand: "lappeenranta.fi",
+  hameenlinna: "hameenlinna.fi",
+  tavastehus: "hameenlinna.fi",
+  vaasa: "vaasa.fi",
+  vasa: "vaasa.fi",
+  seinajoki: "seinajoki.fi",
+  rovaniemi: "rovaniemi.fi",
+  mikkeli: "mikkeli.fi",
+  kotka: "kotka.fi",
+  salo: "salo.fi",
+  porvoo: "porvoo.fi",
+  borga: "porvoo.fi",
+  kokkola: "kokkola.fi",
+  karleby: "kokkola.fi",
+  hyvinkaa: "hyvinkaa.fi",
+  lohja: "lohja.fi",
+  lojo: "lohja.fi",
 };
 
 function slugify(city: string): string {
   return city
     .trim()
     .toLowerCase()
-    .replace(/ä/g, "a")
+    .normalize("NFKC")
+    .replace(/[äå]/g, "a")
     .replace(/ö/g, "o")
-    .replace(/å/g, "a")
-    .replace(/[^a-z0-9-]/g, "");
+    .replace(/[^a-z0-9]/g, "");
 }
 
-/** Municipal domain for a Finnish city, e.g. "Tampere" -> ["tampere.fi"]. Treated as official. */
+/** Municipal domain for a known Finnish city, e.g. "Tampere" -> ["tampere.fi"]. Treated as official. Unknown city -> []. */
 export function cityDomains(city: string | undefined): string[] {
   if (!city) return [];
-  const key = city.trim().toLowerCase();
-  const domain = CITY_DOMAIN_OVERRIDES[key] ?? `${slugify(city)}.fi`;
-  return domain === ".fi" ? [] : [domain];
+  const domain = CITY_DOMAINS[slugify(city)];
+  return domain ? [domain] : [];
 }
 
 /** Official includeDomains for a profile's city: fixed list + municipal domain, deduped. */

@@ -1,0 +1,96 @@
+{
+  "fetchedAt": "2026-11-14T13:18:02.698Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a Suomi.fi appointment for Strong electronic identification (online banking codes) in Oulu, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"Strong electronic identification (online banking codes)\" (Suomi.fi) in Oulu, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "3abf2e967df070e3d107092c21ba0d1a",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "title": "Opening a Bank Account in Finland as a Foreigner | NordicExpat",
+        "url": "https://nordicexpat.com/finland/opening-bank-account-finland",
+        "publishedDate": "2026-06-04T14:39:47.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Opening a bank account in Finland takes longer than in many countries, mostly for two reasons: traditional banks require a henkilötunnus (Finnish personal identity code — your national ID number) and an in-person identity check before they will open a standard account. Realistically, plan for the whole journey — from landing in Finland to having a working account with online codes — to take several weeks, because you also need to complete DVV registration first. A Finnish account is more than a place to park your salary, though: the online banking codes it gives you, the pankkitunnukset (\"bank credentials\"), double as your digital identity for almost every government and private service in the country. This guide covers what you need, which bank suits a newcomer, what the in-person visit involves, costs and timelines, the rights you have if you are refused, and what to use in the meantime.\n\n...\n\nEven when you start an application online, all major Finnish banks require an in-person identity-verification visit for a first Finnish account — partly because, until you hold strong electronic identification, you cannot legally sign the documents online. At the branch:\n\n1. Bring every required document — passport or EEA ID card, henkilötunnus, residence document, and proof of address.\n2. Identity verification — a bank employee checks and copies your documents and confirms your identity in person.\n3. Sign the agreements — you sign the account agreement and the related services agreement.\n4. Wait for the post — account details, your debit card, and your online banking codes are typically mailed.\n\nBook the appointment in advance — walk-in service for new account openings is not guaranteed, and at busy branches the wait for a slot can itself add days. For service in English, ask for it when you book; Nordea has a dedicated English line.\n\n...\n\nOnce your account is active, the bank issues your pankkitunnukset — online banking login codes. In Finland these do far more than let you check a balance: per Suomi.fi, they function as a strong electronic identification token that you use across the public and private sector. With them you can log in to:\n\n- Suomi.fi — the national public-services portal and your authorisations/messages hub.\n- OmaVero / MyTax — the Finnish Tax Administration, where you order and adjust your verokortti (tax card).\n- Kela / OmaKela — social-insurance applications and benefits.\n- MyKanta (OmaKanta) — your prescriptions and patient records.\n- Migri and other immigration services, plus hundreds of private services — insurers, telecoms, healthcare portals, and online checkouts.\n\n...\n\nTimeline. OP describes a realistic 5–10 days from a complete application to a working account, with about a week being the fastest case. But that clock starts only once you have your henkilötunnus and documents — so the full journey from arrival is longer. A sensible mental model: DVV registration and identity code first (often the slowest step), then about a week for the bank, then 1–2 weeks for codes and card by post. Confirm timelines directly with DVV and your bank, as they shift with caseload.\n\n...\n\nHow long does it take to open a Finnish bank account?\n\nOnce you have your henkilötunnus and documents in order, OP describes a realistic timeline of about 5–10 days, with roughly one week being the fastest if everything is complete (as of 2026 — check op.fi). Add the DVV registration and identity-code wait on top of that, so plan for the whole journey from arrival to take several weeks. Online banking codes and your card typically arrive by post after the branch visit."
+        ],
+        "image": "https://nordicexpat.com/finland/opening-bank-account-finland/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "title": "Your First Week in Finland: An Arrival Checklist | NordicExpat",
+        "url": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "publishedDate": "2026-05-14T21:02:43.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "The process has two parts. First, submit the foreigner registration form online at dvv.fi/en/foreigner-registration. You can complete this before your appointment to speed things along. Second, book and attend an in-person appointment at a DVV service point. Everyone who requests a personal identity code must appear in person.\n\n...\n\nProcessing times vary, so book your appointment as early in your first week as the calendar allows.\n\n...\n\n## Day 5-6: Open a Bank Account\n\nA Finnish bank account is essential for receiving salary, paying rent, and — just as importantly — getting online banking codes (pankkitunnukset), which double as your strong electronic identification across Suomi.fi, OmaVero, and Kela. This is one of the steps you genuinely cannot rush, because banks have their own rules.\n\nBanks may not make a henkilötunnus a condition for basic banking services, though they can require one before issuing online banking codes, and for a first account they usually want you to come into a branch in person rather than opening everything online. Nordea, for example, has you book a branch appointment, bring a valid identity document and proof of your right of residence (a residence permit or a certificate of a pending application for non-EU citizens, or registration of the right of residence for EU citizens), and get service in Finnish, Swedish or English.\n\nBecause online banking codes can wait on your henkilötunnus, the bank step often lands later in your first week or just after. In the meantime, do not let the gap strand you: a multi-currency account such as Wise or Revolut lets you spend, hold euros, and receive money with an account you can open quickly from your phone, which keeps daily life running until your Finnish account and its banking codes are live.\n\n...\n\n## A Realistic Timeline\n\nHere is the honest version: some of this finishes in week one, and some of it spills into week two or three, because processing times are out of your hands. A sensible target is to submit your DVV registration and attend the appointment in week one, get your SIM, transport, and an interim Wise or Revolut account sorted on day one or two, and treat online banking codes, the tax card, and Kela as tasks that complete as soon as your personal identity code arrives. The trick is sequencing, not sprinting. If you queue the dependent tasks behind DVV and keep your documents together, the chain moves as fast as the system allows — and you spend your first week settling in rather than backtracking.\n\nEvery figure, fee, and processing time above can change, so confirm the current details on the official source linked for each step before you act. The order, though, holds: register first, then let the rest follow."
+        ],
+        "image": "https://nordicexpat.com/finland/first-week-finland-checklist/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://publicservices.guide/finland/suomi-fi-e-identification-and-mobiilivarmenne-mobile-certificate-enrollment/",
+        "title": "Suomi.fi e-Identification and Mobiilivarmenne (Mobile Certificate) Enrolment — Public Services Guide",
+        "url": "https://publicservices.guide/finland/suomi-fi-e-identification-and-mobiilivarmenne-mobile-certificate-enrollment/",
+        "publishedDate": "2026-05-21T17:56:34.000Z",
+        "highlights": [
+          "Suomi.fi e-Identification is the national strong-authentication gateway. It is operated by the Digital and Population Data Services Agency (Finnish Digi- ja väestötietovirasto · Swedish Myndigheten för digitalisering och befolkningsdata, \"DVV\"). Newcomers usually enrol through Mobiilivarmenne · Mobilcertifikat (Mobile Certificate) issued by one of the three Finnish mobile operators, online banking codes from a Finnish bank, or the Citizen Certificate smartcard on the police-issued identity card.\n\nEstimated time\n\nMobile Certificate activation is same-session — the credential is usable within minutes of bank-credential authentication at the operator portal. Online banking credentials are issued through the bank's own onboarding window, typically alongside account opening. The Citizen Certificate route takes longer because the activation code travels by post after the police-issued identity card is picked up; the postal step alone is up to two weeks. Cross-border foreign electronic identifiers register immediately on first sign-in, with no separate enrolment inside Finland.\n\n...\n\n- Finnish online banking credentials (pankkitunnukset · bankkoder) \n\nFunction\n\nUsed as a Suomi.fi-tunnistus token in their own right, and as the bootstrap identifier for Mobile Certificate activation.\n\nIssuing authority\n\nThe customer's Finnish bank — OP, Nordea, S-Pankki, POP Pankki, Säästöpankki, Aktia, Danske Bank, Handelsbanken, Ålandsbanken, and others.\n\n Issued after the bank completes its own customer-identification flow against the Finnish personal identity code. Finnish online banking codes (pankkitunnukset · bankkoder) are historically referred to as the TUPAS-equivalent token in Finnish strong-authentication.\n\n...\n\n### Use Finnish Online Banking Codes as a Suomi.fi-tunnistus Token\n\n Expat New Arrival Resident \n\n Online-banking-codes route. No separate Suomi.fi-tunnistus enrolment — the bank issues the credentials through its own onboarding flow. \n\n1. (Applicant) Open a Finnish bank account with one of the Suomi.fi-tunnistus-accepted banks — OP, Nordea, S-Pankki, POP Pankki, Säästöpankki, Aktia, Danske Bank, Handelsbanken, Ålandsbanken, or others. The bank issues the online banking codes after completing its own customer-identification flow against the Finnish personal identity code.\n2. (Applicant) At a Suomi.fi-tunnistus picker, select the bank's icon. The picker redirects to the bank's own authentication flow; the customer completes the bank's strong-authentication step and is returned to the destination e-service.\n3. (Bank) Vouches for the identification event to the destination e-service over the Suomi.fi-tunnistus gateway.\n\n💡 Tip: The online-banking-codes route does not require any additional enrolment beyond holding usable codes at the bank. The same codes are also the bootstrap identifier used when activating Mobile Certificate.\n\n...\n\n1. (Applicant) Apply for the Finnish identity card at a police station inside Finland or at a Finnish mission abroad. The identity card carries the chip on which the Citizen Certificate is installed.\n2. (Digital and Population Data Services Agency) Post the activation code to the registered address after the identity card is picked up — typically within two weeks of card pickup.\n3. (Applicant) Install the agency's chip-card reader software on a computer and connect a chip-card reader. Run the activation flow, enter the posted activation code, and set two personal codes — one used for identification and one used for electronic signatures.\n4. (Applicant) Test the activated certificate by signing in to a Suomi.fi-tunnistus-accepting e-service.\n\n...\n\n▶ Authenticate the Mobile Certificate activation with Finnish online banking codes: The customer does not yet have Finnish online banking codes \n\nRecovery: Open a Finnish bank account first — online banking codes are issued after the bank completes its own customer-identification flow against the Finnish personal identity code. Mobile Certificate activation depends on this bootstrap and cannot be completed without it.\n\n ▶ Receive the Citizen Certificate activation code by post: The activation code does not arrive within two weeks of identity-card pickup, or the registered postal address is no longer current \n\nRecovery: Update the address registered with the Digital and Population Data Services Agency, then contact the agency to request a re-issue. The activation code is posted to the address held in the population information system at the time of issue.\n\n...\n\n- → Activate the everyday e-services you will use first — MyTax for tax matters, OmaKela for social-security and health-insurance matters, the Migri visa-portal for immigration matters, and the Suomi.fi web service itself for messages and authority correspondence.\n- → If you have already received the Finnish identity card with the chip, plan the Citizen Certificate activation early — the postal activation code can take up to two weeks, and the chip-card reader and reader software need to be set up before the first sign-in.\n- → If you change Finnish mobile operator, re-enrol Mobile Certificate with the new operator — the credential is bound to the SIM, not portable across operators.\n- → If you hold a foreign electronic identifier notified under the EU electronic-identity scheme, check before each new destination e-service whether that service accepts foreign electronic identifiers."
+        ],
+        "image": "https://publicservices.guide/og/finland/suomi-fi-e-identification-and-mobiilivarmenne-mobile-certificate-enrollment.png"
+      },
+      {
+        "id": "https://nordiclifeguide.com/en/nordic/nordic-digital-id-comparison/",
+        "title": "Nordic Digital ID Comparison: BankID, MitID, Finnish e-ID & Icelandic e-ID | Nordic Life Guide",
+        "url": "https://nordiclifeguide.com/en/nordic/nordic-digital-id-comparison/",
+        "publishedDate": "2026-08-17T04:12:34.000Z",
+        "author": "Nordic Life Guide Research Desk",
+        "highlights": [
+          "Do not book time-sensitive appointments assuming BankID or MitID will be available on day one.\n...\nnational digital system; it is to avoid making every other relocation task depend on receiving it immediately."
+        ],
+        "image": "https://nordiclifeguide.com/images/premium/nlg-48.webp"
+      },
+      {
+        "id": "https://nordicexpat.com/finland/moving-to-finland-guide",
+        "title": "Moving to Finland — Complete Expat Guide 2026 | NordicExpat",
+        "url": "https://nordicexpat.com/finland/moving-to-finland-guide",
+        "publishedDate": "2026-06-11T21:03:14.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Finnish banks (OP, Nordea Finland, S-Pankki, Aktia) require a henkilötunnus to ... This is not a bureaucratic inconvenience — it is a hard system requirement.\n\n...\n\n### Immediate solutions: Wise and Revolut\n\nBoth Wise and Revolut allow account opening with just a passport. A Wise account provides a Finnish IBAN (in EUR) that can receive salary payments. Many Finnish employers will accept salary payment to a Wise account, but verify with HR before assuming this.\n\nRevolut similarly provides an IBAN usable in Finland, with a physical card for everyday spending.\n\nMost expats use Wise or Revolut for 4-10 weeks while waiting for their henkilötunnus."
+        ],
+        "image": "https://nordicexpat.com/finland/moving-to-finland-guide/opengraph-image?c54d69fc59d92fef"
+      }
+    ],
+    "searchTime": 1250,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "fetchedAt": "2026-11-14T13:18:02.901Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Suomi.fi Strong electronic identification (online banking codes) Oulu, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Strong electronic identification (online banking codes)\" (Suomi.fi) in Oulu, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "0cc69d03a85545b67d9ab3b25ba42d1c",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "title": "Finnish Online Banking IDs (Pankkitunnukset) | NordicExpat",
+        "url": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset",
+        "publishedDate": "2026-05-16T21:03:26.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "### 3. Confirm the codes are identification-enabled\n\nWhen you become a customer you typically receive an account, online access codes and a debit card together. Ask the bank explicitly that your codes are enabled for strong electronic identification, not only for banking. Suomi.fi stresses that, to be valid for e-identification, the codes must be \"suitable for electronic identification in other services in addition to banking transactions,\" and they must have been issued personally to you — company or association codes do not count, and on a joint account only the named account holder can use them.\n\n### 4. If you lack accepted documents\n\nThis is the hard case that catches many non-EU arrivals. If you do not have an ID document the bank accepts, you may not be able to activate e-identification straight away. Nordea describes a workaround used in Finland: you can visit a police station, where your identity is verified so the electronic identification service can be activated. Banks also commonly send an activation code and a temporary PIN by SMS and by post as part of setting up their identification app.\n\nBecause rules and accepted documents vary between banks and change over time, confirm the current requirements with your chosen bank before you go in.\n\n...\n\nModern Finnish banking codes almost always involve an app on your phone for the confirmation step rather than a paper code list. Setup usually means installing the bank's identification app, registering it once, and choosing a PIN. After that, logging in to any Suomi.fi-connected service follows the same rhythm: choose your bank, enter your user ID and\n\n...\n\nA few habits keep this smooth:\n\n- Keep your phone and SIM working. App-based confirmation depends on your device; a lost or wiped phone means re-registering the app with your bank.\n- Don't rely on a single method. Many residents also activate a mobile certificate as a backup, so a phone problem doesn't lock them out of tax or healthcare.\n- Mind the personal-use rule. Never let anyone else use your codes, even a spouse on a joint account — it breaks both the bank's terms and the identification rules.\n\n...\n\n## Common Problems and How to Avoid Them\n\nA few situations recur often enough to flag:\n\n- \"I have an account but can't log in to OmaVero.\" Your codes are probably not activated for e-identification. Call the bank and ask them to enable identification use.\n- A lost or new phone. Re-register the bank's identification app, or fall back to a mobile certificate if you set one up. Plan for this before it happens.\n- Forgotten codes. Suomi.fi's guidance is simple: if you don't remember your online banking codes, contact your bank — neither Suomi.fi nor the public service can recover them.\n- Sharing codes. Letting a family member log in \"just this once\" with your codes breaches the personal-use rule and can put your bank relationship at risk."
+        ],
+        "image": "https://nordicexpat.com/finland/finnish-online-banking-id-pankkitunnukset/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://ict.oulu.fi/en/25776/",
+        "title": "IT self-services - ict.oulu.fi",
+        "url": "https://ict.oulu.fi/en/25776/",
+        "publishedDate": "2024-10-16T07:39:12.000Z",
+        "author": "Pirjo",
+        "highlights": [
+          "- Did you forget your password or account?\n\n...\n\n- Is your account locked?\n- Can you not log in with your account?\n- Are you unable to login because you don’t receive the MFA verification to your phone?\n\nE-Identification of the public administration is used to secure your identity in these IT self-services. Your identify in the service with bank-id, mobile certificate or in some other approved way. As of August, foreign students can use the common European eIDAS service or the Finnish Authenticator application to identify themselves. For the staff, this feature comes later.\n\n...\n\n## Changing the password\n\nLink to self-service: https://account.oulu.fi/passwd\n\n- If you remember your old password, you can log into the service with your account+password\n- If you have forgotten your password, you can log in using Suomi.fi e-identification\n- Read more: Requirements for a good password\n\n## Forgotten or locked account\n\nLink to self-service: https://account.oulu.fi/passwd -> I don’t know my password -> e-identification\n\n- You can activate your account if it is locked, for example, if you have not changed the password by the deadline\n- You can check your account if you have forgotten it\n- Read more: Requirements for a good password\n\n...\n\n## Login issues\n\nLink to self-service: https://account.oulu.fi/accountinfo -> e-identification\n\n- You can check the status of your account in login or access right problem situations\n- If you cannot solve the problem yourself, you can send a request to Campus ICT service\n- Read more: Requirements for a good password\n\n...\n\n## Suomi.fi e-Identification service\n\nSuomi.fi e-Identification is a shared strong identification service of public administration e-services. It enables you to log into the electronic services of public administration in Finland. \n\nWhen going to university services, e.g. Password service (https://account.oulu.fi/passwd) and Accountinfo service (https://account.oulu.fi/accountinfo), your identity will be ensured in the Suomi.fi identification service. You must have one of these domestic identification methods in your use:\n\n- Usually in order to verify your identity, you need both a Finnish personal identification code and your personal online banking account for one of the Finnish banks. Read more: Activating Finnish online banking codes – Instructions for Suomi.fi e-Identification – Suomi.fi\n- E-identification is possible with a Finnish mobile certificate (+Finnish online banking codes) too. Read more: Activating a mobile certificate – Instructions for Suomi.fi e-Identification – Suomi.fi\n- A Finnish ID card can be used for E-Identification, read more: Using an ID card issued by the Police as an identification token – Instructions for Suomi.fi e-Identification – Suomi.fi or University Organisation certificate card\n- Hightrust.id, read more: Activating the hightrust.id mobile application – Instructions for Suomi.fi e-Identification – Suomi.fi\n\n...\n\nN.B. If you cannot set your password because it’s impossible to use Suomi.fi e-Identification, then come to visit Campus ICT Service Point. Please, prepare yourself for queueing and prove your identity!"
+        ]
+      },
+      {
+        "id": "https://ict.oulu.fi/en/25913/",
+        "title": "No Finnish personal identity code? Here’s how to verify your identity to activate your University of Oulu or Oamk user account. - ict.oulu.fi",
+        "url": "https://ict.oulu.fi/en/25913/",
+        "publishedDate": "2026-07-09T04:00:40.000Z",
+        "author": "Anna-Liisa",
+        "highlights": [
+          "Choose Identification methods for foreigners (see image below), you’ll find this option below the Finnish identification methods provided by banks operating in Finland. \n\nIf you do not have a Finnish personal identity code, you can use your home country’s electronic identification method through Suomi.fi e-Identification, if available. You can see all the available European options on the link list of identification methods for foreigners. (The list of countries are visible also on separate page, see the list of elDAS countries.) If your country is on the list, please continue to part 2 of these instructions.\n\nIf your country is not in the list, you must use the Finnish Authenticator service. Check the most up-to-date list of supported countries on the DVV website. Please follow the instructions at dvv.fi:\n\n1. Activate the Finnish Authenticator service. (See “How to get a foreigner’s identifier” in the dvv.fi instructions)\n2. Download the Finnish Authenticator mobile app (App Store / Google Play)\n3. Authenticate your identity with the app. (See “How to authenticate your identity with the app” in the dvv.fi instructions)\n\n...\n\n## 2. Identify yourself to activate your University of Oulu or Oamk user account:\n\n1. When you have gotten an email from ict@oulu.fi, please copy the sign-in code from the message.\n2. Go to https://unihelp.oulu.fi\n3. Paste the sign-in code to the form.\n4. Go to suomi.fi, select Identification (a button in the top-right corner of the page) and then select identification methods for foreigners.\n5. A) If your country is available on the list, use your country’s e-identification. B) If not, use the Finnish Authenticator app. (The last option in the list.)\n6. Return to the Unihelp page in your browser. Then: \n\n1. Accept the terms of use.\n2. Set a password.\n3. Review your account details.\n4. Continue to the IT instructions for new users."
+        ],
+        "image": "https://ict.oulu.fi/wp-content/uploads/2026/08/IdentificationMethodsLossless.webp"
+      },
+      {
+        "id": "https://helloexpat.eu/fi/blog/digital-id-in-finland",
+        "title": "Digital ID in Finland: bank codes and the new wallet | Hello Expat",
+        "url": "https://helloexpat.eu/fi/blog/digital-id-in-finland",
+        "publishedDate": "2026-10-21T08:00:00.000Z",
+        "author": "The Hello Expat editorial team",
+        "highlights": [
+          "Finnish public services use a common identification layer called Suomi.fi. When you log into OmaVero (the Tax Administration's online service), OmaKela or your municipality's e-services, you choose a strong identification method. The usual methods are:\n\n- Bank codes (pankkitunnukset): the codes your Finnish bank gives you under a contract. They must be personal and enabled for electronic identification; business codes do not count.\n- Mobile certificate (mobiilivarmenne): a certificate on the SIM card of a DNA, Elisa or Telia subscription, activated with your bank codes. It does not work on a prepaid card; for an eSIM, ask the operator.\n- Police identity card: foreign residents who live in Finland permanently, are in the population register, have a registered right of residence and a municipality of residence can apply for a police-issued identity card. You activate its certificate and use it with a card reader or the hightrust.id app.\n- hightrust.id: a free wallet app that can be activated with a police identity card issued after 31 August 2021, including the residence card for foreigners.\n\n...\n\nNot much, and that is the awkward part. Before you have a personal identity code, you cannot get bank codes. Before you have bank codes, you cannot get the mobile certificate. See the Finnish personal identity code and opening a bank account in Finland for the first two steps.\n\n...\n\nTwo cautions. Each service decides whether it accepts Finnish Authenticator. Vero says that OmaVero accepts personal bank codes, the mobile certificate, certificate cards and hightrust.id, and that Finnish Authenticator is there for foreign company representatives with a Suomi.fi authorisation. Private persons from another EU country can use their own eIDAS identity for a limited set of functions. And the account is blocked if unused for four years.\n\n...\n\nBecause the conditions are stricter. A foreigner can sometimes hold an account yet not receive codes. Under Finnish law a bank may refuse codes only where you do not have a personal identity code or are not registered in the population register, and it must then offer you a limited identification method for use of the account. Ask the bank in writing if you are refused.\n\nYour bank codes also work as an electronic signature. Never lend them, not even to a partner. A joint account's codes serve only the holder to whom they were issued.\n\n...\n\n## How do you get your digital ID in Finland in practice?\n\n1. Get your identity code and a municipality of residence.\n2. Open a bank account and ask explicitly for online banking codes.\n3. Activate a mobile certificate on a subscription, not a prepaid card.\n4. Once you qualify, apply for the police identity card for foreigners and activate its certificate.\n5. Keep two different methods. Losing your phone or changing your bank can lock you out of OmaVero and OmaKela.\n\n...\n\n## How do you avoid scams around digital ID?\n\nThe Tax Administration warns on its own website that scam messages have been sent in its name, and similar messages circulate in the name of Kela and banks. The rule is the same as anywhere: do not click a link in a message, open the service by typing the address or using the official app, and never read out an authorisation code to a caller. If you lose your phone, call your bank's helpline at once to block your codes.\n\n...\n\nCounting on a French or other national eID without checking the list. Buying a prepaid SIM and expecting a mobile certificate. Believing every service accepts Finnish Authenticator. Letting the app account sleep. And lending codes, which is both unwise and against the bank's terms."
+        ],
+        "image": "https://helloexpat.eu/site/pays/fi.jpg"
+      },
+      {
+        "id": "https://www.oulu.fi/en/news/suomifi-identification-service-for-foreigners-has-been-introduced-for-students",
+        "title": "Suomi.fi identification service for foreigners has been introduced for students | University of Oulu",
+        "url": "https://www.oulu.fi/en/news/suomifi-identification-service-for-foreigners-has-been-introduced-for-students",
+        "publishedDate": "2026-08-05T07:42:55.000Z",
+        "highlights": [
+          "The University of Oulu and Oamk have introduced an electronic first identification service that utilises Suomi.fi identification and makes it easier to activate the user account for foreigner students. The service will be introduced to staff at a later date. \n\nIf the user does not have a Finnish personal identity code or if the identification methods for Finnish citizens cannot be used in the Suomi.fi service, identification will be possible with these services (help links to the Suomi.fi identification pages):\n\n- with common European eIDAS identification (Electronic identification and trust services for electronic transactions in the internal market) or \n- with Finnish Authenticator application, for which official identity papers (passport) are required. \n\nCommon European eIDAS is intended for residents of EU countries who have joined the service, and as a rule, Finnish Authenticator is intended for other foreigners."
+        ]
+      }
+    ],
+    "searchTime": 1263,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

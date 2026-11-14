@@ -1,0 +1,93 @@
+{
+  "fetchedAt": "2026-11-14T13:18:20.365Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Identity card for a foreigner (police)",
+    "contextHash": "d7bed64672b37ece",
+    "includeDomains": [],
+    "docsHash": "1c21bda457a9180b"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://poliisi.fi/en/how-to-apply-for-an-identity-card",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "You can be issued with an identity card if you are a foreign citizen permanently resident in Finland, your personal information, including municipality of residence in Finland, is entered in the Population Information System, and you have a valid residence permit or residence card or your right of residence has been registered",
+          "When applying for a foreigner’s identity card, you must present a valid passport or identity card",
+          "If you apply for an identity card at a police station without using the online service at all"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://poliisi.fi/en/id-card-submitting-passport-photographs",
+        "title": "poliisi.fi",
+        "domain": "poliisi.fi",
+        "trust": "official",
+        "highlights": [
+          "For an identity card application, you will need one passport photo which has been taken no longer than 6 months earlier"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/wp-content/uploads/newcomersguide.pdf",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are a citizen of a non-EU/EEA country, banks in Finland usually require a Finnish identity card to issue strong electronic identification"
+        ],
+        "fetchedAt": "2026-11-14T13:17:43.162Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Applying for the identity card requires a personal visit at the Police station"
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://yle.fi/a/74-20088220",
+        "title": "yle.fi",
+        "domain": "yle.fi",
+        "trust": "news",
+        "highlights": [
+          "Vapaiden aikojen saaminen voi kuitenkin venyä noin kahdesta viikosta jopa kuukauteen",
+          "Varauskalenteria kannattaa kuitenkin seurata aktiivisesti, sillä varausaikoja vapautuu peruutusten vuoksi lähes päivittäin",
+          "Passi- ja henkilökorttiasiointeja ei kuitenkaan ole pakko hoitaa lähimmällä poliisiasemalla, vaan hakemuksen voi jättää millä tahansa Suomen poliisiasemalla"
+        ],
+        "fetchedAt": "2026-11-14T13:18:03.209Z"
+      },
+      {
+        "url": "https://www.kaleva.fi/oulun-poliisiaseman-passi-ja-henkilokorttijonot-ul/8111011",
+        "title": "kaleva.fi",
+        "domain": "kaleva.fi",
+        "trust": "community",
+        "highlights": [
+          "Tällä hetkellä seuraava vapaa aika on valittavissa kesäkuun puolenvälin jälkeen",
+          "Ajanvarausten lisäksi henkilöllisyystodistuksen voi uusia jonottamalla ilman ajanvarausta"
+        ],
+        "fetchedAt": "2026-11-14T13:18:03.209Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2401,
+      "costUsd": 0.006706,
+      "cacheHit": false
+    }
+  }
+}

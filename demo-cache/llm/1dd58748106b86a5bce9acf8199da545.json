@@ -1,0 +1,166 @@
+{
+  "fetchedAt": "2026-11-14T13:17:50.212Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Getting a Finnish personal identity code at a Tax Administration (Vero) tax office when arriving in Finland to work",
+    "contextHash": "4b8adaf93e65adf4",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "ouka.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "69d8bbe22b340957"
+  },
+  "response": {
+    "data": {
+      "title": "Personal identity code from a Vero tax office",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "You can request a identity code from the Tax Administration if you need it for tax-related reasons when you start working in Finland."
+        },
+        {
+          "kind": "requires",
+          "value": "residence_permit",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "If your right to work in Finland is not valid, the Tax Administration cannot issue the identity code to you."
+        },
+        {
+          "kind": "same_visit",
+          "value": "tax_card",
+          "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+          "quote": "You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "If you need a personal identity code and a tax card or tax number, you need to visit a service point."
+        },
+        {
+          "kind": "processing_time",
+          "value": "usually 1 to 3 business days",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "The processing time is usually 1 to 3 business days."
+        },
+        {
+          "kind": "document",
+          "value": "valid passport or official proof of identity with a photograph",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "If your employment contract or account describing your work in Finland is inadequate, the Tax Administration cannot give you a personal identity code."
+        },
+        {
+          "kind": "document",
+          "value": "Registration information on a foreigner staying in Finland temporarily (form 6150e), filled in beforehand and signed at the tax office",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "Do not sign the form until at the tax office."
+        },
+        {
+          "kind": "document",
+          "value": "Application 5042e (stay over 6 months) or 5057e (stay 6 months or less)",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "You will also need one of these applications:"
+        },
+        {
+          "kind": "document",
+          "value": "Employment contract (or a commissioning contract if self-employed) showing the actual work in Finland",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "The Tax Administration will not issue the identity code unless reliable documentation concerning your work has become available."
+        },
+        {
+          "kind": "document",
+          "value": "Proof of valid right to work in Finland (residence permit decision or card)",
+          "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+          "quote": "If you are not a citizen of the EU, the EEA or Switzerland, you will usually need an employee’s or an entrepreneur’s residence permit to work in Finland."
+        },
+        {
+          "kind": "provides",
+          "value": "personal_identity_code",
+          "url": "https://www.vero.fi/en/About-us/contact-us/forms/descriptions/registration_information_on_a_foreigner/",
+          "quote": "Use this form for submitting a request for a Finnish personal identity number."
+        },
+        {
+          "kind": "address",
+          "value": "Oulu service point is one of the Vero service points that issue personal IDs",
+          "url": "https://www.vero.fi/en/About-us/contact-us/local-tax-offices/tax-offices-that-provide-finnish-personal-ids/",
+          "quote": "Visit one of the following service points to get your personal ID."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/finnish-personal-identity-codes-for-workers-arriving-in-finland/",
+        "title": "Finnish personal identity codes for workers arriving in Finland - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "The Digital and Population Data Services Agency issues Finnish personal identity codes. In some cases, identity codes can be issued by the Finnish Immigration Service or the Finnish Tax Administration. Personal identity codes for children under 15 can be issued only by the Digital and Population Data Services Agency.\n\nYou can request a identity code from the Tax Administration if you need it for tax-related reasons when you start working in Finland. You need to have a personal identity code to get a tax card or a tax number. You must have a tax number if you work at a construction site or a shipyard.\n\n...\n\n## Book an appointment at a service point\n\nIf you need a personal identity code and a tax card or tax number, you need to visit a service point. Please note that only some service points issue personal identity codes. The processing time is usually 1 to 3 business days.\n\nTo book an appointment, call the Tax Administration’s telephone service at 029 497 010 (if you are calling from abroad, +358 29 497 010).\n\nAlternatively, your employer can book the appointment for you, by calling the Tax Administration.\n\nService points where you can get a Finnish personal identity code\n\n## Bring all the required documents with you\n\nWhen you visit a tax office to get a personal identity code, you need to have all the necessary documents with you. If your employment contract or account describing your work in Finland is inadequate, the Tax Administration cannot give you a personal identity code.\n\nMake sure to fill in the registration form in advance: Registration information on a foreigner staying in Finland temporarily (6150e). Do not sign the form until at the tax office.\n\nYou will also need one of these applications:\n\n- If you are staying in Finland for 6 months or less: Non-resident's application for tax at source card, tax card, tax prepayment or tax number (5057e)\n- If you are staying in Finland for more than 6 months: Application for tax card, tax prepayment or tax number – current or former foreign residents (5042e)\n\n## If you work at a construction site or a shipyard or if you are a seasonal worker\n\nYou can provide the information on the online form even before you visit the service point if \n\n- you work at a construction site or shipyard and need a tax number or\n- you are a seasonal worker and apply for a non-resident taxpayer’s progressive tax card.\n\nCall the Tax Administration’s telephone service at 029 497 010 (if you are calling from abroad, +358 29 497 010), and we will email you instructions and a link to the online form. \n\nFilling in the online form in advance will speed up the processing of the matter at the service point. \n\nIf you work at a construction site or shipyard, we advise you to submit the form two weeks before your visit to the service point. If you are a seasonal worker, submit the form one week before your visit. \n\n## What are the documents to bring along?\n\nBring these documents to the service point:\n\n- the registration form and application (5057e or 5042e) (make sure to fill these in beforehand)\n- a valid passport or official proof of identity with a photograph, from which you can be easily identified\n- an employment contract if you work for an employer who pays you wages\n- a commissioning contract if you work as a self-employed individual\n- if your employment contract or commissioning contract does not describe the work you do in Finland, your employer or principal customer or the Finnish party ordering the work must write a report that includes the following information: \n\n- your full name and date of birth\n- details on your employer or principal\n- information on the work you do in Finland\n- the start and end dates of your work in Finland\n- the place where you work (e.g. workplace, contract site and address)\n- the party in Finland who ordered the work.\n\nBring these documents to the service point:\n\n- the registration form and application (5057e or 5042e) (make sure to fill these in beforehand)\n- a valid passport from which you can be easily identified\n\n...\n\nIf you are not a citizen of the EU, the EEA or Switzerland, you will usually need an employee’s or an entrepreneur’s residence permit to work in Finland. Your right to work or do business is usually stated on your residence permit decision or card. If your right to work in Finland is not valid, the Tax Administration cannot issue the identity code to you.\n\n## Documents to provide information on your work in Finland including the validity of your right to work here\n\nFor receiving the Finnish personal identity code from the Tax Administration, you are required to present a copy of your employment contract and other documentation to prove that you will actually carry out work here. The Tax Administration will not issue the identity code unless reliable documentation concerning your work has become available. This means that if you merely show a preliminary contract of employment – or a letter where a work assignment is offered to you – it will not be sufficient.\n\nIf your citizenship is of a country outside the EU, and you are not a citizen of Norway, Iceland, Liechtenstein or Switzerland, you will additionally be required to prove that your right to work in Finland is valid in accordance with the provisions of the Aliens Act (Ulkomaalaislaki (301/2004)) or the provisions of the Act governing seasonal workers (Kausityölaki (907/2017)). Work permits issued by other EU countries do not entitle you to work in Finland.\n\nIt is within the Tax Administration’s jurisdiction to issue a Finnish identity code only to a worker who requests it because of his or her work in this country. When submitting your request for the identity code, you need to show your employment contract and additionally, documentation concerning the work to be carried out in Finland. If enough information on the work to be done here is not indicated by your contract, your employer company will be required to give the following details in writing:\n\n- What work you will do in Finland\n- Start and end dates of your work\n- The Finnish location where work will be done\n- Name of the company that ordered the work assignment\n\nIf your work here is based on your operation of a trade or business as a self-employed professional, you need to present a copy of the contract of your assignment or job in Finland."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.706Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/About-us/contact-us/local-tax-offices/tax-offices-that-provide-finnish-personal-ids/",
+        "title": "Service points that provide Finnish personal IDs - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "# Service points that provide Finnish personal IDs\n\nWhen you come from abroad to work in Finland, you may need a Finnish personal ID for tax purposes. Visit one of the following service points to get your personal ID. For booking an appointment, call our telephone service at 029 497 010 (if you are calling from abroad, +358 29 497 010).\n\nHelsinki service point, Pasila\n\nKuopio service point\n\nOulu service point\n\nRovaniemi service point\n\nSeinäjoki service point\n\nTampere service point\n\nÅland Tax Office, Mariehamn\n\nFurther information: Working in Finland\n\n## Electronic tax mail\n\nYou will automatically activate Suomi.fi Messages or electronic tax mail when you log in to MyTax."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.706Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "Tax card and tax counseling - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card. You will also need a tax card if you receive taxable benefits opens in new tab from from the Social Insurance Institution of Finland (Kela).\n\nYou can apply for a tax card by visiting the Finnish Tax Administration (Vero) at International House Helsinki (IHH). Vero can also provide you with information about taxation in Finland for individuals.\n\n### Vero\n\nThe Finnish Tax Administration (Vero) is the agency that issues tax cards and manages taxation in Finland.\n\nYou can apply for a tax card by visiting Vero’s service desk at International House Helsinki (IHH).\n\n- How to visit Vero at IHH\n- Vero – Arriving in Finland from overseas\n\nThe recommended way to get a tax card depends on whether you have a Finnish personal identity code.\n\nApply for a personal identity code at IHH\n\nYou can also receive a personal identity code for tax purposes by visiting Vero’s service desk.\n\n## How to visit Vero at IHH\n\nIf you already have a Finnish personal identity code\n\nIf you already have a Finnish personal identity code but do not yet have a tax card, you can get one by calling the Tax Administration’s Tax Card Service at +358 29 497 050 (Mon–Fri, 9–12). You can also apply for a tax card in person at a Tax Administration’s service desk. Please note that appointments cannot be booked for tax card matters.\n\nIf you don’t yet have a Finnish personal identity code\n\nIf you don’t yet have a Finnish personal identity code and need a tax card, you must visit a Tax Administration’s service desk to register and get a Finnish personal identity code and a tax card. You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time.\n\nThe Tax Administration (Vero) serves customers on weekdays from 9:00 to 16:00.\n\nBefore visiting Vero, make sure you have all the necessary documents completed and with you. Please bring the following documents:\n\n- A valid passport or identity card\n- An employment contract\n- A filled-in application form (see below)\n- An estimation of your total annual income including wage income and possible fringe benefits, holiday pay, bonuses etc.\n\nChoose the relevant application below and fill it for your visit. The forms are also available at IHH.\n\n- ### Application form if you are arriving to stay for more than six months in Finland\n\n- Application for tax card, tax prepayment or tax number – current or former foreign residents (Form 5042e)\n- ### Application form if you are staying for six months or less in Finland\n\n- Non-resident’s application for tax at source card, tax card, tax prepayment or tax number (Form 5057e)\n\nYou can visit Vero’s service desk at IHH without an appointment.\n\n...\n\n### Opening hours\n\n...\n\nThe service is available both by\n\n...\n\nI have a tax card. Is that sufficient proof of my right to work in Finland? \n\nNo. Nor does for example a Finnish personal identity code, identification card or driving license prove right to work. If you are a citizen of a non-EU/EEA country, your right to work need to be checked from your residence permit. In case of a citizen of an EU/EEA or Nordic country, right to work can be proved by a passport.\n\nIt is also worth noting that EU citizens must register their right of residence if their stay in Finland lasts more than 3 months.\n\n...\n\nCan I get a Finnish personal identity code from the Finnish Tax Administration? \n\nYou can request a personal identity code from:\n\n- The Digital and Population Data Services Agency (DVV)\n- The Finnish Tax Administration (Vero), if you need a personal identity code for tax purposes, such as for a tax card.\n- The Finnish Immigration Service (Migri), when you are granted a residence permit, a residence card, or when your right of residence is registered."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.706Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+        "title": "Work in Finland - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "Read instructions for arriving in Finland to work here: you need a tax card and/or an individual tax number. To apply for the card and the number, you need a Finnish personal identity code.\n\nPlease take into account that service points may not be able to give you a tax card and/or a tax number immediately. The processing time, on the condition that all your information and documents are made available to the Tax Administration, is normally from 1 to 3 business days.\n\nIf the tax issue at hand makes it necessary for you to come to the service point, an appointment will be booked for you. We give service – at the service point and by telephone – in Finnish, Swedish and English. If you cannot communicate in Finnish, Swedish or English, bring your own interpreter with you to the service point or call an interpreter during your visit.\n\n...\n\n## A Finnish personal ID \n\nThe Digital and Population Data Services Agency issues Finnish personal IDs. In some cases, IDs can be issued by the Finnish Immigration Service or the Finnish Tax Administration."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.706Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/About-us/contact-us/forms/descriptions/registration_information_on_a_foreigner/",
+        "title": "Registration information on a foreigner staying in Finland temporarily (6150e) - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "# Registration information on a foreigner staying in Finland temporarily (6150e) Forms \n\nUse this form for submitting a request for a Finnish personal identity number. When the Tax Administration handles your request for a Finnish personal identity number you must complete Form 6150 — Registration information on a foreigner staying in Finland temporarily. Form 6150 is designed for the needs of taxpayer registration by the Tax Administration and also for the needs of the Population Register System."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.706Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 8466,
+      "costUsd": 0.029528,
+      "cacheHit": false
+    }
+  }
+}

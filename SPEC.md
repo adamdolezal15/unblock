@@ -29,7 +29,7 @@ People moving to Finland (workers, students, families). Scope: Helsinki region f
 
 ## Official domains (starting list)
 dvv.fi, vero.fi, migri.fi, enterfinland.fi, kela.fi, poliisi.fi, suomi.fi, infopankki.fi, ihhelsinki.fi, finanssivalvonta.fi, hel.fi, myhelsinki.fi
-+ the profile city's municipal domain (`<city>.fi`, e.g. tampere.fi, espoo.fi), added per run and labelled official.
++ the profile city's municipal domain from a whitelist of the ~20 largest municipalities (`CITY_DOMAINS` in lib/exa/domains.ts, e.g. tampere.fi, espoo.fi, ouka.fi for Oulu), added per run and labelled official. A city not on the list gets no municipal domain: nothing is guessed, nothing extra is labelled official.
 
 ## University / semi-official
 aalto.fi, helsinki.fi, studies.helsinki.fi, hanken.fi, uniarts.fi, tuni.fi

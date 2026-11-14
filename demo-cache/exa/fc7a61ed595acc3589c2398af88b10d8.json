@@ -1,0 +1,87 @@
+{
+  "fetchedAt": "2026-11-14T13:17:42.323Z",
+  "request": {
+    "endpoint": "search",
+    "query": "online banking credentials strong electronic identification requirements",
+    "objective": "Official pages stating what is required to get online banking credentials / strong electronic identification in Finland, including whether you must first be a customer of the bank with a bank account.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "ouka.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "f03f407dd5bbc3a8eece2f9677a32699",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.suomi.fi/instructions-and-support/identification/information-on-identification-tokens-used-in-suomi-fi-e-identification/activating-finnish-online-banking-codes",
+        "title": "Activating Finnish online banking codes - Instructions for Suomi.fi e-Identification - Suomi.fi",
+        "url": "https://www.suomi.fi/instructions-and-support/identification/information-on-identification-tokens-used-in-suomi-fi-e-identification/activating-finnish-online-banking-codes",
+        "highlights": [
+          "Finnish online banking codes are identification tokens granted by different banks. \n\n- You can obtain online banking codes by entering into a contract with your own bank or another Finnish bank of your choice. At the same time, you will be given instructions on how to use the identification codes. \n- If you do not remember your online banking codes, your user ID becomes locked or you otherwise need help using the online banking codes, please contact your bank. \n\nPlease note that \n\n- the online banking codes you use for e-identification must have been issued personally to you. You cannot use a company’s or an association’s banking codes for e-identification. \n- the banking codes used for identification must be such that they are suitable for electronic identification in other services in addition to banking transactions.\n- online banking codes for a joint account that two spouses have access to can only be used by the person whose name the account is in. \n\nPlease ensure that no one has access to your user ID, password or banking code list."
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      },
+      {
+        "id": "https://migri.fi/en/identification",
+        "title": "Identification | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/identification",
+        "highlights": [
+          "Identification means proving your identity. Using strong identification means that you prove your identity online with your online banking credentials, citizen certificate or mobile certificate. \n\nWhen you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person. Read more on the page Handling your matters at a Finnish mission. If you are in Finland and apply for your first permit, you must visit a service point of the Finnish Immigration Service to prove your identity.\n\n## When is a visit at a service point not required?\n\nA visit to a service point of the Finnish Immigration Service is not always required if you use online banking credentials or other form of strong identification in Enter Finland when you apply for\n\n- an extended permit;\n- a new residence permit card;\n- a new residence card; or\n- Finnish citizenship. \n\n- If you apply for citizenship for your children as well, you and your children will need to visit a service point to prove your identities.\n\nIn addition to using strong identification, you need to:\n\n- pay the processing fee in Enter Finland;\n- add to your application the photograph retrieval code for your digital passport photo; \n\n- The photograph retrieval code is not needed if you apply for Finnish citizenship. \n\nAfter you have submitted your application, Enter Finland will tell you whether you need to visit a service point or not.\n\n...\n\n### This is what you should do:\n\n Log in to the online service Enter Finland using your Finnish online banking credentials, citizen certificate or mobile certificate. Set strong identification as the login method for your old Enter Finland account. \n\n- You are using strong identification when you log in to the service using online banking credentials, mobile certificate or citizen certificate.\n- If you have previously used your email address to log in, update the login method for your account: \n\n- In the main menu, select ‘My Account’.\n- Click the button ‘Change now’ to get to the Suomi.fi login page. As your login method, you can select online banking credentials, for example.\n- After you have logged in to the service using strong identification, your account is upgraded to an account that uses strong identification. From now on, when you log in to your Enter Finland account you must always use the strong identification method you selected (for instance, your online banking credentials).\n- Please note that if submit your application before you start using strong identification, you cannot avoid visiting a service point.\n\n Add to your application the retrieval code for your digital passport photo that you received from the photo shop. Enter the retrieval code into the field ‘Passport photo’ on the first page of the online application form. \n\n- Remember to enter the retrieval code before submitting the application.\n- If you fail to add the retrieval code or if you add it only after submitting the application, you will have to visit a service point to prove your identity.\n- If you apply for citizenship, you do not need to attach a photograph retrieval code.\n- More information on how to attach your passport photo.\n\n...\n\nPay the fee for your application on Enter Finland. You can pay the fee for your application on the fifth page of the online application form using the most common payment cards or with Finnish online banking credentials. \n\n- If you do not pay the fee for your application on Enter Finland, you must visit a service point to prove your identity.\n\n...\n\n\"Visit your service point\n\nYou need to visit a Finnish Immigration Service service point within three months to verify your identity. At the same visit, you will show the official the original versions of the attachments to your application. You can find more detailed information on what you need to bring with you on the page Visiting a service point.\n\n...\n\n## The most common reasons for having to visit a service point even when you are using strong identification:\n\n- You have not added the retrieval code for your digital passport photo to your application before submitting the application.\n- You did not pay the processing fee for the application in Enter Finland.\n- You are under 18 years of age.\n- More than 5 years have passed since the last time you were fingerprinted.\n- Your residence permit has expired for over 60 days ago. \n- You have not shown a passport issued by your home country to the Finnish Immigration Service or the police.\n- The entry ban imposed on you by Finland is still in force.\n- You are applying for a permanent residence permit.\n- You are applying for citizenship for yourself and for your children.\n\n...\n\n## How to upgrade your Enter Finland account into an account that uses strong identification\n\nYou cannot avoid visiting a service point if you only log in to Enter Finland with your email and password.\n\nUpgrade your account into an account with strong identification before you submit your application. If you submitted your application before updating your account, you will unfortunately have to visit a service point.\n\n### This is what you should do:\n\n Log in to your existing Enter Finland account using your email login \n\n In the main menu, select ‘My Account’. \n\n Select ‘Change now’ to get to the Suomi.fi login page. There you can log in to the online service using strong electronic identification, for example your Finnish online banking credentials. \n\n After you have logged in to the online service using strong identification, your account will be updated to an account with strong identification. In the future, you must always log into your account using strong electronic identification.\n\n...\n\nTo avoid visiting a service point, you must \n\n- log in to your Enter Finland account using your online banking credentials, mobile certificate or citizen certificate \n- add to your application the photograph retrieval code for your digital passport photo, and \n- pay for the application."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://www.suomi.fi/instructions-and-support/identification/how-to-log-in-to-an-eservice-that-uses-suomifi-e-identification",
+        "title": "How to log in to an e-service that uses Suomi.fi e-Identification? - Instructions for Suomi.fi e-Identification - Suomi.fi",
+        "url": "https://www.suomi.fi/instructions-and-support/identification/how-to-log-in-to-an-eservice-that-uses-suomifi-e-identification",
+        "highlights": [
+          "1. First, go to the website of the service you want to use.\n\n...\n\nStart identification by clicking the identification or login button in the service.\n\n...\n\n3.\n\n...\n\n4. Follow the instructions for the selected identification method.\n\n...\n\nWhich identification method do I select in Suomi.fi e-Identification?\n\nSelect the identification method according to the identification token you use:\n\n- an ID card issued by the police or an organisation card or smart card for workplaces: certificate card\n- a mobile certificate from DNA, Elisa or Telia: mobile certificate\n- online banking codes: the bank whose codes you use\n- the Hightrust.id mobile application: Hightrust.id\n- the Finnish Authenticator application or an identification token of another country: identification methods for foreigners\n\nWhen you use a mobile certificate, you will see Telia’s logo during identification as Telia Finland Oyj provides the service for identification with mobile certificates. Identification also works with mobile certificates from DNA and Elisa.\n\n...\n\nIf you are a Finnish citizen and live abroad, you cannot use e-services if you don’t have a strong identification token from Finland.\n\nCurrently, you can use a personal identity card as a token, which are issued by the police. You can use a personal identity card to log in to e-services, either by using a card reader on your computer or with the Hightrust.id application."
+        ],
+        "image": "https://www.suomi.fi/style-guide/img/social-image.png"
+      },
+      {
+        "id": "https://www.kela.fi/e-services",
+        "title": "OmaKela e-service | Our Services | Kela",
+        "url": "https://www.kela.fi/e-services",
+        "publishedDate": "2026-08-21T12:00:00.000Z",
+        "highlights": [
+          "#### Online banking credentials\n\nOnline banking credentials (pankkitunnukset) are an identification method issued by banks. You can use them to log in to the OmaKela e-service. Please ask your bank for the credentials and instructions on how to use them. Use only your own credentials.\n\n##### How to use online banking credentials to log in to OmaKela\n\n1. Select Log in – OmaKela at the top of the kela.fi page.\n2. Choose your bank on the identification page.\n3. Select the identification method you want to use to log in to OmaKela, such as your bank’s mobile application or a code card issued by your bank.\n4. If the identification process is successful, you will be automatically redirected to OmaKela."
+        ],
+        "image": "https://www.kela.fi/documents/20124/0/Kela_default.png/ee81aaf6-155d-0535-2591-94255189329f?t=1670506354014"
+      },
+      {
+        "id": "https://www.finanssivalvonta.fi/en/consumers/payment-services/payment-cards/",
+        "title": "Payment cards - Payment services - www.finanssivalvonta.fi",
+        "url": "https://www.finanssivalvonta.fi/en/consumers/payment-services/payment-cards/",
+        "highlights": [
+          "- Make sure that you are not observed when entering ... Block the view with your other hand, for example, to prevent unauthorised persons from seeing what you enter.\n- If you lose your card or it is stolen, promptly notify the card blocking service (phone 020-333) or your own bank.\n\n...\n\n- Set suitable withdrawal limits on your card.\n\n...\n\n### What does strong authentication mean in connection with payments?\n\nStrong authentication means the method by which customers are identified, for example in connection with payment transactions or when logging in to payment accounts. Authentication is accomplished by combining at least two of the following three options:\n\n- knowledge, i.e. something only the user knows (such as a password, PIN code)\n- possession, i.e. something only the user of the payment service possesses (such as a mobile phone, code calculator, a card when paying at a store payment terminal)\n- inherence, i.e. something only the user is (such as a fingerprint, face map)\n\nIn addition to making payments, the means of identification provided by banks are also used in services where strong electronic customer authentication is required. Such services include electronic services provided by public authorities (e.g. Kela, Police, tax authorities) and electronic services provided by insurance companies. In addition to the means of identification provided by banks, mobile certificates provided by telecom operators and the Population Register Centre’s citizen certificate are generally used as means of identification in these services.\n\n...\n\n### Can I still pay online using payment card information?\n\nPreviously, in many online stores it has been possible to pay by entering into the service your payment card information. As of 14 September 2019, it has no longer been able to pay at an online store simply by entering your payment card information; customers must also be strongly authenticated in connection with payments. 1 In certain exceptional cases, such as in small purchases less than EUR 30, strong customer authentication is not necessarily required. Even in small online payments, strong customer authentication is required, however, when the security limits set for individual purchases or the total amount of purchases are reached.\n\n### Can I still use an online banking code list?\n\nThe current paper-based online banking code lists provided by banks are easy to copy and therefore they no longer meet, in their present form, the requirements for increasing payment security. The banks are creating alternative methods, which fulfil the requirements of the new regulations, to replace or supplement the use of online banking code lists. The FIN-FSA has issued a statement on the use of online banking code lists.\n\nWhen online banking codes are used for strong customer authentication in services other than in relation to payments and accessing payment accounts, such as in public authority services (Kela, Police, tax authorities), then identification service regulations, supervised the Finnish Communications Regulatory Authority TrafiCom, will be applied instead of payment service regulations.\n\n...\n\nPayment and identification services involve the risk of misuse if you are not careful and diligent in using online banking credentials and payment instruments. See more in the Scams section."
+        ],
+        "image": "https://www.finanssivalvonta.fi/globalassets/fi/uudet-kuvat-2024/some-kuva-verkkosivut.jpg"
+      }
+    ],
+    "searchTime": 1158.5,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

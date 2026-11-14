@@ -1,0 +1,284 @@
+{
+  "fetchedAt": "2026-11-14T13:21:45.945Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "How to get strong electronic identification (online banking credentials) in Finland as a foreigner",
+    "contextHash": "b50c05c3994d2f4f",
+    "includeDomains": [
+      "aktia.fi",
+      "danskebank.fi",
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "nordea.fi",
+      "op.fi",
+      "ouka.fi",
+      "poliisi.fi",
+      "poppankki.fi",
+      "s-pankki.fi",
+      "spankki.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "3215158ccffab5a2"
+  },
+  "response": {
+    "data": {
+      "title": "Strong electronic identification (online banking codes)",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+          "quote": "However, e-services require a tool that enables you to use strong identification online."
+        },
+        {
+          "kind": "requires",
+          "value": "personal_identity_code",
+          "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+          "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System."
+        },
+        {
+          "kind": "requires",
+          "value": "dvv_registration",
+          "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+          "quote": "To be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System."
+        },
+        {
+          "kind": "requires",
+          "value": "police_id_card",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "quote": "Banks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification."
+        },
+        {
+          "kind": "requires",
+          "value": "bank_account",
+          "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+          "quote": "You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose."
+        },
+        {
+          "kind": "requires",
+          "value": "residence_permit",
+          "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+          "quote": "A valid identity document and a residence permit for Finland."
+        },
+        {
+          "kind": "same_visit",
+          "value": "bank_account",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "quote": "It is most convenient to get the Finnish ID card first and then go to the bank to open a bank account and strong identification at the same time."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "quote": "A visit to the selected bank is required."
+        },
+        {
+          "kind": "document",
+          "value": "Official identification document such as a passport",
+          "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+          "quote": "You will need an official identification document, such as a passport or EU-citizen`s identity card, to open a bank account."
+        },
+        {
+          "kind": "document",
+          "value": "Foreigner’s identity card issued by Finnish police (for non-EU citizens)",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "quote": "Banks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Without a Finnish personal identity code you only get limited online banking codes that cannot be used for authority services",
+          "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+          "quote": "Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen."
+        },
+        {
+          "kind": "processing_time",
+          "value": "varies by bank and appointment availability",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+          "quote": "The processing time varies between banks and when first appointment times are available."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.suomi.fi/instructions-and-support/identification/information-on-identification-tokens-used-in-suomi-fi-e-identification/activating-finnish-online-banking-codes",
+        "title": "Activating Finnish online banking codes - Instructions for Suomi.fi e-Identification - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Finnish online banking codes are identification tokens granted by different banks. \n\n- You can obtain online banking codes by entering into a contract with your own bank or another Finnish bank of your choice. At the same time, you will be given instructions on how to use the identification codes. \n- If you do not remember your online banking codes, your user ID becomes locked or you otherwise need help using the online banking codes, please contact your bank. \n\nPlease note that \n\n- the online banking codes you use for e-identification must have been issued personally to you. You cannot use a company’s or an association’s banking codes for e-identification. \n- the banking codes used for identification must be such that they are suitable for electronic identification in other services in addition to banking transactions.\n- online banking codes for a joint account that two spouses have access to can only be used by the person whose name the account is in. \n\nPlease ensure that no one has access to your user ID, password or banking code list."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/non-eu-citizen/",
+        "title": "The Newcomer’s Checklist: Non-EU citizen - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Applying for an ID card (Police) \n\nThe foreigner’s identity card is issued by the Police in Finland. Applying for the identity card requires a personal visit at the Police station. You can either go to the police station, take a number and wait for your turn in the same day or schedule an appointment in advance. Please note that if you schedule and appointment, it must be done well in advance, as availability of appointments is limited. Getting the initial appointment might take weeks or even months.\n\nBanks in Finland require a foreigner’s identity card issued by the Finnish authorities to enable non-EU nationals use online banking credentials for strong identification.\n\nAfter the information has been registered in the Finnish Population Information System and the Finnish personal identity code and home municipality have been received.\n\n- Finnish personal identity code\n- Home municipality in Finland\n- Residence permit\n\nApplying for the foreigner’s identity card requires a personal visit to the Police station.\n\n- Strong identification = Using strong identification means that you prove your identity online with your online banking credentials, citizen certificate or mobile certificate.\n\nHow long does this step take?\n\nThe application processing is usually rather straightforward, and you can expect to receive your ID card within 1–2 weeks after your visit to the police station.\n\n...\n\nOpening personal bank account and strong identification \n\nYou need a personal bank account to receive salary and benefits and to pay for rent and other bills. The online banking codes can also be used for strong identification, which you need to access most online services in Finland. You can choose any of the Finnish banks. Please note that not all banks provide services in English. Remember to check the requirements for documentation from the bank that you choose to use. A visit to the selected bank is required.\n\nCheck the criteria for opening an account from the bank of your choice. Usually, a permanent address in Finland must be registered for you by DVV first. It is also possible that you must first apply for a Finnish identity card from the police.\n\nIt is most convenient to get the Finnish ID card first and then go to the bank to open a bank account and strong identification at the same time. However, if you need to open a bank account fast and do not need strong identification immediately, you can open the bank account first and later, when you have received a Finnish identity card, enable strong identification.\n\n- Personal identity code\n- Address in Finland\n- Residence permit\n- Possibly a declaration of where your funds have come from\n- Foreigners’ identity card for strong identification\n\nOfficial responsible for this step\n\nAny of the banks in Finland\n\n- Strong identification = Most of the online services in Finland can be accessed only by using strong identification. So, to make managing your life easier in Finland, it is important to get the strong identification as soon as possible. The most common method for strong identification is to use the online banking codes, but there are other options also. Other options include citizen certificate, mobile certificate, and Suomi.fi identification.\n- Citizen certificate = Certificate that is included in an ID card. It includes a Signing Certificate and an identification and encryption certificate.\n- Mobile certificate = A certificate used on the mobile phone, based on two-factor authentication by your PIN code and your phone’s SIM card. Gives you access to almost all services in Finland, both public and private.\n- Suomi.fi e-Identification = Can be used for strong identification for public services.\n\nHow long does this step take?\n\nThe processing time varies between banks and when first appointment times are available. Please ask from the bank of your choice."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/things-that-help-you-to-settle",
+        "title": "Take care of things that help you to settle in Finland - Work in Finland - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "When you have a Finnish personal identity code, you can usually open a bank account. The banks may also have other, bank-specific requirements. \n\nFollow these steps:\n\n1. Select the bank in which you want to open the account. \n2. Go to an office of that bank and say you want to open an account.\n\nYou will need an official identification document, such as a passport or EU-citizen`s identity card, to open a bank account. A driving license alone is not enough.\n\n...\n\n### Should I get online banking credentials?\n\nYou should also get online banking credentials from your bank, so you can handle your payments conveniently online. \n\nIn Finland many things can be dealt with online. However, e-services require a tool that enables you to use strong identification online. You can use for example online banking credentials for strong identification.\n\nIf the e-service you need has enabled the identification methods of foreigners, you can identify yourself in the e-services of public administration in Finland also\n\n- with the identification tokens of the countries that have been approved for cross-border identification in Europe\n- with the Finnish Authenticator application which is intended for identification only for those foreigners who cannot use common European identification methods."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/wp-content/uploads/newcomersguide.pdf",
+        "title": "Newcomer’s Guide 6th corrected edition",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "Why? \nA personal identity code is needed, for example, when dealing with different \nauthorities, opening a bank account, and paying wages. \nHaving a municipality of residence in Finland gives you access to local public \nservices such as daycare, schools, healthcare as well as public transport at a \nlower cost. Municipality of residence is also required if you want to get a Finnish \nidentity card or a driving license. \nWhat? \nYour personal identity code (henkilötunnus) is probably the most important piece\n\n...\n\nIt is an 11-digit code \nthat contains your date of birth and other identifiers.\n\n...\n\nrequired.\n\n...\n\nForeigner’s identity card\n\nThe Finnish police can issue identity cards to foreign citizens who reside in Finland permanently. The card can be handy, if you don’t want to use your passport to prove your identity. Driving licenses are not accepted as valid proof of identity in Finland. If you are a citizen of a non-EU/EEA country, banks in Finland usually require a Finnish identity card to issue strong electronic identification. You can apply for an identity card at a police station or through the police’s online services. Foreigner’s identity cards cannot be used as travel documents.\n\nBank account\n\nThe largest banks in Finland offer services in English. Online banking is by far the \nmost common form of banking in Finland. \nOpening a bank account will require you to pay an in-person appointment to the \nbank of your choice. You will be asked to present documentation, but the \nrequirements vary among the banks, so it is best to contact them in advance \nand ask for a list of the documentation that you will need. \n\nWhen you open the account, ask for:\n\n• bank statements in English, Finnish or Swedish \n• online banking codes to access your account remotely \n• means of strong electronic identification \n• instructions for how to use your bank card. \nBanks in Finland are usually open Monday–Friday from 9.00 to 16.00, but office hours \nmay vary. They are closed on Saturdays, Sundays, and public holidays. In general, \nbanks encourage customers to use their online banking services or call them on the \ntelephone. You need to make an appointment for a face-to-face meeting. \nNote that many banks in Finland no longer deal with cash. If you want to deposit \ncash, make sure to check in advance which bank branches offer this service. \nCash points/ATMs (pankkiautomaatti, brand names Otto or Nosto) are located \nthroughout the capital region in many convenient locations. They are safe to use \nand open 24/7. Only TalletusOtto ATMs accept cash deposits of coins and \nbanknotes. Search for the machines nearest you online. \nAll major credit cards are accepted in Finland.\n\n...\n\nStrong identification\n\nStrong identification is a secure way to verify your identity online. Please note that not all international newcomers have access to using strong identification. You can get strong identification in several ways. See Suomi.fi for other options, but most people in Finland use one of the two methods listed below:\n\n• Online banking codes (also known as banking credentials) are available from banks operating in Finland. After opening an account with a Finnish bank, the bank will issue you a user ID. In addition, you will need access codes or an app downloaded on your mobile device. Do not share this information with others. You can then follow your bank’s instructions for confirming your strong identification credentials. \n• Mobile ID is available from Finnish mobile phone operators, who will activate a mobile certificate on your mobile phone’s SIM card.\n\n...\n\nDigital and Population Data Services Agency (DVV) \nFinnish Tax Administration (Vero)"
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://www.suomi.fi/instructions-and-support/identification/how-to-log-in-to-an-eservice-that-uses-suomifi-e-identification",
+        "title": "How to log in to an e-service that uses Suomi.fi e-Identification? - Instructions for Suomi.fi e-Identification - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "When you want to log in to an e-service that uses Suomi.fi e-Identification, follow these steps: \n\n1. First, go to the website of the service you want to use.\n2. Start identification by clicking the identification or login button in the service. For example, in Suomi.fi, you can find the Identification button at the top of every page. \n3. Select an identification method depending on the identification token you use.\n4. Follow the instructions for the selected identification method.\n\n...\n\nNever\n\n...\n\nWhich identification method do I select in Suomi.fi e-Identification?\n\nSelect the identification method according to the identification token you use:\n\n- an ID card issued by the police or an organisation card or smart card for workplaces: certificate card\n- a mobile certificate from DNA, Elisa or Telia: mobile certificate\n- online banking codes: the bank whose codes you use\n- the Hightrust.id mobile application: Hightrust.id\n- the Finnish Authenticator application or an identification token of another country: identification methods for foreigners\n\nWhen you use a mobile certificate, you will see Telia’s logo during identification as Telia Finland Oyj provides the service for identification with mobile certificates. Identification also works with mobile certificates from DNA and Elisa.\n\n...\n\nHow does an expatriate Finn use Finnish e-services?\n\nIf you are a Finnish citizen and live abroad, you cannot use e-services if you don’t have a strong identification token from Finland.\n\nCurrently, you can use a personal identity card as a token, which are issued by the police. You can use a personal identity card to log in to e-services, either by using a card reader on your computer or with the Hightrust.id application.\n\nInstructions:\n\n- Using an ID card issued by the Police as an identification token\n- Activating the hightrust.id mobile application\n\nIf you do not have an identity card, read the instructions of the Ministry of Foreign Affairs on applying for a Finnish identity card at a Finnish mission Opens in a new window..\n\nIf a Finnish e-service allows foreigners to use it, you can also use the following to identify yourself:\n\n- an identification token issued by another EU Member State, if it has been approved for cross-border identification\n- the Finnish Authenticator application, after you activate it.\n\nHowever, please note that when you use these identification tokens, you will not be linked to your Finnish personal identity code and your identity in Finland. If you use them, the e-service may not allow you to handle your matter in the same way as if you were acting as a Finn."
+        ],
+        "fetchedAt": "2026-11-14T13:17:41.398Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "Banking services for those new to Finland | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "If you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland. Having a Finnish personal identity number will speed up the process. \n\nYou can book an appointment at one of our branches to become a customer. After the meeting, we will set up a current account, a debit card and online banking credentials for you.\n\n...\n\nMake sure you have the following documents for the meeting:\n\n- A valid identity document and a residence permit for Finland. Read more about the documents we accept\n- The form below completed. Please bring it with you to the meeting. \n\nComplete form\n\nBook an in-branch appointment by calling us.\n\n- We provide customer service in Finnish, Swedish and English. \n- If you don’t speak these languages, you will need to bring an interpreter.\n- At the branch, we’ll review your banking needs and help you complete your application.\n\n...\n\n## Accepted identity documents\n\nTo become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland:\n\n- a passport (not an alien’s passport) or\n- an identity card issued in the EEA (incl. San Marino and Switzerland).\n\nRead more about the documents we accept\n\n...\n\nTo prove your right of residence in Finland,\n\n...\n\n- registration of the right of residence (if you are an EU citizen).\n\n...\n\nFor becoming our customer, it’s recommended that you have a Finnish personal identity number. If you don’t have a Finnish personal identity number, you should apply for one before you start banking with us. \n\nDepending on your situation, you can apply for a personal identity number through the Digital and Population Data Services Agency, the Finnish Tax Administration or the Finnish Immigration Service. \n\n## Strong electronic identification\n\nIn Finland, online banking credentials are also accepted as a means of electronic identification for many services beyond the banking services we provide. You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose. \n\nIf you do not have a passport or identity card issued by an EEA (European Economic Area) country, Switzerland or San Marino, you should be prepared to verify your identity at a police station."
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.poppankki.fi/en/services/basic-banking-services",
+        "title": "Basic banking services at POP Bank",
+        "domain": "poppankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "Basic banking services are offered to all retail customers who are legally resident in the European Economic Area (EEA).\n\nWe process applications for basic banking services as quickly as possible and no later than within 10 banking days from the date on which all required information and documents have been received.\n\n...\n\n## A Strong electronic identifier\n\nYour basic banking services include a strong electronic means of identification, which enables you to log in securely not only to the bank’s own services, but also to many other services – such as public authorities’ online services.\n\nTo be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System. We must also be able to verify your identity using one of the following valid documents:\n\n- A passport (including a diplomatic passport) or identity card (issued after 1 March 1999) issued by a Finnish authority\n- A passport or identity card issued by an authority in the European Economic Area (EEA), Switzerland or San Marino\n- A passport issued by another country, on a case-by-case basis, if its authenticity can be reasonably verified during identification\n\nIf you do not have any of the documents listed above, you can visit a police station to have your identify verified. The police will verify your identity and issue a certificate of initial identification that will be sent directly to the bank by registered mail. For more information, visit the police website: https://poliisi.fi/en/instructions-for-applying-for-identification-for-the-purpose-of-electronic-identification-documents \n\nIf you do not meet the requirements for a strong electronic means of identification, we can offer a more limited method of identification that works in the bank’s own payment services, but not in other online services."
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.poppankki.fi/en/pop-pankki/asiakaspalvelu/ukk/ukk-verkkopalvelut/identification-accepted-by-the-bank",
+        "title": "Identification documents accepted by the bank",
+        "domain": "poppankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "If your visit does not concern online banking ID, you can verify your identity with one of the following documents issued by a Finnish authority:\n\n...\n\n- Driving licence issued after 1 October 1990\n- Alien’s passport or refugee travel document (excluding documents stating that the holder’s identity could not be verified)\n\nYou can also verify your identity with a passport or diplomatic passport issued by an authority in the European Economic Area (EEA), Switzerland or San Marino, or with an identity card accepted as a travel document. A passport or diplomatic passport issued by another country may also be accepted on a case-by-case basis if its authenticity can be verified with reasonable means at the time of identity verification.\n\nYour identification document must be valid and undamaged, and you must be clearly identifiable from the photograph.\n\n### When your matter concerns online banking ID with strong electronic identification features\n\nOnline banking ID that includes a strong electronic identification feature allows you to log in securely not only to the bank’s own services, but also to many other services – such as online services provided by public authorities.\n\nTo be granted a strong electronic means of identification, you must have a Finnish personal identity code and be entered in the Population Information System. We must also be able to verify your identity using one of the following valid documents:\n\n- A passport (including a diplomatic passport) or identity card (issued after 1 March 1999) issued by a Finnish authority\n- A passport or identity card issued by an authority in the European Economic Area (EEA), Switzerland or San Marino\n- A passport issued by another country, on a case-by-case basis, if its authenticity can be verified with reasonable means at the time of identity verification\n\n If you do not have any of the documents listed above, you can visit a police station to have your identity verified. The police will verify your identity and issue a certificate of initial identification that will be sent directly to the bank by registered mail. For more information, visit the police website: https://poliisi.fi/en/instructions-for-applying-for-identification-for-the-purpose-of-electronic-identification-documents"
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.s-pankki.fi/fi/elamantilanteet/ulkomaalainen-s-pankin-asiakkaana/",
+        "title": "Ulkomaalainen S-Pankin asiakkaana | Elämäntilanteet | S-Pankki.fi",
+        "domain": "s-pankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "Huomioithan, että tarvitset suomalaisen henkilötunnuksen ennen kuin voit saada sähköisen tunnistusvälineen, jota tarvitaan esimerkiksi viranomaispalveluihin tunnistautumiseen. S-Pankin hyväksymät henkilöllisyystodistukset voit tarkistaa täältä.\n\n...\n\nVaraamalla asiointiajan asiakaspalvelupisteellemme\n\nVaraamalla asiointiajan asiakaspalvelupisteellemme verkkosivuillamme osoitteessa s-pankki.fi/ajanvaraus, jos sinulla on\n\n- - suomalainen henkilötunnus,\n- väestötietojärjestelmään rekisteröity osoite Suomessa ja\n- voimassa oleva Suomen poliisin myöntämä ulkomaalaisen henkilökortti (ei oleskelulupa) tai EU/ETA-alueen valtion, Sveitsin tai San Marinon viranomaisen myöntämä passi tai matkustusoikeudellinen henkilökortti.\n- Otathan asioidessasi mukaan voimassa olevan yllä mainitun henkilöllisyystodistuksen sekä todistuksen suomalaisesta henkilötunnuksesta (esim. Kelakortti tai Digi- ja väestötietoviraston ilmoitus henkilötunnuksen myöntämisestä).\n- Jos tarvitset tulkkia, huomioithan, että tulkin tulee puhua suomea tai ruotsia sekä mahdollista muuta kieltä, jolla sinä ja tulkki voitte sujuvasti kommunikoida. Lisäksi tulkin tulee olla täysi-ikäinen ja oikeustoimikelpoinen.\n\n...\n\nTäyttämällä hakemuksen tilin avaamiseksi asiakaspalvelupisteellämme. Voit tarkistaa lähimmän toimipaikan ja varata asiointiajan verkkosivuillamme verkkosivuillamme osoitteessa s-pankki.fi/ajanvaraus. Tarvitset mukaasi voimassa olevan S-Pankin hyväksymän henkilöllisyystodistuksen ja oleskeluluvan.\n\n- - Jos sinulla ei ole suomalaista henkilötunnusta tai osoitetta Väestötietojärjestelmässä, ota mukaasi todistus asuinosoitteestasi. Todistukseksi hyväksytään viranomaisen kuten Maahanmuuttoviraston, Verohallinnon, poliisin tai Digi- ja väestötietojärjestelmän lähettämä kirje tai ilmoitus. Huomioithan, että esimerkiksi palkkalaskelma tai lasku ei ole riittävä todistus.\n- Jos sinulla ei ole vielä oleskelulupaa, tarvitset mukaasi suomalaisen viranomaisen todistuksen siitä, että asut Suomessa laillisesti. Tällainen todistus on esimerkiksi Maahanmuuttoviraston ilmoitus oleskeluluvan tai turvapaikan hakemisesta.\n- Suosittelemme vahvasti suomalaisen henkilötunnuksen hankkimista ennen palveluiden avaamista. Ilman suomalaista henkilötunnusta voit saada käyttöösi vain rajoitetut verkkopankkitunnukset, joita ei voi käyttää muihin palveluihin, kuten viranomaispalveluihin tunnistautumiseen. Suomalaisen henkilötunnuksen saat tilanteestasi riippuen Digi- ja väestötietovirastosta, Verohallinnolta tai Maahanmuuttovirastosta."
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://www.s-pankki.fi/fi/tule-asiakkaaksi/welcome-to-s-bank/",
+        "title": "Welcome to S-Bank | S-Pankki",
+        "domain": "s-pankki.fi",
+        "trust": "provider",
+        "highlights": [
+          "Online banking credentials \n\nWith an online banking credentials, you can use the bank’s digital services easily and safely. With your banking credentials, you can easily do your banking online whenever it suits you. If you are a co-op member or a member of a co-op membership household, you can also do your banking via S -mobiili. \n\nIf necessary, you can also use your banking credentials for strong authentication in other services, such as government online services. You can get an electronic ID if you have a Finnish personal identity code and one of the identity documents below: \n\n- Finnish passport or identity card \n- Passport or an identity card that serves as a travel document issued by an EU/EEA State \n\nLearn more about the service fees for banking credentials and the terms and conditions below.\n\nYou can also get an electronic ID with a passport of a country outside the EU/EEA after an initial identification by the Finnish police.\n\n...\n\nWhat ID documents does S-Bank accept?\n\nWe will always verify your identity with an official identity card issued by an authority. We accept a passport or identity card issued by the Finnish authorities as proof of identity. We also accept identification documents issued by a foreign authority, such as a passport, or a passport or identity card issued by an EU or EEA authority. The identification document must include your photograph and it must be valid and in good condition.\n\nNote that if you have a foreign identification document, there may be restrictions on the services available to you.\n\nWe accept the following identification documents:\n\nIssued by the Finnish authorities\n\n- a passport (except an emergency passport, alien passport or refugee travel document)\n- an identity card (issued after 1 March 1999)\n\nIssued by the authorities of other countries\n\n- a passport\n- an identity card serving as a travel document issued by the authorities of EEA member states, Switzerland and San Marino\n\nFor cash withdrawals, in addition to the above, the following documents issued by a Finnish authority will be accepted\n\n- a driver's licence (issued after 1 October 1990)\n\n...\n\nYou can access S-Bank’s broader daily banking services through our electronic service if you have an electronic ID. At the same time, you will become a customer of S-Bank and a member of the cooperative of your choice. Note that the service is only available in Finnish or Swedish.\n\n## Open services at a Co-op Member Service and S-Bank service point\n\nIf you do dot have an electronic ID, you will need to visit our service points. We recommend booking an appointment. \n\nPlease take a valid proof of identity with you. \n\nIf you have a non-Finnish identity card, please also bring the following documents \n\n- A certificate of a Finnish personal identity code, if one has been issued to you. If not, take with you a certificate of your official address, issued by an authority. \n- Residence permit, or proof that a residence permit is pending, if you have a passport issued by a country outside the European Economic Area\n\n...\n\nUsing your card and doing business online is safe if you keep a few basic rules in mind. The most important thing to remember is not to give your banking codes or card details to anyone. Also make sure that the data security of the device you are using is up to date. Do not enter your card details or user credentials on a website whose address you have received as a link in an e-mail or in a message to your phone."
+        ],
+        "fetchedAt": "2026-11-14T00:48:41.367Z"
+      },
+      {
+        "url": "https://migri.fi/en/identification",
+        "title": "Identification | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Identification means proving your identity. Using strong identification means that you prove your identity online with your online banking credentials, citizen certificate or mobile certificate. \n\nWhen you apply for a first residence permit, you must always visit a Finnish embassy or consulate abroad to prove your identity in person. Read more on the page Handling your matters at a Finnish mission. If you are in Finland and apply for your first permit, you must visit a service point of the Finnish Immigration Service to prove your identity.\n\n## When is a visit at a service point not required?\n\nA visit to a service point of the Finnish Immigration Service is not always required if you use online banking credentials or other form of strong identification in Enter Finland when you apply for\n\n- an extended permit;\n- a new residence permit card;\n- a new residence card; or\n- Finnish citizenship. \n\n- If you apply for citizenship for your children as well, you and your children will need to visit a service point to prove your identities.\n\nIn addition to using strong identification, you need to:\n\n- pay the processing fee in Enter Finland;\n- add to your application the photograph retrieval code for your digital passport photo; \n\n- The photograph retrieval code is not needed if you apply for Finnish citizenship. \n\nAfter you have submitted your application, Enter Finland will tell you whether you need to visit a service point or not.\n\n...\n\n### This is what you should do:\n\n Log in to the online service Enter Finland using your Finnish online banking credentials, citizen certificate or mobile certificate. Set strong identification as the login method for your old Enter Finland account. \n\n- You are using strong identification when you log in to the service using online banking credentials, mobile certificate or citizen certificate.\n- If you have previously used your email address to log in, update the login method for your account: \n\n- In the main menu, select ‘My Account’.\n- Click the button ‘Change now’ to get to the Suomi.fi login page. As your login method, you can select online banking credentials, for example.\n- After you have logged in to the service using strong identification, your account is upgraded to an account that uses strong identification. From now on, when you log in to your Enter Finland account you must always use the strong identification method you selected (for instance, your online banking credentials).\n- Please note that if submit your application before you start using strong identification, you cannot avoid visiting a service point.\n\n Add to your application the retrieval code for your digital passport photo that you received from the photo shop. Enter the retrieval code into the field ‘Passport photo’ on the first page of the online application form. \n\n- Remember to enter the retrieval code before submitting the application.\n- If you fail to add the retrieval code or if you add it only after submitting the application, you will have to visit a service point to prove your identity.\n- If you apply for citizenship, you do not need to attach a photograph retrieval code.\n- More information on how to attach your passport photo.\n\n...\n\nPay the fee for your application on Enter Finland. You can pay the fee for your application on the fifth page of the online application form using the most common payment cards or with Finnish online banking credentials. \n\n- If you do not pay the fee for your application on Enter Finland, you must visit a service point to prove your identity.\n\n...\n\n\"Visit your service point\n\nYou need to visit a Finnish Immigration Service service point within three months to verify your identity. At the same visit, you will show the official the original versions of the attachments to your application. You can find more detailed information on what you need to bring with you on the page Visiting a service point.\n\n...\n\n## The most common reasons for having to visit a service point even when you are using strong identification:\n\n- You have not added the retrieval code for your digital passport photo to your application before submitting the application.\n- You did not pay the processing fee for the application in Enter Finland.\n- You are under 18 years of age.\n- More than 5 years have passed since the last time you were fingerprinted.\n- Your residence permit has expired for over 60 days ago. \n- You have not shown a passport issued by your home country to the Finnish Immigration Service or the police.\n- The entry ban imposed on you by Finland is still in force.\n- You are applying for a permanent residence permit.\n- You are applying for citizenship for yourself and for your children.\n\n...\n\n## How to upgrade your Enter Finland account into an account that uses strong identification\n\nYou cannot avoid visiting a service point if you only log in to Enter Finland with your email and password.\n\nUpgrade your account into an account with strong identification before you submit your application. If you submitted your application before updating your account, you will unfortunately have to visit a service point.\n\n### This is what you should do:\n\n Log in to your existing Enter Finland account using your email login \n\n In the main menu, select ‘My Account’. \n\n Select ‘Change now’ to get to the Suomi.fi login page. There you can log in to the online service using strong electronic identification, for example your Finnish online banking credentials. \n\n After you have logged in to the online service using strong identification, your account will be updated to an account with strong identification. In the future, you must always log into your account using strong electronic identification.\n\n...\n\nTo avoid visiting a service point, you must \n\n- log in to your Enter Finland account using your online banking credentials, mobile certificate or citizen certificate \n- add to your application the photograph retrieval code for your digital passport photo, and \n- pay for the application."
+        ],
+        "fetchedAt": "2026-11-14T13:17:42.323Z"
+      },
+      {
+        "url": "https://www.kela.fi/e-services",
+        "title": "OmaKela e-service | Our Services | Kela",
+        "domain": "kela.fi",
+        "trust": "official",
+        "highlights": [
+          "#### Online banking credentials\n\nOnline banking credentials (pankkitunnukset) are an identification method issued by banks. You can use them to log in to the OmaKela e-service. Please ask your bank for the credentials and instructions on how to use them. Use only your own credentials.\n\n##### How to use online banking credentials to log in to OmaKela\n\n1. Select Log in – OmaKela at the top of the kela.fi page.\n2. Choose your bank on the identification page.\n3. Select the identification method you want to use to log in to OmaKela, such as your bank’s mobile application or a code card issued by your bank.\n4. If the identification process is successful, you will be automatically redirected to OmaKela."
+        ],
+        "publishedDate": "2026-08-21T12:00:00.000Z",
+        "fetchedAt": "2026-11-14T13:17:42.323Z"
+      },
+      {
+        "url": "https://www.finanssivalvonta.fi/en/consumers/payment-services/payment-cards/",
+        "title": "Payment cards - Payment services - www.finanssivalvonta.fi",
+        "domain": "finanssivalvonta.fi",
+        "trust": "official",
+        "highlights": [
+          "- Make sure that you are not observed when entering ... Block the view with your other hand, for example, to prevent unauthorised persons from seeing what you enter.\n- If you lose your card or it is stolen, promptly notify the card blocking service (phone 020-333) or your own bank.\n\n...\n\n- Set suitable withdrawal limits on your card.\n\n...\n\n### What does strong authentication mean in connection with payments?\n\nStrong authentication means the method by which customers are identified, for example in connection with payment transactions or when logging in to payment accounts. Authentication is accomplished by combining at least two of the following three options:\n\n- knowledge, i.e. something only the user knows (such as a password, PIN code)\n- possession, i.e. something only the user of the payment service possesses (such as a mobile phone, code calculator, a card when paying at a store payment terminal)\n- inherence, i.e. something only the user is (such as a fingerprint, face map)\n\nIn addition to making payments, the means of identification provided by banks are also used in services where strong electronic customer authentication is required. Such services include electronic services provided by public authorities (e.g. Kela, Police, tax authorities) and electronic services provided by insurance companies. In addition to the means of identification provided by banks, mobile certificates provided by telecom operators and the Population Register Centre’s citizen certificate are generally used as means of identification in these services.\n\n...\n\n### Can I still pay online using payment card information?\n\nPreviously, in many online stores it has been possible to pay by entering into the service your payment card information. As of 14 September 2019, it has no longer been able to pay at an online store simply by entering your payment card information; customers must also be strongly authenticated in connection with payments. 1 In certain exceptional cases, such as in small purchases less than EUR 30, strong customer authentication is not necessarily required. Even in small online payments, strong customer authentication is required, however, when the security limits set for individual purchases or the total amount of purchases are reached.\n\n### Can I still use an online banking code list?\n\nThe current paper-based online banking code lists provided by banks are easy to copy and therefore they no longer meet, in their present form, the requirements for increasing payment security. The banks are creating alternative methods, which fulfil the requirements of the new regulations, to replace or supplement the use of online banking code lists. The FIN-FSA has issued a statement on the use of online banking code lists.\n\nWhen online banking codes are used for strong customer authentication in services other than in relation to payments and accessing payment accounts, such as in public authority services (Kela, Police, tax authorities), then identification service regulations, supervised the Finnish Communications Regulatory Authority TrafiCom, will be applied instead of payment service regulations.\n\n...\n\nPayment and identification services involve the risk of misuse if you are not careful and diligent in using online banking credentials and payment instruments. See more in the Scams section."
+        ],
+        "fetchedAt": "2026-11-14T13:17:42.323Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/welcome.html",
+        "title": "Instructions for new customers - How to get started | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "For online and mobile banking, you will need Nordea access codes, which consist of a user ID and a means of identification (the Nordea ID app or the Nordea ID device).\n\n### 1. Memorise your user ID \n\n \n\nYour user ID is an integral part of your Nordea access codes, which you use to log in to Nordea Mobile and Netbank. \n\nYour user ID consists of 6–8 digits, and you will receive it when you become a Nordea customer. It’s intended for your personal use only, so never disclose it to anyone else – not even to your friends or family members.\n\nHere’s how to find your user ID: Your user ID is stated in your online banking agreement. If you used our ‘Become a customer online’ service to sign up as a Nordea customer, you can also see your user ID by logging back in to the service.\n\nGo to our online service\n\n### 2. Install and activate the Nordea ID app \n\n \n\nTo log in to our online and mobile banking services, you will need your user ID and the Nordea ID app.\n\nYou can install the Nordea ID app on your phone or tablet from your app store. We recommend that you install the Nordea ID app on at least two devices in case your primary device gets damaged.\n\nHow to activate the Nordea ID app\n\nNo mobile device? You can get a Nordea ID device, which is an alternative way to access banking services.\n\n...\n\n### Do you want to use your Nordea access codes to access other online services?\n\nIf you want to use your Nordea access codes to verify your identity when logging in to public online services, such as MyKanta or MyTax, your codes need to contain strong electronic identification. If you have become a Nordea customer after 3 April 2025, your access codes automatically contain strong electronic identification (e-identification). If you have become our customer before that, you need to activate strong electronic identification separately at a Nordea branch.\n\nBook an in-branch appointment by calling us"
+        ],
+        "fetchedAt": "2026-11-14T05:57:13.166Z"
+      },
+      {
+        "url": "https://danskebank.fi/en/for-you/become-a-customer",
+        "title": "Become a customer - Danske Bank",
+        "domain": "danskebank.fi",
+        "trust": "provider",
+        "highlights": [
+          "For identification, you need Finnish online banking credentials and a Finnish mobile phone number for the verification message. Please contact our customer service if you do not have Finnish banking credentials, are not of legal age or legally competent or do not live in Finland.\n\n## Registration\n\n- Start by identifying yourself in the service using your online banking credentials.\n- For communication, we will ask for your email address and phone number.\n- To serve you well from the beginning, we will ask you which of our services you are interested in.\n- The bank has an obligation to know its customers, so we will also ask how you intend to use the services.\n\n## After registration\n\n- Once you have completed your registration, log in to the online bank using your current bank’s credentials and sign the agreements on banking credentials and the electronic archive.\n- You can log in to Danske Bank’s online bank using your current banking credentials until you receive Danske Bank’s credentials."
+        ],
+        "fetchedAt": "2026-11-14T05:57:13.166Z"
+      },
+      {
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "title": "How to become a customer online | Nordea",
+        "domain": "nordea.fi",
+        "trust": "provider",
+        "highlights": [
+          "You can sign up as a Nordea customer online if:\n\n- you are an adult residing in Finland\n- you have a valid Finnish passport or identity card\n- you have online banking credentials from another Finnish bank\n- you have a Finnish phone number\n- you have a clean credit record.\n\nPlease note that for the time being, you can’t access either application form with online banking credentials from POP Bank. If you are unable to sign up as a customer online for this or some other reason, please book an appointment at a Nordea branch by contacting us.\n\n...\n\nLog in to the online application form using another Finnish bank’s online banking credentials. \n\n- Make sure you have a moment to fill in your details. \n- All services available in the application are free of charge for the first three months. You can also get a Nordea Debit card in addition to online banking credentials and accounts.\n\n...\n\nWe will set up a current account and Nordea access codes for you automatically when you become a customer. We recommend that you order a Nordea Debit card for your new current account.\n\n...\n\n### 2. You will receive an SMS and access to our services\n\nWe will process your request to become a customer within a few banking days. \n\n- Once we have approved your application, you’ll receive an SMS in which we ask you to log in again to the application. \n- After you’ve done this, you’ll receive a Nordea user ID, which you will need to do your banking. \n\nLog in to an existing application form\n\n### 3. Download the Nordea ID app \n\n \n\nIn addition to your user ID, you also need the Nordea ID app or another means of identification in order to get the Nordea access codes. \n\n- When strong identification is required, the Nordea ID app is the fastest and easiest means of identification for most people. \n- Alternatively, you can order from us a Nordea ID device or a Nordea ID Talk Device intended for our visually impaired customers.\n\nExplore Nordea ID app\n\nLearn more about Nordea ID device\n\n...\n\nBoth application forms provide a secure way to become our customer, as they meet the same requirements for strong authentication, for example. \nCan I select either the new or the old application form? \n: You can’t select the new or the old application form yourself. During the rollout, customers will be directed to the application forms automatically from our website. This allows us\n\n...\n\nRead more about our savings accounts\nWhat identity documents do I need if I want to become a Nordea customer?\n: If you use our online service to become a customer, you must have a valid Finnish passport or ID card. Note that a driving licence is not a sufficient document for verifying your identity in this context.\n\nIf you can’t fill in the online application, you can visit one of our branches to sign up as a customer. Book an appointment in branch in advance and remember to bring a valid Finnish passport or ID card with you to the appointment."
+        ],
+        "fetchedAt": "2026-11-14T05:57:13.166Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 19018,
+      "costUsd": 0.063458,
+      "cacheHit": false
+    }
+  }
+}

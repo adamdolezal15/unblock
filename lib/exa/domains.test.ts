@@ -1,5 +1,28 @@
 import { describe, expect, it } from "vitest";
-import { NEWS, PROVIDER, TRUST_RANK, trustOf } from "./domains";
+import { CITY_DOMAINS, cityDomains, NEWS, officialDomains, PROVIDER, TRUST_RANK, trustOf } from "./domains";
+
+describe("cityDomains whitelist", () => {
+  it("maps known cities (Finnish or Swedish name, any case/diacritics) to their real domain", () => {
+    expect(cityDomains("Helsinki")).toEqual(["hel.fi"]);
+    expect(cityDomains("Helsingfors")).toEqual(["hel.fi"]);
+    expect(cityDomains(" tampere ")).toEqual(["tampere.fi"]);
+    expect(cityDomains("Jyväskylä")).toEqual(["jyvaskyla.fi"]);
+    expect(cityDomains("Åbo")).toEqual(["turku.fi"]);
+    expect(cityDomains("Oulu")).toEqual(["ouka.fi"]);
+    expect(cityDomains("Uleåborg")).toEqual(["ouka.fi"]);
+  });
+  it("covers ~20 municipalities", () => {
+    expect(new Set(Object.values(CITY_DOMAINS)).size).toBeGreaterThanOrEqual(20);
+  });
+  it("unknown cities get no domain and nothing is marked official", () => {
+    for (const c of ["Inari", "Kittilä", "Springfield", "", "   ", undefined]) expect(cityDomains(c)).toEqual([]);
+    expect(trustOf("https://www.inari.fi/x", cityDomains("Inari"))).toBe("community");
+    expect(officialDomains("Inari")).not.toContain("inari.fi");
+    // The University of Oulu's domain is not the city's.
+    expect(trustOf("https://www.oulu.fi/en", cityDomains("Oulu"))).toBe("community");
+    expect(trustOf("https://www.ouka.fi/en", cityDomains("Oulu"))).toBe("official");
+  });
+});
 
 describe("trustOf tiers", () => {
   it("labels every provider domain, incl. subdomains and www", () => {
