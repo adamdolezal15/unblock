@@ -120,8 +120,10 @@ function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
       }
       return { ...s, error: e.message };
     case "done": {
-      const nothing = s.stepOrder.length === 0 && s.stubs.length === 0;
-      return { ...s, summary: e.summary, phase: s.error && nothing ? "error" : "done", finishedAt: at };
+      const nothing = s.stepOrder.length === 0;
+      if (nothing && s.stubs.length > 0 && !s.error)
+        return { ...s, summary: e.summary, phase: "error", error: "I couldn't read the official sources right now, so I won't guess. Please try again in a moment, or check migri.fi and dvv.fi directly.", finishedAt: at };
+      return { ...s, summary: e.summary, phase: s.error && nothing && s.stubs.length === 0 ? "error" : "done", finishedAt: at };
     }
   }
 }

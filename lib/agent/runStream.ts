@@ -72,7 +72,7 @@ export function runStream(text: string, opts: RunStreamOptions = {}): ReadableSt
       };
 
       run(text, { ...opts, signal: gone.signal, meter, onEvent: push })
-        .catch((err) => push({ type: "error", message: `Unexpected failure: ${(err as Error).message}`, recoverable: false }))
+        .catch((err) => (console.error("[unblock] stream failed:", (err as Error).message), push({ type: "error", message: "Something went wrong on our side. Please try again.", recoverable: false })))
         .finally(() => {
           tail.then(() => {
             opts.signal?.removeEventListener("abort", onRequestAbort);

@@ -181,7 +181,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     if (!failed.length || signal.aborted) return;
     emit({
       type: "error",
-      message: `${stage} skipped for ${failed.map((x) => x.stepId).join(", ")}: ${failed[0].error!.slice(0, 120)}`,
+      message: `${stage} was incomplete for ${failed.length} step${failed.length === 1 ? "" : "s"}. The rest of the plan is unaffected.`,
       recoverable: true,
     });
   };
@@ -195,7 +195,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
         reportFailures("Conflict check", r.reports);
       },
       (e) => {
-        if (!signal.aborted) emit({ type: "error", message: `Conflict check failed: ${(e as Error).message}`, recoverable: true });
+        if (!signal.aborted) emit({ type: "error", message: "The conflict check could not run this time. The rest of the plan is unaffected.", recoverable: true });
       },
     );
 
@@ -250,7 +250,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
       reportFailures("Community tips", s.tipsResult.reports);
     } catch (e) {
       if (signal.aborted) throw e;
-      emit({ type: "error", message: `Community tips unavailable: ${(e as Error).message}`, recoverable: true });
+      emit({ type: "error", message: "Community tips are unavailable right now. Official sources are unaffected.", recoverable: true });
     }
     s.tipsDone = true;
 
@@ -271,7 +271,8 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     if (signal.aborted) timedOut = true;
     else {
       s.fatal = (e as Error).message;
-      emit({ type: "error", message: `The plan could not be finished: ${s.fatal}`, recoverable: false });
+      console.error("[unblock] run failed:", s.fatal);
+      emit({ type: "error", message: "The plan could not be finished right now. Please try again in a moment.", recoverable: false });
     }
   } finally {
     clearTimeout(timer);

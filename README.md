@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unblock
 
-## Getting Started
+Unblock turns one sentence about your move to Finland into a dated plan: which official steps you need, in what order, and what each depends on.
+Every claim carries a citation, and the quote is checked against the text Exa returned. Anything that cannot be verified is dropped, never shown.
+Sources are labelled official / university / community; when they disagree, both are shown.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm i
+# .env.local
+#   EXA_API_KEY=...
+#   ANTHROPIC_API_KEY=...
+npm run build && npm start      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No keys? The three demo sentences below run fully offline from `demo-cache/`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+EXA_CACHE=read LLM_CACHE=read npm run build && EXA_CACHE=read LLM_CACHE=read npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Other scripts: `npm test`, `npm run warm-demo` (refresh the demo cache with live calls), `npx tsc --noEmit`.
 
-## Learn More
+## Demo sentences
 
-To learn more about Next.js, take a look at the following resources:
+1. I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto
+2. Brazilian PhD student moving to Tampere with my wife in January
+3. Indian software engineer, arriving in Helsinki next week, no residence permit card yet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `lib/exa`: every Exa call (search, contents), the official-domain lists, and the disk cache (`EXA_CACHE=read|write|off`).
+- `lib/llm`: Claude (or Exa deep search) for profile parsing and step extraction, with its own cache (`LLM_CACHE`) and schema salvage.
+- `lib/agent`: the pipeline, one file per step: parse profile, find steps, community tips, conflict detection, citation verification, `run.ts` orchestration and the NDJSON stream.
+- `lib/graph`: dependency graph, Finnish holidays, scheduling, critical path, and the "usual order vs your order" comparison.
+- `lib/calendar`: Google Calendar template links and `.ics` export for visits and reminders.
+- `app` (+ `components`, `lib/ui`): Next.js App Router; `POST /api/run` streams `PipelineEvent`s that the UI reduces into Summary, Day by day and Map views.
 
-## Deploy on Vercel
+Failures degrade quietly: empty, over-long, out-of-scope and unreadable input, or a failing network or LLM, all end in a short plain message and never a stack trace.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to extend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **New country pack:** add its official domains (`lib/exa/domains.ts`), its step taxonomy (`lib/agent/stepTaxonomy.ts`), its public holidays (`lib/graph/holidays.ts`), then run `npm run warm-demo` to build the demo cache for its sentences (`lib/demo/sentences.ts`).
+- **New feature:** add a `PipelineEvent` variant in `lib/types.ts`, emit it from `lib/agent/run.ts`, handle it in `lib/ui/runState.ts`, and render it in a new view under `components/views`.

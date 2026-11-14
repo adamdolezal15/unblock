@@ -399,7 +399,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
       conflicts.push(...claimConflicts(r.def.id, r.verified));
     } else {
       const message = r.error
-        ? `Extraction failed (${r.error}). Check the official source.`
+        ? "Could not be read right now. Check the official source."
         : r.checkUrl
           ? `Not found in sources, check ${r.checkUrl}`
           : "Not found in sources.";
