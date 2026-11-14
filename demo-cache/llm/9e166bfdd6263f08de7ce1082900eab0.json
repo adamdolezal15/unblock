@@ -1,0 +1,131 @@
+{
+  "fetchedAt": "2026-11-14T06:15:30.159Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "New international degree student arriving in Tampere: enrolment, registration and practical arrival steps",
+    "contextHash": "f745525c3dd2eb89",
+    "includeDomains": [
+      "aalto.fi",
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hanken.fi",
+      "hel.fi",
+      "helsinki.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "studies.helsinki.fi",
+      "suomi.fi",
+      "tampere.fi",
+      "tuni.fi",
+      "uniarts.fi",
+      "vero.fi"
+    ],
+    "docsHash": "3642973d0c531bd9"
+  },
+  "response": {
+    "data": {
+      "title": "University enrolment and arrival steps (Tampere University)",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+          "quote": "All students need to register as an attending (present) or non-attending (absent) student each academic year."
+        },
+        {
+          "kind": "mode",
+          "value": "online",
+          "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+          "quote": "For all new students in the degree programmes in English the registration takes place online."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "If you do not register by the deadline, you lose your right to study",
+          "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+          "quote": "If you do not register at all by the given deadline, you lose your right to study."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Without present registration you cannot take part in education, take exams or complete studies",
+          "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+          "quote": "You need to be registered as present in order to participate in education, take exams and complete studies."
+        },
+        {
+          "kind": "document",
+          "value": "Finnish personal identity code document and passport/identity card, presented at the Student Affairs Office",
+          "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/permits-and-processes/registration-authorities-new-degree-students",
+          "quote": "Therefore, once you have been granted a Finnish personal identity code, you should present the document along with your passport/identity card at the Student Affairs Office."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.tuni.fi/en/tau/welcome-to-study",
+        "title": "Welcome to study at Tampere University! | Tampere University",
+        "domain": "tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "## Checklist for admitted Bachelor's and Master's students\n\n1. 1\n\n### Accept your study place\n\nAccept your study place in Studyinfo.fi by the given deadline. \n\nSee instructions for accepting and conditional acceptance\n2. 2\n\n### Use the early bird offer or accept your scholarship\n\nYou must pay a tuition fee if you come from outside EU/EEA/Switzerland and study in a Bachelor's or Master's programme that is taught in English. If you received a scholarship, secure your scholarship by accepting your study place by the deadline. An early bird offer is available to all fee-paying students who do not have a scholarship. \n\nSee instructions for tuition fee payments and the early bird offer\n\nSee instructions for accepting your scholarship\n3. 3\n\n### Budget for your studies\n\nMake sure to budget for your studies carefully. See tips for typical living expenses.\n4. 4\n\n### Apply for a residence permit\n\nIf you come from outside EU/EEA/EFTA, apply for a residence permit and book an appointment with your local Finnish embassy or mission. \n\nLearn more about residence permits\n5. 5\n\n### Arrange for health insurance\n\nIf you come from outside EU/EEA/EFTA, take out a health insurance policy. If you are an EU/EEA/EFTA citizen, apply for a European Health Insurance card. \n\nSee requirements for health insurance\n6. 6\n\n### Arrange for accommodation\n\nApply for student housing or find a rental apartment. Please note that it is your responsibility to arrange accommodation for yourself. The application period for TOAS housing starts in May.\n\nLearn more about options for accommodation\n7. 7\n\n### Arrange for travelling to Tampere\n\nMake sure you have the required travel documents. This depends on your citizenship and how long your studies will last. You are responsible for organising your own travel to Finland & Tampere.\n\nLearn more about travelling to Tampere\n\n...\n\n## Starting your studies\n\nOnce you arrive in Tampere, it is time to officially register as a student at Tampere University and prepare to start your studies. We have listed he the main things you need to take care of to get started successfully. Remember that your student tutors will be happy to help you even before you get here.\n\nFor the most important steps upon arrival, please see our Student's Guide\n\n### Welcome Week\n\nThe Welcome Week will provide important information that will help you start your studies. You will also get to meet your student group and teachers.\n\nSee the Welcome Week programme\n\n### Initial study guidance\n\nYour programme's introductory course will help you create your study plan. Your student tutor and education specialist will be there to guide you as well."
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      },
+      {
+        "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/register-new-student",
+        "title": "Register as a new student | Tampere University",
+        "domain": "opiskelijanopas.tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "All students need to register as an attending (present) or non-attending (absent) student each academic year. You need to be registered as present in order to participate in education, take exams and complete studies. If you do not register at all by the given deadline, you lose your right to study. \n\nIf you have applied on the final year of your previous studies and have been accepted conditionally, please note that you can register only after you have fulfilled the condition, please see additional information on the Accept your study place page. For all new students in the degree programmes in English the registration takes place online. Please log in to your My Studyinfo -service, pay the student union membership fee online and register as present. If you are unable to register through My Studyinfo-service, please wait for detailed instructions. Detailed instructions concerning registration and starting your studies will be sent by email in late July to all those students who have accepted their study place offer by the deadline specified in the admission letter.\n\nWe strongly recommend new students to register by 12 August at the latest to have everything ready for the start of Welcome Week. The final deadline for registration is 3 September 2026. NB! We recommend new students to register only when you are sure that you can join us on campus by the start of Welcome Week."
+        ],
+        "publishedDate": "2019-05-06T06:29:57.000Z",
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      },
+      {
+        "url": "https://opiskelijanopas.tuni.fi/en/tampere-university/new-students/permits-and-processes/registration-authorities-new-degree-students",
+        "title": "Registration with the authorities for new degree students | Tampere University",
+        "domain": "opiskelijanopas.tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "At the beginning of your studies, you will have to take care of a few administrative things. Besides registering with the University, you need to complete a formal registration process after arrival. Registration is required of all international students staying in Tampere for more than 90 days. \n\nThe registration is for registering your personal data and your address in Finland into the Finnish Population Information System. As you are staying in Finland for more than one year, we recommend you to register a permanent address; this is important to have access to the municipal services.\n\n1. You will receive a Finnish personal identity code if you have not received the identity code in connection with your residence permit.\n\nYou need a personal identity code\n\n- for university records. Therefore, once you have been granted a Finnish personal identity code, you should present the document along with your passport/identity card at the Student Affairs Office.\n- for any matters that require dealing with the Finnish authorities.\n- for setting up a bank account with online banking or possibly for getting a service contract with a mobile phone operator.\n2. You will be registered an address in Finland. Please note that this is especially important in order to access e.g. municipal health services.\n\n We have arranged the new university students to get their Digital and Population Data Services Agency, DVV registration (that needs to be done by everyone) sorted as conveniently as possible by arranging DVV appointment days on the city centre and Hervanta campuses. See section 1. (below) for the instructions, locations and times. You can register on any of the DVV days regardless of your home campus. You do not need to book an appointment for the registration days. Remember to have the required documents & copies and any possible filled in forms with you as you arrive.\n\nDo not book a time slot at the DVV's office but complete your registration on campus days (see section 1 below). The registration is free of charge.\n\nN.B. The only exception to above are those arriving with your families. If you register your whole family at the same time, you must book a separate time at the DVV office. In this case you do not need to come to campus registrations. \n\nAdditionally, students coming from the EU/EEA/EFTA countries need to register their right of residence with the Finnish Immigration Service (Migri), too, as the students are staying in Finland for more than two months. (See section 2. below.)"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      },
+      {
+        "url": "https://opiskelijanopas.tuni.fi/en/tamk/new-students/checklist-new-students/new-bachelors-and-masters-degree-students",
+        "title": "New Bachelor's and Master's degree students | TAMK",
+        "domain": "opiskelijanopas.tuni.fi",
+        "trust": "university",
+        "highlights": [
+          "### Accept your study place\n\nAll students must accept or decline the offered study place. Confirmation should be done by using the unique link sent automatically from the Studyinfo service. You are free to accept your study place as soon as you have received the email notification. Please note that the confirmation is binding. After confirmation at TAMK you cannot accept another study place in higher education in Finland starting in the same term (autumn/ spring) that you may receive later. Confirmation cannot be altered or cancelled.\n\n...\n\n2. 2\n\n### Register as a new student (+ pay your tuition fee if required)\n\nAll students must register for each academic year - either present or absent. Please note that first-year students can only register as absent on statutory grounds specified at the bottom of the page. For tuition fee-paying students registration requires paying the 1st installment of the first year tuition fee.\n\nRead more about registration\n3. 3\n\n### Apply for immigration (if necessary)\n\nPlease start your immigration clearance process immediately, as the study permit may take months to be issued. You can start the process online at EnterFinland and you should only fill in one application to avoid identification issues. You can always supplement your application with documents later on. Remember to keep your access codes and passwords safe. If you are unable to log into the service later on, you should rather email the Finnish Immigration Service than fill in a duplicate application.\n\n...\n\n4. 4\n\n### Book housing (if necessary)\n\nAs soon as you have been accepted as a student, you should start arranging your accommodation, immigration and arrival. Apply for accommodation as early as possible, as first-come-first-serve principles apply and there are thousands of new students starting their studies at the same time. As student housing associations are independent from universities, you are contracting directly with them. Remember to read all documentation carefully and that a signed contract leads to liability to pay.\n\n...\n\n6. 6\n\n### Activate your TUNI account\n\nWhen you have registered your attendance and your information has been transferred to TAMK’s student register, you will receive a link to the username registration and account activation by email. You can identify yourself by Finnish online banking ID's, Finnish mobile / citizen certificate card, European eIDAS identification or Finnish Authenticator Identification Service available for non-EU students.\n\nActivate your account\n\n...\n\n12. 12\n\n### Plan your arrival\n\nOnce you have made plans to arrive, let us know by filling in the Arrival Form (see link below). If you need assistance in arrival or apartment key pick-up, we can help you get settled here in Tampere!\n\nSee arrival info"
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      },
+      {
+        "url": "https://www.tampere.fi/en/relocation-guide-tampere/moving-tampere",
+        "title": "Moving to Tampere | www.tampere.fi",
+        "domain": "tampere.fi",
+        "trust": "official",
+        "highlights": [
+          "#### Step 1: Residence permit application \n\nIf you are coming to Tampere to study, you must apply for a student residence permit from the Finnish Immigration Service (Migri). Depending on your studies, you might get different residence permits (A or B). Check different requirements at Residence permit application for studies (migri.fi).\n\nYou can check requirements and submit your application – electronically at Studying in Finland (enterfinland.fi) or paper application via Finnish embassy or consulate. Important: You can pay the application fee online or during the visit to prove your identity (step 2). \n\nComing with your family? If a family member (spouse, partner or child) is moving with you, they can submit their residence permit applications at the same time as yours. Check more at Moving to Finland to be with a family member (migri.fi). \n\nNot sure which residence permit to apply for? Find out using the Application Finder from Migri at I want a residence permit (migri.fi). This will help you determine the type of permit you need to apply based on your status and, therefore, will lead you to check the requirements to obtain the residence permit.\n\n#### Step 2: Visit a Finnish Embassy or Consulate\n\nAfter your residence permit is submitted, you must visit a Finnish Embassy or Consulate to prove your identity, to present the original copies of the attachments required for your application and to have your fingerprints taken. Remember to bring a passport photo with you. Passport photo guidelines can be found on the website of the Finnish police at Passport photographs (poliisi.fi). \n\nIf you are in Finland, you can book an appointment with Migri at Book a time (migri.vihta.com). \n\nIf you are abroad, contact the embassy or consulate at Finland's embassies, consulates general and honorary consulates by country (um.fi). \n\nThe application process will start once you conclude your visit to the Finnish Embassy or Consulate to prove your identity and the application fee is paid.\n\n...\n\n#### Step 3: Register your address in Finland\n\nOnce you have moved to Tampere, register your address at the Digital and Population Data Services Agency (DVV). You can make an appointment prior to your arrival. Check carefully the instructions at Foreigner’s move to Finland, in Finland and out of Finland (dvv.fi). \n\nAfter you register your address with the DVV, you will receive a Finnish personal identity code if you have not already received one from Migri. The address registration allows you to access ... Check differences at Foreigner’s move to Finland, in Finland and out of Finland (dvv.fi).\n\n#### Step 4: Check Kela for student’s healthcare\n\nCheck if you are eligible and register with Kela to access public healthcare and social security. More information at Kela card (kela.fi).\n\nIf you are completing a higher education degree and are registered as attending, make sure you pay the student healthcare fee to the Social Insurance Institution of Finland (Kela) to use the services of the Finnish Student Health Service (FSHS). More information available at Healthcare fee for students in higher education (kela.fi)."
+        ],
+        "fetchedAt": "2026-11-14T00:50:39.101Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 8003,
+      "costUsd": 0.024534,
+      "cacheHit": false
+    }
+  }
+}

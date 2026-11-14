@@ -1,0 +1,153 @@
+{
+  "fetchedAt": "2026-11-14T06:15:19.717Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "How does an EU citizen register their right of residence after moving to Helsinki, Finland",
+    "contextHash": "fccf265ad3289139",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "vero.fi"
+    ],
+    "docsHash": "d4e4278e4e976811"
+  },
+  "response": {
+    "data": {
+      "title": "Register EU citizen's right of residence",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+          "quote": "If you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence."
+        },
+        {
+          "kind": "mode",
+          "value": "in_person",
+          "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+          "quote": "Then you need to visit Migri’s service point to prove your identity."
+        },
+        {
+          "kind": "document",
+          "value": "valid passport or identity card",
+          "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+          "quote": "Remember to bring your identity card or passport to your appointment."
+        },
+        {
+          "kind": "document",
+          "value": "proof of grounds for residence in Finland (e.g. employment or studies)",
+          "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+          "quote": "You have grounds for your residence in Finland."
+        },
+        {
+          "kind": "document",
+          "value": "proof of sufficient financial resources",
+          "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+          "quote": "You have sufficient financial resources for living in Finland for yourself and for your family members."
+        },
+        {
+          "kind": "document",
+          "value": "authorised translation of attachments not in Finnish, Swedish or English",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator."
+        },
+        {
+          "kind": "document",
+          "value": "debit or credit card for paying the fee if not paid online",
+          "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+          "quote": "If you do not pay the application fee in EnterFinland, you will also need a debit or credit card in your appointment."
+        },
+        {
+          "kind": "processing_time",
+          "value": "immediately at the service point if requirements are met and attachments are complete",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "If you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity."
+        },
+        {
+          "kind": "booking_url",
+          "value": "migri.vihta.com",
+          "url": "https://migri.fi/en/registration-of-right-of-residence",
+          "quote": "Book an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service."
+        },
+        {
+          "kind": "hours",
+          "value": "New IHH appointments open Thursdays 14-16 for the following week",
+          "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+          "quote": "New appointments to visit Migri at IHH open every Thursday between 14-16 for the following week."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/registration-of-right-of-residence",
+        "title": "Registration of right of residence | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if:\n\n- you are a citizen of an EU Member State, Liechtenstein or Switzerland; and\n- you will be staying in Finland for over 3 months at a time.\n\nIf you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency. Nordic citizens do not need to apply for EU registration at the Finnish Immigration Service.\n\n...\n\nThe registration of your right of residence is valid until further notice. You will not have to extend the validity of the registration. When you have resided legally in Finland for a continuous period of 5 years, you have the right of permanent residence.\n\n...\n\nYou are in Finland as:\n\n- an employee;\n- a self-employed person;\n- a student; or\n- a family member of an EU citizen.\n\n...\n\n-\n\n...\n\n- You and your Finnish family member need to have moved to Finland directly from the other Member State. If you have lived in a third country between your residence in a Member State and your move to Finland, you cannot apply for EU registration based on family ties.\n\n...\n\n- When you apply for EU registration as a family member of a Finnish citizen, you are not required to present documentation of sufficient financial resources.\n\n...\n\n### Apply for the EU registration:\n\n Fill in the application and add your documents. \n\nFill in the application in our online service Enter Finland.\n\nIf you cannot use Enter Finland, fill in a paper application. You will find a link to the application at the bottom of this page.\n\nYou can only apply for the registration when you are in Finland. You cannot apply for the registration of your right of residence before you have moved to Finland on a permanent basis. \n\nYou need to fill in and submit the application yourself. Your employer or family member, for example, cannot apply for the registration on your behalf. However, you can submit an application on behalf of your child.\n\n Pay for the application. \n\nIf you submit an online application in Enter Finland, pay the processing fee: \n\n- with a credit card or with Finnish online banking credentials when you submit the application; or\n- when you visit a service point of the Finnish Immigration Service to prove your identity. \n\nIf you submit a paper application, pay the processing fee at a service point of the Finnish Immigration Service.\n\n Visit a service point to prove your identity. \n\nBook an appointment in our appointment system (migri.vihta.com) to visit a service point of the Finnish Immigration Service.\n\nWhen you visit the service point, bring with you:\n\n- your valid passport or identity card\n- originals and copies of the documents that you attach to your application \n\n- If your attachments are not in Finnish, Swedish or English, they must be accompanied by a translation into one of these languages by an authorised translator.\n- However, a document that has been issued by an authority of an EU Member State concerning birth, marriage, registered partnership or death does not need to be translated if you attach to the document a multilingual standard form issued by the authority.\n\nRead more on the page Book an appointment at a service point in advance.\n\n Wait for the decision. We will contact you if necessary. \n\nAs an EU citizen, you will be issued with a registration certificate once you have presented sufficient evidence of meeting the requirements for registration.\n\n- If you apply for EU registration on the basis of employment, for example, you can be registered only after your employment relationship has begun.\n- If you apply for EU registration on the basis of studies, your right of residence can be registered only after your studies have started.\n\n Supplement your application if necessary.\n\n...\n\nYou get the decision at the service point or into your Enter Finland account or by post. \n\nIf you meet the requirements for registration and have presented the necessary attachments, you can get a registration certificate immediately when you visit a service point to prove your identity. You will be given a paper certificate that contains your name and address as well as the date of registration.\n\nIf you cannot get a decision immediately due to missing attachments, you will get the registration certificate later into your Enter Finland account or by post.\n\n- If you have submitted an online application, you will receive an email or a text message notification when a decision has been made.\n- If the decision on your online application is positive, you can print out your registration certificate from Enter Finland."
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/registrations/registration-eu-citizen-right-of-residence/",
+        "title": "Registration of an EU citizen's right of residence - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "European Union (EU) citizens moving to Finland must register their EU right of residence with the Finnish Immigration Service (Migri). You can do this at International House Helsinki (IHH) by booking an appointment with Migri’s service desk at our service point.\n\nPlease note that Migri’s service desk at IHH can only handle EU registrations.\n\n...\n\nCitizens of EU member states, Liechtenstein or Switzerland do not need a residence permit to stay in Finland. You can stay and work freely in Finland for up to three months.\n\nIf you stay in Finland for longer than 90 days, you need to visit the Finnish Immigration Service (Migri) to register your EU citizen’s right of residence.\n\n...\n\n## How to visit Migri at IHH\n\nTo register your EU citizen’s right of residence at IHH, you will need to:\n\n- Book an appointment to visit Migri at IHH\n- Fill out an application in advance\n- Bring a valid identity card or passport\n- Pay a processing fee\n\nMigri serves customers at IHH by appointment only.\n\nNew appointments to visit Migri at IHH open every Thursday between 14-16 for the following week. Please note that new appointments will open on the next working day if Thursday falls on a national holiday, such as Finnish Independence Day (6 December).\n\n1. ### Book an appointment\n\nBook an appointment with Migri for registration of an EU citizen using the link below.\n\nWhen selecting office, choose International House Helsinki.\n\nOnce you have booked an appointment, you will receive a personal verification message. You will need this later when visiting IHH for your appointment.\n\n- Book an appointment\n2. ### Fill out an application\n\nYou have to fill out an application to register your EU citizen’s right of residence.\n\nYou can fill out the application online or on paper.\n\nYou can fill the paper application at the IHH service point or print it in advance and bring it to your appointment.\n\n- Fill the online application on EnterFinland's e-service\n- Fill the paper application\n3. ### Prepare your documents and bring them with you\n\nRemember to bring your identity card or passport to your appointment.\n\nIf you do not pay the application fee in EnterFinland, you will also need a debit or credit card in your appointment. It is not possible to pay in cash at IHH.\n\n- Check necessary documents on Migri's website\n4. ### Make sure to arrive early\n\nWhen you booked your appointment, you will have received a personal verification message.\n\nAs you enter IHH, the IHH lobby personnel will ask to see this message.\n\nYou will then get a waiting number for your appointment.\n\n...\n\nEU or EEA citizens may reside in Finland without registering their right of residence for a maximum of three months without any conditions or any formalities other than the requirement to hold a valid identity card or passport."
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/registration-of-the-right-of-residence-in-finland/",
+        "title": "Registration of the right of residence in Finland - vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are a citizen of an EU country, or of Liechtenstein or Switzerland, and you are staying longer than three months, the right to reside in Finland is either online-registered in Enter Finland or registered by the Finnish Immigration Service at one of their customer service points. However, if you are a Nordic citizen, you should visit the Finnish Digital Agency instead. Under Nordic conventions, Nordic citizens need only register if they stay for six months or longer, and the registration process is more straightforward."
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://ihhelsinki.fi/newcomers-checklist/eu-eea-citizen/",
+        "title": "The Newcomer’s Checklist: EU/EEA citizen - International House Helsinki",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "### After moving \n\n Registration of right of residence (Migri) \n\nIf you are a citizen of an EU Member State, Liechtenstein or Switzerland you do not need a residence permit to stay in Finland. If you stay in Finland for longer than 90 days, you need to register your right of residence at the Finnish Immigration Service (Migri). If you stay in Finland less than 90 days, you can work and stay in Finland without registration.\n\nWhen should this step be done\n\nWithin 90 days of your arrival and once the grounds for your registration are valid, e.g. employment has started.\n\nWhat you need before this step\n\n- Book an appointment. There is limited availability of appointments, and it is recommended to book well in advance. Please note that new appointments are added in the booking system regularly.\n- Valid passport or identity card\n- Documentation on the grounds for your move to Finland (for example employment, education, family ties, studies: check the exact requirements on Migri’s website)\n- Possible financial statements\n\nOfficial responsible for this step\n\nFinnish Immigration Service (Migri)\n\nFirst, you need to fill in an application form either online or on paper. Then you need to visit Migri’s service point to prove your identity. You can do this at IHH. Read more\n\nHow long does this step take?\n\nThe decision can be given as soon as the requirements are met. Registration can often be done during your appointment.\n\n Forms used in this step Registration of an EU citizen's right of residence in Finland (electronic form) PFD for paper form Important links Finnish Immigration Service (Migri) information Finnish Immigration Service (Migri) appointment booking system IHH services linked to this step Visit IHH at Lintulahdenkuja 2 D, 00530 Helsinki Registration of an EU citizen’s right of residence Newcomer Information Sessions \n\n Registration of a newcomer (DVV) \n\nThis is a mandatory step for everyone. When you arrive in Finland, it is important to register your information in the Finnish Population Information System. When you register, you will be given a Finnish personal identity code. At the same time your municipality of residence in Finland and information about your family relationships can be entered into the population information system.\n\nWhen should this step be done\n\nAs soon as possible after arriving in Finland\n\nWhat you need before this step\n\n- Valid passport or identity card\n- Other documents that depend on your situation: For example, if your stay is work-related, bring employment contract, and if your stay is study-related, bring certificate of attendance issued by your education institution.\n- If necessary, the original certificates of family relations and multilingual standard form clarifying family relations\n- Certificate of registration of the right of residence of an EU citizen (for registration of permanent address and municipality of residence)\n\n...\n\nA personal visit is needed when:\n\n1. You do not have a Finnish personal identity code and you need one. Read more\n2. You want to register a municipality of residence. Please note that if you already have a Finnish personal identity code and have received a decision on Finnish Immigration Service’s (Migri) EU registration less than 12 months ago, you do not need to visit DVV."
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/registration-of-the-right-of-residence-of-a-citizen-of-the-european-union-finnish-immigration-service/44df3683-fd07-407e-aae1-6dbb4ec76f06",
+        "title": "Registration of the right of residence of a citizen of the European Union - Finnish Immigration Service - Suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Apply for the registration of your right of residence (EU registration) if:\n\n- you are a citizen of an EU Member State, Liechtenstein or Switzerland; and\n- you will be staying in Finland for over 3 months at a time.\n\nIf you are a Nordic citizen (citizen of Denmark, Iceland, Norway or Sweden), register your personal data at the Digital and Population Data Services Agency. Nordic citizens do not nee ...\n\n## Do the following\n\n1. Make sure you meet the following requirements:\n\n- You are a citizen of an EU Member State, Liechtenstein or Switzerland.\n- You have a valid passport or identity card.\n- You have grounds for your residence in Finland.\n- You have sufficient financial resources for living in Finland for yourself and for your family members.\n- You are not a danger to public order or security or public health.\n\n2. Make sure you have all the attachments needed.\n\n3. Fill in the application and add your documents.\n\n4. Pay for the application.\n\n5. Visit a service point to prove your identity.\n\n6. Wait for the decision. We will contact you if necessary.\n\n7. Supplement your application if necessary.\n\n8. You get the decision at the service point or into your Enter Finland account or by post.\n\n9. You have a right to appeal against the decision."
+        ],
+        "fetchedAt": "2026-11-14T00:48:39.267Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 14592,
+      "costUsd": 0.03611,
+      "cacheHit": false
+    }
+  }
+}

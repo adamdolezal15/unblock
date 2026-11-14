@@ -12,7 +12,7 @@ export type ProfileResult =
 
 export const SCOPE_MESSAGE =
   "Unblock plans the official steps for moving to a Finnish city (registration, permits, tax card, bank, Kela). " +
-  'Tell me where in Finland you are moving and why, e.g. "Czech citizen moving to Helsinki on 1 Sept for a job".';
+  'Tell me where in Finland you are moving and why, e.g. "Czech citizen moving to Helsinki on 1 December for a job".';
 
 function escapeRe(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -62,6 +62,11 @@ export function parseDate(text: string, today: string): string | undefined {
   let year: number | undefined;
   if (dm) [day, month, year] = [+dm[1], MONTHS[dm[2]], dm[3] ? +dm[3] : undefined];
   else if (md) [day, month, year] = [+md[2], MONTHS[md[1]], md[3] ? +md[3] : undefined];
+  if (!dm && !md) {
+    // "in January" / "in Jan 2027": the 1st of that month
+    const mo = t.match(new RegExp(`\\b(?:in|from|starting)\\s+(${monthAlt})\\b\\.?(?:\\s+(20\\d\\d))?`));
+    if (mo) [day, month, year] = [1, MONTHS[mo[1]], mo[2] ? +mo[2] : undefined];
+  }
   if (!day || !month || day > 31) return undefined;
 
   const ty = Number(today.slice(0, 4));

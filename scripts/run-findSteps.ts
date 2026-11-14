@@ -1,5 +1,5 @@
 // Run the core pipeline headless: parseProfile -> findSteps -> lib/graph.
-//   npx tsx scripts/run-findSteps.ts "Czech citizen moving to Helsinki on 1 Sept for a job"
+//   npx tsx scripts/run-findSteps.ts "I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto"
 // EXA_CACHE=off forces live calls; EXA_LOG=1 prints every Exa call.
 import { config } from "dotenv";
 config({ path: ".env.local" });

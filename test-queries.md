@@ -2,12 +2,14 @@
 
 Run after every significant change. Note what broke.
 
+The three **Demo** rows are `lib/demo/sentences.ts`; their cache entries are in `demo-cache/` (`npm run warm-demo`), and query 1 is pinned by `tests/golden/marta.test.ts`.
+
 | # | Input | Must contain |
 |---|---|---|
-| 1 | Czech citizen moving to Helsinki on 1 Sept for a job, also starting a master's at Aalto | DVV is the critical node; tax card early (no bank needed); bank after DVV; 60 % withholding warning |
-| 2 | Brazilian PhD student moving to Tampere with my wife | Residence permit / Migri; family member steps; Tampere offices, not Helsinki |
+| 1 | I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto | **Demo (Marta).** EU registration → DVV; ID code any-of (DVV \| Vero tax office); tax card on day 1 in the same Vero visit, not after DVV; bank → Kela, bank → strong ID; 60 % withholding warning |
+| 2 | Brazilian PhD student moving to Tampere with my wife in January | **Demo.** Residence permit / Migri; family member steps; Tampere offices, not Helsinki; arrival 1 January |
 | 3 | Swedish citizen moving to Espoo for work | Nordic-specific registration path (different from EU) |
-| 4 | Indian software engineer, Helsinki, arriving next week, no residence permit card yet | Permit card dependency; strong ID blocked until bank; police ID card in person |
+| 4 | Indian software engineer, arriving in Helsinki next week, no residence permit card yet | **Demo.** Permit card dependency; strong ID blocked until bank; police ID card in person |
 | 5 | German exchange student, Helsinki, 5 months | Short stay; may not need full bank credentials; DVV via university check-in |
 | 6 | Ukrainian under temporary protection, Helsinki | Different rules; basic banking without personal ID code (FIN-FSA) |
 | 7 | I want to open a bank account in Finland, I am EU citizen | Conflict shown: OP says ID code required vs FIN-FSA basic banking |

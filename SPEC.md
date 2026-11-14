@@ -9,7 +9,7 @@ People moving to Finland (workers, students, families). Scope: Helsinki region f
 ## Core features (only these 3)
 
 ### F1: Live dependency graph
-- Input: one free-text sentence ("Moving to Helsinki on 1 Sept for a job, Czech citizen, starting a master's at Aalto").
+- Input: one free-text sentence ("I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto").
 - Agent extracts a profile: citizenship (EU / non-EU / Nordic), purpose (work / study / family), city, start date, monthly salary (optional), family.
 - Exa search restricted to official domains → list of steps + prerequisites.
 - Output: nodes (steps) and edges ("A requires B"). **Every edge has a citation** (url + quoted sentence from Exa highlights).
@@ -99,7 +99,10 @@ Lease checking, Websets, full benefits engine, Google OAuth, chat UI as main scr
 
 ## Demo (3 min)
 1. Problem: "Every office tells you its step. Nobody tells you they depend on each other."
-2. Marta's sentence → graph builds live → click edge → citation.
+2. Marta's sentence → graph builds live → click edge → citation. Demo sentences (`lib/demo/sentences.ts`, cached in `demo-cache/` so it runs offline):
+   - "I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto"
+   - "Brazilian PhD student moving to Tampere with my wife in January"
+   - "Indian software engineer, arriving in Helsinki next week, no residence permit card yet"
 3. Community layer + conflict (OP vs FIN-FSA on personal ID code for basic banking).
 4. "Plan it" → calendar fills.
 5. Judge tries their own situation.

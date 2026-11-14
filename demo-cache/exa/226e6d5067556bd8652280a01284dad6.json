@@ -1,0 +1,80 @@
+{
+  "fetchedAt": "2026-11-14T05:57:13.166Z",
+  "request": {
+    "endpoint": "search",
+    "query": "online banking credentials strong electronic identification requirements for a new customer bank account",
+    "objective": "Bank pages stating the requirements for getting online banking credentials and a strong electronic ID, including whether you need a bank account or customer relationship with the bank first.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "op.fi",
+      "nordea.fi",
+      "s-pankki.fi",
+      "danskebank.fi",
+      "spankki.fi",
+      "poppankki.fi",
+      "aktia.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "959bc9cfd945f53c509f55b5f08ddcf2",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/welcome.html",
+        "title": "Instructions for new customers - How to get started | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/welcome.html",
+        "highlights": [
+          "For online and mobile banking, you will need Nordea access codes, which consist of a user ID and a means of identification (the Nordea ID app or the Nordea ID device).\n\n### 1. Memorise your user ID \n\n \n\nYour user ID is an integral part of your Nordea access codes, which you use to log in to Nordea Mobile and Netbank. \n\nYour user ID consists of 6–8 digits, and you will receive it when you become a Nordea customer. It’s intended for your personal use only, so never disclose it to anyone else – not even to your friends or family members.\n\nHere’s how to find your user ID: Your user ID is stated in your online banking agreement. If you used our ‘Become a customer online’ service to sign up as a Nordea customer, you can also see your user ID by logging back in to the service.\n\nGo to our online service\n\n### 2. Install and activate the Nordea ID app \n\n \n\nTo log in to our online and mobile banking services, you will need your user ID and the Nordea ID app.\n\nYou can install the Nordea ID app on your phone or tablet from your app store. We recommend that you install the Nordea ID app on at least two devices in case your primary device gets damaged.\n\nHow to activate the Nordea ID app\n\nNo mobile device? You can get a Nordea ID device, which is an alternative way to access banking services.\n\n...\n\n### Do you want to use your Nordea access codes to access other online services?\n\nIf you want to use your Nordea access codes to verify your identity when logging in to public online services, such as MyKanta or MyTax, your codes need to contain strong electronic identification. If you have become a Nordea customer after 3 April 2025, your access codes automatically contain strong electronic identification (e-identification). If you have become our customer before that, you need to activate strong electronic identification separately at a Nordea branch.\n\nBook an in-branch appointment by calling us"
+        ],
+        "image": "https://www.nordea.fi/Images/147-493408/Smiling-woman-at-home-small.jpg"
+      },
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "title": "Banking services for those new to Finland | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/new-to-finland.html",
+        "highlights": [
+          "## A Finnish bank account, debit card and online banking credentials for new customers\n\nIf you are living in Finland as a foreign national, you can become our customer if you have a valid identity document and the right of residence in Finland. Having a Finnish personal identity number will speed up the process. \n\nYou can book an appointment at one of our branches to become a customer. After the meeting, we will set up a current account, a debit card and online banking credentials for you.\n\nOur daily banking services are free of charge for the first three months, and you can access additional services online once you have become a customer.\n\n...\n\n## How to sign up as our customer\n\nMake sure you have the following documents for the meeting:\n\n- A valid identity document and a residence permit for Finland. Read more about the documents we accept\n- The form below completed. Please bring it with you to the meeting. \n\nComplete form\n\nBook an in-branch appointment by calling us.\n\n- We provide customer service in Finnish, Swedish and English. \n- If you don’t speak these languages, you will need to bring an interpreter.\n- At the branch, we’ll review your banking needs and help you complete your application.\n\n...\n\n## Accepted identity documents\n\nTo become our customer, you will need one of the following valid travel documents issued by a foreign authority and accepted in Finland:\n\n- a passport (not an alien’s passport) or\n- an identity card issued in the EEA (incl. San Marino and Switzerland).\n\nRead more about the documents we accept\n\n## Proof of right of residence\n\nTo prove your right of residence in Finland, you will need one of the following:\n\n- a residence permit or a certificate of a pending application (if you are a non-EU citizen) or\n- registration of the right of residence (if you are an EU citizen).\n\nThe Finnish Immigration Service helps people who are applying for asylum or a residence permit.\n\nIt also offers a payment card during the asylum application process, for example for receiving reception allowance. If you have this card, you may not need to open banking services right away.\n\n## Finnish personal identity number\n\nFor becoming our customer, it’s recommended that you have a Finnish personal identity number. If you don’t have a Finnish personal identity number, you should apply for one before you start banking with us. \n\nDepending on your situation, you can apply for a personal identity number through the Digital and Population Data Services Agency, the Finnish Tax Administration or the Finnish Immigration Service. \n\n## Strong electronic identification\n\nIn Finland, online banking credentials are also accepted as a means of electronic identification for many services beyond the banking services we provide. You can obtain online banking credentials and a strong electronic ID when you become a customer, provided you have a valid identity document required for this purpose. \n\nIf you do not have a passport or identity card issued by an EEA (European Economic Area) country, Switzerland or San Marino, you should be prepared to verify your identity at a police station."
+        ],
+        "image": "https://www.nordea.fi/Images/147-572897/Man in apron and glasses smiling and working in industry location - large.jpg"
+      },
+      {
+        "id": "https://www.s-pankki.fi/fi/tule-asiakkaaksi/welcome-to-s-bank/",
+        "title": "Welcome to S-Bank | S-Pankki",
+        "url": "https://www.s-pankki.fi/fi/tule-asiakkaaksi/welcome-to-s-bank/",
+        "highlights": [
+          "Online banking credentials \n\nWith an online banking credentials, you can use the bank’s digital services easily and safely. With your banking credentials, you can easily do your banking online whenever it suits you. If you are a co-op member or a member of a co-op membership household, you can also do your banking via S -mobiili. \n\nIf necessary, you can also use your banking credentials for strong authentication in other services, such as government online services. You can get an electronic ID if you have a Finnish personal identity code and one of the identity documents below: \n\n- Finnish passport or identity card \n- Passport or an identity card that serves as a travel document issued by an EU/EEA State \n\nLearn more about the service fees for banking credentials and the terms and conditions below.\n\nYou can also get an electronic ID with a passport of a country outside the EU/EEA after an initial identification by the Finnish police.\n\n...\n\nWhat ID documents does S-Bank accept?\n\nWe will always verify your identity with an official identity card issued by an authority. We accept a passport or identity card issued by the Finnish authorities as proof of identity. We also accept identification documents issued by a foreign authority, such as a passport, or a passport or identity card issued by an EU or EEA authority. The identification document must include your photograph and it must be valid and in good condition.\n\nNote that if you have a foreign identification document, there may be restrictions on the services available to you.\n\nWe accept the following identification documents:\n\nIssued by the Finnish authorities\n\n- a passport (except an emergency passport, alien passport or refugee travel document)\n- an identity card (issued after 1 March 1999)\n\nIssued by the authorities of other countries\n\n- a passport\n- an identity card serving as a travel document issued by the authorities of EEA member states, Switzerland and San Marino\n\nFor cash withdrawals, in addition to the above, the following documents issued by a Finnish authority will be accepted\n\n- a driver's licence (issued after 1 October 1990)\n\n##### Open services electronically \n\nYou can access S-Bank’s broader daily banking services through our electronic service if you have an electronic ID. At the same time, you will become a customer of S-Bank and a member of the cooperative of your choice. Note that the service is only available in Finnish or Swedish.\n\n## Open services at a Co-op Member Service and S-Bank service point\n\nIf you do dot have an electronic ID, you will need to visit our service points. We recommend booking an appointment. \n\nPlease take a valid proof of identity with you. \n\nIf you have a non-Finnish identity card, please also bring the following documents \n\n- A certificate of a Finnish personal identity code, if one has been issued to you. If not, take with you a certificate of your official address, issued by an authority. \n- Residence permit, or proof that a residence permit is pending, if you have a passport issued by a country outside the European Economic Area\n\n...\n\n## Keep banking secure\n\nUsing your card and doing business online is safe if you keep a few basic rules in mind. The most important thing to remember is not to give your banking codes or card details to anyone. Also make sure that the data security of the device you are using is up to date. Do not enter your card details or user credentials on a website whose address you have received as a link in an e-mail or in a message to your phone."
+        ],
+        "image": "https://www.s-pankki.fi/globalassets/media/1200x630-kuvat/tervetuloa-tayden-palvelun-s-pankkiin-1200x630.jpg"
+      },
+      {
+        "id": "https://danskebank.fi/en/for-you/become-a-customer",
+        "title": "Become a customer - Danske Bank",
+        "url": "https://danskebank.fi/en/for-you/become-a-customer",
+        "highlights": [
+          "For identification, you need Finnish online banking credentials and a Finnish mobile phone number for the verification message. Please contact our customer service if you do not have Finnish banking credentials, are not of legal age or legally competent or do not live in Finland.\n\n## Registration\n\n- Start by identifying yourself in the service using your online banking credentials.\n- For communication, we will ask for your email address and phone number.\n- To serve you well from the beginning, we will ask you which of our services you are interested in.\n- The bank has an obligation to know its customers, so we will also ask how you intend to use the services.\n\n## After registration\n\n- Once you have completed your registration, log in to the online bank using your current bank’s credentials and sign the agreements on banking credentials and the electronic archive.\n- You can log in to Danske Bank’s online bank using your current banking credentials until you receive Danske Bank’s credentials."
+        ],
+        "image": "https://danskebank.fi/-/media/danske-bank/images/fi/personal/woman-standing-at-the-doorway-and-thinking.jpg?rev=f5957fdc59eb4b14bc58caa23b0e5407"
+      },
+      {
+        "id": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "title": "How to become a customer online | Nordea",
+        "url": "https://www.nordea.fi/en/personal/bank-with-us/become-a-customer/tule-asiakkaaksi-verkossa.html",
+        "highlights": [
+          "You can sign up as a Nordea customer online if:\n\n- you are an adult residing in Finland\n- you have a valid Finnish passport or identity card\n- you have online banking credentials from another Finnish bank\n- you have a Finnish phone number\n- you have a clean credit record.\n\nPlease note that for the time being, you can’t access either application form with online banking credentials from POP Bank. If you are unable to sign up as a customer online for this or some other reason, please book an appointment at a Nordea branch by contacting us.\n\n...\n\nLog in to the online application form using another Finnish bank’s online banking credentials. \n\n- Make sure you have a moment to fill in your details. \n- All services available in the application are free of charge for the first three months. You can also get a Nordea Debit card in addition to online banking credentials and accounts.\n\n...\n\nWe will set up a current account and Nordea access codes for you automatically when you become a customer. We recommend that you order a Nordea Debit card for your new current account.\n\n...\n\n### 2. You will receive an SMS and access to our services\n\nWe will process your request to become a customer within a few banking days. \n\n- Once we have approved your application, you’ll receive an SMS in which we ask you to log in again to the application. \n- After you’ve done this, you’ll receive a Nordea user ID, which you will need to do your banking. \n\nLog in to an existing application form\n\n### 3. Download the Nordea ID app \n\n \n\nIn addition to your user ID, you also need the Nordea ID app or another means of identification in order to get the Nordea access codes. \n\n- When strong identification is required, the Nordea ID app is the fastest and easiest means of identification for most people. \n- Alternatively, you can order from us a Nordea ID device or a Nordea ID Talk Device intended for our visually impaired customers.\n\nExplore Nordea ID app\n\nLearn more about Nordea ID device\n\n...\n\nBoth application forms provide a secure way to become our customer, as they meet the same requirements for strong authentication, for example. \nCan I select either the new or the old application form? \n: You can’t select the new or the old application form yourself. During the rollout, customers will be directed to the application forms automatically from our website. This allows us\n\n...\n\nRead more about our savings accounts\nWhat identity documents do I need if I want to become a Nordea customer?\n: If you use our online service to become a customer, you must have a valid Finnish passport or ID card. Note that a driving licence is not a sufficient document for verifying your identity in this context.\n\nIf you can’t fill in the online application, you can visit one of our branches to sign up as a customer. Book an appointment in branch in advance and remember to bring a valid Finnish passport or ID card with you to the appointment."
+        ],
+        "image": "https://www.nordea.fi/Images/147-515776/Young-woman-working-small.jpg"
+      }
+    ],
+    "searchTime": 797.1,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

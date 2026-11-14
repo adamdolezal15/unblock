@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { DEMO_SENTENCES } from "../demo/sentences";
 import { parseDate, parseProfile, parseSalary } from "./parseProfile";
 
 const TODAY = "2026-11-14";
@@ -57,18 +58,27 @@ describe("parseProfile: test-queries.md", () => {
 });
 
 describe("parseProfile: details", () => {
-  it("final demo sentence", async () => {
-    const { profile, assumptions } = await ok(
-      "I'm a Czech citizen moving to Helsinki on 1 September for a job, salary 3200 EUR, and starting a master's at Aalto",
-    );
+  it("demo: Marta", async () => {
+    const { profile, assumptions } = await ok(DEMO_SENTENCES.marta);
     expect(profile).toEqual({
       citizenship: "EU",
       purpose: ["work", "study"],
       city: "Helsinki",
-      arrivalDate: "2027-09-01",
+      arrivalDate: "2026-12-01",
       monthlySalaryEur: 3200,
     });
     expect(assumptions).toEqual([]);
+  });
+
+  it("demo: Brazilian PhD student, Tampere, wife, January", async () => {
+    const { profile } = await ok(DEMO_SENTENCES.brazil);
+    expect(profile).toMatchObject({ citizenship: "NON_EU", city: "Tampere", hasFamily: true, arrivalDate: "2027-01-01" });
+    expect(profile.purpose).toEqual(expect.arrayContaining(["study", "family"]));
+  });
+
+  it("demo: Indian engineer arriving next week", async () => {
+    const { profile } = await ok(DEMO_SENTENCES.india);
+    expect(profile).toMatchObject({ citizenship: "NON_EU", city: "Helsinki", purpose: ["work"], arrivalDate: "2026-11-21" });
   });
 
   it("no nationality -> NON_EU assumption", async () => {
@@ -88,6 +98,9 @@ describe("parseProfile: details", () => {
     expect(parseDate("tomorrow", TODAY)).toBe("2026-11-15");
     expect(parseDate("in 2 weeks", TODAY)).toBe("2026-11-28");
     expect(parseDate("for work", TODAY)).toBeUndefined();
+    expect(parseDate("with my wife in January", TODAY)).toBe("2027-01-01");
+    expect(parseDate("in December", TODAY)).toBe("2026-12-01");
+    expect(parseDate("may need a bank", TODAY)).toBeUndefined();
   });
 
   it("salary", () => {

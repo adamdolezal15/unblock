@@ -1,0 +1,154 @@
+{
+  "fetchedAt": "2026-11-14T06:15:27.243Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "extractStep@8",
+    "promptHash": "3467a09a4acb1c34",
+    "schemaHash": "b82118ce2348e298",
+    "query": "Residence permit for a non-EU citizen moving to Finland for study and family: how to apply, residence permit card, identification visit",
+    "contextHash": "cbb46e1fd55e2d70",
+    "includeDomains": [
+      "dvv.fi",
+      "enterfinland.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "ihhelsinki.fi",
+      "infopankki.fi",
+      "kela.fi",
+      "migri.fi",
+      "myhelsinki.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "tampere.fi",
+      "vero.fi"
+    ],
+    "docsHash": "b9b43964b2ca7f62"
+  },
+  "response": {
+    "data": {
+      "title": "Residence permit for studies (with family members)",
+      "claims": [
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://migri.fi/en/studying-in-finland",
+          "quote": "If your studies in Finland take longer than 90 days you need a residence permit for studies."
+        },
+        {
+          "kind": "applies",
+          "value": "yes",
+          "url": "https://migri.fi/en/studying-in-finland",
+          "quote": "If you are granted a residence permit for studies, your spouse and children can be granted a residence permit on the basis of family ties."
+        },
+        {
+          "kind": "mode",
+          "value": "either",
+          "url": "https://migri.fi/en/studying-in-finland",
+          "quote": "You can submit the application in the online service Enter Finland."
+        },
+        {
+          "kind": "document",
+          "value": "certificate of health insurance",
+          "url": "https://enterfinland.fi/eservices/info/studypermit",
+          "quote": "You must have at least:"
+        },
+        {
+          "kind": "document",
+          "value": "certificate of acceptance from a Finnish educational institution",
+          "url": "https://enterfinland.fi/eservices/info/studypermit",
+          "quote": "This residence permit application is for you if you are coming to Finland to study at a Finnish educational institution at which you have already been accepted as a student."
+        },
+        {
+          "kind": "document",
+          "value": "passport photo",
+          "url": "https://enterfinland.fi/eservices/info/studypermit",
+          "quote": "Remember to take a passport photo with you."
+        },
+        {
+          "kind": "document",
+          "value": "bank statements showing the account holder's name, account number, balance, currency and all transactions from the past 6 months (family members' applications)",
+          "url": "https://migri.fi/en/students-family-members",
+          "quote": "When proving your financial resources with money that is in your bank account or in your family member's bank account, attach to your application bank statements for the accounts that you and your family member are using."
+        },
+        {
+          "kind": "document",
+          "value": "valid national passport",
+          "url": "https://migri.fi/en/first-residence-permit",
+          "quote": "When you apply for a residence permit, you must usually have a valid national passport."
+        },
+        {
+          "kind": "processing_time",
+          "value": "Students' applications are prioritised; family members' decisions may come later than the student's",
+          "url": "https://migri.fi/en/students-family-members",
+          "quote": "For this reason, family members of students may not receive their decisions at the same time as the student."
+        },
+        {
+          "kind": "cost_of_delay",
+          "value": "Applying for a first permit from within Finland usually results in a negative decision",
+          "url": "https://migri.fi/en/first-residence-permit",
+          "quote": "In situations other than the ones listed above, you will usually get a negative decision if you submit your application for a first residence permit while in Finland."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://migri.fi/en/studying-in-finland",
+        "title": "Studying in Finland | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If your studies in Finland take longer than 90 days you need a residence permit for studies. The permit is granted for the entire duration of your studies.\n\nIf you are a citizen of an European union (EU) member state, a Nordic country, Liechtenstein or Switzerland, you do not need a residence permit to stay in Finland. Read more on the page EU-registration.\n\n...\n\n## Family members\n\nIf you are granted a residence permit for studies, your spouse and children can be granted a residence permit on the basis of family ties. Read more on the page Moving to Finland to be with a family member.\n\n...\n\n## Application process when you are applying for your first residence permit on the basis of studies\n\nSubmit the residence permit application for studies abroad, before entry into Finland. You can submit the application in the online service Enter Finland. If you cannot use Enter Finland, fill in a paper application.\n\nAfter you have filled in your application, you must visit a Finnish mission (finlandabroad.fi) Link to an external website, Opens in a new tab. Book an appointment.\n\nIf you have applied through the online service Enter Finland, visit a Finnish mission to prove your identity, have your fingerprints taken and show the originals of the documents that you have attached to your application. If you submit your application through the online service, pay for it there or when you visit a Finnish mission.\n\nIf you have filled in a paper application, bring the application with you. Have your fingerprints taken, prove your identity and show the originals of the documents that you have attached to your application. Pay for your application.\n\n...\n\nIf you are granted a residence permit, you will receive a residence permit card."
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.463Z"
+      },
+      {
+        "url": "https://migri.fi/en/first-residence-permit",
+        "title": "First residence permit | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "When you apply for your first residence permit in Finland, the right application form for you depends on your reason for coming to Finland:\n\n- Coming to Finland for work\n- Moving to Finland as a researcher\n- Moving to Finland to be with a family member\n- Studying in Finland\n- Remigration\n- Coming to Finland on other grounds\n- Residence permit for a victim of human trafficking\n\nYou will find the application form at the bottom of the application page of each residence permit. If you are not sure which application form you should use, use the Application Finder to find out.\n\nYou must apply for your residence permit personally. You cannot for example apply for a residence permit for your spouse or employee.\n\n## Apply for a first residence permit abroad\n\nApplications for a first residence permit must usually be submitted abroad, not in Finland. The applicant must also prove his or her identity at a Finnish mission (embassy or consulate) abroad.\n\nHowever, you can apply for a first residence permit while you are in Finland in the following cases: \n\n- You are a family member of a Finnish citizen.\n- You apply for a residence permit for a child born in Finland.\n- You are a victim of human trafficking.\n- You are a victim of labour exploitation. \n- You need a residence permit on a discretionary basis on humanitarian grounds.\n- You are applying for asylum or temporary protection. \n\nIn situations other than the ones listed above, you will usually get a negative decision if you submit your application for a first residence permit while in Finland.\n\n...\n\nYou can wait for a decision on your application in Finland only if you reside in Finland legally when you apply for a residence permit. If your residence in Finland is not legal when you submit your application, you must leave Finland.\n\n...\n\nMake sure you meet the requirements for the residence permit you are applying for.\n\nMake sure you have all the attachments needed. If necessary, have them translated and legalised. The processing time may be longer if you have not filled in your application sufficiently.\n\nFill in your application in the online service Enter Finland or use a paper application form.\n\nPay for your application in the online service Enter Finland or at a Finnish mission (embassy or consulate).\n\nProve your identity.\n\n- If you applied for your residence permit abroad, book an appointment to visit a Finnish mission (finlandabroad.fi) Link to an external website. Read more on the page Proving your identity abroad.\n- If you applied for your residence permit in Finland, book an appointment to a service point of the Finnish Immigration Service Link to an external website. Read more on the page Book an appointment at a service point.\n\nWait for a decision. The Finnish Immigration Service will contact you if necessary.\n\n...\n\n- When you apply for a residence permit, you must usually have a valid national passport. \n- If you have been granted an alien’s passport for the purpose of obtaining a national passport, obtain a national passport as soon as possible."
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.463Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eservices/info/studypermit",
+        "title": "Studying in Finland",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "This residence permit application is for you if you are coming to Finland to study at a Finnish educational institution at which you have already been accepted as a student. If you are an EU national, you do not need to apply for a residence permit. You can travel to Finland and register your right of residence instead.\n\nBefore you apply for a residence permit for studies, read the requirements for the residence permit on the website of the Finnish Immigration Service: Residence permit application for studies (migri.fi) The studies must lead to a degree or vocational qualification. Applicable educational institutions include universities and universities of applied sciences, vocational education institutions and, in the case of exchange students, any of the above and upper secondary schools. In special cases, a residence permit for study may be issued for studies other than those described above (e.g. exchange studies). In Finland you must take responsibility for supporting yourself. It is difficult for a student to find work in Finland. Before you come to Finland, make sure that your finances will be sufficient for the entire period of your studies. Read more about the sufficient funds here: Income requirement for students. As a student you will be responsible for your illness-related expenses in Finland. You will need private insurance for your residence permit to cover your medical and drug expenses. If you have family members who will move to Finland with you, they can apply for a residence permit at the same time. The goal of the Finnish Immigration Service is to make a decision on your whole family's applications simultaneously, but this is not always possible. You must be able to support the livelihood of both yourself and your family in Finland. Your spouse must make their own account to send their application. You may send the application for your child through your own account.\n\n...\n\n## Get ready\n\nCheck that you have all the necessary attachments and information before you begin. You must have at least:\n\n- a certificate of health insurance.\n- a clarification on tuition fee or scholarship, if applicable\n- a clarification on income\n- a certificate of acceptance from a Finnish educational institution\n- a valid passport\n\nIf other attachments are required, this will be indicated in the application. If there is a tuition fee for your studies but you have not yet paid the tuition fee, you must show evidence of sufficient funds to both pay the tuition fee and support yourself.\n\n...\n\n2\n\n## Fill in the application and pay the fee\n\nComplete the application form and attach all the required documents. Select your service point. The service point is where you prove your identity. You will find more information at migri.fi/en/identification. If you are applying for a permit abroad, visit a Finnish embassy or consulate. If you are applying in Finland, visit a Migri service point. Please take into account that the service points can be very busy. If you are in Finland, you can book an appointment before submitting an application in Migri's appointments system. If you are abroad, contact the embassy or consulate directly.\n\n3\n\n## Book an appointment to visit a service point\n\nThe processing of an application is subject to a fee. You can pay the processing fee with most credit cards, or use the online banking services provided by Finnish banks. You can also pay the processing fee at the embassy or at the Migri service point during your visit to prove your identity.\n\n4\n\n## Visit the selected authority to prove your identity\n\nWhen you have submitted your application via the e-service, you must visit the service point you selected in order to prove your identity, to present the original copies of the attachments required for your application and to have your fingerprints taken. Remember to take a passport photo with you. Passport photo guidelines can be found on the website of the Finnish Police."
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.463Z"
+      },
+      {
+        "url": "https://migri.fi/en/students-family-members",
+        "title": "Student’s family members | Maahanmuuttovirasto",
+        "domain": "migri.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are a student’s family member, you can apply for a residence permit for Finland. \n\nThe following people, among others, are considered family members of a Finnish citizen and a foreign national who is not an EU citizen:\n\n- a spouse\n- a registered partner\n- a child under 18 years of age. \n\nYou can find family members’ applications on the page Moving to Finland to be with a family member.\n\nWe prioritise the processing of students’ residence permit applications so that students could begin their studies in Finland as planned. For this reason, family members of students may not receive their decisions at the same time as the student.\n\n## Your family must have enough money for living in Finland\n\nWhen you apply for a residence permit on the basis of family ties, you must have sufficient financial resources. You must prove in your application that you and your family have enough money for living in Finland for the first year. Family includes you, your sponsor (the student) and your children.\n\nWhen proving your financial resources with money that is in your bank account or in your family member’s bank account, attach to your application bank statements for the accounts that you and your family member are using. A balance statement alone is not enough.\n\nMake sure that the bank statements show:\n\n- the name of the account holder\n- the account number\n- the balance of the account\n- the currency\n- all account transactions from the past 6 months.\n\nThe amount of money that is required depends on where in Finland your family lives and on the size of the family.\n\n...\n\nWe will assess whether your spouse or cohabiting partner has enough money not only to support your family, but also to pay his or her educational institution’s tuition fee for the next term or academic year. This is why you must attach proof that your spouse or cohabiting partner has paid the tuition fee for the next term or academic year to your residence permit application.\n\n...\n\nThe duration of a first A"
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.463Z"
+      },
+      {
+        "url": "https://enterfinland.fi/eServices/info/familytiespermit",
+        "title": "Residence permit application on the basis of family ties",
+        "domain": "enterfinland.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are applying for an extended permit or citizenship or renewing your residence permit card or residence card, it is possible that you do not need to visit a service point to prove your identity. For more information about when visiting a service point is not necessary, see the page Identification migri.fi/en/identification.\n\n...\n\nA residence permit can be granted on the basis of family ties. The family member who lives in Finland or moves to Finland together with you, with whom you intend to lead a family life, is referred to as your sponsor. Before you can be granted a residence permit, your sponsor must have a residence permit in Finland or he or she must apply for a residence permit at the same time as you and be granted a residence permit. The definition of family as used here is according to the Finnish Aliens' Act, and does not always correspond to general views on what a family is. The family members of Finnish citizens and of non-EU citizens and comparable persons are: spouses, registered partners, cohabiting partners, children and guardians of a child under 18 years of age. How does applying electronically work?\n\n- If you are the child's guardian, you can create your own user account to submit an application for the child, even if you are not applying for a residence permit for yourself through the e-service.\n- There can be only one application for each family member. If there are two guardians, you must choose the guardian whose account is used to submit the child's application.\n- All applications for children under 18 years of age must be sent from their guardian's user account.\n- All applicants who are 18 or older must have their own user account. You can't use your personal account to apply for your spouse."
+        ],
+        "fetchedAt": "2026-11-14T00:50:37.463Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 5116,
+      "costUsd": 0.020139999999999998,
+      "cacheHit": false
+    }
+  }
+}

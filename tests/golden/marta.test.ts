@@ -1,6 +1,6 @@
 // Golden test for the demo sentence. Runs fully offline from .cache (EXA_CACHE=read, LLM_CACHE=read,
 // anthropic extractor). If it fails with "no cached response", run once with network:
-//   LLM_PROVIDER=anthropic npx tsx scripts/run-findSteps.ts "<MARTA>"
+//   npm run warm-demo
 import { beforeAll, describe, expect, it } from "vitest";
 
 process.env.EXA_CACHE = "read";
@@ -8,9 +8,7 @@ process.env.LLM_CACHE = "read";
 process.env.LLM_PROVIDER = "anthropic";
 process.env.EXA_LOG = "0";
 
-const MARTA =
-  "I'm a Czech citizen moving to Helsinki on 1 September for a job, salary 3200 EUR, and starting a master's at Aalto";
-const TODAY = "2026-11-14"; // pins the arrival year (and so the cache key)
+const TODAY = "2026-11-14"; // pins "1 December" to 2026-12-01 for the date assertions
 
 type Modules = {
   graph: typeof import("../../lib/graph");
@@ -27,6 +25,7 @@ const hardEdge = (source: string, target: string) => g.edges.some((e) => !e.anyO
 beforeAll(async () => {
   const { parseProfile } = await import("../../lib/agent/parseProfile");
   const { estimatesFromSteps } = await import("../../lib/agent/estimates");
+  const MARTA = (await import("../../lib/demo/sentences")).DEMO_SENTENCES.marta;
   m = { graph: await import("../../lib/graph"), agent: await import("../../lib/agent/findSteps") };
   const parsed = await parseProfile(MARTA, TODAY);
   if (!parsed.ok) throw new Error("Marta parsed as out of scope");
@@ -58,6 +57,15 @@ describe("golden: Marta", () => {
   it("tax_card is NOT after dvv_registration", () => {
     expect(m.graph.necessaryPrerequisites(g).get("tax_card")?.has("dvv_registration")).toBe(false);
     expect(sched.items.tax_card.startIndex).toBeLessThan(sched.items.dvv_registration.readyIndex);
+  });
+
+  it("tax card on day 1: same Vero visit as the identity code", () => {
+    const tax = result.steps.find((s) => s.id === "tax_card")!;
+    expect(tax.visitId).toBeDefined();
+    expect(result.steps.find((s) => s.id === "vero_identity_code")!.visitId).toBe(tax.visitId);
+    expect(tax.claims?.some((c) => c.kind === "same_visit") ||
+      result.steps.find((s) => s.id === "vero_identity_code")!.claims?.some((c) => c.kind === "same_visit")).toBe(true);
+    expect(sched.items.tax_card).toMatchObject({ startIndex: 0, startDate: "2026-12-01" });
   });
 
   it("every edge is backed by a verified claim", () => {

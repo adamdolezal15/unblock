@@ -1,0 +1,88 @@
+{
+  "fetchedAt": "2026-11-14T00:50:37.370Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Residence permit for a spouse and children of a person moving to Finland: family ties permit",
+    "objective": "Official pages on residence for family members of someone moving to Finland.",
+    "type": "auto",
+    "numResults": 5,
+    "includeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "tampere.fi"
+    ],
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "b17abf7c2fb7c9beabc4a86a868f2205",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://migri.fi/en/moving-to-finland-to-be-with-a-family-member",
+        "title": "Moving to Finland to be with a family member | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/moving-to-finland-to-be-with-a-family-member",
+        "highlights": [
+          "If you have a family member who lives in Finland and you want to move in to live with him or her, you need a residence permit on the basis of family ties.\n\nYour family member who lives in Finland is called a ‘sponsor’. Persons who can act as your sponsor include your child, your spouse or partner or your parent or guardian. Granting a residence permit requires that you intend to lead a family life with the sponsor in Finland.\n\nAll relatives cannot act as sponsors, as the Finnish law defines the persons considered to be family members. The concept of family is narrower in Finland than in many other countries.\n\n...\n\n## Who are considered family members?\n\nFamily members of a Finnish citizen and a foreign national who is not an EU citizen include:\n\n- a spouse \n- a registered partner \n- a cohabiting partner \n\n- You are required to have lived together for a continuous period of at least 2 years. This requirement does not apply if you have joint custody of a child or if there are other serious reasons.\n- a person who has custody of a child under 18 years of age\n- an unmarried child under 18 years of age of whom the sponsor has custody.\n\n...\n\n## Choose the right application on the basis of family ties\n\nWhen you apply for a residence permit on the basis of family ties, the application you should use depends on the following facts:\n\n- Your relationship to the sponsor – is he or she for example your spouse or your child?\n- The grounds on which the sponsor is residing in Finland – does he or she, for example, have refugee status or Finnish citizenship?\n\nRead the information about the requirements for granting a residence permit and about the required attachments thoroughly before applying for a residence permit.\n\nIf you are unsure about which application you should choose, use the Application Finder. See the application pages for more information.\n\n- Applications: my spouse is in Finland\n- Applications: my guardian is in Finland\n- Applications: my child is in Finland\n- Applications: my other relative is in Finland\n\n...\n\nYou can submit an application for a first residence permit on the basis of family ties while you are in Finland only if:\n\n- you are a family member of a Finnish citizen\n- you are applying for a residence permit for your child who is born in Finland.\n\n...\n\n‘Sufficient financial resources’ or 'secure means of support' means that you have sufficient funds for you and your family to live in Finland. Your income can come for example from employment, a private enterprise, assets or pensions."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://enterfinland.fi/eServices/info/familytiespermit",
+        "title": "Residence permit application on the basis of family ties",
+        "url": "https://enterfinland.fi/eServices/info/familytiespermit",
+        "author": "Migri",
+        "highlights": [
+          "A residence permit can be granted on the basis of family ties. The family member who lives in Finland or moves to Finland together with you, with whom you intend to lead a family life, is referred to as your sponsor. Before you can be granted a residence permit, your sponsor must have a residence permit in Finland or he or she must apply for a residence permit at the same time as you and be granted a residence permit. The definition of family as used here is according to the Finnish Aliens' Act, and does not always correspond to general views on what a family is. The family members of Finnish citizens and of non-EU citizens and comparable persons are: spouses, registered partners, cohabiting partners, children and guardians of a child under 18 years of age. How does applying electronically work?\n\n- If you are the child's guardian, you can create your own user account to submit an application for the child, even if you are not applying for a residence permit for yourself through the e-service.\n- There can be only one application for each family member. If there are two guardians, you must choose the guardian whose account is used to submit the child's application.\n- All applications for children under 18 years of age must be sent from their guardian's user account.\n- All applicants who are 18 or older must have their own user account. You can't use your personal account to apply for your spouse.\n\n...\n\n## Residence permit for a spouse\n\nYou can apply for the permit if your spouse has been granted or applies for a Finnish residence permit at the same time and you are\n\n- cohabiting.\n- married or in a registered partnership or\n\nIf you have a steady relationship with a person who has a residence permit in Finland, you cannot apply for a residence permit via the e-service but must fill in the paper form OLE_MUU.\n\n...\n\n## Residence permit for a spouse of a Finnish citizen\n\nYou can apply for the permit if your spouse is a Finnish citizen and you are\n\n- cohabiting\n- married or in a registered partnership or\n\nand your spouse lives in Finland or is moving to Finland. If you have a steady relationship with a Finnish citizen, you cannot apply for a residence permit via the e-service but must fill in the paper form OLE_MUU."
+        ],
+        "image": "https://enterfinland.fi/eServices/Static/images/facebook_image.png"
+      },
+      {
+        "id": "https://migri.fi/en/information-bank/family-reunification",
+        "title": "Family reunification | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/information-bank/family-reunification",
+        "highlights": [
+          "Family members of a person who is residing lawfully in Finland can apply for a residence permit on the basis of family ties. This process is called family reunification. \n\nThe person who lives in Finland is called a sponsor, and the sponsor's family members apply for residence permits. The sponsor does not have to move to Finland before the family members: the whole family can apply for their residence permits at the same time. \n\nThe sponsor may have moved to Finland for work or studies, for example, or may have been granted asylum in Finland. The sponsor may also be a Finnish citizen.\n\n...\n\nApplications for a residence permit on the basis of family ties can be submitted by: \n\n- family members of a Finnish citizen \n- family members of a foreign national who lives in Finland and holds a residence permit in Finland \n- family members of a person who has been granted international protection. \n\nUnder the Aliens Act, residence permits may usually be issued on the basis of family ties only to family members who belong to the nuclear family of the person living in Finland (the sponsor). They include the sponsor’s: \n\n- spouse \n- partner in a registered partnership \n- cohabiting partner (under certain conditions) \n- dependent children under 18 years of age \n- parents or guardians if the sponsor who lives in Finland is a child under 18 years of age. \n\nOther persons outside the nuclear family may be granted a residence permit on the basis of family ties in certain specific circumstances laid down in law, but only if the sponsor is a Finnish citizen or has been granted international protection.\n\nGranting a residence permit on the basis of family ties to a partner in an established relationship is not possible if the couple is not married, not cohabiting and not in a registered partnership. However, in some situations, a residence permit can be granted to a partner in an established relationship on other grounds if the applicant has sufficient financial resources.\n\n...\n\nAs a rule, a person applying for a residence permit in Finland on the basis of family ties must have sufficient financial resources. Applicants usually secure their financial resources through their sponsor’s salary. The sponsor is the family member who lives in Finland. Family members of Finnish citizens are not required to have sufficient financial resources.\n\n...\n\nThe person who applies for a residence permit on the basis of family ties must present reliable proof of the family relationship between the applicant and the sponsor. This proof is usually a document, such as a marriage certificate or a child’s birth certificate. The documents must be legalised and, when necessary, translated into one of the Finnish Immigration Service’s languages of contact. \n\nIf no documents exist, the Finnish Immigration Service will investigate the matter by hearing the applicant and the sponsor in an interview. The applicants are interviewed at a Finnish embassy or consulate abroad. \n\nIn the interview, the applicant and the sponsor may be asked about their family life and everyday topics related to it, such as about the family’s home and place of residence. The statements given in the interview are not expected to be identical. The primary purpose of the interviews is to investigate whether the family members led a family life together before the sponsor left the country.\n\n...\n\nA person who applies for a residence permit on the basis of family ties is asked to provide documents on his or her family ties. As a rule, the applicant must have led an actual family life with the sponsor who lives in Finland before the sponsor moved to Finland.\n\nBiological kinship does not always constitute sufficient grounds for granting a residence permit on the basis of family ties. For instance, if a parent who lives in Finland applies for a residence permit for his or her biological child who is a foreign national, the child may not necessarily be granted a residence permit if the parent has never lived together with the child. Granting a residence permit to a child requires that the parent has legal custody of the child, that the parent has lived with the child, and that the parent has actually taken care of the child."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      },
+      {
+        "id": "https://enterfinland.fi/eServices/info/childspermit",
+        "title": "Residence permit for a child",
+        "url": "https://enterfinland.fi/eServices/info/childspermit",
+        "author": "Migri",
+        "highlights": [
+          "This form is for you if you are applying for a first Finnish residence permit for a child under the age of 18 on the basis of family ties. The purpose of the application is that the child intends to move to Finland and to lead a family life with his or her guardian. The application may be filed by the child with his/her guardian abroad. The child must be unmarried for a residence permit to be granted on the basis of family ties between parent and child. If you are not a Finnish citizen, the granting of the permit requires that the livelihood of your family is secured in Finland through means other than benefits paid by the state. Livelihood is normally secured through income from wages or pursuit of trade. If your child is born in Finland, you must submit a residence permit application for the child within three months from the birth. It is necessary to apply for a residence permit even if you have applied for Finnish citizenship for the child. Otherwise, your child does not have the right to reside in Finland. If you are adopting a child abroad through international adoption, apply for a residence permit for your adopted child by filling out the application for a residence permit for adoption.\n\n...\n\nCheck that you have all the necessary attachments and information before you begin. You must have, at least, the child's valid passport (or a passport that includes the child) and\n\n- consent given by the other parent to the child to move to Finland if the guardian does not move to Finland at the same time (notarised or legalised).\n- documentation on the guardianship of the child (legalised)\n- birth certificate with information on the child's parents (legalised)"
+        ],
+        "image": "https://enterfinland.fi/eServices/Static/images/facebook_image.png"
+      },
+      {
+        "id": "https://migri.fi/en/spouse-in-finland-with-a-residence-permit",
+        "title": "Spouse in Finland with a residence permit | Maahanmuuttovirasto",
+        "url": "https://migri.fi/en/spouse-in-finland-with-a-residence-permit",
+        "highlights": [
+          "# Residence permit application on the basis of family ties when your spouse has a residence permit\n\nApply for a residence permit with this application if: \n\n- your spouse holds a residence permit in Finland and \n- you are married or in a registered partnership.\n\nIf you apply for this permit as a first residence permit, you must submit the application abroad. In contrast, applications for an extended permit can only be submitted in Finland. Read more on the pages First residence permit and Extended permit.\n\n...\n\nYour spouse has a residence permit in Finland or you are applying for a residence permit at the same time with your spouse.\n\n...\n\n- You must meet the income ... You can prove that you meet the income requirement by submitting evidence of your or your spouse’s salary or income from business activities, for example. Your income cannot be based on social assistance, labour market subsidy, basic unemployment allowance or general social security benefit.\n\n...\n\nYour spouse has a residence permit in Finland or you are applying for a residence permit at the same time with your spouse. \n\n You and your spouse are at least 21 years of age when your residence permit becomes valid. \n\n- The residence permit application may be submitted at the earliest 9 months before turning 21. If you submit the application earlier, the decision may be negative. \n- The validity period of the residence permit cannot begin before you and your spouse have turned 21.\n- If you and your spouse have joint custody of a child, you can obtain a residence permit as the child’s parent or guardian even if you or your spouse are not yet 21 years of age.\n- If your spouse has a residence permit for studies in Finland, you can submit your application 3 months before you turn 21 or your spouse turns 21 at the earliest."
+        ],
+        "image": "https://migri.fi/documents/5202425/0/Migri%20logo%20somejakoon%20en.png/e12d05b2-1828-df7e-db77-dac05bf146c3?version=1.0&t=1652856176539&imagePreview=1"
+      }
+    ],
+    "searchTime": 1170.8,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}
