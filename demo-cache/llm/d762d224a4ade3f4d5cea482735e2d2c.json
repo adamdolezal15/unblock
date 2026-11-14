@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T15:41:41.109Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: A short note the person keeps open while booking or at the service desk: which service to choose, what to write in a free-text field, what to bring and when they plan to go, all from the facts. Not an email: no request for a reply.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nP2: I am an EU citizen, moving to Helsinki for work and study.\nF1: How to book: Book an appointment for the service \"Registration of a foreigner's personal data\" via DVV website\nF2: Can be done at: Check-In Event\nF3: Bring: valid passport or official photo ID card of an EU citizen\nF4: Bring: certificate of registration of the right of residence for EU citizens\nF5: Bring: proof of work or studies in Finland (employment contract or student status certificate)\nP3: I plan to go (DVV) on 2 December 2026.",
+    "contextHash": "05e2c9b13f84f07b",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Booking note: DVV registration of a foreigner's personal data",
+      "sentences": [
+        {
+          "text": "I arrive in Helsinki on 1 December 2026 and I am an EU citizen moving for work and study.",
+          "factIds": [
+            "P1",
+            "P2"
+          ]
+        },
+        {
+          "text": "Service to choose: book an appointment for \"Registration of a foreigner's personal data\" via the DVV website.",
+          "factIds": [
+            "F1"
+          ]
+        },
+        {
+          "text": "This can be done at a Check-In Event.",
+          "factIds": [
+            "F2"
+          ]
+        },
+        {
+          "text": "I plan to go to DVV on 2 December 2026.",
+          "factIds": [
+            "P3"
+          ]
+        },
+        {
+          "text": "To bring: a valid passport or an official photo ID card of an EU citizen.",
+          "factIds": [
+            "F3"
+          ]
+        },
+        {
+          "text": "To bring: the certificate of registration of the right of residence for EU citizens.",
+          "factIds": [
+            "F4"
+          ]
+        },
+        {
+          "text": "To bring: proof of work or studies in Finland, meaning an employment contract or a student status certificate.",
+          "factIds": [
+            "F5"
+          ]
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2952,
+      "costUsd": 0.006252,
+      "cacheHit": false
+    }
+  }
+}

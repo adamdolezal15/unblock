@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T15:40:30.235Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: An email to the person's new employer (HR or payroll). 1) Say when they plan to get the Finnish tax card and that they will deliver it before the first payday, so that the higher withholding stated in the facts is not applied. 2) Ask the employer for the employment contract or employment certificate the person needs for their registration, as stated in the facts.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nF1: 60% of salary withheld as advance tax if employer has no tax card\nF2: Tax card: usually right away at the Vero service desk if you have a personal identity code and income information\nF3: For the tax card: estimate of total annual income including wages and fringe benefits, holiday pay, bonuses\nF4: Needed for \"Register as a resident and get a Finnish personal identity code (DVV)\": proof of work or studies in Finland (employment contract or student status certificate)\nF5: Needed for \"Register EU citizen's right of residence\": proof of grounds for residence in Finland (e.g. employment or studies)\nF6: Needed for \"Personal identity code from a Vero tax office\": employment contract\nP2: I plan to get my Finnish tax card on 1 December 2026.",
+    "contextHash": "d6939820492db489",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Finnish tax card and employment documents",
+      "sentences": [
+        {
+          "text": "I am looking forward to starting work with [Employer name] and wanted to share a couple of practical points.",
+          "factIds": []
+        },
+        {
+          "text": "I arrive in Helsinki on 1 December 2026.",
+          "factIds": [
+            "P1"
+          ]
+        },
+        {
+          "text": "I plan to get my Finnish tax card on 1 December 2026.",
+          "factIds": [
+            "P2"
+          ]
+        },
+        {
+          "text": "I will deliver the tax card to you before the first payday, so that the 60% advance tax withholding that applies when an employer has no tax card is not used.",
+          "factIds": [
+            "F1"
+          ]
+        },
+        {
+          "text": "To register in Finland, I need proof of work, such as an employment contract, for my registration with DVV as a resident and for getting a personal identity code.",
+          "factIds": [
+            "F4"
+          ]
+        },
+        {
+          "text": "The same kind of proof of my employment is also needed to register my EU right of residence, and Vero asks for the employment contract for a personal identity code.",
+          "factIds": [
+            "F5",
+            "F6"
+          ]
+        },
+        {
+          "text": "Could you please send me my employment contract, or an employment certificate if that is easier, as soon as it is ready?",
+          "factIds": []
+        },
+        {
+          "text": "Please let me know if you need anything else from me, such as [any other details you need].",
+          "factIds": []
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 5074,
+      "costUsd": 0.00724,
+      "cacheHit": false
+    }
+  }
+}

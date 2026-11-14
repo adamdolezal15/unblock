@@ -9,6 +9,8 @@ import { Prose } from "../letter/LetterView";
 import { Term } from "../Help";
 import { Marker } from "../line/Marker";
 import { mainLegs } from "../line/legs";
+import { DraftCard, ReadyToSend } from "../drafts/DraftCard";
+import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
 import { IconCalendar, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -28,6 +30,7 @@ type Props = {
 };
 type Ctx = {
   state: RunState;
+  drafts?: DraftsApi;
   onOpen: (id: string) => void;
   onSources: (id: string) => void;
   shortcut?: (id: string) => React.ReactNode;
@@ -37,10 +40,11 @@ type Ctx = {
 export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
+  const drafts = useDrafts(state);
   const fallback = fallbackSteps(state);
   if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
   if (!state.schedule) return <DaysSkeleton />;
-  const ctx: Ctx = { state, onOpen, onSources, shortcut };
+  const ctx: Ctx = { state, onOpen, onSources, shortcut, drafts };
   const visits = entries.filter((e) => e.kind === "visit").length;
   const legs = mainLegs(entries.map(onMain));
 
@@ -64,6 +68,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
           </Row>
         ))}
       </ol>
+      <ReadyToSend drafts={drafts} />
       {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
     </section>
   );
@@ -173,6 +178,7 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
       {(s.noSource || s.whyNow.length > 0) && (
         <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
       )}
+      {ctx.drafts?.forStep(s.id).map((o) => <DraftCard key={o.id} offer={o} drafts={ctx.drafts!} compact />)}
     </>
   );
 }

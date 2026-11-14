@@ -1,0 +1,79 @@
+{
+  "fetchedAt": "2026-11-14T15:40:40.976Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: A short note the person keeps open while booking or at the service desk: which service to choose, what to write in a free-text field, what to bring and when they plan to go, all from the facts. Not an email: no request for a reply.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nP2: I am an EU citizen, moving to Helsinki for work and study.\nF1: How to book: migri.vihta.com\nF2: Opening hours: New IHH appointments open Thursdays 14-16 for the following week\nF3: Bring: valid passport or identity card\nF4: Bring: proof of grounds for residence in Finland (e.g. employment or studies)\nF5: Bring: proof of sufficient financial resources\nF6: Bring: authorised translation of attachments not in Finnish, Swedish or English\nF7: Bring: debit or credit card for paying the fee if not paid online\nF8: How long it takes: immediately at the service point if requirements are met and attachments are complete\nP3: I plan to go (Migri) on 1 December 2026.",
+    "contextHash": "784621ecb53c92f1",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Notes for my Migri residence registration visit",
+      "sentences": [
+        {
+          "text": "I plan to go to Migri on 1 December 2026.",
+          "factIds": [
+            "P3"
+          ]
+        },
+        {
+          "text": "I book at migri.vihta.com, where new IHH appointments open on Thursdays 14-16 for the following week.",
+          "factIds": [
+            "F1",
+            "F2"
+          ]
+        },
+        {
+          "text": "In the free-text field I can write: \"I am an EU citizen moving to Helsinki for work and study and would like to register my right of residence.\"",
+          "factIds": [
+            "P2"
+          ]
+        },
+        {
+          "text": "I bring my valid passport or identity card.",
+          "factIds": [
+            "F3"
+          ]
+        },
+        {
+          "text": "I also bring proof of grounds for residence in Finland (e.g. employment or studies) and proof of sufficient financial resources.",
+          "factIds": [
+            "F4",
+            "F5"
+          ]
+        },
+        {
+          "text": "Any attachment not in Finnish, Swedish or English needs an authorised translation.",
+          "factIds": [
+            "F6"
+          ]
+        },
+        {
+          "text": "I bring a debit or credit card to pay the fee if I have not paid it online.",
+          "factIds": [
+            "F7"
+          ]
+        },
+        {
+          "text": "If the requirements are met and the attachments are complete, the matter is handled immediately at the service point.",
+          "factIds": [
+            "F8"
+          ]
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 6029,
+      "costUsd": 0.011808,
+      "cacheHit": false
+    }
+  }
+}

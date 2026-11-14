@@ -67,6 +67,8 @@ function statusLine(task: string, n: number, domains: string): string {
       return `Extracting cited steps from ${src}…`;
     case "extractTips":
       return `Extracting community tips from ${src}…`;
+    case "draft":
+      return "Writing your draft from the verified facts…";
     case "detectConflicts":
       return `Comparing ${src} for disagreements…`;
     default:

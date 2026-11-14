@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-14T15:40:51.741Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: A short note the person keeps open while booking or at the service desk: which service to choose, what to write in a free-text field, what to bring and when they plan to go, all from the facts. Not an email: no request for a reply.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nP2: I am an EU citizen, moving to Helsinki for work and study.\nF1: Opening hours: weekdays 9:00-16:00\nF2: Bring: valid passport or identity card\nF3: Bring: estimate of total annual income including wages and fringe benefits, holiday pay, bonuses\nF4: How long it takes: usually right away at the Vero service desk if you have a personal identity code and income information\nP3: I plan to go (Vero) on 1 December 2026.",
+    "contextHash": "ca4a3d03dbbdfdb3",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Tax card visit: notes for booking and the service desk",
+      "sentences": [
+        {
+          "text": "Service to choose: a tax card at the Vero service desk.",
+          "factIds": [
+            "F4"
+          ]
+        },
+        {
+          "text": "For a free-text field: I am an EU citizen moving to Helsinki for work and study, and I would like to get a tax card.",
+          "factIds": [
+            "P2"
+          ]
+        },
+        {
+          "text": "I plan to go to Vero on 1 December 2026, the day I arrive in Helsinki.",
+          "factIds": [
+            "P3",
+            "P1"
+          ]
+        },
+        {
+          "text": "The Vero service desk is open on weekdays 9:00-16:00.",
+          "factIds": [
+            "F1"
+          ]
+        },
+        {
+          "text": "Bring a valid passport or identity card.",
+          "factIds": [
+            "F2"
+          ]
+        },
+        {
+          "text": "Also bring an estimate of my total annual income, including wages and fringe benefits, holiday pay and bonuses.",
+          "factIds": [
+            "F3"
+          ]
+        },
+        {
+          "text": "It is usually done right away at the service desk if I have a personal identity code and income information.",
+          "factIds": [
+            "F4"
+          ]
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 7414,
+      "costUsd": 0.012920000000000001,
+      "cacheHit": false
+    }
+  }
+}

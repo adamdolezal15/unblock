@@ -1,0 +1,78 @@
+{
+  "fetchedAt": "2026-11-14T15:40:54.921Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "draft@1",
+    "promptHash": "492e361b91e1dc09",
+    "schemaHash": "8957d8d05ce675bc",
+    "query": "GOAL: A short note the person keeps open while booking or at the service desk: which service to choose, what to write in a free-text field, what to bring and when they plan to go, all from the facts. Not an email: no request for a reply.\n\nFACTS:\nP1: I arrive in Helsinki on 1 December 2026.\nP2: I am an EU citizen, moving to Helsinki for work and study.\nF1: How to book: Call the Tax Administration telephone service 029 497 010 (+358 29 497 010 from abroad) to book an appointment\nF2: Bring: valid passport or official proof of identity with a photograph\nF3: Bring: employment contract\nF4: Bring: Application for tax card, tax prepayment or tax number – current or former foreign residents (5042e), for stays over 6 months\nF5: Bring: estimate of total annual income including wages and possible fringe benefits, holiday pay, bonuses\nF6: How long it takes: usually 1 to 3 business days\nP3: I plan to go (Vero) on 1 December 2026.",
+    "contextHash": "70d1905657f19099",
+    "includeDomains": [],
+    "docsHash": "4f53cda18c2baa0c"
+  },
+  "response": {
+    "data": {
+      "subject": "Booking note: personal identity code at Vero",
+      "sentences": [
+        {
+          "text": "I am an EU citizen moving to Helsinki for work and study, and I arrive on 1 December 2026.",
+          "factIds": [
+            "P1",
+            "P2"
+          ]
+        },
+        {
+          "text": "I plan to go to the Vero tax office on 1 December 2026 to ask for a personal identity code.",
+          "factIds": [
+            "P3"
+          ]
+        },
+        {
+          "text": "To book an appointment, I can call the Tax Administration telephone service on 029 497 010 (+358 29 497 010 from abroad).",
+          "factIds": [
+            "F1"
+          ]
+        },
+        {
+          "text": "I need to bring a valid passport or official proof of identity with a photograph.",
+          "factIds": [
+            "F2"
+          ]
+        },
+        {
+          "text": "I also need to bring my employment contract.",
+          "factIds": [
+            "F3"
+          ]
+        },
+        {
+          "text": "I should bring the form \"Application for tax card, tax prepayment or tax number – current or former foreign residents (5042e)\", which is for stays over 6 months.",
+          "factIds": [
+            "F4"
+          ]
+        },
+        {
+          "text": "I should also bring an estimate of my total annual income, including wages and possible fringe benefits, holiday pay and bonuses.",
+          "factIds": [
+            "F5"
+          ]
+        },
+        {
+          "text": "The process usually takes 1 to 3 business days.",
+          "factIds": [
+            "F6"
+          ]
+        }
+      ]
+    },
+    "sources": [],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 3176,
+      "costUsd": 0.0071660000000000005,
+      "cacheHit": false
+    }
+  }
+}
