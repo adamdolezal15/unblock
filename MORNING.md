@@ -17,8 +17,15 @@ Marta (clean `?demo=marta`): Vero shortcut, 5 visits, 15 days sooner (guarded by
 - **4782b1c** Activity panel: no second "How I worked this out" heading or second Hide under the link that opens it.
 - **a65f0a4** Forms: an extracted name that is a sentence fragment (India showed "your application the") is shown as "Official form" (+ test).
 
+## Last small fixes (after the polish; each test + build green)
+- **0e97049** Merged card label "Vero · both in one visit", tax card with a check icon; draft links "Prepare booking note" / "Booking note ready" (never "Draft ready: <type>: <title>"); Bring lists without near-duplicates (`lib/ui/bring.ts`, Marta's Vero list had the passport and the income estimate twice) and no repeated draft link in Details; "Anytime online": "No fixed date. Do these when it suits you." with "Visit your bank" or "Online" per card; dates "Dec · Tue".
+- **0dd3be1** Demo mode (`?demo=`): profile values are plain text, no "Edit your situation"; "Saved demo · Plan your own move →" loads the empty landing page.
+- **99e6637** "Watch this plan" button; the Exa line no longer ends a line with a lone "•".
+- "Visit your bank": the bank step is "either" (online or in person) in the sources; the UI says "Visit your bank" for bank steps that are not online-only, "Online" for the rest.
+
 ## Checks done (step 9)
 - All demos (marta, brazil, india, vietnam) render at 1440x900 and 390x844 with no horizontal scroll and no element wider than the viewport (automated check in headless Chrome).
+- Rechecked after the last fixes: all four demos render at 1440 and 390, no horizontal scroll.
 - Marta (clean `?demo=marta`): "Get your Finnish personal identity code at Vero on 1 December", 5 visits, 15 days sooner.
 - Empty state, Map tab and activity panel reviewed at 1440; no stray borders or second link styles left.
 
