@@ -10,7 +10,7 @@ export type CalendarEvent = Omit<Ev<"calendar">, "type">;
 
 export type Phase = "idle" | "running" | "done" | "out_of_scope" | "error";
 
-export type StatusLine = { id: number; message: string; domain?: string; cached?: boolean; at: number };
+export type StatusLine = { id: number; message: string; domain?: string; cached?: boolean; replay?: boolean; at: number };
 
 export type RunState = {
   phase: Phase;
@@ -82,7 +82,7 @@ export function runReducer(s: RunState, a: RunAction): RunState {
 function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
   switch (e.type) {
     case "status":
-      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message, domain: e.domain, cached: e.cached, at }] };
+      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message, domain: e.domain, cached: e.cached, replay: e.replay, at }] };
     case "profile":
       return {
         ...s,
@@ -146,3 +146,6 @@ export async function* readNdjson(body: ReadableStream<Uint8Array>): AsyncGenera
   }
   if (buf.trim()) yield JSON.parse(buf) as PipelineEvent;
 }
+
+/** True when the server is playing back a saved demo run (status lines paced from demo-cache). */
+export const isReplaying = (statuses: readonly StatusLine[]) => statuses.some((s) => s.replay);

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { StatusLine } from "@/lib/ui/runState";
+import { isReplaying, type StatusLine } from "@/lib/ui/runState";
 import { faviconUrl, fmtSeconds, plural } from "@/lib/ui/format";
 import { IconChevron } from "./icons";
 
@@ -51,11 +51,19 @@ export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, o
             ))}
             {running && statuses.length === 0 && <li className="py-1 text-[14px] text-muted">Starting…</li>}
           </ol>
-          <p className="num border-t border-rule pt-2 text-[14px] text-muted">{running ? `${plural(statuses.length, "action")} so far` : `${summary}.`}</p>
+          <p className="num flex justify-between gap-3 border-t border-rule pt-2 text-[14px] text-muted">
+            <span>{running ? `${plural(statuses.length, "action")} so far` : `${summary}.`}</span>
+            {isReplaying(statuses) && <ReplayLabel />}
+          </p>
         </>
       )}
     </section>
   );
+}
+
+/** Quiet, honest note: the activity is a saved run played back, not live work. */
+export function ReplayLabel({ className = "" }: { className?: string }) {
+  return <span className={`text-[13px] text-muted/80 ${className}`}>Replaying a saved run</span>;
 }
 
 function FeedLine({ line, live }: { line: StatusLine; live: boolean }) {

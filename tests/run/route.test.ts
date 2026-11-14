@@ -130,4 +130,32 @@ describe("demo replay", () => {
     // with 20 ms per status line, most gaps are >= ~20 ms (timer jitter allowed)
     expect(gaps.filter((g) => g >= 15).length).toBeGreaterThan(gaps.length * 0.8);
   }, 60_000);
+
+  it("paced lines are labelled as a replay", async () => {
+    const { readEvents, runStream } = await import("../../lib/agent/runStream");
+    const statuses: Of<"status">[] = [];
+    for await (const e of readEvents(runStream(MARTA, { replayDelay: () => 0, persist: false }))) if (e.type === "status") statuses.push(e);
+    expect(statuses.some((s) => s.replay)).toBe(true);
+  }, 60_000);
+
+  it("DEMO_REPLAY=off disables delays and the label", async () => {
+    const { readEvents, runStream, replayEnabled } = await import("../../lib/agent/runStream");
+    expect(replayEnabled({ DEMO_REPLAY: "off" })).toBe(false);
+    expect(replayEnabled({ DEMO_REPLAY: "OFF " })).toBe(false);
+    expect(replayEnabled({})).toBe(true);
+    const prev = process.env.DEMO_REPLAY;
+    process.env.DEMO_REPLAY = "off";
+    try {
+      let delays = 0;
+      const statuses: Of<"status">[] = [];
+      const stream = runStream(MARTA, { replayDelay: () => (delays++, 0), persist: false });
+      for await (const e of readEvents(stream)) if (e.type === "status") statuses.push(e);
+      expect(delays).toBe(0);
+      expect(statuses.length).toBeGreaterThan(0);
+      expect(statuses.some((s) => s.replay)).toBe(false);
+    } finally {
+      if (prev === undefined) delete process.env.DEMO_REPLAY;
+      else process.env.DEMO_REPLAY = prev;
+    }
+  }, 60_000);
 });

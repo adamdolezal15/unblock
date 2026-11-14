@@ -1,7 +1,7 @@
 "use client";
-import type { RunState } from "@/lib/ui/runState";
+import { isReplaying, type RunState } from "@/lib/ui/runState";
 import { runProgress } from "@/lib/ui/progress";
-import { Favicon } from "./ActivityFeed";
+import { Favicon, ReplayLabel } from "./ActivityFeed";
 import { LineMark } from "./line/LineMark";
 
 /** While the plan is being built: one calm card with progress and the last few things the agent did. */
@@ -32,6 +32,7 @@ export function Working({ state }: { state: RunState }) {
           </li>
         ))}
       </ol>
+      {isReplaying(state.statuses) && <ReplayLabel className="mt-2 block" />}
     </section>
   );
 }

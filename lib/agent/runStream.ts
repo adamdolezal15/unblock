@@ -2,7 +2,8 @@
 // Demo replay: for an exact demo sentence served entirely from cache the pipeline finishes in about a
 // second, so status lines are spaced 70–180 ms apart (~9 s for Marta's ~73 lines) to keep the activity feed readable on stage.
 // The moment any live (uncached) Exa / LLM call happens, the spacing stops: real work is slow enough.
-// `fast` skips the spacing (tests).
+// Paced lines carry `replay: true` so the UI can say it is replaying a saved run.
+// `fast` or env DEMO_REPLAY=off skips the spacing entirely.
 import { DEMO_SENTENCES } from "../demo/sentences";
 import { newMeter } from "../events/context";
 import type { PipelineEvent } from "../types";
@@ -19,6 +20,9 @@ export type RunStreamOptions = Pick<RunOptions, "signal" | "timeoutMs" | "today"
 export const REPLAY_BUDGET_MS = 10_000;
 
 const DEMO_TEXTS: ReadonlySet<string> = new Set(Object.values(DEMO_SENTENCES));
+
+export const replayEnabled = (env: Record<string, string | undefined> = process.env) =>
+  env.DEMO_REPLAY?.trim().toLowerCase() !== "off";
 
 export function isDemoSentence(text: string): boolean {
   return DEMO_TEXTS.has(text.trim());
@@ -43,7 +47,7 @@ export function runStream(text: string, opts: RunStreamOptions = {}): ReadableSt
   opts.signal?.addEventListener("abort", onRequestAbort, { once: true });
 
   const meter = newMeter();
-  const replay = !opts.fast && isDemoSentence(text);
+  const replay = !opts.fast && replayEnabled() && isDemoSentence(text);
   const delay = opts.replayDelay ?? (() => 70 + Math.random() * 110);
   let spent = 0;
 
@@ -66,6 +70,8 @@ export function runStream(text: string, opts: RunStreamOptions = {}): ReadableSt
             const ms = delay();
             spent += ms;
             await sleep(ms, gone.signal);
+            write({ ...e, replay: true });
+            return;
           }
           write(e);
         });
