@@ -10,6 +10,7 @@ import { INTERVAL, latestRun, webhookTarget } from "../lib/exa/monitors";
 
 async function main() {
   const target = webhookTarget();
+  if (!target.url) throw new Error("Set MONITOR_WEBHOOK_URL (any public https URL; the smoke test never lets it receive anything)");
   console.log("webhook:", target.url, "(public:", target.public, ")");
   const m = await exa().monitors.create({
     name: "Unblock smoke test (deleted right after)",

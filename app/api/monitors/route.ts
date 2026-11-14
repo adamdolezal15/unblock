@@ -3,7 +3,7 @@
 // Only ever called by a click. Monitors live on Exa, so this needs live access: refused in EXA_CACHE=read.
 import { loadRun, RUN_ID } from "@/lib/agent/runStore";
 import { collectPending } from "@/lib/exa/monitorSync";
-import { createPlanMonitors, monitorTopics } from "@/lib/exa/monitors";
+import { createPlanMonitors, monitorTopics, WebhookNotConfigured } from "@/lib/exa/monitors";
 import { loadStore, publicView, saveStore, withStore } from "@/lib/exa/monitorStore";
 
 const json = (status: number, body: unknown) => Response.json(body, { status, headers: { "cache-control": "no-store" } });
@@ -49,6 +49,10 @@ export async function POST(request: Request) {
     await saveStore(store);
     return json(200, { watching: true, store: publicView(store) });
   } catch (e) {
+    if (e instanceof WebhookNotConfigured) {
+      // Exa requires a webhook and rejects localhost, so there is no local stand-in.
+      return calm(409, "Watching needs a public webhook address. Set MONITOR_WEBHOOK_URL in .env.local to a public https URL (a tunnel to this server), then restart.");
+    }
     console.error("[unblock] monitors: create failed:", (e as Error).message);
     return calm(502, "Could not set up watching right now. Nothing was started. Try again in a moment.");
   }

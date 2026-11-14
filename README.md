@@ -32,10 +32,12 @@ A fourth sentence, "Vietnamese nurse moving to Oulu in February", is not on the 
 
 ## Keep watching it (Exa Monitors)
 
-After a plan, "Watch for changes" creates one weekly Exa monitor per key official page of the plan (DVV, Vero, Kela, Migri, police), each scoped with `includeDomains` to that authority. Only on a click, never for a cached demo run on its own, and refused when the server runs offline (`EXA_CACHE=read`). Exa runs return only results earlier runs did not, so what the first run finds is the baseline and later results appear as "Changed since your plan".
+After a plan, "Watch for changes" creates one weekly Exa monitor per key official page of the plan (DVV, Vero, Kela, Migri, police), each scoped with `includeDomains` to that authority, plus one "Service news affecting your plan" monitor (Yle, HS, Helsinki Times and those authorities' own pages; query from the authorities and the city; only the last 30 days count; labelled News). Only on a click, never for a cached demo run on its own, and refused when the server runs offline (`EXA_CACHE=read`). Exa runs return only results earlier runs did not, so what the first run finds is the baseline and later results appear as "Changed since your plan".
 
-- With a public URL, set `MONITOR_WEBHOOK_URL=https://<your-tunnel>` in `.env.local`. Exa posts to `/api/monitors/webhook`, which checks the `Exa-Signature` header against the monitor's secret before storing anything.
-- On localhost there is no public URL: use "Check now", which triggers a run and polls it. Results are stored per plan in `.cache/monitors/` (the webhook secrets stay there, never in the browser).
+- Exa requires a webhook URL and rejects localhost, private addresses and names that do not resolve, so **`MONITOR_WEBHOOK_URL` must be set** in `.env.local` (nothing is created without it, and there is no default).
+  - To receive webhooks: a public tunnel to this server, `MONITOR_WEBHOOK_URL=https://<your-tunnel>`. Exa posts to `/api/monitors/webhook`, which checks the `Exa-Signature` header against the monitor's secret before storing anything.
+  - For the localhost demo: any public https URL with a path (for example `https://hooks.example.test/inbox/abc`) only satisfies Exa's check and receives the run results. Use "Check now", which triggers a run and polls it.
+- Results are stored per plan in `.cache/monitors/` (the webhook secrets stay there, never in the browser).
 - `npx tsx scripts/monitors-smoke.ts` creates one monitor, triggers it, prints the result and deletes it.
 
 ## Architecture

@@ -16,13 +16,15 @@ export function Watch({ runId }: { runId: string }) {
   const { state, watch, checkNow } = useMonitors(runId);
   const store = state.store;
   const changes = (store?.results ?? []).filter((r) => !r.baseline).sort((a, b) => b.date.localeCompare(a.date));
+  const official = (store?.monitors ?? []).filter((m) => m.kind !== "news");
+  const news = (store?.monitors ?? []).some((m) => m.kind === "news");
 
   return (
     <section aria-label="Keep watching" className="max-w-[58ch] border-t border-rule pt-5">
       {state.phase !== "watching" ? (
         <>
           <p className="text-[16px] text-ink">Want to hear if an official page behind this plan changes?</p>
-          <p className="mt-1 text-[15px] text-muted">We watch only official pages, once a week.</p>
+          <p className="mt-1 text-[15px] text-muted">We watch official pages, plus service news from Yle, HS and Helsinki Times, once a week.</p>
           <p className="mt-3">
             <button type="button" onClick={watch} disabled={state.phase === "starting"} className={button}>
               {state.phase === "starting" ? "Setting up…" : "Watch for changes"}
@@ -32,10 +34,11 @@ export function Watch({ runId }: { runId: string }) {
       ) : (
         <>
           <p className="text-[16px] text-ink">
-            Watching {store!.monitors.length} official {store!.monitors.length === 1 ? "page" : "pages"}: {store!.monitors.map((m) => m.topic).join(", ")}.
+            Watching {official.length} official {official.length === 1 ? "page" : "pages"}: {official.map((m) => m.topic).join(", ")}
+            {news ? ", and service news about your authorities." : "."}
           </p>
           <p className="mt-1 text-[15px] text-muted">
-            We watch only official pages, once a week.
+            Official pages and service news only, once a week.
             {!store!.webhookPublic && " This server has no public address, so use Check now."}
           </p>
           <p className="mt-3">
@@ -53,7 +56,7 @@ export function Watch({ runId }: { runId: string }) {
                     <span className="text-ink">{c.title}</span> <span className="num whitespace-nowrap text-muted">{fmtDate(c.date)}</span>{" "}
                     <a href={c.url} target="_blank" rel="noreferrer" className="whitespace-nowrap text-accent underline decoration-accent/40 underline-offset-[3px]">
                       [{domainOf(c.url)}
-                      {c.trust !== "official" ? `, ${TRUST_LABEL[c.trust].toLowerCase()}` : ""}]
+                      {c.trust !== "official" ? ` · ${TRUST_LABEL[c.trust]}` : ""}]
                     </a>
                   </li>
                 ))}

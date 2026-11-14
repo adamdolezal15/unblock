@@ -2,7 +2,7 @@ import { createHmac } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import type { Step } from "../types";
 import { ingestRun, newStore, publicView, type MonitorRec } from "./monitorStore";
-import { MAX_MONITORS, monitorTopics, resultsOf, verifyWebhookSignature, webhookTarget } from "./monitors";
+import { MAX_MONITORS, monitorTopics, newsTopic, resultsOf, verifyWebhookSignature, webhookTarget } from "./monitors";
 
 const sign = (body: string, secret: string, t: number) => `t=${t},v1=${createHmac("sha256", secret).update(`${t}.${body}`).digest("hex")}`;
 
@@ -62,10 +62,54 @@ describe("monitorTopics", () => {
 });
 
 describe("webhookTarget", () => {
-  it("uses a public https URL from the env, and says when there is none", () => {
+  it("an origin means this server's route; no default URL exists (Exa accepts no local placeholder)", () => {
     expect(webhookTarget({ MONITOR_WEBHOOK_URL: "https://abc.ngrok.app" })).toEqual({ url: "https://abc.ngrok.app/api/monitors/webhook", public: true });
+    expect(webhookTarget({ MONITOR_WEBHOOK_URL: "https://abc.ngrok.app/api/monitors/webhook" }).public).toBe(true);
+    expect(webhookTarget({})).toEqual({ url: null, public: false });
+    expect(webhookTarget({ MONITOR_WEBHOOK_URL: "not a url" })).toEqual({ url: null, public: false });
+  });
+  it("any other path is a placeholder that only satisfies Exa: used as given, not public", () => {
+    expect(webhookTarget({ MONITOR_WEBHOOK_URL: "https://hooks.example.test/inbox/abc" })).toEqual({ url: "https://hooks.example.test/inbox/abc", public: false });
     expect(webhookTarget({ MONITOR_WEBHOOK_URL: "http://localhost:3000" }).public).toBe(false);
-    expect(webhookTarget({}).public).toBe(false);
+  });
+});
+
+describe("service news monitor", () => {
+  const steps = [step("dvv_registration", "DVV"), step("tax_card", "Vero"), step("residence_permit", "Migri"), step("bank_account", "Your bank")];
+  const profile = { citizenship: "NON_EU", purpose: ["work"], city: "Oulu" } as never;
+
+  it("is built from the plan's authorities and city, on news domains plus those authorities' official pages", () => {
+    const t = newsTopic({ steps, profile });
+    expect(t).toMatchObject({ topic: "Service news affecting your plan", kind: "news", maxAgeDays: 30 });
+    expect(t.query).toBe("Migri DVV Vero Oulu service point closed OR changes OR strike");
+    expect(t.domains).toEqual(["yle.fi", "hs.fi", "helsinkitimes.fi", "migri.fi", "dvv.fi", "vero.fi"]);
+  });
+
+  const monitor = { id: "n1", stepId: "service_news", topic: "Service news affecting your plan", domains: ["yle.fi", "dvv.fi"], maxAgeDays: 30 };
+  const now = Date.parse("2026-11-20T12:00:00Z");
+  const run = (results: Record<string, unknown>[]) => ({ id: "run1", completedAt: "2026-11-20T11:00:00Z", output: { results } });
+
+  it("keeps only the last 30 days, drops undated pages, and labels the source News", () => {
+    const out = resultsOf(
+      monitor,
+      run([
+        { url: "https://yle.fi/a/1", title: "DVV service point in Oulu closed", publishedDate: "2026-11-18T08:00:00Z" },
+        { url: "https://yle.fi/a/2", title: "Old story", publishedDate: "2026-09-01T08:00:00Z" },
+        { url: "https://yle.fi/a/3", title: "No date" },
+        { url: "https://dvv.fi/news/4", title: "Official notice", publishedDate: "2026-11-10T08:00:00Z" },
+      ]),
+      false,
+      now,
+    );
+    expect(out.map((r) => [r.title, r.trust])).toEqual([
+      ["DVV service point in Oulu closed", "news"],
+      ["Official notice", "official"],
+    ]);
+  });
+
+  it("the other monitors keep undated official pages", () => {
+    const out = resultsOf({ ...monitor, maxAgeDays: undefined, domains: ["dvv.fi"] }, run([{ url: "https://dvv.fi/x", title: "Page" }]), false, now);
+    expect(out).toHaveLength(1);
   });
 });
 

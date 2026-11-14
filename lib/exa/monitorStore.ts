@@ -28,6 +28,9 @@ export type MonitorRec = {
   stepId: string;
   topic: string;
   domains: string[];
+  /** The service-news monitor: results older than `maxAgeDays` are not kept. */
+  kind?: "news";
+  maxAgeDays?: number;
   /** Returned once by Exa at creation; verifies this monitor's webhooks. Never sent to the browser. */
   secret: string;
   /** Exa run ids already ingested (webhook and polling can both deliver the same run). */
