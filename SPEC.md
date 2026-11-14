@@ -118,7 +118,7 @@ Civic document, not a dashboard: light paper theme only, Finnish blue (#003580) 
 - Profile as one sentence with editable parts; an edit appends a correction to the original sentence and re-runs.
 - Views: Summary (the letter), Day by day (default; one entry per visit, online steps grouped, waits as quiet lines, every step footnoted or "No official source found"), Map; the view is in the URL hash.
 - Usual order (lib/graph/baseline.ts, emitted as schedule.baseline): same steps and waits, identity code only via DVV, no merged visits. Day by day says how much sooner your order is (and any extra visits) only when it is actually better, and marks the shortcut step.
-- Your map: React Flow, x = scheduled start (one column per date), lanes by authority (StepDef.authority), short labels (StepDef.short), orthogonal routes that never cross a node, any-of diamonds, merged visits in a frame (the requirement met inside the visit is not drawn).
+- Map: a custom SVG metro map (lib/ui/metroLayout.ts, components/map/MetroMap.tsx; React Flow removed): row 0 = the slowest chain, other steps on branch rows below, one column per station in date order, octilinear routes that pass no other station, transitive reduction (redundant requirements are listed in the details panel, not drawn), any-of milestone = the interchange diamond, a shared visit = one pill. Same parts as the logo (components/line, docs/BRAND.md).
 
 ## Out of scope
 Lease checking, Websets, full benefits engine, Google OAuth, chat UI as main screen, OCR.

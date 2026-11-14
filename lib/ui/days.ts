@@ -7,7 +7,7 @@ import type { StreamCalEvent } from "@/lib/types";
 import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
 import { edgeEvidence, stepFacts, unblocks, type Fact } from "./panel";
-import { nodeLabel } from "./graphLayout";
+import { nodeLabel } from "./labels";
 import { bookingHref } from "@/lib/calendar/bookingUrl";
 
 export type DayStep = {

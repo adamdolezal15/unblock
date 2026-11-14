@@ -5,7 +5,7 @@
 import type { Citation, Step, Tip, Trust } from "@/lib/types";
 import type { RunState } from "./runState";
 import { domainOf } from "./format";
-import { nodeLabel } from "./graphLayout";
+import { nodeLabel } from "./labels";
 
 export type Source = { n: number; url: string; domain: string; trust: Trust; fetchedAt: string; quotes: string[] };
 export type Ref = { n: number; citation: Citation };

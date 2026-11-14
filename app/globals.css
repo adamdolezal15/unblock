@@ -109,61 +109,6 @@ body {
   }
 }
 
-/* React Flow, restyled to the document look. Controls are opaque like every overlay. */
-.plan-graph .react-flow__controls {
-  box-shadow: none;
-  border: 1px solid #c4bdb0;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #f7f5f0;
-}
-.plan-graph .react-flow__controls-button {
-  width: 30px;
-  height: 30px;
-  background: #f7f5f0;
-  border-bottom: 1px solid #ddd8ce;
-  fill: #1a2433;
-}
-.plan-graph .react-flow__controls-button:hover {
-  background: #efece5;
-}
-.plan-graph .react-flow__attribution {
-  background: #f7f5f0;
-  color: #8794a6;
-}
-.plan-graph .react-flow__node:focus,
-.plan-graph .react-flow__node:focus-visible {
-  outline: none;
-}
-.plan-graph .react-flow__node:focus-visible > div {
-  outline: 2px solid #003580;
-  outline-offset: 3px;
-}
-.plan-graph .react-flow__edge {
-  cursor: pointer;
-}
-
-/* Map edges and focus (hover / selection rules are injected by PlanGraph; no React re-render). */
-.plan-graph .pg-edge .react-flow__edge-path {
-  fill: none;
-  transition: stroke 120ms, stroke-width 120ms;
-}
-.plan-graph .pg-quiet .react-flow__edge-path {
-  stroke: #a29c90;
-  stroke-width: 1.5px;
-}
-.plan-graph .pg-crit .react-flow__edge-path {
-  stroke: #003580;
-  stroke-width: 3px;
-}
-.plan-graph .pg-back .react-flow__edge-path {
-  stroke-dasharray: 6 5;
-}
-.plan-graph .pg-node,
-.plan-graph .pg-edge {
-  transition: opacity 120ms;
-}
-
 /* The line's motion (components/line/LineMark.tsx). Transform and opacity only. */
 .linemark .lm-left,
 .linemark .lm-right {

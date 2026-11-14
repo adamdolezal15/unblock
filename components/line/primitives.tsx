@@ -4,9 +4,9 @@ import { C, DIAMOND, STATION, TERMINUS } from "./spec";
 type P = { x: number; y: number };
 
 /** A station. Filled ink, or blue on the slowest chain; hollow when the date is an estimate or it is online. */
-export function Station({ x, y, main = false, hollow = false, lit = false, scale = 1 }: P & { main?: boolean; hollow?: boolean; lit?: boolean; scale?: number }) {
+export function Station({ x, y, main = false, hollow = false, lit = false, done = false, scale = 1 }: P & { main?: boolean; hollow?: boolean; lit?: boolean; done?: boolean; scale?: number }) {
   const r = STATION.r * scale;
-  const color = main || lit ? C.blue : C.ink;
+  const color = done ? C.green : main || lit ? C.blue : C.ink;
   return (
     <g>
       <circle cx={x} cy={y} r={r + STATION.halo * scale} fill={C.paper} />

@@ -4,7 +4,7 @@ import type { LetterDoc } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { buildDays, lowerName, type DayEntry, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
 import { fmtDay } from "@/lib/ui/format";
-import { nodeLabel } from "@/lib/ui/graphLayout";
+import { nodeLabel } from "@/lib/ui/labels";
 import { Prose } from "../letter/LetterView";
 import { Footnote } from "../letter/Footnote";
 import { Term } from "../Help";

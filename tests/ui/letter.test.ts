@@ -159,3 +159,23 @@ describe("transit line: Marta", () => {
     expect(stops.map((s) => s.date)).toEqual([...stops.map((s) => s.date)].sort());
   });
 });
+
+describe("metro map: Marta", () => {
+  it("fits 1000px with labels in their own columns and no route through another station", async () => {
+    const { layoutMetro, hits } = await import("../../lib/ui/metroLayout");
+    const L = layoutMetro({
+      graph: state.graph!.graph,
+      steps: state.steps,
+      items: state.schedule!.schedule.items,
+      criticalPath: state.schedule!.criticalPath.stepIds,
+      conflicts: state.conflicts,
+      width: 1000,
+    });
+    expect(L.width).toBe(1000);
+    expect(L.height).toBeLessThan(560);
+    expect(new Set(L.stations.map((s) => s.col)).size).toBe(L.stations.length);
+    for (const e of L.edges) expect(hits(e.points, L.stations, new Set([e.source, e.target])), e.id).toBe(0);
+    expect(L.stations.filter((s) => s.row === 0).map((s) => s.id)).toEqual(["eu_registration", "dvv_registration", "strong_identification"]);
+    expect(L.stations.find((s) => s.id === "bank_account")?.conflict).toBe(true);
+  });
+});

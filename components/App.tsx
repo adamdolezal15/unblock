@@ -8,7 +8,7 @@ import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { runProgress } from "@/lib/ui/progress";
 import { ActivityFeed } from "./ActivityFeed";
-import type { Selection } from "./graph/PlanGraph";
+import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
 import { Closing } from "./letter/Closing";
 import { LetterView, Prose } from "./letter/LetterView";

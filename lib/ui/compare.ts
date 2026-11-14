@@ -6,7 +6,7 @@ import type { Ref, Seg } from "./letter";
 import { longDate } from "./letter";
 import { milestoneOptions } from "./panel";
 import type { RunState } from "./runState";
-import { nodeLabel } from "./graphLayout";
+import { nodeLabel } from "./labels";
 import { lowerName } from "./days";
 
 export function daysBetween(a: string, b: string): number {

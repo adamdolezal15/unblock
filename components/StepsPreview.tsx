@@ -3,7 +3,7 @@
 import type { ScheduledStep } from "@/lib/graph/types";
 import type { Step, StepStub } from "@/lib/types";
 import { fmtWeekday } from "@/lib/ui/format";
-import { nodeLabel } from "@/lib/ui/graphLayout";
+import { nodeLabel } from "@/lib/ui/labels";
 import { ModeIcon, MODE_LABEL } from "./icons";
 
 const EXPECTED = 8;
