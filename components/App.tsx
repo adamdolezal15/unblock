@@ -60,22 +60,28 @@ export function App() {
 
   if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={begin} />;
 
+  // A saved demo (/?demo=marta): nothing on the page pretends it can be edited. (Only reached in the browser:
+  // the server renders the idle landing page.)
+  const demo = new URLSearchParams(window.location.search).has("demo") && (Object.values(DEMO_SENTENCES) as string[]).includes(state.text);
+
   return (
     <div className="min-h-screen">
-      <TopBar onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
+      <TopBar demo={demo} onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
       )}
       {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Results state={state} rows={rows} answers={answers} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
+        <Results state={state} demo={demo} rows={rows} answers={answers} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
       )}
     </div>
   );
 }
 
-function Results({ state, rows, answers, onAnswer, onRerun }: {
+function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
   state: RunState;
+  /** A saved demo run: profile values are plain text, with a link to plan your own move. */
+  demo: boolean;
   rows: RefineRow[];
   /** The answers in the URL (?r=), shown as chips under the profile sentence. */
   answers: readonly RefineKey[];
@@ -128,10 +134,22 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
       <div className="pt-10">
         {state.profile && (
           <div className="mb-8">
+            {demo && (
+              <p className="mb-2 text-[13px] text-muted">
+                Saved demo
+                <span aria-hidden className="mx-2">·</span>
+                {/* A full page load on purpose: it drops ?demo= and the saved run, so the landing page starts empty. */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a href="/" className="link">
+                  Plan your own move →
+                </a>
+              </p>
+            )}
             <ProfileSentence
               profile={state.profile}
               text={state.text}
               disabled={running}
+              readOnly={demo}
               size="sm"
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />

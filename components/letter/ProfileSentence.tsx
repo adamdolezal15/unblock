@@ -3,10 +3,18 @@ import { useState } from "react";
 import type { ProfileEvent } from "@/lib/ui/runState";
 import { profileParts, type Field } from "@/lib/ui/profileSentence";
 
-type Props = { profile: ProfileEvent; text: string; disabled: boolean; onCorrect: (field: Field, value: string) => void; size?: "sm" | "md" };
+type Props = {
+  profile: ProfileEvent;
+  text: string;
+  disabled: boolean;
+  onCorrect: (field: Field, value: string) => void;
+  size?: "sm" | "md";
+  /** A saved demo: the values are plain text, not editable pills. */
+  readOnly?: boolean;
+};
 
 /** "You're a Czech citizen, working and studying in Helsinki from 1 December…" with each editable part in a small surface pill. */
-export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md" }: Props) {
+export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md", readOnly = false }: Props) {
   const [editing, setEditing] = useState<Field | null>(null);
   const parts = profileParts(profile.profile, profile.assumptions, text);
 
@@ -16,6 +24,10 @@ export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md
         {parts.map((p, i) =>
           "t" in p ? (
             <span key={i}>{p.t}</span>
+          ) : readOnly ? (
+            <span key={i} className="text-ink">
+              {p.value}
+            </span>
           ) : editing === p.field ? (
             <EditField
               key={i}
