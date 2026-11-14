@@ -82,7 +82,7 @@ export function runReducer(s: RunState, a: RunAction): RunState {
 function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
   switch (e.type) {
     case "status":
-      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message, actor: e.actor, domain: e.domain, cached: e.cached, replay: e.replay, at }] };
+      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message.replace(/s+/g, " ").trim(), actor: e.actor, domain: e.domain, cached: e.cached, replay: e.replay, at }] };
     case "profile":
       return {
         ...s,

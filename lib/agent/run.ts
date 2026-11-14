@@ -7,7 +7,7 @@
 // A global timeout (75 s) never yields a blank result: whatever finished is completed with the pure steps
 // (graph, schedule, calendar), a `partial` event says what is missing, and `done` still follows.
 import { googleTemplateUrl, eventsFromSchedule } from "../calendar";
-import { newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
+import { cleanLine, newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
 import { plural } from "../ui/format";
 import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../graph";
 import { usualOrder } from "../graph/baseline";
@@ -134,7 +134,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
   };
 
   const onProgress = (m: string, actor: Actor) => {
-    const line = progressLine(m);
+    const line = progressLine(cleanLine(m));
     if (line && !signal.aborted) emit({ type: "status", message: line, actor });
   };
 

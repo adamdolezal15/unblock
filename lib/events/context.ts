@@ -54,11 +54,16 @@ export function throwIfAborted(): void {
   if (runContext()?.signal?.aborted) throw new RunAbortedError();
 }
 
+/** One line of text: leading/trailing whitespace gone, any run of whitespace (incl. newlines) a single space. */
+export const cleanLine = (s: string) => s.replace(/s+/g, " ").trim();
+
 /** One activity-feed line. `actor` is set by the caller, which is the code doing the work. */
 export function emitStatus(message: string, extra: { actor: Actor; domain?: string; cached?: boolean }): void {
   const ctx = runContext();
   if (!ctx?.onStatus || ctx.signal?.aborted) return;
-  ctx.onStatus({ type: "status", message, actor: extra.actor, ...(extra.domain ? { domain: extra.domain } : {}), ...(extra.cached !== undefined ? { cached: extra.cached } : {}) });
+  const line = cleanLine(message);
+  if (!line) return;
+  ctx.onStatus({ type: "status", message: line, actor: extra.actor, ...(extra.domain ? { domain: extra.domain } : {}), ...(extra.cached !== undefined ? { cached: extra.cached } : {}) });
 }
 
 /** Count work for the feed's summary line (searches, pages read, extractions, quotes checked/dropped). */

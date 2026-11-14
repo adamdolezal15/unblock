@@ -117,3 +117,11 @@ describe("mainLegs", () => {
     expect(mainLegs([false, false])).toEqual([false]);
   });
 });
+
+describe("status lines are clean text", () => {
+  it("the reducer trims leading newlines and collapses inner whitespace", async () => {
+    const { runReducer, initialRunState } = await import("./runState");
+    const s = runReducer(initialRunState, { type: "event", event: { type: "status", message: "\n Found 3  official\nsources: dvv.fi\n", actor: "exa" }, at: 1 });
+    expect(s.statuses[0].message).toBe("Found 3 official sources: dvv.fi");
+  });
+});

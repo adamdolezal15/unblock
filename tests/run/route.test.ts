@@ -125,6 +125,7 @@ describe("activity feed actors", () => {
     for await (const e of readEvents(runStream(MARTA, { fast: true, persist: false }))) events.push(e);
     const statuses = events.filter((e): e is Of<"status"> => e.type === "status");
     expect(statuses.every((s) => ["exa", "claude", "check"].includes(s.actor))).toBe(true);
+    expect(statuses.every((s) => s.message.length > 0 && s.message === s.message.replace(/s+/g, " ").trim())).toBe(true);
     const by = (a: string) => statuses.filter((s) => s.actor === a).map((s) => s.message);
     expect(by("exa").some((m) => /^Found \d+/.test(m))).toBe(true);
     expect(by("claude").some((m) => /^Understanding|^Extracting/.test(m))).toBe(true);
