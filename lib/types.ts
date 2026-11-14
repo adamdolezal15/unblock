@@ -9,6 +9,10 @@ export type Profile = {
   arrivalDate?: string; // ISO
   monthlySalaryEur?: number;
   hasFamily?: boolean;
+  /** Under EU temporary protection (e.g. from Ukraine). Changes the permit path. */
+  temporaryProtection?: boolean;
+  /** Planned stay length when stated ("5 months"). */
+  stayMonths?: number;
 };
 
 export type Citation = { url: string; quote: string; trust: Trust; fetchedAt: string };
@@ -32,7 +36,48 @@ export type Step = {
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
   communityTips?: CommunityTip[];
+  /** Every verified claim behind this step (requires-edges, documents, facts), each with its own citation. */
+  claims?: VerifiedClaim[];
 };
+
+/** What a claim asserts about a step. For `requires`, value = a canonical step id. */
+export type ClaimKind =
+  | "applies"
+  | "requires"
+  | "mode"
+  | "document"
+  | "cost_of_delay"
+  | "processing_time"
+  | "address"
+  | "hours"
+  | "booking_url";
+
+/** A claim as extracted, before verification. `quote` is what the extractor says the page says. */
+export type RawClaim = { stepId: string; kind: ClaimKind; value: string; url: string; quote: string };
+
+/** A claim whose quote was found in the source text. `citation.quote` is the matched page text, verbatim. */
+export type VerifiedClaim = {
+  stepId: string;
+  kind: ClaimKind;
+  value: string;
+  citation: Citation;
+  /** 1 = exact (normalised) substring, < 1 = fuzzy token-overlap score. */
+  matchScore: number;
+};
+
+export type DropReason =
+  | "quote_not_found"
+  | "url_not_allowed"
+  | "page_unavailable"
+  | "unknown_step_id"
+  | "invalid_value"
+  | "too_short"
+  | "merged_sentences";
+
+export type DroppedClaim = RawClaim & { reason: DropReason; bestScore?: number };
+
+/** A step we searched for but could not confirm from any source. Never shown as a fact. */
+export type StepStub = { id: string; label: string; message: string; checkUrl?: string };
 
 export type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 
