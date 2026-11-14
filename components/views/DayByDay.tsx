@@ -69,9 +69,12 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   if (!state.schedule) return <DaysSkeleton />;
   const ctx: Ctx = { state, onOpen, onSources, shortcut, drafts };
   const visits = entries.filter((e) => e.kind === "visit").length;
+  // Online steps off the slowest chain have no real date of their own: one "Anytime online" group, not the timeline.
+  const anytime = entries.filter((e): e is OnlineEntry => e.kind === "online" && !e.steps.some((s) => s.critical));
+  const timeline = entries.filter((e) => !(anytime as DayEntry[]).includes(e));
   // One date marker per day: entries on the same date stack under it (the finish stays its own row).
   const groups: DayEntry[][] = [];
-  for (const e of entries) {
+  for (const e of timeline) {
     const g = groups[groups.length - 1];
     if (g && e.kind !== "done" && g[0].kind !== "done" && g[0].date === e.date) g.push(e);
     else groups.push([e]);
@@ -95,8 +98,25 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
           </Row>
         ))}
       </ol>
+      {anytime.length > 0 && <AnytimeOnline ctx={ctx} entries={anytime} />}
       {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
       <ReadyToSend drafts={drafts} forms={forms} />
+    </section>
+  );
+}
+
+/** Online steps that do not move the finish date: one group without dates; each card says when it first becomes possible. */
+function AnytimeOnline({ ctx, entries }: { ctx: Ctx; entries: OnlineEntry[] }) {
+  return (
+    <section aria-label="Anytime online" className="mt-12">
+      <h2 className="flex items-center gap-2 text-[28px] font-bold text-ink">
+        <IconOnline className="h-6 w-6" />
+        Anytime online
+      </h2>
+      <p className="mt-1 max-w-[62ch] text-[17px] text-muted">No visit and no fixed date. Do these whenever it suits you; they don&apos;t change your finish date.</p>
+      <div className="mt-4 space-y-4">
+        {entries.flatMap((e) => e.steps.map((s) => <OnlineStep key={s.id} ctx={ctx} s={s} from={e.date} />))}
+      </div>
     </section>
   );
 }
@@ -181,7 +201,7 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
           {dayNum}
         </p>
         <p aria-hidden className="mt-1 text-[13px] leading-tight text-muted">
-          {entry.kind === "online" ? `from ${month}` : `${month} · ${dow(entry.date).slice(0, 3)}`}
+          {entry.kind === "online" ? `from ${month}` : `${month} · ${dow(entry.date).slice(0, 3)}`}
         </p>
       </div>
       <div className="relative flex justify-center">
@@ -655,7 +675,7 @@ function Online({ ctx, e }: { ctx: Ctx; e: OnlineEntry }) {
   );
 }
 
-function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
+function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime online": the first day it is possible. */ from?: string }) {
   const [open, setOpen] = useState(false);
   const forms = uniqueForms(s.forms);
   const offers = ctx.drafts?.forStep(s.id) ?? [];
@@ -667,6 +687,7 @@ function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
       <div className="flex flex-wrap items-start justify-between gap-x-4">
         <div className="min-w-0 flex-1">
           <StepLine s={s} big={false} />
+          {from && <p className="mt-1 text-[13px] text-muted">Possible from {fmtDay(from)}</p>}
         </div>
         {badge}
       </div>
