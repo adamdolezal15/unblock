@@ -13,6 +13,15 @@ export type Profile = {
 
 export type Citation = { url: string; quote: string; trust: Trust; fetchedAt: string };
 
+/** A community tip. `trick` tips can become calendar reminders (e.g. "check for cancelled slots at 23:00"). */
+export type CommunityTip = Citation & {
+  kind?: "wait_time" | "trick" | "gotcha";
+  /** Short actionable text, used as the reminder title for `trick` tips. */
+  text?: string;
+  /** Helsinki wall-clock time "HH:MM" the reminder should fire at. Defaults to 09:00. */
+  remindAt?: string;
+};
+
 export type Step = {
   id: string; // e.g. "dvv_registration"
   title: string;
@@ -22,7 +31,7 @@ export type Step = {
   costOfDelay?: string;
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
-  communityTips?: Citation[];
+  communityTips?: CommunityTip[];
 };
 
 export type Conflict = { topic: string; a: Citation; b: Citation; note: string };
