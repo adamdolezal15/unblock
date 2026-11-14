@@ -79,6 +79,10 @@ type Step = {
 // steps with a verified `provides` claim (DVV registration, a Vero tax office visit, a residence permit...).
 // lib/graph: an any-of group is satisfied by its earliest-finishing option; schedule waits come from
 // cited processing_time claims where present (lib/agent/estimates.ts), else defaults flagged estimated.
+// Same visit (cited same_visit claims -> shared visitId): per visit group the scheduler evaluates merged vs
+// separate, picks the earliest plan end (tie: fewer visits) and reports the rejected option in
+// Schedule.visitChoices[].alternative (member dates, visits, plan-end shift); text via describeVisitAlternative().
+// Finnish public holidays (+ Christmas Eve, Midsummer Eve) are skipped by default; pushed steps carry movedBy.
 
 type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 ```

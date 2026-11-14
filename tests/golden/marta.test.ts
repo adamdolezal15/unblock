@@ -49,13 +49,30 @@ describe("golden: Marta", () => {
     expect(hardEdge("dvv_registration", "tax_card")).toBe(false);
   });
 
-  it("bank account opens before strong ID; strong ID offers to merge into one visit", () => {
+  it("bank account + strong ID merged into one visit on 10 Dec; alternative = separate", () => {
     const bank = sched.items.bank_account;
     const sid = sched.items.strong_identification;
-    expect(bank.startIndex).toBeLessThan(sid.startIndex);
-    expect(bank.visitId).toBeUndefined();
-    expect(sid.visitOption).toMatchObject({ mergeWith: ["bank_account"], savesVisits: 1 });
-    expect(sid.visitOption!.mergeDate > bank.startDate).toBe(true);
+    expect(bank).toMatchObject({ startDate: "2026-12-10" });
+    expect(sid).toMatchObject({ startDate: "2026-12-10" });
+    expect(bank.visitId).toBeDefined();
+    expect(sid.visitId).toBe(bank.visitId);
+
+    const choice = sched.visitChoices.find((c) => c.members.includes("bank_account"))!;
+    expect(choice.chosen).toMatchObject({ mode: "merged", visits: 1 });
+    const alt = choice.alternative;
+    expect(alt).toMatchObject({ mode: "separate", visits: 2 });
+    // separately the account opens earlier (7 Dec, via the Vero ID code) and is ready sooner…
+    expect(alt.members.bank_account.startDate).toBe("2026-12-07");
+    expect(alt.memberShift.bank_account.readyDays).toBeLessThan(0);
+    // …but strong ID then waits for the account, and the whole plan ends later
+    expect(alt.memberShift.strong_identification.readyDays).toBeGreaterThan(0);
+    expect(alt.planEndShift.calendarDays).toBeGreaterThan(0);
+  });
+
+  it("tax card visit: merged is chosen, separate is the alternative", () => {
+    const choice = sched.visitChoices.find((c) => c.members.includes("tax_card"))!;
+    expect(choice.chosen.mode).toBe("merged");
+    expect(choice.alternative.mode).toBe("separate");
   });
 
   it("bank_account -> kela_registration and bank_account -> strong_identification", () => {

@@ -6,6 +6,7 @@ import { priorityScores } from "./priority";
 import { topoOrder } from "./topoOrder";
 import type { CriticalPath, Graph, Schedule, ScheduleOptions, ScheduledStep } from "./types";
 
+
 /** Fallback when no community estimate exists: a day of effort, a working week of processing. */
 export const DEFAULT_ESTIMATE = { durationDays: 1, waitDays: 5 } as const;
 
@@ -23,11 +24,11 @@ function clean(n: number | undefined): number | undefined {
  * Earliest times are computed in time order (Knuth's AND/OR generalisation of Dijkstra): nodes are
  * finalised by increasing ready day, so the first option to finalise is the earliest for its group.
  *
- * Same visit: nodes sharing a `visitId` CAN be done together at one service desk. Members that are
- * ready on the same day are merged: a requirement a visit-mate meets (directly, or through a milestone
- * a visit-mate provides) does not wait for that mate's processing time, and they start together.
- * Members ready on different days are scheduled separately; the later one carries a `visitOption`
- * ({ mergeWith, mergeDate, savesVisits }) so the UI can offer "or wait until <mergeDate>, one visit".
+ * Same visit: nodes sharing a `visitId` CAN be done together at one service desk. Per visit group the
+ * scheduler evaluates MERGED (one visit; a requirement a visit-mate meets, directly or through a milestone
+ * it provides, does not wait for that mate's processing; members start together) vs SEPARATE (one visit
+ * each, requirements apply normally), picks what ends the whole plan earliest (tie: fewer visits) and
+ * reports the rejected option with its consequences in `visitChoices`.
  */
 export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, opts: ScheduleOptions = {}): Schedule {
   const today = opts.today ?? helsinkiDate(new Date());
@@ -115,62 +116,148 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   return items;
   };
 
-  // Soft same-visit rule. A visit's members are merged only if they are ready on the same day.
-  // Natural start = earliest start with requirements met inside the visit counted as met.
-  // Members ready earlier go separately (their internal requirements then apply normally); each
-  // latest member gets a visitOption: "or do it together with them on <mergeDate>, one visit fewer".
-  // Splitting only removes members, so the loop ends.
+  /** Schedule with the given visits merged; merged members start together (floors only grow). */
+  const aligned = (visitOf: Map<string, string>): Record<string, ScheduledStep> => {
+    let floors = new Map<string, number>();
+    let items = run(visitOf, floors);
+    for (let i = 0; i <= graph.nodes.length; i++) {
+      const next = new Map(floors);
+      let changed = false;
+      for (const members of groupBy(visitOf).values()) {
+        const scheduled = members.filter((m) => items[m]);
+        const start = Math.max(0, ...scheduled.map((m) => items[m].startIndex));
+        for (const m of scheduled) {
+          if (items[m].startIndex < start) {
+            next.set(m, start);
+            changed = true;
+          }
+        }
+      }
+      if (!changed) break;
+      floors = next;
+      items = run(visitOf, floors);
+    }
+    return items;
+  };
+
+  // Visit choice. Each declared visit group is either MERGED (one visit, all members on the latest
+  // member's day, requirements between members met inside the visit) or SEPARATE (one visit per
+  // member, requirements between them apply normally). Pick the combination that finishes the whole
+  // plan earliest; tie-break: fewer visits. Exhaustive for up to 8 groups, greedy flips beyond.
   const declared = new Map(graph.nodes.filter((n) => n.visitId).map((n) => [n.id, n.visitId!]));
-  const options = new Map<string, ScheduledStep["visitOption"]>();
-  let visitOf = new Map(declared);
-  for (let i = 0; i <= graph.nodes.length; i++) {
-    const natural = run(visitOf, new Map());
-    const next = new Map<string, string>();
-    for (const [visitId, members] of groupBy(visitOf)) {
-      const scheduled = members.filter((m) => natural[m]);
-      const latest = Math.max(0, ...scheduled.map((m) => natural[m].startIndex));
-      const together = scheduled.filter((m) => natural[m].startIndex === latest);
-      const separate = scheduled.filter((m) => natural[m].startIndex < latest);
-      if (together.length > 1) for (const m of together) next.set(m, visitId);
-      if (separate.length && !options.has(together[0])) {
-        // first split of this visit: the date doing everything at once was possible
-        for (const m of together) {
-          options.set(m, { mergeWith: separate, mergeDate: dateAt(latest), savesVisits: separate.length });
+  const groupsById = groupBy(declared);
+  const groupIds = [...groupsById.keys()];
+  type Eval = { merged: Set<string>; items: Record<string, ScheduledStep>; end: number; visits: number };
+  const memo = new Map<string, Eval>();
+  const evaluate = (merged: Set<string>): Eval => {
+    const key = groupIds.filter((g) => merged.has(g)).join("|");
+    const hit = memo.get(key);
+    if (hit) return hit;
+    const visitOf = new Map([...declared].filter(([, v]) => merged.has(v)));
+    const items = aligned(visitOf);
+    const end = Math.max(0, ...Object.values(items).map((it) => it.readyIndex));
+    let visits = 0;
+    for (const [g, members] of groupsById) {
+      const n = members.filter((m) => items[m]).length;
+      visits += merged.has(g) ? Math.min(n, 1) : n;
+    }
+    const e = { merged, items, end, visits };
+    memo.set(key, e);
+    return e;
+  };
+  const better = (a: Eval, b: Eval) => a.end < b.end || (a.end === b.end && a.visits < b.visits);
+  let best = evaluate(new Set(groupIds));
+  if (groupIds.length <= 8) {
+    for (let mask = 0; mask < 1 << groupIds.length; mask++) {
+      const e = evaluate(new Set(groupIds.filter((_, i) => mask & (1 << i))));
+      if (better(e, best)) best = e;
+    }
+  } else {
+    for (let improved = true; improved; ) {
+      improved = false;
+      for (const g of groupIds) {
+        const flipped = new Set(best.merged);
+        if (flipped.has(g)) flipped.delete(g);
+        else flipped.add(g);
+        const e = evaluate(flipped);
+        if (better(e, best)) {
+          best = e;
+          improved = true;
         }
       }
     }
-    const same = next.size === visitOf.size && [...next].every(([k, v]) => visitOf.get(k) === v);
-    visitOf = next;
-    if (same) break;
   }
 
-  // Members still merged start together: align each to the latest member's start (floors only grow).
-  let floors = new Map<string, number>();
-  let items = run(visitOf, floors);
-  for (let i = 0; i <= graph.nodes.length; i++) {
-    const next = new Map(floors);
-    let changed = false;
-    for (const members of groupBy(visitOf).values()) {
-      const scheduled = members.filter((m) => items[m]);
-      const start = Math.max(0, ...scheduled.map((m) => items[m].startIndex));
-      for (const m of scheduled) {
-        if (items[m].startIndex < start) {
-          next.set(m, start);
-          changed = true;
-        }
-      }
-    }
-    if (!changed) break;
-    floors = next;
-    items = run(visitOf, floors);
+  const items = best.items;
+  const endDate = (e: Eval) => dateAt(e.end);
+  const visitChoices: VisitChoice[] = [];
+  for (const [visitId, all] of groupsById) {
+    const members = all.filter((m) => items[m]);
+    if (members.length < 2) continue;
+    const flipped = new Set(best.merged);
+    const chosenMerged = flipped.has(visitId);
+    if (chosenMerged) flipped.delete(visitId);
+    else flipped.add(visitId);
+    const alt = evaluate(flipped);
+    const option = (e: Eval, merged: boolean): VisitPlan => ({
+      mode: merged ? "merged" : "separate",
+      visits: merged ? 1 : members.length,
+      members: Object.fromEntries(
+        members.filter((m) => e.items[m]).map((m) => [m, { startDate: e.items[m].startDate, readyDate: e.items[m].readyDate }]),
+      ),
+      planEnd: endDate(e),
+    });
+    const altPlan = option(alt, !chosenMerged);
+    visitChoices.push({
+      visitId,
+      members,
+      chosen: option(best, chosenMerged),
+      alternative: {
+        ...altPlan,
+        planEndShift: { workingDays: alt.end - best.end, calendarDays: calendarDaysBetween(endDate(best), endDate(alt)) },
+        memberShift: Object.fromEntries(
+          members
+            .filter((m) => alt.items[m])
+            .map((m) => [
+              m,
+              {
+                startDays: calendarDaysBetween(items[m].startDate, alt.items[m].startDate),
+                readyDays: calendarDaysBetween(items[m].readyDate, alt.items[m].readyDate),
+              },
+            ]),
+        ),
+      },
+    });
+    for (const m of members) items[m].visitGroup = visitId;
   }
-  for (const [id, option] of options) if (items[id] && option) items[id].visitOption = option;
 
   // Keep items keyed in topological order (stable for consumers), not finalisation order.
   const ordered: Record<string, ScheduledStep> = {};
   for (const id of order) if (items[id]) ordered[id] = items[id];
-  return { startDate: dateAt(0), items: ordered, order, blocked, deadlocks };
+  return { startDate: dateAt(0), items: ordered, order, blocked, deadlocks, visitChoices };
 }
+
+/** How a visit group's members are done: merged into one visit, or one visit each. */
+export type VisitPlan = {
+  mode: "merged" | "separate";
+  visits: number;
+  members: Record<string, { startDate: string; readyDate: string }>;
+  /** Ready date of the last step in the whole plan under this choice. */
+  planEnd: string;
+};
+
+/** The scheduler's choice for one visit group, and the rejected option with its consequences. */
+export type VisitChoice = {
+  visitId: string;
+  members: string[];
+  chosen: VisitPlan;
+  alternative: VisitPlan & {
+    /** How the end of the WHOLE plan moves under the alternative (positive = later). */
+    planEndShift: { workingDays: number; calendarDays: number };
+    /** Per member, calendar days its start / ready date moves under the alternative (positive = later). */
+    memberShift: Record<string, { startDays: number; readyDays: number }>;
+  };
+};
 
 /** visitId -> member node ids. */
 export function visitMembers(graph: Graph): Map<string, string[]> {

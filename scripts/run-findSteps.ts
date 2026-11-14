@@ -9,7 +9,18 @@ import { parseProfile } from "../lib/agent/parseProfile";
 import { findSteps } from "../lib/agent/findSteps";
 import { cacheMode } from "../lib/exa/cache";
 import { exaStats, resetExaStats } from "../lib/exa/search";
-import { buildGraph, criticalNode, criticalPath, schedule, topoOrder } from "../lib/graph";
+import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../lib/graph";
+
+const SHORT: Record<string, string> = {
+  bank_account: "the bank account",
+  strong_identification: "strong ID",
+  tax_card: "the tax card",
+  vero_identity_code: "the Vero ID code",
+  dvv_registration: "DVV registration",
+  eu_registration: "EU registration",
+  kela_registration: "Kela",
+  police_id_card: "the police ID card",
+};
 import { estimatesFromSteps } from "../lib/agent/estimates";
 import type { Citation, VerifiedClaim } from "../lib/types";
 
@@ -106,8 +117,11 @@ async function main() {
     const visit = it.visitId ? `, ${it.visitId}` : "";
     const fmt = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
     const moved = it.movedBy ? `  ← moved from ${fmt(it.movedBy.from)}: ${it.movedBy.holiday}` : "";
-    const option = it.visitOption ? `  ⇄ or on ${fmt(it.visitOption.mergeDate)} together with ${it.visitOption.mergeWith.join(", ")} (${it.visitOption.savesVisits} visit fewer)` : "";
-    console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})${moved}${option}`);
+    console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})${moved}`);
+  }
+  for (const c of sched.visitChoices) {
+    console.log(`  visit ${c.visitId}: chose ${c.chosen.mode} (${c.chosen.visits} visit${c.chosen.visits === 1 ? "" : "s"}), plan ends ${c.chosen.planEnd}`);
+    console.log(`    ${describeVisitAlternative(c, (id) => SHORT[id] ?? id.replace(/_/g, " "))}`);
   }
   console.log(`  order: ${topo.order.join(" → ") || "(none)"}`);
   for (const d of topo.deadlocks) console.log(`  DEADLOCK: ${d.stepIds.join(" → ")}: ${d.explanation}`);

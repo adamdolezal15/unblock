@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Step } from "../types";
+import { describeVisitAlternative } from "./describe";
 import { buildGraph, criticalPath, schedule } from "./index";
 
 function step(id: string, requires: string[] = [], extra: Partial<Step> = {}): Step {
@@ -41,22 +42,32 @@ describe("same visit (shared visitId)", () => {
     expect(s.items.bank_account.startIndex).toBe(4);
   });
 
-  it("members ready on different days are NOT merged; the later one carries a visitOption", () => {
+  it("picks SEPARATE when that ends the plan earlier, and reports merged as the alternative", () => {
     const g = buildGraph([
       step("slow_prereq"),
       step("a", ["slow_prereq"], { visitId: "v" }),
       step("b", [], { visitId: "v" }),
     ]);
     const s = schedule(g, {}, { today: "2026-09-01", holidays: [], estimates: { slow_prereq: { durationDays: 1, waitDays: 4 }, a: { durationDays: 1, waitDays: 0 }, b: { durationDays: 1, waitDays: 2 } } });
-    expect(s.items.b).toMatchObject({ startIndex: 0 });
+    // merged: both on day 5, b ready day 8 -> plan end 8; separate: b day 0 (ready 3), a day 5 (ready 6) -> end 6
+    expect(s.items.b).toMatchObject({ startIndex: 0, visitGroup: "v" });
     expect(s.items.b.visitId).toBeUndefined();
-    expect(s.items.b.visitOption).toBeUndefined();
     expect(s.items.a.startIndex).toBe(5);
-    expect(s.items.a.visitOption).toEqual({ mergeWith: ["b"], mergeDate: "2026-09-08", savesVisits: 1 });
+    const [choice] = s.visitChoices;
+    expect(choice.chosen).toMatchObject({ mode: "separate", visits: 2 });
+    expect(choice.alternative).toMatchObject({ mode: "merged", visits: 1, planEndShift: { workingDays: 2 } });
+    expect(choice.alternative.members.b.startDate).toBe("2026-09-08");
     expect(criticalPath(g, s).stepIds).toEqual(["slow_prereq", "a"]);
   });
 
-  it("Marta's bank: the account opens as soon as the ID code is ready; strong ID may join it later", () => {
+  it("tie on the plan end: fewer visits wins", () => {
+    const g = buildGraph([step("a", [], { visitId: "v" }), step("b", [], { visitId: "v" }), step("c")]);
+    const s = schedule(g, {}, { today: "2026-09-01", holidays: [], estimates: { a: { durationDays: 1, waitDays: 0 }, b: { durationDays: 1, waitDays: 0 }, c: { durationDays: 1, waitDays: 9 } } });
+    expect(s.visitChoices[0].chosen.mode).toBe("merged");
+    expect(s.visitChoices[0].alternative).toMatchObject({ mode: "separate", visits: 2, planEndShift: { workingDays: 0, calendarDays: 0 } });
+  });
+
+  it("Marta's bank: merged on 10 Dec beats opening the account alone on 7 Dec", () => {
     const g = buildGraph([
       step("eu_registration"),
       step("dvv_registration", ["eu_registration"]),
@@ -73,15 +84,26 @@ describe("same visit (shared visitId)", () => {
       strong_identification: { durationDays: 1, waitDays: 10 },
     };
     const s = schedule(g, { arrivalDate: "2026-12-01" }, { today: "2026-11-14", estimates: est });
-    expect(s.items.bank_account.startDate).toBe("2026-12-07"); // ID code via Vero
-    expect(s.items.bank_account.visitId).toBeUndefined();
-    // separate: strong ID now waits for the account to be ready (internal requirement applies again)
-    expect(s.items.strong_identification.startIndex).toBe(s.items.bank_account.readyIndex);
-    expect(s.items.strong_identification.visitOption).toEqual({
-      mergeWith: ["bank_account"],
-      mergeDate: "2026-12-10", // DVV ready: the day both could be done in one visit
-      savesVisits: 1,
+    // merged: both on Thu 10 Dec (DVV ready), ready 29 Dec (24-26 Dec are holidays)
+    expect(s.items.bank_account).toMatchObject({ startDate: "2026-12-10", readyDate: "2026-12-29", visitId: "visit:bank" });
+    expect(s.items.strong_identification).toMatchObject({ startDate: "2026-12-10", readyDate: "2026-12-29", visitId: "visit:bank" });
+    const choice = s.visitChoices.find((c) => c.visitId === "visit:bank")!;
+    expect(choice.chosen).toMatchObject({ mode: "merged", visits: 1, planEnd: "2026-12-29" });
+    // separate: account on 7 Dec, ready 22 Dec; strong ID then waits for the account -> ready 12 Jan
+    expect(choice.alternative).toMatchObject({
+      mode: "separate",
+      visits: 2,
+      planEnd: "2027-01-12",
+      planEndShift: { calendarDays: 14 },
+      members: {
+        bank_account: { startDate: "2026-12-07", readyDate: "2026-12-22" },
+        strong_identification: { readyDate: "2027-01-12" },
+      },
+      memberShift: { bank_account: { readyDays: -7 }, strong_identification: { readyDays: 14 } },
     });
+    expect(describeVisitAlternative(choice, (id) => ({ bank_account: "the bank account", strong_identification: "strong ID" })[id] ?? id)).toBe(
+      "Alternative: do the bank account on 7 Dec separately → the bank account ready 1 week earlier, but strong ID 2 weeks later and 1 extra visit. Whole plan ends 2 weeks later.",
+    );
   });
 
   it("does not drop a requirement whose visit-mate can never be done", () => {
