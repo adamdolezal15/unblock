@@ -7,14 +7,15 @@ import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { ActivityFeed } from "./ActivityFeed";
-import { Header, PROMISE } from "./Header";
+import { Header } from "./Header";
 import type { Selection } from "./graph/PlanGraph";
 import { Closing } from "./letter/Closing";
 import { LetterSkeleton, LetterView, Prose } from "./letter/LetterView";
 import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { RunInput } from "./RunInput";
-import { ErrorState, LandingNote, OutOfScopeState, PartialNotice } from "./States";
+import { ErrorState, OutOfScopeState, PartialNotice } from "./States";
+import { Landing } from "./Landing";
 import { SidePanel } from "./panel/SidePanel";
 import { StepsPreview } from "./StepsPreview";
 import { DayByDay } from "./views/DayByDay";
@@ -26,18 +27,7 @@ export function App() {
   const { state, start, reset } = useRun();
   const running = state.phase === "running";
 
-  if (state.phase === "idle") {
-    return (
-      <main className="min-h-screen px-8 pb-24 pt-[12vh]">
-        <div className="max-w-[760px]">
-          <h1 className="font-serif text-[56px] font-semibold leading-none tracking-[-0.01em] text-ink">Unblock</h1>
-          <p className="mb-10 mt-3 font-serif text-[24px] leading-snug text-muted">{PROMISE}</p>
-          <RunInput key={state.runKey} value="" running={false} compact={false} onSubmit={start} />
-          <LandingNote />
-        </div>
-      </main>
-    );
-  }
+  if (state.phase === "idle") return <Landing runKey={state.runKey} onSubmit={start} />;
 
   return (
     <div className="min-h-screen pb-24">

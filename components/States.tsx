@@ -1,14 +1,5 @@
 // Non-result states, written as prose in the letter column. Each should look intentional.
 
-export function LandingNote() {
-  return (
-    <div className="mt-10 max-w-[620px] space-y-3 text-[17px] leading-[1.65] text-muted">
-      <p>Tell me where you&apos;re moving and why. I&apos;ll work out which office comes first, what each one needs from you, and when you can be done.</p>
-      <p>Every claim links to the sentence on the page it came from. If I can&apos;t find a source, I&apos;ll say so.</p>
-    </div>
-  );
-}
-
 export function OutOfScopeState({ message }: { message: string }) {
   return (
     <Note title="That's outside what I can plan">
