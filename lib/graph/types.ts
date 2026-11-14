@@ -79,6 +79,11 @@ export type ScheduledStep = {
   movedBy?: { from: string; holiday: string };
   /** Set when this step is done in a shared visit (same start day as its visit-mates). */
   visitId?: string;
+  /**
+   * This step COULD share a visit with `mergeWith` (a source says so), but they are ready on different
+   * days, so they are scheduled separately. Doing them together on `mergeDate` saves `savesVisits` visits.
+   */
+  visitOption?: { mergeWith: string[]; mergeDate: string; savesVisits: number };
 };
 
 export type Schedule = {

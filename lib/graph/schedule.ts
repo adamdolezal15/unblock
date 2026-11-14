@@ -23,9 +23,11 @@ function clean(n: number | undefined): number | undefined {
  * Earliest times are computed in time order (Knuth's AND/OR generalisation of Dijkstra): nodes are
  * finalised by increasing ready day, so the first option to finalise is the earliest for its group.
  *
- * Same visit: nodes sharing a `visitId` are done together at one service desk. A requirement that a
- * visit-mate meets (directly, or through a milestone that a visit-mate provides) does not wait for that
- * mate's processing time, and all members start on the same day: the latest day any of them could start.
+ * Same visit: nodes sharing a `visitId` CAN be done together at one service desk. Members that are
+ * ready on the same day are merged: a requirement a visit-mate meets (directly, or through a milestone
+ * a visit-mate provides) does not wait for that mate's processing time, and they start together.
+ * Members ready on different days are scheduled separately; the later one carries a `visitOption`
+ * ({ mergeWith, mergeDate, savesVisits }) so the UI can offer "or wait until <mergeDate>, one visit".
  */
 export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, opts: ScheduleOptions = {}): Schedule {
   const today = opts.today ?? helsinkiDate(new Date());
@@ -49,15 +51,14 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   const defaults = opts.defaults ?? DEFAULT_ESTIMATE;
 
   const { order, blocked, deadlocks } = topoOrder(graph);
-  const groups = scheduleGroups(graph);
   const milestone = new Set(graph.nodes.filter((n) => n.milestone).map((n) => n.id));
-  const visits = visitMembers(graph);
-  const visitOf = new Map(graph.nodes.filter((n) => n.visitId).map((n) => [n.id, n.visitId!]));
   const pos = new Map(order.map((id, i) => [id, i]));
+
+  /** One earliest-time pass for a given set of shared visits and per-node start floors. */
+  const run = (visitOf: Map<string, string>, floors: Map<string, number>): Record<string, ScheduledStep> => {
+  const groups = scheduleGroups(graph, visitOf);
   const satisfies = new Map<string, [string, number][]>(graph.nodes.map((n) => [n.id, []]));
   for (const [target, gs] of groups) gs.forEach((g, gi) => g.forEach((o) => satisfies.get(o)?.push([target, gi])));
-
-  const run = (floors: Map<string, number>): Record<string, ScheduledStep> => {
   const groupReady = new Map<string, number[]>();
   const remaining = new Map<string, number>();
   for (const [id, gs] of groups) {
@@ -114,13 +115,42 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   return items;
   };
 
-  // Align each visit to its latest member's start; repeat until no start moves (floors only grow).
+  // Soft same-visit rule. A visit's members are merged only if they are ready on the same day.
+  // Natural start = earliest start with requirements met inside the visit counted as met.
+  // Members ready earlier go separately (their internal requirements then apply normally); each
+  // latest member gets a visitOption: "or do it together with them on <mergeDate>, one visit fewer".
+  // Splitting only removes members, so the loop ends.
+  const declared = new Map(graph.nodes.filter((n) => n.visitId).map((n) => [n.id, n.visitId!]));
+  const options = new Map<string, ScheduledStep["visitOption"]>();
+  let visitOf = new Map(declared);
+  for (let i = 0; i <= graph.nodes.length; i++) {
+    const natural = run(visitOf, new Map());
+    const next = new Map<string, string>();
+    for (const [visitId, members] of groupBy(visitOf)) {
+      const scheduled = members.filter((m) => natural[m]);
+      const latest = Math.max(0, ...scheduled.map((m) => natural[m].startIndex));
+      const together = scheduled.filter((m) => natural[m].startIndex === latest);
+      const separate = scheduled.filter((m) => natural[m].startIndex < latest);
+      if (together.length > 1) for (const m of together) next.set(m, visitId);
+      if (separate.length && !options.has(together[0])) {
+        // first split of this visit: the date doing everything at once was possible
+        for (const m of together) {
+          options.set(m, { mergeWith: separate, mergeDate: dateAt(latest), savesVisits: separate.length });
+        }
+      }
+    }
+    const same = next.size === visitOf.size && [...next].every(([k, v]) => visitOf.get(k) === v);
+    visitOf = next;
+    if (same) break;
+  }
+
+  // Members still merged start together: align each to the latest member's start (floors only grow).
   let floors = new Map<string, number>();
-  let items = run(floors);
+  let items = run(visitOf, floors);
   for (let i = 0; i <= graph.nodes.length; i++) {
     const next = new Map(floors);
     let changed = false;
-    for (const members of visits.values()) {
+    for (const members of groupBy(visitOf).values()) {
       const scheduled = members.filter((m) => items[m]);
       const start = Math.max(0, ...scheduled.map((m) => items[m].startIndex));
       for (const m of scheduled) {
@@ -132,8 +162,9 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
     }
     if (!changed) break;
     floors = next;
-    items = run(floors);
+    items = run(visitOf, floors);
   }
+  for (const [id, option] of options) if (items[id] && option) items[id].visitOption = option;
 
   // Keep items keyed in topological order (stable for consumers), not finalisation order.
   const ordered: Record<string, ScheduledStep> = {};
@@ -148,13 +179,22 @@ export function visitMembers(graph: Graph): Map<string, string[]> {
   return m;
 }
 
+function groupBy(visitOf: Map<string, string>): Map<string, string[]> {
+  const m = new Map<string, string[]>();
+  for (const [id, v] of visitOf) m.set(v, [...(m.get(v) ?? []), id]);
+  return m;
+}
+
 /**
  * Requirement groups as the scheduler sees them: a group that a satisfiable visit-mate meets (directly,
  * or as an option of a milestone in the group) is met inside the visit and is dropped.
+ * `visitOf` defaults to the visits declared on the graph's nodes.
  */
-export function scheduleGroups(graph: Graph): Map<string, string[][]> {
+export function scheduleGroups(
+  graph: Graph,
+  visitOf: Map<string, string> = new Map(graph.nodes.filter((n) => n.visitId).map((n) => [n.id, n.visitId!])),
+): Map<string, string[][]> {
   const groups = requirementGroups(graph);
-  const visitOf = new Map(graph.nodes.filter((n) => n.visitId).map((n) => [n.id, n.visitId!]));
   if (visitOf.size === 0) return groups;
   const milestone = new Set(graph.nodes.filter((n) => n.milestone).map((n) => n.id));
   const can = satisfiable(graph);
@@ -191,7 +231,11 @@ export function criticalPath(graph: Graph, sched: Schedule): CriticalPath {
     if (r > lr || (r === lr && better(id, last))) last = id;
   }
 
-  const groups = scheduleGroups(graph);
+  // Only visits that were actually merged in this schedule (the soft rule may have split some).
+  const groups = scheduleGroups(
+    graph,
+    new Map(ids.filter((id) => sched.items[id].visitId).map((id) => [id, sched.items[id].visitId!])),
+  );
   // A visit starts when its latest-blocked member could, so look at every member's requirements.
   const mates = (id: string) => {
     const v = sched.items[id]?.visitId;

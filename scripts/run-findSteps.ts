@@ -106,7 +106,8 @@ async function main() {
     const visit = it.visitId ? `, ${it.visitId}` : "";
     const fmt = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
     const moved = it.movedBy ? `  ← moved from ${fmt(it.movedBy.from)}: ${it.movedBy.holiday}` : "";
-    console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})${moved}`);
+    const option = it.visitOption ? `  ⇄ or on ${fmt(it.visitOption.mergeDate)} together with ${it.visitOption.mergeWith.join(", ")} (${it.visitOption.savesVisits} visit fewer)` : "";
+    console.log(`    day ${String(it.startIndex + 1).padStart(3)} ${it.startDate} → ready ${it.readyDate}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""}${visit})${moved}${option}`);
   }
   console.log(`  order: ${topo.order.join(" → ") || "(none)"}`);
   for (const d of topo.deadlocks) console.log(`  DEADLOCK: ${d.stepIds.join(" → ")}: ${d.explanation}`);

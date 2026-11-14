@@ -49,6 +49,15 @@ describe("golden: Marta", () => {
     expect(hardEdge("dvv_registration", "tax_card")).toBe(false);
   });
 
+  it("bank account opens before strong ID; strong ID offers to merge into one visit", () => {
+    const bank = sched.items.bank_account;
+    const sid = sched.items.strong_identification;
+    expect(bank.startIndex).toBeLessThan(sid.startIndex);
+    expect(bank.visitId).toBeUndefined();
+    expect(sid.visitOption).toMatchObject({ mergeWith: ["bank_account"], savesVisits: 1 });
+    expect(sid.visitOption!.mergeDate > bank.startDate).toBe(true);
+  });
+
   it("bank_account -> kela_registration and bank_account -> strong_identification", () => {
     expect(hardEdge("bank_account", "kela_registration")).toBe(true);
     expect(hardEdge("bank_account", "strong_identification")).toBe(true);

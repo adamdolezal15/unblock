@@ -41,17 +41,47 @@ describe("same visit (shared visitId)", () => {
     expect(s.items.bank_account.startIndex).toBe(4);
   });
 
-  it("all members start together, on the latest member's earliest day", () => {
+  it("members ready on different days are NOT merged; the later one carries a visitOption", () => {
     const g = buildGraph([
       step("slow_prereq"),
       step("a", ["slow_prereq"], { visitId: "v" }),
       step("b", [], { visitId: "v" }),
     ]);
-    const s = schedule(g, {}, { today: "2026-09-01", estimates: { slow_prereq: { durationDays: 1, waitDays: 4 }, a: { durationDays: 1, waitDays: 0 }, b: { durationDays: 1, waitDays: 2 } } });
+    const s = schedule(g, {}, { today: "2026-09-01", holidays: [], estimates: { slow_prereq: { durationDays: 1, waitDays: 4 }, a: { durationDays: 1, waitDays: 0 }, b: { durationDays: 1, waitDays: 2 } } });
+    expect(s.items.b).toMatchObject({ startIndex: 0 });
+    expect(s.items.b.visitId).toBeUndefined();
+    expect(s.items.b.visitOption).toBeUndefined();
     expect(s.items.a.startIndex).toBe(5);
-    expect(s.items.b.startIndex).toBe(5);
-    // the critical path explains b's late start through its visit-mate's prerequisite
-    expect(criticalPath(g, s).stepIds).toEqual(["slow_prereq", "b"]);
+    expect(s.items.a.visitOption).toEqual({ mergeWith: ["b"], mergeDate: "2026-09-08", savesVisits: 1 });
+    expect(criticalPath(g, s).stepIds).toEqual(["slow_prereq", "a"]);
+  });
+
+  it("Marta's bank: the account opens as soon as the ID code is ready; strong ID may join it later", () => {
+    const g = buildGraph([
+      step("eu_registration"),
+      step("dvv_registration", ["eu_registration"]),
+      step("vero_identity_code"),
+      step("personal_identity_code", [], { milestone: true, requiresAnyOf: [["dvv_registration", "vero_identity_code"]] }),
+      step("bank_account", ["personal_identity_code"], { visitId: "visit:bank" }),
+      step("strong_identification", ["personal_identity_code", "dvv_registration", "bank_account"], { visitId: "visit:bank" }),
+    ]);
+    const est = {
+      eu_registration: { durationDays: 1, waitDays: 0 },
+      dvv_registration: { durationDays: 1, waitDays: 5 },
+      vero_identity_code: { durationDays: 1, waitDays: 3 },
+      bank_account: { durationDays: 1, waitDays: 10 },
+      strong_identification: { durationDays: 1, waitDays: 10 },
+    };
+    const s = schedule(g, { arrivalDate: "2026-12-01" }, { today: "2026-11-14", estimates: est });
+    expect(s.items.bank_account.startDate).toBe("2026-12-07"); // ID code via Vero
+    expect(s.items.bank_account.visitId).toBeUndefined();
+    // separate: strong ID now waits for the account to be ready (internal requirement applies again)
+    expect(s.items.strong_identification.startIndex).toBe(s.items.bank_account.readyIndex);
+    expect(s.items.strong_identification.visitOption).toEqual({
+      mergeWith: ["bank_account"],
+      mergeDate: "2026-12-10", // DVV ready: the day both could be done in one visit
+      savesVisits: 1,
+    });
   });
 
   it("does not drop a requirement whose visit-mate can never be done", () => {
