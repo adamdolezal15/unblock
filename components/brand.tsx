@@ -1,5 +1,5 @@
 // The thin Finnish-blue stripe along the top of every screen. While planning it fills with progress (0..1).
-// The logo itself is components/line/LineMark.tsx.
+// The logo itself is components/line/LineMark.tsx (static; the diamond turns while planning).
 export function BrandStripe({ progress }: { progress?: number }) {
   if (progress === undefined) return <div className="h-[3px] w-full bg-accent" aria-hidden />;
   return (

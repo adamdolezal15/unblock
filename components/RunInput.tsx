@@ -15,16 +15,10 @@ type Props = {
   value: string;
   running: boolean;
   onSubmit: (text: string) => void;
-  /** Every keystroke (the logo above reacts to what is typed). */
-  onDraftChange?: (text: string) => void;
 };
 
-export function RunInput({ value, running, onSubmit, onDraftChange }: Props) {
-  const [draft, setDraftState] = useState(value);
-  const setDraft = (t: string) => {
-    setDraftState(t);
-    onDraftChange?.(t);
-  };
+export function RunInput({ value, running, onSubmit }: Props) {
+  const [draft, setDraft] = useState(value);
   // Height follows the text, never a scrollbar.
   const field = useRef<HTMLTextAreaElement>(null);
   useLayoutEffect(() => {

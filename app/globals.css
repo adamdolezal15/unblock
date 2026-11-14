@@ -109,99 +109,18 @@ body {
   }
 }
 
-/* The line's motion (components/line/LineMark.tsx). Transform and opacity only. */
-.linemark .lm-left,
-.linemark .lm-right {
-  transform-box: fill-box;
-  transition: transform 350ms cubic-bezier(0.3, 0.7, 0.2, 1);
+/* The logo's only motion: the diamond turns while a plan is being worked out (components/line/LineMark). */
+.lm-spin {
+  animation: lm-spin 2s linear infinite;
 }
-.linemark .lm-left {
-  transform-origin: right center;
-}
-.linemark .lm-right {
-  transform-origin: left center;
-}
-.linemark--error .lm-left {
-  transform: translate(-6px, 1px) rotate(-7deg);
-}
-.linemark--error .lm-right {
-  transform: translate(6px, 1px) rotate(7deg);
-}
-.linemark--error .lm-diamond {
-  opacity: 0.35;
-}
-.lm-shimmer {
-  opacity: 0;
-  animation: lm-shimmer 4200ms ease-in-out infinite;
-}
-@keyframes lm-shimmer {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  20%,
-  80% {
-    opacity: 0.95;
-  }
-  100% {
-    transform: translateX(226px);
-    opacity: 0;
-  }
-}
-.lm-pulse {
-  animation: lm-pulse 900ms cubic-bezier(0.3, 0.6, 0.3, 1) forwards;
-}
-@keyframes lm-pulse {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(196px);
-    opacity: 0;
-  }
-}
-.lm-turn {
-  animation: lm-turn 420ms ease-in-out;
-}
-@keyframes lm-turn {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes lm-spin {
   to {
-    transform: rotate(180deg);
-  }
-}
-.lm-check-draw {
-  transform-box: fill-box;
-  transform-origin: left center;
-  animation: lm-draw 520ms cubic-bezier(0.3, 0.7, 0.2, 1) both;
-}
-@keyframes lm-draw {
-  from {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleX(1);
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lm-shimmer,
-  .lm-pulse {
-    display: none;
-  }
-  .lm-turn,
-  .lm-check-draw {
+  .lm-spin {
     animation: none;
-  }
-  .linemark .lm-left,
-  .linemark .lm-right {
-    transition: none;
   }
 }
 

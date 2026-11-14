@@ -12,7 +12,7 @@ export function Working({ state }: { state: RunState }) {
 
   return (
     <section aria-live="polite" className="mx-auto mt-16 max-w-[560px] text-center">
-      <LineMark mode={state.phase === "error" ? "error" : "running"} pulse={state.statuses.length} turned={!!state.graph} className="mx-auto mb-8 h-9 w-[284px]" />
+      <LineMark spinning={state.phase === "running"} className="mx-auto mb-8 h-9 w-[284px]" />
       <h1 className="display text-[34px]">Working out your plan</h1>
       <p className="mt-2 text-[16px] text-muted">{label}…</p>
       <div className="mx-auto mt-6 flex max-w-[400px] items-center gap-3">

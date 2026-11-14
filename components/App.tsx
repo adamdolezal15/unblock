@@ -33,11 +33,7 @@ export function App() {
     <div className="min-h-screen">
       <TopBar onEdit={() => reset(true)} onHome={() => reset(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
         progress={state.phase === "running" ? runProgress(state).value : undefined}
-        mark={{
-          mode: state.phase === "running" ? "running" : state.phase === "done" ? "done" : state.phase === "error" ? "error" : "idle",
-          pulse: state.statuses.length,
-          turned: !!state.graph,
-        }} />
+        running={state.phase === "running"} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />

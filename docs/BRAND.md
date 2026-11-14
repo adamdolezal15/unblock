@@ -51,16 +51,7 @@ A leg is the blue line when it lies between the first and the last station on th
 
 ## Motion
 
-The logo mirrors the planner (`components/line/LineMark.tsx`):
-
-| State | Motion |
-|---|---|
-| Idle | a slow light travels the line (4.2 s) |
-| Typing | stations light up as the sentence mentions citizenship, city, date (the diamond), purpose |
-| Running | one pulse travels the line per status event (0.9 s); the diamond turns once the plan's shape is known |
-| Done | the check draws itself (0.52 s) |
-| Error | the line breaks in the middle |
-
-Rules: transform and opacity only; motion answers something that happened, nothing loops except the idle
-light; `prefers-reduced-motion` turns all of it off (states still show, without movement). The top stripe
-fills with real progress while planning.
+The logo is static everywhere (`components/line/LineMark.tsx`). Its only motion: while a plan is being
+worked out, the diamond turns slowly and continuously (2 s per turn, linear); when the run is done or
+fails it stops in its normal position. `prefers-reduced-motion` turns it off. The top stripe fills with
+real progress while planning. Nothing else moves on its own.

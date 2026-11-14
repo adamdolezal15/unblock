@@ -12,7 +12,7 @@ export function OutOfScopeState({ message }: { message: string }) {
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <Note title="I couldn't finish your plan" mark="error">
+    <Note title="I couldn't finish your plan">
       <p>{message}</p>
       {onRetry && (
         <p>
@@ -33,10 +33,10 @@ export function PartialNotice({ missing }: { message: string; missing: string[] 
   );
 }
 
-function Note({ title, children, mark = "idle" }: { title: string; children: React.ReactNode; mark?: "idle" | "error" }) {
+function Note({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mx-auto max-w-[620px] px-6 pt-20 text-center">
-      <LineMark mode={mark} className="mx-auto mb-8 h-9 w-[284px]" />
+      <LineMark className="mx-auto mb-8 h-9 w-[284px]" />
       <h1 className="display text-[34px]">{title}</h1>
       <div className="mt-4 space-y-4 text-[18px] leading-[1.65] text-ink">{children}</div>
     </section>
