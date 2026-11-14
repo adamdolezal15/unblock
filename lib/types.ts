@@ -36,6 +36,8 @@ export type Step = {
   requiresAnyOf?: string[][];
   /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
   milestone?: boolean;
+  /** Shared by steps a verified source says can be done in one visit at the same desk. */
+  visitId?: string;
   costOfDelay?: string;
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
@@ -55,6 +57,7 @@ export type ClaimKind =
   | "applies"
   | "requires"
   | "provides"
+  | "same_visit"
   | "mode"
   | "document"
   | "cost_of_delay"

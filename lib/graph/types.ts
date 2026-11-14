@@ -11,6 +11,8 @@ export type GraphNode = {
   unresolved: boolean;
   /** A state, not an action (e.g. "has a personal identity code"): takes no time, never the critical node. */
   milestone: boolean;
+  /** Steps sharing a visitId are done together in one visit at the same service desk. */
+  visitId?: string;
   /** The original step; absent on unresolved placeholders. */
   step?: Step;
 };
@@ -70,6 +72,8 @@ export type ScheduledStep = {
   waitDays: number;
   /** true when either duration fell back to a default. */
   estimated: boolean;
+  /** Set when this step is done in a shared visit (same start day as its visit-mates). */
+  visitId?: string;
 };
 
 export type Schedule = {

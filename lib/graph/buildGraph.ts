@@ -38,6 +38,7 @@ export function buildGraph(steps: Step[]): Graph {
       costOfDelay: step.costOfDelay,
       unresolved: false,
       milestone: !!step.milestone,
+      ...(step.visitId ? { visitId: step.visitId } : {}),
       step,
     });
     requires.set(step.id, [...new Set([...step.requires, ...single])]);
