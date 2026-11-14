@@ -254,7 +254,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
             )}
             {facts.costOfDelay.map((f) => (
               <p key={f.value}>
-                If it waits: {f.value}
+                If you skip it: {f.value}
                 {ctx.cite(f.citation)}
               </p>
             ))}

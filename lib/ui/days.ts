@@ -6,12 +6,14 @@ import type { Citation, Tip } from "@/lib/types";
 import type { StreamCalEvent } from "@/lib/types";
 import type { Ref, Seg } from "./letter";
 import type { RunState } from "./runState";
+import { unlockedSteps } from "@/lib/graph/unlocks";
 import { edgeEvidence, stepFacts, unblocks, type Fact } from "./panel";
 import { nodeLabel } from "./labels";
 import { bookingHref } from "@/lib/calendar/bookingUrl";
 
 export type DayStep = {
   id: string;
+  authority: string;
   title: string;
   short: string;
   critical: boolean;
@@ -21,6 +23,8 @@ export type DayStep = {
   /** True when no verified quote backs this step at all. */
   noSource: boolean;
   wait?: Seg[];
+  /** Applied for before travelling (a non-EU residence permit). */
+  beforeArrival?: boolean;
 };
 
 export type VisitEntry = {
@@ -61,6 +65,14 @@ function bestWaitTip(tips: Tip[], id: string): Tip | undefined {
   return mine.find((t) => t.kind === "wait_time" && t.waitDays !== undefined) ?? mine.find((t) => t.kind === "wait_time") ?? mine[0];
 }
 
+/** The source behind a step's wait: a community tip, or the cited processing time. Undefined for a default estimate. */
+export function waitCitation(state: RunState, id: string): Citation | undefined {
+  const item = state.schedule?.schedule.items[id];
+  if (!item || item.waitDays <= 0 || item.estimated) return undefined;
+  if (item.waitSource === "community") return bestWaitTip(state.tips, id)?.citation;
+  return state.steps[id]?.claims?.find((c) => c.kind === "processing_time")?.citation;
+}
+
 export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[] {
   const sched = state.schedule;
   if (!sched) return [];
@@ -75,12 +87,13 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
     const item = items[id];
     const facts = stepFacts(step);
     const un = unblocks(state, id);
-    const unlocks = [...new Set([...un.direct, ...(un.via?.steps ?? [])])].filter((x) => x !== id && state.steps[x] && !state.steps[x].milestone);
+    // The same list the calendar's "Why" line uses (lib/graph/unlocks).
+    const unlocks = (state.graph ? unlockedSteps(state.graph.graph, id) : []).filter((x) => state.steps[x]);
     const whyNow: Seg[] = [];
     // One short sentence (the card's header already says if it is on the slowest chain).
     const cod = facts.costOfDelay.find((f) => f.value.split(/\s+/).length <= 16);
     if (cod) {
-      whyNow.push({ t: `If it waits: ${lowerName(cod.value).replace(/\.$/, "")}` }, { ref: ref(cod.citation) }, { t: "." });
+      whyNow.push({ t: `If you skip it: ${lowerName(cod.value).replace(/\.$/, "")}` }, { ref: ref(cod.citation) }, { t: "." });
     } else if (unlocks.length) {
       const first = unlocks[0];
       const ev = edgeEvidence(state, un.direct.includes(first) ? id : (un.via?.milestone ?? id), first)[0];
@@ -88,11 +101,10 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
       whyNow.push({ t: `It unlocks ${list.length > 1 ? `${list.slice(0, -1).join(", ")} and ${list[list.length - 1]}` : list[0]}` });
       if (ev) whyNow.push({ ref: ref(ev) });
       whyNow.push({ t: "." });
-    } else {
-      const applies = step.claims?.find((c) => c.kind === "applies")?.citation ?? step.citations[0];
-      whyNow.push({ t: "It applies to your situation" });
-      if (applies) whyNow.push({ ref: ref(applies) });
-      whyNow.push({ t: "." });
+    } else if (step.confirmation?.by === "required_by") {
+      // Its verified why is the sentence that asks for it.
+      const by = step.confirmation.stepIds.filter((x) => state.steps[x] && !state.steps[x].milestone).slice(0, 2).map((x) => lowerName(name(x)));
+      if (by.length) whyNow.push({ t: `Needed for ${by.join(" and ")}` }, { ref: ref(step.confirmation.citations[0]) }, { t: "." });
     }
     const noSource = !(step.claims?.length || step.citations.length);
 
@@ -112,7 +124,7 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
         wait.push({ t: "." });
       }
     }
-    return { id, title: step.title, short: name(id), critical: critical.has(id), whyNow, unlocks, noSource, wait };
+    return { id, authority: step.authority, title: step.title, short: name(id), critical: critical.has(id), whyNow, unlocks, noSource, wait, ...(step.beforeArrival ? { beforeArrival: true } : {}) };
   };
 
   const entries: DayEntry[] = [];

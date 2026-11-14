@@ -91,7 +91,11 @@ function Row({
   const marker = (
     <Marker kind={entry.kind === "done" ? "end" : entry.kind === "online" ? "hollow" : entry.kind === "reminder" ? "small" : critical ? "main" : "station"} />
   );
-  const waits = entry.kind === "visit" || entry.kind === "online" ? entry.steps.filter((s) => s.wait) : [];
+  // Steps done in one visit often share the same wait line: say it once.
+  const waitKey = (s: DayStep) => s.wait!.map((x) => ("t" in x ? x.t : `[${x.ref.n}]`)).join("");
+  const waits = (entry.kind === "visit" || entry.kind === "online" ? entry.steps.filter((s) => s.wait) : []).filter(
+    (s, i, all) => all.findIndex((o) => waitKey(o) === waitKey(s)) === i,
+  );
 
   return (
     <li className="grid grid-cols-[6.5rem_28px_minmax(0,1fr)] gap-x-3">
@@ -142,7 +146,9 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
         </button>
         {ctx.shortcut?.(s.id)}
       </h3>
-      <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
+      {(s.noSource || s.whyNow.length > 0) && (
+        <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
+      )}
     </>
   );
 }

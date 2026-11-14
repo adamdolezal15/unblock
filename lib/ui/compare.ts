@@ -8,6 +8,13 @@ import { milestoneOptions } from "./panel";
 import type { RunState } from "./runState";
 import { nodeLabel } from "./labels";
 import { lowerName } from "./days";
+import { workingDaysBetween } from "@/lib/graph/dates";
+import { finnishHolidaysBetween } from "@/lib/graph/holidays";
+
+/** A gain is only worth saying when it is at least this many working days. */
+export const MIN_GAIN_WORKING_DAYS = 3;
+const wdays = (from: string, to: string) =>
+  workingDaysBetween(from, to, new Set(finnishHolidaysBetween(Number(from.slice(0, 4)), Number(to.slice(0, 4)) + 1).map((h) => h.date)));
 
 export function daysBetween(a: string, b: string): number {
   const t = (iso: string) => Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10));
@@ -51,6 +58,7 @@ export function compareWithUsual(state: RunState, ref: (c: Citation) => Ref): Co
     });
   const why = shortcuts.flatMap((s) => s.text.filter((x) => "ref" in x)).slice(0, 1);
 
+  if (gainEnd > 0 && wdays(ours, bl.endDate) < MIN_GAIN_WORKING_DAYS) return null;
   if (gainEnd > 0) {
     const dv = ourVisits - bl.visits;
     const cost = dv < 0 ? ` and ${plural(-dv, "fewer visit")}` : dv > 0 ? `, for ${plural(dv, "extra visit")}` : "";
@@ -68,8 +76,8 @@ export function compareWithUsual(state: RunState, ref: (c: Citation) => Ref): Co
   // Same finish: name the steps you reach sooner, biggest gain first.
   const gains = Object.keys(items)
     .filter((id) => bl.startDates[id] && state.steps[id] && !state.steps[id].milestone)
-    .map((id) => ({ id, n: daysBetween(items[id].startDate, bl.startDates[id]) }))
-    .filter((g) => g.n > 0)
+    .map((id) => ({ id, n: daysBetween(items[id].startDate, bl.startDates[id]), wd: wdays(items[id].startDate, bl.startDates[id]) }))
+    .filter((g) => g.n > 0 && g.wd >= MIN_GAIN_WORKING_DAYS)
     .sort((a, b) => b.n - a.n)
     .slice(0, 2);
   if (!gains.length) return null;

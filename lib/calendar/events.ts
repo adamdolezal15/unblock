@@ -1,6 +1,8 @@
 import type { Step } from "../types";
 import { bookingHref } from "./bookingUrl";
+import { buildGraph } from "../graph/buildGraph";
 import type { Schedule } from "../graph/types";
+import { unlockedSteps } from "../graph/unlocks";
 import type { CalEvent } from "./types";
 import { visitPackText } from "./visitPack";
 
@@ -16,11 +18,13 @@ const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
  */
 export function eventsFromSchedule(steps: Step[], sched: Schedule): CalEvent[] {
   const events: CalEvent[] = [];
+  const graph = buildGraph(steps);
   for (const step of steps) {
     const item = sched.items[step.id];
     if (step.mode !== "in_person" || !item) continue;
 
-    const unblocks = steps.filter((s) => s.requires.includes(step.id));
+    // Same list as the day card: direct dependents and those behind a milestone this step provides.
+    const unblocks = unlockedSteps(graph, step.id).flatMap((id) => steps.filter((s) => s.id === id));
     events.push({
       uid: `${step.id}@unblock`,
       kind: "visit",

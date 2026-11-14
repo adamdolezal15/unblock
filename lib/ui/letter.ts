@@ -6,6 +6,7 @@ import type { Citation, Step, Trust } from "@/lib/types";
 import type { RunState } from "./runState";
 import { domainOf } from "./format";
 import { nodeLabel } from "./labels";
+import { waitCitation } from "./days";
 
 export type Source = { n: number; url: string; domain: string; trust: Trust; fetchedAt: string; quotes: string[] };
 export type Ref = { n: number; citation: Citation };
@@ -96,7 +97,10 @@ function writeLetter(ctx: Ctx): Letter {
   const headline: Seg[] = [];
   if (end) headline.push({ t: `You can be fully set up by ${fuzzy ? "about " : ""}${longDate(end, ctx.baseYear)}. ` });
   else headline.push({ t: "Here is the order to do things in. " });
-  if (shortcut) {
+  const permit = permitSentence(ctx);
+  if (permit) {
+    headline.push(...permit);
+  } else if (shortcut) {
     headline.push({ t: `Get your ${shortcut.label} at ${who(shortcut.fast.authority)} on ${day(shortcut.fast.start)}, not at ${who(shortcut.slow.authority)}.` });
     if (shortcut.fastRef) headline.push({ ref: shortcut.fastRef });
   } else {
@@ -125,6 +129,31 @@ function writeLetter(ctx: Ctx): Letter {
   return { headline, paras: paras.slice(0, 3), insights };
 }
 
+/**
+ * A non-EU residence permit is applied for before travelling. Says so, and says when the arrival date is at risk
+ * because the permit is not expected to be ready by then.
+ */
+function permitSentence(ctx: Ctx): Seg[] | null {
+  const { state } = ctx;
+  const items = state.schedule!.schedule.items;
+  const ids = Object.keys(items).filter((id) => state.steps[id]?.beforeArrival);
+  const id = ids.includes("residence_permit") ? "residence_permit" : ids[0];
+  if (!id) return null;
+  const it = items[id];
+  const step = state.steps[id];
+  const segs: Seg[] = [{ t: `Apply for the ${lowerFirst(ctx.short(id))} before you travel, starting ${day(it.startDate)}.` }];
+  const applies = step.claims?.find((c) => c.kind === "applies")?.citation ?? step.citations[0];
+  if (applies) segs.push({ ref: ctx.reg.ref(applies) });
+  const arrival = state.profile?.profile.arrivalDate?.slice(0, 10);
+  if (arrival && it.readyDate > arrival) {
+    segs.push({ t: ` Your arrival on ${day(arrival)} is at risk: the permit is expected around ${day(it.readyDate)}` });
+    const c = waitCitation(state, id);
+    if (c) segs.push({ ref: ctx.reg.ref(c) });
+    segs.push({ t: it.estimated ? " (an estimate: no official figure was found)." : "." });
+  }
+  return segs;
+}
+
 type Option = { id: string; authority: string; start: string; ready: string; readyIndex: number };
 type Shortcut = { milestone: string; label: string; fast: Option; slow: Option; gap: number; fastRef?: Ref; slowRef?: Ref; dependents: string[] };
 
@@ -148,6 +177,8 @@ function findShortcut(ctx: Ctx): Shortcut | null {
       .map((id) => ({ id, authority: state.steps[id].authority, start: items[id].startDate, ready: items[id].readyDate, readyIndex: items[id].readyIndex }))
       .sort((a, b) => a.readyIndex - b.readyIndex);
     if (opts.length < 2) continue;
+    // The code comes with the residence permit: nothing to shortcut.
+    if (opts.some((o) => o.id === "residence_permit")) continue;
     const fast = opts[0];
     const slow = opts[opts.length - 1];
     const gap = slow.readyIndex - fast.readyIndex;

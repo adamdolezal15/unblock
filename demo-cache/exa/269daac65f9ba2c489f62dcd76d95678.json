@@ -1,0 +1,97 @@
+{
+  "fetchedAt": "2026-11-14T12:06:40.995Z",
+  "request": {
+    "endpoint": "search",
+    "query": "Migri Residence permit Oulu, Finland tips, what to bring, what I forgot, problems",
+    "objective": "First-hand experiences and newcomer guides about \"Residence permit\" (Migri) in Oulu, Finland: practical tricks, documents people forgot or were unexpectedly asked for, and things that went wrong.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi",
+      "oulu.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "5903fd6e1c0eb08583b4df8d986d2e0f",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://nordicexpat.com/finland/residence-permit-finland-migri",
+        "title": "Finnish Residence Permits: A Guide for Non-EU Citizens | NordicExpat",
+        "url": "https://nordicexpat.com/finland/residence-permit-finland-migri",
+        "publishedDate": "2026-05-14T14:41:11.000Z",
+        "author": "Bikram Nath",
+        "highlights": [
+          "Create a user account at enterfinland.fi.\n\n...\n\nChoose the correct application and fill in the form.\n\n...\n\nAdd your attachments — passport, employment contract or acceptance letter, proof of funds where required, and any category-specific documents.\n\n...\n\nChoose a service point — the embassy, consulate, or in-Finland service point where you will prove your identity.\n\n...\n\nPay the processing fee, then submit.\n\n...\n\nVisit the service point\n\n...\n\nOne thing trips people up: paying the fee and submitting are not the end. ... For some extended permits and card renewals, Migri notes the in-person identity visit may not be needed — check the Identification page for your case.\n\n...\n\nTwo things newcomers consistently get wrong. First, the residence permit card is not an official identity document in Finland — you cannot use it to prove who you are the way you would with a passport or a Finnish ID card. Second, your henkilötunnus (Finnish personal identity code) is printed on it only if you already have one. Many people register the henkilötunnus separately with DVV (the Digital and Population Data Services Agency) after arriving, which is the step that actually unlocks banking, healthcare and tax. Holding the permit card is not the same as being registered in Finland's population system — plan for both.\n\n...\n\nThere is a window — between leaving your home country's system and being registered for Finnish public healthcare or Kela — where you may not be covered for medical care. For student and some other permits, Migri also explicitly requires you to show valid health insurance as a condition of the permit itself. Travel or expat health insurance, such as SafetyWing, can cover that early gap. Whether a policy also counts for the permit is a separate question: before you attach any policy to your application, check it against Migri's stated coverage conditions for your permit type."
+        ],
+        "image": "https://nordicexpat.com/finland/residence-permit-finland-migri/opengraph-image?c54d69fc59d92fef"
+      },
+      {
+        "id": "https://suomiguide.fi/en/tutustu-suomeen/elama-opiskelu-ja-tyo/muutto-ja-oleskelulupa/residence-permit-mistakes/",
+        "title": "⚠️ Top mistakes when applying for a residence permit and how to avoid them – SuomiGuide",
+        "url": "https://suomiguide.fi/en/tutustu-suomeen/elama-opiskelu-ja-tyo/muutto-ja-oleskelulupa/residence-permit-mistakes/",
+        "publishedDate": "2026-01-05T12:45:56.000Z",
+        "author": "Ksenia",
+        "highlights": [
+          "### The basis must correspond to real life\n\nA classic failure:\n\n● a person lives off their job but is presented as \"self-employed\" without a real business;\n\n● the main meaning of life is family, but this is hardly reflected in the application;\n\n● you need to apply on the basis of work, but they choose \"other\" or too general a type. \n\nThe official descriptions of the forms are designed for different situations: work, study, family, entrepreneurship, job seeker, etc. If your reality does not match the stated basis, the application looks \"flawed\" even with strong facts.\n\n### Weak link between \"purpose ↔ documents\"\n\nExample: in the questionnaire, a person writes that they intend to live and work in Finland on a long-term basis, but the documents show:\n\n● a short contract for several months with no prospects;\n\n● zero savings and no other sources of income;\n\n● no confirmation of accommodation or plans for the coming year. \n\nFormally, everything seems to be in order (\"there is a contract\"), but the logic of \"how the person actually intends to live in the country\" does not add up.\n\n### Unexplained \"gaps\" in the biography\n\nThe following look suspicious:\n\n● sudden breaks in work or study without explanation;\n\n● frequent changes of employers/cities in a short period of time;\n\n● long trips outside Finland that are not mentioned in the description. \n\nSometimes a single line in a free field is enough: \"During this period, I was unemployed, living with my parents in country X, looking for work\" — and the picture becomes clear.\n\n...\n\n## Incomplete or contradictory questionnaires\n\nOne of the most frustrating reasons for rejection is when it's not the substance that's the problem, but the technique:\n\n● missing mandatory fields;\n\n● different dates and amounts in the application form and documents;\n\n● outdated information (old address, surname, marital status). \n\nThe official position is simple: all incorrect and outdated data must be reported as soon as possible — even if the error seems minor.\n\n### Documents without structure\n\nA common scenario:\n\n● a list of downloads from dozens of files: Scan(1), NewDoc_final, IMG_9384;\n\n● the contract is split into 7 photos, some of the pages are upside down;\n\n● translations are separate, with no link to the original. \n\nImagine that you check dozens of cases a day. Whose case is easier to understand — the person with neat PDFs and clear names, or the one whose file structure is a maze?\n\n### Translations and certifications\n\nThere are two types of errors here:\n\n● translation into the wrong language (e.g. into the native language instead of Finnish/Swedish/English);\n\n● the required level of certification is not provided where it is mandatory.\n\nAlways check the requirements for your specific type of residence permit and your country of origin: for some documents, a regular translation is sufficient, while others require a sworn translator or apostille.\n\n...\n\n### Late submission for renewal\n\nThe most common risk is applying for an extension or a new residence permit after the current one has expired.\n\nIt is officially recommended to apply approximately 3 months before the card expires, rather than on the last day.\n\nIf you are late, you may:\n\n● lose your right to work until a decision is made;\n\n● create a \"gap\" in your continuous residence;\n\n● be refused solely because of formal deadlines. \n\n### Departures and returns\n\nLong trips may affect:\n\n● your right to a permanent residence permit — if you have actually lived outside Finland for most of the time;\n\n● the assessment of your length of residence for citizenship. \n\nShort holidays and business trips are usually not a problem, but if you plan to live a long life \"in two homes\", it is better to think it through in advance and sometimes consult with someone — especially closer to P and citizenship.\n\n...\n\n✅ Checklist before submitting an application for a Finnish residence permit\n\n- Basis: the correct form has been selected for the actual situation (work, study, family, business).\n- Application form: all required fields are filled in, dates and amounts match the documents. \n- Documents: passport, supporting documents, finances, insurance, transfers are available. \n- Files: readable PDFs/scans with clear names and a logical structure. \n- Timing: there are still several months left until the end of the current residence permit, not just a couple of days. \n- Comments: all \"gaps\" in the biography are explained briefly and honestly. \n\nIf you honestly go through this list before clicking the \"Submit\" button, you will automatically avoid 70-80% of typical mistakes."
+        ],
+        "image": "https://suomiguide.fi/media/images/Finland_Residence_Permit_Mistak.max-1200x630.format-jpeg.jpg"
+      },
+      {
+        "id": "https://finlandhandbook.com/how-do-i-apply-for-a-finnish-residence-permit-from-abroad/",
+        "title": "How Do I Apply for a Finnish Residence Permit from Abroad? - Finland Handbook",
+        "url": "https://finlandhandbook.com/how-do-i-apply-for-a-finnish-residence-permit-from-abroad/",
+        "publishedDate": "2026-07-09T23:28:22.000Z",
+        "author": "Finland Handbook Editorial Team",
+        "highlights": [
+          "This is where many people get bogged down. The list of required documents can seem endless and specific. Beyond the obvious like your passport, you'll need things such as:\n\n- Proof of financial means: Bank statements, scholarship letters, or employer guarantees.\n- Employment contract/Letter of admission: The official offer or acceptance from Finland.\n- Health insurance: For most non-EU/EEA permits, you need comprehensive private Health Insurance Requirements for Non-EU Residence Permit Holders in Finland covering your entire stay, often with a specific minimum coverage amount. This isn't just a suggestion; it's a non-negotiable requirement.\n- Marriage certificate/birth certificates: For family permits.\n- Educational diplomas/transcripts: Especially for work permits requiring specific qualifications or for student permits.\n- CV/Resume: Often required for work-related permits.\n\nNow, a crucial point: Translations. If your documents aren't in Finnish, Swedish, or English, they must be translated by an authorised (sworn) translator. This isn't just about understanding the document; it's a legal requirement. Trying to save a few euros here by using an uncertified translator or a friend who \"knows\" the language can lead to your application being rejected outright, wasting months of waiting time. Companies like RushTranslate or Translayte are great options for certified translations, ensuring your documents meet the strict legal standards required by Migri. I've heard too many stories of applications being delayed or rejected because of issues with translations, so please, do not cut corners here. Get it right the first time.\n\n...\n\n### Documentation Nightmares: Missing Papers, Incorrect Translations\n\nThis is, hands down, the biggest cause of delays and rejections. Migri is incredibly precise.\n\n- Missing Documents: Applicants often forget one small document, or misunderstand a requirement. For example, some work permits require a specific appendix from the employer that is easily overlooked. Others forget the comprehensive What Documents Do I Need for a Finnish Residence Permit?. My advice? Have a separate folder for each document, tick it off your list, and then have someone else (who understands official language) review your complete set. A second pair of eyes can catch errors.\n- Incorrect Translations: As mentioned, if your documents aren't in Finnish, Swedish, or English, they must be officially translated. An incorrect or uncertified translation is as good as no translation at all. This means rejection. Always use reputable, certified translation services such as RushTranslate or Translayte to avoid this critical error. They understand the legal requirements for official documents."
+        ],
+        "image": "https://finlandhandbook.com/wp-content/uploads/2026/07/output1-215.webp"
+      },
+      {
+        "id": "https://chatscontrol.com/blog/migri-residence-permit-finland-ukrainians-documents-translation",
+        "title": "Finland Residence Permit (Migri): Documents and Translation Guide | ChatsControl",
+        "url": "https://chatscontrol.com/blog/migri-residence-permit-finland-ukrainians-documents-translation",
+        "publishedDate": "2025-08-13T10:51:42.000Z",
+        "author": "Dmitry Buslov",
+        "highlights": [
+          "A translation by an auktorisoitu kääntäjä - an authorized translator who has passed a state examination and is registered in the official Opetushallitus register. Their translation automatically carries legal weight - no additional certifications needed.\n\nThis is the simplest and most reliable option. Migri accepts these translations without any questions.\n\n...\n\nBefore filling out the application, prepare: - Passport scan (all filled pages) - Digital photo (no older than 6 months) - Scans of all supporting documents (diplomas, certificates, references) - Authorized translations of all documents not in Finnish/Swedish/English - Apostilled documents (where required) - Employment contract, acceptance letter, or family documents - depending on your permit type\n\n...\n\n## Common mistakes when applying¶\n\nHere’s what goes wrong most often.\n\nSubmitting documents without translation. Migri will simply return them and ask you to translate. That’s a delay of weeks, sometimes months - while you find a translator, wait for the work, and resubmit.\n\nGetting a regular translation instead of authorized. A translation agency will produce a “quality” translation, but without the authorized translator’s stamp, Migri might not accept it or may require additional legalization.\n\nForgetting about the apostille. Certificates without an apostille may be rejected. Getting an apostille on a Ukrainian document while you’re in Finland is much harder than doing it in Ukraine. Take care of it early.\n\nPaper application instead of online. Paper applications cost EUR 50-220 more and are processed slower. Use Enter Finland.\n\nNot planning ahead. An authorized translation from Ukrainian to Finnish takes time. There are very few translators and wait times are long. Start the process at least one to two months before you plan to submit."
+        ],
+        "image": "https://chatscontrol.com/blog/images/migri-residence-permit-finland-ukrainians-documents-translation/og-light-en.jpg"
+      },
+      {
+        "id": "https://www.enb.fi/guides/moving-to-oulu-living-guide-2026/",
+        "title": "Moving to and Living in Oulu 2026 | ENB Consulting",
+        "url": "https://www.enb.fi/guides/moving-to-oulu-living-guide-2026/",
+        "publishedDate": "2026-08-24T19:43:24.000Z",
+        "author": "Erkan Bayar",
+        "highlights": [
+          "When relocating to Oulu, the order of formalities matters: immigration status → DVV/personal identity code/municipality of residence → Vero → Kela → banking/strong authentication → housing/utilities → local services. International House Oulu provides local guidance for international newcomers. A city guide does not replace permit or benefit rules; always verify personal eligibility with Migri, DVV, Vero and Kela.\n\n...\n\nCommon early bottlenecks include civil-status documents, legalisation/translation, DVV appointments, housing and bank KYC.\n\n...\n\n### Checklist\n\n- Confirm residence permit / EU registration status\n- Complete DVV personal identity code and municipality-of-residence registration\n- Arrange tax card / Vero matters\n- Check Kela eligibility\n- Set up bank account and strong authentication\n- Arrange housing contract, electricity and home insurance\n- Plan public transport / driving\n- Apply early for daycare/school if needed\n- Register with employment/integration services where relevant\n- Use the local newcomer service for initial guidance\n\n...\n\n### Checklist\n\n- Confusing personal identity code with municipality of residence\n- Assuming Kela starts automatically\n- Delaying tax card\n- Assuming bank KYC finishes immediately\n- Leaving school/daycare too late\n- Missing legalisation/translation of foreign civil-status documents\n- Treating local guidance as a Migri/DVV decision-maker\n- Choosing housing based only on rent"
+        ],
+        "image": "https://www.enb.fi/cities/oulu.jpg"
+      }
+    ],
+    "searchTime": 1220.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

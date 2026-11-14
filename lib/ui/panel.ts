@@ -1,18 +1,14 @@
 // What the side panel shows for a step, a milestone or an edge. Pure; every fact carries the citation
 // it came from. Nothing here is phrased as a fact unless a verified claim, tip or conflict backs it.
 import type { Citation, Conflict, Step, Tip, VerifiedClaim } from "@/lib/types";
+import { unblockedBy } from "@/lib/graph/unlocks";
 import type { RunState } from "./runState";
 
 export type Fact = { label: string; value: string; citation: Citation };
 
 /** Steps this one unblocks: direct dependents, and the dependents of any milestone it provides. */
 export function unblocks(state: RunState, id: string): { direct: string[]; via?: { milestone: string; steps: string[] } } {
-  const edges = state.graph?.graph.edges ?? [];
-  const direct = edges.filter((e) => e.source === id && !e.anyOf && !state.steps[e.target]?.milestone).map((e) => e.target);
-  const ms = edges.find((e) => e.source === id && e.anyOf)?.target ?? edges.find((e) => e.source === id && state.steps[e.target]?.milestone)?.target;
-  if (!ms) return { direct };
-  const steps = edges.filter((e) => e.source === ms && !e.anyOf).map((e) => e.target);
-  return { direct: direct.filter((d) => d !== ms), via: { milestone: ms, steps } };
+  return unblockedBy(state.graph?.graph.edges ?? [], (x) => !!state.steps[x]?.milestone, id);
 }
 
 /** Steps this one needs first (from the graph), with the requirement quote when one exists. */
@@ -31,11 +27,20 @@ function requiresClaim(step: Step | undefined, source: string): VerifiedClaim | 
 const FACT_LABEL: Partial<Record<VerifiedClaim["kind"], string>> = {
   processing_time: "How long it takes",
   mode: "Online or in person",
-  cost_of_delay: "If it waits",
+  cost_of_delay: "If you skip it",
   address: "Where",
   hours: "Opening hours",
   booking_url: "Booking",
 };
+
+/**
+ * "If you skip it" shows what goes wrong, never what you must have first: a "cost of delay" sentence that
+ * only says what the step needs ("Cannot apply without confirmed employment", "Need a permit to stay...")
+ * is a prerequisite, and prerequisites are shown as such.
+ */
+export function isConsequence(value: string): boolean {
+  return !/^(you\s+)?(cannot|can't|can not|need|needs|must|have to|required?|requires?)\b/i.test(value.trim());
+}
 
 /** Visit pack and other facts, each with its own quote. */
 export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other: Fact[]; costOfDelay: Fact[] } {
@@ -46,7 +51,7 @@ export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other
     documents: dedupe(claims.filter((c) => c.kind === "document").map(fact)),
     visit: dedupe(claims.filter((c) => c.kind === "address" || c.kind === "hours" || c.kind === "booking_url").map(fact)),
     other: dedupe(claims.filter((c) => c.kind === "processing_time" || c.kind === "mode").map(fact)),
-    costOfDelay: dedupe(claims.filter((c) => c.kind === "cost_of_delay").map(fact)),
+    costOfDelay: dedupe(claims.filter((c) => c.kind === "cost_of_delay" && isConsequence(c.value)).map(fact)),
   };
 }
 

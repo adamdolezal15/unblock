@@ -5,6 +5,8 @@ export const DEMO_SENTENCES = {
     "I'm a Czech citizen moving to Helsinki on 1 December for a job, salary 3200 EUR, and starting a master's at Aalto",
   brazil: "Brazilian PhD student moving to Tampere with my wife in January",
   india: "Indian software engineer, arriving in Helsinki next week, no residence permit card yet",
+  // Not on the landing page: a non-EU worker outside Helsinki, the golden test for the permit-before-arrival rules.
+  vietnam: "Vietnamese nurse moving to Oulu in February",
 } as const;
 
 export type DemoKey = keyof typeof DEMO_SENTENCES;

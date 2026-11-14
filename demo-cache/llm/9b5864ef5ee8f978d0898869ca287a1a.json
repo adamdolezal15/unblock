@@ -1,0 +1,62 @@
+{
+  "fetchedAt": "2026-11-14T12:06:41.562Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Tax card",
+    "contextHash": "9ac013012a881a15",
+    "includeDomains": [],
+    "docsHash": "8136290bfaaa23bf"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://ihhelsinki.fi/registrations/tax-card-and-tax-counseling/",
+        "title": "ihhelsinki.fi",
+        "domain": "ihhelsinki.fi",
+        "trust": "official",
+        "highlights": [
+          "If you are in Finland working and receiving pay, or if you are an entrepreneur, you will need a Finnish tax card",
+          "You can call the Tax Administration’s telephone service at +358 29 497 010 (Mon–Fri, 9–16) to book an appointment to get a Finnish personal identity code and a tax card at the same time"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.006Z"
+      },
+      {
+        "url": "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/",
+        "title": "vero.fi",
+        "domain": "vero.fi",
+        "trust": "official",
+        "highlights": [
+          "To apply for the card and the number, you need a Finnish personal identity code",
+          "The processing time, on the condition that all your information and documents are made available to the Tax Administration, is normally from 1 to 3 business days"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.006Z"
+      },
+      {
+        "url": "https://www.suomi.fi/guides/work-in-finland/when-you-arrive/remember-these-when-you-start-working-in-finland",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "Take your residence permit with you if you are not a citizen of an EU Member State, Iceland, Liechtenstein, Norway, or Switzerland",
+          "Apply for a tax card using the MyTax online service Opens in a new window., from the tax office or by calling a service number",
+          "If the employer does not have your tax card, 60% of your salary will be withheld as an advance tax"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.006Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 2151,
+      "costUsd": 0.005244,
+      "cacheHit": false
+    }
+  }
+}

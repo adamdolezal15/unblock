@@ -13,6 +13,8 @@ export type Stop = {
   /** What you do there, e.g. "Register + tax card". */
   what: string;
   stepId?: string;
+  /** The row's text is complete as it stands ("Apply for the residence permit before you travel"). */
+  plain?: boolean;
   critical: boolean;
   end?: boolean;
 };
@@ -24,6 +26,11 @@ const lower = (s: string) => (/^[A-Z][a-z]/.test(s) && !/^(DVV|Vero|Kela|Migri|E
 export function stopsFrom(entries: DayEntry[]): Stop[] {
   const stops: Stop[] = [];
   for (const e of entries) {
+    const pre = e.kind === "visit" || e.kind === "online" ? e.steps.find((s) => s.beforeArrival) : undefined;
+    if (pre) {
+      stops.push({ date: e.date, label: pre.authority, what: `Apply for the ${lower(pre.short)} before you travel`, stepId: pre.id, plain: true, critical: true });
+      continue;
+    }
     if (e.kind === "visit") {
       const names = e.steps.map((s) => s.short);
       const what = names.length > 2 ? `${names.slice(0, 2).map((n, i) => (i ? lower(n) : n)).join(" + ")} + ${names.length - 2} more` : names.map((n, i) => (i ? lower(n) : n)).join(" + ");
@@ -50,6 +57,7 @@ const WAIT_DAYS = 4; // gaps of at least this many calendar days get a waiting l
 /** "Migri and Vero: EU registration, …"; just the action when it already names the office. */
 function rowText(s: Stop): string {
   if (s.end) return "Done";
+  if (s.plain) return s.what;
   const offices = s.label.split(" + ");
   const named = offices.some((o) => s.what.toLowerCase().includes(o.toLowerCase()));
   return named ? s.what : `${offices.join(" and ")}: ${s.what}`;

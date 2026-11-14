@@ -44,6 +44,10 @@ export type Step = {
   milestone?: boolean;
   /** The person says they already have this (Profile.alreadyDone). No citations: it is their statement, not a claim. */
   done?: boolean;
+  /** Must be done before the person travels (a non-EU residence permit); the scheduler starts it today, not on arrival. */
+  beforeArrival?: boolean;
+  /** Not searched for: built from quotes other steps already verified (e.g. identification at the police). No tips, no conflict probes. */
+  derived?: boolean;
   /** Shared by steps a verified source says can be done in one visit at the same desk. */
   visitId?: string;
   costOfDelay?: string;

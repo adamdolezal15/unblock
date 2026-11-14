@@ -25,6 +25,11 @@ export function estimatesFromSteps(steps: Step[]): Record<string, DurationEstima
   const out: Record<string, DurationEstimate> = {};
   for (const s of steps) {
     if (s.milestone) continue;
+    // A derived step (identification at the police) is done at the desk: nothing is processed afterwards.
+    if (s.derived) {
+      out[s.id] = { waitDays: 0 };
+      continue;
+    }
     for (const c of s.claims ?? []) {
       if (c.kind !== "processing_time") continue;
       const wait = parseWaitDays(c.value) ?? parseWaitDays(c.citation.quote);
@@ -54,6 +59,10 @@ export function estimatesWithTips(steps: Step[], tips: Pick<Tip, "stepId" | "kin
   const out: Record<string, DurationEstimate> = {};
   for (const [id, e] of Object.entries(estimatesFromSteps(steps))) {
     const step = steps.find((s) => s.id === id);
+    if (step?.derived) {
+      out[id] = e; // done at the desk: no source, no note
+      continue;
+    }
     const c = step?.claims?.find((x) => x.kind === "processing_time" && (parseWaitDays(x.value) ?? parseWaitDays(x.citation.quote)) === e.waitDays);
     out[id] = { ...e, waitSource: c?.citation.trust ?? "official", note: `wait from a cited processing time (${c ? hostOf(c.citation.url) : "source"})` };
   }

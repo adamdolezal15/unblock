@@ -62,3 +62,11 @@ export function workingDayCalendar(start: string, holidays: ReadonlySet<string> 
     return days[index];
   };
 }
+
+/** Working days in the half-open range (from, to]: how many working days later `to` is than `from` (negative if earlier). */
+export function workingDaysBetween(from: string, to: string, holidays: ReadonlySet<string> = new Set()): number {
+  if (to < from) return -workingDaysBetween(to, from, holidays);
+  let n = 0;
+  for (let d = addCalendarDays(from, 1); d <= to; d = addCalendarDays(d, 1)) if (isWorkingDay(d, holidays)) n++;
+  return n;
+}

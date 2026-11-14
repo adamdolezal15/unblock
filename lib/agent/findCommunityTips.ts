@@ -48,7 +48,7 @@ const FULL_TEXT_CHARS = 12_000;
 /** Steps that get a community search: the critical node and every in-person step (never milestones). */
 export function tipTargets(steps: Step[]): Step[] {
   const crit = criticalNode(buildGraph(steps));
-  return steps.filter((s) => !s.milestone && (s.id === crit || s.mode === "in_person"));
+  return steps.filter((s) => !s.milestone && !s.derived && (s.id === crit || s.mode === "in_person"));
 }
 
 function labelOf(step: Step): string {

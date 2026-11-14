@@ -116,8 +116,10 @@ describe("day by day: Marta", () => {
     const vero = visits.find((v) => v.kind === "visit" && v.steps.some((s) => s.id === "vero_identity_code"));
     expect(vero && vero.kind === "visit" && vero.steps.map((s) => s.id).sort()).toEqual(["tax_card", "vero_identity_code"]);
     for (const s of days.flatMap(entrySteps)) {
+      // A line, when there is one, carries its footnote; a step with no verified why shows no line at all.
       const hasRef = s.whyNow.some((x) => "ref" in x);
-      expect(hasRef || s.noSource, s.id).toBe(true);
+      expect(hasRef || s.noSource || s.whyNow.length === 0, s.id).toBe(true);
+      expect(s.whyNow.map((x) => ("t" in x ? x.t : "")).join(""), s.id).not.toMatch(/applies to your situation|If it waits/);
     }
     expect(days[days.length - 1]).toEqual({ kind: "done", date: "2027-01-13" });
     expect(days.map((d) => d.date)).toEqual([...days.map((d) => d.date)].sort());
@@ -129,7 +131,7 @@ describe("usual order vs your order: Marta", () => {
     const bl = state.schedule!.baseline!;
     expect(bl.skipped).toEqual(["vero_identity_code"]);
     expect(bl.endDate).toBe("2027-01-28");
-    expect(bl.visits).toBe(3);
+    expect(bl.visits).toBe(4); // the police identity card for a foreigner is in person (a visit of its own)
     expect(bl.startDates.tax_card > state.schedule!.schedule.items.tax_card.startDate).toBe(true);
   });
 
@@ -139,6 +141,15 @@ describe("usual order vs your order: Marta", () => {
     expect(text(c.sentence as never)).toMatch(/^The usual order \(DVV first\) gets you set up by 28 January\. Your order: 13 January, 15 days sooner, for 1 extra visit\.\[\d+\]$/);
     expect(c.shortcuts.map((s) => s.id)).toEqual(["vero_identity_code"]);
     expect(text(c.shortcuts[0].text as never)).toMatch(/^Gets you the personal identity code 21 days before DVV would\[\d+\]\.$/);
+  });
+});
+
+describe("gain threshold", () => {
+  it("says nothing when the usual order is less than 3 working days behind", async () => {
+    const { compareWithUsual } = await import("../../lib/ui/compare");
+    const bl = state.schedule!.baseline!;
+    const close = { ...state, schedule: { ...state.schedule!, baseline: { ...bl, endDate: "2027-01-14" } } }; // yours: 13 January
+    expect(compareWithUsual(close, doc.ref)).toBeNull();
   });
 });
 

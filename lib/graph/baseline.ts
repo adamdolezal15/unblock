@@ -33,6 +33,8 @@ export function usualOrder(steps: Step[], profile: Pick<Profile, "arrivalDate">,
   const ms = steps.find((s) => s.id === MILESTONE);
   const groups = ms?.requiresAnyOf ?? [];
   if (!ms || !groups.some((g) => g.includes(BASELINE_ROUTE) && g.length > 1)) return null;
+  // The code already comes with the residence permit (a verified source says so): no route to compare.
+  if (groups.some((g) => g.includes("residence_permit"))) return null;
   if (!steps.some((s) => s.id === BASELINE_ROUTE)) return null;
 
   const alternatives = new Set(groups.flat().filter((id) => id !== BASELINE_ROUTE));

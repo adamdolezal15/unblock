@@ -28,6 +28,8 @@ Other scripts: `npm test`, `npm run warm-demo` (refresh the demo cache with live
 2. Brazilian PhD student moving to Tampere with my wife in January
 3. Indian software engineer, arriving in Helsinki next week, no residence permit card yet
 
+A fourth sentence, "Vietnamese nurse moving to Oulu in February", is not on the landing page. It is the golden test for the non-EU rules (permit applied for before travelling, identity code with the permit, police identification).
+
 ## Architecture
 
 - `lib/exa`: every Exa call (search, contents), the official-domain lists, and the disk cache (`EXA_CACHE=read|write|off`).

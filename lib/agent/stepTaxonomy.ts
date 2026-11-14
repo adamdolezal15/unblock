@@ -12,6 +12,8 @@ export type StepDef = {
   /** Who you deal with for this step: graph lane + display label (a name, not a claim about the step). */
   authority: string;
   appliesTo: (p: Profile) => boolean;
+  /** Done before travelling, so scheduled from today instead of from the arrival date (a non-EU residence permit). */
+  beforeArrival?: (p: Profile) => boolean;
   /** Search query (Exa auto + the deep extraction query). */
   query: (p: Profile) => string;
   /** Exa `objective` for the auto search. */
@@ -58,6 +60,7 @@ export const STEP_TAXONOMY: StepDef[] = [
     authority: "Migri",
     label: "Residence permit",
     appliesTo: (p) => p.citizenship === "NON_EU" && !p.temporaryProtection,
+    beforeArrival: () => true,
     query: (p) =>
       `Residence permit for a non-EU citizen moving to Finland for ${p.purpose.join(" and ")}: how to apply, residence permit card, identification visit`,
     objective: "Official pages on applying for a first residence permit in Finland, the residence permit card and what the permit is needed for.",
@@ -77,6 +80,7 @@ export const STEP_TAXONOMY: StepDef[] = [
     authority: "Migri",
     label: "Family member's residence",
     appliesTo: (p) => !!p.hasFamily,
+    beforeArrival: (p) => p.citizenship === "NON_EU",
     query: (p) =>
       p.citizenship === "NON_EU"
         ? "Residence permit for a spouse and children of a person moving to Finland: family ties permit"
@@ -231,7 +235,16 @@ export function doneSteps(profile: Profile): Step[] {
     }));
 }
 
+/**
+ * Steps nobody searches for: lib/agent/derive.ts builds them from quotes other steps already verified.
+ * Kept out of STEP_IDS on purpose (that list is part of the LLM prompts and their cache keys).
+ */
+export const DERIVED_STEPS = {
+  police_identification: { label: "Identification at the police", short: "Police identification", authority: "Police" },
+} as const;
+export const POLICE_IDENTIFICATION = "police_identification";
+
 /** Short display label for a step or milestone id (graph nodes); undefined for unknown ids. */
 export function shortLabel(id: string): string | undefined {
-  return MILESTONES[id]?.short ?? STEP_TAXONOMY.find((s) => s.id === id)?.short;
+  return MILESTONES[id]?.short ?? STEP_TAXONOMY.find((s) => s.id === id)?.short ?? (DERIVED_STEPS as Record<string, { short: string }>)[id]?.short;
 }

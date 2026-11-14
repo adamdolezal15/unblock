@@ -33,7 +33,10 @@ function clean(n: number | undefined): number | undefined {
 export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, opts: ScheduleOptions = {}): Schedule {
   const today = opts.today ?? helsinkiDate(new Date());
   const arrival = profile.arrivalDate ? toHelsinkiDate(profile.arrivalDate) : today;
-  const origin = arrival > today ? arrival : today;
+  // Steps flagged beforeArrival (a non-EU residence permit) are applied for before travelling: they start
+  // today, everything else on the arrival day or later. Without such a step the plan starts on max(arrival, today).
+  const preArrival = new Set(graph.nodes.filter((n) => n.step?.beforeArrival).map((n) => n.id));
+  const origin = preArrival.size > 0 || arrival <= today ? today : arrival;
   const startYear = Number(origin.slice(0, 4));
   const holidayList = (opts.holidays ?? finnishHolidaysBetween(startYear, startYear + 2)).map((h) =>
     typeof h === "string" ? { date: h, name: "holiday" } : h,
@@ -41,6 +44,9 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   const holidayName = new Map(holidayList.map((h) => [h.date, h.name]));
   const holidays = new Set(holidayName.keys());
   const dateAt = workingDayCalendar(origin, holidays);
+  /** First working-day index on or after the arrival date (0 unless a step is applied for before arrival). */
+  let arrivalIndex = 0;
+  if (preArrival.size > 0 && arrival > origin) while (dateAt(arrivalIndex) < arrival) arrivalIndex++;
   /** First weekday holiday skipped right before working day `index` (what pushed a step to that day). */
   const movedBy = (index: number): { from: string; holiday: string } | undefined => {
     const target = dateAt(index);
@@ -70,7 +76,7 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   const items: Record<string, ScheduledStep> = {};
   const queue: ScheduledStep[] = [];
   const plan = (id: string, earliest: number) => {
-    const startIndex = Math.max(earliest, floors.get(id) ?? 0);
+    const startIndex = Math.max(earliest, floors.get(id) ?? 0, preArrival.has(id) ? 0 : arrivalIndex);
     const known = opts.estimates?.[id] ?? {};
     const dur = clean(known.durationDays);
     const wait = clean(known.waitDays);

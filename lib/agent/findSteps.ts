@@ -14,6 +14,7 @@ import type {
 } from "../types";
 import { whatToDoByTrust } from "./detectConflicts";
 import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { inPersonFromText, localVisitClaims, permitProvidesCode, policeIdentificationClaims, policeIdentificationStep } from "./derive";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 
 export type StepReport = {
@@ -105,8 +106,10 @@ function mergeStep(
   claims: VerifiedClaim[],
   checkUrl: string | undefined,
   confirmation: Confirmation,
+  profile: Profile,
 ): Step {
-  const sorted = [...claims].sort(byTrust);
+  // Office addresses and hours for the person's own city when a local source says them.
+  const sorted = localVisitClaims([...claims].sort(byTrust), profile.city, cityDomains(profile.city)[0]);
   const first = (kind: VerifiedClaim["kind"]) => sorted.find((c) => c.kind === kind)?.value;
   const all = (kind: VerifiedClaim["kind"]) => [...new Set(sorted.filter((c) => c.kind === kind).map((c) => c.value))];
   // A step confirmed only by another step's requirement still carries that citation.
@@ -129,6 +132,7 @@ function mergeStep(
     authority: def.authority,
     mode: (first("mode") as Step["mode"] | undefined) ?? "either",
     requires: all("requires"),
+    ...(def.beforeArrival?.(profile) ? { beforeArrival: true } : {}),
     ...(first("cost_of_delay") ? { costOfDelay: first("cost_of_delay") } : {}),
     ...(visitPack ? { visitPack } : {}),
     citations,
@@ -374,19 +378,46 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     emitted.set(s.id, json);
     opts.onStep?.(s);
   };
-  const runs = await Promise.all(
+  const verifyOpts = { allowedDomains: officialDomains(profile.city), extraOfficial: cityDomains(profile.city), fetchPage };
+  // Whether a residence permit is searched: then the Vero identity-code step may turn out to be redundant (below).
+  const permitSearched = selected.some((d) => d.id === "residence_permit");
+  let runs = await Promise.all(
     selected.map((def) =>
       runStep(def, profile, selected, fetchPage, onProgress).then((r) => {
         r.verified = r.verified.map(remapIdentityCode);
         r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
-        if (r.verified.some((c) => c.kind === "applies")) {
+        if (r.verified.some((c) => c.kind === "applies") && !(permitSearched && r.def.id === "vero_identity_code")) {
           const confirmation: Confirmation = { by: "applies" };
-          emit({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation), confirmation });
+          emit({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation, profile), confirmation });
         }
         return r;
       }),
     ),
   );
+
+  // A page that says "requires a personal visit" makes the step in person, over a looser "either". Any page
+  // read for this person counts (one step's search often returns the sentence about another step).
+  const allDocs = dedupeDocs(runs.flatMap((r) => r.docs));
+  for (const r of runs) {
+    const visit = await inPersonFromText(r.def.id, allDocs, verifyOpts);
+    if (visit.length) r.verified = [...r.verified.filter((c) => !(c.kind === "mode" && c.value === "either")), ...visit];
+  }
+
+  // A residence permit normally comes with the personal identity code: then the permit is an option of
+  // that milestone, and the Vero tax-office route is not needed (nothing to shortcut).
+  const permit = runs.find((r) => r.def.id === "residence_permit");
+  if (permit?.verified.some((c) => c.kind === "applies")) {
+    const provides = await permitProvidesCode(allDocs, verifyOpts);
+    if (provides.length) {
+      permit.verified.push(...provides);
+      runs = runs.filter((r) => r.def.id !== "vero_identity_code");
+    }
+  }
+  // Non-EEA passport: identification at the police is a visit of its own, not an item to bring.
+  const view = runs.map((r) => ({ id: r.def.id, verified: r.verified, run: r }));
+  const police = policeIdentificationClaims(profile, view);
+  for (const v of view) v.run.verified = v.verified;
+  for (const p of police) runs.find((r) => r.def.id === p.stepId)?.verified.push(p.requires);
   const confirmed = confirmSteps(runs.map((r) => ({ id: r.def.id, verified: r.verified })));
 
   const steps: Step[] = [];
@@ -395,7 +426,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   for (const r of runs) {
     const confirmation = confirmed.get(r.def.id);
     if (confirmation) {
-      steps.push({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation), confirmation });
+      steps.push({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation, profile), confirmation });
       conflicts.push(...claimConflicts(r.def.id, r.verified));
     } else {
       const message = r.error
@@ -411,6 +442,9 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   for (const [visitId, members] of sameVisits(steps)) {
     for (const s of steps) if (members.includes(s.id)) s.visitId = visitId;
   }
+
+  const policeStep = policeIdentificationStep(police.filter((p) => confirmed.has(p.stepId)));
+  if (policeStep) steps.push(policeStep);
 
   steps.push(...done);
   for (const id of MILESTONE_IDS) {

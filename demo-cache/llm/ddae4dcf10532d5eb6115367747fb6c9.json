@@ -1,0 +1,113 @@
+{
+  "fetchedAt": "2026-11-14T12:07:06.181Z",
+  "request": {
+    "endpoint": "llm.extract",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "task": "detectConflicts@1",
+    "promptHash": "b6adeb9b377f512a",
+    "schemaHash": "731330845728d567",
+    "query": "Register as a resident and get a Finnish personal identity code (DVV)",
+    "contextHash": "aa46c30b794598c6",
+    "includeDomains": [],
+    "docsHash": "72d8e4aee75561bd"
+  },
+  "response": {
+    "data": {
+      "conflicts": []
+    },
+    "sources": [
+      {
+        "url": "https://dvv.fi/en/foreigner-registration",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "You can get a personal identity code if you are residing legally in Finland and there are grounds for registration, such as",
+          "a valid passport or an official photo ID card of a citizen from an EU member country, Iceland, Norway, Liechtenstein, Switzerland, or San Marino",
+          "a residence permit card or any other possible proof that you are residing legally in Finland",
+          "proof of work or studies in Finland, for example, a certificate of student status or an employment contract (employee, check your right to work"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.095Z"
+      },
+      {
+        "url": "https://dvv.fi/en/personal-identity-code",
+        "title": "dvv.fi",
+        "domain": "dvv.fi",
+        "trust": "official",
+        "highlights": [
+          "A personal identity code is issued to a foreign citizen moving to Finland from abroad after they have been registered in the Population Information System at their own request or at the time they are granted a residence permit",
+          "A personal identity code is issued to a person who is registered in Finland’s Population Information System"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.095Z"
+      },
+      {
+        "url": "https://www.suomi.fi/services/eservice/request-a-finnish-identity-code-and-registration-of-personal-data-via-online-form-digital-and-population-data-services-agency/5696b792-c239-4a5e-ab3a-a52e832c4d41",
+        "title": "suomi.fi",
+        "domain": "suomi.fi",
+        "trust": "official",
+        "highlights": [
+          "After submitting the form, you must visit our service location in person"
+        ],
+        "fetchedAt": "2026-11-14T12:06:20.095Z"
+      },
+      {
+        "url": "https://finlandhandbook.com/how-long-does-it-take-to-get-a-personal-identity-code-in-finland/",
+        "title": "finlandhandbook.com",
+        "domain": "finlandhandbook.com",
+        "trust": "community",
+        "highlights": [
+          "If you submit your request in August or early September, expect the DVV processing times to stretch toward the 4-to-6-week mark",
+          "If you have the flexibility to travel, sometimes booking an appointment at a DVV office in a smaller town like Porvoo, Lahti, or even further afield can shave weeks off your wait for an appointment"
+        ],
+        "fetchedAt": "2026-11-14T12:06:41.140Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/finnish-personal-identity-code",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "Book as early as you can; if slots are scarce, check service points in nearby municipalities and the booking system at different times of day"
+        ],
+        "fetchedAt": "2026-11-14T12:06:41.107Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/dvv-registration-finland",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "If family registration matters to you, check DVV's document requirements in advance — this is the single most common cause of a wasted appointment"
+        ],
+        "fetchedAt": "2026-11-14T12:06:41.140Z"
+      },
+      {
+        "url": "https://relocateineurope.com/moving-to-finland/henkilotunnus-finland-personal-identity-code-dvv-registration-kotikunta/",
+        "title": "relocateineurope.com",
+        "domain": "relocateineurope.com",
+        "trust": "community",
+        "highlights": [
+          "Registration cannot be sped up except for very weighty reasons; opening a bank account is not one"
+        ],
+        "fetchedAt": "2026-11-14T12:06:41.140Z"
+      },
+      {
+        "url": "https://nordicexpat.com/finland/first-week-finland-checklist",
+        "title": "nordicexpat.com",
+        "domain": "nordicexpat.com",
+        "trust": "community",
+        "highlights": [
+          "If your code has not arrived yet but you are about to start work, ask whether a tax office near you can issue a personal identity code, so you are not stuck on the 60% rate"
+        ],
+        "fetchedAt": "2026-11-14T12:06:41.107Z"
+      }
+    ],
+    "meta": {
+      "provider": "anthropic",
+      "ms": 4485,
+      "costUsd": 0.008426,
+      "cacheHit": false
+    }
+  }
+}
