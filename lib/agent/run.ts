@@ -8,10 +8,11 @@
 // (graph, schedule, calendar), a `partial` event says what is missing, and `done` still follows.
 import { googleTemplateUrl, eventsFromSchedule } from "../calendar";
 import { newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
+import { plural } from "../ui/format";
 import { buildGraph, criticalNode, criticalPath, describeVisitAlternative, schedule, topoOrder } from "../graph";
 import { usualOrder } from "../graph/baseline";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
-import type { Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
+import type { Actor, Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepStub, StreamCalEvent, Tip, Trust } from "../types";
 import { detectConflicts } from "./detectConflicts";
 import { estimatesWithTips } from "./estimates";
 import { attachTips, findCommunityTips, tipTargets, type FindTipsResult } from "./findCommunityTips";
@@ -57,7 +58,6 @@ function progressLine(m: string): string | null {
   let x: RegExpMatchArray | null;
   if ((x = m.match(/^searching official sources: (.+)$/))) return `Searching official sources for ${x[1]}…`;
   if ((x = m.match(/^searching community sources: (.+)$/))) return `Searching forums and guides for ${x[1]}…`;
-  if ((x = m.match(/^verifying (\d+) quotes: (.+)$/))) return `Verifying ${x[1]} quotes for ${x[2]}…`;
   if (/^(reading|comparing) /.test(m)) return null;
   return m.charAt(0).toUpperCase() + m.slice(1);
 }
@@ -133,9 +133,9 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     graphSent: false,
   };
 
-  const onProgress = (m: string) => {
+  const onProgress = (m: string, actor: Actor) => {
     const line = progressLine(m);
-    if (line && !signal.aborted) emit({ type: "status", message: line });
+    if (line && !signal.aborted) emit({ type: "status", message: line, actor });
   };
 
   const addConflict = (c: Conflict) => {
@@ -152,6 +152,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     const topo = topoOrder(graph);
     // Nodes carry their Step for lib/graph; the step events already sent it, so it is left out here.
     const slim: Graph = { nodes: graph.nodes.map((n) => ({ ...n, step: undefined })), edges: graph.edges };
+    emit({ type: "status", message: `Linked ${plural(graph.nodes.length, "step")} by ${plural(graph.edges.length, "dependency", "dependencies")}`, actor: "check" });
     emit({ type: "graph", graph: slim, criticalNode: criticalNode(graph), order: topo.order, deadlocks: topo.deadlocks });
     s.graphSent = true;
   };
@@ -163,6 +164,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     const sched = schedule(graph, profile, schedOpts);
     const baseline = usualOrder(steps, profile, schedOpts);
     const path = criticalPath(graph, sched);
+    emit({ type: "status", message: `Scheduled ${plural(Object.keys(sched.items).length, "step")}, critical path ${plural(path.totalDays, "working day")}`, actor: "check" });
     emit({
       type: "schedule",
       schedule: sched,
@@ -234,7 +236,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     for (const stub of found.stubs) emit({ type: "stub", stub });
     reportFailures("Step extraction", found.reports.map((r) => ({ stepId: r.id, error: r.error })));
     const verified = found.reports.reduce((n, r) => n + r.verified, 0);
-    emit({ type: "status", message: `${verified} quotes verified against the source text, ${found.dropped.length} dropped` });
+    emit({ type: "status", message: `${verified} quotes verified against the source text, ${found.dropped.length} dropped`, actor: "check" });
     found.conflicts.forEach(addConflict);
 
     // Tips and the conflict check for steps that get no tips start now; the graph needs neither.
@@ -390,6 +392,7 @@ function summarize(a: {
     totalMs: a.ms,
     costUsd: { exa: round(meter.exaCostUsd), llm: round(llm), total: round(meter.exaCostUsd + llm) },
     calls: { exa: meter.exaCalls, exaLive: meter.exaLive, llm: meter.llmCalls, llmLive: meter.llmLive },
+    activity: { ...meter.activity },
   };
 }
 

@@ -118,6 +118,28 @@ describe("POST /api/run: other inputs", () => {
   });
 });
 
+describe("activity feed actors", () => {
+  it("every status line names its actor, and the summary counts each actor's work", async () => {
+    const { readEvents, runStream } = await import("../../lib/agent/runStream");
+    const events: PipelineEvent[] = [];
+    for await (const e of readEvents(runStream(MARTA, { fast: true, persist: false }))) events.push(e);
+    const statuses = events.filter((e): e is Of<"status"> => e.type === "status");
+    expect(statuses.every((s) => ["exa", "claude", "check"].includes(s.actor))).toBe(true);
+    const by = (a: string) => statuses.filter((s) => s.actor === a).map((s) => s.message);
+    expect(by("exa").some((m) => /^Found \d+/.test(m))).toBe(true);
+    expect(by("claude").some((m) => /^Understanding|^Extracting/.test(m))).toBe(true);
+    expect(by("check").some((m) => /^Verifying \d+ quotes/.test(m))).toBe(true);
+    expect(by("check").some((m) => /^Scheduled /.test(m))).toBe(true);
+    const done = events.find((e): e is Of<"done"> => e.type === "done")!;
+    const a = done.summary.activity;
+    expect(a.searches).toBeGreaterThan(0);
+    expect(a.pagesRead).toBeGreaterThanOrEqual(0);
+    expect(a.extractions).toBeGreaterThan(0);
+    expect(a.quotesChecked).toBeGreaterThanOrEqual(a.quotesDropped);
+    expect(a.quotesChecked).toBeGreaterThan(0);
+  }, 60_000);
+});
+
 describe("demo replay", () => {
   it("spaces status lines for a cached demo sentence unless fast", async () => {
     const { readEvents, runStream } = await import("../../lib/agent/runStream");

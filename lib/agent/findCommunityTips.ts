@@ -3,6 +3,7 @@
 //   lib/llm -> verifyCitations against the text Exa returned -> Tip[].
 // Trust comes from the URL (trustOf): university guides are "university", forums and blogs "community".
 // waitDays is parsed from the VERIFIED quote (estimates.parseWaitDays), never taken from the extractor.
+import type { Progress } from "../events/context";
 import { cityDomains } from "../exa/domains";
 import { sourceAuthority } from "./authority";
 import { getPages, searchCommunity } from "../exa/search";
@@ -28,7 +29,7 @@ export type FindTipsResult = {
 };
 
 export type FindTipsOptions = {
-  onProgress?: (message: string) => void;
+  onProgress?: Progress;
   /** YYYY-MM-DD; anchors the publication-date window. Defaults to today in Helsinki. */
   today?: string;
 };
@@ -90,11 +91,11 @@ async function tipsForStep(
   profile: Profile,
   startPublishedDate: string,
   fetchPage: PageFetcher,
-  onProgress: (m: string) => void,
+  onProgress: Progress,
 ): Promise<{ tips: Tip[]; dropped: DroppedClaim[]; docs: ExaDoc[]; report: TipReport }> {
   const t0 = Date.now();
   const label = labelOf(step);
-  onProgress(`searching community sources: ${label}`);
+  onProgress(`searching community sources: ${label}`, "exa");
   const queries = tipQueries(step, profile);
   const searches = await Promise.allSettled(
     queries.map((q) => searchCommunity({ ...q, city: profile.city, startPublishedDate })),
@@ -110,7 +111,7 @@ async function tipsForStep(
   const report: TipReport = { stepId: step.id, ms: 0, sources: docs.length, extracted: 0, verified: 0 };
   if (docs.length === 0) return { tips: [], dropped: [], docs, report: { ...report, ms: Date.now() - t0 } };
 
-  onProgress(`reading community sources: ${label}`);
+  onProgress(`reading community sources: ${label}`, "claude");
   let result;
   try {
     result = await extract(

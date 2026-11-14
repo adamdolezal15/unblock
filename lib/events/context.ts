@@ -3,8 +3,12 @@
 // AsyncLocalStorage keeps concurrent requests apart without threading a callback through every signature.
 // Outside a run (scripts, tests calling the steps directly) every function here is a no-op.
 import { AsyncLocalStorage } from "node:async_hooks";
+import type { Actor, RunActivity } from "../types";
 
-export type StatusEvent = { type: "status"; message: string; domain?: string; cached?: boolean };
+/** Pipeline progress callback; the caller names who does the work. */
+export type Progress = (message: string, actor: Actor) => void;
+
+export type StatusEvent = { type: "status"; message: string; actor: Actor; domain?: string; cached?: boolean };
 
 export type RunMeter = {
   exaCalls: number;
@@ -14,6 +18,7 @@ export type RunMeter = {
   llmLive: number;
   /** Non-Exa extractor cost (Exa deep extraction is already in exaCostUsd). */
   llmCostUsd: number;
+  activity: RunActivity;
 };
 
 export type RunContext = {
@@ -25,7 +30,7 @@ export type RunContext = {
 const storage = new AsyncLocalStorage<RunContext>();
 
 export function newMeter(): RunMeter {
-  return { exaCalls: 0, exaLive: 0, exaCostUsd: 0, llmCalls: 0, llmLive: 0, llmCostUsd: 0 };
+  return { exaCalls: 0, exaLive: 0, exaCostUsd: 0, llmCalls: 0, llmLive: 0, llmCostUsd: 0, activity: { searches: 0, pagesRead: 0, extractions: 0, quotesChecked: 0, quotesDropped: 0 } };
 }
 
 export function withRunContext<T>(ctx: RunContext, fn: () => Promise<T>): Promise<T> {
@@ -49,10 +54,17 @@ export function throwIfAborted(): void {
   if (runContext()?.signal?.aborted) throw new RunAbortedError();
 }
 
-export function emitStatus(message: string, extra: { domain?: string; cached?: boolean } = {}): void {
+/** One activity-feed line. `actor` is set by the caller, which is the code doing the work. */
+export function emitStatus(message: string, extra: { actor: Actor; domain?: string; cached?: boolean }): void {
   const ctx = runContext();
   if (!ctx?.onStatus || ctx.signal?.aborted) return;
-  ctx.onStatus({ type: "status", message, ...(extra.domain ? { domain: extra.domain } : {}), ...(extra.cached !== undefined ? { cached: extra.cached } : {}) });
+  ctx.onStatus({ type: "status", message, actor: extra.actor, ...(extra.domain ? { domain: extra.domain } : {}), ...(extra.cached !== undefined ? { cached: extra.cached } : {}) });
+}
+
+/** Count work for the feed's summary line (searches, pages read, extractions, quotes checked/dropped). */
+export function countActivity(key: keyof RunActivity, n = 1): void {
+  const m = runContext()?.meter;
+  if (m) m.activity[key] += n;
 }
 
 export function meterExa(hit: boolean, costUsd = 0): void {

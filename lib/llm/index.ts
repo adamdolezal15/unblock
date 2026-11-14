@@ -5,7 +5,7 @@
 import path from "node:path";
 import { z } from "zod";
 import { cachedCall, modeFromEnv, sha } from "../cache/disk";
-import { domainList, emitStatus, meterLlm, throwIfAborted } from "../events/context";
+import { countActivity, domainList, emitStatus, meterLlm, throwIfAborted } from "../events/context";
 import { salvage } from "./salvage";
 import type { ExtractInput, ExtractResult, LlmProvider, LlmTask } from "./types";
 
@@ -78,7 +78,10 @@ function statusLine(task: string, n: number, domains: string): string {
 export async function extract<T>(task: LlmTask, input: ExtractInput, schema: z.ZodType<T>): Promise<ExtractResult<T>> {
   const p = await provider();
   const domains = input.docs.map((d) => d.domain);
-  emitStatus(statusLine(task.name, input.docs.length, domainList(domains)), { domain: domains[0] });
+  // The exa provider's extraction is an Exa deep search (counted and labelled in lib/exa); only Claude's count here.
+  const byClaude = p.name !== "exa";
+  if (byClaude) countActivity("extractions");
+  emitStatus(statusLine(task.name, input.docs.length, domainList(domains)), { actor: byClaude ? "claude" : "exa", domain: domains[0] });
   const r = await cachedCall(
     { dir: CACHE_DIR, mode: modeFromEnv("LLM_CACHE"), label: "LLM_CACHE", fallbackDir: DEMO_CACHE_DIR },
     llmCacheKey(p, task, input, schema),

@@ -1,7 +1,7 @@
 "use client";
 import { isReplaying, type RunState } from "@/lib/ui/runState";
 import { runProgress } from "@/lib/ui/progress";
-import { Favicon, ReplayLabel } from "./ActivityFeed";
+import { ActorTag, Favicon, ReplayLabel } from "./ActivityFeed";
 import { LineMark } from "./line/LineMark";
 
 /** While the plan is being built: one calm card with progress and the last few things the agent did. */
@@ -25,6 +25,7 @@ export function Working({ state }: { state: RunState }) {
         {recent.length === 0 && <li className="text-[14px] text-muted">Starting…</li>}
         {recent.map((s, i) => (
           <li key={s.id} className={`flex items-start gap-2.5 py-0.5 text-[14px] leading-5 ${i === recent.length - 1 ? "text-ink" : "text-muted"}`}>
+            <ActorTag actor={s.actor} />
             <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center">
               {s.domain ? <Favicon domain={s.domain} /> : <span className={`h-1.5 w-1.5 rounded-full ${i === recent.length - 1 ? "animate-pulse bg-accent" : "bg-rule-strong"}`} />}
             </span>

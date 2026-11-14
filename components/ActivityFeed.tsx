@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { isReplaying, type StatusLine } from "@/lib/ui/runState";
-import { faviconUrl, fmtSeconds, plural } from "@/lib/ui/format";
+import { activityLine, faviconUrl, fmtSeconds, plural } from "@/lib/ui/format";
+import type { Actor, RunActivity } from "@/lib/types";
 import { IconChevron } from "./icons";
 
 type Props = {
@@ -12,10 +13,12 @@ type Props = {
   elapsedMs?: number;
   collapsed: boolean;
   onToggle: () => void;
+  /** What each actor did, from the run summary; shown as the feed's last line once the run is done. */
+  activity?: RunActivity;
 };
 
 /** What the agent is doing, newest at the bottom. Collapses to one line when the plan is done. */
-export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle }: Props) {
+export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle, activity }: Props) {
   const list = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
@@ -45,11 +48,12 @@ export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, o
               <FeedLine key={s.id} line={s} live={running && i === statuses.length - 1} />
             ))}
             {notes.map((n, i) => (
-              <li key={`n${i}`} className="py-1 pl-6 text-[14px] leading-5 text-muted">
+              <li key={`n${i}`} className="py-1 pl-[84px] text-[14px] leading-5 text-muted">
                 {n}
               </li>
             ))}
             {running && statuses.length === 0 && <li className="py-1 text-[14px] text-muted">Starting…</li>}
+            {activity && !running && <li className="num mt-1 border-t border-dashed border-rule pt-2 font-mono text-[12px] leading-5 text-muted">{activityLine(activity)}</li>}
           </ol>
           <p className="num flex justify-between gap-3 border-t border-rule pt-2 text-[14px] text-muted">
             <span>{running ? `${plural(statuses.length, "action")} so far` : `${summary}.`}</span>
@@ -62,6 +66,17 @@ export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, o
 }
 
 /** Quiet, honest note: the activity is a saved run played back, not live work. */
+const ACTOR_LABEL: Record<Actor, string> = { exa: "Exa", claude: "Claude", check: "Check" };
+
+/** Who did a line: a small monospace tag in a fixed-width column, same quiet outline for every actor. */
+export function ActorTag({ actor }: { actor: Actor }) {
+  return (
+    <span className="mt-px flex w-[60px] shrink-0">
+      <span className="rounded-[3px] border border-ink/50 px-1 font-mono text-[11px] leading-4 text-ink/80">{ACTOR_LABEL[actor]}</span>
+    </span>
+  );
+}
+
 export function ReplayLabel({ className = "" }: { className?: string }) {
   return <span className={`text-[13px] text-muted/80 ${className}`}>Replaying a saved run</span>;
 }
@@ -69,6 +84,7 @@ export function ReplayLabel({ className = "" }: { className?: string }) {
 function FeedLine({ line, live }: { line: StatusLine; live: boolean }) {
   return (
     <li className="rise flex items-start gap-2 py-1 text-[14px] leading-5">
+      <ActorTag actor={line.actor} />
       <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center">
         {line.domain ? <Favicon domain={line.domain} /> : <span className={`h-1.5 w-1.5 rounded-full ${live ? "animate-pulse bg-accent" : "bg-rule-strong"}`} />}
       </span>

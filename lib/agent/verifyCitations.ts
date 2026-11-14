@@ -5,6 +5,7 @@
 // always the page's own words.
 import { getPages } from "../exa/search";
 import { trustOf } from "../exa/domains";
+import { countActivity, emitStatus } from "../events/context";
 import type { ClaimKind, DroppedClaim, ExaDoc, RawClaim, Step, VerifiedClaim } from "../types";
 
 export const MATCH_THRESHOLD = 0.9;
@@ -195,6 +196,8 @@ export type VerifyOptions = {
   /** Milestone ids a `provides` value may name. */
   milestoneIds?: ReadonlySet<string>;
   fetchPage?: PageFetcher;
+  /** When set, the activity feed gets a "Verifying N quotes for <label>…" line. */
+  label?: string;
 };
 
 /**
@@ -224,6 +227,7 @@ export async function verifyCitations(
     return true;
   });
 
+  if (opts.label) emitStatus(`Verifying ${unique.length} quotes for ${opts.label}…`, { actor: "check" });
   const results = await Promise.all(
     unique.map(async (c): Promise<VerifiedClaim | DroppedClaim> => {
       const drop = (reason: DroppedClaim["reason"], bestScore?: number): DroppedClaim => ({ ...c, reason, bestScore });
@@ -277,5 +281,7 @@ export async function verifyCitations(
   const verified: VerifiedClaim[] = [];
   const dropped: DroppedClaim[] = [];
   for (const r of results) ("reason" in r ? dropped : verified).push(r as never);
+  countActivity("quotesChecked", results.length);
+  countActivity("quotesDropped", dropped.length);
   return { verified, dropped };
 }

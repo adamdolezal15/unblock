@@ -4,6 +4,7 @@
 // A pair is kept only if BOTH quotes verify against the text Exa returned, they come from different pages,
 // and the extractor judged them a genuine contradiction (precision over recall). Side `a` is the more
 // trusted one (TRUST_RANK).
+import type { Progress } from "../events/context";
 import { cityDomains, TRUST_RANK } from "../exa/domains";
 import { sourceAuthority } from "./authority";
 import { searchOfficial, searchProvider } from "../exa/search";
@@ -24,7 +25,7 @@ export type DetectConflictsResult = {
   sources: ExaDoc[];
 };
 
-export type DetectConflictsOptions = { profile: Profile; onProgress?: (message: string) => void };
+export type DetectConflictsOptions = { profile: Profile; onProgress?: Progress };
 
 const host = (url: string) => {
   try {
@@ -79,7 +80,7 @@ async function conflictsForStep(
   tips: Tip[],
   profile: Profile,
   fetchPage: PageFetcher,
-  onProgress: (m: string) => void,
+  onProgress: Progress,
 ): Promise<{ conflicts: Conflict[]; dropped: DroppedClaim[]; probes: ExaDoc[]; report: ConflictReport }> {
   const t0 = Date.now();
   const probes = await probeDocs(step, profile);
@@ -90,7 +91,7 @@ async function conflictsForStep(
   const report: ConflictReport = { stepId: step.id, ms: 0, sources: docs.length, proposed: 0, kept: 0 };
   if (docs.length < 2) return { conflicts: [], dropped: [], probes, report: { ...report, ms: Date.now() - t0 } };
 
-  onProgress(`comparing sources: ${step.title}`);
+  onProgress(`comparing sources: ${step.title}`, "claude");
   let result;
   try {
     result = await extract(

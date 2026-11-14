@@ -164,6 +164,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
               elapsedMs={elapsed}
               collapsed={false}
               onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
+              activity={state.summary?.activity}
             />
           </div>
         )}

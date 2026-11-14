@@ -1,6 +1,6 @@
 // Client-side run state: a reducer over the NDJSON PipelineEvent stream from POST /api/run.
 // Types only from lib/ (no server code in the client bundle). `step` events are upserts by id.
-import type { Conflict, PipelineEvent, RunSummary, Step, StepStub, Tip } from "@/lib/types";
+import type { Actor, Conflict, PipelineEvent, RunSummary, Step, StepStub, Tip } from "@/lib/types";
 
 type Ev<T extends PipelineEvent["type"]> = Extract<PipelineEvent, { type: T }>;
 export type ProfileEvent = Omit<Ev<"profile">, "type">;
@@ -10,7 +10,7 @@ export type CalendarEvent = Omit<Ev<"calendar">, "type">;
 
 export type Phase = "idle" | "running" | "done" | "out_of_scope" | "error";
 
-export type StatusLine = { id: number; message: string; domain?: string; cached?: boolean; replay?: boolean; at: number };
+export type StatusLine = { id: number; message: string; actor: Actor; domain?: string; cached?: boolean; replay?: boolean; at: number };
 
 export type RunState = {
   phase: Phase;
@@ -82,7 +82,7 @@ export function runReducer(s: RunState, a: RunAction): RunState {
 function applyEvent(s: RunState, e: PipelineEvent, at: number): RunState {
   switch (e.type) {
     case "status":
-      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message, domain: e.domain, cached: e.cached, replay: e.replay, at }] };
+      return { ...s, statuses: [...s.statuses, { id: s.statuses.length, message: e.message, actor: e.actor, domain: e.domain, cached: e.cached, replay: e.replay, at }] };
     case "profile":
       return {
         ...s,

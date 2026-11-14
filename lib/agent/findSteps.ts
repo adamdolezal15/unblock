@@ -4,6 +4,7 @@
 // step requiring it (see confirmSteps); otherwise it becomes a stub ("not found, check <url>").
 // "Needs a personal identity code" points at the personal_identity_code milestone, which any step
 // with a verified `provides` claim can satisfy (an any-of group in lib/graph).
+import type { Progress } from "../events/context";
 import { cityDomains, officialDomains, PROVIDER, TRUST_RANK, UNIVERSITY } from "../exa/domains";
 import { bookingHref } from "../calendar/bookingUrl";
 import { searchOfficial, searchProvider } from "../exa/search";
@@ -40,7 +41,7 @@ export type FindStepsResult = {
 };
 
 export type FindStepsOptions = {
-  onProgress?: (message: string) => void;
+  onProgress?: Progress;
   /**
    * Called as soon as a step is confirmed, and again if its final form differs (consumers upsert by id).
    * Every step in the returned `steps` has been passed here in its final form.
@@ -158,7 +159,7 @@ async function runStep(
   profile: Profile,
   selected: StepDef[],
   fetchPage: PageFetcher,
-  onProgress: (m: string) => void,
+  onProgress: Progress,
 ): Promise<StepRun> {
   const t0 = Date.now();
   const extraOfficial = cityDomains(profile.city);
@@ -168,7 +169,7 @@ async function runStep(
     ...(def.university ? UNIVERSITY : []),
   ];
 
-  onProgress(`searching official sources: ${def.label}`);
+  onProgress(`searching official sources: ${def.label}`, "exa");
   const query = def.query(profile);
   const searches = await Promise.allSettled([
     searchOfficial({ query, objective: def.objective, city: profile.city, includeUniversities: !!def.university }),
@@ -182,7 +183,7 @@ async function runStep(
   const docs = dedupeDocs(searches.flatMap((s) => (s.status === "fulfilled" ? s.value.docs : [])));
   const checkUrl = docs.find((d) => d.trust === "official")?.url ?? docs[0]?.url;
 
-  onProgress(`reading sources: ${def.label}`);
+  onProgress(`reading sources: ${def.label}`, "claude");
   let result;
   try {
     result = await extract(
@@ -204,13 +205,13 @@ async function runStep(
   }
 
   const raw: RawClaim[] = (result.data?.claims ?? []).map((c) => ({ stepId: def.id, ...c }));
-  onProgress(`verifying ${raw.length} quotes: ${def.label}`);
   const { verified, dropped } = await verifyCitations(raw, [...docs, ...result.sources], {
     allowedDomains: includeDomains,
     extraOfficial,
     knownStepIds: STEP_IDS,
     milestoneIds: MILESTONE_IDS,
     fetchPage,
+    label: def.label,
   });
 
   return {

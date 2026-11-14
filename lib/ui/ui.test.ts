@@ -1,4 +1,16 @@
 import { describe, expect, it } from "vitest";
+import { activityLine } from "./format";
+
+describe("activityLine", () => {
+  it("summarises each actor's work in one line", () => {
+    expect(activityLine({ searches: 31, pagesRead: 6, extractions: 14, quotesChecked: 120, quotesDropped: 7 })).toBe(
+      "Exa: 31 searches, 6 pages read · Claude: 14 extractions · 120 quotes checked, 7 dropped",
+    );
+    expect(activityLine({ searches: 1, pagesRead: 1, extractions: 1, quotesChecked: 1, quotesDropped: 0 })).toBe(
+      "Exa: 1 search, 1 page read · Claude: 1 extraction · 1 quote checked, 0 dropped",
+    );
+  });
+});
 import { sortSteps } from "@/components/StepsPreview";
 import type { Step } from "@/lib/types";
 import { assumptionLabel } from "./assumptionLabel";
@@ -80,7 +92,7 @@ describe("runProgress", () => {
   it("moves with the agent's own reported work and never claims done early", async () => {
     const { runProgress } = await import("./progress");
     let s = runReducer(initialRunState, { type: "start", text: "x", at: 0 });
-    const status = (message: string) => (s = runReducer(s, { type: "event", event: { type: "status", message }, at: 1 }));
+    const status = (message: string) => (s = runReducer(s, { type: "event", event: { type: "status", message, actor: "exa" }, at: 1 }));
     const p0 = runProgress(s).value;
     status("Searching official sources for Tax card…");
     status("Searching official sources for Bank account…");

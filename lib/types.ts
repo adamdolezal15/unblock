@@ -148,6 +148,12 @@ export type SearchSpec = {
   layer: "official" | "community";
 };
 
+/** Who did the work behind a status line: Exa (search, pages, monitors), Claude (understanding, extracting, comparing), Check (quote verification, graph, scheduling). */
+export type Actor = "exa" | "claude" | "check";
+
+/** What each actor did in a run, counted where the work happens (lib/exa, lib/llm, verifyCitations). */
+export type RunActivity = { searches: number; pagesRead: number; extractions: number; quotesChecked: number; quotesDropped: number };
+
 /** Counts for the final summary (SPEC F3: done online / visits / in calendar / critical path length). */
 export type RunSummary = {
   runId: string;
@@ -179,6 +185,7 @@ export type RunSummary = {
   totalMs: number;
   costUsd: { exa: number; llm: number; total: number };
   calls: { exa: number; exaLive: number; llm: number; llmLive: number };
+  activity: RunActivity;
 };
 
 /** A calendar event as streamed: the CalEvent plus its Google Calendar template link. */
@@ -191,8 +198,8 @@ export type StreamCalEvent = import("./calendar/types").CalEvent & { googleTempl
  * An out-of-scope input yields a single `out_of_scope` event and nothing else.
  */
 export type PipelineEvent =
-  /** replay: this line was paced by the demo replay (a saved run played back from demo-cache). */
-  | { type: "status"; message: string; domain?: string; cached?: boolean; replay?: boolean }
+  /** actor: who did it, set where the line is created. replay: paced by the demo replay (a saved run played back from demo-cache). */
+  | { type: "status"; message: string; actor: Actor; domain?: string; cached?: boolean; replay?: boolean }
   | {
       type: "profile";
       profile: Profile;

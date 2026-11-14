@@ -1,7 +1,7 @@
 // Typed, cached wrappers around Exa /search and /contents. All Exa traffic goes through here.
 // Request shapes follow .agents/skills/build-with-exa: highlights inside `contents`,
 // `objective` on every pipeline search, includeDomains only for the official layer.
-import { domainList, emitStatus, meterExa, throwIfAborted } from "../events/context";
+import { countActivity, domainList, emitStatus, meterExa, throwIfAborted } from "../events/context";
 import type { ExaDoc } from "../types";
 import { cached } from "./cache";
 import { exa } from "./client";
@@ -200,7 +200,9 @@ function toDocs(response: RawSearchResponse, fetchedAt: string, extraOfficial: s
 /** One activity-feed line per call, naming the domains Exa actually returned. */
 function reportFound(docs: ExaDoc[], meta: SearchMeta, noun: (n: number) => string, empty: string) {
   const domains = docs.map((d) => d.domain);
+  countActivity("searches");
   emitStatus(docs.length ? `Found ${docs.length} ${noun(docs.length)}: ${domainList(domains)}` : empty, {
+    actor: "exa",
     domain: domains[0],
     cached: meta.hit,
   });
@@ -311,7 +313,9 @@ export async function getPages(
   const meta: SearchMeta = { hit: r.hit, ms: r.ms, requestId: r.response.requestId, costUsd: r.response.costDollars?.total, fetchedAt: r.fetchedAt };
   logCall("getPages", urls.join(","), meta, r.response.results.length);
   const hosts = urls.map(hostOf);
+  countActivity("pagesRead", urls.length);
   emitStatus(urls.length === 1 ? `Reading ${hosts[0]}…` : `Reading ${urls.length} pages in full: ${domainList(hosts)}…`, {
+    actor: "exa",
     domain: hosts[0],
     cached: meta.hit,
   });
@@ -341,7 +345,8 @@ export async function searchDeep(args: {
     contents: { highlights: true },
   });
   logCall("searchDeep", args.query, meta, response.results.length);
-  emitStatus(`Deep search read ${response.results.length} sources`, { cached: meta.hit });
+  countActivity("searches");
+  emitStatus(`Deep search read ${response.results.length} sources`, { actor: "exa", cached: meta.hit });
   let content: unknown = response.output?.content ?? null;
   if (typeof content === "string") {
     try {
