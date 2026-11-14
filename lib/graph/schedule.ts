@@ -312,7 +312,9 @@ export function scheduleGroups(
  * For an any-of group only the option that satisfied it (the earliest-ready one) can bind.
  */
 export function criticalPath(graph: Graph, sched: Schedule): CriticalPath {
-  const ids = sched.order.filter((id) => sched.items[id]);
+  // Optional steps (Step.necessity) never set the finish date: the path ends at the last required step.
+  const optional = new Set(graph.nodes.filter((n) => n.step?.necessity === "optional").map((n) => n.id));
+  const ids = sched.order.filter((id) => sched.items[id] && !optional.has(id));
   if (ids.length === 0) return { stepIds: [], totalDays: 0, calendarDays: 0 };
 
   const priority = priorityScores(graph);

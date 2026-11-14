@@ -10,6 +10,7 @@ import { unlockedSteps } from "@/lib/graph/unlocks";
 import { edgeEvidence, needs, stepFacts, unblocks, type Fact } from "./panel";
 import { nodeLabel } from "./labels";
 import { bookingHref } from "@/lib/calendar/bookingUrl";
+import { venueMonth } from "@/lib/agent/valueFormats";
 
 export type DayStep = {
   id: string;
@@ -39,6 +40,8 @@ export type VisitEntry = {
   /** A link when the source gives one; otherwise the source's booking instruction as text. */
   booking?: { url?: string; text: string; ref: Ref };
   calendarUrl?: string;
+  /** A university event where this can be done instead of the office; `when` only if its cited date fits the arrival. */
+  venue?: { name: string; ref: Ref; when?: { value: string; ref: Ref } };
   /** Tip reminders for this visit (from people who did it). */
   tips: { text: string; ref?: Ref }[];
 };
@@ -74,12 +77,27 @@ export function waitCitation(state: RunState, id: string): Citation | undefined 
 }
 
 export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[] {
+  return plan(state, ref).entries;
+}
+
+/** Optional steps (Step.necessity) for the "Optional, if useful for you" section: never in the days above. */
+export function buildOptional(state: RunState, ref: (c: Citation) => Ref): DayStep[] {
+  return plan(state, ref).optional;
+}
+
+export const OPTIONAL_TITLE = "Optional, if useful for you";
+
+function plan(state: RunState, ref: (c: Citation) => Ref): { entries: DayEntry[]; optional: DayStep[] } {
   const sched = state.schedule;
-  if (!sched) return [];
+  if (!sched) return { entries: [], optional: [] };
   const items = sched.schedule.items;
   const critical = new Set(sched.criticalPath.stepIds);
   const name = (id: string) => nodeLabel(id, state.steps[id]?.title ?? id);
-  const actionable = sched.schedule.order.filter((id) => items[id] && state.steps[id] && !state.steps[id].milestone && !state.steps[id].done);
+  const isOptional = (id: string) => state.steps[id]?.necessity === "optional";
+  const actionable = sched.schedule.order.filter(
+    (id) => items[id] && state.steps[id] && !state.steps[id].milestone && !state.steps[id].done && !isOptional(id),
+  );
+  const optionalIds = state.stepOrder.filter((id) => isOptional(id) && !state.steps[id].done);
   const events: StreamCalEvent[] = state.calendar?.events ?? [];
 
   const dayStep = (id: string): DayStep => {
@@ -123,7 +141,7 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
     const noSource = !(step.claims?.length || step.citations.length);
 
     let wait: Seg[] | undefined;
-    if (item.waitDays > 0) {
+    if (item && item.waitDays > 0) {
       wait = [{ t: `Then wait ${waitText(item.waitDays)} for ${step.authority.replace(/^Your/, "your")}` }];
       if (item.estimated) wait.push({ t: ". Estimate: no official figure found." });
       else if (item.waitSource === "community") {
@@ -162,6 +180,7 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
       .filter((d, i, all) => all.findIndex((x) => x.value === d.value) === i)
       .map((d) => ({ value: d.value, ref: ref(d.citation) }));
     const event = events.find((e) => e.kind === "visit" && members.includes(e.stepId));
+    const venue = venueOf(facts.flatMap((f) => f.venue), state.profile?.profile.arrivalDate, ref);
     entries.push({
       kind: "visit",
       date,
@@ -173,6 +192,7 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
         ? { booking: { ...(bookingHref(bookingFact.value) ? { url: bookingHref(bookingFact.value)! } : {}), text: bookingFact.value, ref: ref(bookingFact.citation) } }
         : {}),
       ...(event ? { calendarUrl: event.googleTemplateUrl } : {}),
+      ...(venue ? { venue } : {}),
       tips: [],
       sources: {
         bring: new Set(bring.map((b) => b.ref.citation.url)).size,
@@ -202,7 +222,27 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
   const last = sched.criticalPath.stepIds[sched.criticalPath.stepIds.length - 1];
   if (last && items[last]) entries.push({ kind: "done", date: items[last].doneDate });
 
-  return entries.sort((a, b) => a.date.localeCompare(b.date) || ORDER[a.kind] - ORDER[b.kind]);
+  entries.sort((a, b) => a.date.localeCompare(b.date) || ORDER[a.kind] - ORDER[b.kind]);
+  return { entries, optional: optionalIds.map(dayStep) };
+}
+
+/**
+ * The event a step can be done at (a university check-in event), from verified `venue` claims. Its place and
+ * date are shown only when the cited date falls in the arrival month or the month after: a date for another
+ * intake ("28 & 29 August" for a January arrival) is not this person's date.
+ */
+function venueOf(facts: Fact[], arrival: string | undefined, ref: (c: Citation) => Ref): VisitEntry["venue"] {
+  const event = facts.find((f) => !f.value.includes(":"));
+  if (!event) return undefined;
+  const where = facts.find((f) => f.value.includes(":"));
+  const m = where ? venueMonth(where.value) : undefined;
+  const am = arrival ? Number(arrival.slice(5, 7)) : undefined;
+  const fits = m !== undefined && am !== undefined && (m === am || m === (am % 12) + 1);
+  return {
+    name: event.value,
+    ref: ref(event.citation),
+    ...(where && fits ? { when: { value: where.value.split(":").slice(1).join(":").trim(), ref: ref(where.citation) } } : {}),
+  };
 }
 
 export type FallbackStep = { id: string; title: string; authority: string; mode: "online" | "in_person" | "either" };

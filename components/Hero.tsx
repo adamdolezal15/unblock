@@ -32,7 +32,7 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
   const fuzzy = path.some((id) => items[id]?.estimated);
   const startYear = Number(sched.schedule.startDate.slice(0, 4));
 
-  const steps = Object.values(state.steps).filter((s) => !s.milestone && !s.done && items[s.id]);
+  const steps = Object.values(state.steps).filter((s) => !s.milestone && !s.done && s.necessity !== "optional" && items[s.id]);
   const visits = countVisits(steps, items);
   const online = steps.filter((s) => s.mode !== "in_person").length;
 

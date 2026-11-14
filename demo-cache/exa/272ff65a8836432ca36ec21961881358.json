@@ -1,0 +1,92 @@
+{
+  "fetchedAt": "2026-11-14T15:05:08.882Z",
+  "request": {
+    "endpoint": "search",
+    "query": "How many days or weeks did you wait for a University of Helsinki appointment for University enrolment and arrival steps in Helsinki, and how long until it was done?",
+    "objective": "Forum posts, Reddit threads, blogs and university guides from people who did \"University enrolment and arrival steps\" (University of Helsinki) in Helsinki, Finland: how long they waited for an appointment or for the result, and appointment availability.",
+    "type": "auto",
+    "numResults": 5,
+    "excludeDomains": [
+      "dvv.fi",
+      "vero.fi",
+      "migri.fi",
+      "enterfinland.fi",
+      "kela.fi",
+      "poliisi.fi",
+      "suomi.fi",
+      "infopankki.fi",
+      "ihhelsinki.fi",
+      "finanssivalvonta.fi",
+      "hel.fi",
+      "myhelsinki.fi"
+    ],
+    "startPublishedDate": "2024-01-01",
+    "contents": {
+      "highlights": true
+    }
+  },
+  "response": {
+    "requestId": "08118445bbb83fbeef0bbcb99d6dbf93",
+    "resolvedSearchType": "",
+    "results": [
+      {
+        "id": "https://blogs.helsinki.fi/ohjausyliopistossa/author/ecarver/page/2/",
+        "title": "ecarver@helsinki.fi – Sivu 2 – Opiskelijoiden ohjaus yliopistossa",
+        "url": "https://blogs.helsinki.fi/ohjausyliopistossa/author/ecarver/page/2/",
+        "publishedDate": "2025-10-02T05:10:13.000Z",
+        "highlights": [
+          "Cari Monroe: That’s a good question. Yes, I have been in this role for almost a year and a half now. I would say that we have a lot of different roles. It depends on the time of year what maybe we have more inquiries about, but essentially, our primary role is to be a support for international students. So, we are usually the first point of contact when an international student has any type of question. Administratively we deal a lot with tuition fees and scholarships because a lot of our target group are non-EU students who have tuition fee liability, which means they either pay tuition or they have a scholarship. So, those students usually have more questions about administrative things, and obviously there is a lot more pressure that comes along with that because there’s more at stake for these students. So, they usually have a lot more questions and want to make sure they really understand how to do their studies and make sure that everything is on track. We sometimes serve a little as a therapist role, especially at the Kaiser desk. A lot of students come and maybe do not have a specific question, but they are struggling in certain points of their life, and they just want someone who has been through it or can empathize a little bit in what the experience is as an international person in Finland because it can be quite challenging for a lot of people, especially students, as I said, who have a little bit more pressure financially, or students who come with their families. So, there is a lot that we cover. As it is September now, we just finished the wave of all the incoming students, so there is a lot of support and guidance we give on how to register with the authorities, and what are the first steps you have to do when you come here to register yourself in Finland. There are quite a lot of steps that you have to do as an international person moving here, as I am sure you know. There are not a lot of helpful resources online, so things are very confusing. So, we are here to answer questions. We did quite a lot of webinars and went in person to a lot of programs during their orientation weeks and gave some presentations about who we are, but also what you have to do right now. What are your priorities as an international student. I do not know, Larissa, if you have anything else to add.\n\n...\n\nCari Monroe: Even how much mental and emotional energy that it takes coming here and getting things set up. I have lived in several other countries before, but nowhere has been like here in terms of immigration and the authorities. Having arrived in August, it took me until December to like feel like okay, I have done everything that I needed to, just because things take so long. You have to make appointments that are a month out. You cannot do this until you have that, but then you need this to do that. Strong ID is a really, really challenging thing to navigate without it, but it takes a really long time to get it. Even just having the empathy for these students that are like, why has the bank not called me back? It has been two weeks. Things like that where I have been there, we can go through this together. My overall point in this board game is I think it helped these Finnish people working in universities to have some empathy. I even overheard one man saying oh, now I understand why international students do not come to our events because they just do not have the energy and they do not have the time. Even just having a bigger understanding of what that is like, is really helpful.\n\n...\n\nSuorsa [00:46:02]: Kyllä, tosiaan yliopistot tekevät tällaista uraseurantakyselyä, joka lähtee viisi vuotta valmistumisen jälkeen. Eli ei kysellä vastavalmistuneilta, vaan jo sellaisilta valmistuneilta, joilla on jo hieman työuraa takana. Tämä tehdään joka vuosi, eli vuosittain seurataan tilannetta ja kyselyssä kysytään paljon kaikenlaista ihan työllistymiseen liittyvää asiaa, että minkälainen on työmarkkinastatus, minkälainen työpaikka, työnantajan sektori. Kysytään siis paljon tällaista laadulliseen työllistymiseen liittyvää asiaa, koska tosiaan Tilastokeskushan seuraa esimerkiksi työllisyyden kehittymistä, mutta se on pelkkää numerodataa. Se ei kerro, että minkä tyyppistä se työllistyminen on. Meitä kiinnostaa myös nähdä se, että minne yliopistosta valmistuneet työllistyvät ja minkä tyyppistä se työ on. Ja kun sanoin tuossa aikaisemmin, että mielekästä, niin itse tietysti näen, että mielekästä työllistyminen on silloin, kun se ihminen on työllistynyt koulutustaan vastaaviin tehtäviin. Että jos työskentelee maisterin tutkinnolla ravintolakokkina, niin ei välttämättä ole kauhean mielekästä. Toki sille yksilöllehän se voi olla, että ihan hyvä uravalinta. Mutta tällaisia asioita. Siellä kysytään työttömyydestä vähän, seurataan myös sitä, mutta siitä kysellään vähän vähemmän. Ja kysytään myös sitten osaamisesta. Tuossa jo aikaisemmin Arttukin mainitsi tästä osaamisesta, että se on korkeakoulutetuille tärkeä asia tunnistaa sitä omaa osaamistaan ja päästä hyödyntämään sitä. Se on myös yksi meidän kyselyn keskiössä oleva asia."
+        ]
+      },
+      {
+        "id": "https://blogs.helsinki.fi/hyy-international/2024/04/10/test-3/",
+        "title": "Essential Checklist for New International Students – International Committee HYY",
+        "url": "https://blogs.helsinki.fi/hyy-international/2024/04/10/test-3/",
+        "publishedDate": "2024-04-10T19:01:05.000Z",
+        "author": "Vaibhav Agarwal",
+        "highlights": [
+          "Before You Arrive (3-6 Months Before):\n\n- Admission & Visa (Research Start 4 Months Before):\n\n- Double-check your admission letter for deadlines and required documents (originals & translations may be needed).\n- Apply for a residence permit at least 4 months before your arrival (earlier for peak seasons) through the Finnish Immigration Service website (https://migri.fi/en/home).\n\n...\n\nUpon Arrival (First Week):\n\n- Registration & Residence Permit:\n\n- Register with the Finnish authorities within 7 days of arrival (instructions provided by Finnish Immigration Service).\n- Activate your residence permit card at a police station.\n- University Orientation (Pre-register & Attend):\n\n- Pre-register for the University of Helsinki’s international student orientation program (offered typically before semesters begin). This provides essential information and support.\n- Familiarize yourself with the campus (check a campus map online) and locate key facilities like student services, libraries, and your department building.\n- Collect your student ID card, which grants access to university facilities and discounts.\n- Phone & Internet (Set Up Within the Week):"
+        ],
+        "image": "https://blogs.helsinki.fi/hyy-international/files/2024/04/Screenshot-2024-04-23-124449.png"
+      },
+      {
+        "id": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "title": "Arrival at Aalto University | Aalto University",
+        "url": "https://www.aalto.fi/en/international-students/arrival-at-aalto-university",
+        "publishedDate": "2026-11-11T00:00:00.000Z",
+        "highlights": [
+          "### Letter of Admission \n\nWhen you have been accepted for exchange studies by Aalto University you will receive a Letter of Admission by email. They will be sent by mid-June for students arriving for the autumn term and late November for students arriving for the spring term. Each Aalto school has their own process and timeline for sending them.\n\n### Orientation and start of studies \n\nYou should plan to arrive by the start of orientation. Attending orientation is mandatory for all exchange students, and you will receive all the information you need to start your studies smoothly. Your exchange coordinator will send you the orientation schedule that applies to exchange students at your Aalto school. Some orientation events are school-specific, so please follow the schedule given to you and attend the orientation of your Aalto school.\n\nTeaching will start on the week following orientation. You can view the academic calendar for the exact dates of each teaching period.\n\n...\n\n### EU/EEA citizens: registering right of residence \n\nEU/EEA, Switzerland and Liechtenstein citizens do not need a residence permit, instead they register their right of residence at the Finnish Immigration Service. The registration is required if you are staying in Finland for over 90 days without leaving the country. You can also obtain the Finnish personal identity code in connection with the registration.\n\nYou can fill in the online application once your study right has started and then book the appointment to visit the service point in Helsinki. The Finnish Immigration Service point in Helsinki is very busy and when you book an appointment, the next available time may be several weeks or even a few months away.\n\n...\n\n## Preparing for the\n\n...\n\nRead this part approx. 4 weeks before the start of your exchange\n\n...\n\n### Enrolment and updating your personal information \n\nYou will be automatically enrolled as attending for the duration of your exchange studies. You can download a Certificate of Student Status in Sisu which proves your attendance at Aalto University (this document is requested by Finnish authorities; they may refer to it as Certificate of Attendance)."
+        ],
+        "image": "https://www.aalto.fi/sites/default/files/styles/1_91_1200w_630h_n/public/2022-12/Student_Guide_Use_Only_Kansainvaliset%20opiskelijat_Wide_White%20BG_1.png?h=f267d9cc&itok=FdPlfUOa"
+      },
+      {
+        "id": "https://www.diak.fi/en/student-guide/study-path/international-student-journey/",
+        "title": "International student journey - Diakonia-ammattikorkeakoulu",
+        "url": "https://www.diak.fi/en/student-guide/study-path/international-student-journey/",
+        "publishedDate": "2026-06-23T05:30:50.000Z",
+        "highlights": [
+          "### Before arrival\n\nResidence permit\n\nNon-EU/EEA students need a student residence permit. Please start this process as soon as possible after you have accepted your study place, as the process takes several months. You can begin the student residence permit application online at Enterfinland.fi. Please note that you must personally visit a Finnish embassy or consulate for identification as part of this process.\n\n...\n\nTo ensure a smooth beginning for the newcomers, Diak offers International Tutor services for students arriving in Finland. The tutors can:\n\n- answer your questions about Finland before arrival.\n- pick you up from the airport if possible. Please inform your tutor asap once you have the flight schedule.\n- guide you with arrival formalities and practical issues and help you to integrate to the Finnish society and student life.\n\n...\n\n### Arrival\n\nEnsure housing for the first nights\n\nCheck when it is possible to pick up keys for your permanent housing. And remember that your housing is not furnished. If you arrive at night, during the weekend or on national holiday, book a temporary housing for the first nights. Also if you have not received permanent housing before arriving in Finland, be sure to make arrangements for temporary housing early enough! The City of Helsinki and the City of Espoo also have lists of hotels and other accommodation types on their pages.\n\n...\n\nFlights and airport pick up possibilities\n\nSend arrival information to your tutor well in advance to see if pick up from the airport will be possible.\n\nPrepare the transfer from the airport to your housing\n\n...\n\n### After arrival\n\nRegister your residency at DVV\n\nAll international students have to register at Digital and Population Data Services Agency (DVV). It is recommended to book an appointment to avoid queues. \n\nRead more about the registration here."
+        ],
+        "image": "https://www.diak.fi/wp-content/uploads/2026/02/8365-scaled.jpg"
+      },
+      {
+        "id": "https://www.study-abroad.org/study-in-finland/visa-and-arrival/",
+        "title": "Finland Student Residence Permit 2026 | Migri & DVV Guide",
+        "url": "https://www.study-abroad.org/study-in-finland/visa-and-arrival/",
+        "publishedDate": "2026-05-30T04:38:18.000Z",
+        "author": "Study Abroad Editorial Team",
+        "highlights": [
+          "- Within three months, register your right of residence with Migri (a short EU registration, not a full permit)\n- Within a week of moving to a new address, register your municipality of residence at DVV and apply for your Finnish ID code\n\n...\n\n### Step 4: Wait for the decision\n\nDecisions usually take one to three months. Track your case in Enter Finland. Do not book non-refundable flights until your permit is approved.\n\n...\n\n## Processing Times — Apply Early\n\nPlan for one to three months from a complete application to decision. Delays come from:\n\n- Missing or weak health insurance documentation\n- Unclear proof of funds (handwritten letters, accounts with sudden deposits)\n- Slow embassy appointment scheduling — book the moment you submit online\n\nMigri publishes current average processing times by category at migri.fi — check before applying. Never book non-refundable flights until your permit is approved.\n\n## Your First Two Weeks: Arrival Checklist\n\n- Pick up your residence permit card if sent to Finland\n- Book a DVV appointment to register your address and get your Finnish ID code (henkilötunnus)\n- Open a bank account at OP, Nordea, or S-Pankki — bring your passport, permit card, ID code, and acceptance letter\n- Buy a Finnish SIM — DNA, Telia, or Elisa prepaid is cheap and easy\n- Set up your HSL travel card in Helsinki, or local equivalent in Tampere/Turku\n- Register for healthcare with your municipality and your university's YTHS (Finnish Student Health Service) if eligible\n- Complete enrolment with your university or AMK and pay the student union fee\n- Carry certified copies of your passport, permit card, and acceptance letter — you will be asked for them often\n\n...\n\nPlan for one to three months from a complete online application to a decision. Submitting through Enter Finland with all documents uploaded, then attending the embassy or VFS appointment quickly, is the fastest path. Delays come from missing health insurance, weak proof of funds, or unclear acceptance documentation. Start the moment you have your acceptance letter and never book non-refundable flights until the permit is approved. Migri publishes average processing times by category — check before applying."
+        ],
+        "image": "https://www.study-abroad.org/.netlify/images?url=_astro%2Fphoto-1569959220744-ff553533f492.DFlg56wB.jpg&w=1200&h=630&fit=cover"
+      }
+    ],
+    "searchTime": 1357.6,
+    "costDollars": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    }
+  }
+}

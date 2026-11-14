@@ -26,3 +26,10 @@ export function looksLikeDuration(v: string): boolean {
     /\b(\d+|one|two|three|four|five|six|seven|eight|nine|ten|a few|several|a|an)\s*((-|–|to)\s*\d+\s*)?(working |business |banking |calendar )?(days?|weeks?|months?|hours?|years?)\b/i;
   return v.length <= 160 && (amount.test(v) || /\b(immediate(ly)?|same day|right away|on the spot|during the (appointment|visit))\b/i.test(v));
 }
+
+const VENUE_MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December";
+/** "28 & 29 August" -> month number (1-12), or undefined. Day-month only: the year is never stated. */
+export function venueMonth(value: string): number | undefined {
+  const m = value.match(new RegExp(`\\b(${VENUE_MONTHS})\\b`, "i"));
+  return m ? VENUE_MONTHS.split("|").findIndex((x) => x.toLowerCase() === m[1].toLowerCase()) + 1 : undefined;
+}

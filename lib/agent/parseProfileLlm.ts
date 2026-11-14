@@ -6,7 +6,7 @@ import { addCalendarDays } from "../graph/dates";
 import { ProfileExtraction, parseProfileTask } from "../prompts/parseProfile";
 import type { Profile } from "../types";
 import { assumptionKind } from "../ui/assumptionLabel";
-import { semesterAssumption, semesterStart } from "./semester";
+import { isTermStay, semesterAssumption, semesterStart, TERM_STAY_ASSUMPTION } from "./semester";
 
 export type LlmParse =
   | { ok: true; profile: Profile; assumptions: string[]; people: Profile[] }
@@ -100,5 +100,9 @@ export async function parseProfileLlm(text: string, today: string): Promise<LlmP
     if (!profile.purpose.includes("family")) profile.purpose.push("family");
   }
   if (d.alreadyDone.length) profile.alreadyDone = [...new Set(d.alreadyDone)];
+  if (profile.purpose.includes("study") && !profile.stayMonths && isTermStay(text)) {
+    profile.termStay = true;
+    assumptions.push(TERM_STAY_ASSUMPTION);
+  }
   return { ok: true, profile, assumptions: [...new Set(assumptions)], people: [profile, ...others] };
 }

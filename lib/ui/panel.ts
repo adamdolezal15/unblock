@@ -32,6 +32,7 @@ const FACT_LABEL: Partial<Record<VerifiedClaim["kind"], string>> = {
   address: "Where",
   hours: "Opening hours",
   booking_url: "Booking",
+  venue: "Can be done at",
 };
 
 /**
@@ -58,7 +59,7 @@ export function ownConsequence(step: Pick<Step, "id" | "claims">, value: string)
 }
 
 /** Visit pack and other facts, each with its own quote. */
-export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other: Fact[]; costOfDelay: Fact[] } {
+export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other: Fact[]; costOfDelay: Fact[]; venue: Fact[] } {
   const claims = step.claims ?? [];
   const fact = (c: VerifiedClaim): Fact => ({ label: FACT_LABEL[c.kind] ?? c.kind, value: c.value, citation: c.citation });
   const dedupe = (fs: Fact[]) => fs.filter((f, i) => fs.findIndex((g) => g.value === f.value) === i);
@@ -66,6 +67,7 @@ export function stepFacts(step: Step): { documents: Fact[]; visit: Fact[]; other
     documents: dedupe(claims.filter((c) => c.kind === "document").map(fact)),
     visit: dedupe(claims.filter((c) => c.kind === "address" || c.kind === "hours" || c.kind === "booking_url").map(fact)),
     other: dedupe(claims.filter((c) => c.kind === "processing_time" || c.kind === "mode").map(fact)),
+    venue: dedupe(claims.filter((c) => c.kind === "venue").map(fact)),
     costOfDelay: dedupe(claims.filter((c) => c.kind === "cost_of_delay" && isConsequence(c.value) && ownConsequence(step, c.value)).map(fact)),
   };
 }

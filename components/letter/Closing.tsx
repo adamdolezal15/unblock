@@ -13,6 +13,7 @@ const REASON: Record<DropReason, string> = {
   too_short: "The quote is too short to prove anything",
   merged_sentences: "The quote was stitched from separate sentences",
   value_not_in_quote: "The quote does not state the value",
+  not_own_step: "The quote is about another step",
 };
 
 /** The stats as one plain sentence at the end of the letter. "rejected N claims" opens the list. */

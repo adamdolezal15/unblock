@@ -21,6 +21,7 @@ const RULES: [RegExp, (m: RegExpMatchArray, s: string) => string][] = [
   [/assumed (\p{Lu}[\p{L}-]+) from the university/u, (m) => `city ${m[1]}`],
   [/\bcity\b|municipality/i, (_m, s) => `city ${cityIn(s) ?? ""}`.trim()],
   [/semester start read as (\d{4}-\d{2}-\d{2})/i, (m) => `arriving ${dayMonth(m[1])}`],
+  [/stay read as one semester/i, () => "one-semester stay"],
   [/only the month/i, () => "arrival on the 1st"],
   [/arrival|planning from today/i, () => "arrival date"],
   [/\b(EEA|Swiss)\b/, () => "EEA as EU"],

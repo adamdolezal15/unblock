@@ -4,7 +4,7 @@
 // Fixture = the steps exactly as that run saved them (tests/fixtures), no network.
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import { breakCycles, requirementStrength } from "../../lib/agent/breakCycles";
 import { semesterStart } from "../../lib/agent/semester";
 import { resolveArrival } from "../../lib/agent/parseProfileLlm";
@@ -121,5 +121,65 @@ describe("UI fallback: steps but no dated plan", () => {
 
   it("is off when the schedule has dated steps", () => {
     expect(fallbackSteps(state({ eu_registration: {} }))).toBeNull();
+  });
+});
+
+// End to end from demo-cache (no live calls): what an Erasmus student must see.
+describe("golden: Czech Erasmus student, one semester in Helsinki", () => {
+  let st: RunState;
+  let headline = "";
+  let days: import("../../lib/ui/days").DayEntry[] = [];
+  let optional: string[] = [];
+
+  beforeAll(async () => {
+    process.env.EXA_CACHE = "read";
+    process.env.LLM_CACHE = "read";
+    process.env.LLM_PROVIDER = "anthropic";
+    process.env.EXA_LOG = "0";
+    const { runStream, readEvents } = await import("../../lib/agent/runStream");
+    const { runReducer } = await import("../../lib/ui/runState");
+    const { buildLetter } = await import("../../lib/ui/letter");
+    const { buildDays, buildOptional } = await import("../../lib/ui/days");
+    st = runReducer(initialRunState, { type: "start", text: run.text, at: 0 });
+    for await (const event of readEvents(runStream(run.text, { fast: true, persist: false, today: "2026-11-14" }))) {
+      st = runReducer(st, { type: "event", event, at: 1 });
+    }
+    const doc = buildLetter(st);
+    headline = doc.letter!.headline.map((s) => ("t" in s ? s.t : "")).join("");
+    days = buildDays(st, doc.ref);
+    optional = buildOptional(st, doc.ref).map((s) => s.id);
+  }, 120_000);
+
+  it("runs entirely from cache, as a one-semester study stay from 1 January", () => {
+    expect(st.summary?.calls.exaLive).toBe(0);
+    expect(st.summary?.calls.llmLive).toBe(0);
+    expect(st.profile!.profile).toMatchObject({ arrivalDate: "2027-01-01", termStay: true });
+  });
+
+  it("bank, strong ID, police ID card and Kela are optional, shown apart, never in the plan", () => {
+    expect(optional.sort()).toEqual(["bank_account", "kela_registration", "police_id_card", "strong_identification"]);
+    const planned = days.flatMap((e) => (e.kind === "visit" || e.kind === "online" ? e.steps.map((s) => s.id) : []));
+    expect(planned).toEqual(["university_enrolment", "eu_registration", "dvv_registration"]);
+    expect(st.schedule!.criticalPath.stepIds).toEqual(["university_enrolment", "eu_registration", "dvv_registration"]);
+    expect(st.summary!.inPersonVisits).toBe(2);
+    expect(st.summary!.optional).toBe(4);
+  });
+
+  it("'Set up by' uses required steps only", () => {
+    expect(headline).toMatch(/^You can be fully set up by about 4 February\./);
+  });
+
+  it("the university step does not wait for the identity code's 'up to seven weeks'", () => {
+    const uni = st.steps.university_enrolment;
+    expect(uni.claims!.some((c) => c.kind === "processing_time")).toBe(false);
+    expect(st.schedule!.schedule.items.university_enrolment.estimated).toBe(true);
+    expect(st.summary!.rejected.some((r) => r.stepId === "university_enrolment" && r.reason === "not_own_step")).toBe(true);
+  });
+
+  it("DVV can be done at the university's Check-In Event; the cited August date is not shown for January", () => {
+    const card = days.find((e) => e.kind === "visit" && e.steps.some((s) => s.id === "dvv_registration"));
+    expect(card?.kind === "visit" && card.venue?.name).toBe("Check-In Event");
+    expect(card?.kind === "visit" && card.venue?.when).toBeUndefined();
+    expect(card?.kind === "visit" && card.venue?.ref.citation.url).toMatch(/helsinki\.fi/);
   });
 });

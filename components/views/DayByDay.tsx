@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import type { LetterDoc } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
-import { buildDays, FALLBACK_NOTE, fallbackSteps, lowerName, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
+import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type VisitEntry } from "@/lib/ui/days";
 import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/labels";
 import { Prose } from "../letter/LetterView";
@@ -36,6 +36,7 @@ type Ctx = {
 /** The plan as you would live it: a timeline of visit cards, online steps grouped, waits on the rail. */
 export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
+  const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
   const fallback = fallbackSteps(state);
   if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
   if (!state.schedule) return <DaysSkeleton />;
@@ -63,6 +64,27 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
           </Row>
         ))}
       </ol>
+      {optional.length > 0 && <Optional ctx={ctx} steps={optional} />}
+    </section>
+  );
+}
+
+/** Steps this profile does not need (Step.necessity): apart from the plan, not counted in its dates or visits. */
+function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
+  return (
+    <section aria-label={OPTIONAL_TITLE} className="mt-14 border-t border-rule pt-8">
+      <h2 className="text-[22px] font-bold text-ink">{OPTIONAL_TITLE}</h2>
+      <p className="mt-1 max-w-[62ch] text-[16px] text-muted">
+        Not needed for a short study stay, and not part of the dates above. Do them if they help you, for example for online services.
+      </p>
+      <ul className="mt-5 space-y-5">
+        {steps.map((s) => (
+          <li key={s.id}>
+            <StepHead ctx={ctx} s={s} />
+            <p className="mt-1 text-[14px] text-muted">{s.authority}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -263,6 +285,20 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
             <StepHead ctx={ctx} s={s} />
           </div>
         ))}
+        {e.venue && (
+          <p className="mt-3 max-w-[62ch] rounded-[6px] bg-accent-soft px-3 py-2 text-[16px] leading-relaxed text-ink">
+            Can be done at your university&apos;s {e.venue.name}
+            <Prose segs={[{ ref: e.venue.ref }]} />
+            {e.venue.when ? (
+              <>
+                : {e.venue.when.value}
+                <Prose segs={[{ ref: e.venue.when.ref }]} />.
+              </>
+            ) : (
+              ". Check the date for your intake with your university."
+            )}
+          </p>
+        )}
         <div className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[14px] text-muted">
           {summary.map((t, i) => (
             <span key={t} className="contents">

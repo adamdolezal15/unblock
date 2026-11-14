@@ -339,7 +339,8 @@ function summarize(a: {
   ms: number;
 }): RunSummary {
   const { steps, s, meter } = a;
-  const real = steps.filter((x) => !x.milestone);
+  // Optional steps (Step.necessity) are listed apart and never counted as part of the plan.
+  const real = steps.filter((x) => !x.milestone && x.necessity !== "optional");
   const sched = s.sched?.schedule;
 
   const visits = new Set<string>();
@@ -372,6 +373,7 @@ function summarize(a: {
     partial: a.partial,
     steps: real.length,
     alreadyDone: steps.filter((x) => x.done).length,
+    optional: steps.filter((x) => x.necessity === "optional").length,
     online: real.filter((x) => x.mode === "online" || x.mode === "either").length,
     inPersonVisits: visits.size,
     inCalendar: events.filter((e) => e.kind === "visit").length,

@@ -228,6 +228,17 @@ export const OUTPUT_NAMES: Record<string, RegExp> = {
 };
 
 /**
+ * True when a sentence names the result of some other step and not this step's own result (or a milestone
+ * it provides): "Up to seven weeks after registering, you will receive your personal identity code" on the
+ * university step is the identity code's wait, not the university's.
+ */
+export function namesOnlyOtherOutput(stepId: string, provides: string[], text: string): boolean {
+  const own = new Set([stepId, ...provides]);
+  const named = Object.entries(OUTPUT_NAMES).filter(([, re]) => re.test(text)).map(([id]) => id);
+  return named.length > 0 && !named.some((id) => own.has(id));
+}
+
+/**
  * Steps that stand in for another when it is not researched for this profile: a source saying "requires
  * DVV registration" is met, for a Nordic citizen, by the Nordic registration (which is done at DVV).
  */

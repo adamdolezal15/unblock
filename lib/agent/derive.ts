@@ -80,6 +80,41 @@ export async function inPersonFromText(
   return verified;
 }
 
+const EVENT = /\b(check-in event|orientation (?:week|day)|welcome (?:fair|week|event|day)|arrival (?:day|event))\b/i;
+const DVV = /\bDVV\b|\bDigital and Population Data\b/i;
+const AT_EVENT = /\b(present|register\w*|visit|attend\w*|services? available|do it|done)\b/i;
+const MONTH_NAMES = "January|February|March|April|May|June|July|August|September|October|November|December";
+const EVENT_WHEN_WHERE = new RegExp(String.raw`\bheld (?:at|in) (?:the )?(.{3,60}?) on (\d{1,2}(?:\s*(?:&|and|-|–)\s*\d{1,2})?\s+(?:${MONTH_NAMES}))`, "i");
+
+/**
+ * A university page saying DVV registration can be done at its check-in / orientation event ("DVV and Migri
+ * will be present at the Check-In Event and you should register with them there"). Verified `venue` claims
+ * for dvv_registration: the event, and its place and date when the same page states them. University pages only.
+ */
+export async function eventVenueClaims(
+  docs: ExaDoc[],
+  opts: { allowedDomains: readonly string[]; extraOfficial: string[]; fetchPage: PageFetcher },
+): Promise<VerifiedClaim[]> {
+  const sentences = sentencesOf(docs).filter((s) => s.trust === "university");
+  const hit = sentences.find((s) => DVV.test(s.sentence) && EVENT.test(s.sentence) && AT_EVENT.test(s.sentence));
+  if (!hit) return [];
+  const name = hit.sentence.match(EVENT)![1];
+  const raw: RawClaim[] = [{ stepId: "dvv_registration", kind: "venue", value: name, url: hit.url, quote: hit.sentence }];
+  const sameEvent = new RegExp(`\\b${name.replace(/[-\s]+/g, "[-\\s]+")}\\b`, "i");
+  const when = sentences.find((s) => sameEvent.test(s.sentence) && EVENT_WHEN_WHERE.test(s.sentence));
+  if (when) {
+    const m = when.sentence.match(EVENT_WHEN_WHERE)!;
+    raw.push({ stepId: "dvv_registration", kind: "venue", value: `${name}: ${m[1].trim()}, ${m[2].trim()}`, url: when.url, quote: when.sentence });
+  }
+  const { verified } = await verifyCitations(raw, docs, {
+    allowedDomains: opts.allowedDomains,
+    extraOfficial: opts.extraOfficial,
+    knownStepIds: STEP_IDS,
+    fetchPage: opts.fetchPage,
+  });
+  return verified;
+}
+
 const POLICE = /\bpolice\b/i;
 const IDENTIFY = /\b(identif\w*|verif\w*)\b/i;
 

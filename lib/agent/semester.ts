@@ -31,6 +31,19 @@ export function semesterStart(text: string, today: string): string | undefined {
   return nextStart(today, [SPRING, AUTUMN]);
 }
 
+const TERM_STAY = new RegExp(
+  String.raw`\berasmus\b|\bexchange (student|semester|studies|period|program(me)?)\b|\b(on|an|for an?) exchange\b|\b(for|during) (the |a |one |next |this |coming )?(spring |autumn |fall )?${TERM}\b|\bone[- ]${TERM}\b`,
+  "i",
+);
+const LONG_STAY = /\b(degree|bachelor|master'?s|phd|doctoral|permanent(ly)?|for good|years)\b/i;
+
+/** The text describes a one-term stay (Erasmus, exchange, "for next semester"), not a degree. */
+export function isTermStay(text: string): boolean {
+  return TERM_STAY.test(text) && !LONG_STAY.test(text);
+}
+
+export const TERM_STAY_ASSUMPTION = "Stay read as one semester, under 12 months.";
+
 /** The assumption sentence for a term start (labelled by lib/ui/assumptionLabel as "arriving <date>"). */
 export function semesterAssumption(date: string): string {
   return `Semester start read as ${date}; arrival assumed on that day.`;

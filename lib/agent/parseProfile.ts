@@ -4,7 +4,7 @@
 import { resolveProviderName } from "../llm";
 import type { Profile } from "../types";
 import { parseProfileLlm } from "./parseProfileLlm";
-import { semesterAssumption, semesterStart } from "./semester";
+import { isTermStay, semesterAssumption, semesterStart, TERM_STAY_ASSUMPTION } from "./semester";
 import {
   EEA_TERMS, EU_TERMS, FINLAND_TERMS, FINNISH_CITIES, FINNISH_CITIZEN_TERMS, MONTHS, MOVE_TERMS, NON_EU_TERMS,
   NORDIC_TERMS, PURPOSE_TERMS, TEMPORARY_PROTECTION_TERMS, UNIVERSITY_CITY,
@@ -208,6 +208,8 @@ export function parseProfileDeterministic(text: string, today: string = helsinki
   if (!arrivalDate) assumptions.push("Arrival date not stated; planning from today.");
   const monthlySalaryEur = parseSalary(t);
   const stayMonths = parseStayMonths(t);
+  const termStay = purpose.includes("study") && !stayMonths && isTermStay(t);
+  if (termStay) assumptions.push(TERM_STAY_ASSUMPTION);
 
   const alreadyDone = parseAlreadyDone(t);
   const profile: Profile = {
@@ -219,6 +221,7 @@ export function parseProfileDeterministic(text: string, today: string = helsinki
     ...(hasFamily ? { hasFamily } : {}),
     ...(temporaryProtection ? { temporaryProtection } : {}),
     ...(stayMonths ? { stayMonths } : {}),
+    ...(termStay ? { termStay } : {}),
     ...(alreadyDone.length ? { alreadyDone } : {}),
   };
   return { ok: true, profile, assumptions, people: [profile], source: "deterministic" };

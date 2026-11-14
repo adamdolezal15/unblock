@@ -21,7 +21,8 @@ export function eventsFromSchedule(steps: Step[], sched: Schedule): CalEvent[] {
   const graph = buildGraph(steps);
   for (const step of steps) {
     const item = sched.items[step.id];
-    if (step.mode !== "in_person" || !item) continue;
+    // Optional steps are not part of the plan: no calendar entry of their own.
+    if (step.mode !== "in_person" || !item || step.necessity === "optional") continue;
 
     // Same list as the day card: direct dependents and those behind a milestone this step provides.
     const unblocks = unlockedSteps(graph, step.id).flatMap((id) => steps.filter((s) => s.id === id));

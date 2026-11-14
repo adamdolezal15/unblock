@@ -14,12 +14,13 @@ import type {
   Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
 import { whatToDoByTrust } from "./detectConflicts";
-import { doneSteps, MILESTONE_IDS, MILESTONES, selectSteps, standIn, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { doneSteps, MILESTONE_IDS, MILESTONES, namesOnlyOtherOutput, selectSteps, standIn, STEP_IDS, type StepDef } from "./stepTaxonomy";
 import { citizenshipClass, documentsForClass } from "./applicability";
 import { looksLikeAddress, looksLikeDuration, looksLikeHours } from "./valueFormats";
-import { inPersonFromText, localVisitClaims, permitProvidesCode, policeIdentificationClaims, policeIdentificationStep } from "./derive";
+import { eventVenueClaims, inPersonFromText, localVisitClaims, permitProvidesCode, policeIdentificationClaims, policeIdentificationStep } from "./derive";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 import { breakCycles } from "./breakCycles";
+import { classifyNecessity } from "./necessity";
 
 export type StepReport = {
   id: string;
@@ -407,6 +408,13 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
           .map((c) => (c.kind === "requires" || c.kind === "same_visit" ? { ...c, value: standIn(c.value, available) } : c))
           .filter((c) => !((c.kind === "requires" || c.kind === "same_visit") && c.value === r.def.id));
         r.verified.push(...requiresFromDocuments(r.def.id, r.verified, available));
+        // A processing time must be this step's own wait, not the wait for another step's result.
+        const provides = r.verified.filter((c) => c.kind === "provides").map((c) => c.value);
+        const foreign = r.verified.filter((c) => c.kind === "processing_time" && namesOnlyOtherOutput(r.def.id, provides, `${c.value} ${c.citation.quote}`));
+        if (foreign.length) {
+          r.verified = r.verified.filter((c) => !foreign.includes(c));
+          r.dropped.push(...foreign.map((c) => ({ stepId: c.stepId, kind: c.kind, value: c.value, url: c.citation.url, quote: c.citation.quote, reason: "not_own_step" as const })));
+        }
         if (r.verified.some((c) => c.kind === "applies") && !(permitSearched && r.def.id === "vero_identity_code")) {
           const confirmation: Confirmation = { by: "applies" };
           emit({ ...mergeStep(r.def, r.title, r.verified, r.checkUrl, confirmation, profile), confirmation });
@@ -422,6 +430,12 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   for (const r of runs) {
     const visit = await inPersonFromText(r.def.id, allDocs, verifyOpts);
     if (visit.length) r.verified = [...r.verified.filter((c) => !(c.kind === "mode" && c.value === "either")), ...visit];
+  }
+
+  // Students: a university page saying DVV comes to its check-in / orientation event is where to register.
+  const dvv = runs.find((r) => r.def.id === "dvv_registration");
+  if (dvv && profile.purpose.includes("study")) {
+    dvv.verified.push(...(await eventVenueClaims(allDocs, { ...verifyOpts, allowedDomains: [...verifyOpts.allowedDomains, ...UNIVERSITY] })));
   }
 
   // A residence permit normally comes with the personal identity code: then the permit is an option of
@@ -480,10 +494,12 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   // A requirement cycle would leave every step in it (and behind it) unscheduled: drop its weakest link.
   const unlocked = breakCycles(steps);
   for (const r of unlocked.relaxed) onProgress(`Loop in the requirements: ${r.stepId} does not wait for ${r.requires} (weakest source wording)`, "check");
-  for (const s of unlocked.steps) emit(s); // new steps, and early ones whose final form changed (e.g. a shared visitId)
+  // Required vs optional for this profile (a short study stay makes bank, strong ID, police ID card, Kela optional).
+  const classified = classifyNecessity(unlocked.steps, profile);
+  for (const s of classified) emit(s); // new steps, and early ones whose final form changed (e.g. a shared visitId)
 
   return {
-    steps: unlocked.steps,
+    steps: classified,
     sources: dedupeDocs(runs.flatMap((r) => r.docs)),
     stubs,
     dropped: runs.flatMap((r) => r.dropped),

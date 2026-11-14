@@ -4,7 +4,10 @@
 import type { Citation, Step } from "../types";
 import { citizenshipClass, type CitizenshipClass } from "../agent/applicability";
 import { buildLetter, type Seg } from "../ui/letter";
-import { buildDays, entrySteps, type DayEntry } from "../ui/days";
+import { buildDays, buildOptional, entrySteps, type DayEntry } from "../ui/days";
+import { OPTIONAL_FOR_SHORT_STUDY, shortStudyStay, verifiedMust } from "../agent/necessity";
+import { namesOnlyOtherOutput } from "../agent/stepTaxonomy";
+import { venueMonth } from "../agent/valueFormats";
 import { compareWithUsual, MIN_GAIN_WORKING_DAYS } from "../ui/compare";
 import { isConsequence, stepFacts } from "../ui/panel";
 import { profileParts } from "../ui/profileSentence";
@@ -28,6 +31,9 @@ export const INVARIANTS = {
   scheduled: "steps > 0 => schedule and a real date in the headline",
   blank: "no empty headlines or list items",
   assumptions: "assumptions are short code-generated labels",
+  optional: "short study stay: everyday steps optional unless a source says must; optional steps never in the dates, path or counts",
+  waits: "a processing time is the step's own, not the wait for another step's result",
+  venue: "a check-in event for a step is shown on its card; its date only when it fits the arrival",
 } as const;
 
 export type InvariantId = keyof typeof INVARIANTS;
@@ -169,7 +175,7 @@ export function checkInvariants(state: RunState): Violation[] {
 
   // --- visits: the count in the closing line = visit cards = distinct in-person visits
   const visitCards = days.filter((e) => e.kind === "visit").length;
-  const distinct = countVisits(steps, items);
+  const distinct = countVisits(steps.filter((s) => s.necessity !== "optional"), items);
   const sumVisits = state.summary?.inPersonVisits;
   if (visitCards !== distinct || (sumVisits !== undefined && sumVisits !== distinct))
     add("visits", `cards ${visitCards}, summary ${sumVisits}, distinct ${distinct}`);
@@ -220,6 +226,46 @@ export function checkInvariants(state: RunState): Violation[] {
     if (p.value.split(/\s+/).length > 6) add("assumptions", `long label "${p.value}"`);
     // A bare kind word says nothing: "Assumed: city" must name the city, "arrival date" must name the day.
     if (/^(city|arrival date|arrival|citizenship|purpose|date)$/i.test(p.value.trim())) add("assumptions", `bare label "${p.value}"`);
+  }
+
+  // --- optional: decided by the profile, and kept out of the plan's dates, path and counts
+  const short = shortStudyStay(profile);
+  for (const s of real) {
+    const want = short && OPTIONAL_FOR_SHORT_STUDY.has(s.id) && !verifiedMust(s);
+    if (want && s.necessity !== "optional" && !steps.some((r) => r.necessity !== "optional" && r.requires.includes(s.id)))
+      add("optional", `${s.id} should be optional for a short study stay`);
+    if (!short && s.necessity === "optional") add("optional", `${s.id} optional for a profile that is not a short study stay`);
+  }
+  const optionalIds = new Set(real.filter((s) => s.necessity === "optional").map((s) => s.id));
+  const shownOptional = new Set(buildOptional(state, doc.ref).map((d) => d.id));
+  for (const id of optionalIds) {
+    if (state.schedule?.criticalPath.stepIds.includes(id)) add("optional", `${id} on the critical path`);
+    if (dayStepsAll.some((d) => d.id === id)) add("optional", `${id} in the day by day plan`);
+    if (!shownOptional.has(id)) add("optional", `${id} missing from the optional section`);
+  }
+  const requiredDone = real.filter((s) => !optionalIds.has(s.id) && items[s.id]).map((s) => items[s.id].doneDate).sort().pop();
+  const path = state.schedule?.criticalPath.stepIds ?? [];
+  const pathEnd = path.length ? items[path[path.length - 1]]?.doneDate : undefined;
+  if (requiredDone && pathEnd && pathEnd !== requiredDone) add("optional", `finish ${pathEnd}, last required step done ${requiredDone}`);
+  if (state.summary && state.summary.steps !== real.length - optionalIds.size) add("optional", `summary counts ${state.summary.steps} steps, required ${real.length - optionalIds.size}`);
+
+  // --- waits: a processing time names this step's own result (or none), never only another step's
+  for (const s of steps) {
+    const provides = (s.claims ?? []).filter((c) => c.kind === "provides").map((c) => c.value);
+    for (const c of s.claims ?? []) {
+      if (c.kind === "processing_time" && namesOnlyOtherOutput(s.id, provides, `${c.value} ${c.citation.quote}`)) add("waits", `${s.id}: "${c.citation.quote}"`);
+    }
+  }
+
+  // --- venue: shown on the card of its step; a date only for the arrival month or the next
+  const am = arrival ? Number(arrival.slice(5, 7)) : undefined;
+  for (const s of real) {
+    if (!(s.claims ?? []).some((c) => c.kind === "venue") || optionalIds.has(s.id) || !items[s.id]) continue;
+    const card = days.find((e) => e.kind === "visit" && e.steps.some((d) => d.id === s.id));
+    if (card?.kind !== "visit") continue; // not an in-person visit: nothing to put it on
+    if (!card.venue) add("venue", `${s.id}: venue claim not shown`);
+    const m = card.venue?.when ? venueMonth(card.venue.when.value) : undefined;
+    if (m !== undefined && (am === undefined || (m !== am && m !== (am % 12) + 1))) add("venue", `${s.id}: event date ${card.venue!.when!.value} for arrival ${arrival}`);
   }
 
   return out;

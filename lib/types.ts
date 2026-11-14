@@ -13,6 +13,11 @@ export type Profile = {
   temporaryProtection?: boolean;
   /** Planned stay length when stated ("5 months"). */
   stayMonths?: number;
+  /**
+   * The text describes a one-term stay (Erasmus, exchange, "for next semester") without a length: under 12 months.
+   * Kept apart from stayMonths, which the search prompts read; this only decides required vs optional steps.
+   */
+  termStay?: boolean;
   /** Step / milestone ids the person says they already have ("I already have a bank account"). Not searched; shown as done. */
   alreadyDone?: string[];
   /** Only on entries of ProfileResult.people: how this person relates to the main applicant. */
@@ -45,6 +50,11 @@ export type Step = {
    * (lib/agent/breakCycles). The verified claim stays in `claims`; this only lets the plan be ordered.
    */
   relaxedRequires?: string[];
+  /**
+   * Decided from the profile (lib/agent/necessity): "optional" steps are shown apart ("Optional, if useful for
+   * you") and never count toward the finish date, the critical path or the visit count. Absent = required.
+   */
+  necessity?: "required" | "optional";
   /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
   milestone?: boolean;
   /** The person says they already have this (Profile.alreadyDone). No citations: it is their statement, not a claim. */
@@ -81,7 +91,9 @@ export type ClaimKind =
   | "processing_time"
   | "address"
   | "hours"
-  | "booking_url";
+  | "booking_url"
+  /** Where / when a step can be done instead of the office (a university check-in event). Derived, not extracted. */
+  | "venue";
 
 /** A claim as extracted, before verification. `quote` is what the extractor says the page says. */
 export type RawClaim = { stepId: string; kind: ClaimKind; value: string; url: string; quote: string };
@@ -104,7 +116,8 @@ export type DropReason =
   | "invalid_value"
   | "too_short"
   | "merged_sentences"
-  | "value_not_in_quote";
+  | "value_not_in_quote"
+  | "not_own_step";
 
 export type DroppedClaim = RawClaim & { reason: DropReason; bestScore?: number };
 
@@ -167,6 +180,8 @@ export type RunSummary = {
   /** Actionable steps found and confirmed (milestones and already-done items excluded). */
   steps: number;
   alreadyDone: number;
+  /** Steps shown under "Optional, if useful for you"; not in `steps`, visits or the critical path. */
+  optional?: number;
   /** Steps that can be done online (mode online or either). */
   online: number;
   /** Distinct in-person visits as scheduled (steps merged into one visit count once). */
