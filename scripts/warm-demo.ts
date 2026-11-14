@@ -52,6 +52,11 @@ async function main() {
     );
   }
 
+  // The app's own run (adds what only it calls, such as the official-forms page reads), so its replay is fully offline.
+  for (const key of keys) {
+    for await (const _ of readEvents(runStream(DEMO_SENTENCES[key], { fast: true, persist: false, today: EVAL_TODAY, timeoutMs: 600_000 }))) void _;
+  }
+
   // A full refresh also keeps the invariant matrix (tests/golden/invariants.test.ts) offline.
   if (!subset) {
     for (const p of EVAL_PROFILES) {

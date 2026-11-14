@@ -83,3 +83,35 @@ describe("forms: showing them", () => {
     expect(all[0].steps.map((s) => s.id)).toEqual(["a", "b"]);
   });
 });
+
+describe("forms: two adjacent sentences, and unnumbered official links", () => {
+  const VERO2 = "https://www.vero.fi/en/individuals/tax-cards-and-tax-returns/arriving_in_finland/work_in_finland/ids/";
+  it("takes 'fill in the form in advance:' plus the title and number right after it as one piece of evidence", () => {
+    const text = "Visit a tax office.\nMake sure to fill in the registration form in advance:\nRegistration information on a foreigner staying in Finland temporarily (6150e).\nDo not sign the form until at the tax office.";
+    const [f] = formsFromPages([{ url: VERO2, text, links: [], fetchedAt: "" }]);
+    expect(f).toMatchObject({ id: "6150e", url: null, type: null, guidance: "fill in before you go" });
+    expect(f.name).toBe("Form 6150e (Registration information on a foreigner staying in Finland temporarily)");
+    expect(f.citation.quote).toContain("fill in the registration form in advance");
+    expect(findQuote(f.citation.quote, text).score).toBeGreaterThanOrEqual(MATCH_THRESHOLD);
+  });
+  it("does not pair a title with a sentence that is not an instruction to fill in a form", () => {
+    const text = "Do not sign the form until at the tax office.\nNon-resident's application for tax at source card, tax card, tax prepayment or tax number (5057e)";
+    expect(formsFromPages([{ url: VERO2, text, links: [], fetchedAt: "" }])).toEqual([]);
+  });
+  it("accepts an unnumbered official PDF when a sentence on the page names it and says to fill it in", () => {
+    const text = "If you are a family member of a Finnish citizen, fill in the supplement form Suomen kansalaisen vapaan liikkumisoikeuden käyttö (pdf).";
+    const pdf = "https://migri.fi/documents/1/SK_LIITE_Suomen+kansalaisen+vapaan+liikkumisoikeuden+käyttö_en.pdf?t=1";
+    const [f] = formsFromPages([{ url: "https://migri.fi/en/x", text, links: [pdf, "https://example.com/SK_LIITE_Suomen+kansalaisen+vapaan+liikkumisoikeuden+käyttö_en.pdf"], fetchedAt: "" }]);
+    expect(f).toMatchObject({ id: "Suomen kansalaisen vapaan liikkumisoikeuden käyttö", url: pdf, type: "pdf" });
+    expect(formsFromPages([{ url: "https://migri.fi/en/x", text, links: [], fetchedAt: "" }])).toEqual([]);
+  });
+  it("accepts one official online form when a sentence says to request something using it", () => {
+    const text = "1. ### Request a personal identity code by filling out the online form";
+    const web = "https://lomakkeet.dvv.fi/lomakkeet/wuY0J/lomake.html?rinnakkaislomake=en";
+    const [f] = formsFromPages([{ url: "https://dvv.fi/en/foreigner-registration", text: `Intro text for the page about registering.\n${text}\nThe rest.`, links: [web], fetchedAt: "" }]);
+    expect(f).toMatchObject({ id: "Request a personal identity code", url: web, type: "web" });
+  });
+  it("shows nothing when the page has no sentence about the form, however many links it has", () => {
+    expect(formsFromPages([{ url: "https://migri.fi/en/x", text: "Opening hours of the service point are listed below for every day.", links: ["https://migri.fi/documents/1/SK_LIITE_Suomen+kansalaisen+vapaan+liikkumisoikeuden+käyttö_en.pdf"], fetchedAt: "" }])).toEqual([]);
+  });
+});

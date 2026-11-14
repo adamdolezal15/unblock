@@ -15,6 +15,13 @@ const FORM_MENTION = /\b(?:application\s+)?(?:form|forms|lomake|blankett)\s+(?:n
 /** Words that make a sentence say a form is needed or what to do with it. */
 const NEEDED = /\b(fill(ed)? (it )?(in|out)|complete[d]?|submit(ted)?|attach(ed)?|enclose[d]?|bring|take|sign(ed)?|must|need(s|ed)?|required|requires?|have to|apply (with|using|by)|use (the )?form|send)\b/i;
 
+/** "Registration information on a foreigner staying in Finland temporarily (6150e)." : a title followed by its code in brackets. */
+const TITLE_CODE = /^(.{8,120}?)\s*\(((?:[A-Z]{1,3}[ _-]?)?\d{3,5}[a-z]?)\)\.?$/;
+/** The instruction sentence right before such a title: "Make sure to fill in the registration form in advance:". */
+const FILL_FORM = /\b(fill(ed)? (it )?(in|out)|filling (in|out)|complete[d]?|submit(ted)?|attach(ed)?)\b/i;
+/** A sentence about a form that has no number but a link: it says to use, fill in, submit or request the form. */
+const USES_FORM = /\b(fill(ed|ing)? (it )?(in|out)|complete[d]?|submit(ted)?|attach(ed)?|using|use|request|apply|send)\b/i;
+
 const MAX_PAGES_PER_STEP = 3;
 const MAX_FORMS_PER_STEP = 3;
 const PAGE_CHARS = 20_000;
@@ -100,8 +107,103 @@ export function formsFromPages(pages: FormPage[], extraOfficial: string[] = [], 
       }
     }
   }
+  for (const page of pages) {
+    if (trustOf(page.url, extraOfficial) !== "official") continue;
+    for (const f of [...pairedForms(page, extraOfficial, now), ...linkedForms(page, extraOfficial, now)]) {
+      const key = compact(f.id);
+      const prev = out.get(key);
+      if (!prev || score(f) > score(prev)) out.set(key, { ...f, url: f.url ?? prev?.url ?? null, type: f.type ?? prev?.type ?? null });
+    }
+  }
   return [...out.values()].slice(0, MAX_FORMS_PER_STEP);
 }
+
+const tidy = (s: string) => s.replace(/^\s*\d+\.\s*/, "").replace(/^[#\s]+/, "").trim();
+
+/**
+ * Two adjacent sentences as one piece of evidence: "...fill in the form in advance:" followed by "Title (6150e)."
+ * The pair is joined and checked against the page text like any quote.
+ */
+function pairedForms(page: FormPage, extraOfficial: string[], now: string): StepForm[] {
+  const list = sentences(page.text);
+  const out: StepForm[] = [];
+  for (let i = 1; i < list.length; i++) {
+    const m = list[i].match(TITLE_CODE);
+    if (!m) continue;
+    const instruction = list[i - 1];
+    if (!FILL_FORM.test(instruction) || !/\bforms?\b/i.test(instruction)) continue;
+    const quote = `${instruction} ${list[i]}`;
+    if (quote.split(/\s+/).length < MIN_QUOTE_TOKENS || findQuote(quote, page.text).score < MATCH_THRESHOLD) continue;
+    const id = m[2].trim();
+    const url = linkFor(id, page.links, extraOfficial);
+    out.push({
+      id,
+      name: `Form ${id} (${m[1].trim().replace(/[:;,]+$/, "")})`,
+      url,
+      type: url ? (isPdf(url) ? "pdf" : "web") : null,
+      guidance: guidanceOf(quote),
+      citation: { url: page.url, quote, trust: "official", fetchedAt: page.fetchedAt || now },
+    });
+  }
+  return out;
+}
+
+const wordsOf = (s: string) => s.toLowerCase().normalize("NFC").split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+
+/** The longest run (3+ words) of the file name's words that the sentence has in the same order, as the sentence writes it. */
+function titleInSentence(fileName: string, sentence: string): string | null {
+  const f = wordsOf(fileName.replace(/\.[a-z0-9]{2,4}$/i, "")).filter((w) => w.length > 2 && !["liite", "pdf"].includes(w));
+  const tokens = sentence.split(/\s+/);
+  const lower = tokens.map((t) => wordsOf(t).join(""));
+  let best: string | null = null;
+  let bestLen = 0;
+  for (let a = 0; a < f.length; a++) {
+    for (let t = 0; t < tokens.length; t++) {
+      let n = 0;
+      while (a + n < f.length && t + n < tokens.length && lower[t + n] === f[a + n]) n++;
+      if (n > bestLen) {
+        bestLen = n;
+        best = tokens.slice(t, t + n).join(" ").replace(/[.,;:()]+$/, "");
+      }
+    }
+  }
+  return bestLen >= 3 ? best : null;
+}
+
+const isFormHost = (u: string) => {
+  try {
+    const x = new URL(u);
+    return /^(lomakkeet|forms?|lomake)\./i.test(x.hostname) || /\/(lomake|lomakkeet|forms?)(\/|\.|$)/i.test(x.pathname);
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Forms that have no number: an official https link from the page, plus a verified sentence on the same page that
+ * says the form is used. A PDF is tied to the sentence by its file name (3+ words in a row); an online form by a
+ * sentence like "Request a personal identity code by filling out the online form".
+ */
+function linkedForms(page: FormPage, extraOfficial: string[], now: string): StepForm[] {
+  const official = [...new Set(page.links.filter((u) => /^https:\/\//i.test(u) && trustOf(u, extraOfficial) === "official"))];
+  const out: StepForm[] = [];
+  const list = sentences(page.text).map(tidy).filter((x) => x.split(/\s+/).length >= MIN_QUOTE_TOKENS && findQuote(x, page.text).score >= MATCH_THRESHOLD);
+  for (const sentence of list) {
+    if (!/\bforms?\b/i.test(sentence) || !USES_FORM.test(sentence)) continue;
+    const citation: Citation = { url: page.url, quote: sentence, trust: "official", fetchedAt: page.fetchedAt || now };
+    for (const url of official) {
+      const title = titleInSentence(fileOf(url), sentence);
+      if (title) out.push({ id: title, name: title, url, type: isPdf(url) ? "pdf" : "web", guidance: guidanceOf(sentence), citation });
+    }
+    const online = official.filter((u) => isFormHost(u) && !isPdf(u));
+    const action = sentence.match(/^(.{8,80}?)\s+(?:by (?:filling (?:in|out)|using) |using )(?:the |this )?(?:online )?form\b/i)?.[1];
+    if (online.length === 1 && action && /\b(online|this|the) form\b/i.test(sentence)) {
+      out.push({ id: action, name: `${action} (online form)`, url: online[0], type: "web", guidance: guidanceOf(sentence) ?? "fill in online", citation });
+    }
+  }
+  return out;
+}
+
 const score = (f: StepForm) => (f.url ? 2 : 0) + (f.guidance ? 1 : 0);
 
 /** A step needs forms looked up when it is a real, required step with official sources. */
