@@ -54,7 +54,7 @@ describe("letter: Marta", () => {
     for (const c of state.conflicts) [c.a, c.b].forEach((x) => verified.add(x.quote));
 
     const refs = [doc.letter!.headline, ...doc.letter!.paras.map((p) => p.segs)].flat().filter((s) => "ref" in s) as { ref: { n: number; citation: Citation } }[];
-    expect(refs.length).toBeGreaterThanOrEqual(5);
+    expect(refs.length).toBeGreaterThanOrEqual(4);
     for (const { ref } of refs) {
       expect(verified.has(ref.citation.quote)).toBe(true);
       expect(doc.sources[ref.n - 1].url).toBe(ref.citation.url);
@@ -65,11 +65,18 @@ describe("letter: Marta", () => {
     expect(firstSeen[0]).toBe(1);
   });
 
-  it("names the conflict and the estimates", () => {
+  it("is at most three short paragraphs, one source number each, at the end", () => {
+    for (const p of doc.letter!.paras) {
+      expect(text(p.segs).split(/\s+/).length, p.key).toBeLessThanOrEqual(25);
+      expect(p.segs.filter((x) => "ref" in x).length, p.key).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("names the conflict", () => {
     const keys = doc.letter!.paras.map((p) => p.key);
-    expect(keys).toEqual(["shortcut", "money", "conflict", "estimates"]);
+    expect(keys).toEqual(["shortcut", "money", "conflict"]);
     expect(text(doc.letter!.paras[2].segs)).toMatch(/^Official sources disagree on whether a Finnish personal identity code is needed to open a bank account\./);
-    expect(text(doc.letter!.paras[3].segs)).toContain("2 of the 9 dates are estimates, because no official figure was found");
+    expect(text(doc.letter!.paras[0].segs)).toMatch(/^Vero can give you the identity code 13 working days before DVV, and your tax card in the same visit\.\[\d+\]$/);
   });
 });
 
@@ -136,11 +143,10 @@ describe("usual order vs your order: Marta", () => {
 });
 
 describe("key insights: Marta", () => {
-  it("has at most three one-liners from run data, each footnoted and linked to a step", () => {
+  it("skips the shortcut (the answer says it) and keeps money and the disagreement, each footnoted", () => {
     const ins = doc.letter!.insights;
-    expect(ins.map((i) => i.key)).toEqual(["shortcut", "money", "conflict"]);
-    expect(text(ins[0].segs)).toMatch(/^Get your Finnish personal identity code at Vero on 1 December, 13 working days sooner than through DVV\.\[\d+\]$/);
-    expect(text(ins[1].segs)).toMatch(/^Without the tax card, 60% of your salary is withheld\[\d+\]: €1,920 of your €3,200 a month\.$/);
+    expect(ins.map((i) => i.key)).toEqual(["money", "conflict"]);
+    expect(text(ins[0].segs)).toMatch(/^Without the tax card, 60% of your salary is withheld: €1,920 of your €3,200 a month\.\[\d+\]$/);
     for (const i of ins) {
       expect(i.segs.some((x) => "ref" in x)).toBe(true);
       expect(i.stepId).toBeTruthy();

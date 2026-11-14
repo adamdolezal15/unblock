@@ -7,7 +7,7 @@ export function useRun() {
   const [state, dispatch] = useReducer(runReducer, initialRunState);
   const ctrl = useRef<AbortController | null>(null);
 
-  const start = useCallback(async (text: string) => {
+  const start = useCallback(async (text: string, opts: { fast?: boolean } = {}) => {
     const t = text.trim();
     if (!t) return;
     ctrl.current?.abort();
@@ -15,7 +15,7 @@ export function useRun() {
     ctrl.current = c;
     dispatch({ type: "start", text: t, at: Date.now() });
     try {
-      const res = await fetch("/api/run", {
+      const res = await fetch(opts.fast ? "/api/run?fast=1" : "/api/run", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ text: t }),

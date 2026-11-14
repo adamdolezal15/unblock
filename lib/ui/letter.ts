@@ -2,7 +2,7 @@
 // Every factual sentence carries a numbered footnote that points at a verified quote. Footnote numbers
 // are per source page, assigned in reading order (letter first, then every other citation of the run),
 // so the letter, the side panel and the Sources list all use the same numbers.
-import type { Citation, Step, Tip, Trust } from "@/lib/types";
+import type { Citation, Step, Trust } from "@/lib/types";
 import type { RunState } from "./runState";
 import { domainOf } from "./format";
 import { nodeLabel } from "./labels";
@@ -110,22 +110,19 @@ function writeLetter(ctx: Ctx): Letter {
     }
   }
 
-  if (shortcut) {
-    const p = shortcutPara(ctx, shortcut);
-    p.insight = [
-      { t: `Get your ${shortcut.label} at ${who(shortcut.fast.authority)} on ${day(shortcut.fast.start)}, ${shortcut.gap} working days sooner than through ${who(shortcut.slow.authority)}.` },
-      ...(shortcut.fastRef ? [{ ref: shortcut.fastRef }] : []),
-    ];
-    paras.push(p);
-  }
+  // At most three short paragraphs (about 25 words each), one source number each, at the end.
+  if (shortcut) paras.push(shortcutPara(ctx, shortcut));
   const money = moneyPara(ctx);
   if (money) paras.push(money);
   const conflict = conflictPara(ctx);
   if (conflict) paras.push(conflict);
-  const estimates = estimatePara(ctx);
-  if (estimates) paras.push(estimates);
-  const insights = paras.filter((p) => p.insight).slice(0, 3).map((p) => ({ key: p.key, segs: p.insight!, stepId: p.stepId }));
-  return { headline, paras, insights };
+  if (paras.length < 3) {
+    const estimates = estimatePara(ctx);
+    if (estimates) paras.push(estimates);
+  }
+  // The insights card (Day by day) skips the shortcut: the answer above already says where to start.
+  const insights = paras.filter((p) => p.key === "money" || p.key === "conflict");
+  return { headline, paras: paras.slice(0, 3), insights };
 }
 
 type Option = { id: string; authority: string; start: string; ready: string; readyIndex: number };
@@ -180,37 +177,12 @@ function findShortcut(ctx: Ctx): Shortcut | null {
 }
 
 function shortcutPara(ctx: Ctx, s: Shortcut): Para {
-  const { state } = ctx;
-  const items = state.schedule!.schedule.items;
-  const segs: Seg[] = [{ t: `Two routes give you a ${s.label}: ${lowerFirst(ctx.short(s.fast.id))}` }];
-  if (s.fastRef) segs.push({ ref: s.fastRef });
-  segs.push({ t: ` and ${lowerFirst(ctx.short(s.slow.id))}` });
-  if (s.slowRef) segs.push({ ref: s.slowRef });
-  segs.push({
-    t: `. Through ${who(s.fast.authority)} you can use it from ${day(s.fast.ready)}; through ${who(s.slow.authority)} not until ${day(s.slow.ready)}, ${s.gap} working days later.`,
-  });
-  // Steps the code unblocks (not ones done in the same visit, which start before it is ready).
-  const visitOf = (id: string) => items[id]?.visitId;
-  const deps = s.dependents
-    .filter((id) => !state.steps[id]?.milestone && items[id].startIndex >= s.fast.readyIndex && !(visitOf(id) && visitOf(id) === visitOf(s.fast.id)))
-    .slice(0, 2);
-  if (deps.length) {
-    const list = deps.map((id) => `the ${lowerFirst(ctx.short(id))} on ${day(items[id].startDate)}`);
-    segs.push({ t: ` With it you can start ${list.join(" and ")}.` });
-  }
-  // Same desk, same visit (a verified same_visit claim).
+  const items = ctx.state.schedule!.schedule.items;
+  const code = s.milestone === "personal_identity_code" ? "identity code" : s.label;
   const visit = items[s.fast.id]?.visitId;
-  const mates = visit ? Object.values(items).filter((i) => i.visitId === visit && i.stepId !== s.fast.id) : [];
-  if (mates.length) {
-    const mate = mates[0].stepId;
-    const claim =
-      state.steps[s.fast.id]?.claims?.find((c) => c.kind === "same_visit" && c.value === mate) ??
-      state.steps[mate]?.claims?.find((c) => c.kind === "same_visit" && c.value === s.fast.id);
-    segs.push({ t: ` Get your ${lowerFirst(ctx.short(mate))} in the same visit` });
-    if (claim) segs.push({ ref: ctx.reg.ref(claim.citation) });
-    segs.push({ t: "." });
-  }
-  return { key: "shortcut", segs, stepId: s.fast.id };
+  const mate = visit ? Object.values(items).find((i) => i.visitId === visit && i.stepId !== s.fast.id)?.stepId : undefined;
+  const t = `${who(s.fast.authority)} can give you the ${code} ${s.gap} working days before ${who(s.slow.authority)}${mate ? `, and your ${lowerFirst(ctx.short(mate))} in the same visit` : ""}.`;
+  return { key: "shortcut", stepId: s.fast.id, segs: [{ t }, ...(s.fastRef ? [{ ref: s.fastRef }] : [])] };
 }
 
 /** Money at stake, only from a verified cost-of-delay quote that states a percentage of salary. */
@@ -222,26 +194,16 @@ function moneyPara(ctx: Ctx): Para | null {
     const step = state.steps[id];
     for (const c of step.claims ?? []) {
       if (c.kind !== "cost_of_delay") continue;
-      const q = c.citation.quote;
-      const m = q.match(/(\d{1,3}(?:[.,]\d+)?)\s?%\s*(?:of\s+(?:your\s+)?)?(salary|income|wages?|pay)/i);
+      const m = c.citation.quote.match(/(\d{1,3}(?:[.,]\d+)?)\s?%\s*(?:of\s+(?:your\s+)?)?(salary|income|wages?|pay)/i);
       if (!m) continue;
       const pct = Number(m[1].replace(",", "."));
       if (!(pct > 0 && pct <= 100)) continue;
       const eur = Math.round((salary * pct) / 100);
-      return {
-        key: "money",
-        stepId: id,
-        segs: [
-          { t: `Don't leave the ${lowerFirst(ctx.short(id))} for later: without it, ${pct}% of your salary is withheld` },
-          { ref: ctx.reg.ref(c.citation) },
-          { t: `. On €${salary.toLocaleString("en-GB")} a month that is €${eur.toLocaleString("en-GB")}.` },
-        ],
-        insight: [
-          { t: `Without the ${lowerFirst(ctx.short(id))}, ${pct}% of your salary is withheld` },
-          { ref: ctx.reg.ref(c.citation) },
-          { t: `: €${eur.toLocaleString("en-GB")} of your €${salary.toLocaleString("en-GB")} a month.` },
-        ],
-      };
+      const segs: Seg[] = [
+        { t: `Without the ${lowerFirst(ctx.short(id))}, ${pct}% of your salary is withheld: €${eur.toLocaleString("en-GB")} of your €${salary.toLocaleString("en-GB")} a month.` },
+        { ref: ctx.reg.ref(c.citation) },
+      ];
+      return { key: "money", stepId: id, segs };
     }
   }
   return null;
@@ -287,51 +249,23 @@ function conflictPara(ctx: Ctx): Para | null {
   const conflicts = [...ctx.state.conflicts].sort((x, y) => Number(RAW_TOPIC.test(x.topic)) - Number(RAW_TOPIC.test(y.topic)));
   const c = conflicts[0];
   if (!c) return null;
-  const segs: Seg[] = [
-    { t: `${c.a.trust === "official" && c.b.trust === "official" ? "Official sources disagree" : "Sources disagree"} on ${topicText(c.topic, ctx.short)}. ${conflictNote(c.note, c.a, c.b)}` },
-    { ref: ctx.reg.ref(c.a) },
-    { ref: ctx.reg.ref(c.b) },
-    { t: ` ${whatToDoShort(c.whatToDo)}` },
-  ];
-  if (conflicts.length > 1) {
-    const k = conflicts.length - 1;
-    segs.push({ t: ` I found ${k} more disagreement${k === 1 ? "" : "s"}; ${k === 1 ? "it is" : "they are"} marked on the map.` });
-  }
-  const insight: Seg[] = [
-    { t: `${c.a.trust === "official" && c.b.trust === "official" ? "Official sources disagree" : "Sources disagree"} on ${topicText(c.topic, ctx.short)}.` },
-    { ref: ctx.reg.ref(c.a) },
-    { ref: ctx.reg.ref(c.b) },
-  ];
-  return { key: "conflict", segs, stepId: c.stepId, insight };
+  const who = c.a.trust === "official" && c.b.trust === "official" ? "Official sources disagree" : "Sources disagree";
+  // Both quotes and what to do are in the details panel; here only what the disagreement is about.
+  return { key: "conflict", stepId: c.stepId, segs: [{ t: `${who} on ${topicText(c.topic, ctx.short)}.` }, { ref: ctx.reg.ref(c.a) }] };
 }
 
 function estimatePara(ctx: Ctx): Para | null {
   const { state } = ctx;
   const items = state.schedule!.schedule.items;
   const real = Object.values(items).filter((i) => !state.steps[i.stepId]?.milestone && !state.steps[i.stepId]?.done);
-  const segs: Seg[] = [];
-  const community = real.filter((i) => i.waitSource === "community").slice(0, 2);
-  for (const i of community) {
-    const tip = bestWaitTip(state.tips, i.stepId);
-    segs.push({ t: `${segs.length ? " " : ""}The wait for the ${lowerFirst(ctx.short(i.stepId))} comes from people who did it` });
-    if (tip) segs.push({ ref: ctx.reg.ref(tip.citation) });
-    segs.push({ t: ", not from an official figure." });
-  }
-  const est = real.filter((i) => i.estimated);
-  if (est.length) {
-    const names = est.map((i) => lowerFirst(ctx.short(i.stepId)));
-    const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
-    segs.push({
-      t: `${segs.length ? " " : ""}${est.length === 1 ? "One date is an estimate" : `${est.length} of the ${real.length} dates are estimates`}, because no official figure was found: ${list}. ${est.length === 1 ? "It is" : "They are"} marked * in the plan.`,
-    });
-  }
-  if (!segs.length) return null;
-  return { key: "estimates", segs };
-}
-
-function bestWaitTip(tips: Tip[], stepId: string): Tip | undefined {
-  const mine = tips.filter((t) => t.stepId === stepId);
-  return mine.find((t) => t.kind === "wait_time" && t.waitDays !== undefined) ?? mine.find((t) => t.kind === "wait_time") ?? mine[0];
+  const est = real.filter((i) => i.estimated).length;
+  const community = real.filter((i) => i.waitSource === "community").length;
+  if (!est && !community) return null;
+  const parts = [
+    est ? `${est} of the ${real.length} dates ${est === 1 ? "is an estimate" : "are estimates"}: no official figure was found.` : null,
+    community ? `${community === 1 ? "One wait comes" : `${community} waits come`} from people who did it, not from an official figure.` : null,
+  ].filter(Boolean);
+  return { key: "estimates", segs: [{ t: parts.join(" ") }] };
 }
 
 /** For panel code: the step's own claims of one kind. */

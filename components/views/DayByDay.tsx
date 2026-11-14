@@ -6,7 +6,6 @@ import { buildDays, lowerName, type DayEntry, type DayStep, type OnlineEntry, ty
 import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/labels";
 import { Prose } from "../letter/LetterView";
-import { Footnote } from "../letter/Footnote";
 import { Term } from "../Help";
 import { Marker } from "../line/Marker";
 import { mainLegs } from "../line/legs";
@@ -22,23 +21,25 @@ type Props = {
   state: RunState;
   doc: LetterDoc;
   onOpen: (id: string) => void;
+  /** Open the details panel scrolled to this step's sources. */
+  onSources: (id: string) => void;
   extra?: React.ReactNode;
   shortcut?: (id: string) => React.ReactNode;
 };
 type Ctx = {
   state: RunState;
   onOpen: (id: string) => void;
+  onSources: (id: string) => void;
   shortcut?: (id: string) => React.ReactNode;
 };
 
 /** The plan as you would live it: a timeline of visit cards, online steps grouped, waits on the rail. */
-export function DayByDay({ state, doc, onOpen, extra, shortcut }: Props) {
+export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   if (!state.schedule) return <DaysSkeleton />;
-  const ctx: Ctx = { state, onOpen, shortcut };
+  const ctx: Ctx = { state, onOpen, onSources, shortcut };
   const visits = entries.filter((e) => e.kind === "visit").length;
   const legs = mainLegs(entries.map(onMain));
-  const firstOpen = entries.findIndex((e) => e.kind === "visit" || e.kind === "online");
 
   return (
     <section aria-label="Day by day">
@@ -55,14 +56,8 @@ export function DayByDay({ state, doc, onOpen, extra, shortcut }: Props) {
       </div>
       <ol>
         {entries.map((e, i) => (
-          <Row
-            key={i}
-            entry={e}
-            last={i === entries.length - 1}
-            mainLeg={!!legs[i]}
-            inLeg={i === 0 ? null : !!legs[i - 1]}
-          >
-            <Entry ctx={ctx} entry={e} defaultOpen={i === firstOpen} />
+          <Row key={i} entry={e} last={i === entries.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
+            <Entry ctx={ctx} entry={e} />
           </Row>
         ))}
       </ol>
@@ -107,7 +102,7 @@ function Row({
       <div className="relative flex justify-center">
         {inLeg !== null && <span className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
         {!last && <span className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        <span className="relative z-10 mt-[20px] flex items-center">{marker}</span>
+        <span className="relative z-10 mt-[20px] flex h-7 items-center self-start">{marker}</span>
       </div>
       <div className="min-w-0 pb-4 pt-2">
         {children}
@@ -124,46 +119,45 @@ function Row({
   );
 }
 
-function Entry({ ctx, entry, defaultOpen }: { ctx: Ctx; entry: DayEntry; defaultOpen: boolean }) {
+function Entry({ ctx, entry }: { ctx: Ctx; entry: DayEntry }) {
   switch (entry.kind) {
     case "visit":
-      return <Visit ctx={ctx} e={entry} defaultOpen={defaultOpen} />;
+      return <Visit ctx={ctx} e={entry} />;
     case "online":
-      return <Online ctx={ctx} e={entry} defaultOpen={defaultOpen} />;
+      return <Online ctx={ctx} e={entry} />;
     case "reminder":
-      return (
-        <p className="pt-3 text-[15px] text-muted">
-          Reminder: {entry.title}
-          {entry.ref && <Footnote r={entry.ref} />}
-        </p>
-      );
+      return <p className="pt-3 text-[15px] text-muted">Reminder: {entry.title}</p>;
     case "done":
       return <p className="pt-3 text-[24px] font-bold text-done">You&apos;re fully set up</p>;
   }
 }
 
-function StepHead({ ctx, s, compact = false }: { ctx: Ctx; s: DayStep; compact?: boolean }) {
-  if (compact) {
-    return (
-      <h3>
+/** Title, the shortcut tag if any, and one short "why now" sentence with one source number. */
+function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
+  return (
+    <>
+      <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
           {s.title}
         </button>
+        {ctx.shortcut?.(s.id)}
       </h3>
-    );
-  }
-  return (
-    <>
-      <h3>
-        <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[21px] font-bold leading-snug text-ink hover:text-accent">
-          {s.title}
-        </button>
-      </h3>
-      {ctx.shortcut?.(s.id)}
-      <p className="mt-1.5 text-[16px] leading-relaxed text-ink">
-        {s.noSource ? <span className="text-muted">No official source found.</span> : <Prose segs={s.whyNow} />}
-      </p>
+      <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
     </>
+  );
+}
+
+/** A quiet "Sources (n)" at the end of a section: opens the step's sources in the details panel. */
+function SourcesLink({ ctx, id, n }: { ctx: Ctx; id: string; n: number }) {
+  if (!n) return null;
+  return (
+    <button
+      type="button"
+      onClick={() => ctx.onSources(id)}
+      className="mt-2 text-[14px] text-muted underline decoration-rule-strong underline-offset-[3px] hover:text-accent hover:decoration-accent"
+    >
+      Sources ({n})
+    </button>
   );
 }
 
@@ -206,134 +200,115 @@ function Toggle({ open, onClick }: { open: boolean; onClick: () => void }) {
   );
 }
 
-function Visit({ ctx, e, defaultOpen }: { ctx: Ctx; e: VisitEntry; defaultOpen: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
+function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
+  const [open, setOpen] = useState(false);
   const unlocks = [...new Set(e.steps.flatMap((s) => s.unlocks))].filter((id) => !e.steps.some((s) => s.id === id));
   const critical = e.steps.some((s) => s.critical);
+  const lead = e.steps[0].id;
   const summary = [
     e.bring.length ? `${e.bring.length} ${e.bring.length === 1 ? "thing" : "things"} to bring` : null,
     unlocks.length ? `unlocks ${unlocks.length} ${unlocks.length === 1 ? "step" : "steps"}` : null,
-    e.steps.length > 1 ? "both in one visit" : null,
-  ].filter(Boolean);
+  ].filter((x): x is string => !!x);
   return (
     <article className={`rounded-[10px] bg-raised ${critical ? "border border-l-[5px] border-rule border-l-accent" : "border border-rule"}`}>
-      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-rule px-5 py-3">
+      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 pt-3.5">
         <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
           <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
           <span className="font-semibold text-ink">{e.authority}</span>
-          {e.address && (
-            <span className="min-w-0 truncate">
-              {e.address.value}
-              <Footnote r={e.address.ref} />
-            </span>
-          )}
+          {e.steps.length > 1 && <span>both in one visit</span>}
         </p>
-        <span className="flex items-center gap-4">
-          {critical && (
-            <span className="text-[14px] text-accent">
-              <Term term="slowest" />
-            </span>
-          )}
-          <Toggle open={open} onClick={() => setOpen((o) => !o)} />
-        </span>
+        {critical && (
+          <span className="text-[14px] text-accent">
+            <Term term="slowest" />
+          </span>
+        )}
       </header>
 
-      {!open && (
-        <div className="px-5 py-4">
-          {e.steps.map((s) => (
-            <div key={s.id}>
-              <StepHead ctx={ctx} s={s} compact />
-              {ctx.shortcut?.(s.id)}
-            </div>
-          ))}
-          {summary.length > 0 && <p className="mt-1.5 text-[15px] text-muted">{summary.join(", ").replace(/^./, (c) => c.toUpperCase())}.</p>}
-        </div>
-      )}
-      {open && (
-        <>
-          <div className="px-5 py-4">
-            {e.steps.map((s, i) => (
-              <div key={s.id} className={i > 0 ? "mt-4 border-t border-dashed border-rule pt-4" : ""}>
-                <StepHead ctx={ctx} s={s} />
-              </div>
-            ))}
-            {e.steps.length > 1 && (
-              <p className="mt-3 text-[15px] text-muted">
-                <Term term="oneVisit" />
-              </p>
-            )}
-
-            {(unlocks.length > 0 || e.bring.length > 0) && (
-              <div className="mt-5 grid gap-6 sm:grid-cols-2">
-                {e.bring.length > 0 && (
-                  <div>
-                    <p className="text-[14px] font-semibold text-muted">Bring</p>
-                    <ul className="mt-1.5 space-y-1.5 text-[16px] leading-snug text-ink">
-                      {e.bring.map((b) => (
-                        <li key={b.value} className="flex gap-2.5">
-                          <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
-                          <span>
-                            {b.value}
-                            <Footnote r={b.ref} />
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {unlocks.length > 0 && <Unlocks ctx={ctx} ids={unlocks} />}
-              </div>
-            )}
+      <div className="px-5 pb-4 pt-2">
+        {e.steps.map((s, i) => (
+          <div key={s.id} className={i > 0 ? "mt-3" : ""}>
+            <StepHead ctx={ctx} s={s} />
           </div>
+        ))}
+        <div className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[14px] text-muted">
+          {summary.map((t, i) => (
+            <span key={t} className="contents">
+              {i > 0 && <span aria-hidden>·</span>}
+              <span>{t}</span>
+            </span>
+          ))}
+          {e.calendarUrl && (
+            <>
+              {summary.length > 0 && <span>·</span>}
+              <a
+                href={e.calendarUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent"
+              >
+                <IconCalendar className="h-3.5 w-3.5" /> Add to calendar
+              </a>
+            </>
+          )}
+          <span className="ml-auto">
+            <Toggle open={open} onClick={() => setOpen((o) => !o)} />
+          </span>
+        </div>
+      </div>
 
-          {(e.booking || e.calendarUrl) && (
-            <footer className="flex flex-wrap items-center gap-3 border-t border-rule px-5 py-3">
+      {open && (
+        <div className="grid gap-x-8 gap-y-5 border-t border-rule px-5 py-4 sm:grid-cols-2">
+          {e.bring.length > 0 && (
+            <section>
+              <p className="text-[14px] font-semibold text-muted">Bring</p>
+              <ul className="mt-1.5 space-y-1.5 text-[16px] leading-snug text-ink">
+                {e.bring.map((b) => (
+                  <li key={b.value} className="flex gap-2.5">
+                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
+                    <span>{b.value}</span>
+                  </li>
+                ))}
+              </ul>
+              <SourcesLink ctx={ctx} id={lead} n={e.sources.bring} />
+            </section>
+          )}
+          {unlocks.length > 0 && <Unlocks ctx={ctx} ids={unlocks} />}
+          {(e.address || e.booking) && (
+            <section className="sm:col-span-2">
+              <p className="text-[14px] font-semibold text-muted">Visit</p>
+              {e.address && <p className="mt-1 text-[16px] text-ink">{e.address.value}</p>}
               {e.booking?.url && (
-                <span className="inline-flex items-center">
-                  <a href={e.booking.url} target="_blank" rel="noreferrer" className={btn}>
-                    Book an appointment <IconExternal className="h-3.5 w-3.5" />
-                  </a>
-                  <Footnote r={e.booking.ref} />
-                </span>
-              )}
-              {e.calendarUrl && (
-                <a href={e.calendarUrl} target="_blank" rel="noreferrer" className={btn}>
-                  <IconCalendar className="h-4 w-4" /> Add to Google Calendar
+                <a href={e.booking.url} target="_blank" rel="noreferrer" className={`mt-2 ${btn}`}>
+                  Book an appointment <IconExternal className="h-3.5 w-3.5" />
                 </a>
               )}
-              {e.booking && !e.booking.url && (
-                <p className="basis-full text-[15px] text-muted">
-                  How to book: {e.booking.text}
-                  <Footnote r={e.booking.ref} />
-                </p>
-              )}
-            </footer>
+              {e.booking && !e.booking.url && <p className="mt-1 text-[16px] text-ink">How to book: {e.booking.text}</p>}
+              <div>
+                <SourcesLink ctx={ctx} id={lead} n={e.sources.visit} />
+              </div>
+            </section>
           )}
-
           {e.tips.length > 0 && (
-            <details className="group border-t border-rule px-5 py-3 text-[15px]">
+            <details className="group text-[15px] sm:col-span-2">
               <summary className="cursor-pointer list-none text-muted hover:text-ink">
                 <span className="inline-block transition-transform group-open:rotate-90">›</span> {e.tips.length} {e.tips.length === 1 ? "tip" : "tips"} from
                 people who did it
               </summary>
               <ul className="mt-2 space-y-1.5 pl-4 text-muted">
                 {e.tips.map((t, i) => (
-                  <li key={i}>
-                    {t.text}
-                    {t.ref && <Footnote r={t.ref} />}
-                  </li>
+                  <li key={i}>{t.text}</li>
                 ))}
               </ul>
             </details>
           )}
-        </>
+        </div>
       )}
     </article>
   );
 }
 
-function Online({ ctx, e, defaultOpen }: { ctx: Ctx; e: OnlineEntry; defaultOpen: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
+function Online({ ctx, e }: { ctx: Ctx; e: OnlineEntry }) {
+  const [open, setOpen] = useState(false);
   return (
     <article>
       <header className="flex items-center justify-between gap-2 pb-1 pt-3 text-[15px] text-muted">
@@ -346,7 +321,7 @@ function Online({ ctx, e, defaultOpen }: { ctx: Ctx; e: OnlineEntry; defaultOpen
       <div className="divide-y divide-rule">
         {e.steps.map((s) => (
           <div key={s.id} className="py-3">
-            <StepHead ctx={ctx} s={s} compact={!open} />
+            <StepHead ctx={ctx} s={s} />
             {open && s.unlocks.length > 0 && (
               <div className="mt-3">
                 <Unlocks ctx={ctx} ids={s.unlocks} />

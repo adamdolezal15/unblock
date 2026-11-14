@@ -1,5 +1,6 @@
 "use client";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
 import { useRun } from "@/lib/ui/useRun";
 import type { RunState } from "@/lib/ui/runState";
 import { buildLetter } from "@/lib/ui/letter";
@@ -11,7 +12,7 @@ import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
 import { Closing } from "./letter/Closing";
-import { LetterView, Prose } from "./letter/LetterView";
+import { LetterView } from "./letter/LetterView";
 import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { ErrorState, OutOfScopeState, PartialNotice } from "./States";
@@ -27,6 +28,13 @@ import { Working } from "./Working";
 export function App() {
   const { state, start, reset } = useRun();
 
+  // Demo links: /?demo=marta#days starts that example straight away (&fast=1 skips the replay pauses).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const key = q.get("demo");
+    if (key && key in DEMO_SENTENCES) void start(DEMO_SENTENCES[key as DemoKey], { fast: q.get("fast") === "1" });
+  }, [start]);
+
   if (state.phase === "idle") return <Landing runKey={state.runKey} value={state.text} onSubmit={start} />;
 
   return (
@@ -39,7 +47,7 @@ export function App() {
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />
       )}
       {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Results state={state} onRerun={(t) => start(t)} />
+        <Results state={state} onRerun={(t) => void start(t)} />
       )}
     </div>
   );
@@ -62,6 +70,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const runKey = state.runKey;
   const select = useCallback((selection: Selection) => setSel({ runKey, selection }), [runKey]);
   const openStep = useCallback((id: string) => select({ kind: "step", id }), [select]);
+  const openSources = useCallback((id: string) => select({ kind: "step", id, focus: "sources" }), [select]);
 
   // Until the schedule exists there is no answer to show: one calm progress card instead.
   if (!state.schedule || !doc.letter) {
@@ -113,14 +122,15 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
               state={state}
               doc={doc}
               onOpen={openStep}
+              onSources={openSources}
               extra={<Insights insights={doc.letter.insights} onOpen={openStep} />}
               shortcut={(id) => {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
+                // A tag only: the answer above already says what the shortcut gains.
                 return sc ? (
-                  <p className="mt-1 text-[15px] text-ink">
-                    <span className="mr-2 rounded-[3px] bg-accent px-1.5 py-[2px] text-[14px] font-bold text-white">Shortcut</span>
-                    <Prose segs={sc.text} />
-                  </p>
+                  <span title={sc.text.map((x) => ("t" in x ? x.t : "")).join("")} className="rounded-[3px] bg-accent px-1.5 py-[2px] text-[14px] font-bold text-white">
+                    Shortcut
+                  </span>
                 ) : null;
               }}
             />

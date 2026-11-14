@@ -34,9 +34,15 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
   }, []);
   const selKey = selection.kind === "edge" ? selection.id : `s:${selection.id}`;
   const scroller = useRef<HTMLElement>(null);
+  const focusSources = selection.kind === "step" && selection.focus === "sources";
   useEffect(() => {
-    scroller.current?.scrollTo({ top: 0 });
-  }, [selKey]);
+    if (!focusSources) {
+      scroller.current?.scrollTo({ top: 0 });
+      return;
+    }
+    const id = requestAnimationFrame(() => document.getElementById("panel-sources")?.scrollIntoView({ block: "start" }));
+    return () => cancelAnimationFrame(id);
+  }, [selKey, focusSources]);
 
   const ctx: Ctx = {
     state,
@@ -58,7 +64,13 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
       aria-label="Details"
       className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(26,36,51,0.12)]"
     >
-      <button ref={closeRef} type="button" onClick={() => onSelect(null)} className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
+      <button
+        ref={closeRef}
+        type="button"
+        onClick={() => onSelect(null)}
+        className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink"
+        aria-label="Close details"
+      >
         <IconClose className="h-5 w-5" />
       </button>
       {body}
@@ -80,7 +92,7 @@ function StepSources({ ctx, step }: { ctx: Ctx; step: Step }) {
   const unique = all.filter((c, i) => all.findIndex((d) => d.url === c.url && d.quote === c.quote) === i);
   if (!unique.length) return null;
   return (
-    <section className="mt-8 border-t border-rule pt-5">
+    <section id="panel-sources" className="mt-8 scroll-mt-6 border-t border-rule pt-5">
       <h3 className="text-[16px] font-semibold text-ink">Sources</h3>
       {(Object.keys(TIER_TITLE) as Citation["trust"][]).map((t) => {
         const list = unique.filter((c) => c.trust === t).sort((a, b) => ctx.n(a) - ctx.n(b));
@@ -97,6 +109,21 @@ function StepSources({ ctx, step }: { ctx: Ctx; step: Step }) {
         );
       })}
     </section>
+  );
+}
+
+/** A quiet "Sources (n)" at the end of a section: jumps to the quotes at the bottom of the panel. */
+function PanelSources({ cites }: { cites: (Citation | undefined)[] }) {
+  const n = new Set(cites.filter(Boolean).map((c) => c!.url)).size;
+  if (!n) return null;
+  return (
+    <button
+      type="button"
+      onClick={() => document.getElementById("panel-sources")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+      className="mt-2 text-[14px] text-muted underline decoration-rule-strong underline-offset-[3px] hover:text-accent hover:decoration-accent"
+    >
+      Sources ({n})
+    </button>
   );
 }
 
@@ -117,7 +144,8 @@ function StepLink({ ctx, id }: { ctx: Ctx; id: string }) {
   );
 }
 
-const lower = (s: string) => (/^[A-Z][a-z]/.test(s) && !/^(DVV|Vero|Kela|Migri|Police|EU|ID|Finnish|University)\b/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
+const lower = (s: string) =>
+  /^[A-Z][a-z]/.test(s) && !/^(DVV|Vero|Kela|Migri|Police|EU|ID|Finnish|University)\b/.test(s) ? s[0].toLowerCase() + s.slice(1) : s;
 
 function List({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
   return (
@@ -195,7 +223,12 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
               <Term term="estimate" />
             </span>
           )}
-          {item?.movedBy && <span className="text-muted"> Moved from {fmtLongDay(item.movedBy.from)} for {item.movedBy.holiday}.</span>}
+          {item?.movedBy && (
+            <span className="text-muted">
+              {" "}
+              Moved from {fmtLongDay(item.movedBy.from)} for {item.movedBy.holiday}.
+            </span>
+          )}
           {item?.note && !item.estimated && <span className="block text-[15px] text-muted">Timing: {item.note}.</span>}
         </p>
       )}
@@ -215,8 +248,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
             )}
             {un.via && (
               <p>
-                It gives you your {lower(state.steps[un.via.milestone]?.title ?? ctx.name(un.via.milestone))}
-                {ctx.cite(milestoneOptions(state, un.via.milestone).find((o) => o.id === id)?.citation)}, which <List ctx={ctx} ids={un.via.steps} />{" "}
+                It gives you your {lower(state.steps[un.via.milestone]?.title ?? ctx.name(un.via.milestone))}, which <List ctx={ctx} ids={un.via.steps} />{" "}
                 {un.via.steps.length === 1 ? "needs" : "need"}.
               </p>
             )}
@@ -237,10 +269,10 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
             {need.map((n) => (
               <li key={n.id}>
                 <StepLink ctx={ctx} id={n.id} />
-                {ctx.cite(n.citation)}
               </li>
             ))}
           </ul>
+          <PanelSources cites={need.map((n) => n.citation)} />
         </>
       )}
 
@@ -249,8 +281,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
           <H>Your visit</H>
           {mates.length > 0 && (
             <p className="mt-2 text-[16px] text-ink">
-              Same visit as <List ctx={ctx} ids={mates.map((m) => m.id)} />
-              {mates.map((m) => ctx.cite(m.citation))}.
+              Same visit as <List ctx={ctx} ids={mates.map((m) => m.id)} />.
             </p>
           )}
           {facts.visit.length > 0 && (
@@ -260,13 +291,17 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
                   <dt className="text-[15px] text-muted">{f.label}</dt>
                   <dd className="text-ink">
                     {f.label === "Booking" && bookingHref(f.value) ? (
-                      <a href={bookingHref(f.value)!} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 underline-offset-2">
+                      <a
+                        href={bookingHref(f.value)!}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-accent underline decoration-accent/40 underline-offset-2"
+                      >
                         {f.value}
                       </a>
                     ) : (
                       f.value
                     )}
-                    {ctx.cite(f.citation)}
                   </dd>
                 </div>
               ))}
@@ -277,15 +312,13 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
               <p className="mt-3 text-[15px] text-muted">What to bring</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-[16px] text-ink marker:text-rule-strong">
                 {facts.documents.map((f) => (
-                  <li key={f.value}>
-                    {f.value}
-                    {ctx.cite(f.citation)}
-                  </li>
+                  <li key={f.value}>{f.value}</li>
                 ))}
               </ul>
             </>
           )}
           {choice && <p className="mt-3 text-[15px] leading-relaxed text-muted">{choice.description}</p>}
+          <PanelSources cites={[...mates.map((m) => m.citation), ...facts.visit.map((f) => f.citation), ...facts.documents.map((f) => f.citation)]} />
         </>
       )}
 
@@ -296,13 +329,11 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
             {facts.other.map((f: Fact) => (
               <div key={f.label + f.value}>
                 <dt className="text-[15px] text-muted">{f.label}</dt>
-                <dd className="text-ink">
-                  {f.label === "Online or in person" ? MODE_LABEL[f.value as Step["mode"]] ?? f.value : f.value}
-                  {ctx.cite(f.citation)}
-                </dd>
+                <dd className="text-ink">{f.label === "Online or in person" ? (MODE_LABEL[f.value as Step["mode"]] ?? f.value) : f.value}</dd>
               </div>
             ))}
           </dl>
+          <PanelSources cites={facts.other.map((f) => f.citation)} />
         </>
       )}
 
@@ -322,7 +353,11 @@ function Tips({ ctx, tips }: { ctx: Ctx; tips: Tip[] }) {
       <ul className="mt-3 space-y-3">
         {tips.map((t, i) => (
           <li key={i} className="text-[15px] leading-relaxed text-muted">
-            <span className="font-semibold text-ink">{TIP_KIND[t.kind]}{t.waitDays !== undefined ? `, about ${t.waitDays} working days` : ""}.</span> {t.tip}
+            <span className="font-semibold text-ink">
+              {TIP_KIND[t.kind]}
+              {t.waitDays !== undefined ? `, about ${t.waitDays} working days` : ""}.
+            </span>{" "}
+            {t.tip}
             {ctx.cite(t.citation)}
           </li>
         ))}
@@ -333,7 +368,10 @@ function Tips({ ctx, tips }: { ctx: Ctx; tips: Tip[] }) {
 
 function ConflictCallout({ ctx, c }: { ctx: Ctx; c: Conflict }) {
   return (
-    <section className="mt-6 rounded-[6px] border border-amber-line bg-amber-soft px-4 py-4" aria-label={disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}>
+    <section
+      className="mt-6 rounded-[6px] border border-amber-line bg-amber-soft px-4 py-4"
+      aria-label={disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}
+    >
       <h3 className="flex items-center gap-2 text-[16px] font-semibold text-amber">
         <span className="h-3 w-3 shrink-0 rounded-full bg-amber-dot" />
         {disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}: {topicText(c.topic, ctx.name)}
@@ -409,10 +447,11 @@ function EdgeView({ ctx, source, target }: { ctx: Ctx; source: string; target: s
         {evidence.length ? (
           evidence.map((c, i) => <QuoteCard key={i} citation={c} n={ctx.n(c)} />)
         ) : (
-          <p className="text-[16px] leading-relaxed text-muted">No single quote links these two steps directly; the order comes from the steps&apos; own requirements. Open either step to see its sources.</p>
+          <p className="text-[16px] leading-relaxed text-muted">
+            No single quote links these two steps directly; the order comes from the steps&apos; own requirements. Open either step to see its sources.
+          </p>
         )}
       </div>
     </div>
   );
 }
-

@@ -3,37 +3,30 @@ import type { Letter, Ref, Seg } from "@/lib/ui/letter";
 import { Footnotes } from "./Footnote";
 
 /**
- * Text with footnotes. Consecutive refs render as one tight superscript (⁵,⁶), and the word before
- * them is glued to the numbers so a number never wraps onto a line by itself.
+ * A sentence or paragraph with at most ONE source number, at its end. The text reads uninterrupted; the
+ * first source cited in it is the number (the details panel lists every source). The last word is glued
+ * to the number so it never wraps onto a line by itself.
  */
 export function Prose({ segs, big }: { segs: Seg[]; big?: boolean }) {
-  // Group into runs: text followed by the refs that directly follow it.
-  const runs: { t: string; refs: Ref[] }[] = [];
-  for (const s of segs) {
-    if ("ref" in s) {
-      if (!runs.length) runs.push({ t: "", refs: [] });
-      runs[runs.length - 1].refs.push(s.ref);
-    } else runs.push({ t: s.t, refs: [] });
-  }
+  const text = segs
+    .map((s) => ("t" in s ? s.t : ""))
+    .join("")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.,:;!?])/g, "$1")
+    .trim();
+  const ref = segs.find((s): s is { ref: Ref } => "ref" in s)?.ref;
+  if (!ref) return <>{text}</>;
+  // The number closes the sentence: after its last word and punctuation.
+  const m = text.match(/^([\s\S]*?)(\S+)$/);
+  const head = m ? m[1] : "";
+  const word = m ? m[2] : text;
   return (
     <>
-      {runs.map((run, i) => {
-        if (!run.refs.length) return <span key={i}>{run.t}</span>;
-        // Footnotes attach to the text before them: no space between the last word and the number.
-        const text = run.t.replace(/\s+$/, "");
-        const cut = text.search(/\S+$/);
-        const head = cut > 0 ? text.slice(0, cut) : "";
-        const tail = cut >= 0 ? text.slice(cut) : text;
-        return (
-          <span key={i}>
-            {head}
-            <span className="whitespace-nowrap">
-              {tail}
-              <Footnotes refs={run.refs} big={big} />
-            </span>
-          </span>
-        );
-      })}
+      {head}
+      <span className="whitespace-nowrap">
+        {word}
+        <Footnotes refs={[ref]} big={big} />
+      </span>
     </>
   );
 }

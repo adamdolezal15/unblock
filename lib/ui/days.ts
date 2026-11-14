@@ -30,6 +30,8 @@ export type VisitEntry = {
   address?: { value: string; ref: Ref };
   steps: DayStep[];
   bring: { value: string; ref: Ref }[];
+  /** Distinct source pages behind the Bring list and behind the visit details (address, booking). */
+  sources: { bring: number; visit: number };
   /** A link when the source gives one; otherwise the source's booking instruction as text. */
   booking?: { url?: string; text: string; ref: Ref };
   calendarUrl?: string;
@@ -75,8 +77,8 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
     const un = unblocks(state, id);
     const unlocks = [...new Set([...un.direct, ...(un.via?.steps ?? [])])].filter((x) => x !== id && state.steps[x] && !state.steps[x].milestone);
     const whyNow: Seg[] = [];
-    if (critical.has(id)) whyNow.push({ t: "On the slowest chain, so a delay here delays everything. " });
-    const cod = facts.costOfDelay[0];
+    // One short sentence (the card's header already says if it is on the slowest chain).
+    const cod = facts.costOfDelay.find((f) => f.value.split(/\s+/).length <= 16);
     if (cod) {
       whyNow.push({ t: `If it waits: ${lowerName(cod.value).replace(/\.$/, "")}` }, { ref: ref(cod.citation) }, { t: "." });
     } else if (unlocks.length) {
@@ -146,6 +148,10 @@ export function buildDays(state: RunState, ref: (c: Citation) => Ref): DayEntry[
         : {}),
       ...(event ? { calendarUrl: event.googleTemplateUrl } : {}),
       tips: [],
+      sources: {
+        bring: new Set(bring.map((b) => b.ref.citation.url)).size,
+        visit: new Set([address?.ref.citation.url, bookingFact?.citation.url].filter(Boolean)).size,
+      },
     });
   }
 

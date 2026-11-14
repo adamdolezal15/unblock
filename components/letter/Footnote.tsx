@@ -31,7 +31,7 @@ function FootnoteButton({ r, big }: { r: Ref; big: boolean }) {
 export function Footnotes({ refs, big = false }: { refs: Ref[]; big?: boolean }) {
   const unique = refs.filter((r, i) => refs.findIndex((x) => x.n === r.n) === i);
   return (
-    <sup className="ml-[1px] whitespace-nowrap align-super leading-none">
+    <sup className="ml-[1px] whitespace-nowrap" style={{ lineHeight: 0, verticalAlign: "super", position: "static" }}>
       {unique.map((r, i) => (
         <span key={`${r.n}-${i}`}>
           {i > 0 && <span className={`font-sans text-muted ${big ? "text-[18px]" : "text-[14px]"}`}>,</span>}
