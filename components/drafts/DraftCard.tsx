@@ -4,11 +4,8 @@ import { mailtoHref, type DraftOffer } from "@/lib/agent/draftOffers";
 import type { DraftsApi } from "@/lib/ui/useDrafts";
 import type { Step, StepForm } from "@/lib/types";
 import type { FormLine } from "@/lib/ui/forms";
-import { FormRow } from "../FormRow";
-import { IconExternal } from "../icons";
+import { IconDocument, IconExternal } from "../icons";
 
-const primary =
-  "btn-primary disabled:cursor-not-allowed disabled:bg-hairline-strong";
 const secondary =
   "btn-secondary";
 const link = "text-[15px] link";
@@ -32,16 +29,23 @@ export function DraftLink({ offer, drafts }: { offer: DraftOffer; drafts: Drafts
   );
 }
 
-/** One draft, in "Ready to send" only: prepare on click, then preview, copy, or approve and open. */
+/**
+ * One draft, in "Ready to send" only. Before it is prepared: its title and "Prepare draft". Once ready it stays
+ * collapsed: title, subject, Copy and Open in email (or Open booking); "Read the draft" shows the full text,
+ * at its own height (no inner scrollbar).
+ */
 function DraftCard({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) {
   const entry = drafts.get(offer.id);
   const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
   const d = entry.draft;
 
   const copy = async () => {
     if (!d) return;
     try {
-      await navigator.clipboard.writeText(offer.email ? `Subject: ${d.subject}\n\n${d.body}` : d.body);
+      await navigator.clipboard.writeText(offer.email ? `Subject: ${d.subject}
+
+${d.body}` : d.body);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -50,50 +54,56 @@ function DraftCard({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) 
   };
 
   return (
-    <div id={draftAnchor(offer.id)} className="card scroll-mt-24 px-6 py-4">
+    <div id={draftAnchor(offer.id)} className="card scroll-mt-24 px-4 py-4 sm:px-6">
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <p className="text-[17px] font-bold text-ink">{offer.title}</p>
-        {entry.status !== "ready" && (
+        <div className="min-w-0">
+          <p className="text-[17px] font-bold text-ink">{offer.title}</p>
+          {d && offer.email && <p className="mt-1 text-[15px] text-muted">Subject: <span className="text-ink">{d.subject}</span></p>}
+        </div>
+        {entry.status !== "ready" ? (
           <button type="button" className={secondary} disabled={entry.status === "loading"} onClick={() => void drafts.prepare(offer.id)}>
             {entry.status === "loading" ? "Preparing…" : "Prepare draft"}
           </button>
+        ) : (
+          d && (
+            <div className="flex flex-wrap items-center gap-2">
+              <button type="button" className={secondary} onClick={() => void copy()}>
+                {copied ? "Copied" : "Copy"}
+              </button>
+              {offer.email ? (
+                <a href={mailtoHref(d)} className={secondary}>
+                  Open in email
+                </a>
+              ) : (
+                d.bookingUrl && (
+                  <a href={d.bookingUrl} target="_blank" rel="noreferrer" className={secondary}>
+                    Open booking <IconExternal className="h-3.5 w-3.5" />
+                  </a>
+                )
+              )}
+            </div>
+          )
         )}
       </div>
       {entry.status === "error" && <p className="mt-2 text-[15px] text-ink">{entry.error}</p>}
       {d && (
         <div className="mt-3">
-          {offer.email && (
-            <p className="text-[15px] text-muted">
-              Subject: <span className="text-ink">{d.subject}</span>
-            </p>
+          <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)} className="text-[15px] link">
+            {open ? "Hide the draft" : "Read the draft"}
+          </button>
+          {open && (
+            <>
+              <div className="mt-3 whitespace-pre-wrap rounded-[10px] border border-hairline bg-paper px-4 py-4 text-[15px] leading-normal text-ink">{d.body}</div>
+              <p className="mt-2 text-[13px] text-muted">Fill in the [brackets] and check it before sending.</p>
+            </>
           )}
-          <pre className="mt-2 max-h-[420px] overflow-auto whitespace-pre-wrap rounded-[10px] border border-hairline bg-paper px-4 py-4 font-sans text-[15px] leading-normal text-ink">
-            {d.body}
-          </pre>
-          <p className="mt-3 text-[13px] text-muted">Fill in the [brackets] and check it before sending.</p>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
-            {offer.email ? (
-              <a href={mailtoHref(d)} className={primary}>
-                Approve and open in email
-              </a>
-            ) : (
-              d.bookingUrl && (
-                <a href={d.bookingUrl} target="_blank" rel="noreferrer" className={primary}>
-                  Approve and open booking <IconExternal className="h-3.5 w-3.5" />
-                </a>
-              )
-            )}
-            <button type="button" className={secondary} onClick={() => void copy()}>
-              {copied ? "Copied" : "Copy"}
-            </button>
-          </div>
         </div>
       )}
     </div>
   );
 }
 
-/** "Ready to send": the one place drafts are shown, under the plan. */
+/** "Ready to send": the one place drafts are shown, under the plan. Forms first, as a plain list. */
 export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[] }) {
   if (!drafts.offers.length && !forms.length) return null;
   return (
@@ -103,11 +113,16 @@ export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?:
         <div className="mt-4" aria-label="Official forms">
           <h3 className="text-[20px] font-bold text-ink">Official forms</h3>
           <p className="mt-1 max-w-[62ch] text-[17px] text-muted">Forms you need to bring or fill in online.</p>
-          <ul className="mt-3 space-y-3">
+          <ul className="mt-3 max-w-[680px] border-t border-hairline">
             {forms.map((f) => (
-              <li key={f.form.id} className="card px-4 py-4">
-                <FormRow line={f.line} variant="list" />
-                <span className="mt-1 block pl-[28px] text-[13px] text-muted">For {f.steps.map((s) => s.title).join(" and ")}</span>
+              <li key={f.form.id} className="flex items-start justify-between gap-4 border-b border-hairline py-3">
+                <span className="flex min-w-0 items-start gap-2 text-[17px] leading-normal">
+                  <IconDocument className="mt-[4px] h-4 w-4 shrink-0 text-accent" />
+                  <span className="font-semibold text-ink">{f.line.name}</span>
+                </span>
+                <a href={f.line.href} target="_blank" rel="noreferrer" aria-label={`${f.line.linkLabel}: ${f.line.name}`} className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap pt-[2px] text-[15px] link">
+                  {f.line.shortLabel} <IconExternal className="h-3.5 w-3.5" />
+                </a>
               </li>
             ))}
           </ul>
