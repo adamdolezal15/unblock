@@ -65,7 +65,14 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   if (!state.schedule) return <DaysSkeleton />;
   const ctx: Ctx = { state, onOpen, onSources, shortcut, drafts };
   const visits = entries.filter((e) => e.kind === "visit").length;
-  const legs = mainLegs(entries.map(onMain));
+  // One date marker per day: entries on the same date stack under it (the finish stays its own row).
+  const groups: DayEntry[][] = [];
+  for (const e of entries) {
+    const g = groups[groups.length - 1];
+    if (g && e.kind !== "done" && g[0].kind !== "done" && g[0].date === e.date) g.push(e);
+    else groups.push([e]);
+  }
+  const legs = mainLegs(groups.map((g) => g.some(onMain)));
 
   return (
     <section aria-label="Day by day">
@@ -74,9 +81,13 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
         {visits} {visits === 1 ? "visit" : "visits"} in order. Open Details on a visit for what to bring and the sources.
       </p>
       <ol>
-        {entries.map((e, i) => (
-          <Row key={i} entry={e} last={i === entries.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
-            <Entry ctx={ctx} entry={e} />
+        {groups.map((g, i) => (
+          <Row key={i} entries={g} last={i === groups.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
+            <div className="space-y-4">
+              {g.map((e, j) => (
+                <Entry key={j} ctx={ctx} entry={e} />
+              ))}
+            </div>
           </Row>
         ))}
       </ol>
@@ -142,17 +153,19 @@ const link = "link";
 /** On the slowest chain (the blue line): visits / online steps on it, and the finish. */
 const onMain = (e: DayEntry) => e.kind === "done" || ((e.kind === "visit" || e.kind === "online") && e.steps.some((s) => s.critical));
 
-/** One timeline row: the calendar spine (day big, month small), the rail with a marker, the content. */
-function Row({ entry, last, mainLeg, inLeg, children }: { entry: DayEntry; last: boolean; mainLeg: boolean; inLeg: boolean | null; children: React.ReactNode }) {
-  const critical = (entry.kind === "visit" || entry.kind === "online") && entry.steps.some((s) => s.critical);
+/** One timeline row per day: the calendar spine (day big, month small), the rail with one marker, that day's cards. */
+function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[]; last: boolean; mainLeg: boolean; inLeg: boolean | null; children: React.ReactNode }) {
+  const entry = entries[0];
+  const critical = entries.some((x) => (x.kind === "visit" || x.kind === "online") && x.steps.some((s) => s.critical));
+  const kinds = new Set(entries.map((x) => x.kind));
   // Same stations as the logo and the hero line (components/line).
   const marker = (
-    <Marker kind={entry.kind === "done" ? "end" : entry.kind === "online" || entry.kind === "optional" ? "hollow" : entry.kind === "reminder" ? "small" : critical ? "main" : "station"} />
+    <Marker kind={kinds.has("done") ? "end" : critical ? "main" : kinds.has("visit") ? "station" : kinds.size === 1 && kinds.has("reminder") ? "small" : "hollow"} />
   );
   // Steps done in one visit often share the same wait line: say it once, as one quiet line without a number
   // (its source is in the card's Details).
   const waits = [
-    ...new Set((entry.kind === "visit" || entry.kind === "online" ? entry.steps.filter((s) => s.wait) : []).map((s) => plain(s.wait!))),
+    ...new Set(entries.flatMap((x) => (x.kind === "visit" || x.kind === "online" ? x.steps.filter((s) => s.wait) : [])).map((s) => plain(s.wait!))),
   ];
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
@@ -404,6 +417,41 @@ function StepLine({ s, big = true }: { s: DayStep; big?: boolean }) {
   );
 }
 
+/** "ID code at Vero" -> "ID code" when the title already names the office. */
+function withoutOffice(short: string, authority: string): string {
+  const suffix = ` at ${authority}`.toLowerCase();
+  return short.toLowerCase().endsWith(suffix) ? short.slice(0, short.length - suffix.length) : short;
+}
+
+/** Several steps in one visit: one title ("Vero: ID code + tax card"), the first step's reason, the rest as checklist lines. */
+function MergedVisit({ e }: { e: VisitEntry }) {
+  const [first, ...rest] = e.steps;
+  const names = e.steps.map((s, i) => (i ? lowerName(withoutOffice(s.short, e.authority)) : withoutOffice(s.short, e.authority)));
+  const why = first.noSource ? "No official source found." : plain(first.whyNow);
+  return (
+    <div className="mt-2">
+      <h3 className="text-[20px] font-bold leading-snug text-ink">
+        {e.authority}: {names.join(" + ")}
+      </h3>
+      {why && <p className="mt-1 max-w-[62ch] text-[17px] leading-normal text-muted">{why}</p>}
+      <ul className="mt-3 space-y-2">
+        {rest.map((s) => {
+          const r = s.noSource ? "No official source found." : plain(s.whyNow);
+          return (
+            <li key={s.id} className="flex gap-2 text-[17px] leading-normal">
+              <span className="mt-[5px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-hairline-strong" aria-hidden />
+              <span className="min-w-0">
+                <span className="font-semibold text-ink">{s.title}</span>
+                {r && <span className="block text-[15px] text-muted">{r}</span>}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   const [open, setOpen] = useState(false);
   const unlocks = [...new Set(e.steps.flatMap((s) => s.unlocks))].filter((id) => !e.steps.some((s) => s.id === id));
@@ -431,16 +479,21 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
         <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
             <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
-            <span className="font-semibold text-ink">{e.authority}</span>
-            {e.steps.length > 1 && <span>{e.steps.length === 2 ? "both" : `all ${e.steps.length}`} in one visit</span>}
+            {e.steps.length > 1 ? (
+              <span>In person, {e.steps.length === 2 ? "both" : `all ${e.steps.length}`} in one visit</span>
+            ) : (
+              <span className="font-semibold text-ink">{e.authority}</span>
+            )}
           </p>
           <Badge ctx={ctx} steps={e.steps} />
         </header>
-        <div className="mt-2 space-y-3">
-          {e.steps.map((s) => (
-            <StepLine key={s.id} s={s} />
-          ))}
-        </div>
+        {e.steps.length > 1 ? (
+          <MergedVisit e={e} />
+        ) : (
+          <div className="mt-2">
+            <StepLine s={e.steps[0]} />
+          </div>
+        )}
         <ActionRow action={action} drafts={ctx.drafts} sources={refs.length} onSources={() => ctx.onSources(lead)} open={open} onToggle={() => setOpen((o) => !o)} />
       </div>
 
