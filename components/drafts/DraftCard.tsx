@@ -5,7 +5,6 @@ import type { DraftsApi } from "@/lib/ui/useDrafts";
 import type { Step, StepForm } from "@/lib/types";
 import type { FormLine } from "@/lib/ui/forms";
 import { FormRow } from "../FormRow";
-import { RouteMark } from "../line/RouteMark";
 import { IconExternal } from "../icons";
 
 const primary =
@@ -98,9 +97,7 @@ function DraftCard({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) 
 export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[] }) {
   if (!drafts.offers.length && !forms.length) return null;
   return (
-    // Last section on the route line: the line ends at its mark.
-    <section aria-label="Ready to send" className="route-end relative mt-14 border-t border-rule pt-8" style={{ ["--route-end" as string]: "46px" }}>
-      <RouteMark top={34} />
+    <section aria-label="Ready to send" className="mt-14 border-t border-rule pt-8">
       <h2 className="text-[22px] font-bold text-ink">Ready to send</h2>
       {forms.length > 0 && (
         <div className="mt-5" aria-label="Official forms">

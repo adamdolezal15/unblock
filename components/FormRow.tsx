@@ -38,7 +38,7 @@ export function FormRow({ line, variant = "card" }: { line: FormLine; variant?: 
   const icon = <IconDocument className="mt-[3px] h-[18px] w-[18px] shrink-0 text-accent" />;
   if (variant === "card")
     return (
-      <p className="mt-3 flex max-w-[62ch] items-start gap-2.5 rounded-[6px] border border-rule bg-paper px-3 py-2 text-[15px] leading-snug">
+      <p className="mt-2 flex max-w-[62ch] items-start gap-2.5 text-[15px] leading-snug">
         {icon}
         {body}
       </p>

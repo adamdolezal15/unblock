@@ -20,10 +20,11 @@ export function Watch({ runId }: { runId: string }) {
   const news = (store?.monitors ?? []).some((m) => m.kind === "news");
 
   return (
-    <section aria-label="Keep watching" className="max-w-[58ch] border-t border-rule pt-5">
+    <section aria-label="Keep watching" className="max-w-[58ch]">
+      <h3 className="text-[17px] font-bold text-ink">Watch for changes</h3>
       {state.phase !== "watching" ? (
         <>
-          <p className="text-[16px] text-ink">Want to hear if an official page behind this plan changes?</p>
+          <p className="mt-0.5 text-[16px] text-ink">Want to hear if an official page behind this plan changes?</p>
           <p className="mt-1 text-[15px] text-muted">We watch official pages, plus service news from Yle, HS and Helsinki Times, once a week.</p>
           <p className="mt-3">
             <button type="button" onClick={watch} disabled={state.phase === "starting"} className={button}>

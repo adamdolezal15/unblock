@@ -64,13 +64,10 @@ function rowText(s: Stop): string {
 }
 
 /** The route as a timetable: date, then what you do; waits are a quiet line between rows. */
-export function TransitLine({ entries, onOpen, onBand = false }: { entries: DayEntry[]; onOpen: (id: string) => void; onBand?: boolean }) {
+export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: (id: string) => void }) {
   const stops = stopsFrom(entries);
   if (stops.length < 2) return null;
-  // On the blue answer band: white text, white hairlines.
-  const t = onBand
-    ? { rule: "border-white/25", muted: "text-white/80", ink: "text-white", hover: "hover:bg-white/10" }
-    : { rule: "border-rule", muted: "text-muted", ink: "text-ink", hover: "hover:bg-sunk/60" };
+  const t = { rule: "border-rule", muted: "text-muted", ink: "text-ink", hover: "hover:bg-sunk/60" };
   return (
     <ol className={`max-w-[58ch] border-t ${t.rule}`} aria-label="Your visits in order">
       {stops.map((s, i) => {

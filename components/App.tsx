@@ -17,7 +17,6 @@ import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
 import { CoverageNotice } from "./CoverageNotice";
-import { RouteMark } from "./line/RouteMark";
 import { Refine } from "./Refine";
 import { Closing } from "./letter/Closing";
 import { LetterView } from "./letter/LetterView";
@@ -29,7 +28,6 @@ import { Watch } from "./Watch";
 import { SidePanel } from "./panel/SidePanel";
 import { TopBar } from "./TopBar";
 import { DayByDay } from "./views/DayByDay";
-import { Insights } from "./views/Insights";
 import { MapView } from "./views/MapView";
 import { ViewTabs } from "./ViewTabs";
 import { Working } from "./Working";
@@ -62,9 +60,7 @@ export function App() {
 
   return (
     <div className="min-h-screen">
-      <TopBar onEdit={() => home(true)} onHome={() => home(false)} icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
-        progress={state.phase === "running" ? runProgress(state).value : undefined}
-        running={state.phase === "running"} />
+      <TopBar onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
@@ -117,10 +113,10 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
   }
 
   return (
-    <main className="pb-24">
-      {state.profile && (
-        <div className="mx-auto max-w-[1040px] px-6 pb-6 pt-8">
-          <div className="max-w-[720px] pl-[44px] max-[480px]:pl-[32px]">
+    <main className="mx-auto max-w-[1040px] px-6 pb-24">
+      <div className="pt-10">
+        {state.profile && (
+          <div className="mb-8 max-w-[720px]">
             <ProfileSentence
               profile={state.profile}
               text={state.text}
@@ -129,32 +125,20 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />
           </div>
-        </div>
-      )}
-      {/* The single bold moment: the answer on a full-width Finnish-blue band. The route line starts here. */}
-      <div className="band">
-        <div className="mx-auto max-w-[1040px] px-6 pt-12">
-          <div className="route pb-12">
-            <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} onShowFeed={state.phase === "done" ? showAndScrollFeed : undefined} />
-          </div>
-        </div>
+        )}
+        <Hero
+          state={state}
+          doc={doc}
+          comparison={comparison}
+          onOpen={openStep}
+          onShowFeed={state.phase === "done" ? showAndScrollFeed : undefined}
+          icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
+        />
+        {coverage && <CoverageNotice coverage={coverage} />}
+        {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
       </div>
 
-      <div className="mx-auto max-w-[1040px] px-6">
-      <div className="route">
-        <div className="pt-6">
-          {coverage && <CoverageNotice coverage={coverage} />}
-          {state.phase === "done" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
-          {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
-          {state.phase === "done" && state.summary?.runId && (
-            <div className="mt-8">
-              <Watch key={state.summary.runId} runId={state.summary.runId} />
-            </div>
-          )}
-        </div>
-
-        <div className="relative mt-16">
-          <RouteMark top={4} />
+        <div className="mt-16">
           <ViewTabs view={view} onChange={setView} />
         </div>
       {(state.partial || state.error) && (
@@ -182,7 +166,6 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
               doc={doc}
               onOpen={openStep}
               onSources={openSources}
-              extra={doc.letter ? <Insights insights={doc.letter.insights} onOpen={openStep} /> : undefined}
               shortcut={(id) => {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 // A tag only: the answer above already says what the shortcut gains.
@@ -197,9 +180,20 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
         )}
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
-      </div>
 
-      <div className="pl-[44px] max-[480px]:pl-[32px]">
+      {/* Under the plan: answers that sharpen the dates, and the weekly watch on its official pages. */}
+      {state.phase === "done" && ((!listOnly && rows.length > 0) || state.summary?.runId) && (
+        <section aria-label="Refine and stay updated" className="mt-16 max-w-[680px] border-t border-rule pt-8">
+          <h2 className="text-[22px] font-bold text-ink">Refine &amp; stay updated</h2>
+          {!listOnly && <Refine rows={rows} onChange={onAnswer} />}
+          {state.summary?.runId && (
+            <div className="mt-8">
+              <Watch key={state.summary.runId} runId={state.summary.runId} />
+            </div>
+          )}
+        </section>
+      )}
+
       <footer id="activity-feed" className="mt-16 max-w-[680px] border-t border-rule pt-8">
         {state.summary && <Closing summary={state.summary} />}
         <button
@@ -230,8 +224,6 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
           <SourcesList sources={doc.sources} />
         </div>
       )}
-      </div>
-      </div>
       {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
     </main>
   );

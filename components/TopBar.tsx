@@ -1,11 +1,10 @@
 "use client";
 import { BrandStripe } from "./brand";
-import { IconDownload } from "./icons";
 
-/** Results header: back to edit the situation, the wordmark, and the calendar download. No prompt field. */
-type Props = { onEdit: () => void; onHome: () => void; icsUrl?: string; progress?: number; running: boolean };
+/** Results header: back to edit the situation and the wordmark. The calendar is the answer header's one button. */
+type Props = { onEdit: () => void; onHome: () => void; progress?: number };
 
-export function TopBar({ onEdit, onHome, icsUrl, progress, running }: Props) {
+export function TopBar({ onEdit, onHome, progress }: Props) {
   return (
     <header className="sticky top-0 z-30 bg-paper/95 backdrop-blur-[2px]">
       <BrandStripe progress={progress} />
@@ -19,13 +18,7 @@ export function TopBar({ onEdit, onHome, icsUrl, progress, running }: Props) {
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2.5" aria-label="Unblock, start over">
           <span className="text-[22px] font-bold text-ink">Unblock</span>
         </button>
-        <div className="justify-self-end">
-          {icsUrl && (
-            <a href={icsUrl} className="inline-flex items-center gap-2 rounded-[8px] px-2 py-1.5 text-[15px] text-ink hover:bg-sunk">
-              <IconDownload className="h-4 w-4" /> Calendar (.ics)
-            </a>
-          )}
-        </div>
+        <div />
       </div>
       <div className="h-px bg-rule" />
     </header>
