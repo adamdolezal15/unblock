@@ -1,6 +1,7 @@
 import type { Profile } from "../types";
 import { requirementGroups, satisfiable } from "./buildGraph";
-import { calendarDaysBetween, helsinkiDate, toHelsinkiDate, workingDayCalendar } from "./dates";
+import { addCalendarDays, calendarDaysBetween, helsinkiDate, isWorkingDay, toHelsinkiDate, workingDayCalendar } from "./dates";
+import { finnishHolidaysBetween } from "./holidays";
 import { priorityScores } from "./priority";
 import { topoOrder } from "./topoOrder";
 import type { CriticalPath, Graph, Schedule, ScheduleOptions, ScheduledStep } from "./types";
@@ -29,8 +30,22 @@ function clean(n: number | undefined): number | undefined {
 export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, opts: ScheduleOptions = {}): Schedule {
   const today = opts.today ?? helsinkiDate(new Date());
   const arrival = profile.arrivalDate ? toHelsinkiDate(profile.arrivalDate) : today;
-  const holidays = new Set(opts.holidays ?? []);
-  const dateAt = workingDayCalendar(arrival > today ? arrival : today, holidays);
+  const origin = arrival > today ? arrival : today;
+  const startYear = Number(origin.slice(0, 4));
+  const holidayList = (opts.holidays ?? finnishHolidaysBetween(startYear, startYear + 2)).map((h) =>
+    typeof h === "string" ? { date: h, name: "holiday" } : h,
+  );
+  const holidayName = new Map(holidayList.map((h) => [h.date, h.name]));
+  const holidays = new Set(holidayName.keys());
+  const dateAt = workingDayCalendar(origin, holidays);
+  /** First weekday holiday skipped right before working day `index` (what pushed a step to that day). */
+  const movedBy = (index: number): { from: string; holiday: string } | undefined => {
+    const target = dateAt(index);
+    for (let d = index === 0 ? origin : addCalendarDays(dateAt(index - 1), 1); d < target; d = addCalendarDays(d, 1)) {
+      if (holidays.has(d) && isWorkingDay(d)) return { from: d, holiday: holidayName.get(d)! };
+    }
+    return undefined;
+  };
   const defaults = opts.defaults ?? DEFAULT_ESTIMATE;
 
   const { order, blocked, deadlocks } = topoOrder(graph);
@@ -72,6 +87,7 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
       durationDays,
       waitDays,
       estimated: !isMilestone && (dur === undefined || wait === undefined),
+      ...(movedBy(startIndex) ? { movedBy: movedBy(startIndex) } : {}),
       ...(visitOf.has(id) ? { visitId: visitOf.get(id) } : {}),
     });
   };

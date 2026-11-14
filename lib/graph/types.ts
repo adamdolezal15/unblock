@@ -51,8 +51,11 @@ export type ScheduleOptions = {
   estimates?: Record<string, DurationEstimate>;
   /** Used for whatever `estimates` does not cover. Results are flagged `estimated: true`. */
   defaults?: Required<DurationEstimate>;
-  /** Extra non-working days (YYYY-MM-DD), e.g. Finnish public holidays. */
-  holidays?: string[];
+  /**
+   * Non-working days besides weekends. Default: Finnish public holidays (incl. Christmas Eve and
+   * Midsummer Eve) for the start year and the two after. Pass [] for none.
+   */
+  holidays?: (string | { date: string; name: string })[];
 };
 
 export type ScheduledStep = {
@@ -72,6 +75,8 @@ export type ScheduledStep = {
   waitDays: number;
   /** true when either duration fell back to a default. */
   estimated: boolean;
+  /** Set when a public holiday pushed this step's start, e.g. { from: "2026-12-24", holiday: "Christmas Eve" }. */
+  movedBy?: { from: string; holiday: string };
   /** Set when this step is done in a shared visit (same start day as its visit-mates). */
   visitId?: string;
 };

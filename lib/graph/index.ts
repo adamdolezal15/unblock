@@ -4,4 +4,5 @@ export { topoOrder } from "./topoOrder";
 export { criticalNode, priorityScores, costOfDelayUrgency, transitiveDependents, necessaryPrerequisites } from "./priority";
 export { schedule, criticalPath, scheduleGroups, visitMembers, DEFAULT_ESTIMATE } from "./schedule";
 export * from "./dates";
+export { finnishHolidays, finnishHolidaysBetween, easterSunday, type Holiday } from "./holidays";
 export type * from "./types";
