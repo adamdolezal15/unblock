@@ -38,7 +38,7 @@ export function TrustGlyph({ trust, className = "h-3.5 w-3.5" }: { trust?: Trust
 /** Trust tier next to a source: the glyph and the tier name, sentence case. */
 export function TrustBadge({ trust }: { trust: Trust }) {
   return (
-    <span title={TRUST_HELP[trust]} className={`inline-flex items-center gap-1.5 text-[14px] ${trust === "official" ? "font-semibold text-ink" : "text-muted"}`}>
+    <span title={TRUST_HELP[trust]} className={`inline-flex items-center gap-2 text-[13px] ${trust === "official" ? "font-semibold text-ink" : "text-muted"}`}>
       <TrustGlyph trust={trust} className="h-3.5 w-3.5" />
       {TRUST_LABEL[trust]}
     </span>

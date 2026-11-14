@@ -46,7 +46,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
         <label htmlFor="situation" className="sr-only">
           Describe your move in one sentence
         </label>
-        <div className="flex items-center gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-5 text-left shadow-[0_1px_0_rgba(26,36,51,0.04),0_18px_40px_-18px_rgba(26,36,51,0.25)] transition-colors focus-within:border-accent">
+        <div className="flex items-center gap-2 rounded-[16px] border border-rule-strong bg-raised p-2 pl-4 text-left shadow-[0_1px_0_rgba(27,35,48,0.04),0_18px_40px_-18px_rgba(27,35,48,0.25)] transition-colors focus-within:border-accent">
           <textarea
             ref={field}
             id="situation"
@@ -61,18 +61,18 @@ export function RunInput({ value, running, onSubmit }: Props) {
             rows={1}
             maxLength={2000}
             placeholder="Where are you moving, when, and why?"
-            className="min-w-0 flex-1 resize-none overflow-hidden border-0 shadow-none bg-transparent py-2.5 text-[19px] leading-7 text-ink placeholder:text-faint"
+            className="min-w-0 flex-1 resize-none overflow-hidden border-0 shadow-none bg-transparent py-2 text-[17px] leading-7 text-ink placeholder:text-faint"
           />
           <button
             type="submit"
             disabled={running || !draft.trim()}
-            className="inline-flex h-12 shrink-0 items-center rounded-[10px] bg-accent px-6 text-[16px] font-bold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong"
+            className="inline-flex h-12 shrink-0 items-center rounded-[10px] bg-accent px-6 text-[17px] font-bold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong"
           >
             Plan my move
           </button>
         </div>
       </form>
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[15px]">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[15px]">
         <span className="mr-1 text-muted">Try</span>
         {EXAMPLES.map((ex) => (
           <button
@@ -81,7 +81,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
             disabled={running}
             onClick={() => pick(ex.key)}
             title={DEMO_SENTENCES[ex.key]}
-            className="rounded-[8px] px-2.5 py-1 text-ink underline decoration-rule-strong underline-offset-[5px] transition-colors hover:bg-sunk hover:decoration-accent disabled:opacity-50"
+            className="rounded-[8px] px-2 py-1 link disabled:opacity-50"
           >
             {ex.short}
           </button>

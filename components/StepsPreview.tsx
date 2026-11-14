@@ -43,11 +43,11 @@ export function StepsPreview({ steps, stubs, running, items, order }: Props) {
         return (
           <li key={s.id} className="grid grid-cols-[7.5rem_minmax(0,1fr)_auto] items-baseline gap-4 py-3">
             <span className="num text-[15px] text-muted">{at ? `${fmtWeekday(at.startDate)}${at.estimated ? "*" : ""}` : "date pending"}</span>
-            <span className="min-w-0 text-[16px] text-ink">
+            <span className="min-w-0 text-[17px] text-ink">
               <span className="font-semibold">{nodeLabel(s.id, s.title)}</span>
               <span className="text-muted">, {s.authority}</span>
             </span>
-            <span className="flex items-center gap-1.5 text-[14px] text-muted">
+            <span className="flex items-center gap-2 text-[13px] text-muted">
               <ModeIcon mode={s.mode} className="h-4 w-4" />
               {MODE_LABEL[s.mode]}
             </span>
@@ -55,7 +55,7 @@ export function StepsPreview({ steps, stubs, running, items, order }: Props) {
         );
       })}
       {stubs.map((s) => (
-        <li key={s.id} className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 py-3 text-[16px]">
+        <li key={s.id} className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 py-3 text-[17px]">
           <span className="text-muted">not found</span>
           <span className="text-muted">
             <span className="font-semibold text-ink">{s.label}</span>: {s.message}

@@ -70,7 +70,7 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   return (
     <section aria-label="Day by day">
       {extra}
-      <p className="mb-6 text-[16px] text-muted">
+      <p className="mb-6 text-[17px] text-muted">
         {visits} {visits === 1 ? "visit" : "visits"} in order. Open Details on a visit for what to bring and the sources.
       </p>
       <ol>
@@ -89,16 +89,16 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
 /** Steps this profile does not need (Step.necessity): apart from the plan, not counted in its dates or visits. */
 function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
   return (
-    <section aria-label={OPTIONAL_TITLE} className="mt-14 border-t border-rule pt-8">
-      <h2 className="text-[22px] font-bold text-ink">{OPTIONAL_TITLE}</h2>
-      <p className="mt-1 max-w-[62ch] text-[16px] text-muted">
+    <section aria-label={OPTIONAL_TITLE} className="mt-12">
+      <h2 className="text-[28px] font-bold text-ink">{OPTIONAL_TITLE}</h2>
+      <p className="mt-1 max-w-[62ch] text-[17px] text-muted">
         Not part of the dates above. Do them if they help you, for example for online services.
       </p>
-      <ul className="mt-5 space-y-5">
+      <ul className="mt-4 space-y-4">
         {steps.map((s) => (
           <li key={s.id}>
             <StepHead ctx={ctx} s={s} />
-            <p className="mt-1 flex flex-wrap items-center gap-x-2 text-[14px] text-muted">
+            <p className="mt-1 flex flex-wrap items-center gap-x-2 text-[13px] text-muted">
               <OptionalTag />
               <span>{s.optional} {s.authority}.</span>
             </p>
@@ -111,22 +111,22 @@ function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
 
 /** The label on a step this person can skip. */
 function OptionalTag() {
-  return <span className="rounded-[3px] border border-rule-strong px-1.5 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
+  return <span className="rounded-[3px] border border-rule-strong px-2 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
 }
 
 /** An optional step in the timeline: on the day it would be done, hollow station, one line saying why it can be skipped. */
 function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
   return (
-    <article className="rounded-[10px] border border-dashed border-rule-strong px-5 py-3.5">
+    <article className="card px-6 py-4">
       {e.steps.map((s, i) => (
         <div key={s.id} className={i > 0 ? "mt-3" : ""}>
           <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[18px] font-bold leading-snug text-ink hover:text-accent">
+            <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
               {s.title}
             </button>
             <OptionalTag />
           </h3>
-          <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-muted">
+          <p className="mt-1 max-w-[62ch] text-[15px] leading-normal text-muted">
             {s.optional} {s.authority}.
           </p>
         </div>
@@ -136,8 +136,8 @@ function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
 }
 
 const btn =
-  "inline-flex items-center gap-2 rounded-[6px] border border-rule-strong bg-raised px-3.5 py-2 text-[15px] font-medium text-ink transition-colors hover:border-ink";
-const link = "text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent";
+  "btn-secondary";
+const link = "link";
 
 /** On the slowest chain (the blue line): visits / online steps on it, and the finish. */
 const onMain = (e: DayEntry) => e.kind === "done" || ((e.kind === "visit" || e.kind === "online") && e.steps.some((s) => s.critical));
@@ -157,12 +157,12 @@ function Row({ entry, last, mainLeg, inLeg, children }: { entry: DayEntry; last:
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
   return (
-    <li className="grid grid-cols-[4.5rem_28px_minmax(0,1fr)] gap-x-3 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)]">
+    <li className="grid grid-cols-[3.5rem_24px_minmax(0,1fr)] gap-x-2 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)] sm:gap-x-3">
       <div className="num pt-[14px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
-        <p aria-hidden className="text-[40px] font-extrabold leading-none tracking-[-0.02em] text-ink">
+        <p aria-hidden className="text-[28px] font-extrabold leading-none tracking-[-0.02em] text-ink">
           {dayNum}
         </p>
-        <p aria-hidden className="mt-1 text-[14px] leading-tight text-muted">
+        <p aria-hidden className="mt-1 text-[13px] leading-tight text-muted">
           {entry.kind === "online" ? `from ${month}` : `${month} · ${dow(entry.date).slice(0, 3)}`}
         </p>
       </div>
@@ -174,7 +174,7 @@ function Row({ entry, last, mainLeg, inLeg, children }: { entry: DayEntry; last:
       <div className="min-w-0 pb-4 pt-2">
         {children}
         {waits.map((w) => (
-          <p key={w} className="mt-3 flex items-start gap-2 pl-1 text-[15px] leading-relaxed text-muted">
+          <p key={w} className="mt-3 flex items-start gap-2 pl-1 text-[15px] leading-normal text-muted">
             <span className="mt-[11px] w-5 shrink-0 border-t border-dashed border-rule-strong" aria-hidden />
             <span>{w}</span>
           </p>
@@ -195,7 +195,7 @@ function Entry({ ctx, entry }: { ctx: Ctx; entry: DayEntry }) {
     case "reminder":
       return <p className="pt-3 text-[15px] text-muted">Reminder: {entry.title}</p>;
     case "done":
-      return <p className="pt-3 text-[24px] font-bold text-done">You&apos;re fully set up</p>;
+      return <p className="pt-3 text-[28px] font-bold text-done">You&apos;re fully set up</p>;
   }
 }
 
@@ -210,7 +210,7 @@ function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
         {ctx.shortcut?.(s.id)}
       </h3>
       {(s.noSource || s.whyNow.length > 0) && (
-        <p className="mt-1 max-w-[62ch] text-[16px] leading-relaxed text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
+        <p className="mt-1 max-w-[62ch] text-[17px] leading-normal text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
       )}
       {s.forms.map((f) => (
         <FormRow key={f.form.id} line={f} variant="card" />
@@ -225,16 +225,16 @@ function StepList({ steps, onOpen, extra }: { steps: FallbackStep[]; onOpen: (id
   return (
     <section aria-label="Your steps">
       {extra}
-      <p className="mb-6 max-w-[62ch] text-[16px] text-muted">{FALLBACK_NOTE}</p>
+      <p className="mb-6 max-w-[62ch] text-[17px] text-muted">{FALLBACK_NOTE}</p>
       <ol className="space-y-3">
         {steps.map((s, i) => (
           <li key={s.id} className="grid grid-cols-[2rem_minmax(0,1fr)] items-baseline gap-x-3">
             <span className="text-right text-[15px] tabular-nums text-muted">{i + 1}.</span>
             <div>
-              <button type="button" onClick={() => onOpen(s.id)} className={`text-[18px] ${link}`}>
+              <button type="button" onClick={() => onOpen(s.id)} className={`text-[17px] ${link}`}>
                 {s.title}
               </button>
-              <p className="text-[14px] text-muted">
+              <p className="text-[13px] text-muted">
                 {s.authority} · {s.mode === "online" ? "online" : s.mode === "in_person" ? "in person" : "online or in person"}
               </p>
             </div>
@@ -249,8 +249,8 @@ function Unlocks({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
   const name = (id: string) => lowerName(nodeLabel(id, ctx.state.steps[id]?.title ?? id));
   return (
     <div>
-      <p className="text-[14px] font-semibold text-muted">Unlocks</p>
-      <ul className="mt-1.5 space-y-1 text-[16px]">
+      <p className="text-[13px] font-semibold text-muted">Unlocks</p>
+      <ul className="mt-2 space-y-1 text-[17px]">
         {ids.map((id) => (
           <li key={id} className="flex items-baseline gap-2">
             <span className="mt-[7px] h-2 w-2 shrink-0 self-start rounded-full border-2 border-rule-strong" aria-hidden />
@@ -266,7 +266,7 @@ function Unlocks({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
 
 function Toggle({ open, onClick }: { open: boolean; onClick: () => void }) {
   return (
-    <button type="button" onClick={onClick} aria-expanded={open} className="inline-flex items-center gap-1 text-[14px] text-muted hover:text-ink">
+    <button type="button" onClick={onClick} aria-expanded={open} className="inline-flex items-center gap-1 text-[13px] text-muted hover:text-ink">
       {open ? "Less" : "Details"}
       <svg
         viewBox="0 0 16 16"
@@ -333,13 +333,13 @@ const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + 
 function ActionRow({ action, drafts, sources, onSources, open, onToggle }: { action: Action | null; drafts?: DraftsApi; sources: number; onSources: () => void; open: boolean; onToggle: () => void }) {
   return (
     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <div className="min-w-0 flex-1">{action && <PrimaryAction action={action} drafts={drafts} />}</div>
+      <div className="min-w-[min(100%,16rem)] flex-1">{action && <PrimaryAction action={action} drafts={drafts} />}</div>
       <div className="ml-auto flex shrink-0 items-center gap-3">
         {sources > 0 && (
           <button
             type="button"
             onClick={onSources}
-            className="num rounded-full border border-rule-strong px-2.5 py-[3px] text-[13px] font-semibold text-muted transition-colors hover:border-accent hover:text-accent"
+            className="num rounded-full border border-rule-strong px-2 py-[3px] text-[13px] font-semibold text-muted transition-colors hover:border-accent hover:text-accent"
           >
             Sources ({sources})
           </button>
@@ -355,8 +355,8 @@ function MoreToDo({ forms, offers, drafts }: { forms: FormLine[]; offers: DraftO
   if (!forms.length && !offers.length) return null;
   return (
     <section>
-      <p className="text-[14px] font-semibold text-muted">Also for this {forms.length + offers.length === 1 ? "step" : "visit"}</p>
-      <ul className="mt-1.5 space-y-1.5">
+      <p className="text-[13px] font-semibold text-muted">Also for this {forms.length + offers.length === 1 ? "step" : "visit"}</p>
+      <ul className="mt-2 space-y-2">
         {forms.map((f) => (
           <li key={f.form.id}>
             <FormRow line={f} variant="inline" />
@@ -373,7 +373,7 @@ function SourceQuotes({ refs }: { refs: Ref[] }) {
   if (!refs.length) return null;
   return (
     <section className="sm:col-span-2">
-      <p className="text-[14px] font-semibold text-muted">Sources</p>
+      <p className="text-[13px] font-semibold text-muted">Sources</p>
       <ul className="mt-2 space-y-4">
         {refs.map((r) => (
           <li key={r.n}>
@@ -389,7 +389,7 @@ function SourceQuotes({ refs }: { refs: Ref[] }) {
 function Badge({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
   const sc = steps.map((s) => ctx.shortcut?.(s.id)).find((x) => x != null);
   if (sc) return <>{sc}</>;
-  if (steps.some((s) => s.critical)) return <span className="text-[14px] text-accent">On the slowest chain</span>;
+  if (steps.some((s) => s.critical)) return <span className="text-[13px] text-accent">On the slowest chain</span>;
   return null;
 }
 
@@ -398,8 +398,8 @@ function StepLine({ s, big = true }: { s: DayStep; big?: boolean }) {
   const why = s.noSource ? "No official source found." : plain(s.whyNow);
   return (
     <div>
-      <h3 className={`${big ? "text-[20px]" : "text-[18px]"} font-bold leading-snug text-ink`}>{s.title}</h3>
-      {why && <p className="mt-0.5 max-w-[62ch] text-[16px] leading-snug text-muted">{why}</p>}
+      <h3 className={`text-[20px] font-bold leading-snug text-ink`}>{s.title}</h3>
+      {why && <p className="mt-1 max-w-[62ch] text-[17px] leading-snug text-muted">{why}</p>}
     </div>
   );
 }
@@ -426,8 +426,8 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
   const restOffers = action?.kind === "draft" ? offers.slice(1) : offers;
 
   return (
-    <article className={`rounded-[10px] bg-raised ${critical ? "border border-l-[5px] border-rule border-l-accent" : "border border-rule"}`}>
-      <div className="px-5 pb-4 pt-3.5">
+    <article className={`card ${critical ? "border-l-[4px] border-l-accent" : ""}`}>
+      <div className="px-4 pb-4 pt-4 sm:px-6">
         <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
             <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
@@ -445,13 +445,13 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
       </div>
 
       {open && (
-        <div className="grid gap-x-8 gap-y-5 border-t border-rule px-5 py-4 sm:grid-cols-2">
+        <div className="grid gap-x-8 gap-y-4 border-t border-rule px-4 py-4 sm:grid-cols-2 sm:px-6">
           {e.bring.length > 0 && (
             <section>
-              <p className="text-[14px] font-semibold text-muted">Bring</p>
-              <ul className="mt-1.5 space-y-1.5 text-[16px] leading-snug text-ink">
+              <p className="text-[13px] font-semibold text-muted">Bring</p>
+              <ul className="mt-2 space-y-2 text-[17px] leading-snug text-ink">
                 {e.bring.map((b) => (
-                  <li key={b.value} className="flex gap-2.5">
+                  <li key={b.value} className="flex gap-2">
                     <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
                     <span>{b.value}</span>
                   </li>
@@ -461,8 +461,8 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
           )}
           {unlocks.length > 0 && <Unlocks ctx={ctx} ids={unlocks} />}
           <MoreToDo forms={restForms} offers={restOffers} drafts={ctx.drafts} />
-          <section className="space-y-2 text-[16px] text-ink sm:col-span-2">
-            <p className="text-[14px] font-semibold text-muted">Visit</p>
+          <section className="space-y-2 text-[17px] text-ink sm:col-span-2">
+            <p className="text-[13px] font-semibold text-muted">Visit</p>
             {e.address && <p>{e.address.value}</p>}
             {e.venue && (
               <p className="flex items-start gap-2">
@@ -498,7 +498,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
                 <span className="inline-block transition-transform group-open:rotate-90">›</span> {e.tips.length} {e.tips.length === 1 ? "tip" : "tips"} from
                 people who did it
               </summary>
-              <ul className="mt-2 space-y-1.5 pl-4 text-muted">
+              <ul className="mt-2 space-y-2 pl-4 text-muted">
                 {e.tips.map((t, i) => (
                   <li key={i}>{t.text}</li>
                 ))}
@@ -520,7 +520,7 @@ function Online({ ctx, e }: { ctx: Ctx; e: OnlineEntry }) {
         <IconOnline className="h-4 w-4 text-ink" />
         <span className="font-semibold text-ink">Online</span> any time from {fmtDay(e.date)}
       </p>
-      <div className="divide-y divide-rule">
+      <div className="space-y-4">
         {e.steps.map((s) => (
           <OnlineStep key={s.id} ctx={ctx} s={s} />
         ))}
@@ -537,7 +537,7 @@ function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
   const refs = uniqueRefs([...refsOf(s.whyNow), ...refsOf(s.wait), ...forms.flatMap((f) => refsOf(f.guide))]);
   const badge = <Badge ctx={ctx} steps={[s]} />;
   return (
-    <article className="py-3">
+    <article className="card px-4 py-4 sm:px-6">
       <div className="flex flex-wrap items-start justify-between gap-x-4">
         <div className="min-w-0 flex-1">
           <StepLine s={s} big={false} />
@@ -546,7 +546,7 @@ function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
       </div>
       <ActionRow action={action} drafts={ctx.drafts} sources={refs.length} onSources={() => ctx.onSources(s.id)} open={open} onToggle={() => setOpen((o) => !o)} />
       {open && (
-        <div className="mt-3 grid gap-x-8 gap-y-5 border-t border-rule pt-3 sm:grid-cols-2">
+        <div className="mt-3 grid gap-x-8 gap-y-4 border-t border-rule pt-3 sm:grid-cols-2">
           {s.unlocks.length > 0 && <Unlocks ctx={ctx} ids={s.unlocks} />}
           <MoreToDo forms={action?.kind === "form" ? forms.slice(1) : forms} offers={action?.kind === "draft" ? offers.slice(1) : offers} drafts={ctx.drafts} />
           {s.critical && (
@@ -568,7 +568,7 @@ function DaysSkeleton() {
         <li key={i} className="grid grid-cols-[6.5rem_28px_minmax(0,1fr)] gap-x-3">
           <div className="skeleton ml-auto mt-4 h-6 w-16 rounded" />
           <div />
-          <div className="space-y-2 rounded-[8px] border border-rule p-5">
+          <div className="card space-y-2 p-6">
             <div className="skeleton h-5 w-2/3 rounded" />
             <div className="skeleton h-4 w-full rounded" />
             <div className="skeleton h-4 w-4/5 rounded" />

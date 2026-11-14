@@ -3,7 +3,7 @@ import { Footnotes } from "./letter/Footnote";
 import { IconDocument, IconExternal } from "./icons";
 import type { FormLine } from "@/lib/ui/forms";
 
-const link = "inline-flex items-center gap-1 whitespace-nowrap font-semibold text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent";
+const link = "inline-flex items-center gap-1 whitespace-nowrap font-semibold link";
 
 /**
  * An official form as its own row: document icon, the form name in bold, what to do with it (sourced), Open.
@@ -38,13 +38,13 @@ export function FormRow({ line, variant = "card" }: { line: FormLine; variant?: 
   const icon = <IconDocument className="mt-[3px] h-[18px] w-[18px] shrink-0 text-accent" />;
   if (variant === "card")
     return (
-      <p className="mt-2 flex max-w-[62ch] items-start gap-2.5 text-[15px] leading-snug">
+      <p className="mt-2 flex max-w-[62ch] items-start gap-2 text-[15px] leading-snug">
         {icon}
         {body}
       </p>
     );
   return (
-    <span className="flex items-start gap-2.5 text-[16px] leading-snug">
+    <span className="flex items-start gap-2 text-[17px] leading-snug">
       {icon}
       {body}
     </span>

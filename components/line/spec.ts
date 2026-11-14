@@ -3,13 +3,14 @@
 
 export const C = {
   blue: "#003580", // the line: the slowest chain, primary actions
-  lake: "#d6e4f2", // the line's soft tint (lit / hover)
-  ink: "#1a2433",
-  grey: "#c4bdb0", // other routes, unlit stations
-  paper: "#f7f5f0",
+  lake: "#e0e7f0", // Finnish blue at 12% on white (lit / hover)
+  ink: "#1b2330",
+  grey: "#d5d0c6", // other routes, unlit stations
+  paper: "#f6f4ef",
   white: "#ffffff",
-  amber: "#d98a00", // disagreement only
-  green: "#2f6b4f", // done only
+  muted: "#5b6472",
+  amber: "#a8640c", // disagreement only
+  green: "#2e7d5b", // done only
 } as const;
 
 export const LINE = {

@@ -118,7 +118,7 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
     return (
       <main className="px-6 pb-24">
         <Working state={state} />
-        {state.error && <p className="mx-auto mt-6 max-w-[560px] text-center text-[16px] text-ink">{state.error}</p>}
+        {state.error && <p className="mx-auto mt-6 max-w-[560px] text-center text-[17px] text-ink">{state.error}</p>}
       </main>
     );
   }
@@ -150,13 +150,13 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
         {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
       </div>
 
-        <div className="mt-16">
+        <div className="mt-12">
           <ViewTabs view={view} onChange={setView} />
         </div>
       {(state.partial || state.error) && (
         <div className="mt-6 max-w-[680px] space-y-3">
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
-          {state.error && <p className="text-[16px] text-ink">{state.error}</p>}
+          {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
         </div>
       )}
 
@@ -182,7 +182,7 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 // A tag only: the answer above already says what the shortcut gains.
                 return sc ? (
-                  <span title={sc.text.map((x) => ("t" in x ? x.t : "")).join("")} className="rounded-[3px] bg-accent px-1.5 py-[2px] text-[14px] font-bold text-white">
+                  <span title={sc.text.map((x) => ("t" in x ? x.t : "")).join("")} className="rounded-[3px] bg-accent px-2 py-[2px] text-[13px] font-bold text-white">
                     Shortcut
                   </span>
                 ) : null;
@@ -195,8 +195,8 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
 
       {/* Under the plan: answers that sharpen the dates, and the weekly watch on its official pages. */}
       {state.phase === "done" && ((!listOnly && rows.length > 0) || state.summary?.runId) && (
-        <section aria-label="Refine and stay updated" className="mt-16 max-w-[680px] border-t border-rule pt-8">
-          <h2 className="text-[22px] font-bold text-ink">Refine &amp; stay updated</h2>
+        <section aria-label="Refine and stay updated" className="mt-12 max-w-[680px]">
+          <h2 className="text-[28px] font-bold text-ink">Refine &amp; stay updated</h2>
           {!listOnly && <Refine rows={rows} onChange={onAnswer} />}
           {state.summary?.runId && (
             <div className="mt-8">
@@ -206,13 +206,13 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
         </section>
       )}
 
-      <footer id="activity-feed" className="mt-16 max-w-[680px] border-t border-rule pt-8">
+      <footer id="activity-feed" className="mt-12 max-w-[680px]">
         {state.summary && <Closing summary={state.summary} numbers={numbers} />}
         <button
           type="button"
           onClick={() => setFeedOpen({ runKey: state.runKey, open: !showFeed })}
           aria-expanded={showFeed}
-          className="mt-3 text-[15px] text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent"
+          className="mt-3 text-[15px] link"
         >
           {showFeed ? "Hide how I worked this out" : "How I worked this out"}
         </button>
@@ -233,7 +233,7 @@ function Results({ state, rows, answers, onAnswer, onRerun }: {
       </footer>
 
       {state.phase === "done" && doc.sources.length > 0 && (
-        <div className="mt-16 max-w-[880px]">
+        <div className="mt-12 max-w-[880px]">
           <SourcesList sources={doc.sources} />
         </div>
       )}

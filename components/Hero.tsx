@@ -33,7 +33,7 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
   if (fallback && (sched || state.phase === "done")) {
     return (
       <section aria-label="Your answer">
-        <h1 className="display text-[46px] sm:text-[64px]">Your {fallback.length} steps, in order.</h1>
+        <h1 className="display text-[56px]">Your {fallback.length} steps, in order.</h1>
         <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
           Start with {fallback[0].title.replace(/^(?=[A-Z][a-z])./, (c) => c.toLowerCase())}. {FALLBACK_NOTE}
         </p>
@@ -71,14 +71,14 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
         <div>
           {end ? (
             <h1>
-              <span className="block text-[14px] font-semibold uppercase leading-none tracking-[0.08em] text-muted">Set up by{fuzzy ? " about" : ""}</span>{" "}
-              <span className="num mt-2 block text-[40px] font-bold leading-[1.05] tracking-[-0.02em] text-ink lg:text-[56px]">
+              <span className="block text-[13px] font-semibold uppercase leading-none tracking-[0.08em] text-muted">Set up by{fuzzy ? " about" : ""}</span>{" "}
+              <span className="num mt-2 block text-[56px] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
                 <span className="text-accent">{dayMonth}</span>
                 {year && ` ${year}`}
               </span>
             </h1>
           ) : (
-            <h1 className="display text-[40px] lg:text-[56px]">Your plan.</h1>
+            <h1 className="display text-[56px]">Your plan.</h1>
           )}
           <p className="mt-4 max-w-[32ch] text-[20px] leading-snug text-ink">
             <Prose segs={doc.letter.headline.slice(1)} />
@@ -97,7 +97,7 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
             {icsUrl && (
               <a
                 href={icsUrl}
-                className="inline-flex items-center gap-2 rounded-[6px] bg-accent px-4 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-accent-hover"
+                className="btn-primary"
               >
                 <IconCalendar className="h-4 w-4" /> Add all to calendar
               </a>
@@ -119,12 +119,12 @@ function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => vo
   const line = state.summary ? exaLine(state.summary, planNumbers(state)) : null;
   if (!line) return null;
   return (
-    <p className="num mt-2 text-[14px] text-muted">
+    <p className="num mt-2 text-[13px] text-muted">
       {line}
       {onShowFeed && (
         <>
           <Sep />
-          <button type="button" onClick={onShowFeed} className="underline decoration-rule-strong underline-offset-[3px] hover:text-accent hover:decoration-accent">
+          <button type="button" onClick={onShowFeed} className="link">
             see the activity
           </button>
         </>

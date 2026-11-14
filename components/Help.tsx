@@ -23,8 +23,8 @@ export function Help({ term }: { term: Term }) {
       </button>
       {anchor && (
         <Popover anchor={anchor} onClose={() => setAnchor(null)} label={t.short} width={340}>
-          <p className="text-[16px] font-semibold text-ink">{t.short}</p>
-          <p className="mt-1 text-[15px] leading-relaxed text-ink">{t.help}</p>
+          <p className="text-[17px] font-semibold text-ink">{t.short}</p>
+          <p className="mt-1 text-[15px] leading-normal text-ink">{t.help}</p>
         </Popover>
       )}
     </>

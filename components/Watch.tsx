@@ -4,9 +4,10 @@ import { useMonitors } from "@/lib/ui/useMonitors";
 import { domainOf } from "@/lib/ui/format";
 import { TRUST_LABEL } from "./TrustBadge";
 
+// Secondary: the page has one primary action, "Add all to calendar".
 const button =
-  "rounded-[5px] bg-accent px-4 py-2 text-[16px] font-semibold text-white hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong";
-const quiet = "rounded-[5px] border border-rule-strong px-4 py-2 text-[16px] font-semibold text-ink hover:border-ink disabled:cursor-not-allowed disabled:opacity-60";
+  "btn-secondary disabled:cursor-not-allowed disabled:opacity-60";
+const quiet = "btn-secondary disabled:cursor-not-allowed disabled:opacity-60";
 
 /**
  * "Keep watching it": one weekly Exa monitor per key official page of the plan. Starts only on a click, never
@@ -24,7 +25,7 @@ export function Watch({ runId }: { runId: string }) {
       <h3 className="text-[17px] font-bold text-ink">Watch for changes</h3>
       {state.phase !== "watching" ? (
         <>
-          <p className="mt-0.5 text-[16px] text-ink">Want to hear if an official page behind this plan changes?</p>
+          <p className="mt-1 text-[17px] text-ink">Want to hear if an official page behind this plan changes?</p>
           <p className="mt-1 text-[15px] text-muted">We watch official pages, plus service news from Yle, HS and Helsinki Times, once a week.</p>
           <p className="mt-3">
             <button type="button" onClick={watch} disabled={state.phase === "starting"} className={button}>
@@ -34,7 +35,7 @@ export function Watch({ runId }: { runId: string }) {
         </>
       ) : (
         <>
-          <p className="text-[16px] text-ink">
+          <p className="text-[17px] text-ink">
             Watching {official.length} official {official.length === 1 ? "page" : "pages"}: {official.map((m) => m.topic).join(", ")}
             {news ? ", and service news about your authorities." : "."}
           </p>
@@ -50,12 +51,12 @@ export function Watch({ runId }: { runId: string }) {
 
           {changes.length > 0 ? (
             <div className="mt-4">
-              <p className="text-[16px] font-semibold text-ink">Changed since your plan</p>
+              <p className="text-[17px] font-semibold text-ink">Changed since your plan</p>
               <ul className="mt-1 divide-y divide-rule border-y border-rule">
                 {changes.map((c) => (
-                  <li key={`${c.monitorId}|${c.url}`} className="py-2 text-[16px] leading-snug">
+                  <li key={`${c.monitorId}|${c.url}`} className="py-2 text-[17px] leading-snug">
                     <span className="text-ink">{c.title}</span> <span className="num whitespace-nowrap text-muted">{fmtDate(c.date)}</span>{" "}
-                    <a href={c.url} target="_blank" rel="noreferrer" className="whitespace-nowrap text-accent underline decoration-accent/40 underline-offset-[3px]">
+                    <a href={c.url} target="_blank" rel="noreferrer" className="whitespace-nowrap link">
                       [{domainOf(c.url)}
                       {c.trust !== "official" ? ` · ${TRUST_LABEL[c.trust]}` : ""}]
                     </a>
@@ -64,7 +65,7 @@ export function Watch({ runId }: { runId: string }) {
               </ul>
             </div>
           ) : (
-            state.checkedAt && !state.checking && <p className="mt-4 text-[16px] text-muted">No changes since your plan.</p>
+            state.checkedAt && !state.checking && <p className="mt-4 text-[17px] text-muted">No changes since your plan.</p>
           )}
         </>
       )}

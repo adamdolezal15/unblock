@@ -1,27 +1,34 @@
 @import "tailwindcss";
 
-/* The line: a move to Finland as a route of steps. Warm paper, blue-black ink, Finnish blue only for the
-   line (the slowest chain) and primary actions, lake blue as its tint. Amber only for disagreement between
-   sources, green only for done. Light only (projectors). See docs/BRAND.md. */
+/* The palette (docs/BRAND.md): eight colours and nothing else. Paper, surface, ink, muted, hairline;
+   Finnish blue for dates, the primary button, the active tab and links on hover; amber for warnings only;
+   green for done / ready only. Tints are mixes of these eight, never new hues. Light only (projectors). */
 @theme {
-  --color-paper: #f7f5f0;
-  --color-raised: #ffffff;
-  --color-sunk: #efece5;
-  --color-ink: #1a2433;
-  --color-muted: #4a5566;
-  --color-faint: #8a8e96;
-  --color-rule: #ddd8ce;
-  --color-rule-strong: #c4bdb0;
+  --color-paper: #f6f4ef;
+  --color-surface: #ffffff;
+  --color-ink: #1b2330;
+  --color-muted: #5b6472;
+  --color-hairline: #e4e0d8;
   --color-accent: #003580;
-  --color-accent-hover: #00285f;
-  --color-accent-soft: #d6e4f2;
-  --color-amber: #8f5300;
-  --color-amber-dot: #d98a00;
-  --color-amber-soft: #fbf1df;
-  --color-amber-line: #e6bf73;
-  --color-done: #2f6b4f;
-  --color-done-soft: #e2eee7;
-  --color-done-line: #a8c7b5;
+  --color-amber: #a8640c;
+  --color-done: #2e7d5b;
+
+  /* Derived from the eight above. */
+  --color-hairline-strong: #d5d0c6; /* a card's border on hover */
+  --color-raised: var(--color-surface);
+  --color-sunk: color-mix(in srgb, var(--color-hairline) 45%, var(--color-paper));
+  --color-faint: var(--color-muted);
+  --color-rule: var(--color-hairline);
+  --color-rule-strong: var(--color-hairline-strong);
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 86%, var(--color-ink));
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+  --color-amber-dot: var(--color-amber);
+  --color-amber-soft: color-mix(in srgb, var(--color-amber) 8%, var(--color-surface));
+  --color-amber-line: color-mix(in srgb, var(--color-amber) 35%, var(--color-surface));
+  --color-done-soft: color-mix(in srgb, var(--color-done) 10%, var(--color-surface));
+  --color-done-line: color-mix(in srgb, var(--color-done) 35%, var(--color-surface));
+
+  --shadow-card: 0 1px 2px rgba(27, 35, 48, 0.04);
 }
 
 /* Neutralise the `dark:` variant: nothing on the page ever sets data-theme="dark". */
@@ -38,13 +45,13 @@
 
 html,
 body {
-  background: #f7f5f0;
-  color: #1a2433;
+  background: var(--color-paper);
+  color: var(--color-ink);
 }
 
 body {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -54,12 +61,12 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #003580;
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: #d6e4f2;
+  background: var(--color-accent-soft);
 }
 
 /* Every overlay (popover, tooltip, side panel) is opaque paper with a 1px rule border. */
@@ -67,10 +74,80 @@ body {
   .overlay {
     position: absolute;
     z-index: 50;
-    background: #f7f5f0;
-    border: 1px solid #c4bdb0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(27, 35, 48, 0.1);
+  }
+
+  /* One link style everywhere: ink text, a 1px hairline underline 3px below that turns Finnish blue on hover. */
+  .link {
+    color: var(--color-ink);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-hairline-strong);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 120ms ease;
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  /* An editable value inside running text (the profile sentence). */
+  .pill {
+    padding: 2px 6px;
     border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(26,36,51, 0.14);
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    transition: border-color 120ms ease;
+  }
+  .pill:hover:not(:disabled) {
+    border-color: var(--color-accent);
+  }
+
+  /* Cards: white surface, hairline border, a barely-there shadow; hover only strengthens the border. */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
+    transition: border-color 120ms ease;
+  }
+  .card:hover {
+    border-color: var(--color-hairline-strong);
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 120ms ease, border-color 120ms ease;
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-surface);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-hover);
+  }
+  .btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1px solid var(--color-hairline);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-hairline-strong);
   }
 }
 
@@ -98,7 +175,7 @@ body {
   }
 }
 .skeleton {
-  background: #efece5;
+  background: var(--color-sunk);
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
@@ -129,43 +206,43 @@ body {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 1.06;
-  color: #1a2433;
+  line-height: 1.1;
+  color: var(--color-ink);
 }
 
-/* Source numbers: one solid Finnish-blue circle with a white numeral, everywhere ("sourced" at a glance). */
+/* Source numbers: a quiet 16px Finnish-blue tint with a blue numeral, so they mark "sourced" without shouting. */
 .fn-group {
   display: inline-flex;
   gap: 2px;
   margin-left: 4px;
   white-space: nowrap;
-  vertical-align: 0.42em;
+  vertical-align: 0.4em;
   line-height: 0;
 }
 .fn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 17px;
-  height: 17px;
+  min-width: 16px;
+  height: 16px;
   padding: 0 4px;
   border-radius: 999px;
-  background: #003580;
-  color: #ffffff;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
   font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   line-height: 1;
+  transition: background-color 120ms ease;
 }
 .fn-big {
-  min-width: 21px;
-  height: 21px;
+  min-width: 16px;
+  height: 16px;
   font-size: 13px;
 }
 .fn:hover,
 .fn-open {
-  background: #00285f;
-  box-shadow: 0 0 0 2px #d6e4f2;
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
 }
 #situation:focus,
 #situation:focus-visible {

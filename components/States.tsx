@@ -16,7 +16,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
       <p>{message}</p>
       {onRetry && (
         <p>
-          <button type="button" onClick={onRetry} className="rounded-[5px] bg-accent px-5 py-2 text-[16px] font-semibold text-white hover:bg-accent-hover">
+          <button type="button" onClick={onRetry} className="btn-primary">
             Try again
           </button>
         </p>
@@ -27,7 +27,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
 
 export function PartialNotice({ missing }: { message: string; missing: string[] }) {
   return (
-    <p className="border-l-2 border-rule-strong pl-4 text-[17px] leading-[1.65] text-ink" role="status">
+    <p className="border-l-2 border-rule-strong pl-4 text-[17px] leading-normal text-ink" role="status">
       I ran out of time before I finished {missing.length ? missing.join(", ") : "everything"}. What is here is checked; it just isn&apos;t complete.
     </p>
   );
@@ -37,8 +37,8 @@ function Note({ title, children }: { title: string; children: React.ReactNode })
   return (
     <section className="mx-auto max-w-[620px] px-6 pt-20 text-center">
       <LineMark className="mx-auto mb-8 h-9 w-[284px]" />
-      <h1 className="display text-[34px]">{title}</h1>
-      <div className="mt-4 space-y-4 text-[18px] leading-[1.65] text-ink">{children}</div>
+      <h1 className="display text-[28px]">{title}</h1>
+      <div className="mt-4 space-y-4 text-[17px] leading-normal text-ink">{children}</div>
     </section>
   );
 }

@@ -11,7 +11,7 @@ import { StepsPreview } from "../StepsPreview";
 function Legend() {
   const item = "flex items-center gap-2";
   return (
-    <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] text-muted">
+    <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-muted">
       <li className={item}>
         <svg width="44" height="16" aria-hidden>
           <line x1="2" y1="8" x2="42" y2="8" stroke={C.blue} strokeWidth={LINE.main} strokeLinecap="round" />
@@ -54,7 +54,7 @@ export function MapView({ state, selection, onSelect }: { state: RunState; selec
   const running = state.phase === "running";
   return (
     <section aria-label="Map">
-      <p className="max-w-[680px] text-[16px] text-muted">
+      <p className="max-w-[680px] text-[17px] text-muted">
         {state.graph ? "Read left to right. A line means you need the earlier step first." : "Stations appear here as I confirm them."}
       </p>
       <div className="mt-4">{state.graph && <Legend />}</div>

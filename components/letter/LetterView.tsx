@@ -35,18 +35,18 @@ export function LetterView({ letter, onShow, headline = true }: { letter: Letter
   return (
     <div className="max-w-[680px]">
       {headline && (
-        <h1 className="display text-[38px]">
+        <h1 className="display text-[28px]">
           <Prose segs={letter.headline} big />
         </h1>
       )}
-      <div className={`${headline ? "mt-6" : ""} space-y-4 text-[18px] leading-[1.65] text-ink`}>
+      <div className={`${headline ? "mt-6" : ""} space-y-4 text-[17px] leading-normal text-ink`}>
         {letter.paras.map((p) => (
           <p key={p.key}>
             <Prose segs={p.segs} />
             {p.stepId && (
               <>
                 {" "}
-                <button type="button" onClick={() => onShow(p.stepId!)} className="text-[16px] text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent">
+                <button type="button" onClick={() => onShow(p.stepId!)} className="text-[17px] link">
                   Details
                 </button>
               </>
@@ -61,7 +61,7 @@ export function LetterView({ letter, onShow, headline = true }: { letter: Letter
 export function LetterSkeleton() {
   return (
     <div aria-hidden>
-      <p className="text-[38px] font-bold leading-[1.18] text-faint">Working out your plan…</p>
+      <p className="text-[28px] font-bold leading-[1.2] text-faint">Working out your plan…</p>
       <div className="mt-6 space-y-3">
         {[100, 94, 97, 60].map((w, i) => (
           <div key={i} className="skeleton h-[18px] rounded" style={{ width: `${w}%` }} />

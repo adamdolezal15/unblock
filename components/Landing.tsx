@@ -13,8 +13,8 @@ export function Landing({ runKey, value = "", onSubmit }: { runKey: number; valu
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="-mt-[6vh] w-full max-w-[680px] text-center">
           <LineMark className="mx-auto h-9 w-[284px]" />
-          <h1 className="display mt-8 text-[64px]">Unblock</h1>
-          <p className="mx-auto mt-4 max-w-[30ch] text-[23px] leading-snug text-muted">{PROMISE}</p>
+          <h1 className="display mt-8 text-[56px]">Unblock</h1>
+          <p className="mx-auto mt-4 max-w-[30ch] text-[20px] leading-normal text-muted">{PROMISE}</p>
           <div className="mt-10">
             <RunInput key={runKey} value={value} running={false} onSubmit={onSubmit} />
           </div>

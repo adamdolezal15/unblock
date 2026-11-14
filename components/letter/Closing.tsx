@@ -26,7 +26,7 @@ export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers:
   const replayed = summary.calls.exaLive + summary.calls.llmLive === 0;
   const dropped = n.dropped ?? 0;
   return (
-    <p className="text-[16px] leading-[1.65] text-muted">
+    <p className="text-[17px] leading-normal text-muted">
       That&apos;s {say.steps(n.steps)} and {say.visits(n.visits)}, from {say.quotes(n.quotes ?? 0)} in {say.sources(n.sources ?? 0)}, each checked word for word
       {dropped > 0 ? (
         <>
@@ -35,7 +35,7 @@ export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers:
             type="button"
             onClick={(e) => setAnchor(anchor ? null : anchorOf(e.currentTarget))}
             aria-expanded={!!anchor}
-            className="text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent"
+            className="link"
           >
             {say.dropped(dropped)}
           </button>{" "}
@@ -60,16 +60,16 @@ export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers:
             {summary.rejected.map((r, i) => (
               <li key={i} className="py-3">
                 <p className="text-[15px] font-semibold text-ink">{REASON[r.reason] ?? r.reason}</p>
-                <p className="mt-1 font-serif text-[16px] italic leading-snug text-muted">“{r.quote}”</p>
-                <p className="mt-1 text-[14px] text-muted">
+                <p className="mt-1 font-serif text-[17px] italic leading-snug text-muted">“{r.quote}”</p>
+                <p className="mt-1 text-[13px] text-muted">
                   {r.stepId.replace(/_/g, " ")}, {r.kind.replace(/_/g, " ")},{" "}
-                  <a href={r.url} target="_blank" rel="noreferrer" className="underline decoration-rule-strong underline-offset-2 hover:text-ink">
+                  <a href={r.url} target="_blank" rel="noreferrer" className="link">
                     {domainOf(r.url)}
                   </a>
                 </p>
               </li>
             ))}
-            {summary.droppedClaims > summary.rejected.length && <li className="py-3 text-[14px] text-muted">And {summary.droppedClaims - summary.rejected.length} more.</li>}
+            {summary.droppedClaims > summary.rejected.length && <li className="py-3 text-[13px] text-muted">And {summary.droppedClaims - summary.rejected.length} more.</li>}
           </ul>
         </Popover>
       )}

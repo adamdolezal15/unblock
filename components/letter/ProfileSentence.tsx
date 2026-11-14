@@ -5,13 +5,13 @@ import { profileParts, type Field } from "@/lib/ui/profileSentence";
 
 type Props = { profile: ProfileEvent; text: string; disabled: boolean; onCorrect: (field: Field, value: string) => void; size?: "sm" | "md" };
 
-/** "You're a Czech citizen, working and studying in Helsinki from 1 December…" with editable, underlined parts. */
+/** "You're a Czech citizen, working and studying in Helsinki from 1 December…" with each editable part in a small surface pill. */
 export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md" }: Props) {
   const [editing, setEditing] = useState<Field | null>(null);
   const parts = profileParts(profile.profile, profile.assumptions, text);
 
   return (
-    <div className={`leading-[1.7] text-muted ${size === "sm" ? "text-[15px]" : "max-w-[720px] text-[17px]"}`}>
+    <div className={`leading-normal text-muted ${size === "sm" ? "text-[15px]" : "max-w-[720px] text-[17px]"}`}>
       <div>
         {parts.map((p, i) =>
           "t" in p ? (
@@ -33,7 +33,7 @@ export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md
               disabled={disabled}
               onClick={() => setEditing(p.field)}
               title={p.title ? `${p.title} Click to correct it and re-plan.` : "Click to change this and re-plan"}
-              className="text-ink underline decoration-rule-strong decoration-dotted decoration-[1.5px] underline-offset-[5px] hover:text-accent hover:decoration-accent disabled:cursor-default disabled:hover:text-ink"
+              className="pill disabled:cursor-default"
             >
               {p.value}
             </button>
@@ -66,10 +66,10 @@ function EditField({ value, onSave, onCancel }: { value: string; onSave: (v: str
         onKeyDown={(e) => e.key === "Escape" && onCancel()}
         onBlur={onCancel}
         size={Math.max(6, draft.length + 1)}
-        className="rounded-[3px] border-b-2 border-accent bg-accent-soft px-1 text-ink focus:outline-none"
+        className="rounded-[6px] border border-accent bg-surface px-[6px] py-[2px] text-ink focus:outline-none"
         aria-label="Change this and press Enter to re-plan"
       />
-      <span className="ml-2 text-[14px] text-muted">Enter to re-plan</span>
+      <span className="ml-2 text-[13px] text-muted">Enter to re-plan</span>
     </form>
   );
 }

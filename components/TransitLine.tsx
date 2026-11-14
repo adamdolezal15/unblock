@@ -77,14 +77,14 @@ export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: 
         const waitFollows = gapAt(i + 1) >= WAIT_DAYS;
         const row = (
           <>
-            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? "font-bold text-accent" : t.muted}`}>{fmtDay(s.date)}</span>
+            <span className={`num w-[80px] shrink-0 text-[17px] ${s.end ? "font-bold text-accent" : t.muted}`}>{fmtDay(s.date)}</span>
             <span className={`text-[17px] leading-snug ${t.ink} ${s.end ? "font-bold" : ""}`}>{rowText(s)}</span>
           </>
         );
         return (
           <li key={i}>
             {gap >= WAIT_DAYS && (
-              <p className={`border-b ${t.rule} pb-2.5 pl-[96px] text-[13px] italic leading-snug ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
+              <p className={`border-b ${t.rule} pb-2 pl-[96px] text-[13px] italic leading-snug ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
             )}
             <div className={waitFollows ? "" : `border-b ${t.rule}`}>
               {s.stepId ? (

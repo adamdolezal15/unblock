@@ -62,13 +62,13 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
     <aside
       ref={scroller}
       aria-label="Details"
-      className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(26,36,51,0.12)]"
+      className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-8 pb-12 pt-6 shadow-[-12px_0_32px_rgba(27,35,48,0.12)]"
     >
       <button
         ref={closeRef}
         type="button"
         onClick={() => onSelect(null)}
-        className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink"
+        className="absolute right-4 top-4 rounded p-2 text-muted hover:bg-sunk hover:text-ink"
         aria-label="Close details"
       >
         <IconClose className="h-5 w-5" />
@@ -92,8 +92,8 @@ function StepSources({ ctx, step }: { ctx: Ctx; step: Step }) {
   const unique = all.filter((c, i) => all.findIndex((d) => d.url === c.url && d.quote === c.quote) === i);
   if (!unique.length) return null;
   return (
-    <section id="panel-sources" className="mt-8 scroll-mt-6 border-t border-rule pt-5">
-      <h3 className="text-[16px] font-semibold text-ink">Sources</h3>
+    <section id="panel-sources" className="mt-8 scroll-mt-6 border-t border-rule pt-4">
+      <h3 className="text-[17px] font-semibold text-ink">Sources</h3>
       {(Object.keys(TIER_TITLE) as Citation["trust"][]).map((t) => {
         const list = unique.filter((c) => c.trust === t).sort((a, b) => ctx.n(a) - ctx.n(b));
         if (!list.length) return null;
@@ -120,7 +120,7 @@ function PanelSources({ cites }: { cites: (Citation | undefined)[] }) {
     <button
       type="button"
       onClick={() => document.getElementById("panel-sources")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-      className="mt-2 text-[14px] text-muted underline decoration-rule-strong underline-offset-[3px] hover:text-accent hover:decoration-accent"
+      className="mt-2 text-[13px] link"
     >
       Sources ({n})
     </button>
@@ -138,7 +138,7 @@ type Ctx = { state: RunState; cite: (c?: Citation) => React.ReactNode; n: (c: Ci
 
 function StepLink({ ctx, id }: { ctx: Ctx; id: string }) {
   return (
-    <button type="button" onClick={() => ctx.open(id)} className="text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent">
+    <button type="button" onClick={() => ctx.open(id)} className="link">
       {lower(ctx.name(id))}
     </button>
   );
@@ -161,7 +161,7 @@ function List({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
 }
 
 function H({ children }: { children: React.ReactNode }) {
-  return <h3 className="mt-7 text-[16px] font-semibold text-ink">{children}</h3>;
+  return <h3 className="mt-8 text-[17px] font-semibold text-ink">{children}</h3>;
 }
 
 function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
@@ -171,13 +171,13 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
   if (!step) {
     return (
       <div className="pr-8">
-        <h2 className="text-[24px] font-bold leading-tight text-ink">{stub?.label ?? ctx.name(id)}</h2>
-        <p className="mt-3 text-[16px] leading-relaxed text-ink">
+        <h2 className="text-[28px] font-bold leading-tight text-ink">{stub?.label ?? ctx.name(id)}</h2>
+        <p className="mt-3 text-[17px] leading-normal text-ink">
           Not found in any source I could verify.{" "}
           {stub?.checkUrl && (
             <>
               Check{" "}
-              <a href={stub.checkUrl} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 underline-offset-2">
+              <a href={stub.checkUrl} target="_blank" rel="noreferrer" className="link">
                 {stub.checkUrl}
               </a>
               .
@@ -208,14 +208,14 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
           </span>
         )}
       </p>
-      <h2 className="mt-1 pr-8 text-[26px] font-bold leading-[1.2] text-ink">
+      <h2 className="mt-1 pr-8 text-[28px] font-bold leading-[1.2] text-ink">
         {step.title}
         {ctx.cite(applies)}
       </h2>
       {step.done ? (
-        <p className="mt-3 text-[16px] text-done">You told me you already have this, so I didn&apos;t research it.</p>
+        <p className="mt-3 text-[17px] text-done">You told me you already have this, so I didn&apos;t research it.</p>
       ) : (
-        <p className="num mt-3 text-[17px] leading-relaxed text-ink">
+        <p className="num mt-3 text-[17px] leading-normal text-ink">
           {plainSummary(step, item?.startDate)}
           {item?.estimated && (
             <span className="text-muted">
@@ -240,7 +240,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       {(un.direct.length > 0 || un.via || facts.costOfDelay.length > 0) && (
         <>
           <H>Why it matters</H>
-          <div className="mt-2 space-y-2 text-[16px] leading-relaxed text-ink">
+          <div className="mt-2 space-y-2 text-[17px] leading-normal text-ink">
             {un.direct.length > 0 && (
               <p>
                 It unblocks <List ctx={ctx} ids={un.direct} />.
@@ -265,7 +265,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       {need.length > 0 && (
         <>
           <H>You need first</H>
-          <ul className="mt-2 space-y-1 text-[16px] text-ink">
+          <ul className="mt-2 space-y-1 text-[17px] text-ink">
             {need.map((n) => (
               <li key={n.id}>
                 <StepLink ctx={ctx} id={n.id} />
@@ -280,12 +280,12 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
         <>
           <H>Your visit</H>
           {mates.length > 0 && (
-            <p className="mt-2 text-[16px] text-ink">
+            <p className="mt-2 text-[17px] text-ink">
               Same visit as <List ctx={ctx} ids={mates.map((m) => m.id)} />.
             </p>
           )}
           {facts.visit.length > 0 && (
-            <dl className="mt-2 space-y-2 text-[16px]">
+            <dl className="mt-2 space-y-2 text-[17px]">
               {facts.visit.map((f) => (
                 <div key={f.label + f.value}>
                   <dt className="text-[15px] text-muted">{f.label}</dt>
@@ -295,7 +295,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
                         href={bookingHref(f.value)!}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-accent underline decoration-accent/40 underline-offset-2"
+                        className="link"
                       >
                         {f.value}
                       </a>
@@ -310,14 +310,14 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
           {facts.documents.length > 0 && (
             <>
               <p className="mt-3 text-[15px] text-muted">What to bring</p>
-              <ul className="mt-1 list-disc space-y-1 pl-5 text-[16px] text-ink marker:text-rule-strong">
+              <ul className="mt-1 list-disc space-y-1 pl-4 text-[17px] text-ink marker:text-rule-strong">
                 {facts.documents.map((f) => (
                   <li key={f.value}>{f.value}</li>
                 ))}
               </ul>
             </>
           )}
-          {choice && <p className="mt-3 text-[15px] leading-relaxed text-muted">{choice.description}</p>}
+          {choice && <p className="mt-3 text-[15px] leading-normal text-muted">{choice.description}</p>}
           <PanelSources cites={[...mates.map((m) => m.citation), ...facts.visit.map((f) => f.citation), ...facts.documents.map((f) => f.citation)]} />
         </>
       )}
@@ -325,7 +325,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       {facts.other.length > 0 && (
         <>
           <H>Good to know</H>
-          <dl className="mt-2 space-y-2 text-[16px]">
+          <dl className="mt-2 space-y-2 text-[17px]">
             {facts.other.map((f: Fact) => (
               <div key={f.label + f.value}>
                 <dt className="text-[15px] text-muted">{f.label}</dt>
@@ -347,12 +347,12 @@ const TIP_KIND: Record<Tip["kind"], string> = { wait_time: "Waiting", trick: "Tr
 
 function Tips({ ctx, tips }: { ctx: Ctx; tips: Tip[] }) {
   return (
-    <section className="mt-8 border-t border-rule pt-5">
-      <h3 className="text-[16px] font-semibold text-ink">From people who did it</h3>
-      <p className="mt-1 text-[14px] text-muted">Forums, blogs and university guides. Useful, but not official.</p>
+    <section className="mt-8 border-t border-rule pt-4">
+      <h3 className="text-[17px] font-semibold text-ink">From people who did it</h3>
+      <p className="mt-1 text-[13px] text-muted">Forums, blogs and university guides. Useful, but not official.</p>
       <ul className="mt-3 space-y-3">
         {tips.map((t, i) => (
-          <li key={i} className="text-[15px] leading-relaxed text-muted">
+          <li key={i} className="text-[15px] leading-normal text-muted">
             <span className="font-semibold text-ink">
               {TIP_KIND[t.kind]}
               {t.waitDays !== undefined ? `, about ${t.waitDays} working days` : ""}.
@@ -372,17 +372,17 @@ function ConflictCallout({ ctx, c }: { ctx: Ctx; c: Conflict }) {
       className="mt-6 rounded-[6px] border border-amber-line bg-amber-soft px-4 py-4"
       aria-label={disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}
     >
-      <h3 className="flex items-center gap-2 text-[16px] font-semibold text-amber">
+      <h3 className="flex items-center gap-2 text-[17px] font-semibold text-amber">
         <span className="h-3 w-3 shrink-0 rounded-full bg-amber-dot" />
         {disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}: {topicText(c.topic, ctx.name)}
         <Help term="disagree" />
       </h3>
-      <p className="mt-1 text-[15px] leading-relaxed text-ink">{conflictNote(c.note, c.a, c.b)}</p>
+      <p className="mt-1 text-[15px] leading-normal text-ink">{conflictNote(c.note, c.a, c.b)}</p>
       <div className="mt-3 grid gap-4">
         <QuoteCard citation={c.a} n={ctx.n(c.a)} size="sm" />
         <QuoteCard citation={c.b} n={ctx.n(c.b)} size="sm" />
       </div>
-      <p className="mt-4 text-[15px] leading-relaxed text-ink">
+      <p className="mt-4 text-[15px] leading-normal text-ink">
         <span className="font-semibold">What to do: </span>
         {whatToDoShort(c.whatToDo)}
       </p>
@@ -401,9 +401,9 @@ function MilestoneView({ ctx, id }: { ctx: Ctx; id: string }) {
       <p className="pr-8 text-[15px] text-muted">
         <Term term="either" />
       </p>
-      <h2 className="mt-1 pr-8 text-[26px] font-bold leading-[1.2] text-ink">{ms?.title ?? ctx.name(id)}</h2>
+      <h2 className="mt-1 pr-8 text-[28px] font-bold leading-[1.2] text-ink">{ms?.title ?? ctx.name(id)}</h2>
       <H>Ways to get it</H>
-      <ul className="mt-2 space-y-2 text-[16px] text-ink">
+      <ul className="mt-2 space-y-2 text-[17px] text-ink">
         {options
           .sort((a, b) => (items?.[a.id]?.readyIndex ?? 0) - (items?.[b.id]?.readyIndex ?? 0))
           .map((o) => (
@@ -417,7 +417,7 @@ function MilestoneView({ ctx, id }: { ctx: Ctx; id: string }) {
       {deps.length > 0 && (
         <>
           <H>What needs it</H>
-          <p className="mt-2 text-[16px] text-ink">
+          <p className="mt-2 text-[17px] text-ink">
             <List ctx={ctx} ids={deps} />.
           </p>
         </>
@@ -432,7 +432,7 @@ function EdgeView({ ctx, source, target }: { ctx: Ctx; source: string; target: s
   return (
     <div>
       <p className="pr-8 text-[15px] text-muted">{anyOf ? "One of the ways to get it" : "Why this order"}</p>
-      <h2 className="mt-1 pr-8 text-[24px] font-bold leading-[1.25] text-ink">
+      <h2 className="mt-1 pr-8 text-[28px] font-bold leading-[1.25] text-ink">
         {anyOf ? (
           <>
             <StepLink ctx={ctx} id={source} /> gives you your {lower(ctx.state.steps[target]?.title ?? ctx.name(target))}
@@ -443,11 +443,11 @@ function EdgeView({ ctx, source, target }: { ctx: Ctx; source: string; target: s
           </>
         )}
       </h2>
-      <div className="mt-5 space-y-5">
+      <div className="mt-4 space-y-4">
         {evidence.length ? (
           evidence.map((c, i) => <QuoteCard key={i} citation={c} n={ctx.n(c)} />)
         ) : (
-          <p className="text-[16px] leading-relaxed text-muted">
+          <p className="text-[17px] leading-normal text-muted">
             No single quote links these two steps directly; the order comes from the steps&apos; own requirements. Open either step to see its sources.
           </p>
         )}

@@ -43,7 +43,7 @@ export function Popover({ anchor, onClose, width = 440, label, children }: Props
     : { position: "fixed", left, bottom: vh - anchor.top + 8, width: w, maxHeight: anchor.top - 20 };
 
   return createPortal(
-    <div ref={ref} role="dialog" aria-label={label} tabIndex={-1} style={style} className="overlay overflow-y-auto p-5 text-left focus:outline-none">
+    <div ref={ref} role="dialog" aria-label={label} tabIndex={-1} style={style} className="overlay overflow-y-auto p-4 text-left focus:outline-none">
       {children}
     </div>,
     document.body,

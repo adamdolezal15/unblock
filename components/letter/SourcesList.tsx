@@ -30,17 +30,17 @@ export function SourcesList({ sources }: { sources: Source[] }) {
   const official = sources.filter((s) => s.trust === "official").length;
   return (
     <section aria-labelledby="sources">
-      <h2 id="sources" className="text-[24px] font-bold text-ink">
+      <h2 id="sources" className="text-[28px] font-bold text-ink">
         Sources
       </h2>
-      <p className="mt-1 text-[16px] text-muted">
+      <p className="mt-1 text-[17px] text-muted">
         {say.sources(sources.length)}, {official} of them official. Each quote was checked word for word.
       </p>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="mt-3 rounded-[8px] border border-rule-strong bg-raised px-4 py-2 text-[15px] font-medium text-ink hover:border-ink"
+        className="btn-secondary mt-4"
       >
         {open ? "Hide sources" : `Show all ${sources.length} sources`}
       </button>
@@ -51,10 +51,10 @@ export function SourcesList({ sources }: { sources: Source[] }) {
             if (!list.length) return null;
             return (
               <div key={g.trust}>
-                <h3 className="text-[16px] font-semibold text-ink">
+                <h3 className="text-[17px] font-semibold text-ink">
                   {g.title} <span className="num font-normal text-muted">({list.length})</span>
                 </h3>
-                <ol className="mt-2 space-y-1.5">
+                <ol className="mt-2 space-y-2">
                   {list.map((s) => (
                     <li key={s.n} id={`source-${s.n}`} className="flex gap-3 text-[15px] leading-snug">
                       <span className="num w-7 shrink-0 text-right text-muted">{s.n}.</span>
@@ -62,7 +62,7 @@ export function SourcesList({ sources }: { sources: Source[] }) {
                         href={quoteLink(s.url, s.quotes[0] ?? "")}
                         target="_blank"
                         rel="noreferrer"
-                        className="min-w-0 break-words text-ink underline decoration-rule-strong underline-offset-2 hover:decoration-ink"
+                        className="min-w-0 break-words link"
                       >
                         {s.domain}
                         <span className="text-muted">{pathOf(s.url)}</span>
