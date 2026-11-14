@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { sortSteps } from "@/components/StepsPreview";
 import type { Step } from "@/lib/types";
 import { assumptionLabel } from "./assumptionLabel";
-import { layoutGraph } from "./graphLayout";
+import { DIAMOND, layoutGraph, NODE_W } from "./graphLayout";
 import type { Graph, ScheduledStep } from "@/lib/graph/types";
 import { initialRunState, runReducer } from "./runState";
 
@@ -75,11 +75,32 @@ describe("layoutGraph", () => {
     expect(L.nodes.some((n) => n.type === "frame")).toBe(true);
   });
 
-  it("draws an edge back in time as a 'same visit' back-curve, never drops it", () => {
+  it("does not draw a requirement met inside a framed visit, but reports it as hidden", () => {
     const L = layoutGraph({ graph, steps: {}, items });
-    const e = L.edges.find((x) => x.id === "code->tax")!;
-    expect(e).toMatchObject({ backward: true, label: "same visit" });
-    expect(L.edges).toHaveLength(graph.edges.length);
+    expect(L.edges.find((x) => x.id === "code->tax")).toBeUndefined();
+    expect(L.hiddenEdges).toEqual(["code->tax"]);
+    expect(L.edges).toHaveLength(graph.edges.length - 1);
+  });
+
+  it("routes edges orthogonally and never through a node", () => {
+    for (const L of [layoutGraph({ graph, steps: {}, items }), layoutGraph({ graph, steps: {} })]) {
+      const boxes = L.nodes
+        .filter((n) => n.type === "step" || n.type === "anyof")
+        .map((n) => ({ id: n.id, x: n.x, y: n.y, w: n.type === "step" ? NODE_W : DIAMOND, h: n.type === "step" ? (n.data as { height: number }).height : DIAMOND }));
+      for (const e of L.edges) {
+        e.points.slice(1).forEach((b, i) => {
+          const a = e.points[i];
+          expect(a.x === b.x || a.y === b.y).toBe(true);
+          for (const r of boxes) {
+            if (r.id === e.source || r.id === e.target) continue;
+            const [x1, x2] = [Math.min(a.x, b.x), Math.max(a.x, b.x)];
+            const [y1, y2] = [Math.min(a.y, b.y), Math.max(a.y, b.y)];
+            const hit = x1 < r.x + r.w && x2 > r.x && y1 < r.y + r.h && y2 > r.y;
+            expect(hit, `${e.id} crosses ${r.id}`).toBe(false);
+          }
+        });
+      }
+    }
   });
 
   it("falls back to topological depth before the schedule exists", () => {

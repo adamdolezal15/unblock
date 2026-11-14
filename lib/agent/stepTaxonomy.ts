@@ -7,6 +7,8 @@ export type StepDef = {
   id: string;
   /** Neutral label used for progress messages and stubs; the shown title comes from sources. */
   label: string;
+  /** Short display label for graph nodes (the full title comes from sources and shows in the panel). */
+  short: string;
   /** Who you deal with for this step: graph lane + display label (a name, not a claim about the step). */
   authority: string;
   appliesTo: (p: Profile) => boolean;
@@ -34,6 +36,7 @@ const shortStay = (p: Profile) => p.stayMonths !== undefined && p.stayMonths < 1
 export const STEP_TAXONOMY: StepDef[] = [
   {
     id: "eu_registration",
+    short: "EU registration",
     authority: "DVV",
     label: "Register EU citizen's right of residence",
     appliesTo: (p) => p.citizenship === "EU",
@@ -42,6 +45,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "nordic_registration",
+    short: "Nordic registration",
     authority: "DVV",
     label: "Nordic citizen registration",
     appliesTo: (p) => p.citizenship === "NORDIC",
@@ -50,6 +54,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "residence_permit",
+    short: "Residence permit",
     authority: "Migri",
     label: "Residence permit",
     appliesTo: (p) => p.citizenship === "NON_EU" && !p.temporaryProtection,
@@ -59,6 +64,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "temporary_protection",
+    short: "Temporary protection",
     authority: "Migri",
     label: "Temporary protection",
     appliesTo: (p) => !!p.temporaryProtection,
@@ -67,6 +73,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "family_member_permit",
+    short: "Family permit",
     authority: "Migri",
     label: "Family member's residence",
     appliesTo: (p) => !!p.hasFamily,
@@ -78,6 +85,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "dvv_registration",
+    short: "DVV registration",
     authority: "DVV",
     label: "Register as a resident and get a Finnish personal identity code",
     appliesTo: () => true,
@@ -87,6 +95,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "tax_card",
+    short: "Tax card",
     authority: "Vero",
     label: "Tax card",
     appliesTo: working,
@@ -95,6 +104,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "vero_identity_code",
+    short: "ID code at Vero",
     authority: "Vero",
     label: "Personal identity code from a Vero tax office",
     appliesTo: working,
@@ -105,6 +115,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "bank_account",
+    short: "Bank account",
     authority: "Your bank",
     label: "Bank account",
     appliesTo: () => true,
@@ -128,6 +139,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "strong_identification",
+    short: "Strong ID",
     authority: "Your bank",
     label: "Strong electronic identification (online banking codes)",
     appliesTo: () => true,
@@ -151,6 +163,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "kela_registration",
+    short: "Kela",
     authority: "Kela",
     label: "Finnish social security coverage (Kela)",
     appliesTo: (p) => !shortStay(p),
@@ -159,6 +172,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "police_id_card",
+    short: "Police ID card",
     authority: "Police",
     label: "Identity card for a foreigner",
     appliesTo: (p) => !shortStay(p),
@@ -167,6 +181,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
   {
     id: "university_enrolment",
+    short: "University",
     authority: "Your university",
     label: "University enrolment and arrival steps",
     appliesTo: studying,
@@ -180,8 +195,8 @@ export const STEP_TAXONOMY: StepDef[] = [
  * Milestones: states a step can need ("has a Finnish personal identity code") that several different
  * steps can produce. Never searched directly; a source must say which steps provide them.
  */
-export const MILESTONES: Record<string, { label: string }> = {
-  personal_identity_code: { label: "Finnish personal identity code" },
+export const MILESTONES: Record<string, { label: string; short: string }> = {
+  personal_identity_code: { label: "Finnish personal identity code", short: "ID code" },
 };
 export const MILESTONE_IDS: ReadonlySet<string> = new Set(Object.keys(MILESTONES));
 
@@ -214,4 +229,9 @@ export function doneSteps(profile: Profile): Step[] {
       done: true,
       citations: [],
     }));
+}
+
+/** Short display label for a step or milestone id (graph nodes); undefined for unknown ids. */
+export function shortLabel(id: string): string | undefined {
+  return MILESTONES[id]?.short ?? STEP_TAXONOMY.find((s) => s.id === id)?.short;
 }
