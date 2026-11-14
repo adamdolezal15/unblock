@@ -5,7 +5,6 @@
 import type { DayEntry } from "@/lib/ui/days";
 import { calendarDaysBetween } from "@/lib/graph/dates";
 import { fmtDay } from "@/lib/ui/format";
-import { Marker } from "./line/Marker";
 
 export type Stop = {
   date: string;
@@ -42,73 +41,51 @@ export function stopsFrom(entries: DayEntry[]): Stop[] {
 }
 
 function waitLabel(days: number, office: string): string {
-  const t = days >= 10 ? `~${Math.round(days / 7)} weeks` : `~${days} days`;
+  const t = days >= 10 ? `about ${Math.round(days / 7)} weeks` : `about ${days} days`;
   return `${t} waiting${office ? ` for ${office.split(" + ").pop()!.replace(/^Your /, "your ")}` : ""}`;
 }
 
-const PAD = 80; // px kept free at both ends for labels
-const GAP = 160; // minimum px between neighbouring stations
-const WAIT_DAYS = 4; // gaps of at least this many calendar days are drawn as waiting
+const WAIT_DAYS = 4; // gaps of at least this many calendar days get a waiting line
 
+/** "Migri and Vero: EU registration, …"; just the action when it already names the office. */
+function rowText(s: Stop): string {
+  if (s.end) return "Done";
+  const offices = s.label.split(" + ");
+  const named = offices.some((o) => s.what.toLowerCase().includes(o.toLowerCase()));
+  return named ? s.what : `${offices.join(" and ")}: ${s.what}`;
+}
+
+/** The route as a timetable: date, then what you do; waits are a quiet line between rows. */
 export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: (id: string) => void }) {
   const stops = stopsFrom(entries);
   if (stops.length < 2) return null;
-  const n = stops.length;
-  const seg = 1 / (n - 1); // equal spacing; dates are in the labels, waits are drawn as dashes
-  const at = (f: number) => `calc(${PAD}px + (100% - ${2 * PAD}px) * ${f})`;
-  const top = 44; // y of the line
-
   return (
-    <div className="-mx-2 overflow-x-auto overflow-y-hidden px-2 pb-2">
-      <div className="relative" style={{ height: top + 76, minWidth: (n - 1) * GAP + 2 * PAD }} role="list" aria-label="Your visits in order">
-        {stops.slice(0, -1).map((s, i) => {
-          const gap = calendarDaysBetween(s.date, stops[i + 1].date);
-          const waiting = gap >= WAIT_DAYS;
-          const left = at(i * seg);
-          const width = `calc((100% - ${2 * PAD}px) * ${seg})`;
-          return (
-            <div key={`l${i}`} aria-hidden>
-              {waiting ? (
-                <div className="absolute border-t-[3px] border-dashed border-accent/35" style={{ left, width, top: top - 1.5 }} />
+    <ol className="max-w-[58ch] border-t border-rule" aria-label="Your visits in order">
+      {stops.map((s, i) => {
+        const gap = i > 0 ? calendarDaysBetween(stops[i - 1].date, s.date) : 0;
+        const row = (
+          <>
+            <span className={`num w-[80px] shrink-0 text-[16px] ${s.end ? "font-bold text-ink" : "text-muted"}`}>{fmtDay(s.date)}</span>
+            <span className={`text-[17px] leading-snug text-ink`}>{rowText(s)}</span>
+          </>
+        );
+        return (
+          <li key={i}>
+            {gap >= WAIT_DAYS && (
+              <p className="border-b border-rule py-2 pl-[80px] text-[15px] italic text-muted">{waitLabel(gap, stops[i - 1].label)}</p>
+            )}
+            <div className="border-b border-rule">
+              {s.stepId ? (
+                <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${rowText(s)}: show details`} className="flex w-full items-baseline py-3 text-left hover:bg-sunk/60">
+                  {row}
+                </button>
               ) : (
-                <div className="absolute h-[4px] bg-accent" style={{ left, width, top: top - 2 }} />
-              )}
-              {waiting && (
-                <div className="absolute w-[150px] -translate-x-1/2 text-center text-[13px] leading-tight text-muted" style={{ left: `calc(${left} + ${width} / 2)`, top: top - 40 }}>
-                  {waitLabel(gap, s.label)}
-                </div>
+                <div className="flex items-baseline py-3">{row}</div>
               )}
             </div>
-          );
-        })}
-        {stops.map((s, i) => {
-          const body = s.end ? <Marker kind="end" /> : <Station />;
-          return (
-            <div key={i} role="listitem">
-              <div className="absolute w-36 -translate-x-1/2 text-center" style={{ left: at(i * seg), top: 0 }}>
-                <span className={`num block text-[14px] leading-tight ${s.end ? "font-bold text-ink" : "text-muted"}`}>{fmtDay(s.date)}</span>
-              </div>
-              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: at(i * seg), top }}>
-                {s.stepId ? (
-                  <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${s.what}: show details`} className="block rounded-full">
-                    {body}
-                  </button>
-                ) : (
-                  body
-                )}
-              </div>
-              <div className="absolute w-36 -translate-x-1/2 text-center" style={{ left: at(i * seg), top: top + 24 }}>
-                <span className={`line-clamp-2 text-[15px] leading-tight text-ink ${s.end ? "font-bold" : ""}`}>{s.what}</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+          </li>
+        );
+      })}
+    </ol>
   );
-}
-
-/** Every station alike: a ring in the line's blue. */
-function Station() {
-  return <span aria-hidden className="block h-[18px] w-[18px] rounded-full border-[3.5px] border-accent bg-paper" />;
 }
