@@ -81,3 +81,21 @@ describe("profile sentence", () => {
     expect(s).toBe("You're a Czech citizen, working and studying in Helsinki from 1 December, on €3,200 a month (I assumed gross).");
   });
 });
+
+describe("side panel: Marta", () => {
+  it("every arrow on the map has a verified quote behind it", async () => {
+    const { edgeEvidence } = await import("../../lib/ui/panel");
+    for (const e of state.graph!.graph.edges) {
+      const q = edgeEvidence(state, e.source, e.target);
+      expect(q.length, e.id).toBeGreaterThan(0);
+      for (const c of q) expect(doc.ref(c).n).toBeGreaterThan(0);
+    }
+  });
+
+  it("explains what the Vero ID code unblocks through the milestone", async () => {
+    const { unblocks, milestoneOptions } = await import("../../lib/ui/panel");
+    expect(unblocks(state, "vero_identity_code").via).toMatchObject({ milestone: "personal_identity_code" });
+    expect(unblocks(state, "vero_identity_code").via!.steps).toContain("bank_account");
+    expect(milestoneOptions(state, "personal_identity_code").map((o) => o.id).sort()).toEqual(["dvv_registration", "vero_identity_code"]);
+  });
+});

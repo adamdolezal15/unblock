@@ -53,3 +53,12 @@ export function plural(n: number, one: string, many = `${one}s`): string {
 export function fmtSeconds(ms: number): string {
   return ms < 10_000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms / 1000)} s`;
 }
+
+const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const LONG_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+/** "Tuesday 1 December" */
+export function fmtLongDay(iso: string): string {
+  const { m, d, dow } = parts(iso);
+  return `${LONG_DAYS[dow]} ${d} ${LONG_MONTHS[m - 1]}`;
+}

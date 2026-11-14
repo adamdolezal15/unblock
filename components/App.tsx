@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useRun } from "@/lib/ui/useRun";
 import type { RunState } from "@/lib/ui/runState";
 import { buildLetter } from "@/lib/ui/letter";
@@ -13,6 +13,7 @@ import { ProfileSentence } from "./letter/ProfileSentence";
 import { SourcesList } from "./letter/SourcesList";
 import { RunInput } from "./RunInput";
 import { ErrorState, LandingNote, OutOfScopeState, PartialNotice } from "./States";
+import { SidePanel } from "./panel/SidePanel";
 import { StepsPreview } from "./StepsPreview";
 
 export function App() {
@@ -57,7 +58,8 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   // Map selection (per run).
   const [sel, setSel] = useState<{ runKey: number; selection: Selection }>({ runKey: 0, selection: null });
   const selection = sel.runKey === state.runKey ? sel.selection : null;
-  const select = (selection: Selection) => setSel({ runKey: state.runKey, selection });
+  const runKey = state.runKey;
+  const select = useCallback((selection: Selection) => setSel({ runKey, selection }), [runKey]);
   const mapRef = useRef<HTMLElement>(null);
   const showOnMap = (id: string) => {
     select({ kind: "step", id });
@@ -113,7 +115,8 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
         </div>
         <div className="mt-5">
           {state.graph ? (
-            <div className="h-[clamp(420px,68vh,640px)]">
+            <div className={`grid h-[clamp(420px,68vh,640px)] gap-4 ${selection ? "grid-cols-[minmax(0,1fr)_minmax(360px,440px)]" : "grid-cols-1"}`}>
+              <div className="min-w-0">
               <PlanGraph
                 graph={state.graph.graph}
                 steps={state.steps}
@@ -124,6 +127,8 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
                 selection={selection}
                 onSelect={select}
               />
+              </div>
+              {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
             </div>
           ) : (
             <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} />
