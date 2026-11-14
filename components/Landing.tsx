@@ -10,7 +10,7 @@ import { Contours } from "./motion/Contours";
 export function Landing({ runKey, value = "", onSubmit }: { runKey: number; value?: string; onSubmit: (text: string) => void }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <Contours />
+      <Contours variant="hero" />
       <BrandStripe />
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <div className="-mt-[6vh] w-full max-w-[680px] text-center">

@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
 import { useRailProgress } from "../motion/useRailProgress";
+import { PulseOnView } from "../motion/PulseOnView";
 import type { LetterDoc, Ref, Seg } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
@@ -211,7 +212,7 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
       <div className="relative flex justify-center">
         {inLeg !== null && <span data-rail="" className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
         {!last && <span data-rail="" className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        <span data-station="" className="relative z-10 mt-[20px] flex h-7 items-center self-start">{marker}</span>
+        <span data-station="" className="relative z-10 mt-[20px] flex h-7 items-center self-start">{kinds.has("done") ? <PulseOnView>{marker}</PulseOnView> : marker}</span>
       </div>
       <div className="min-w-0 pb-4 pt-2">
         {children}

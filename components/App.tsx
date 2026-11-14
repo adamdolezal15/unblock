@@ -67,7 +67,7 @@ export function App() {
 
   return (
     <div className="min-h-screen">
-      <Contours />
+      <Contours variant="result" />
       <TopBar demo={demo} onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (

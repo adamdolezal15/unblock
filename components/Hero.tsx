@@ -11,6 +11,7 @@ import { TransitLine } from "./TransitLine";
 import { exaLine } from "@/lib/ui/counts";
 import { HeadsUp } from "./views/Insights";
 import { IconCalendar } from "./icons";
+import { DateRing } from "./motion/Contours";
 
 type Props = {
   state: RunState;
@@ -70,8 +71,9 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
       <div className="grid gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-x-12">
         <div>
           {end ? (
-            <h1>
+            <h1 className="relative isolate">
               <span className="block text-[13px] font-semibold uppercase leading-none tracking-[0.08em] text-muted">Set up by{fuzzy ? " about" : ""}</span>{" "}
+              <DateRing />
               <span className="num mt-2 block text-[56px] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
                 <span className="text-accent">{dayMonth}</span>
                 {year && ` ${year}`}

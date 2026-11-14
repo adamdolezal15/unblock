@@ -1,26 +1,39 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { onScrollFrame } from "@/lib/ui/scrollMotion";
+import { HERO_DEEP, HERO_LAKES, lakeRings, MOBILE_LAKES, RESULT_LAKES, ringPath } from "@/lib/ui/contours";
+import { C, DIAMOND, STATION } from "../line/spec";
 import { useMotionAllowed } from "./useMotionAllowed";
 
-// Depth lines of two lakes, the way a Finnish basemap draws them: nested, uneven, never concentric.
-const LAKES = [
-  // west lake, three depths
-  "M188 412c64-92 214-128 330-96 118 32 196 118 172 214-22 92-138 128-246 150-112 22-232 6-284-74-46-70-28-122 28-194z",
-  "M262 438c52-58 156-78 232-52 80 28 118 86 98 148-20 62-102 86-178 96-80 10-158-8-188-62-24-46-6-80 36-130z",
-  "M338 470c34-28 92-36 132-18 42 20 54 54 40 86-16 34-62 48-104 50-44 2-82-14-92-44-8-26 2-48 24-74z",
-  // east lake, two depths, larger and lower
-  "M930 880c96-74 262-86 380-30 120 58 168 170 122 270-46 98-178 140-312 146-138 6-266-34-312-128-42-86 26-186 122-258z",
-  "M1010 930c72-46 186-52 266-12 82 42 108 116 74 180-34 62-124 90-214 92-92 2-176-26-204-86-24-54 12-122 78-174z",
-  // a long shoreline crossing the lower left
-  "M-40 1290c180-60 340-30 470 20 150 58 270 64 410 10 120-46 230-40 330 6v360H-40z",
-];
+// Precomputed once: the same strings on the server and in the browser.
+const HERO = HERO_LAKES.flatMap(lakeRings);
+const HERO_FILL = ringPath(HERO_DEEP, HERO_DEEP.rings - 1);
+const RESULT = RESULT_LAKES.flatMap(lakeRings);
+const MOBILE = MOBILE_LAKES.flatMap(lakeRings);
 
 /**
- * Faint lake contours fixed behind the page, drifting at 0.08 of the scroll. Purely decorative:
- * aria-hidden, no pointer events, behind everything, hidden below 640px, static under reduced motion.
+ * The route between the two east lakes, ending at the right edge of the input card: the logo's ink dots
+ * and its blue diamond, 1.5px at 25%. Static.
  */
-export function Contours() {
+function Route() {
+  const r = STATION.r * 0.7;
+  const s = DIAMOND.size * 1.1;
+  return (
+    <g opacity={0.25}>
+      <path d="M1150 150C1150 250 1108 300 1110 362C1112 424 1100 470 1074 484" stroke={C.ink} strokeWidth={1.5} fill="none" />
+      <circle cx={1150} cy={150} r={r} fill={C.ink} />
+      <rect x={1110 - s / 2} y={362 - s / 2} width={s} height={s} transform="rotate(45 1110 362)" fill={C.paper} stroke={C.blue} strokeWidth={1.5} />
+      <circle cx={1074} cy={484} r={r} fill={C.ink} />
+    </g>
+  );
+}
+
+/**
+ * Lake contours fixed behind the page, with slow scroll parallax (0.08) and, on the homepage, a 40 s ambient
+ * drift of a few px. Decoration only: aria-hidden, no pointer events, behind everything. Reduced motion:
+ * static. Below 640px: four rings at half opacity, static.
+ */
+export function Contours({ variant }: { variant: "hero" | "result" }) {
   const ref = useRef<SVGSVGElement>(null);
   const motion = useMotionAllowed();
 
@@ -36,23 +49,44 @@ export function Contours() {
     });
   }, [motion]);
 
+  const hero = variant === "hero";
   return (
-    <div aria-hidden className="contours pointer-events-none fixed inset-0 -z-10 hidden overflow-hidden sm:block">
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      {/* 640px and up */}
       <svg
         ref={ref}
-        className="absolute left-0 top-0 h-[calc(100vh+600px)] w-full will-change-transform"
-        viewBox="0 0 1440 1600"
+        className={`absolute left-0 top-0 hidden w-full will-change-transform sm:block ${hero ? "h-[calc(100vh+120px)]" : "h-[calc(100vh+600px)]"}`}
+        viewBox={hero ? "0 0 1440 1020" : "0 0 1440 1500"}
         preserveAspectRatio="xMidYMin slice"
         fill="none"
-        stroke="#003580"
-        strokeOpacity={0.05}
-        strokeWidth={1}
-        vectorEffect="non-scaling-stroke"
       >
-        {LAKES.map((d, i) => (
-          <path key={i} d={d} vectorEffect="non-scaling-stroke" />
-        ))}
+        <g className={hero ? "contour-drift" : undefined} stroke={C.blue} strokeWidth={1} strokeOpacity={hero ? 0.12 : 0.08}>
+          {hero && <path d={HERO_FILL} fill={C.blue} fillOpacity={0.03} stroke="none" />}
+          {(hero ? HERO : RESULT).map((d, i) => (
+            <path key={i} d={d} vectorEffect="non-scaling-stroke" />
+          ))}
+        </g>
+        {hero && <Route />}
+      </svg>
+      {/* below 640px: static, four rings, half opacity */}
+      <svg className="absolute inset-0 h-full w-full sm:hidden" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" fill="none">
+        <g stroke={C.blue} strokeWidth={1} strokeOpacity={hero ? 0.06 : 0.04}>
+          {MOBILE.map((d, i) => (
+            <path key={i} d={d} vectorEffect="non-scaling-stroke" />
+          ))}
+        </g>
       </svg>
     </div>
+  );
+}
+
+const RING_OUT = ringPath({ cx: 200, cy: 80, r: 62, rings: 1, seed: 1.9, stretch: 2.9 }, 0);
+
+/** One contour ring behind the plan's finish date (6%). Behind the text, never moves. */
+export function DateRing() {
+  return (
+    <svg aria-hidden className="pointer-events-none absolute -left-12 -top-7 -z-10 hidden h-[150px] sm:block w-[400px]" viewBox="0 0 400 150" fill="none">
+      <path d={RING_OUT} stroke={C.blue} strokeOpacity={0.06} strokeWidth={1.5} />
+    </svg>
   );
 }
