@@ -61,10 +61,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
   const runKey = state.runKey;
   const select = useCallback((selection: Selection) => setSel({ runKey, selection }), [runKey]);
   const mapRef = useRef<HTMLElement>(null);
-  const showOnMap = (id: string) => {
-    select({ kind: "step", id });
-    mapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const openStep = (id: string) => select({ kind: "step", id });
 
   const steps = state.stepOrder.map((id) => state.steps[id]);
 
@@ -82,7 +79,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
           ) : (
             <div className="skeleton h-5 w-3/4 rounded" aria-hidden />
           )}
-          {doc.letter ? <LetterView letter={doc.letter} onShow={showOnMap} /> : <LetterSkeleton />}
+          {doc.letter ? <LetterView letter={doc.letter} onShow={openStep} /> : <LetterSkeleton />}
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
           {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
           {state.summary && <Closing summary={state.summary} />}
@@ -115,8 +112,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
         </div>
         <div className="mt-5">
           {state.graph ? (
-            <div className={`grid h-[clamp(420px,68vh,640px)] gap-4 ${selection ? "grid-cols-[minmax(0,1fr)_minmax(360px,440px)]" : "grid-cols-1"}`}>
-              <div className="min-w-0">
+            <div className="h-[clamp(420px,68vh,640px)]">
               <PlanGraph
                 graph={state.graph.graph}
                 steps={state.steps}
@@ -127,8 +123,6 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
                 selection={selection}
                 onSelect={select}
               />
-              </div>
-              {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
             </div>
           ) : (
             <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} />
@@ -150,6 +144,7 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
           <SourcesList sources={doc.sources} />
         </div>
       )}
+      {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
     </main>
   );
 }

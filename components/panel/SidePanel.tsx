@@ -35,14 +35,59 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
   else if (state.steps[selection.id]?.milestone && milestoneOptions(state, selection.id).length) body = <MilestoneView ctx={ctx} id={selection.id} />;
   else body = <StepView ctx={ctx} id={selection.id} />;
 
+  // A fixed drawer: opens from any view and never resizes the map behind it.
   return (
-    <aside aria-label="Details" className="relative h-full overflow-y-auto rounded-[6px] border border-rule-strong bg-paper px-6 pb-8 pt-5">
-      <button type="button" onClick={() => onSelect(null)} className="absolute right-3 top-3 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
+    <aside
+      aria-label="Details"
+      className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(22,24,29,0.12)]"
+    >
+      <button type="button" onClick={() => onSelect(null)} className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
         <IconClose className="h-5 w-5" />
       </button>
       {body}
     </aside>
   );
+}
+
+const TIER_TITLE: Record<Citation["trust"], string> = {
+  official: "Official",
+  provider: "Banks and providers",
+  university: "Universities",
+  news: "News",
+  community: "People who did it",
+};
+
+/** Every quote behind a step, grouped by trust tier, numbered like the letter. */
+function StepSources({ ctx, step }: { ctx: Ctx; step: Step }) {
+  const all = [...(step.claims ?? []).map((c) => c.citation), ...step.citations];
+  const unique = all.filter((c, i) => all.findIndex((d) => d.url === c.url && d.quote === c.quote) === i);
+  if (!unique.length) return null;
+  return (
+    <section className="mt-8 border-t border-rule pt-5">
+      <h3 className="text-[16px] font-semibold text-ink">Sources</h3>
+      {(Object.keys(TIER_TITLE) as Citation["trust"][]).map((t) => {
+        const list = unique.filter((c) => c.trust === t).sort((a, b) => ctx.n(a) - ctx.n(b));
+        if (!list.length) return null;
+        return (
+          <div key={t} className="mt-4">
+            <p className="text-[15px] text-muted">{TIER_TITLE[t]}</p>
+            <div className="mt-2 space-y-4">
+              {list.map((c, i) => (
+                <QuoteCard key={i} citation={c} n={ctx.n(c)} size="sm" />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </section>
+  );
+}
+
+/** One plain sentence: who, how, when. */
+function plainSummary(step: Step, date?: string): string {
+  const how = step.mode === "online" ? "online" : step.mode === "in_person" ? "in person" : "online or in person";
+  const at = /^Your /.test(step.authority) ? step.authority.replace(/^Your/, "your") : step.authority;
+  return `You do this ${how}, with ${at}${date ? `, planned for ${fmtLongDay(date)}` : ""}.`;
 }
 
 type Ctx = { state: RunState; cite: (c?: Citation) => React.ReactNode; n: (c: Citation) => number; name: (id: string) => string; open: (id: string) => void };
@@ -120,14 +165,14 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       </h2>
       {step.done ? (
         <p className="mt-3 text-[16px] text-done">You told me you already have this, so I didn&apos;t research it.</p>
-      ) : item ? (
-        <p className="num mt-3 text-[16px] text-ink">
-          {fmtLongDay(item.startDate)}
-          {item.estimated && <span className="text-muted">, an estimate (no source gave a processing time)</span>}
-          {item.movedBy && <span className="text-muted">, moved from {fmtLongDay(item.movedBy.from)} for {item.movedBy.holiday}</span>}
-          {item.note && !item.estimated && <span className="block text-[15px] text-muted">Timing: {item.note}.</span>}
+      ) : (
+        <p className="num mt-3 text-[17px] leading-relaxed text-ink">
+          {plainSummary(step, item?.startDate)}
+          {item?.estimated && <span className="text-muted"> The date is an estimate: no official figure found.</span>}
+          {item?.movedBy && <span className="text-muted"> Moved from {fmtLongDay(item.movedBy.from)} for {item.movedBy.holiday}.</span>}
+          {item?.note && !item.estimated && <span className="block text-[15px] text-muted">Timing: {item.note}.</span>}
         </p>
-      ) : null}
+      )}
 
       {conflicts.map((c, i) => (
         <ConflictCallout key={i} ctx={ctx} c={c} />
@@ -236,6 +281,7 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       )}
 
       {tips.length > 0 && <Tips ctx={ctx} tips={tips} />}
+      <StepSources ctx={ctx} step={step} />
     </div>
   );
 }

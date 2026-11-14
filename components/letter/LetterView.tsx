@@ -35,7 +35,7 @@ export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId
               <>
                 {" "}
                 <button type="button" onClick={() => onShow(p.stepId!)} className="text-[16px] text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent">
-                  Show on the map
+                  Details
                 </button>
               </>
             )}
