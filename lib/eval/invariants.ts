@@ -17,6 +17,7 @@ import { looksLikeAddress, looksLikeDuration, looksLikeHours } from "../agent/va
 import { workingDaysBetween } from "../graph/dates";
 import { finnishHolidaysBetween } from "../graph/holidays";
 import type { RunState } from "../ui/runState";
+import { coverage, coverageGaps, coverageSentence } from "../ui/coverage";
 
 export const INVARIANTS = {
   exclusive: "no mutually exclusive registrations for the citizenship class",
@@ -34,6 +35,7 @@ export const INVARIANTS = {
   optional: "short study stay: everyday steps optional unless a source says must; optional steps never in the dates, path or counts",
   waits: "a processing time is the step's own, not the wait for another step's result",
   venue: "a check-in event for a step is shown on its card; its date only when it fits the arrival",
+  coverage: "a profile feature the pipeline does not handle well gets the amber note with an official link; a covered profile gets none",
 } as const;
 
 export type InvariantId = keyof typeof INVARIANTS;
@@ -108,6 +110,22 @@ export function checkInvariants(state: RunState): Violation[] {
   }
   // A Nordic citizen's registration IS the DVV registration: both would be the same visit twice.
   if (cls === "NORDIC" && present.has("nordic_registration") && present.has("dvv_registration")) add("exclusive", "nordic_registration and dvv_registration together");
+
+  // --- coverage: the note is there exactly when a known gap is in the profile, and names it
+  {
+    const ppl = state.profile?.people ?? [profile];
+    const gaps = coverageGaps(state.text, profile, ppl, steps);
+    const note = coverage(state.text, profile, ppl, steps);
+    const ids = gaps.map((g) => g.id);
+    if (!!note !== ids.length > 0) add("coverage", "note and gaps disagree");
+    if (profile.temporaryProtection && !ids.includes("temporary_protection")) add("coverage", "temporary protection not flagged");
+    if (profile.citizenship === "NON_EU" && steps.some((s) => s.id === "police_identification") && !ids.includes("police_id")) add("coverage", "police identification not flagged");
+    if (!profile.temporaryProtection && !/temporary protection/i.test(state.text) && ids.includes("temporary_protection")) add("coverage", "temporary protection flagged without being in the profile");
+    if (note) {
+      if (!/^https:\/\/(www\.)?[a-z]+\.fi\b/.test(note.link.url)) add("coverage", `link is not an official Finnish site: ${note.link.url}`);
+      if (!coverageSentence(note).startsWith("Some parts of your situation aren't covered yet: ")) add("coverage", "wrong sentence");
+    }
+  }
 
   // --- cited: each step card shows a footnoted sentence or says there is no source
   for (const d of dayStepsAll) {

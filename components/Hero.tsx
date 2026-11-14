@@ -8,9 +8,12 @@ import { longDate } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { Prose } from "./letter/LetterView";
 import { TransitLine } from "./TransitLine";
+import { CoverageNotice } from "./CoverageNotice";
+import { exaLine } from "@/lib/ui/format";
+import type { Coverage } from "@/lib/ui/coverage";
 
 /** The answer first: when you are set up, where to start, and the route as a transit line. */
-export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void }) {
+export function Hero({ state, doc, comparison, onOpen, coverage, onShowFeed }: { state: RunState; doc: LetterDoc; comparison: Comparison | null; onOpen: (id: string) => void; coverage?: Coverage | null; onShowFeed?: () => void }) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const sched = state.schedule;
   const fallback = fallbackSteps(state);
@@ -21,6 +24,7 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
         <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
           Start with {fallback[0].title.replace(/^(?=[A-Z][a-z])./, (c) => c.toLowerCase())}. {FALLBACK_NOTE}
         </p>
+        {coverage && <CoverageNotice coverage={coverage} />}
       </section>
     );
   }
@@ -55,6 +59,8 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
       <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">
         <Prose segs={doc.letter.headline.slice(1)} />
       </p>
+      <ExaLine state={state} onShowFeed={onShowFeed} />
+      {coverage && <CoverageNotice coverage={coverage} />}
       <div className="mt-10">
         <TransitLine entries={entries} onOpen={onOpen} />
       </div>
@@ -62,5 +68,24 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
         <Prose segs={facts} />
       </p>
     </section>
+  );
+}
+
+/** One quiet line: what Exa did in this run (cached runs keep the original numbers). */
+function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => void }) {
+  const line = state.summary ? exaLine(state.summary) : null;
+  if (!line) return null;
+  return (
+    <p className="num mt-2 text-[14px] text-muted">
+      {line}
+      {onShowFeed && (
+        <>
+          {" · "}
+          <button type="button" onClick={onShowFeed} className="text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent">
+            see the activity
+          </button>
+        </>
+      )}
+    </p>
   );
 }

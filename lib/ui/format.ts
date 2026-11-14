@@ -56,6 +56,12 @@ export function activityLine(a: RunActivity): string {
   return `Exa: ${plural(a.searches, "search", "searches")}, ${plural(a.pagesRead, "page")} read · Claude: ${plural(a.extractions, "extraction")} · ${plural(a.quotesChecked, "quote")} checked, ${a.quotesDropped} dropped`;
 }
 
+/** "Researched live with Exa: 12 searches, 30 pages read, 9 sources" from the run summary. */
+export function exaLine(s: { activity: RunActivity; sourcesByTrust: Record<string, number> }): string {
+  const sources = Object.values(s.sourcesByTrust).reduce((a, b) => a + b, 0);
+  return `Researched live with Exa: ${plural(s.activity.searches, "search", "searches")}, ${plural(s.activity.pagesRead, "page")} read, ${plural(sources, "source")}`;
+}
+
 export function fmtSeconds(ms: number): string {
   return ms < 10_000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms / 1000)} s`;
 }

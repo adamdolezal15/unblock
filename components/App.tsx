@@ -12,6 +12,7 @@ import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { runProgress } from "@/lib/ui/progress";
+import { coverage as coverageOf } from "@/lib/ui/coverage";
 import { ActivityFeed } from "./ActivityFeed";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
@@ -82,6 +83,14 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
   // "How I worked this out": closed by default once the plan is shown.
   const [feedOpen, setFeedOpen] = useState<{ runKey: number; open: boolean } | null>(null);
   const showFeed = feedOpen?.runKey === state.runKey && feedOpen.open;
+  const coverage = useMemo(
+    () => coverageOf(state.text, state.profile?.profile, state.profile?.people, Object.values(state.steps)),
+    [state.text, state.profile, state.steps],
+  );
+  const showAndScrollFeed = useCallback(() => {
+    setFeedOpen({ runKey: state.runKey, open: true });
+    setTimeout(() => document.getElementById("activity-feed")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
+  }, [state.runKey]);
   const elapsed = state.summary?.totalMs ?? (state.finishedAt ? state.finishedAt - state.startedAt : undefined);
 
   // Selection for the details drawer (per run). Clicking a step in any view opens it.
@@ -119,7 +128,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
             />
           </div>
         )}
-        <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} />
+        <Hero state={state} doc={doc} comparison={comparison} onOpen={openStep} coverage={coverage} onShowFeed={state.phase === "done" ? showAndScrollFeed : undefined} />
         {state.phase === "done" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
         {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
         {state.phase === "done" && state.summary?.runId && (
@@ -173,7 +182,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
 
-      <footer className="mt-16 max-w-[680px] border-t border-rule pt-8">
+      <footer id="activity-feed" className="mt-16 max-w-[680px] border-t border-rule pt-8">
         {state.summary && <Closing summary={state.summary} />}
         <button
           type="button"
