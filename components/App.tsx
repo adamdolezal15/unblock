@@ -16,6 +16,7 @@ import { RunInput } from "./RunInput";
 import { ErrorState, LandingNote, OutOfScopeState, PartialNotice } from "./States";
 import { SidePanel } from "./panel/SidePanel";
 import { StepsPreview } from "./StepsPreview";
+import { DayByDay } from "./views/DayByDay";
 import { MapView } from "./views/MapView";
 import { ViewTabs } from "./ViewTabs";
 
@@ -84,9 +85,12 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
           {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
           {view === "summary" && (doc.letter ? <LetterView letter={doc.letter} onShow={openStep} /> : <LetterSkeleton />)}
-          {view === "days" && (
-            <StepsPreview steps={state.stepOrder.map((id) => state.steps[id])} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} />
-          )}
+          {view === "days" &&
+            (state.schedule ? (
+              <DayByDay state={state} doc={doc} onOpen={openStep} />
+            ) : (
+              <StepsPreview steps={state.stepOrder.map((id) => state.steps[id])} stubs={state.stubs} running={running} />
+            ))}
         </div>
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <ActivityFeed

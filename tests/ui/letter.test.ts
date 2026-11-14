@@ -99,3 +99,20 @@ describe("side panel: Marta", () => {
     expect(milestoneOptions(state, "personal_identity_code").map((o) => o.id).sort()).toEqual(["dvv_registration", "vero_identity_code"]);
   });
 });
+
+describe("day by day: Marta", () => {
+  it("has one entry per visit, every step footnoted, and ends on the set-up date", async () => {
+    const { buildDays, entrySteps } = await import("../../lib/ui/days");
+    const days = buildDays(state, doc.ref);
+    const visits = days.filter((d) => d.kind === "visit");
+    expect(visits.map((v) => v.kind === "visit" && v.authority)).toContain("Migri");
+    const vero = visits.find((v) => v.kind === "visit" && v.steps.some((s) => s.id === "vero_identity_code"));
+    expect(vero && vero.kind === "visit" && vero.steps.map((s) => s.id).sort()).toEqual(["tax_card", "vero_identity_code"]);
+    for (const s of days.flatMap(entrySteps)) {
+      const hasRef = s.whyNow.some((x) => "ref" in x);
+      expect(hasRef || s.noSource, s.id).toBe(true);
+    }
+    expect(days[days.length - 1]).toEqual({ kind: "done", date: "2027-01-13" });
+    expect(days.map((d) => d.date)).toEqual([...days.map((d) => d.date)].sort());
+  });
+});
