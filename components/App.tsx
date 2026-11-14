@@ -118,6 +118,11 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
   const openStep = useCallback((id: string) => select({ kind: "step", id }), [select]);
   const openSources = useCallback((id: string) => select({ kind: "step", id, focus: "sources" }), [select]);
 
+  // The footer's links each open one panel under it (per run).
+  const [footerPanel, setFooterPanel] = useState<{ runKey: number; id: FooterPanel | null }>({ runKey: 0, id: null });
+  const panel = footerPanel.runKey === state.runKey ? footerPanel.id : null;
+  const togglePanel = useCallback((id: FooterPanel) => setFooterPanel((p) => ({ runKey, id: p.runKey === runKey && p.id === id ? null : id })), [runKey]);
+
   // Steps but no dated plan (for any reason, once the run has a schedule or is over): the steps as a list.
   const listOnly = !!fallbackSteps(state) && (!!state.schedule || state.phase === "done");
 
@@ -213,31 +218,31 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
 
-      {/* Under the plan: answers that sharpen the dates, and the weekly watch on its official pages. */}
-      {state.phase === "done" && ((!listOnly && rows.length > 0) || state.summary?.runId) && (
-        <section aria-label="Refine and stay updated" className="mt-12 max-w-[680px]">
-          <h2 className="text-[28px] font-bold text-ink">Refine &amp; stay updated</h2>
-          {!listOnly && <Refine rows={rows} onChange={onAnswer} />}
-          {state.summary?.runId && (
-            <div className="mt-8">
-              <Watch key={state.summary.runId} runId={state.summary.runId} />
-            </div>
+      {/* One quiet footer row: the counts on the left; refine, watch and the sources open below it. */}
+      <footer id="activity-feed" className="mt-16 scroll-mt-24 border-t border-hairline pt-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <div className="min-w-0">{state.summary && <Closing summary={state.summary} numbers={numbers} />}</div>
+          {state.phase === "done" && (
+            <nav aria-label="More" className="flex flex-wrap items-baseline gap-x-5 gap-y-1 text-[13px]">
+              {!listOnly && rows.length > 0 && <FooterLink id="refine" open={panel} onToggle={togglePanel}>Make it more accurate</FooterLink>}
+              {state.summary?.runId && <FooterLink id="watch" open={panel} onToggle={togglePanel}>Watch this plan</FooterLink>}
+              {doc.sources.length > 0 && <FooterLink id="sources" open={panel} onToggle={togglePanel}>{`All ${doc.sources.length} sources`}</FooterLink>}
+            </nav>
           )}
-        </section>
-      )}
-
-      <footer id="activity-feed" className="mt-12 max-w-[680px]">
-        {state.summary && <Closing summary={state.summary} numbers={numbers} />}
-        <button
-          type="button"
-          onClick={() => setFeedOpen({ runKey: state.runKey, open: !showFeed })}
-          aria-expanded={showFeed}
-          className="mt-3 text-[15px] link"
-        >
-          {showFeed ? "Hide how I worked this out" : "How I worked this out"}
-        </button>
+        </div>
+        {panel === "refine" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
+        {panel === "watch" && state.summary?.runId && (
+          <div className="mt-6">
+            <Watch key={state.summary.runId} runId={state.summary.runId} />
+          </div>
+        )}
+        {panel === "sources" && doc.sources.length > 0 && (
+          <div className="mt-6 max-w-[880px]">
+            <SourcesList sources={doc.sources} bare />
+          </div>
+        )}
         {showFeed && (
-          <div className="mt-4 text-left">
+          <div className="mt-6 max-w-[680px] text-left">
             <ActivityFeed
               statuses={state.statuses}
               notes={state.notes}
@@ -252,13 +257,18 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
           </div>
         )}
       </footer>
-
-      {state.phase === "done" && doc.sources.length > 0 && (
-        <div className="mt-12 max-w-[880px]">
-          <SourcesList sources={doc.sources} />
-        </div>
-      )}
       {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
     </main>
+  );
+}
+
+type FooterPanel = "refine" | "watch" | "sources";
+
+/** A footer link that opens (and closes) its panel under the footer row. */
+function FooterLink({ id, open, onToggle, children }: { id: FooterPanel; open: FooterPanel | null; onToggle: (id: FooterPanel) => void; children: React.ReactNode }) {
+  return (
+    <button type="button" aria-expanded={open === id} onClick={() => onToggle(id)} className={`link ${open === id ? "text-accent" : ""}`}>
+      {children}
+    </button>
   );
 }

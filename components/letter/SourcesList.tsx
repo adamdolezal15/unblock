@@ -24,28 +24,29 @@ function pathOf(url: string): string {
 }
 
 /** All sources of the run, numbered like the footnotes, grouped by trust tier. */
-export function SourcesList({ sources }: { sources: Source[] }) {
+export function SourcesList({ sources, bare = false }: { sources: Source[]; /** Opened from the footer: no heading or button, the list shown. */ bare?: boolean }) {
   // Collapsed by default: the numbers in the text already open each quote.
-  const [open, setOpen] = useState(false);
+  const [opened, setOpen] = useState(false);
+  const open = bare || opened;
   const official = sources.filter((s) => s.trust === "official").length;
   return (
     <section aria-labelledby="sources">
-      <h2 id="sources" className="text-[28px] font-bold text-ink">
+      <h2 id="sources" className={bare ? "sr-only" : "text-[28px] font-bold text-ink"}>
         Sources
       </h2>
-      <p className="mt-1 text-[17px] text-muted">
+      <p className={bare ? "text-[15px] text-muted" : "mt-1 text-[17px] text-muted"}>
         {say.sources(sources.length)}, {official} of them official. Each quote was checked word for word.
       </p>
-      <button
+      {!bare && <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         className="btn-secondary mt-4"
       >
         {open ? "Hide sources" : `Show all ${sources.length} sources`}
-      </button>
+      </button>}
       {open && (
-        <div className="mt-8 grid gap-x-12 gap-y-8 text-left md:grid-cols-2">
+        <div className={`${bare ? "mt-5" : "mt-8"} grid gap-x-12 gap-y-8 text-left md:grid-cols-2`}>
           {GROUPS.map((g) => {
             const list = sources.filter((s) => s.trust === g.trust).sort((a, b) => a.n - b.n);
             if (!list.length) return null;

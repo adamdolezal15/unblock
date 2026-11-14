@@ -17,6 +17,12 @@ const REASON: Record<DropReason, string> = {
   not_own_step: "The quote is about another step",
 };
 
+const Dot = () => (
+  <span aria-hidden className="mx-1.5">
+    ·
+  </span>
+);
+
 /**
  * The stats as one plain sentence at the end of the letter, in the shared wording (lib/ui/counts).
  * "N claims dropped" opens the list. A replay names the original live run's time; unknown -> no time.
@@ -26,11 +32,13 @@ export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers:
   const replayed = summary.calls.exaLive + summary.calls.llmLive === 0;
   const dropped = n.dropped ?? 0;
   return (
-    <p className="text-[17px] leading-normal text-muted">
-      That&apos;s {say.steps(n.steps)} and {say.visits(n.visits)}, from {say.quotes(n.quotes ?? 0)} in {say.sources(n.sources ?? 0)}, each checked word for word
+    <p className="text-[13px] leading-normal text-muted">
+      {say.steps(n.steps)}
+      <Dot />
+      {say.quotes(n.quotes ?? 0)}, each checked word for word
       {dropped > 0 ? (
         <>
-          ;{" "}
+          <Dot />
           <button
             type="button"
             onClick={(e) => setAnchor(anchor ? null : anchorOf(e.currentTarget))}
@@ -38,8 +46,7 @@ export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers:
             className="link"
           >
             {say.dropped(dropped)}
-          </button>{" "}
-          because they didn&apos;t hold up
+          </button>
         </>
       ) : null}
       .{summary.notFound > 0 && <> I couldn&apos;t confirm {plural(summary.notFound, "step")} from any source; they are listed under the map.</>}{" "}
