@@ -164,3 +164,21 @@ describe("runProgress", () => {
     expect(runProgress(s).value).toBe(1);
   });
 });
+
+describe("mentions", () => {
+  it("lights the four stations from plain keywords", async () => {
+    const { mentions } = await import("./mentions");
+    expect(mentions("")).toEqual({ citizenship: false, city: false, date: false, purpose: false });
+    expect(mentions("I'm a Czech citizen")).toMatchObject({ citizenship: true, city: false });
+    expect(mentions("moving to Tampere in January for a PhD")).toEqual({ citizenship: false, city: true, date: true, purpose: true });
+  });
+});
+
+describe("mainLegs", () => {
+  it("is blue from the first to the last station on the slowest chain", async () => {
+    const { mainLegs } = await import("../../components/line/legs");
+    expect(mainLegs([true, false, true, true])).toEqual([true, true, true]);
+    expect(mainLegs([false, true, false, true, false])).toEqual([false, true, true, false]);
+    expect(mainLegs([false, false])).toEqual([false]);
+  });
+});

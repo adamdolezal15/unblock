@@ -23,7 +23,7 @@ type Props = {
 };
 
 const ACCENT = "#003580";
-const QUIET = "#9aa7b6";
+const QUIET = "#a29c90";
 
 /** Class-safe token for an id (ids can contain ":" or "#"). */
 const tok = (id: string) => id.replace(/[^a-zA-Z0-9_-]/g, "_");

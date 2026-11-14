@@ -1,9 +1,12 @@
 "use client";
-import { BrandStripe, MiniMark } from "./brand";
+import { BrandStripe } from "./brand";
+import { LineMark, type MarkMode } from "./line/LineMark";
 import { IconDownload } from "./icons";
 
 /** Results header: back to edit the situation, the wordmark, and the calendar download. No prompt field. */
-export function TopBar({ onEdit, onHome, icsUrl, progress }: { onEdit: () => void; onHome: () => void; icsUrl?: string; progress?: number }) {
+type Props = { onEdit: () => void; onHome: () => void; icsUrl?: string; progress?: number; mark: { mode: MarkMode; pulse: number; turned: boolean } };
+
+export function TopBar({ onEdit, onHome, icsUrl, progress, mark }: Props) {
   return (
     <header className="sticky top-0 z-30 bg-paper/95 backdrop-blur-[2px]">
       <BrandStripe progress={progress} />
@@ -15,7 +18,7 @@ export function TopBar({ onEdit, onHome, icsUrl, progress }: { onEdit: () => voi
           Edit your situation
         </button>
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2.5" aria-label="Unblock, start over">
-          <MiniMark />
+          <LineMark mode={mark.mode} pulse={mark.pulse} turned={mark.turned} className="h-[14px] w-[110px]" />
           <span className="text-[22px] font-bold text-ink">Unblock</span>
         </button>
         <div className="justify-self-end">

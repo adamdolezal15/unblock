@@ -15,11 +15,17 @@ type Props = {
   /** Slim bar above results (true) vs. the landing page's hero field (false). */
   compact: boolean;
   onSubmit: (text: string) => void;
+  /** Every keystroke (the landing page's logo reacts to what is typed). */
+  onDraftChange?: (text: string) => void;
 };
 
-export function RunInput({ value, running, compact, onSubmit }: Props) {
+export function RunInput({ value, running, compact, onSubmit, onDraftChange }: Props) {
   // Local draft; the parent re-keys this component per run so it shows that run's sentence.
-  const [draft, setDraft] = useState(value);
+  const [draft, setDraftState] = useState(value);
+  const setDraft = (t: string) => {
+    setDraftState(t);
+    onDraftChange?.(t);
+  };
   // Auto-growing field: height follows the text, never a scrollbar.
   const field = useRef<HTMLTextAreaElement>(null);
   useLayoutEffect(() => {

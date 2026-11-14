@@ -8,7 +8,9 @@ import { nodeLabel } from "@/lib/ui/graphLayout";
 import { Prose } from "../letter/LetterView";
 import { Footnote } from "../letter/Footnote";
 import { Term } from "../Help";
-import { IconCalendar, IconCheck, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
+import { Marker } from "../line/Marker";
+import { mainLegs } from "../line/legs";
+import { IconCalendar, IconDownload, IconExternal, IconInPerson, IconOnline } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const dow = (iso: string) => {
@@ -35,6 +37,7 @@ export function DayByDay({ state, doc, onOpen, extra, shortcut }: Props) {
   if (!state.schedule) return <DaysSkeleton />;
   const ctx: Ctx = { state, onOpen, shortcut };
   const visits = entries.filter((e) => e.kind === "visit").length;
+  const legs = mainLegs(entries.map(onMain));
   const firstOpen = entries.findIndex((e) => e.kind === "visit" || e.kind === "online");
 
   return (
@@ -52,7 +55,13 @@ export function DayByDay({ state, doc, onOpen, extra, shortcut }: Props) {
       </div>
       <ol>
         {entries.map((e, i) => (
-          <Row key={i} entry={e} last={i === entries.length - 1}>
+          <Row
+            key={i}
+            entry={e}
+            last={i === entries.length - 1}
+            mainLeg={!!legs[i]}
+            inLeg={i === 0 ? null : !!legs[i - 1]}
+          >
             <Entry ctx={ctx} entry={e} defaultOpen={i === firstOpen} />
           </Row>
         ))}
@@ -66,20 +75,27 @@ const btn =
 const link = "text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent";
 
 /** One timeline row: date, rail with a marker, content. Waits hang off the rail below the card. */
-function Row({ entry, last, children }: { entry: DayEntry; last: boolean; children: React.ReactNode }) {
+/** On the slowest chain (the blue line): visits / online steps on it, and the finish. */
+const onMain = (e: DayEntry) => e.kind === "done" || ((e.kind === "visit" || e.kind === "online") && e.steps.some((s) => s.critical));
+
+function Row({
+  entry,
+  last,
+  mainLeg,
+  inLeg,
+  children,
+}: {
+  entry: DayEntry;
+  last: boolean;
+  mainLeg: boolean;
+  inLeg: boolean | null;
+  children: React.ReactNode;
+}) {
   const critical = (entry.kind === "visit" || entry.kind === "online") && entry.steps.some((s) => s.critical);
-  const marker =
-    entry.kind === "done" ? (
-      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-done text-white">
-        <IconCheck className="h-4 w-4" />
-      </span>
-    ) : entry.kind === "online" ? (
-      <span className={`h-3 w-3 rounded-full border-2 bg-paper ${critical ? "border-accent" : "border-rule-strong"}`} />
-    ) : entry.kind === "reminder" ? (
-      <span className="h-2 w-2 rounded-full bg-rule-strong" />
-    ) : (
-      <span className={`h-4 w-4 rounded-full border-[3px] bg-raised ${critical ? "border-accent" : "border-ink"}`} />
-    );
+  // Same stations as the logo and the hero line (components/line).
+  const marker = (
+    <Marker kind={entry.kind === "done" ? "end" : entry.kind === "online" ? "hollow" : entry.kind === "reminder" ? "small" : critical ? "main" : "station"} />
+  );
   const waits = entry.kind === "visit" || entry.kind === "online" ? entry.steps.filter((s) => s.wait) : [];
 
   return (
@@ -89,8 +105,9 @@ function Row({ entry, last, children }: { entry: DayEntry; last: boolean; childr
         <p className="text-[22px] font-bold leading-tight text-ink">{fmtDay(entry.date)}</p>
       </div>
       <div className="relative flex justify-center">
-        {!last && <span className="absolute bottom-0 top-0 border-l-2 border-rule" aria-hidden />}
-        <span className="relative z-10 mt-[22px] flex h-6 items-center">{marker}</span>
+        {inLeg !== null && <span className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
+        {!last && <span className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
+        <span className="relative z-10 mt-[20px] flex items-center">{marker}</span>
       </div>
       <div className="min-w-0 pb-4 pt-2">
         {children}
@@ -129,11 +146,7 @@ function StepHead({ ctx, s, compact = false }: { ctx: Ctx; s: DayStep; compact?:
   if (compact) {
     return (
       <h3>
-        <button
-          type="button"
-          onClick={() => ctx.onOpen(s.id)}
-          className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent"
-        >
+        <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
           {s.title}
         </button>
       </h3>
@@ -142,11 +155,7 @@ function StepHead({ ctx, s, compact = false }: { ctx: Ctx; s: DayStep; compact?:
   return (
     <>
       <h3>
-        <button
-          type="button"
-          onClick={() => ctx.onOpen(s.id)}
-          className="text-left text-[21px] font-bold leading-snug text-ink hover:text-accent"
-        >
+        <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[21px] font-bold leading-snug text-ink hover:text-accent">
           {s.title}
         </button>
       </h3>

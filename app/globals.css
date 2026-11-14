@@ -1,18 +1,17 @@
 @import "tailwindcss";
 
-/* Wayfinding for a move to Finland: snow background, birch surfaces, blue-black ink, one Finnish blue for
-   the main line (the slowest chain) and primary actions, lake blue as its soft tint. Amber only for
-   conflicts, pine green only for "done".
-   Light only, on purpose (projectors wash out dark UIs): no prefers-color-scheme rules anywhere. */
+/* The line: a move to Finland as a route of steps. Warm paper, blue-black ink, Finnish blue only for the
+   line (the slowest chain) and primary actions, lake blue as its tint. Amber only for disagreement between
+   sources, green only for done. Light only (projectors). See docs/BRAND.md. */
 @theme {
-  --color-paper: #f8fafc;
+  --color-paper: #f7f5f0;
   --color-raised: #ffffff;
-  --color-sunk: #e7ecf1;
+  --color-sunk: #efece5;
   --color-ink: #1a2433;
   --color-muted: #4a5566;
-  --color-faint: #8794a6;
-  --color-rule: #d5dde6;
-  --color-rule-strong: #b3bfcc;
+  --color-faint: #8a8e96;
+  --color-rule: #ddd8ce;
+  --color-rule-strong: #c4bdb0;
   --color-accent: #003580;
   --color-accent-hover: #00285f;
   --color-accent-soft: #d6e4f2;
@@ -39,7 +38,7 @@
 
 html,
 body {
-  background: #f8fafc;
+  background: #f7f5f0;
   color: #1a2433;
 }
 
@@ -68,8 +67,8 @@ body {
   .overlay {
     position: absolute;
     z-index: 50;
-    background: #f8fafc;
-    border: 1px solid #b3bfcc;
+    background: #f7f5f0;
+    border: 1px solid #c4bdb0;
     border-radius: 6px;
     box-shadow: 0 8px 24px rgba(26,36,51, 0.14);
   }
@@ -99,7 +98,7 @@ body {
   }
 }
 .skeleton {
-  background: #e7ecf1;
+  background: #efece5;
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
@@ -113,23 +112,23 @@ body {
 /* React Flow, restyled to the document look. Controls are opaque like every overlay. */
 .plan-graph .react-flow__controls {
   box-shadow: none;
-  border: 1px solid #b3bfcc;
+  border: 1px solid #c4bdb0;
   border-radius: 6px;
   overflow: hidden;
-  background: #f8fafc;
+  background: #f7f5f0;
 }
 .plan-graph .react-flow__controls-button {
   width: 30px;
   height: 30px;
-  background: #f8fafc;
-  border-bottom: 1px solid #d5dde6;
+  background: #f7f5f0;
+  border-bottom: 1px solid #ddd8ce;
   fill: #1a2433;
 }
 .plan-graph .react-flow__controls-button:hover {
-  background: #e7ecf1;
+  background: #efece5;
 }
 .plan-graph .react-flow__attribution {
-  background: #f8fafc;
+  background: #f7f5f0;
   color: #8794a6;
 }
 .plan-graph .react-flow__node:focus,
@@ -150,7 +149,7 @@ body {
   transition: stroke 120ms, stroke-width 120ms;
 }
 .plan-graph .pg-quiet .react-flow__edge-path {
-  stroke: #9aa7b6;
+  stroke: #a29c90;
   stroke-width: 1.5px;
 }
 .plan-graph .pg-crit .react-flow__edge-path {
@@ -163,4 +162,100 @@ body {
 .plan-graph .pg-node,
 .plan-graph .pg-edge {
   transition: opacity 120ms;
+}
+
+/* The line's motion (components/line/LineMark.tsx). Transform and opacity only. */
+.linemark .lm-left,
+.linemark .lm-right {
+  transform-box: fill-box;
+  transition: transform 350ms cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.linemark .lm-left {
+  transform-origin: right center;
+}
+.linemark .lm-right {
+  transform-origin: left center;
+}
+.linemark--error .lm-left {
+  transform: translate(-6px, 1px) rotate(-7deg);
+}
+.linemark--error .lm-right {
+  transform: translate(6px, 1px) rotate(7deg);
+}
+.linemark--error .lm-diamond {
+  opacity: 0.35;
+}
+.lm-shimmer {
+  opacity: 0;
+  animation: lm-shimmer 4200ms ease-in-out infinite;
+}
+@keyframes lm-shimmer {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateX(226px);
+    opacity: 0;
+  }
+}
+.lm-pulse {
+  animation: lm-pulse 900ms cubic-bezier(0.3, 0.6, 0.3, 1) forwards;
+}
+@keyframes lm-pulse {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(196px);
+    opacity: 0;
+  }
+}
+.lm-turn {
+  animation: lm-turn 420ms ease-in-out;
+}
+@keyframes lm-turn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+.lm-check-draw {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: lm-draw 520ms cubic-bezier(0.3, 0.7, 0.2, 1) both;
+}
+@keyframes lm-draw {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lm-shimmer,
+  .lm-pulse {
+    display: none;
+  }
+  .lm-turn,
+  .lm-check-draw {
+    animation: none;
+  }
+  .linemark .lm-left,
+  .linemark .lm-right {
+    transition: none;
+  }
 }

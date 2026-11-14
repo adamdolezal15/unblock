@@ -2,6 +2,7 @@
 import type { RunState } from "@/lib/ui/runState";
 import { runProgress } from "@/lib/ui/progress";
 import { Favicon } from "./ActivityFeed";
+import { LineMark } from "./line/LineMark";
 
 /** While the plan is being built: one calm card with progress and the last few things the agent did. */
 export function Working({ state }: { state: RunState }) {
@@ -11,6 +12,7 @@ export function Working({ state }: { state: RunState }) {
 
   return (
     <section aria-live="polite" className="mx-auto mt-16 max-w-[560px] text-center">
+      <LineMark mode={state.phase === "error" ? "error" : "running"} pulse={state.statuses.length} turned={!!state.graph} className="mx-auto mb-8 h-9 w-[284px]" />
       <h1 className="text-[34px] font-bold text-ink">Working out your plan</h1>
       <p className="mt-2 text-[16px] text-muted">{label}…</p>
       <div className="mx-auto mt-6 flex max-w-[400px] items-center gap-3">
