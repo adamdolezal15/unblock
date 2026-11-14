@@ -48,7 +48,13 @@ The quote is the evidence: exactly one sentence copied character-for-character f
 
 Kinds:
 - applies: a sentence showing this step must be done by someone in the person's situation. value "yes". Include at most two.
-- requires: a sentence stating this step needs another step done first (for example, that you need a personal identity code, a residence permit or a registration before you can do this step). value = the id of that other step from the allowed list. Use a separate claim per prerequisite step. Never put documents here.
+- requires: a sentence stating this step cannot be done until another step is completed. value = the id of that other step from the allowed list. Use a separate claim per prerequisite step. Never put documents here.
+  Only MANDATORY prerequisites for THIS person's situation count. Do NOT make a requires claim when:
+  - the sentence is conditional on a situation that does not match the person ("if you apply on the basis of studies…" for someone who also works, "if you need a permit…" for someone who doesn't);
+  - the prerequisite is only needed for one of several ways to do the step ("you can do it online if you have online banking codes" when it can also be done in person);
+  - the thing can be obtained as part of this step itself, at the same office or in the same application (for example an identifier that this same authority issues during the step);
+  - the sentence only says who issues something, or that something is "useful" or "usually" needed.
+  When in doubt, leave the requires claim out.
 - document: something to bring or attach (passport, employment contract, lease...). value = the document.
 - mode: whether it is done online, in person, or either. value = online | in_person | either.
 - cost_of_delay: what happens if this step is late or missing (penalty, extra tax withheld, no access to a service). value = short consequence.

@@ -20,6 +20,8 @@ export type StepReport = {
   verified: number;
   dropped: number;
   sources: number;
+  /** Extractor that ran and its own cost (exa deep cost is also in exaStats; anthropic cost is not). */
+  llm?: { provider: string; ms: number; costUsd?: number };
   error?: string;
 };
 
@@ -169,6 +171,7 @@ async function runStep(
     verified: verified.length,
     dropped: dropped.length,
     sources: dedupeDocs([...docs, ...result.sources]).length,
+    llm: { provider: result.meta.provider, ms: result.meta.ms, costUsd: result.meta.costUsd },
   };
 
   if (!verified.some((c) => c.kind === "applies")) {
