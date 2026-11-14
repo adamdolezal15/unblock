@@ -38,13 +38,15 @@ export function Prose({ segs, big }: { segs: Seg[]; big?: boolean }) {
   );
 }
 
-export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId: string) => void }) {
+export function LetterView({ letter, onShow, headline = true }: { letter: Letter; onShow: (stepId: string) => void; headline?: boolean }) {
   return (
-    <div className="rise max-w-[680px]">
-      <h1 className="text-[38px] font-bold leading-[1.18] tracking-[-0.01em] text-ink">
-        <Prose segs={letter.headline} big />
-      </h1>
-      <div className="mt-6 space-y-4 text-[18px] leading-[1.65] text-ink">
+    <div className="max-w-[680px]">
+      {headline && (
+        <h1 className="display text-[38px]">
+          <Prose segs={letter.headline} big />
+        </h1>
+      )}
+      <div className={`${headline ? "mt-6" : ""} space-y-4 text-[18px] leading-[1.65] text-ink`}>
         {letter.paras.map((p) => (
           <p key={p.key}>
             <Prose segs={p.segs} />

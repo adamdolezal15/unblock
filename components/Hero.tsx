@@ -37,7 +37,7 @@ export function Hero({ state, doc, comparison, onOpen }: { state: RunState; doc:
 
   return (
     <section aria-label="Your answer">
-      <h1 className="text-[46px] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-[54px]">
+      <h1 className="display text-[46px] sm:text-[54px]">
         {end ? `Set up by ${fuzzy ? "about " : ""}${longDate(end, startYear)}.` : "Your plan."}
       </h1>
       <p className="mt-4 max-w-[58ch] text-[20px] leading-snug text-muted">

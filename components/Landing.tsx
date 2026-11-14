@@ -21,10 +21,10 @@ export function Landing({ runKey, value = "", onSubmit }: { runKey: number; valu
             lit={[m.citizenship, m.city, m.date, m.purpose]}
             className="mx-auto h-9 w-[284px]"
           />
-          <h1 className="mt-8 text-[64px] font-bold leading-none tracking-[-0.02em] text-ink">Unblock</h1>
+          <h1 className="display mt-8 text-[64px]">Unblock</h1>
           <p className="mx-auto mt-4 max-w-[30ch] text-[23px] leading-snug text-muted">{PROMISE}</p>
           <div className="mt-10">
-            <RunInput key={runKey} value={value} running={false} compact={false} onSubmit={onSubmit} onDraftChange={setDraft} />
+            <RunInput key={runKey} value={value} running={false} onSubmit={onSubmit} onDraftChange={setDraft} />
           </div>
         </div>
       </main>

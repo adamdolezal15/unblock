@@ -204,3 +204,12 @@ body {
     transition: none;
   }
 }
+
+/* One display treatment for every big headline (docs/BRAND.md type scale). */
+.display {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  color: #1a2433;
+}

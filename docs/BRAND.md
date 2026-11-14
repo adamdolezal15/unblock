@@ -28,7 +28,9 @@ Light only (projectors). Contrast: body text ink on paper, secondary text muted 
 - **Source Serif 4**: only for quoted source sentences, so citations read as documents.
 
 Scale (px): 14 smallest text (labels, captions; nothing smaller), 15 secondary, 16 body UI, 17–18 reading
-text, 20 lead, 34 state headlines, 46/54 the answer headline (one display size, bold, tracking −0.02em).
+text, 20 lead. Headlines use one display treatment, the `.display` class (Overpass 800, tracking −0.02em,
+line-height 1.06): 34 state headlines, 38 letter, 46/54 the answer, 64 the wordmark on the first screen.
+Spacing: 4 px base; 16 / 24 inside blocks, 32 between a heading and its content, 48 / 64 between sections.
 Sentence case everywhere. No all-caps labels, no middle-dot meta strings, no arrows appended to buttons.
 
 ## The line
