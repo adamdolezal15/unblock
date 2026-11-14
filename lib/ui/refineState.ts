@@ -1,5 +1,6 @@
 // "Make it more accurate" applied to the run state the views read: the same RunState, with the answers
 // reflected in steps, graph, schedule, calendar and the summary counts. Pure; nothing leaves the browser.
+import { citationCounts } from "@/lib/refine/plan";
 import { refine, serializeRefinements, type RefineInput, type RefineKey } from "@/lib/refine/refine";
 import type { RunState } from "./runState";
 
@@ -20,6 +21,8 @@ export function refineState(state: RunState, keys: readonly RefineKey[], input: 
   const steps = Object.fromEntries(r.steps.map((s) => [s.id, s]));
   const known = new Set(Object.keys(steps));
   const stepOrder = state.stepOrder.filter((id) => known.has(id));
+  const tips = state.tips.filter((t) => known.has(t.stepId));
+  const conflicts = state.conflicts.filter((c) => known.has(c.stepId));
   return {
     ...state,
     steps,
@@ -27,8 +30,9 @@ export function refineState(state: RunState, keys: readonly RefineKey[], input: 
     graph: r.graph,
     schedule: { schedule: r.plan.schedule, criticalPath: r.plan.path, visitChoices: r.plan.visitChoices, baseline: r.plan.baseline },
     calendar: { events: r.plan.events, icsUrl: icsUrlWith(state.calendar.icsUrl, keys) },
-    tips: state.tips.filter((t) => known.has(t.stepId)),
-    conflicts: state.conflicts.filter((c) => known.has(c.stepId)),
-    summary: state.summary ? { ...state.summary, ...r.counts } : state.summary,
+    tips,
+    conflicts,
+    // Step counts and the quotes/sources behind the steps still shown (the pipeline's summary uses the same calls).
+    summary: state.summary ? { ...state.summary, ...r.counts, ...citationCounts(r.steps, tips, conflicts) } : state.summary,
   };
 }

@@ -4,6 +4,7 @@
 // so the letter, the side panel and the Sources list all use the same numbers.
 import type { Citation, Step, Trust } from "@/lib/types";
 import type { RunState } from "./runState";
+import { normalizeUrl } from "@/lib/agent/normalizeUrl";
 import { domainOf } from "./format";
 import { nodeLabel } from "./labels";
 import { waitCitation } from "./days";
@@ -50,10 +51,11 @@ const sentences = (s: string) =>
 class Registry {
   private byUrl = new Map<string, Source>();
   ref = (c: Citation): Ref => {
-    let s = this.byUrl.get(c.url);
+    const key = normalizeUrl(c.url); // one source per page, as the summary counts them (lib/refine/plan citationCounts)
+    let s = this.byUrl.get(key);
     if (!s) {
       s = { n: this.byUrl.size + 1, url: c.url, domain: domainOf(c.url), trust: c.trust, fetchedAt: c.fetchedAt, quotes: [] };
-      this.byUrl.set(c.url, s);
+      this.byUrl.set(key, s);
     }
     if (!s.quotes.includes(c.quote)) s.quotes.push(c.quote);
     return { n: s.n, citation: c };

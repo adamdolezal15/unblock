@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { isReplaying, type StatusLine } from "@/lib/ui/runState";
-import { activityLine, faviconUrl, fmtSeconds, plural } from "@/lib/ui/format";
+import { activityLine, type PlanNumbers } from "@/lib/ui/counts";
+import { faviconUrl, fmtSeconds, plural } from "@/lib/ui/format";
 import type { Actor, RunActivity } from "@/lib/types";
 import { IconChevron } from "./icons";
 
@@ -15,10 +16,12 @@ type Props = {
   onToggle: () => void;
   /** What each actor did, from the run summary; shown as the feed's last line once the run is done. */
   activity?: RunActivity;
+  /** The plan's counts (lib/ui/counts): the same numbers the header and the closing sentence show. */
+  numbers?: PlanNumbers;
 };
 
 /** What the agent is doing, newest at the bottom. Collapses to one line when the plan is done. */
-export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle, activity }: Props) {
+export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, onToggle, activity, numbers }: Props) {
   const list = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
@@ -53,7 +56,7 @@ export function ActivityFeed({ statuses, notes, running, elapsedMs, collapsed, o
               </li>
             ))}
             {running && statuses.length === 0 && <li className="py-1 text-[14px] text-muted">Starting…</li>}
-            {activity && !running && <li className="num mt-1 border-t border-dashed border-rule pt-2 font-mono text-[12px] leading-5 text-muted">{activityLine(activity)}</li>}
+            {activity && numbers && !running && <li className="num mt-1 border-t border-dashed border-rule pt-2 font-mono text-[12px] leading-5 text-muted">{activityLine(activity, numbers)}</li>}
           </ol>
           <p className="num flex justify-between gap-3 border-t border-rule pt-2 text-[14px] text-muted">
             <span>{running ? `${plural(statuses.length, "action")} so far` : `${summary}.`}</span>

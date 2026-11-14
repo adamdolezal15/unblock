@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { Trust } from "@/lib/types";
+import { say } from "@/lib/ui/counts";
 import type { Source } from "@/lib/ui/letter";
 import { quoteLink } from "./QuoteCard";
 
@@ -33,7 +34,7 @@ export function SourcesList({ sources }: { sources: Source[] }) {
         Sources
       </h2>
       <p className="mt-1 text-[16px] text-muted">
-        {sources.length} pages, {official} of them official. Each quote was checked word for word.
+        {say.sources(sources.length)}, {official} of them official. Each quote was checked word for word.
       </p>
       <button
         type="button"

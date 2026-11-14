@@ -1,13 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { activityLine } from "./format";
+import { activityLine, type PlanNumbers } from "./counts";
 
 describe("activityLine", () => {
-  it("summarises each actor's work in one line", () => {
-    expect(activityLine({ searches: 31, pagesRead: 6, extractions: 14, quotesChecked: 120, quotesDropped: 7 })).toBe(
-      "Exa: 31 searches, 6 pages read · Claude: 14 extractions · 120 quotes checked, 7 dropped",
+  const n = (x: Partial<PlanNumbers>): PlanNumbers => ({ steps: 9, visits: 5, online: 4, quotes: 90, dropped: 5, sources: 40, official: 21, durationMs: null, ...x });
+  it("summarises each actor's work, then the plan's counts in the shared wording", () => {
+    expect(activityLine({ searches: 31, pagesRead: 6, extractions: 14, quotesChecked: 120, quotesDropped: 7 }, n({}))).toBe(
+      "Exa: 31 searches, 6 pages read · Claude: 14 extractions · 9 steps · 5 visits · 90 verified quotes · 5 claims dropped · 40 sources",
     );
-    expect(activityLine({ searches: 1, pagesRead: 1, extractions: 1, quotesChecked: 1, quotesDropped: 0 })).toBe(
-      "Exa: 1 search, 1 page read · Claude: 1 extraction · 1 quote checked, 0 dropped",
+    expect(activityLine({ searches: 1, pagesRead: 1, extractions: 1, quotesChecked: 1, quotesDropped: 0 }, n({ steps: 1, visits: 1, quotes: 1, dropped: 0, sources: 1 }))).toBe(
+      "Exa: 1 search, 1 page read · Claude: 1 extraction · 1 step · 1 visit · 1 verified quote · 0 claims dropped · 1 source",
     );
   });
 });

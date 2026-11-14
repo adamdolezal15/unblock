@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import type { DropReason, RunSummary } from "@/lib/types";
-import { domainOf, fmtSeconds, plural } from "@/lib/ui/format";
+import { say, type PlanNumbers } from "@/lib/ui/counts";
+import { domainOf, plural } from "@/lib/ui/format";
 import { anchorOf, Popover, type Anchor } from "../Popover";
 
 const REASON: Record<DropReason, string> = {
@@ -16,31 +17,39 @@ const REASON: Record<DropReason, string> = {
   not_own_step: "The quote is about another step",
 };
 
-/** The stats as one plain sentence at the end of the letter. "rejected N claims" opens the list. */
-export function Closing({ summary }: { summary: RunSummary }) {
+/**
+ * The stats as one plain sentence at the end of the letter, in the shared wording (lib/ui/counts).
+ * "N claims dropped" opens the list. A replay names the original live run's time; unknown -> no time.
+ */
+export function Closing({ summary, numbers: n }: { summary: RunSummary; numbers: PlanNumbers }) {
   const [anchor, setAnchor] = useState<Anchor | null>(null);
-  const sources = Object.values(summary.sourcesByTrust).reduce((a, b) => a + b, 0);
+  const replayed = summary.calls.exaLive + summary.calls.llmLive === 0;
+  const dropped = n.dropped ?? 0;
   return (
     <p className="text-[16px] leading-[1.65] text-muted">
-      That&apos;s {plural(summary.steps, "step")} and {plural(summary.inPersonVisits, "visit")}. I checked {summary.verifiedQuotes} quotes word for word against{" "}
-      {plural(sources, "source")}
-      {summary.droppedClaims > 0 ? (
+      That&apos;s {say.steps(n.steps)} and {say.visits(n.visits)}, from {say.quotes(n.quotes ?? 0)} in {say.sources(n.sources ?? 0)}, each checked word for word
+      {dropped > 0 ? (
         <>
-          {" "}
-          and{" "}
+          ;{" "}
           <button
             type="button"
             onClick={(e) => setAnchor(anchor ? null : anchorOf(e.currentTarget))}
             aria-expanded={!!anchor}
             className="text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent"
           >
-            rejected {plural(summary.droppedClaims, "claim")}
+            {say.dropped(dropped)}
           </button>{" "}
-          that didn&apos;t hold up
+          because they didn&apos;t hold up
         </>
       ) : null}
       .{summary.notFound > 0 && <> I couldn&apos;t confirm {plural(summary.notFound, "step")} from any source; they are listed under the map.</>}{" "}
-      {summary.partial ? "I stopped early, so this is a partial plan." : `It took ${fmtSeconds(summary.totalMs)}.`}
+      {summary.partial
+        ? "I stopped early, so this is a partial plan."
+        : n.durationMs !== null
+          ? replayed
+            ? `The live run took ${say.duration(n.durationMs)}.`
+            : `It took ${say.duration(n.durationMs)}.`
+          : null}
       {anchor && (
         <Popover anchor={anchor} onClose={() => setAnchor(null)} label="Rejected claims" width={560}>
           <h3 className="text-[20px] font-bold text-ink">Claims I threw away</h3>

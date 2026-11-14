@@ -22,6 +22,15 @@ export const REFINE_LABEL: Record<RefineKey, string> = {
   long_stay: "I'm staying 12 months or longer",
 };
 
+/** An active answer as the chip under the profile sentence says it: "Using your answer: you already have an ID code". */
+export const REFINE_CHIP: Record<RefineKey, string> = {
+  has_code: "you already have an ID code",
+  has_bank: "you already have a Finnish bank account",
+  no_bank: "you don't need a Finnish bank account",
+  short_stay: "you're staying less than 12 months",
+  long_stay: "you're staying 12 months or longer",
+};
+
 /** The URL parameter that holds the answers: /?r=has_code,no_bank */
 export const REFINE_PARAM = "r";
 

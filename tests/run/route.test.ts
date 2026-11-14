@@ -129,7 +129,9 @@ describe("activity feed actors", () => {
     const by = (a: string) => statuses.filter((s) => s.actor === a).map((s) => s.message);
     expect(by("exa").some((m) => /^Found \d+/.test(m))).toBe(true);
     expect(by("claude").some((m) => /^Understanding|^Extracting/.test(m))).toBe(true);
-    expect(by("check").some((m) => /^Verifying \d+ quotes/.test(m))).toBe(true);
+    // Quote checks name no counts: the only quote counts shown are the final ones, from the summary (lib/ui/counts).
+    expect(by("check").some((m) => /^Checking the quotes for .+ word for word/.test(m))).toBe(true);
+    expect(by("check").some((m) => /\d+ quotes/.test(m))).toBe(false);
     expect(by("check").some((m) => /^Scheduled /.test(m))).toBe(true);
     const done = events.find((e): e is Of<"done"> => e.type === "done")!;
     const a = done.summary.activity;

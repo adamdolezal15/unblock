@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { countVisits } from "@/lib/graph/baseline";
+import { planNumbers, say } from "@/lib/ui/counts";
 import type { Comparison } from "@/lib/ui/compare";
 import { buildDays, FALLBACK_NOTE, fallbackSteps } from "@/lib/ui/days";
 import type { LetterDoc, Seg } from "@/lib/ui/letter";
@@ -8,7 +8,7 @@ import { longDate } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
 import { Prose } from "./letter/LetterView";
 import { TransitLine } from "./TransitLine";
-import { exaLine } from "@/lib/ui/format";
+import { exaLine } from "@/lib/ui/counts";
 import { HeadsUp } from "./views/Insights";
 import { IconCalendar } from "./icons";
 
@@ -48,12 +48,10 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
   const fuzzy = path.some((id) => items[id]?.estimated);
   const startYear = Number(sched.schedule.startDate.slice(0, 4));
 
-  const steps = Object.values(state.steps).filter((s) => !s.milestone && !s.done && s.necessity !== "optional" && items[s.id]);
-  const visits = countVisits(steps, items);
-  const online = steps.filter((s) => s.mode !== "in_person").length;
+  const n = planNumbers(state);
 
   // One meta line: "5 visits · 4 online · 15 days sooner" (the comparison keeps its source number, after "sooner").
-  const meta: Seg[][] = [[{ t: `${visits} ${visits === 1 ? "visit" : "visits"}` }], [{ t: `${online} online` }]];
+  const meta: Seg[][] = [[{ t: say.visits(n.visits) }], [{ t: say.online(n.online) }]];
   let metaTitle: string | undefined;
   if (comparison?.gain) {
     const ref = comparison.sentence.find((x) => "ref" in x);
@@ -118,7 +116,7 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
 
 /** One small line under the meta line: what Exa did in this run (cached runs keep the original numbers). */
 function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => void }) {
-  const line = state.summary ? exaLine(state.summary) : null;
+  const line = state.summary ? exaLine(state.summary, planNumbers(state)) : null;
   if (!line) return null;
   return (
     <p className="num mt-2 text-[14px] text-muted">

@@ -9,7 +9,8 @@ import { buildGraph, criticalPath, describeVisitAlternative, schedule } from "..
 import { usualOrder, type Baseline } from "../graph/baseline";
 import type { CriticalPath, Schedule } from "../graph/types";
 import type { VisitChoice } from "../graph/schedule";
-import type { Profile, RunSummary, Step, StreamCalEvent, Tip } from "../types";
+import { normalizeUrl } from "../agent/normalizeUrl";
+import type { Citation, Conflict, Profile, RunSummary, Step, StreamCalEvent, Tip, Trust } from "../types";
 
 /** Short lowercase name for visit-choice text ("bank account", "DVV registration"). */
 export function shortName(id: string): string {
@@ -45,9 +46,33 @@ export type PlanCounts = Pick<
   "steps" | "alreadyDone" | "optional" | "online" | "inPersonVisits" | "inCalendar" | "reminders" | "criticalPath"
 >;
 
+const TRUSTS: Trust[] = ["official", "provider", "university", "news", "community"];
+
+/**
+ * The summary's quote and source counts for the steps, tips and conflicts a plan shows: distinct verified quotes
+ * (url + quote) and distinct source URLs by trust tier. The letter's sources list registers the same citations.
+ */
+export function citationCounts(steps: Step[], tips: Pick<Tip, "citation">[], conflicts: Pick<Conflict, "a" | "b">[]): Pick<RunSummary, "sourcesByTrust" | "verifiedQuotes"> {
+  const citations: Citation[] = [
+    ...steps.flatMap((x) => [...x.citations, ...(x.claims ?? []).map((c) => c.citation)]),
+    ...tips.map((t) => t.citation),
+    ...conflicts.flatMap((c) => [c.a, c.b]),
+  ];
+  const urlTrust = new Map<string, Trust>();
+  const quotes = new Set<string>();
+  for (const c of citations) {
+    urlTrust.set(normalizeUrl(c.url), c.trust);
+    quotes.add(`${normalizeUrl(c.url)}|${c.quote}`);
+  }
+  const sourcesByTrust = Object.fromEntries(TRUSTS.map((t) => [t, 0])) as Record<Trust, number>;
+  for (const t of urlTrust.values()) sourcesByTrust[t]++;
+  return { sourcesByTrust, verifiedQuotes: quotes.size };
+}
+
 /** The summary's numbers for a plan. Optional steps (Step.necessity) are listed apart and never counted as part of it. */
 export function planCounts(steps: Step[], sched: Schedule | undefined, path: CriticalPath | undefined, events: { kind: string }[]): PlanCounts {
-  const real = steps.filter((x) => !x.milestone && x.necessity !== "optional");
+  // The steps shown in the plan: no milestones, nothing already done, nothing optional.
+  const real = steps.filter((x) => !x.milestone && !x.done && x.necessity !== "optional");
   const visits = new Set<string>();
   for (const x of real) {
     const item = sched?.items[x.id];

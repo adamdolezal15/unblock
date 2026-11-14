@@ -9,15 +9,16 @@
 import { cleanLine, newMeter, RunAbortedError, withRunContext, type RunMeter } from "../events/context";
 import { plural } from "../ui/format";
 import { buildGraph, criticalNode, topoOrder } from "../graph";
-import { planCounts, schedulePlan } from "../refine/plan";
+import { citationCounts, planCounts, schedulePlan } from "../refine/plan";
 import type { CriticalPath, Graph, Schedule } from "../graph/types";
-import type { Actor, Citation, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepForm, StepStub, StreamCalEvent, Tip, Trust } from "../types";
+import type { Actor, Conflict, DroppedClaim, PipelineEvent, Profile, RunSummary, Step, StepForm, StepStub, StreamCalEvent, Tip } from "../types";
 import { detectConflicts } from "./detectConflicts";
 import { attachTips, findCommunityTips, tipTargets, type FindTipsResult } from "./findCommunityTips";
 import { findForms } from "./forms";
 import { findSteps, type FindStepsResult } from "./findSteps";
 import { parseProfile } from "./parseProfile";
 import { partnerDifferences } from "./partnerSteps";
+import { liveDuration } from "../demo/liveRuns";
 import { newRunId, saveRun, type RunRecord } from "./runStore";
 import { normalizeUrl } from "./verifyCitations";
 
@@ -43,7 +44,6 @@ export type RunOutcome =
   | { kind: "out_of_scope"; message: string }
   | { kind: "aborted" };
 
-const TRUSTS: Trust[] = ["official", "provider", "university", "news", "community"];
 
 /** findSteps / tips / conflicts progress lines, reworded for the feed. Lines lib/llm already covers are skipped. */
 function progressLine(m: string): string | null {
@@ -144,7 +144,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     const topo = topoOrder(graph);
     // Nodes carry their Step for lib/graph; the step events already sent it, so it is left out here.
     const slim: Graph = { nodes: graph.nodes.map((n) => ({ ...n, step: undefined })), edges: graph.edges };
-    emit({ type: "status", message: `Linked ${plural(graph.nodes.length, "step")} by ${plural(graph.edges.length, "dependency", "dependencies")}`, actor: "check" });
+    emit({ type: "status", message: `Linked ${plural(planCounts(steps, undefined, undefined, []).steps, "step")} by ${plural(graph.edges.length, "dependency", "dependencies")}`, actor: "check" });
     emit({ type: "graph", graph: slim, criticalNode: criticalNode(graph), order: topo.order, deadlocks: topo.deadlocks });
     s.graphSent = true;
   };
@@ -153,7 +153,7 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     const profile = s.profile!;
     const plan = schedulePlan(steps, tips, profile, opts.today);
     const { schedule: sched, path, events } = plan;
-    emit({ type: "status", message: `Scheduled ${plural(Object.keys(sched.items).length, "step")}, critical path ${plural(path.totalDays, "working day")}`, actor: "check" });
+    emit({ type: "status", message: `Scheduled ${plural(planCounts(steps, sched, path, events).steps, "step")}, critical path ${plural(path.totalDays, "working day")}`, actor: "check" });
     emit({ type: "schedule", schedule: sched, criticalPath: path, visitChoices: plan.visitChoices, ...(plan.baseline ? { baseline: plan.baseline } : {}) });
     emit({ type: "calendar", events, icsUrl: `/api/calendar.ics?runId=${runId}` });
     s.sched = { steps, schedule: sched, path, events };
@@ -217,8 +217,8 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     s.found = found;
     for (const stub of found.stubs) emit({ type: "stub", stub });
     reportFailures("Step extraction", found.reports.map((r) => ({ stepId: r.id, error: r.error })));
-    const verified = found.reports.reduce((n, r) => n + r.verified, 0);
-    emit({ type: "status", message: `${verified} quotes verified against the source text, ${found.dropped.length} dropped`, actor: "check" });
+    // No numbers here: tips and conflicts add quotes later; the final counts come once, from the summary.
+    emit({ type: "status", message: "Checked every quote word for word against the source text", actor: "check" });
     found.conflicts.forEach(addConflict);
 
     // Tips and the conflict check for steps that get no tips start now; the graph needs neither.
@@ -299,7 +299,9 @@ export async function run(text: string, opts: RunOptions = {}): Promise<RunOutco
     });
   }
 
-  const summary = summarize({ runId, partial, steps, stubs: s.found?.stubs ?? [], s, meter, ms: Date.now() - t0 });
+  const base = summarize({ runId, partial, steps, stubs: s.found?.stubs ?? [], s, meter, ms: Date.now() - t0 });
+  const liveMs = await liveDuration(text, base).catch(() => (base.calls.exaLive + base.calls.llmLive > 0 ? base.totalMs : undefined));
+  const summary: RunSummary = { ...base, ...(liveMs !== undefined ? { liveMs } : {}) };
   const record: RunRecord = {
     runId,
     createdAt: new Date(t0).toISOString(),
@@ -334,19 +336,8 @@ function summarize(a: {
   // Optional steps (Step.necessity) are listed apart and never counted as part of the plan (lib/refine/plan).
   const counts = planCounts(steps, s.sched?.schedule, s.sched?.path, s.sched?.events ?? []);
 
-  const citations: Citation[] = [
-    ...steps.flatMap((x) => [...x.citations, ...(x.claims ?? []).map((c) => c.citation)]),
-    ...s.tips.map((t) => t.citation),
-    ...s.conflicts.flatMap((c) => [c.a, c.b]),
-  ];
-  const urlTrust = new Map<string, Trust>();
-  const quotes = new Set<string>();
-  for (const c of citations) {
-    urlTrust.set(normalizeUrl(c.url), c.trust);
-    quotes.add(`${normalizeUrl(c.url)}|${c.quote}`);
-  }
-  const sourcesByTrust = Object.fromEntries(TRUSTS.map((t) => [t, 0])) as Record<Trust, number>;
-  for (const t of urlTrust.values()) sourcesByTrust[t]++;
+  // Same call as a refined plan in the browser (lib/ui/refineState), so the counts follow the steps shown.
+  const { sourcesByTrust, verifiedQuotes } = citationCounts(steps, s.tips, s.conflicts);
 
   const llm = meter.llmCostUsd;
   const rejected = [...(s.found?.dropped ?? []), ...(s.tipsResult?.dropped ?? []), ...s.conflictDropped];
@@ -356,7 +347,7 @@ function summarize(a: {
     ...counts,
     notFound: a.stubs.length,
     sourcesByTrust,
-    verifiedQuotes: quotes.size,
+    verifiedQuotes,
     droppedClaims: rejected.length,
     rejected: rejected.slice(0, MAX_REJECTED).map(({ stepId, kind, url, quote, reason }) => ({ stepId, kind, url, quote, reason })),
     tips: s.tips.length,

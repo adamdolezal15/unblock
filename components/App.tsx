@@ -14,6 +14,8 @@ import { compareWithUsual } from "@/lib/ui/compare";
 import { runProgress } from "@/lib/ui/progress";
 import { coverage as coverageOf } from "@/lib/ui/coverage";
 import { ActivityFeed } from "./ActivityFeed";
+import { planNumbers } from "@/lib/ui/counts";
+import { RefinementChips } from "./RefinementChips";
 import type { Selection } from "@/lib/ui/selection";
 import { Hero } from "./Hero";
 import { CoverageNotice } from "./CoverageNotice";
@@ -66,13 +68,20 @@ export function App() {
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
       )}
       {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Results state={state} rows={rows} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
+        <Results state={state} rows={rows} answers={answers} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
       )}
     </div>
   );
 }
 
-function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: RefineRow[]; onAnswer: (keys: RefineKey[]) => void; onRerun: (text: string) => void }) {
+function Results({ state, rows, answers, onAnswer, onRerun }: {
+  state: RunState;
+  rows: RefineRow[];
+  /** The answers in the URL (?r=), shown as chips under the profile sentence. */
+  answers: readonly RefineKey[];
+  onAnswer: (keys: RefineKey[]) => void;
+  onRerun: (text: string) => void;
+}) {
   const running = state.phase === "running";
   const doc = useMemo(() => buildLetter(state), [state]);
   const [view, setView] = useView();
@@ -89,7 +98,9 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
     setFeedOpen({ runKey: state.runKey, open: true });
     setTimeout(() => document.getElementById("activity-feed")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
   }, [state.runKey]);
-  const elapsed = state.summary?.totalMs ?? (state.finishedAt ? state.finishedAt - state.startedAt : undefined);
+  // The duration shown is the live run's (a replay shows the original; unknown -> omitted), never the replay time.
+  const numbers = useMemo(() => planNumbers(state), [state]);
+  const elapsed = numbers.durationMs ?? undefined;
 
   // Selection for the details drawer (per run). Clicking a step in any view opens it.
   const [sel, setSel] = useState<{ runKey: number; selection: Selection }>({ runKey: 0, selection: null });
@@ -124,6 +135,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
               size="sm"
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />
+            <RefinementChips answers={answers} onChange={onAnswer} />
           </div>
         )}
         <Hero
@@ -195,7 +207,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
       )}
 
       <footer id="activity-feed" className="mt-16 max-w-[680px] border-t border-rule pt-8">
-        {state.summary && <Closing summary={state.summary} />}
+        {state.summary && <Closing summary={state.summary} numbers={numbers} />}
         <button
           type="button"
           onClick={() => setFeedOpen({ runKey: state.runKey, open: !showFeed })}
@@ -214,6 +226,7 @@ function Results({ state, rows, onAnswer, onRerun }: { state: RunState; rows: Re
               collapsed={false}
               onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
               activity={state.summary?.activity}
+              numbers={numbers}
             />
           </div>
         )}

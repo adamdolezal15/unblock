@@ -6,6 +6,7 @@
 import { getPages } from "../exa/search";
 import { trustOf } from "../exa/domains";
 import { countActivity, emitStatus } from "../events/context";
+import { normalizeUrl } from "./normalizeUrl";
 import type { ClaimKind, DroppedClaim, ExaDoc, RawClaim, Step, VerifiedClaim } from "../types";
 
 export const MATCH_THRESHOLD = 0.9;
@@ -24,15 +25,7 @@ export function tokenize(text: string): Token[] {
   return out;
 }
 
-export function normalizeUrl(url: string): string {
-  try {
-    const u = new URL(url.trim());
-    const path = u.pathname.replace(/\/+$/, "");
-    return `${u.hostname.toLowerCase().replace(/^www\./, "")}${path}${u.search}`;
-  } catch {
-    return url.trim().toLowerCase();
-  }
-}
+export { normalizeUrl } from "./normalizeUrl";
 
 function hostOf(url: string): string | null {
   try {
@@ -227,7 +220,7 @@ export async function verifyCitations(
     return true;
   });
 
-  if (opts.label) emitStatus(`Verifying ${unique.length} quotes for ${opts.label}…`, { actor: "check" });
+  if (opts.label) emitStatus(`Checking the quotes for ${opts.label} word for word…`, { actor: "check" });
   const results = await Promise.all(
     unique.map(async (c): Promise<VerifiedClaim | DroppedClaim> => {
       const drop = (reason: DroppedClaim["reason"], bestScore?: number): DroppedClaim => ({ ...c, reason, bestScore });

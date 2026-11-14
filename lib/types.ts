@@ -222,7 +222,13 @@ export type RunSummary = {
   rejected: Pick<DroppedClaim, "stepId" | "kind" | "url" | "quote" | "reason">[];
   tips: number;
   conflicts: number;
+  /** Wall-clock time of this run (a cached replay is fast; never shown as "it took"). */
   totalMs: number;
+  /**
+   * The duration to show: this run's time when it did live work; for a run served entirely from cache, the
+   * original live run recorded in demo-cache/runs/ (lib/demo/liveRuns.ts); absent when unknown (then omitted).
+   */
+  liveMs?: number;
   costUsd: { exa: number; llm: number; total: number };
   calls: { exa: number; exaLive: number; llm: number; llmLive: number };
   activity: RunActivity;
