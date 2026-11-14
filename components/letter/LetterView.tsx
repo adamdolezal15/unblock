@@ -2,23 +2,40 @@
 import type { Letter, Ref, Seg } from "@/lib/ui/letter";
 import { Footnotes } from "./Footnote";
 
-/** Text with footnotes; consecutive refs render as ¹,². */
+/**
+ * Text with footnotes. Consecutive refs render as one tight superscript (⁵,⁶), and the word before
+ * them is glued to the numbers so a number never wraps onto a line by itself.
+ */
 export function Prose({ segs, big }: { segs: Seg[]; big?: boolean }) {
-  const out: React.ReactNode[] = [];
-  let refs: Ref[] = [];
-  const flush = (k: number) => {
-    if (refs.length) out.push(<Footnotes key={`r${k}`} refs={refs} big={big} />);
-    refs = [];
-  };
-  segs.forEach((s, i) => {
-    if ("ref" in s) refs.push(s.ref);
-    else {
-      flush(i);
-      out.push(<span key={i}>{s.t}</span>);
-    }
-  });
-  flush(segs.length);
-  return <>{out}</>;
+  // Group into runs: text followed by the refs that directly follow it.
+  const runs: { t: string; refs: Ref[] }[] = [];
+  for (const s of segs) {
+    if ("ref" in s) {
+      if (!runs.length) runs.push({ t: "", refs: [] });
+      runs[runs.length - 1].refs.push(s.ref);
+    } else runs.push({ t: s.t, refs: [] });
+  }
+  return (
+    <>
+      {runs.map((run, i) => {
+        if (!run.refs.length) return <span key={i}>{run.t}</span>;
+        // Footnotes attach to the text before them: no space between the last word and the number.
+        const text = run.t.replace(/\s+$/, "");
+        const cut = text.search(/\S+$/);
+        const head = cut > 0 ? text.slice(0, cut) : "";
+        const tail = cut >= 0 ? text.slice(cut) : text;
+        return (
+          <span key={i}>
+            {head}
+            <span className="whitespace-nowrap">
+              {tail}
+              <Footnotes refs={run.refs} big={big} />
+            </span>
+          </span>
+        );
+      })}
+    </>
+  );
 }
 
 export function LetterView({ letter, onShow }: { letter: Letter; onShow: (stepId: string) => void }) {

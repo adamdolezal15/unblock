@@ -76,11 +76,12 @@ function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) 
     <main className="mx-auto max-w-[1040px] px-6 pb-24">
       <div className="pt-12">
         {state.profile && (
-          <div className="mb-6 max-w-[720px] [&_p]:text-[15px]">
+          <div className="mb-6 max-w-[720px]">
             <ProfileSentence
               profile={state.profile}
               text={state.text}
               disabled={running}
+              size="sm"
               onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
             />
           </div>

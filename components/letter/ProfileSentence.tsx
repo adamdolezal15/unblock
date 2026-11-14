@@ -3,16 +3,16 @@ import { useState } from "react";
 import type { ProfileEvent } from "@/lib/ui/runState";
 import { profileParts, type Field } from "@/lib/ui/profileSentence";
 
-type Props = { profile: ProfileEvent; text: string; disabled: boolean; onCorrect: (field: Field, value: string) => void };
+type Props = { profile: ProfileEvent; text: string; disabled: boolean; onCorrect: (field: Field, value: string) => void; size?: "sm" | "md" };
 
 /** "You're a Czech citizen, working and studying in Helsinki from 1 December…" with editable, underlined parts. */
-export function ProfileSentence({ profile, text, disabled, onCorrect }: Props) {
+export function ProfileSentence({ profile, text, disabled, onCorrect, size = "md" }: Props) {
   const [editing, setEditing] = useState<Field | null>(null);
   const parts = profileParts(profile.profile, profile.assumptions, text);
 
   return (
-    <div className="max-w-[720px] text-[17px] leading-[1.7] text-muted">
-      <p>
+    <div className={`max-w-[720px] leading-[1.7] text-muted ${size === "sm" ? "text-[15px]" : "text-[17px]"}`}>
+      <div>
         {parts.map((p, i) =>
           "t" in p ? (
             <span key={i}>{p.t}</span>
@@ -39,7 +39,7 @@ export function ProfileSentence({ profile, text, disabled, onCorrect }: Props) {
             </button>
           ),
         )}
-      </p>
+      </div>
       {profile.partnerNotes.map((n) => (
         <p key={n} className="mt-1">
           For your partner: {n} I haven&apos;t researched their steps.

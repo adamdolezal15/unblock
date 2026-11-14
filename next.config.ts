@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // No on-screen route indicator (the demo is shown on a projector); errors still surface.
+  devIndicators: false,
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
