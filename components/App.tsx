@@ -1,139 +1,150 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRun } from "@/lib/ui/useRun";
 import type { RunState } from "@/lib/ui/runState";
+import { buildLetter } from "@/lib/ui/letter";
+import { correction } from "@/lib/ui/profileSentence";
 import { ActivityFeed } from "./ActivityFeed";
-import { Header } from "./Header";
-import { ProfileStrip } from "./ProfileStrip";
-import { RunInput } from "./RunInput";
-import { EmptyState, ErrorState, OutOfScopeState, PartialNotice } from "./States";
+import { Header, PROMISE } from "./Header";
 import { GraphLegend, PlanGraph, type Selection } from "./graph/PlanGraph";
+import { Closing } from "./letter/Closing";
+import { LetterSkeleton, LetterView } from "./letter/LetterView";
+import { ProfileSentence } from "./letter/ProfileSentence";
+import { SourcesList } from "./letter/SourcesList";
+import { RunInput } from "./RunInput";
+import { ErrorState, LandingNote, OutOfScopeState, PartialNotice } from "./States";
 import { StepsPreview } from "./StepsPreview";
-import { SummaryBar } from "./SummaryBar";
 
 export function App() {
   const { state, start, reset } = useRun();
   const running = state.phase === "running";
-  const idle = state.phase === "idle";
+
+  if (state.phase === "idle") {
+    return (
+      <main className="min-h-screen px-8 pb-24 pt-[12vh]">
+        <div className="max-w-[760px]">
+          <h1 className="font-serif text-[56px] font-semibold leading-none tracking-[-0.01em] text-ink">Unblock</h1>
+          <p className="mb-10 mt-3 font-serif text-[24px] leading-snug text-muted">{PROMISE}</p>
+          <RunInput key={state.runKey} value="" running={false} compact={false} onSubmit={start} />
+          <LandingNote />
+        </div>
+      </main>
+    );
+  }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="min-h-screen pb-24">
       <Header onHome={reset} />
-      <RunInput key={state.runKey} value={state.text} running={running} compact={!idle} onSubmit={start} />
-      {idle && <EmptyState />}
+      <RunInput key={state.runKey} value={state.text} running={running} compact onSubmit={start} />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => start(state.text)} />}
       {(running || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Workspace state={state} onCorrect={(c) => start(`${state.text} (correction: ${c})`)} />
+        <Results state={state} onRerun={(t) => start(t)} />
       )}
     </div>
   );
 }
 
-function Workspace({ state, onCorrect }: { state: RunState; onCorrect: (correction: string) => void }) {
+function Results({ state, onRerun }: { state: RunState; onRerun: (text: string) => void }) {
   const running = state.phase === "running";
-  // Feed collapses by itself when the run is done; the user can override it per run.
+  const doc = useMemo(() => buildLetter(state), [state]);
+
+  // Feed collapses by itself when the run is done; the user can reopen it (per run).
   const [feedPref, setFeedPref] = useState<{ runKey: number; collapsed: boolean } | null>(null);
   const collapsed = feedPref?.runKey === state.runKey ? feedPref.collapsed : state.phase === "done";
-  const toggleFeed = () => setFeedPref({ runKey: state.runKey, collapsed: !collapsed });
   const elapsed = state.summary?.totalMs ?? (state.finishedAt ? state.finishedAt - state.startedAt : undefined);
-  const steps = state.stepOrder.map((id) => state.steps[id]);
-  // Selection is per run.
+
+  // Map selection (per run).
   const [sel, setSel] = useState<{ runKey: number; selection: Selection }>({ runKey: 0, selection: null });
   const selection = sel.runKey === state.runKey ? sel.selection : null;
   const select = (selection: Selection) => setSel({ runKey: state.runKey, selection });
+  const mapRef = useRef<HTMLElement>(null);
+  const showOnMap = (id: string) => {
+    select({ kind: "step", id });
+    mapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-  const feed = (
-    <ActivityFeed statuses={state.statuses} running={running} elapsedMs={elapsed} collapsed={collapsed} onToggle={toggleFeed} />
-  );
+  const steps = state.stepOrder.map((id) => state.steps[id]);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col border-t border-rule">
-      {collapsed && feed}
-      <div className={`grid min-h-[calc(100vh-150px)] flex-1 ${collapsed ? "grid-cols-1" : "grid-cols-[300px_minmax(0,1fr)]"}`}>
-        {!collapsed && <aside className="flex max-h-[calc(100vh-150px)] min-h-0 flex-col border-r border-rule bg-sunk/40">{feed}</aside>}
-        <main className="flex min-w-0 flex-col gap-4 px-6 py-4">
+    <main className="px-8">
+      <div className="grid gap-x-14 gap-y-8 pt-8 lg:grid-cols-[minmax(0,680px)_minmax(260px,380px)]">
+        <article className="min-w-0 space-y-8">
           {state.profile ? (
-            <ProfileStrip profile={state.profile} disabled={running} onCorrect={(_a, c) => onCorrect(c)} />
+            <ProfileSentence
+              profile={state.profile}
+              text={state.text}
+              disabled={running}
+              onCorrect={(field, value) => onRerun(`${state.text} ${correction(field, value, state.profile!.assumptions)}`)}
+            />
           ) : (
-            <ProfileSkeleton />
+            <div className="skeleton h-5 w-3/4 rounded" aria-hidden />
           )}
-          {state.summary ? <SummaryBar summary={state.summary} /> : running ? <RunningLine state={state} /> : null}
+          {doc.letter ? <LetterView letter={doc.letter} onShow={showOnMap} /> : <LetterSkeleton />}
           {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
-          {state.error && <p className="text-[15px] text-ink">{state.error}</p>}
-          {state.notes.length > 0 && (
-            <ul className="space-y-1 text-[14px] text-muted">
-              {state.notes.map((n, i) => (
-                <li key={i}>{n}</li>
-              ))}
-            </ul>
-          )}
+          {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
+          {state.summary && <Closing summary={state.summary} />}
+        </article>
+        <aside className="lg:sticky lg:top-6 lg:self-start">
+          <ActivityFeed
+            statuses={state.statuses}
+            notes={state.notes}
+            running={running}
+            elapsedMs={elapsed}
+            collapsed={collapsed}
+            onToggle={() => setFeedPref({ runKey: state.runKey, collapsed: !collapsed })}
+          />
+        </aside>
+      </div>
+
+      <section ref={mapRef} aria-labelledby="map" className="mt-16 scroll-mt-4 border-t border-rule pt-8">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <div>
+            <h2 id="map" className="font-serif text-[26px] font-semibold text-ink">
+              Your map
+            </h2>
+            <p className="mt-1 text-[16px] text-muted">
+              {state.graph
+                ? "Time runs left to right, one row per office. Click a step or an arrow to see the sources behind it."
+                : "Steps appear here as I confirm them."}
+            </p>
+          </div>
+          {state.graph && <GraphLegend />}
+        </div>
+        <div className="mt-5">
           {state.graph ? (
-            <section aria-label="Plan graph" className="flex flex-col gap-2">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h2 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">
-                  Your plan{state.schedule ? ", by start date" : ""}
-                </h2>
-                <GraphLegend />
-              </div>
-              <div className="h-[clamp(380px,calc(100vh-270px),680px)] rounded-md border border-rule bg-paper">
-                <PlanGraph
-                  graph={state.graph.graph}
-                  steps={state.steps}
-                  items={state.schedule?.schedule.items}
-                  criticalPath={state.schedule?.criticalPath.stepIds}
-                  conflicts={state.conflicts}
-                  deadlocks={state.graph.deadlocks}
-                  selection={selection}
-                  onSelect={select}
-                />
-              </div>
-              {state.stubs.length > 0 && (
-                <ul className="space-y-1 text-[14px] text-muted">
-                  {state.stubs.map((s) => (
-                    <li key={s.id}>
-                      <span className="font-medium text-ink">{s.label}:</span> {s.message}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="sr-only" aria-live="polite">
-                {selection?.kind === "step" ? `Selected ${state.steps[selection.id]?.title ?? selection.id}` : ""}
-              </p>
-            </section>
+            <div className="h-[clamp(420px,68vh,640px)]">
+              <PlanGraph
+                graph={state.graph.graph}
+                steps={state.steps}
+                items={state.schedule?.schedule.items}
+                criticalPath={state.schedule?.criticalPath.stepIds}
+                conflicts={state.conflicts}
+                deadlocks={state.graph.deadlocks}
+                selection={selection}
+                onSelect={select}
+              />
+            </div>
           ) : (
             <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} />
           )}
-        </main>
-      </div>
-    </div>
-  );
-}
+          {state.graph && state.stubs.length > 0 && (
+            <ul className="mt-4 space-y-1 text-[15px] text-muted">
+              {state.stubs.map((s) => (
+                <li key={s.id}>
+                  <span className="font-semibold text-ink">{s.label}:</span> {s.message}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
 
-function RunningLine({ state }: { state: RunState }) {
-  const actionable = state.stepOrder.filter((id) => !state.steps[id].milestone).length;
-  const stage = !state.profile
-    ? "Reading your situation"
-    : !state.graph
-      ? `Researching steps · ${actionable} confirmed so far`
-      : !state.schedule
-        ? `Checking what people who did it say · ${state.tips.length} tips`
-        : "Cross-checking sources for conflicts";
-  return (
-    <p className="num flex items-center gap-2 text-[15px] text-muted" role="status">
-      <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-      {stage}…
-    </p>
-  );
-}
-
-function ProfileSkeleton() {
-  return (
-    <div className="flex items-center gap-2" aria-hidden>
-      <span className="mr-1 text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">Your situation</span>
-      {[96, 120, 80, 140].map((w) => (
-        <span key={w} className="skeleton h-7 rounded-full" style={{ width: w }} />
-      ))}
-    </div>
+      {state.phase === "done" && doc.sources.length > 0 && (
+        <div className="mt-16">
+          <SourcesList sources={doc.sources} />
+        </div>
+      )}
+    </main>
   );
 }

@@ -111,6 +111,13 @@ All LLM-shaped work goes through `lib/llm` `extract(task, input, zodSchema)`. `L
 - Demo replay: an exact demo sentence served fully from cache spaces status lines 70–180 ms apart (~9 s for Marta, capped at 10 s in total); spacing stops at the first live call. `?fast=1` skips it.
 - `npx tsx scripts/run.ts [--fast] [--json] "<sentence>"` prints the stream.
 
+## UI (app/page.tsx, components/, lib/ui/)
+Civic document, not a dashboard: light paper theme only, Finnish blue (#003580) only for the critical path, links and the primary button, amber only for conflicts, green only for done. Source Serif 4 for headlines and quotes, IBM Plex Sans for UI, sentence case, hairline rules, no chips or uppercase labels.
+- Answer first: a letter (, pure, run data only): headline (set-up date from the critical path; the any-of shortcut when one option is ready >= 3 working days earlier, else the first critical step), then paragraphs: shortcut, money at stake (only from a verified cost_of_delay quote stating a % of salary, times the stated salary), the first conflict, community-sourced waits and estimated dates. Closing stats sentence with the rejected-claims list.
+- Footnotes are per source page, numbered in reading order (letter first, then every other citation), shared by the letter, the side panel and the Sources list (grouped by trust tier). A footnote opens the verified quote; links use a URL text fragment to scroll to the sentence.
+- Profile as one sentence with editable parts; an edit appends a correction to the original sentence and re-runs.
+- Your map: React Flow, x = scheduled start (one column per date), lanes by authority (StepDef.authority), short labels (StepDef.short), orthogonal routes that never cross a node, any-of diamonds, merged visits in a frame (the requirement met inside the visit is not drawn).
+
 ## Out of scope
 Lease checking, Websets, full benefits engine, Google OAuth, chat UI as main screen, OCR.
 

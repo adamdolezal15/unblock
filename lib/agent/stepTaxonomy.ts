@@ -37,7 +37,7 @@ export const STEP_TAXONOMY: StepDef[] = [
   {
     id: "eu_registration",
     short: "EU registration",
-    authority: "DVV",
+    authority: "Migri",
     label: "Register EU citizen's right of residence",
     appliesTo: (p) => p.citizenship === "EU",
     query: (p) => `How does an EU citizen register their right of residence after moving to ${p.city}, Finland`,

@@ -35,16 +35,11 @@ export function TrustGlyph({ trust, className = "h-3.5 w-3.5" }: { trust?: Trust
   );
 }
 
-/** Labelled badge for the side panel and quotes. Official sources get the ink treatment; the rest are outlined. */
+/** Trust tier next to a source: the glyph and the tier name, sentence case. */
 export function TrustBadge({ trust }: { trust: Trust }) {
-  const strong = trust === "official";
   return (
-    <span
-      title={TRUST_HELP[trust]}
-      className={`inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[13px] font-semibold uppercase leading-none tracking-[0.06em] ${
-        strong ? "bg-ink text-paper" : trust === "community" ? "border border-dashed border-rule-strong text-muted" : "border border-rule-strong text-ink"
-      }`}
-    >
+    <span title={TRUST_HELP[trust]} className={`inline-flex items-center gap-1.5 text-[14px] ${trust === "official" ? "font-semibold text-ink" : "text-muted"}`}>
+      <TrustGlyph trust={trust} className="h-3.5 w-3.5" />
       {TRUST_LABEL[trust]}
     </span>
   );
