@@ -137,7 +137,20 @@ function Inner({ graph, steps, items, criticalPath, conflicts, deadlocks, select
   const onLeave = useCallback(() => setHovered(null), []);
 
   return (
-    <div ref={box} className="plan-graph h-full w-full">
+    <div
+      ref={box}
+      className="plan-graph h-full w-full"
+      onKeyDown={(e) => {
+        // Enter / Space on a focused step or diamond opens its details.
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const el = (e.target as HTMLElement).closest(".react-flow__node.pg-node");
+        const id = el?.getAttribute("data-id");
+        if (id) {
+          e.preventDefault();
+          onSelect({ kind: "step", id });
+        }
+      }}
+    >
       <style>{css}</style>
       <ReactFlow
         nodes={flow.nodes}

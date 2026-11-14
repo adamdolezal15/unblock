@@ -24,10 +24,12 @@ const article = (w: string) => (/^[aeiou]/i.test(w) && !/^eu\b/i.test(w) ? "an" 
 export function profileParts(p: Profile, assumptions: string[], text: string): Part[] {
   const nat = nationalityIn(text);
   const whoText = nat ? `${nat} citizen` : GROUP[p.citizenship];
-  const purposes = p.purpose.map((x) => DOING[x]);
+  // "with your family" already says it; don't also say "joining family".
+  const purposes = p.purpose.filter((x) => !(x === "family" && p.hasFamily && p.purpose.length > 1)).map((x) => DOING[x]);
   const doing = purposes.length > 1 ? `${purposes.slice(0, -1).join(", ")} and ${purposes[purposes.length - 1]}` : (purposes[0] ?? "moving");
 
   const salaryIdx = assumptions.findIndex((a) => /salary|gross|net\b/i.test(a));
+  const dayIdx = assumptions.findIndex((a) => /only the month/i.test(a));
   const parts: Part[] = [
     { t: `You're ${article(whoText)} ` },
     { field: "citizenship", value: whoText },
@@ -36,7 +38,10 @@ export function profileParts(p: Profile, assumptions: string[], text: string): P
     { t: " in " },
     { field: "city", value: p.city },
   ];
-  if (p.arrivalDate) parts.push({ t: " from " }, { field: "arrival", value: longDate(p.arrivalDate) });
+  if (p.arrivalDate) {
+    parts.push({ t: " from " }, { field: "arrival", value: longDate(p.arrivalDate) });
+    if (dayIdx >= 0) parts.push({ t: " (I assumed " }, { field: `assumption:${dayIdx}`, value: "the 1st", title: assumptions[dayIdx] }, { t: ")" });
+  }
   if (p.monthlySalaryEur) {
     parts.push({ t: ", on " }, { field: "salary", value: `€${p.monthlySalaryEur.toLocaleString("en-GB")} a month` });
     if (salaryIdx >= 0) {
@@ -46,7 +51,7 @@ export function profileParts(p: Profile, assumptions: string[], text: string): P
   }
   if (p.hasFamily) parts.push({ t: ", " }, { field: "family", value: "with your family" });
   parts.push({ t: "." });
-  const rest = assumptions.map((a, i) => ({ a, i })).filter(({ i }) => i !== salaryIdx);
+  const rest = assumptions.map((a, i) => ({ a, i })).filter(({ i }) => i !== salaryIdx && i !== dayIdx);
   if (rest.length) {
     parts.push({ t: " I assumed " });
     rest.forEach(({ a, i }, k) => {
@@ -64,10 +69,12 @@ function assumptionPhrase(sentence: string): string {
   if (/^city /.test(l)) return `you mean ${l.slice(5)}`;
   if (l === "arrival date") return "you arrive today";
   if (l === "arrival on the 1st") return "the 1st of the month";
-  if (l === "purpose: work") return "you are coming to work";
+  if (l === "purpose: work" || /\b(interpreted|treated) as (moving to Finland )?for work\b/i.test(sentence)) return "you are coming to work";
   if (l === "PhD as study") return "your PhD counts as study";
   if (/nationality|wife|husband|spouse|partner/i.test(sentence)) return "your partner has the same citizenship";
-  return l.replace(/…$/, "");
+  // Unknown kind: the whole sentence, not four truncated words.
+  const whole = sentence.trim().replace(/\.$/, "");
+  return whole[0].toLowerCase() + whole.slice(1);
 }
 
 /** The correction appended to the sentence when an editable part changes. */

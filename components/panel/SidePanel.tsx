@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { Citation, Conflict, Step, Tip } from "@/lib/types";
 import type { RunState } from "@/lib/ui/runState";
 import type { LetterDoc } from "@/lib/ui/letter";
@@ -25,6 +25,19 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onSelect]);
 
+  // Keyboard users land in the drawer when it opens and go back where they were when it closes.
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const back = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus({ preventScroll: true });
+    return () => back?.focus?.({ preventScroll: true });
+  }, []);
+  const selKey = selection.kind === "edge" ? selection.id : `s:${selection.id}`;
+  const scroller = useRef<HTMLElement>(null);
+  useEffect(() => {
+    scroller.current?.scrollTo({ top: 0 });
+  }, [selKey]);
+
   const ctx: Ctx = {
     state,
     cite: (c?: Citation) => (c ? <Footnote r={doc.ref(c)} /> : null),
@@ -41,10 +54,11 @@ export function SidePanel({ state, doc, selection, onSelect }: Props) {
   // A fixed drawer: opens from any view and never resizes the map behind it.
   return (
     <aside
+      ref={scroller}
       aria-label="Details"
       className="fixed inset-y-0 right-0 z-40 w-[min(480px,100vw)] overflow-y-auto border-l border-rule-strong bg-paper px-7 pb-12 pt-6 shadow-[-12px_0_32px_rgba(22,24,29,0.12)]"
     >
-      <button type="button" onClick={() => onSelect(null)} className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
+      <button ref={closeRef} type="button" onClick={() => onSelect(null)} className="absolute right-4 top-4 rounded p-1.5 text-muted hover:bg-sunk hover:text-ink" aria-label="Close details">
         <IconClose className="h-5 w-5" />
       </button>
       {body}
