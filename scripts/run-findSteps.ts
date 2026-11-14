@@ -10,6 +10,7 @@ import { findSteps } from "../lib/agent/findSteps";
 import { cacheMode } from "../lib/exa/cache";
 import { exaStats, resetExaStats } from "../lib/exa/search";
 import { buildGraph, criticalNode, criticalPath, schedule, topoOrder } from "../lib/graph";
+import { estimatesFromSteps } from "../lib/agent/estimates";
 import type { Citation, VerifiedClaim } from "../lib/types";
 
 const BADGE: Record<Citation["trust"], string> = {
@@ -52,6 +53,12 @@ async function main() {
 
   console.log(`\n=== STEPS (${result.steps.length}) ===`);
   for (const s of result.steps) {
+    if (s.milestone) {
+      console.log(`\n◆ ${s.title}  (${s.id} · milestone)`);
+      for (const g of s.requiresAnyOf ?? []) console.log(`  ├ REQUIRES ANY OF: ${g.join(" | ")}`);
+      for (const c of s.claims ?? []) printClaim(`  ├ option ${c.stepId}: `, c);
+      continue;
+    }
     console.log(`\n● ${s.title}  (${s.id} · ${s.authority} · ${s.mode})`);
     if (s.confirmation?.by === "required_by") {
       console.log(`  ├ confirmed because required by: ${s.confirmation.stepIds.join(", ")}`);
@@ -59,7 +66,8 @@ async function main() {
     const claims = s.claims ?? [];
     for (const c of claims.filter((c) => c.kind === "applies")) printClaim("  ├ applies: ", c);
     for (const c of claims.filter((c) => c.kind === "requires")) printClaim(`  ├ REQUIRES → ${c.value}: `, c);
-    for (const c of claims.filter((c) => c.kind !== "applies" && c.kind !== "requires")) {
+    for (const c of claims.filter((c) => c.kind === "provides")) printClaim(`  ├ PROVIDES ${c.value}: `, c);
+    for (const c of claims.filter((c) => !["applies", "requires", "provides"].includes(c.kind))) {
       printClaim(`  ├ ${c.kind} = ${wrap(c.value, 60)}: `, c);
     }
   }
@@ -82,11 +90,19 @@ async function main() {
   const graph = buildGraph(result.steps);
   const topo = topoOrder(graph);
   const crit = criticalNode(graph);
-  const sched = schedule(graph, parsed.profile);
+  const estimates = estimatesFromSteps(result.steps);
+  const sched = schedule(graph, parsed.profile, { estimates });
   const path = criticalPath(graph, sched);
   console.log("\n=== GRAPH ===");
   console.log(`  nodes ${graph.nodes.length} (${graph.nodes.filter((n) => n.unresolved).length} unresolved), edges ${graph.edges.length}`);
-  for (const e of graph.edges) console.log(`  ${e.source} → ${e.target}`);
+  for (const e of graph.edges) console.log(`  ${e.source} → ${e.target}${e.anyOf ? "   (any-of)" : ""}`);
+  console.log("  schedule (working-day index; wait from a cited processing time, else default 5 = est.):");
+  for (const id of sched.order) {
+    const it = sched.items[id];
+    if (!it) continue;
+    const cited = estimates[id] ? "cited" : it.estimated ? "est." : "";
+    console.log(`    day ${String(it.startIndex).padStart(3)} → ready day ${String(it.readyIndex).padStart(3)}  ${id}  (wait ${it.waitDays}${cited ? `, ${cited}` : ""})`);
+  }
   console.log(`  order: ${topo.order.join(" → ") || "(none)"}`);
   for (const d of topo.deadlocks) console.log(`  DEADLOCK: ${d.stepIds.join(" → ")}: ${d.explanation}`);
   console.log(`  critical node: ${crit ?? "(none: no dependencies found)"}`);
@@ -96,7 +112,7 @@ async function main() {
 
   // --- totals
   const stats = exaStats();
-  const verified = result.steps.reduce((n, s) => n + (s.claims?.length ?? 0), 0);
+  const verified = result.steps.reduce((n, s) => n + (s.milestone ? 0 : (s.claims?.length ?? 0)), 0); // milestone claims are the providers' own
   const verifiedInStubs = result.reports.reduce((n, r) => n + r.verified, 0) - verified;
   const byReason: Record<string, number> = {};
   for (const d of result.dropped) byReason[d.reason] = (byReason[d.reason] ?? 0) + 1;

@@ -136,9 +136,19 @@ const MODES: Record<string, Step["mode"]> = {
 };
 
 /** Normalise a claim's value per kind. null = invalid. */
-function cleanValue(kind: ClaimKind, value: string, stepId: string, knownIds: ReadonlySet<string>): string | null | "unknown_id" {
+function cleanValue(
+  kind: ClaimKind,
+  value: string,
+  stepId: string,
+  knownIds: ReadonlySet<string>,
+  milestoneIds: ReadonlySet<string>,
+): string | null | "unknown_id" {
   const v = value.trim();
   if (!v) return null;
+  if (kind === "provides") {
+    const id = v.toLowerCase();
+    return milestoneIds.has(id) ? id : "unknown_id";
+  }
   if (kind === "requires") {
     const id = v.toLowerCase();
     return knownIds.has(id) && id !== stepId ? id : "unknown_id";
@@ -161,8 +171,10 @@ export type VerifyOptions = {
   allowedDomains: readonly string[];
   /** City domains labelled official for this run. */
   extraOfficial?: string[];
-  /** Canonical step ids a `requires` value may name. */
+  /** Canonical ids a `requires` value may name (steps and milestones). */
   knownStepIds: ReadonlySet<string>;
+  /** Milestone ids a `provides` value may name. */
+  milestoneIds?: ReadonlySet<string>;
   fetchPage?: PageFetcher;
 };
 
@@ -197,7 +209,7 @@ export async function verifyCitations(
     unique.map(async (c): Promise<VerifiedClaim | DroppedClaim> => {
       const drop = (reason: DroppedClaim["reason"], bestScore?: number): DroppedClaim => ({ ...c, reason, bestScore });
 
-      const value = cleanValue(c.kind, c.value, c.stepId, opts.knownStepIds);
+      const value = cleanValue(c.kind, c.value, c.stepId, opts.knownStepIds, opts.milestoneIds ?? new Set());
       if (value === "unknown_id") return drop("unknown_step_id");
       if (value === null) return drop("invalid_value");
       if (!onDomains(c.url, opts.allowedDomains)) return drop("url_not_allowed");

@@ -1,5 +1,5 @@
 import type { Profile } from "../types";
-import { requiresMap } from "./buildGraph";
+import { requirementGroups } from "./buildGraph";
 import { calendarDaysBetween, helsinkiDate, toHelsinkiDate, workingDayCalendar } from "./dates";
 import { priorityScores } from "./priority";
 import { topoOrder } from "./topoOrder";
@@ -14,9 +14,13 @@ function clean(n: number | undefined): number | undefined {
 
 /**
  * Assigns working-day dates. Starts at max(arrival, today) in Helsinki, skipping weekends
- * and `holidays`. Each step starts once all its prerequisites are ready; independent steps
- * run in parallel. A step occupies `durationDays` working days, then `waitDays` pass before
- * its dependents can start. Steps in or behind a deadlock are not scheduled.
+ * and `holidays`. Each step starts once every requirement group is ready; an any-of group is ready
+ * when its EARLIEST-finishing option is. Independent steps run in parallel. A step occupies
+ * `durationDays` working days, then `waitDays` pass before its dependents can start. Milestones
+ * (states, not actions) take 0 + 0 unless estimated. Steps in or behind a deadlock are not scheduled.
+ *
+ * Earliest times are computed in time order (Knuth's AND/OR generalisation of Dijkstra): nodes are
+ * finalised by increasing ready day, so the first option to finalise is the earliest for its group.
  */
 export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, opts: ScheduleOptions = {}): Schedule {
   const today = opts.today ?? helsinkiDate(new Date());
@@ -26,21 +30,30 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
   const defaults = opts.defaults ?? DEFAULT_ESTIMATE;
 
   const { order, blocked, deadlocks } = topoOrder(graph);
-  const req = requiresMap(graph);
-  const items: Record<string, ScheduledStep> = {};
+  const groups = requirementGroups(graph);
+  const milestone = new Set(graph.nodes.filter((n) => n.milestone).map((n) => n.id));
+  const pos = new Map(order.map((id, i) => [id, i]));
+  const satisfies = new Map<string, [string, number][]>(graph.nodes.map((n) => [n.id, []]));
+  for (const [target, gs] of groups) gs.forEach((g, gi) => g.forEach((o) => satisfies.get(o)?.push([target, gi])));
 
-  for (const id of order) {
+  const groupReady = new Map<string, number[]>();
+  const remaining = new Map<string, number>();
+  for (const [id, gs] of groups) {
+    groupReady.set(id, gs.map(() => Infinity));
+    remaining.set(id, gs.length);
+  }
+
+  const items: Record<string, ScheduledStep> = {};
+  const queue: ScheduledStep[] = [];
+  const plan = (id: string, startIndex: number) => {
     const known = opts.estimates?.[id] ?? {};
     const dur = clean(known.durationDays);
     const wait = clean(known.waitDays);
-    const durationDays = dur ?? defaults.durationDays;
-    const waitDays = wait ?? defaults.waitDays;
-
-    let startIndex = 0;
-    for (const r of req.get(id) ?? []) startIndex = Math.max(startIndex, items[r].readyIndex);
+    const isMilestone = milestone.has(id);
+    const durationDays = dur ?? (isMilestone ? 0 : defaults.durationDays);
+    const waitDays = wait ?? (isMilestone ? 0 : defaults.waitDays);
     const readyIndex = startIndex + durationDays + waitDays;
-
-    items[id] = {
+    queue.push({
       stepId: id,
       startDate: dateAt(startIndex),
       endDate: dateAt(startIndex + Math.max(durationDays, 1) - 1),
@@ -50,17 +63,41 @@ export function schedule(graph: Graph, profile: Pick<Profile, "arrivalDate">, op
       readyIndex,
       durationDays,
       waitDays,
-      estimated: dur === undefined || wait === undefined,
-    };
+      estimated: !isMilestone && (dur === undefined || wait === undefined),
+    });
+  };
+  for (const id of order) if (remaining.get(id) === 0) plan(id, 0);
+
+  while (queue.length) {
+    let best = 0;
+    for (let i = 1; i < queue.length; i++) {
+      const a = queue[i];
+      const b = queue[best];
+      if (a.readyIndex < b.readyIndex || (a.readyIndex === b.readyIndex && pos.get(a.stepId)! < pos.get(b.stepId)!)) best = i;
+    }
+    const item = queue.splice(best, 1)[0];
+    items[item.stepId] = item;
+    for (const [d, gi] of satisfies.get(item.stepId) ?? []) {
+      const gr = groupReady.get(d)!;
+      if (gr[gi] !== Infinity || items[d]) continue;
+      gr[gi] = item.readyIndex; // first to finalise = earliest option
+      const left = remaining.get(d)! - 1;
+      remaining.set(d, left);
+      if (left === 0) plan(d, Math.max(...gr));
+    }
   }
 
-  return { startDate: dateAt(0), items, order, blocked, deadlocks };
+  // Keep items keyed in topological order (stable for consumers), not finalisation order.
+  const ordered: Record<string, ScheduledStep> = {};
+  for (const id of order) if (items[id]) ordered[id] = items[id];
+  return { startDate: dateAt(0), items: ordered, order, blocked, deadlocks };
 }
 
 /**
  * The chain of binding prerequisites ending at the step that finishes last.
  * Walks back from the last-finishing step, each time taking the prerequisite whose
  * readiness set the current step's start (ties: higher priority, then earlier in order).
+ * For an any-of group only the option that satisfied it (the earliest-ready one) can bind.
  */
 export function criticalPath(graph: Graph, sched: Schedule): CriticalPath {
   const ids = sched.order.filter((id) => sched.items[id]);
@@ -78,15 +115,21 @@ export function criticalPath(graph: Graph, sched: Schedule): CriticalPath {
     if (r > lr || (r === lr && better(id, last))) last = id;
   }
 
-  const req = requiresMap(graph);
+  const groups = requirementGroups(graph);
   const path = [last];
   let cur = last;
   for (;;) {
     let next: string | null = null;
-    for (const r of req.get(cur) ?? []) {
-      const item = sched.items[r];
-      if (!item || item.readyIndex !== sched.items[cur].startIndex) continue;
-      if (next === null || better(r, next)) next = r;
+    for (const g of groups.get(cur) ?? []) {
+      // the option that actually satisfied this group: the earliest-ready scheduled one
+      let chosen: string | null = null;
+      for (const o of g) {
+        const it = sched.items[o];
+        if (!it) continue;
+        if (chosen === null || it.readyIndex < sched.items[chosen].readyIndex) chosen = o;
+      }
+      if (chosen === null || sched.items[chosen].readyIndex !== sched.items[cur].startIndex) continue;
+      if (next === null || better(chosen, next)) next = chosen;
     }
     if (next === null) break;
     path.unshift(next);

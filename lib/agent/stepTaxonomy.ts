@@ -78,6 +78,15 @@ export const STEP_TAXONOMY: StepDef[] = [
     objective: "Official Finnish Tax Administration pages on getting a tax card as a newcomer, where to apply, what is needed, and the withholding rate without a tax card.",
   },
   {
+    id: "vero_identity_code",
+    label: "Personal identity code from a Vero tax office",
+    appliesTo: working,
+    query: () =>
+      "Getting a Finnish personal identity code at a Tax Administration (Vero) tax office when arriving in Finland to work",
+    objective:
+      "Official Finnish Tax Administration pages on tax offices that issue Finnish personal identity codes to people arriving to work: who can get one there, what to bring, and when the code is issued.",
+  },
+  {
     id: "bank_account",
     label: "Bank account",
     appliesTo: () => true,
@@ -117,7 +126,17 @@ export const STEP_TAXONOMY: StepDef[] = [
   },
 ];
 
-export const STEP_IDS: ReadonlySet<string> = new Set(STEP_TAXONOMY.map((s) => s.id));
+/**
+ * Milestones: states a step can need ("has a Finnish personal identity code") that several different
+ * steps can produce. Never searched directly; a source must say which steps provide them.
+ */
+export const MILESTONES: Record<string, { label: string }> = {
+  personal_identity_code: { label: "Finnish personal identity code" },
+};
+export const MILESTONE_IDS: ReadonlySet<string> = new Set(Object.keys(MILESTONES));
+
+/** Ids a `requires` claim may name: steps and milestones. */
+export const STEP_IDS: ReadonlySet<string> = new Set([...STEP_TAXONOMY.map((s) => s.id), ...MILESTONE_IDS]);
 
 export function selectSteps(profile: Profile): StepDef[] {
   return STEP_TAXONOMY.filter((s) => s.appliesTo(profile));

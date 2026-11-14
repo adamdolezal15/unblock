@@ -53,7 +53,7 @@ type Citation = { url: string; quote: string; trust: "official" | "provider" | "
 // Every edge and fact of a Step. `citation.quote` is the matched page text (verbatim), not the extractor's copy.
 type VerifiedClaim = {
   stepId: string;
-  kind: "applies" | "requires" | "mode" | "document" | "cost_of_delay" | "processing_time" | "address" | "hours" | "booking_url";
+  kind: "applies" | "requires" | "provides" | "mode" | "document" | "cost_of_delay" | "processing_time" | "address" | "hours" | "booking_url";
   value: string;               // requires: a canonical step id
   citation: Citation;
   matchScore: number;          // 1 exact, >= 0.9 fuzzy
@@ -64,13 +64,21 @@ type Step = {
   title: string;
   authority: string;           // DVV, Vero, Kela...
   mode: "online" | "in_person" | "either";
-  requires: string[];          // step ids
+  requires: string[];          // step ids, ALL needed
+  requiresAnyOf?: string[][];  // each group met by ANY one option, e.g. [["dvv_registration","vero_identity_code"]]
+  milestone?: boolean;         // a state (personal_identity_code), not an action: 0 days, never the critical node
   costOfDelay?: string;        // human-readable, e.g. "60 % tax withheld from salary"
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
   communityTips?: Citation[];
   claims?: VerifiedClaim[];    // per-edge / per-fact citations
+  confirmation?: { by: "applies" } | { by: "required_by"; stepIds: string[]; citations: Citation[] };
 };
+
+// "Needs a personal identity code" -> requires personal_identity_code (milestone). Its options are the
+// steps with a verified `provides` claim (DVV registration, a Vero tax office visit, a residence permit...).
+// lib/graph: an any-of group is satisfied by its earliest-finishing option; schedule waits come from
+// cited processing_time claims where present (lib/agent/estimates.ts), else defaults flagged estimated.
 
 type Conflict = { topic: string; a: Citation; b: Citation; note: string };
 ```

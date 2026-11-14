@@ -1,7 +1,9 @@
 // Pipeline step 2 (SPEC F1). Per relevant canonical step, in parallel:
 //   targeted Exa searches -> extract claims via lib/llm -> verifyCitations -> merge into a Step.
-// Steps carry only verified claims. A step with no verified `applies` claim becomes a stub
-// ("not found, check <url>") and stays out of the graph.
+// Steps carry only verified claims. A step is confirmed by its own `applies` claim or by a confirmed
+// step requiring it (see confirmSteps); otherwise it becomes a stub ("not found, check <url>").
+// "Needs a personal identity code" points at the personal_identity_code milestone, which any step
+// with a verified `provides` claim can satisfy (an any-of group in lib/graph).
 import { cityDomains, officialDomains, PROVIDER, TRUST_RANK, UNIVERSITY } from "../exa/domains";
 import { searchOfficial, searchProvider } from "../exa/search";
 import { extract } from "../llm";
@@ -10,7 +12,7 @@ import type {
   Citation, Confirmation, Conflict, DroppedClaim, ExaDoc, Profile, RawClaim, Step, StepStub, VerifiedClaim,
 } from "../types";
 import { authorityOf } from "./authority";
-import { selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
+import { MILESTONE_IDS, MILESTONES, selectSteps, STEP_IDS, type StepDef } from "./stepTaxonomy";
 import { createPageFetcher, verifyCitations, type PageFetcher } from "./verifyCitations";
 
 export type StepReport = {
@@ -31,6 +33,8 @@ export type FindStepsResult = {
   dropped: DroppedClaim[];
   conflicts: Conflict[];
   reports: StepReport[];
+  /** Every source document read, so citations can be re-checked independently. */
+  sources: ExaDoc[];
 };
 
 export type FindStepsOptions = { onProgress?: (message: string) => void };
@@ -129,6 +133,8 @@ type StepRun = {
   dropped: DroppedClaim[];
   report: StepReport;
   checkUrl?: string;
+  /** Every document read for this step (search results + the extractor's own sources). */
+  docs: ExaDoc[];
   error?: string;
 };
 
@@ -172,6 +178,7 @@ async function runStep(
       verified: [],
       dropped: [],
       checkUrl,
+      docs,
       error,
       report: { id: def.id, ms: Date.now() - t0, extracted: 0, verified: 0, dropped: 0, sources: docs.length, error },
     };
@@ -183,6 +190,7 @@ async function runStep(
     allowedDomains: includeDomains,
     extraOfficial,
     knownStepIds: STEP_IDS,
+    milestoneIds: MILESTONE_IDS,
     fetchPage,
   });
 
@@ -192,6 +200,7 @@ async function runStep(
     verified,
     dropped,
     checkUrl,
+    docs: dedupeDocs([...docs, ...result.sources]),
     report: {
       id: def.id,
       ms: Date.now() - t0,
@@ -206,30 +215,74 @@ async function runStep(
 
 /**
  * Confirmation rule: a step is confirmed if it has its own verified `applies` claim, OR a confirmed
- * step requires it with a verified citation. Iterated to a fixpoint (requirements can chain).
+ * step requires it with a verified citation. A milestone (e.g. personal_identity_code) required by a
+ * confirmed step is confirmed too, and so is every step with a verified `provides` claim for it
+ * (each is one cited way to meet that requirement). Iterated to a fixpoint (requirements chain).
  */
-export function confirmSteps(runs: { id: string; verified: VerifiedClaim[] }[]): Map<string, Confirmation> {
+export function confirmSteps(
+  runs: { id: string; verified: VerifiedClaim[] }[],
+  milestoneIds: ReadonlySet<string> = MILESTONE_IDS,
+): Map<string, Confirmation> {
   const ids = new Set(runs.map((r) => r.id));
   const confirmed = new Map<string, Confirmation>();
+  const require = (id: string, by: string, citation: Citation): boolean => {
+    const existing = confirmed.get(id);
+    if (!existing) {
+      confirmed.set(id, { by: "required_by", stepIds: [by], citations: [citation] });
+      return true;
+    }
+    if (existing.by === "required_by" && !existing.stepIds.includes(by)) {
+      existing.stepIds.push(by);
+      existing.citations.push(citation);
+    }
+    return false;
+  };
   for (const r of runs) if (r.verified.some((c) => c.kind === "applies")) confirmed.set(r.id, { by: "applies" });
   for (let changed = true; changed; ) {
     changed = false;
     for (const r of runs) {
-      if (!confirmed.has(r.id)) continue;
-      for (const c of r.verified) {
-        if (c.kind !== "requires" || !ids.has(c.value)) continue;
-        const existing = confirmed.get(c.value);
-        if (!existing) {
-          confirmed.set(c.value, { by: "required_by", stepIds: [r.id], citations: [c.citation] });
-          changed = true;
-        } else if (existing.by === "required_by" && !existing.stepIds.includes(r.id)) {
-          existing.stepIds.push(r.id);
-          existing.citations.push(c.citation);
+      if (confirmed.has(r.id)) {
+        for (const c of r.verified) {
+          if (c.kind !== "requires") continue;
+          if (ids.has(c.value) || milestoneIds.has(c.value)) changed = require(c.value, r.id, c.citation) || changed;
         }
+      }
+      for (const c of r.verified) {
+        if (c.kind === "provides" && confirmed.has(c.value)) changed = require(r.id, c.value, c.citation) || changed;
       }
     }
   }
   return confirmed;
+}
+
+/**
+ * Safety net for the prompt rule "a personal identity code is not DVV registration": a `requires
+ * dvv_registration` whose quote is about the ID code and not about population registration is
+ * re-pointed at the personal_identity_code milestone.
+ */
+export function remapIdentityCode(c: VerifiedClaim): VerifiedClaim {
+  if (c.kind !== "requires" || c.value !== "dvv_registration") return c;
+  const q = c.citation.quote.toLowerCase();
+  const aboutCode = /personal identity (code|number)|identity code|henkilötunnu/.test(q);
+  const aboutRegistration = /population information system|väestötietojärjestelmä|municipality of residence|kotikunta|register(ed)? (as a resident|with dvv|at dvv)/.test(q);
+  return aboutCode && !aboutRegistration ? { ...c, value: "personal_identity_code" } : c;
+}
+
+/** The milestone node: met by ANY step with a verified `provides` claim. Null when no source names one. */
+function buildMilestone(id: string, confirmation: Confirmation, providers: VerifiedClaim[]): Step | null {
+  if (providers.length === 0) return null; // leave it to buildGraph as an `unresolved` placeholder
+  return {
+    id,
+    title: MILESTONES[id]?.label ?? id,
+    authority: "any of the options",
+    mode: "either",
+    requires: [],
+    requiresAnyOf: [[...new Set(providers.map((c) => c.stepId))]],
+    milestone: true,
+    citations: uniqueCitations(providers),
+    claims: providers,
+    confirmation,
+  };
 }
 
 export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): Promise<FindStepsResult> {
@@ -237,6 +290,7 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
   const selected = selectSteps(profile);
   const fetchPage = createPageFetcher(cityDomains(profile.city));
   const runs = await Promise.all(selected.map((def) => runStep(def, profile, selected, fetchPage, onProgress)));
+  for (const r of runs) r.verified = r.verified.map(remapIdentityCode);
   const confirmed = confirmSteps(runs.map((r) => ({ id: r.def.id, verified: r.verified })));
 
   const steps: Step[] = [];
@@ -257,8 +311,19 @@ export async function findSteps(profile: Profile, opts: FindStepsOptions = {}): 
     }
   }
 
+  for (const id of MILESTONE_IDS) {
+    const confirmation = confirmed.get(id);
+    if (!confirmation) continue;
+    const providers = runs.flatMap((r) =>
+      confirmed.has(r.def.id) ? r.verified.filter((c) => c.kind === "provides" && c.value === id) : [],
+    );
+    const milestone = buildMilestone(id, confirmation, providers);
+    if (milestone) steps.push(milestone);
+  }
+
   return {
     steps,
+    sources: dedupeDocs(runs.flatMap((r) => r.docs)),
     stubs,
     dropped: runs.flatMap((r) => r.dropped),
     conflicts,

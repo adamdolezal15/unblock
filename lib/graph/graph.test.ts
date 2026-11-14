@@ -257,3 +257,99 @@ describe("empty graph", () => {
     expect(criticalPath(g, s)).toEqual({ stepIds: [], totalDays: 0, calendarDays: 0 });
   });
 });
+
+describe("any-of requirements (OR edges)", () => {
+  // Marta's shape: the ID code can come from DVV (behind EU registration) OR a Vero tax office.
+  const graph = buildGraph([
+    step("eu_registration", [], { mode: "in_person" }),
+    step("dvv_registration", ["eu_registration"], { mode: "in_person" }),
+    step("vero_identity_code", [], { mode: "in_person" }),
+    step("personal_identity_code", [], { milestone: true, requiresAnyOf: [["dvv_registration", "vero_identity_code"]] }),
+    step("tax_card", ["personal_identity_code"]),
+    step("bank_account", ["personal_identity_code"], { mode: "in_person" }),
+  ]);
+  const estimates = {
+    eu_registration: { durationDays: 1, waitDays: 5 },
+    dvv_registration: { durationDays: 1, waitDays: 10 },
+    vero_identity_code: { durationDays: 1, waitDays: 0 },
+    tax_card: { durationDays: 1, waitDays: 3 },
+    bank_account: { durationDays: 1, waitDays: 5 },
+  };
+
+  it("builds grouped edges and marks milestones", () => {
+    expect(graph.edges.filter((e) => e.anyOf).map((e) => [e.source, e.target, e.anyOf])).toEqual([
+      ["dvv_registration", "personal_identity_code", "personal_identity_code#any0"],
+      ["vero_identity_code", "personal_identity_code", "personal_identity_code#any0"],
+    ]);
+    expect(graph.nodes.find((n) => n.id === "personal_identity_code")!.milestone).toBe(true);
+  });
+
+  it("orders each step after at least one option of every group", () => {
+    const { order, blocked } = topoOrder(graph);
+    expect(blocked).toEqual([]);
+    const at = (id: string) => order.indexOf(id);
+    expect(Math.min(at("dvv_registration"), at("vero_identity_code"))).toBeLessThan(at("personal_identity_code"));
+    expect(at("personal_identity_code")).toBeLessThan(at("tax_card"));
+    // with the DVV option impossible, the milestone is still reachable through Vero
+    const noDvv = buildGraph([...graph.nodes.map((n) => n.step!), step("eu_registration", ["eu_registration"])]);
+    expect(topoOrder(noDvv).order).toContain("tax_card");
+  });
+
+  it("schedules from the earliest-finishing option; milestones take no time", () => {
+    const s = schedule(graph, { arrivalDate: "2026-09-01" }, { today: TODAY, estimates });
+    expect(s.items.vero_identity_code.readyIndex).toBe(1);
+    expect(s.items.personal_identity_code).toMatchObject({ startIndex: 1, readyIndex: 1, durationDays: 0, estimated: false });
+    expect(s.items.tax_card.startIndex).toBe(1); // day 2, in parallel with EU registration
+    expect(s.items.dvv_registration.startIndex).toBe(6);
+    expect(s.items.tax_card.startIndex).toBeLessThan(s.items.dvv_registration.readyIndex);
+  });
+
+  it("does not pick the earlier option just because Kahn order visited it first", () => {
+    // Priority puts the slow option first in topological order; time must still win.
+    const g = buildGraph([
+      step("slow", [], { costOfDelay: "Fine of 500 €" }),
+      step("fast"),
+      step("m", [], { milestone: true, requiresAnyOf: [["slow", "fast"]] }),
+      step("x", ["m"]),
+      step("y", ["slow"]),
+    ]);
+    const s = schedule(g, {}, { today: "2026-09-01", estimates: { slow: { durationDays: 1, waitDays: 9 }, fast: { durationDays: 1, waitDays: 0 }, x: { durationDays: 1, waitDays: 0 }, y: { durationDays: 1, waitDays: 0 } } });
+    expect(s.items.x.startIndex).toBe(1);
+  });
+
+  it("critical path follows the chosen option only", () => {
+    const s = schedule(graph, { arrivalDate: "2026-09-01" }, { today: TODAY, estimates });
+    expect(criticalPath(graph, s).stepIds).toEqual(["eu_registration", "dvv_registration"]);
+    const tax = buildGraph([...graph.nodes.map((n) => n.step!)].concat([step("late", ["tax_card"], {})]));
+    const s2 = schedule(tax, { arrivalDate: "2026-09-01" }, { today: TODAY, estimates: { ...estimates, late: { durationDays: 30, waitDays: 0 } } });
+    expect(criticalPath(tax, s2).stepIds).toEqual(["vero_identity_code", "personal_identity_code", "tax_card", "late"]);
+  });
+
+  it("an option blocks nothing on its own; what all options share does", () => {
+    // eu_registration is only behind the DVV option, so it is not necessary for the tax card.
+    expect(criticalNode(graph)).not.toBe("personal_identity_code"); // milestones are never the critical node
+    const shared = buildGraph([
+      step("passport"),
+      step("a", ["passport"]),
+      step("b", ["passport"]),
+      step("m", [], { milestone: true, requiresAnyOf: [["a", "b"]] }),
+      step("t1", ["m"]),
+      step("t2", ["m"]),
+    ]);
+    expect(criticalNode(shared)).toBe("passport");
+  });
+
+  it("is blocked only when every option of a group is blocked", () => {
+    const g = buildGraph([
+      step("p", ["q"]),
+      step("q", ["p"]),
+      step("ok"),
+      step("m", [], { milestone: true, requiresAnyOf: [["p", "ok"]] }),
+      step("n", [], { milestone: true, requiresAnyOf: [["p", "q"]] }),
+    ]);
+    const r = topoOrder(g);
+    expect(r.order).toContain("m");
+    expect(r.blocked.sort()).toEqual(["n", "p", "q"]);
+    expect(r.deadlocks.map((d) => d.stepIds)).toEqual([["p", "q"]]);
+  });
+});

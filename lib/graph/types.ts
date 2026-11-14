@@ -9,12 +9,17 @@ export type GraphNode = {
   costOfDelay?: string;
   /** true when some step requires this id but no step with this id was found. */
   unresolved: boolean;
+  /** A state, not an action (e.g. "has a personal identity code"): takes no time, never the critical node. */
+  milestone: boolean;
   /** The original step; absent on unresolved placeholders. */
   step?: Step;
 };
 
-/** `source` must be done before `target` can start ("target requires source"). React Flow convention. */
-export type GraphEdge = { id: string; source: string; target: string };
+/**
+ * `source` must be done before `target` can start ("target requires source"). React Flow convention.
+ * Edges with the same `anyOf` group id are alternatives: ONE of them is enough.
+ */
+export type GraphEdge = { id: string; source: string; target: string; anyOf?: string };
 
 export type Graph = { nodes: GraphNode[]; edges: GraphEdge[] };
 

@@ -1,15 +1,18 @@
-import { dependentsMap, requiresMap } from "./buildGraph";
+import { requirementGroups, requiresMap } from "./buildGraph";
 import { costOfDelayUrgency, priorityScores } from "./priority";
 import type { Deadlock, Graph, TopoResult } from "./types";
 
 /**
- * Kahn topological sort. Among steps ready at the same time, higher priority goes first
- * (then urgency, then input order). Never throws: cycles come back as `deadlocks`, and
- * everything in or downstream of a cycle is listed in `blocked`.
+ * Kahn topological sort over requirement groups: a step becomes ready when every group has at least
+ * one completed option (a plain requirement is a group of one). Among ready steps, higher priority
+ * goes first (then urgency, then input order). Never throws: cycles come back as `deadlocks`, and
+ * everything that can't be reached because of one is listed in `blocked`.
  */
 export function topoOrder(graph: Graph): TopoResult {
-  const req = requiresMap(graph);
-  const deps = dependentsMap(graph);
+  const groups = requirementGroups(graph);
+  // option id -> [dependent, group index] pairs it can satisfy
+  const satisfies = new Map<string, [string, number][]>(graph.nodes.map((n) => [n.id, []]));
+  for (const [target, gs] of groups) gs.forEach((g, gi) => g.forEach((o) => satisfies.get(o)?.push([target, gi])));
   const priority = priorityScores(graph);
   const index = new Map(graph.nodes.map((n, i) => [n.id, i]));
   const nodeById = new Map(graph.nodes.map((n) => [n.id, n]));
@@ -26,19 +29,26 @@ export function topoOrder(graph: Graph): TopoResult {
     return false;
   };
 
-  const inDegree = new Map<string, number>();
-  for (const [id, r] of req) inDegree.set(id, r.length);
+  const remaining = new Map<string, number>();
+  const satisfied = new Map<string, Set<number>>();
+  for (const [id, gs] of groups) {
+    remaining.set(id, gs.length);
+    satisfied.set(id, new Set());
+  }
 
-  const ready = graph.nodes.filter((n) => inDegree.get(n.id) === 0).map((n) => n.id);
+  const ready = graph.nodes.filter((n) => remaining.get(n.id) === 0).map((n) => n.id);
   const order: string[] = [];
   while (ready.length) {
     let best = 0;
     for (let i = 1; i < ready.length; i++) if (before(ready[i], ready[best])) best = i;
     const id = ready.splice(best, 1)[0];
     order.push(id);
-    for (const d of deps.get(id) ?? []) {
-      const left = inDegree.get(d)! - 1;
-      inDegree.set(d, left);
+    for (const [d, gi] of satisfies.get(id) ?? []) {
+      const sat = satisfied.get(d)!;
+      if (sat.has(gi)) continue;
+      sat.add(gi);
+      const left = remaining.get(d)! - 1;
+      remaining.set(d, left);
       if (left === 0) ready.push(d);
     }
   }

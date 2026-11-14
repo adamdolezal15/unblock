@@ -31,7 +31,11 @@ export type Step = {
   title: string;
   authority: string; // DVV, Vero, Kela...
   mode: "online" | "in_person" | "either";
-  requires: string[]; // step ids
+  requires: string[]; // step ids, all needed
+  /** Alternatives: every group must be met by ANY one of its ids, e.g. [["dvv_registration", "vero_identity_code"]]. */
+  requiresAnyOf?: string[][];
+  /** A state ("has a personal identity code"), not an action: no visit, takes no time. */
+  milestone?: boolean;
   costOfDelay?: string;
   visitPack?: { address?: string; hours?: string; documents: string[]; bookingUrl?: string };
   citations: Citation[];
@@ -46,10 +50,11 @@ export type Confirmation =
   | { by: "applies" }
   | { by: "required_by"; stepIds: string[]; citations: Citation[] };
 
-/** What a claim asserts about a step. For `requires`, value = a canonical step id. */
+/** What a claim asserts about a step. For `requires`, value = a canonical step id; for `provides`, a milestone id. */
 export type ClaimKind =
   | "applies"
   | "requires"
+  | "provides"
   | "mode"
   | "document"
   | "cost_of_delay"

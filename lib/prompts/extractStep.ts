@@ -3,11 +3,12 @@
 import { z } from "zod";
 import type { LlmTask } from "../llm";
 import type { Profile } from "../types";
-import type { StepDef } from "../agent/stepTaxonomy";
+import { MILESTONES, type StepDef } from "../agent/stepTaxonomy";
 
 export const CLAIM_KINDS = [
   "applies",
   "requires",
+  "provides",
   "mode",
   "document",
   "cost_of_delay",
@@ -27,7 +28,7 @@ export const StepExtraction = z.object({
         value: z
           .string()
           .describe(
-            "requires: exactly one step id from the allowed list; mode: online | in_person | either; applies: yes; otherwise a short plain-English value",
+            "requires: exactly one id from the allowed list; provides: personal_identity_code; mode: online | in_person | either; applies: yes; otherwise a short plain-English value",
           ),
         url: z.string().describe("URL of the page the quote is copied from"),
         quote: z
@@ -41,7 +42,7 @@ export type StepExtraction = z.infer<typeof StepExtraction>;
 
 export const extractStepTask: LlmTask = {
   name: "extractStep",
-  version: "2",
+  version: "4",
   systemPrompt: `You extract facts about ONE bureaucratic step for a person moving to Finland, from official sources only.
 
 Return claims. Each claim has a kind, a value, the url of the page, and a quote.
@@ -49,13 +50,15 @@ The quote is the evidence: exactly one sentence copied character-for-character f
 
 Kinds:
 - applies: a sentence showing this step must be done by someone in the person's situation. value "yes". Include at most two.
-- requires: a sentence stating this step cannot be done until another step is completed. value = the id of that other step from the allowed list. Use a separate claim per prerequisite step. Never put documents here.
+- requires: a sentence stating this step cannot be done until another step is completed. value = the id of that other step from the allowed list. Use a separate claim per prerequisite step. Never put ordinary documents (passport, contract) here, BUT if a required document is the result of another step in the allowed list (for example a registration certificate, a residence permit card, a bank account), also make a requires claim for that step, quoting the sentence that asks for the document.
   Only MANDATORY prerequisites for THIS person's situation count. Do NOT make a requires claim when:
   - the sentence is conditional on a situation that does not match the person ("if you apply on the basis of studies…" for someone who also works, "if you need a permit…" for someone who doesn't);
   - the prerequisite is only needed for one of several ways to do the step ("you can do it online if you have online banking codes" when it can also be done in person);
   - the thing can be obtained as part of this step itself, at the same office or in the same application (for example an identifier that this same authority issues during the step);
   - the sentence only says who issues something, or that something is "useful" or "usually" needed.
   When in doubt, leave the requires claim out.
+  Personal identity code: if the sentence says you need a Finnish personal identity code (henkilötunnus) for this step, ALWAYS make a requires claim with value personal_identity_code, even when this same authority can issue the code (the exclusions above do not apply here; the plan handles where the code comes from). NEVER use dvv_registration for this. Use dvv_registration only when the sentence requires being registered in the Population Information System or having a municipality of residence.
+- provides: a sentence stating that this step gives the person a Finnish personal identity code (it is issued during or as a result of this step). value = personal_identity_code.
 - document: something to bring or attach (passport, employment contract, lease...). value = the document.
 - mode: whether it is done online, in person, or either. value = online | in_person | either.
 - cost_of_delay: what happens if this step is late or missing (penalty, extra tax withheld, no access to a service). value = short consequence.
@@ -82,10 +85,10 @@ function describeProfile(p: Profile): string {
 
 /** Per-call context: profile, which step, and the ids `requires` may point to. */
 export function extractStepContext(profile: Profile, step: StepDef, allSteps: StepDef[]): string {
-  const ids = allSteps
-    .filter((s) => s.id !== step.id)
-    .map((s) => `- ${s.id}: ${s.label}`)
-    .join("\n");
+  const ids = [
+    ...allSteps.filter((s) => s.id !== step.id).map((s) => `- ${s.id}: ${s.label}`),
+    ...Object.entries(MILESTONES).map(([id, m]) => `- ${id}: having a ${m.label} (from any authority)`),
+  ].join("\n");
   return `${describeProfile(profile)}
 
 Step being researched: ${step.id} (${step.label}).

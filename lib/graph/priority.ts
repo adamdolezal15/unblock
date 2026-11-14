@@ -1,4 +1,4 @@
-import { dependentsMap } from "./buildGraph";
+import { requirementGroups } from "./buildGraph";
 import type { Graph } from "./types";
 
 /**
@@ -14,20 +14,46 @@ export function costOfDelayUrgency(costOfDelay?: string): number {
   return 2;
 }
 
-/** Number of steps that transitively require each step. Safe on cyclic graphs. */
-export function transitiveDependents(graph: Graph): Map<string, number> {
-  const deps = dependentsMap(graph);
-  const out = new Map<string, number>();
-  for (const node of graph.nodes) {
-    const seen = new Set<string>();
-    const stack = [...(deps.get(node.id) ?? [])];
-    while (stack.length) {
-      const id = stack.pop()!;
-      if (id === node.id || seen.has(id)) continue;
-      seen.add(id);
-      stack.push(...(deps.get(id) ?? []));
+/**
+ * For each node, the set of nodes it NECESSARILY depends on: a plain requirement and everything
+ * behind it, plus whatever ALL options of an any-of group have in common. Least fixpoint; cycle-safe.
+ */
+export function necessaryPrerequisites(graph: Graph): Map<string, Set<string>> {
+  const groups = requirementGroups(graph);
+  const nec = new Map<string, Set<string>>(graph.nodes.map((n) => [n.id, new Set<string>()]));
+  for (let changed = true; changed; ) {
+    changed = false;
+    for (const n of graph.nodes) {
+      const cur = nec.get(n.id)!;
+      for (const g of groups.get(n.id) ?? []) {
+        // intersection over options of ({option} ∪ nec(option))
+        let common: string[] | null = null;
+        for (const o of g) {
+          const via = new Set<string>([o, ...(nec.get(o) ?? [])]);
+          common = common === null ? [...via] : common.filter((x) => via.has(x));
+        }
+        for (const x of common ?? []) {
+          if (!cur.has(x)) {
+            cur.add(x);
+            changed = true;
+          }
+        }
+      }
     }
-    out.set(node.id, seen.size);
+  }
+  return nec;
+}
+
+/**
+ * Number of (non-milestone) steps that cannot happen without each step. An option in an any-of group
+ * blocks nothing on its own, because another option can replace it. Safe on cyclic graphs.
+ */
+export function transitiveDependents(graph: Graph): Map<string, number> {
+  const nec = necessaryPrerequisites(graph);
+  const out = new Map<string, number>(graph.nodes.map((n) => [n.id, 0]));
+  for (const d of graph.nodes) {
+    if (d.milestone) continue;
+    for (const x of nec.get(d.id)!) if (x !== d.id) out.set(x, (out.get(x) ?? 0) + 1);
   }
   return out;
 }
@@ -48,6 +74,7 @@ export function criticalNode(graph: Graph): string | null {
   const dependents = transitiveDependents(graph);
   let best: { id: string; key: number[] } | null = null;
   for (const n of graph.nodes) {
+    if (n.milestone) continue; // a state like "has an ID code" is not something you can go and do
     const key = [dependents.get(n.id) ?? 0, n.mode === "in_person" ? 1 : 0, costOfDelayUrgency(n.costOfDelay)];
     if (!best || compareDesc(key, best.key) < 0) best = { id: n.id, key };
   }
