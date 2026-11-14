@@ -29,7 +29,7 @@ export function Watch({ runId }: { runId: string }) {
           <p className="mt-1 text-[15px] text-muted">We watch official pages, plus service news from Yle, HS and Helsinki Times, once a week.</p>
           <p className="mt-3">
             <button type="button" onClick={watch} disabled={state.phase === "starting"} className={button}>
-              {state.phase === "starting" ? "Setting up…" : "Watch for changes"}
+              {state.phase === "starting" ? "Setting up…" : "Watch this plan"}
             </button>
           </p>
         </>

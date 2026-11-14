@@ -124,12 +124,13 @@ function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => vo
     <p className="num mt-2 text-[13px] text-muted">
       {line}
       {onShowFeed && (
-        <>
+        // The separator and the link wrap together, so a line never ends in a lone dot.
+        <span className="whitespace-nowrap">
           <Sep />
           <button type="button" onClick={onShowFeed} className="link">
             see the activity
           </button>
-        </>
+        </span>
       )}
     </p>
   );
