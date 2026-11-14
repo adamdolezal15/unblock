@@ -269,21 +269,90 @@ body {
 body {
   background: transparent; /* the html canvas paints the paper, so the fixed contours (z -10) show through */
 }
+/* Day by day rail (components/views/DayByDay). Static look (narrow screens, reduced motion): everything
+   reached, so the rail is blue, every dot filled, every day number blue and the finish green. With motion the
+   rail starts grey and fills blue from the top as you scroll; a dot fills when the blue line reaches it. */
+.rail {
+  background: var(--color-accent);
+}
+.dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid var(--color-accent);
+  background: var(--color-accent);
+}
+.dot-end {
+  border-color: var(--color-done);
+  background: var(--color-done);
+}
+.daynum {
+  color: var(--color-accent);
+}
+[data-end] .daynum {
+  color: var(--color-done);
+}
 [data-progress="on"] [data-rail] {
-  background: linear-gradient(to bottom, var(--color-accent) var(--fill, 0%), var(--color-rule-strong) var(--fill, 0%)) !important;
+  background: linear-gradient(to bottom, var(--color-accent) var(--fill, 0%), var(--color-rail) var(--fill, 0%));
 }
-[data-progress="on"] [data-station] {
-  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+[data-progress="on"] .dot {
+  border-color: var(--color-dot);
+  background: var(--color-paper);
+  transition: width 300ms cubic-bezier(0.2, 0.7, 0.2, 1), height 300ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
-[data-progress="on"] [data-station] circle {
-  transition: fill 300ms ease, stroke 300ms ease;
+[data-progress="on"] [data-passed] .dot {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
 }
-[data-progress="on"] [data-station][data-passed] g > circle:last-child {
-  fill: var(--color-accent);
-  stroke: var(--color-accent);
+[data-progress="on"] [data-passed] .dot-end {
+  border-color: var(--color-done);
+  background: var(--color-done);
 }
-[data-progress="on"] [data-station][data-current] {
-  transform: scale(1.15);
+[data-progress="on"] [data-current] .dot {
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 0 5px rgba(0, 53, 128, 0.16);
+}
+[data-progress="on"] [data-current] .dot-end {
+  box-shadow: 0 0 0 5px rgba(46, 125, 91, 0.16);
+}
+[data-progress="on"] .daynum {
+  color: var(--color-muted);
+  transition: color 300ms ease;
+}
+[data-progress="on"] li:has([data-passed]) .daynum {
+  color: var(--color-accent);
+}
+[data-progress="on"] li[data-end]:has([data-passed]) .daynum {
+  color: var(--color-done);
+}
+
+/* A merged visit is one ticket: a dashed seam with a half-circle notch cut into each edge. */
+.ticket-seam {
+  position: relative;
+  height: 0;
+  border-top: 1px dashed var(--color-hairline-strong);
+}
+.ticket-seam::before,
+.ticket-seam::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--color-paper);
+  border: 1px solid var(--color-hairline);
+  z-index: 1;
+}
+.ticket-seam::before {
+  left: -9px;
+  clip-path: inset(-1px -1px -1px 50%);
+}
+.ticket-seam::after {
+  right: -9px;
+  clip-path: inset(-1px 50% -1px -1px);
 }
 
 /* Homepage contours: a 40 s drift of a few px. */

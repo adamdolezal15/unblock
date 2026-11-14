@@ -98,3 +98,48 @@ export function ModeIcon({ mode, className }: { mode: "online" | "in_person" | "
 }
 
 export const MODE_LABEL = { online: "Online", in_person: "In person", either: "Online or in person" } as const;
+
+/** Speech bubble: what people who did it say. */
+export const IconSpeech = (p: P) => (
+  <Svg {...p}>
+    <path d="M2.75 4.25a1.5 1.5 0 0 1 1.5-1.5h7.5a1.5 1.5 0 0 1 1.5 1.5v4.5a1.5 1.5 0 0 1-1.5 1.5H7l-3 2.5v-2.5h0a1.25 1.25 0 0 1-1.25-1.25z" />
+  </Svg>
+);
+
+/** Clock: no fixed date. */
+export const IconClock = (p: P) => (
+  <Svg {...p}>
+    <circle cx="8" cy="8" r="5.75" />
+    <path d="M8 4.75V8l2.25 1.5" />
+  </Svg>
+);
+
+/** Bank: a building with columns. */
+export const IconBank = (p: P) => (
+  <Svg {...p}>
+    <path d="M2 6 8 2.75 14 6M3 13.25h10M4 6.75v5M6.67 6.75v5M9.33 6.75v5M12 6.75v5" />
+  </Svg>
+);
+
+/** Graduation cap: university. */
+export const IconCap = (p: P) => (
+  <Svg {...p}>
+    <path d="M1.75 6.25 8 3.25l6.25 3L8 9.25z" />
+    <path d="M4.5 7.75v3c1 .9 2.2 1.5 3.5 1.5s2.5-.6 3.5-1.5v-3M14.25 6.25v3.5" />
+  </Svg>
+);
+
+/** Shield: insurance, social security. */
+export const IconShield = (p: P) => (
+  <Svg {...p}>
+    <path d="M8 1.75 13 3.5v4c0 3.1-2.1 5.4-5 6.75C5.1 12.9 3 10.6 3 7.5v-4z" />
+  </Svg>
+);
+
+/** Envelope: an email. */
+export const IconEnvelope = (p: P) => (
+  <Svg {...p}>
+    <rect x="1.75" y="3.25" width="12.5" height="9.5" rx="1.25" />
+    <path d="m2.25 4 5.75 4.5L13.75 4" />
+  </Svg>
+);

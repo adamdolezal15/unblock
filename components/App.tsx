@@ -202,7 +202,7 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
                 const sc = comparison?.shortcuts.find((x) => x.id === id);
                 // A tag only: the answer above already says what the shortcut gains.
                 return sc ? (
-                  <span title={sc.text.map((x) => ("t" in x ? x.t : "")).join("")} className="rounded-[6px] bg-accent px-2 py-[2px] text-[13px] font-bold text-surface">
+                  <span title={sc.text.map((x) => ("t" in x ? x.t : "")).join("")} className="rounded-full bg-accent px-2.5 py-[2px] text-[13px] font-semibold text-surface">
                     Shortcut
                   </span>
                 ) : null;

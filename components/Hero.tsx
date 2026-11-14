@@ -9,7 +9,6 @@ import type { RunState } from "@/lib/ui/runState";
 import { Prose } from "./letter/LetterView";
 import { TransitLine } from "./TransitLine";
 import { exaLine } from "@/lib/ui/counts";
-import { HeadsUp } from "./views/Insights";
 import { IconCalendar } from "./icons";
 import { DateRing } from "./motion/Contours";
 
@@ -114,7 +113,6 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
           <TransitLine entries={entries} onOpen={onOpen} />
         </div>
       </div>
-      <HeadsUp insights={doc.letter.insights} onOpen={onOpen} />
     </section>
   );
 }

@@ -1,25 +1,19 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
 import { useRailProgress } from "../motion/useRailProgress";
-import { PulseOnView } from "../motion/PulseOnView";
-import type { LetterDoc, Ref, Seg } from "@/lib/ui/letter";
+import type { LetterDoc, Para, Ref, Seg } from "@/lib/ui/letter";
 import type { RunState } from "@/lib/ui/runState";
-import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, lowerName, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
-import { fmtDay } from "@/lib/ui/format";
-import { nodeLabel } from "@/lib/ui/labels";
+import type { Trust } from "@/lib/types";
+import { buildDays, buildOptional, FALLBACK_NOTE, fallbackSteps, OPTIONAL_TITLE, type DayEntry, type FallbackStep, type DayStep, type OnlineEntry, type OptionalEntry, type VisitEntry } from "@/lib/ui/days";
+import { domainOf, fmtDay, plural } from "@/lib/ui/format";
 import { dedupeBring } from "@/lib/ui/bring";
 import type { FormLine } from "@/lib/ui/forms";
 import type { DraftOffer } from "@/lib/agent/draftOffers";
-import { Prose } from "../letter/LetterView";
-import { QuoteCard } from "../letter/QuoteCard";
-import { Term } from "../Help";
-import { Marker } from "../line/Marker";
-import { mainLegs } from "../line/legs";
-import { draftAnchor, draftLabel, DraftLink, ReadyToSend } from "../drafts/DraftCard";
+import { draftAnchor, draftLabel, ReadyToSend } from "../drafts/DraftCard";
 import { FormRow } from "../FormRow";
 import { allForms, formLine } from "@/lib/ui/forms";
 import { useDrafts, type DraftsApi } from "@/lib/ui/useDrafts";
-import { IconCalendar, IconCheck, IconDocument, IconExternal, IconInPerson, IconOnline, IconPencil } from "../icons";
+import { IconBank, IconCalendar, IconCap, IconDocument, IconExternal, IconOnline, IconPencil, IconShield, IconSpeech } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const dow = (iso: string) => {
@@ -27,7 +21,7 @@ const dow = (iso: string) => {
   return LONG_DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
 };
 
-/** Prose as plain text, without its source number (collapsed cards and wait lines carry no footnotes). */
+/** Prose as plain text, without its source number (cards carry no footnotes; the quotes are in Details). */
 const plain = (segs: Seg[]) =>
   segs
     .map((s) => ("t" in s ? s.t : ""))
@@ -44,6 +38,9 @@ const uniqueRefs = (refs: (Ref | undefined)[]) =>
   refs.filter((r): r is Ref => !!r).filter((r, i, all) => all.findIndex((x) => x.n === r.n) === i).sort((a, b) => a.n - b.n);
 const uniqueForms = (forms: FormLine[]) => forms.filter((f, i, all) => all.findIndex((x) => x.form.id === f.form.id) === i);
 
+/** A warning that belongs to one step: money at stake, or sources that disagree. Shown on that step's card only. */
+type StepNote = { money?: string; conflict?: string };
+
 type Props = {
   state: RunState;
   doc: LetterDoc;
@@ -56,15 +53,29 @@ type Props = {
 type Ctx = {
   state: RunState;
   drafts?: DraftsApi;
+  notes: Map<string, StepNote>;
   onOpen: (id: string) => void;
   onSources: (id: string) => void;
   shortcut?: (id: string) => React.ReactNode;
 };
 
+/** The letter's warnings (money, conflict), keyed by the step they concern. */
+function stepNotes(insights: Para[] | undefined): Map<string, StepNote> {
+  const m = new Map<string, StepNote>();
+  for (const p of insights ?? []) {
+    if (!p.stepId || (p.key !== "money" && p.key !== "conflict")) continue;
+    const n = m.get(p.stepId) ?? {};
+    n[p.key] = plain(p.segs).replace(/\.$/, "");
+    m.set(p.stepId, n);
+  }
+  return m;
+}
+
 /** The plan as you would live it: a timeline of visit cards, online steps on their day, waits on the rail. */
 export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
   const optional = useMemo(() => buildOptional(state, doc.ref), [state, doc]);
+  const notes = useMemo(() => stepNotes(doc.letter?.insights), [doc]);
   const drafts = useDrafts(state);
   // Decorative scroll progress on the rail (re-attached whenever the timeline's entries change).
   const rail = useRef<HTMLOListElement>(null);
@@ -73,9 +84,9 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
   const fallback = fallbackSteps(state);
   if (fallback && (state.schedule || state.phase === "done")) return <StepList steps={fallback} onOpen={onOpen} extra={extra} />;
   if (!state.schedule) return <DaysSkeleton />;
-  const ctx: Ctx = { state, onOpen, onSources, shortcut, drafts };
+  const ctx: Ctx = { state, onOpen, onSources, shortcut, drafts, notes };
   const visits = entries.filter((e) => e.kind === "visit").length;
-  // Online steps off the slowest chain have no real date of their own: one "Anytime online" group, not the timeline.
+  // Online steps off the slowest chain have no real date of their own: one "Anytime" group, not the timeline.
   const anytime = entries.filter((e): e is OnlineEntry => e.kind === "online" && !e.steps.some((s) => s.critical));
   const timeline = entries.filter((e) => !(anytime as DayEntry[]).includes(e));
   // One date marker per day: entries on the same date stack under it (the finish stays its own row).
@@ -85,17 +96,16 @@ export function DayByDay({ state, doc, onOpen, onSources, extra, shortcut }: Pro
     if (g && e.kind !== "done" && g[0].kind !== "done" && g[0].date === e.date) g.push(e);
     else groups.push([e]);
   }
-  const legs = mainLegs(groups.map((g) => g.some(onMain)));
 
   return (
     <section aria-label="Day by day">
       {extra}
-      <p className="mb-6 text-[17px] text-muted">
+      <p className="mb-6 text-[15px] text-muted">
         {visits} {visits === 1 ? "visit" : "visits"} in order. Open Details on a visit for what to bring and the sources.
       </p>
       <ol ref={rail}>
         {groups.map((g, i) => (
-          <Row key={i} entries={g} last={i === groups.length - 1} mainLeg={!!legs[i]} inLeg={i === 0 ? null : !!legs[i - 1]}>
+          <Row key={i} entries={g} first={i === 0} last={i === groups.length - 1}>
             <div className="space-y-4">
               {g.map((e, j) => (
                 <Entry key={j} ctx={ctx} entry={e} />
@@ -137,11 +147,16 @@ function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
       <ul className="mt-4 space-y-4">
         {steps.map((s) => (
           <li key={s.id}>
-            <StepHead ctx={ctx} s={s} />
+            <h3>
+              <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
+                {s.title}
+              </button>
+            </h3>
             <p className="mt-1 flex flex-wrap items-center gap-x-2 text-[13px] text-muted">
               <OptionalTag />
               <span>{s.optional} {s.authority}.</span>
             </p>
+            <Warnings ctx={ctx} id={s.id} />
           </li>
         ))}
       </ul>
@@ -151,17 +166,17 @@ function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
 
 /** The label on a step this person can skip. */
 function OptionalTag() {
-  return <span className="rounded-[6px] border border-rule-strong px-2 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
+  return <span className="rounded-full border border-hairline px-2 py-[1px] text-[13px] font-semibold text-muted">Optional</span>;
 }
 
-/** An optional step in the timeline: on the day it would be done, hollow station, one line saying why it can be skipped. */
+/** An optional step in the timeline: on the day it would be done, one line saying why it can be skipped. */
 function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
   return (
-    <article className="card px-6 py-4">
+    <article className="card px-5 py-4 sm:px-6">
       {e.steps.map((s, i) => (
         <div key={s.id} className={i > 0 ? "mt-3" : ""}>
           <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
+            <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-semibold leading-snug text-ink hover:text-accent">
               {s.title}
             </button>
             <OptionalTag />
@@ -169,40 +184,35 @@ function OptionalCard({ ctx, e }: { ctx: Ctx; e: OptionalEntry }) {
           <p className="mt-1 max-w-[62ch] text-[15px] leading-normal text-muted">
             {s.optional} {s.authority}.
           </p>
+          <Warnings ctx={ctx} id={s.id} />
         </div>
       ))}
     </article>
   );
 }
 
-const btn =
-  "btn-secondary";
 const link = "link";
 
-/** On the slowest chain (the blue line): visits / online steps on it, and the finish. */
-const onMain = (e: DayEntry) => e.kind === "done" || ((e.kind === "visit" || e.kind === "online") && e.steps.some((s) => s.critical));
-
-/** One timeline row per day: the calendar spine (day big, month small), the rail with one marker, that day's cards. */
-function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[]; last: boolean; mainLeg: boolean; inLeg: boolean | null; children: React.ReactNode }) {
+/**
+ * One timeline row per day: the date (big number, "Dec · Tue"), a 2px rail with one dot, that day's cards.
+ * The rail fills Finnish blue as you scroll (useRailProgress); a dot fills when the line reaches it and its
+ * day number turns blue (green at the finish). Without motion everything shows as reached.
+ */
+function Row({ entries, first, last, children }: { entries: DayEntry[]; first: boolean; last: boolean; children: React.ReactNode }) {
   const entry = entries[0];
-  const critical = entries.some((x) => (x.kind === "visit" || x.kind === "online") && x.steps.some((s) => s.critical));
-  const kinds = new Set(entries.map((x) => x.kind));
-  // Same stations as the logo and the hero line (components/line).
-  const marker = (
-    <Marker kind={kinds.has("done") ? "end" : critical ? "main" : kinds.size === 1 && kinds.has("reminder") ? "small" : "hollow"} />
-  );
+  const end = entry.kind === "done";
   // At most one wait line per day: the slowest chain's (it is what moves the next date). Every other wait,
   // and the "no official figure" note, is in the card's Details.
   const criticalWait = entries
     .flatMap((x) => (x.kind === "visit" || x.kind === "online" ? x.steps : []))
     .find((s) => s.critical && s.wait);
-  const waits = criticalWait ? [waitLine(criticalWait.wait!)] : [];
+  const wait = criticalWait ? waitLine(criticalWait.wait!) : null;
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
   return (
-    <li className="grid grid-cols-[3.5rem_24px_minmax(0,1fr)] gap-x-2 sm:grid-cols-[5.5rem_28px_minmax(0,1fr)] sm:gap-x-3">
-      <div className="num pt-[14px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
-        <p aria-hidden className={`text-[28px] font-extrabold leading-none tracking-[-0.02em] ${critical || kinds.has("done") ? "text-accent" : "text-ink"}`}>
+    <li className="grid grid-cols-[3rem_16px_minmax(0,1fr)] gap-x-3 sm:grid-cols-[4.5rem_16px_minmax(0,1fr)] sm:gap-x-5" data-end={end ? "" : undefined}>
+      <div className="pt-[12px] text-right" aria-label={`${entry.kind === "online" ? "From " : `${dow(entry.date)} `}${fmtDay(entry.date)}`}>
+        <p aria-hidden className="daynum num font-display text-[28px] font-bold leading-none tracking-[-0.02em]">
           {dayNum}
         </p>
         <p aria-hidden className="mt-1 whitespace-nowrap text-[13px] leading-tight text-muted">
@@ -210,18 +220,20 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
         </p>
       </div>
       <div className="relative flex justify-center">
-        {inLeg !== null && <span data-rail="" className={`absolute top-0 h-[34px] ${inLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        {!last && <span data-rail="" className={`absolute bottom-0 top-[34px] ${mainLeg ? "w-[4px] bg-accent" : "w-[2px] bg-rule-strong"}`} aria-hidden />}
-        <span data-station="" className="relative z-10 mt-[20px] flex h-7 items-center self-start">{kinds.has("done") ? <PulseOnView>{marker}</PulseOnView> : marker}</span>
+        {!first && <span data-rail="" className="rail absolute top-0 h-[24px] w-[2px]" aria-hidden />}
+        {!last && <span data-rail="" className="rail absolute bottom-0 top-[24px] w-[2px]" aria-hidden />}
+        <span data-station="" className="relative z-10 mt-[16px] flex h-4 w-4 items-center justify-center self-start" aria-hidden>
+          <span className={end ? "dot dot-end" : "dot"} />
+        </span>
       </div>
-      <div className="min-w-0 pb-4 pt-2">
+      <div className={`min-w-0 ${last ? "" : "pb-6"}`}>
         {children}
-        {waits.map((w) => (
-          <p key={w} className="mt-3 flex items-start gap-2 pl-1 text-[15px] leading-normal text-muted">
-            <span className="mt-[11px] w-4 shrink-0 border-t border-hairline-strong" aria-hidden />
-            <span>{w}</span>
+        {wait && (
+          <p className="mt-3 flex items-start gap-2 pl-1 text-[13px] italic leading-normal text-muted">
+            <span className="mt-[9px] w-4 shrink-0 border-t border-hairline-strong" aria-hidden />
+            <span>{wait}</span>
           </p>
-        ))}
+        )}
       </div>
     </li>
   );
@@ -232,35 +244,20 @@ function Entry({ ctx, entry }: { ctx: Ctx; entry: DayEntry }) {
     case "visit":
       return <Visit ctx={ctx} e={entry} />;
     case "online":
-      return <Online ctx={ctx} e={entry} />;
+      return (
+        <div className="space-y-4">
+          {entry.steps.map((s) => (
+            <OnlineStep key={s.id} ctx={ctx} s={s} />
+          ))}
+        </div>
+      );
     case "optional":
       return <OptionalCard ctx={ctx} e={entry} />;
     case "reminder":
       return <p className="pt-3 text-[15px] text-muted">Reminder: {entry.title}</p>;
     case "done":
-      return <p className="pt-3 text-[28px] font-bold text-done">You&apos;re fully set up</p>;
+      return <p className="done-line pt-[6px] font-display text-[28px] font-bold leading-tight text-done">You&apos;re fully set up</p>;
   }
-}
-
-/** Title, the shortcut tag if any, the "why now" sentence with its source number, and its forms (Optional section). */
-function StepHead({ ctx, s }: { ctx: Ctx; s: DayStep }) {
-  return (
-    <>
-      <h3 className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <button type="button" onClick={() => ctx.onOpen(s.id)} className="text-left text-[20px] font-bold leading-snug text-ink hover:text-accent">
-          {s.title}
-        </button>
-        {ctx.shortcut?.(s.id)}
-      </h3>
-      {(s.noSource || s.whyNow.length > 0) && (
-        <p className="mt-1 max-w-[62ch] text-[17px] leading-normal text-muted">{s.noSource ? "No official source found." : <Prose segs={s.whyNow} />}</p>
-      )}
-      {s.forms.map((f) => (
-        <FormRow key={f.form.id} line={f} variant="card" />
-      ))}
-      {ctx.drafts?.forStep(s.id).map((o) => <DraftLink key={o.id} offer={o} drafts={ctx.drafts!} />)}
-    </>
-  );
 }
 
 /** The safety net when no step could be dated: the steps in order, with a calm note. Never an empty plan. */
@@ -288,29 +285,10 @@ function StepList({ steps, onOpen, extra }: { steps: FallbackStep[]; onOpen: (id
   );
 }
 
-function Unlocks({ ctx, ids }: { ctx: Ctx; ids: string[] }) {
-  const name = (id: string) => lowerName(nodeLabel(id, ctx.state.steps[id]?.title ?? id));
+function Toggle({ open, onClick, label = "Details" }: { open: boolean; onClick: () => void; label?: string }) {
   return (
-    <div>
-      <p className="text-[13px] font-semibold text-muted">Unlocks</p>
-      <ul className="mt-2 space-y-1 text-[17px]">
-        {ids.map((id) => (
-          <li key={id} className="flex items-baseline gap-2">
-            <span className="mt-[7px] h-2 w-2 shrink-0 self-start rounded-full border-2 border-rule-strong" aria-hidden />
-            <button type="button" onClick={() => ctx.onOpen(id)} className={link}>
-              {name(id)}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function Toggle({ open, onClick }: { open: boolean; onClick: () => void }) {
-  return (
-    <button type="button" onClick={onClick} aria-expanded={open} className="inline-flex items-center gap-1 text-[13px] text-muted hover:text-ink">
-      {open ? "Less" : "Details"}
+    <button type="button" onClick={onClick} aria-expanded={open} className="inline-flex items-center gap-1 text-[15px] text-muted hover:text-ink">
+      {label}
       <svg
         viewBox="0 0 16 16"
         className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
@@ -371,85 +349,16 @@ function PrimaryAction({ action, drafts }: { action: Action; drafts?: DraftsApi 
   );
 }
 
-/** The bottom row of a collapsed card: the one action on the left; "Sources (n)" and Details on the right. */
-function ActionRow({ action, drafts, sources, onSources, open, onToggle }: { action: Action | null; drafts?: DraftsApi; sources: number; onSources: () => void; open: boolean; onToggle: () => void }) {
+/** The bottom row of a collapsed card: the one action on the left, Details on the right. */
+function ActionRow({ action, drafts, open, onToggle }: { action: Action | null; drafts?: DraftsApi; open: boolean; onToggle: () => void }) {
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
       <div className="min-w-[min(100%,16rem)] flex-1">{action && <PrimaryAction action={action} drafts={drafts} />}</div>
-      <div className="ml-auto flex shrink-0 items-center gap-3">
-        {sources > 0 && (
-          <button
-            type="button"
-            onClick={onSources}
-            className="num rounded-full border border-rule-strong px-2 py-[3px] text-[13px] font-semibold text-muted transition-colors hover:border-accent hover:text-accent"
-          >
-            Sources ({sources})
-          </button>
-        )}
+      <div className="ml-auto shrink-0">
         <Toggle open={open} onClick={onToggle} />
       </div>
     </div>
   );
-}
-
-/** Secondary forms, in Details (drafts live on the card's action and in "Ready to send"). */
-function MoreToDo({ forms }: { forms: FormLine[] }) {
-  if (!forms.length) return null;
-  return (
-    <section>
-      <p className="text-[13px] font-semibold text-muted">Also for this {forms.length === 1 ? "step" : "visit"}</p>
-      <ul className="mt-2 space-y-2">
-        {forms.map((f) => (
-          <li key={f.form.id}>
-            <FormRow line={f} variant="inline" />
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-/** Every wait of the card's steps in full, including "Estimate: no official figure found" (the rail shows one, shortened). */
-function Waits({ steps }: { steps: DayStep[] }) {
-  const w = steps.filter((s) => s.wait);
-  if (!w.length) return null;
-  return (
-    <section className="sm:col-span-2">
-      <p className="text-[13px] font-semibold text-muted">Waiting time</p>
-      <ul className="mt-2 space-y-1 text-[15px] leading-normal text-ink">
-        {w.map((s) => (
-          <li key={s.id}>
-            {w.length > 1 && <span className="font-semibold">{s.short}: </span>}
-            {plain(s.wait!)}
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-/** The verified quotes behind a card, each with its number. */
-function SourceQuotes({ refs }: { refs: Ref[] }) {
-  if (!refs.length) return null;
-  return (
-    <section className="sm:col-span-2">
-      <p className="text-[13px] font-semibold text-muted">Sources</p>
-      <ul className="mt-2 space-y-4">
-        {refs.map((r) => (
-          <li key={r.n}>
-            <QuoteCard citation={r.citation} n={r.n} size="sm" />
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-/** At most one badge: the Shortcut tag. (The slowest chain is shown by blue dates and filled dots, not a label.) */
-function Badge({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
-  const sc = steps.map((s) => ctx.shortcut?.(s.id)).find((x) => x != null);
-  if (sc) return <>{sc}</>;
-  return null;
 }
 
 const SKIP = /^If you skip it:\s*/i;
@@ -475,86 +384,228 @@ export function skipLine(text: string): { line: string; cut: boolean } | null {
 
 /** A step's reason as the card shows it: the short "Skip it" line for a consequence, else the sentence. */
 const reasonOf = (s: DayStep) => {
-  if (s.noSource) return { text: "No official source found.", skip: false };
+  if (s.noSource) return "No official source found.";
   const why = plain(s.whyNow);
-  const sk = skipLine(why);
-  return sk ? { text: sk.line, skip: true } : { text: why, skip: false };
+  return skipLine(why)?.line ?? why;
 };
 
-/** Title and one plain reason line, no source numbers (they are behind "Sources (n)"). */
-function StepLine({ s }: { s: DayStep; big?: boolean }) {
+/** "Without the tax card, 60% … €1,920 of your €3,200 a month" -> "Without it, €1,920 of your €3,200 is withheld every month." */
+function MoneyLine({ text }: { text: string }) {
+  const m = text.match(/(€\s?[\d,.]+) of your (€\s?[\d,.]+) a month/);
+  return (
+    <p className="mt-1 max-w-[62ch] text-[15px] leading-normal text-ink">
+      {m ? (
+        <>
+          Without it, <strong className="font-semibold">{m[1]}</strong> of your {m[2]} is withheld every month.
+        </>
+      ) : (
+        <>{text}.</>
+      )}
+    </p>
+  );
+}
+
+/** Sources that disagree, on the step they concern: an amber dot, one line, and the way to both sides. */
+function ConflictLine({ text, onOpen }: { text: string; onOpen: () => void }) {
+  return (
+    <p className="mt-2 flex max-w-[62ch] items-baseline gap-2 text-[13px] leading-normal text-amber-text">
+      <span className="h-1.5 w-1.5 shrink-0 -translate-y-px rounded-full bg-amber" aria-hidden />
+      <span>
+        {text}
+        <span aria-hidden className="mx-1.5">·</span>
+        <button type="button" onClick={onOpen} className="underline decoration-amber-line underline-offset-[3px] hover:decoration-amber">
+          see both sides
+        </button>
+      </span>
+    </p>
+  );
+}
+
+/** The conflict line of a step (money is shown in place of the reason, see StepBody). */
+function Warnings({ ctx, id }: { ctx: Ctx; id: string }) {
+  const c = ctx.notes.get(id)?.conflict;
+  return c ? <ConflictLine text={c} onOpen={() => ctx.onOpen(id)} /> : null;
+}
+
+/** Title (Space Grotesk 20px), one muted line (or the money at stake), and the step's conflict, if any. */
+function StepBody({ ctx, s, size = 20 }: { ctx: Ctx; s: DayStep; size?: 20 | 17 }) {
+  const money = ctx.notes.get(s.id)?.money;
   const why = reasonOf(s);
   return (
-    <div>
-      <h3 className={`text-[20px] font-bold leading-snug text-ink`}>{s.title}</h3>
-      {why.text && <p className={`mt-1 max-w-[62ch] leading-normal text-muted ${why.skip ? "text-[15px]" : "text-[17px]"}`}>{why.text}</p>}
+    <>
+      <h3 className={`${size === 20 ? "text-[20px]" : "text-[17px]"} font-semibold leading-snug tracking-[-0.01em] text-ink`}>{s.title}</h3>
+      {money ? <MoneyLine text={money} /> : why && <p className="mt-1 max-w-[62ch] text-[15px] leading-normal text-muted">{why}</p>}
+      <Warnings ctx={ctx} id={s.id} />
+    </>
+  );
+}
+
+/** "Migri · in person" and the Shortcut pill, if any. */
+function OfficeLine({ ctx, office, how, steps }: { ctx: Ctx; office: string; how: string; steps: DayStep[] }) {
+  const sc = steps.map((s) => ctx.shortcut?.(s.id)).find((x) => x != null);
+  return (
+    <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+      <p className="min-w-0 text-[13px] text-muted">
+        <span className="font-semibold text-ink">{office}</span>
+        <span aria-hidden className="mx-1.5">·</span>
+        {how}
+      </p>
+      {sc}
+    </header>
+  );
+}
+
+/** What a card's Details need from the visit or step. */
+type DetailsData = {
+  lead: string;
+  steps: DayStep[];
+  bring?: VisitEntry["bring"];
+  forms: FormLine[];
+  booking?: VisitEntry["booking"];
+  address?: VisitEntry["address"];
+  venue?: VisitEntry["venue"];
+  calendarUrl?: string;
+  refs: Ref[];
+};
+
+const NOT_COMMUNITY = (t: Trust) => t !== "community";
+
+/**
+ * A card's Details, under a hairline: Bring (a short checklist), one line "Book · Then · Add to calendar",
+ * the sources (one key quote, the domains, "All quotes"), and, collapsed, what people who did it say.
+ */
+function Details({ ctx, d }: { ctx: Ctx; d: DetailsData }) {
+  const bring = d.bring ? dedupeBring(d.bring).slice(0, 6) : [];
+  const waits = d.steps.filter((s) => s.wait).map((s) => plain(s.wait!).replace(/^Then\s+/i, "").replace(/\.$/, ""));
+  const refs = d.refs.filter((r) => NOT_COMMUNITY(r.citation.trust));
+  const leadRefs = refsOf(d.steps[0]?.whyNow).filter((r) => NOT_COMMUNITY(r.citation.trust));
+  const key = leadRefs.find((r) => r.citation.trust === "official") ?? refs.find((r) => r.citation.trust === "official") ?? leadRefs[0] ?? refs[0];
+  const urls = [...new Set(refs.map((r) => r.citation.url))];
+  const domains = [...new Set(refs.map((r) => domainOf(r.citation.url)))];
+  const ids = new Set(d.steps.map((s) => s.id));
+  const tips = ctx.state.tips.filter((t) => ids.has(t.stepId)).filter((t, i, all) => all.findIndex((x) => x.tip === t.tip) === i);
+  const label = "text-muted";
+
+  return (
+    <div className="space-y-6 border-t border-hairline px-5 py-5 sm:px-6">
+      {bring.length > 0 && (
+        <section>
+          <h4 className="text-[13px] font-semibold text-muted">Bring</h4>
+          <ul className="mt-2 grid gap-x-6 gap-y-2 text-[15px] leading-snug text-ink sm:grid-cols-2">
+            {bring.map((b) => (
+              <li key={b.value} className="flex gap-2">
+                <span className="mt-[2px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-hairline-strong" aria-hidden />
+                <span className="min-w-0">{b.value}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {d.forms.length > 0 && (
+        <ul className="space-y-2">
+          {d.forms.map((f) => (
+            <li key={f.form.id}>
+              <FormRow line={f} variant="inline" />
+            </li>
+          ))}
+        </ul>
+      )}
+      {(d.booking || waits.length > 0 || d.calendarUrl || d.address || d.venue) && (
+        <div className="space-y-1 text-[15px] leading-normal text-ink">
+          <p className="flex flex-wrap gap-x-6 gap-y-1">
+            {d.booking && (
+              <span>
+                <span className={label}>Book · </span>
+                {d.booking.url ? (
+                  <a href={d.booking.url} target="_blank" rel="noreferrer" className={link}>
+                    online at {domainOf(d.booking.url)}
+                    <IconExternal className="ml-1 inline h-3.5 w-3.5 align-[-2px]" />
+                  </a>
+                ) : (
+                  d.booking.text.replace(/\.$/, "")
+                )}
+              </span>
+            )}
+            {waits.map((w, i) => (
+              <span key={i}>
+                <span className={label}>Then · </span>
+                {w}
+              </span>
+            ))}
+            {d.calendarUrl && (
+              <a href={d.calendarUrl} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1 ${link}`}>
+                <IconCalendar className="h-3.5 w-3.5" /> Add this visit to calendar
+              </a>
+            )}
+          </p>
+          {d.address && (
+            <p>
+              <span className={label}>Where · </span>
+              {d.address.value}
+            </p>
+          )}
+          {d.venue && (
+            <p>
+              <span className={label}>Or · </span>
+              at your university&apos;s {d.venue.name}
+              {d.venue.when ? `: ${d.venue.when.value}` : ". Check the date for your intake with your university"}.
+            </p>
+          )}
+        </div>
+      )}
+      {key && (
+        <section>
+          <h4 className="text-[13px] font-semibold text-muted">Checked against {plural(urls.length, "source")}</h4>
+          <blockquote className="mt-2 max-w-[62ch] font-serif text-[17px] leading-[1.55] text-ink">“{key.citation.quote.trim()}”</blockquote>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {domains.map((dm) => (
+              <span key={dm} className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface px-2.5 py-[3px] text-[13px] text-ink">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+                {dm}
+              </span>
+            ))}
+            <button type="button" onClick={() => ctx.onSources(d.lead)} className={`ml-1 text-[13px] ${link}`}>
+              All quotes
+            </button>
+          </div>
+        </section>
+      )}
+      {tips.length > 0 && <Community tips={tips.map((t) => ({ text: t.tip, url: t.citation.url }))} />}
     </div>
   );
 }
 
-/** The full "If you skip it" sentences that a card shortened, for its Details. */
-function SkipDetails({ steps }: { steps: DayStep[] }) {
-  const long = steps.filter((s) => !s.noSource && skipLine(plain(s.whyNow))?.cut);
-  if (!long.length) return null;
+/** Tips from people who did it: collapsed, labelled as not official. The only place community tips appear. */
+function Community({ tips }: { tips: { text: string; url: string }[] }) {
+  const [open, setOpen] = useState(false);
   return (
-    <section className="sm:col-span-2">
-      <p className="text-[13px] font-semibold text-muted">If you skip it</p>
-      <ul className="mt-2 space-y-1 text-[15px] leading-normal text-ink">
-        {long.map((s) => (
-          <li key={s.id}>
-            {long.length > 1 && <span className="font-semibold">{s.short}: </span>}
-            {plain(s.whyNow).replace(SKIP, "").replace(/^./, (ch) => ch.toUpperCase())}
-          </li>
-        ))}
-      </ul>
+    <section>
+      <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="inline-flex items-center gap-2 text-[15px] text-ink hover:text-accent">
+        <IconSpeech className="h-4 w-4 text-muted" />
+        What people who did it say<span className="text-muted">· {tips.length}</span>
+        <svg viewBox="0 0 16 16" className={`h-4 w-4 text-muted transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="m4 6 4 4 4-4" />
+        </svg>
+      </button>
+      {open && (
+        <>
+          <p className="mt-2 text-[13px] text-muted">From people who did it. Not official, shown as tips only.</p>
+          <ul className="mt-3 space-y-3">
+            {tips.map((t, i) => (
+              <li key={i} className="max-w-[62ch] border-l-2 border-hairline pl-3">
+                <p className="text-[15px] leading-normal text-ink">{t.text}</p>
+                <p className="mt-0.5 text-[13px] text-muted">{domainOf(t.url)}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </section>
   );
 }
 
-/** "ID code at Vero" -> "ID code" when the title already names the office. */
-function withoutOffice(short: string, authority: string): string {
-  const suffix = ` at ${authority}`.toLowerCase();
-  return short.toLowerCase().endsWith(suffix) ? short.slice(0, short.length - suffix.length) : short;
-}
-
-/** Several steps in one visit: one title ("Vero: ID code + tax card"), the first step's reason, the rest as checklist lines. */
-function MergedVisit({ e }: { e: VisitEntry }) {
-  const [first, ...rest] = e.steps;
-  const names = e.steps.map((s, i) => (i ? lowerName(withoutOffice(s.short, e.authority)) : withoutOffice(s.short, e.authority)));
-  const why = reasonOf(first);
-  return (
-    <div className="mt-2">
-      <h3 className="text-[20px] font-bold leading-snug text-ink">
-        {e.authority}: {names.join(" + ")}
-      </h3>
-      {why.text && <p className={`mt-1 max-w-[62ch] leading-normal text-muted ${why.skip ? "text-[15px]" : "text-[17px]"}`}>{why.text}</p>}
-      <ul className="mt-3 space-y-2">
-        {rest.map((s) => {
-          const r = reasonOf(s).text;
-          return (
-            <li key={s.id} className="flex gap-2 text-[17px] leading-normal">
-              <IconCheck className="mt-[5px] h-4 w-4 shrink-0 text-muted" />
-              <span className="min-w-0">
-                <span className="font-semibold text-ink">{s.title}</span>
-                {r && <span className="block text-[15px] text-muted">{r}</span>}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
-function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
-  const [open, setOpen] = useState(false);
-  const unlocks = [...new Set(e.steps.flatMap((s) => s.unlocks))].filter((id) => !e.steps.some((s) => s.id === id));
-  const critical = e.steps.some((s) => s.critical);
-  const lead = e.steps[0].id;
-  const forms = uniqueForms([...e.steps.flatMap((s) => s.forms), ...e.forms]);
-  const offers = e.steps.flatMap((s) => ctx.drafts?.forStep(s.id) ?? []);
-  const action = primaryAction(forms, offers);
-  const refs = uniqueRefs([
+function visitRefs(e: VisitEntry, forms: FormLine[]): Ref[] {
+  return uniqueRefs([
     ...e.steps.flatMap((s) => [...refsOf(s.whyNow), ...refsOf(s.wait)]),
     ...forms.flatMap((f) => refsOf(f.guide)),
     ...e.bring.map((b) => b.ref),
@@ -562,172 +613,97 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
     e.booking?.ref,
     e.venue?.ref,
     e.venue?.when?.ref,
-    ...e.tips.map((t) => t.ref),
   ]);
-  const restForms = action?.kind === "form" ? forms.slice(1) : forms;
+}
 
+/**
+ * A visit card. Several steps at one desk are one ticket: the first step on top, then a dashed seam with two
+ * notches cut into the edges, then the other steps on a slightly darker stub with the action and Details.
+ */
+function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
+  const [open, setOpen] = useState(false);
+  const forms = uniqueForms([...e.steps.flatMap((s) => s.forms), ...e.forms]);
+  const offers = e.steps.flatMap((s) => ctx.drafts?.forStep(s.id) ?? []);
+  const action = primaryAction(forms, offers);
+  const refs = visitRefs(e, forms);
+  const restForms = action?.kind === "form" ? forms.slice(1) : forms;
+  const [first, ...rest] = e.steps;
+  const head = <OfficeLine ctx={ctx} office={e.authority} how="in person" steps={e.steps} />;
+  const details = open && (
+    <Details
+      ctx={ctx}
+      d={{ lead: first.id, steps: e.steps, bring: e.bring, forms: restForms, booking: e.booking, address: e.address, venue: e.venue, calendarUrl: e.calendarUrl, refs }}
+    />
+  );
+  const row = <ActionRow action={action} drafts={ctx.drafts} open={open} onToggle={() => setOpen((o) => !o)} />;
+
+  if (!rest.length) {
+    return (
+      <article className="card overflow-hidden">
+        <div className="px-5 py-4 sm:px-6">
+          {head}
+          <div className="mt-1">
+            <StepBody ctx={ctx} s={first} />
+          </div>
+          {row}
+        </div>
+        {details}
+      </article>
+    );
+  }
   return (
     <article className="card">
-      <div className="px-4 pb-4 pt-4 sm:px-6">
-        <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-          <p className="flex min-w-0 items-center gap-2 text-[15px] text-muted">
-            <IconInPerson className="h-4 w-4 shrink-0 text-ink" />
-            {e.steps.length > 1 ? (
-              <>
-                <span className="font-semibold text-ink">{e.authority}</span>
-                <span aria-hidden>·</span>
-                <span>{e.steps.length === 2 ? "both" : `all ${e.steps.length}`} in one visit</span>
-              </>
-            ) : (
-              <span className="font-semibold text-ink">{e.authority}</span>
-            )}
-          </p>
-          <Badge ctx={ctx} steps={e.steps} />
-        </header>
-        {e.steps.length > 1 ? (
-          <MergedVisit e={e} />
-        ) : (
-          <div className="mt-2">
-            <StepLine s={e.steps[0]} />
-          </div>
-        )}
-        <ActionRow action={action} drafts={ctx.drafts} sources={refs.length} onSources={() => ctx.onSources(lead)} open={open} onToggle={() => setOpen((o) => !o)} />
-      </div>
-
-      {open && (
-        <div className="grid gap-x-8 gap-y-4 border-t border-rule px-4 py-4 sm:grid-cols-2 sm:px-6">
-          {e.bring.length > 0 && (
-            <section>
-              <p className="text-[13px] font-semibold text-muted">Bring</p>
-              <ul className="mt-2 space-y-2 text-[17px] leading-snug text-ink">
-                {dedupeBring(e.bring).map((b) => (
-                  <li key={b.value} className="flex gap-2">
-                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-rule-strong" aria-hidden />
-                    <span>{b.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-          {unlocks.length > 0 && <Unlocks ctx={ctx} ids={unlocks} />}
-          <MoreToDo forms={restForms} />
-          <section className="space-y-2 text-[17px] text-ink sm:col-span-2">
-            <p className="text-[13px] font-semibold text-muted">Visit</p>
-            {e.address && <p>{e.address.value}</p>}
-            {e.venue && (
-              <p className="flex items-start gap-2">
-                <IconInPerson className="mt-[4px] h-4 w-4 shrink-0 text-muted" />
-                <span>
-                  Can be done at your university&apos;s {e.venue.name}
-                  {e.venue.when ? `: ${e.venue.when.value}.` : ". Check the date for your intake with your university."}
-                </span>
-              </p>
-            )}
-            {e.booking && !e.booking.url && <p>How to book: {e.booking.text}</p>}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
-              {e.booking?.url && (
-                <a href={e.booking.url} target="_blank" rel="noreferrer" className={btn}>
-                  Book an appointment <IconExternal className="h-3.5 w-3.5" />
-                </a>
-              )}
-              {e.calendarUrl && (
-                <a href={e.calendarUrl} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1 text-[15px] ${link}`}>
-                  <IconCalendar className="h-3.5 w-3.5" /> Add this visit to your calendar
-                </a>
-              )}
-            </div>
-            {critical && (
-              <p className="text-[15px] text-muted">
-                <Term term="slowest" long />
-              </p>
-            )}
-          </section>
-          {e.tips.length > 0 && (
-            <details className="group text-[15px] sm:col-span-2">
-              <summary className="cursor-pointer list-none text-muted hover:text-ink">
-                <span className="inline-block transition-transform group-open:rotate-90">›</span> {e.tips.length} {e.tips.length === 1 ? "tip" : "tips"} from
-                people who did it
-              </summary>
-              <ul className="mt-2 space-y-2 pl-4 text-muted">
-                {e.tips.map((t, i) => (
-                  <li key={i}>{t.text}</li>
-                ))}
-              </ul>
-            </details>
-          )}
-          <SkipDetails steps={e.steps} />
-          <Waits steps={e.steps} />
-          <SourceQuotes refs={refs} />
+      <div className="px-5 pb-5 pt-4 sm:px-6">
+        {head}
+        <div className="mt-1">
+          <StepBody ctx={ctx} s={first} />
         </div>
-      )}
+      </div>
+      <div className="ticket-seam" aria-hidden />
+      <div className={`bg-stub px-5 pb-4 pt-5 sm:px-6 ${open ? "" : "rounded-b-[13px]"}`}>
+        <div className="space-y-4">
+          {rest.map((s) => (
+            <div key={s.id}>
+              <StepBody ctx={ctx} s={s} />
+            </div>
+          ))}
+        </div>
+        {row}
+      </div>
+      {details}
     </article>
   );
 }
 
-/** Online steps on their day: one line of context, then each step as its own small card. */
-function Online({ ctx, e }: { ctx: Ctx; e: OnlineEntry }) {
-  return (
-    <div>
-      <p className="flex items-center gap-2 pb-1 pt-3 text-[15px] text-muted">
-        <IconOnline className="h-4 w-4 text-ink" />
-        <span className="font-semibold text-ink">Online</span> any time from {fmtDay(e.date)}
-      </p>
-      <div className="space-y-4">
-        {e.steps.map((s) => (
-          <OnlineStep key={s.id} ctx={ctx} s={s} />
-        ))}
-      </div>
-    </div>
-  );
+/** Which small picture an "Anytime" step gets: bank, university, insurance, else the online screen. */
+export function anytimeIcon(s: { title: string; authority: string }) {
+  const t = `${s.title} ${s.authority}`.toLowerCase();
+  if (/\bbank|banking/.test(t)) return IconBank;
+  if (/universit|student|enrol|study|studies|school/.test(t)) return IconCap;
+  if (/kela|social security|insurance|health/.test(t)) return IconShield;
+  return IconOnline;
 }
 
-/**
- * How an "Anytime online" step is done: "Online", or "Visit your bank" when it takes a visit. A bank account
- * ("either" in the sources) is opened in person by a newcomer (identification at the branch), so it says so.
- */
-function HowLine({ ctx, s }: { ctx: Ctx; s: DayStep }) {
-  const mode = ctx.state.steps[s.id]?.mode;
-  const visit = mode === "in_person" || (mode === "either" && /^your bank$/i.test(s.authority));
-  return (
-    <p className="mb-2 flex items-center gap-2 text-[15px] text-muted">
-      {visit ? <IconInPerson className="h-4 w-4 shrink-0 text-ink" /> : <IconOnline className="h-4 w-4 shrink-0 text-ink" />}
-      <span className="font-semibold text-ink">{visit ? `Visit ${s.authority.replace(/^Your /, "your ")}` : "Online"}</span>
-    </p>
-  );
-}
-
+/** An online step: on the timeline when it is on the slowest chain; otherwise in "Anytime online" with its first possible day. */
 function OnlineStep({ ctx, s, from }: { ctx: Ctx; s: DayStep; /** In "Anytime online": the first day it is possible. */ from?: string }) {
   const [open, setOpen] = useState(false);
   const forms = uniqueForms(s.forms);
   const offers = ctx.drafts?.forStep(s.id) ?? [];
   const action = primaryAction(forms, offers);
   const refs = uniqueRefs([...refsOf(s.whyNow), ...refsOf(s.wait), ...forms.flatMap((f) => refsOf(f.guide))]);
-  const badge = <Badge ctx={ctx} steps={[s]} />;
+  const mode = ctx.state.steps[s.id]?.mode;
+  const visit = mode === "in_person" || (mode === "either" && /^your bank$/i.test(s.authority));
   return (
-    <article className="card px-4 py-4 sm:px-6">
-      {from && <HowLine ctx={ctx} s={s} />}
-      <div className="flex flex-wrap items-start justify-between gap-x-4">
-        <div className="min-w-0 flex-1">
-          <StepLine s={s} big={false} />
+    <article className="card overflow-hidden">
+      <div className="px-5 py-4 sm:px-6">
+        <OfficeLine ctx={ctx} office={s.authority} how={visit ? "in person" : "online"} steps={[s]} />
+        <div className="mt-1">
+          <StepBody ctx={ctx} s={s} />
           {from && <p className="mt-1 text-[13px] text-muted">Possible from {fmtDay(from)}</p>}
         </div>
-        {badge}
+        <ActionRow action={action} drafts={ctx.drafts} open={open} onToggle={() => setOpen((o) => !o)} />
       </div>
-      <ActionRow action={action} drafts={ctx.drafts} sources={refs.length} onSources={() => ctx.onSources(s.id)} open={open} onToggle={() => setOpen((o) => !o)} />
-      {open && (
-        <div className="mt-3 grid gap-x-8 gap-y-4 border-t border-rule pt-3 sm:grid-cols-2">
-          {s.unlocks.length > 0 && <Unlocks ctx={ctx} ids={s.unlocks} />}
-          <MoreToDo forms={action?.kind === "form" ? forms.slice(1) : forms} />
-          {s.critical && (
-            <p className="text-[15px] text-muted sm:col-span-2">
-              <Term term="slowest" long />
-            </p>
-          )}
-          <SkipDetails steps={[s]} />
-          <Waits steps={[s]} />
-          <SourceQuotes refs={refs} />
-        </div>
-      )}
+      {open && <Details ctx={ctx} d={{ lead: s.id, steps: [s], forms: action?.kind === "form" ? forms.slice(1) : forms, refs }} />}
     </article>
   );
 }
@@ -736,8 +712,8 @@ function DaysSkeleton() {
   return (
     <ol aria-hidden className="space-y-4">
       {[0, 1, 2].map((i) => (
-        <li key={i} className="grid grid-cols-[6.5rem_28px_minmax(0,1fr)] gap-x-3">
-          <div className="skeleton ml-auto mt-4 h-6 w-16 rounded" />
+        <li key={i} className="grid grid-cols-[4.5rem_16px_minmax(0,1fr)] gap-x-5">
+          <div className="skeleton ml-auto mt-4 h-6 w-12 rounded" />
           <div />
           <div className="card space-y-2 p-6">
             <div className="skeleton h-5 w-2/3 rounded" />
