@@ -14,15 +14,22 @@ Revert everything: `git checkout before-final` (tag pushed). To undo one step, `
 
 Marta (clean `?demo=marta`): Vero shortcut, 5 visits, 15 days sooner (guarded by `tests/golden/marta-headline.test.tsx`, green).
 
-## Skipped / not finished
-- **Spanish and Portuguese demos:** there are none. `DEMO_SENTENCES` has marta, brazil, india, vietnam. Not rendered/checked one by one in this pass (their golden/invariant tests are green).
-- **Step 8 (consistency on map tab + activity panel):** screenshots taken (below) but not reviewed or fixed: usage limit reached.
-- **Step 9 (full visual check):** Marta desktop + mobile and the empty state were checked after each step; no overlaps or horizontal scroll seen. Brazil/India/Vietnam not screenshot-checked.
-- Drafts still need "Prepare draft" before the subject shows (auto-preparing would add model calls = a new feature).
-- Still in the design: "SET UP BY" uppercase label, "Optional" uppercase tag, some 4/12px inner gaps.
+- **4782b1c** Activity panel: no second "How I worked this out" heading or second Hide under the link that opens it.
+- **a65f0a4** Forms: an extracted name that is a sentence fragment (India showed "your application the") is shown as "Official form" (+ test).
+
+## Checks done (step 9)
+- All demos (marta, brazil, india, vietnam) render at 1440x900 and 390x844 with no horizontal scroll and no element wider than the viewport (automated check in headless Chrome).
+- Marta (clean `?demo=marta`): "Get your Finnish personal identity code at Vero on 1 December", 5 visits, 15 days sooner.
+- Empty state, Map tab and activity panel reviewed at 1440; no stray borders or second link styles left.
+
+## Skipped and why
+- **Spanish and Portuguese demos:** there are none in `DEMO_SENTENCES` (marta, brazil, india, vietnam). All four were checked instead.
+- Drafts still need "Prepare draft" before the subject shows: preparing them automatically would add model calls (a new feature).
+- Kept on purpose: the "SET UP BY" uppercase label and the "Optional" tag (earlier design decisions); a few 4/12px gaps inside components (the 8px grid is kept for sections and cards).
+- Root cause of "your application the" is in form extraction (`lib/agent/forms.ts`), which was off limits; only the display is guarded.
 
 ## Heads-up
 - Your `next dev` on :3000 stopped hot-reloading `globals.css` earlier: **restart it** before the demo or the old styles show.
 
 ## Screenshots (`docs/morning/`)
-marta-1440.png, marta-390-header.png, marta-390-timeline.png, empty-1440.png, empty-390.png, map-1440.png (not reviewed), activity-1440.png (not reviewed).
+marta-1440.png, marta-390-header.png, marta-390-timeline.png, empty-1440.png, empty-390.png, map-1440.png, activity-1440.png, india-390.png.
