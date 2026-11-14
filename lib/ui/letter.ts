@@ -274,7 +274,7 @@ function conflictPara(ctx: Ctx): Para | null {
   const c = conflicts[0];
   if (!c) return null;
   const segs: Seg[] = [
-    { t: `Sources disagree on ${topicText(c.topic, ctx.short)}. ${conflictNote(c.note, c.a, c.b)}` },
+    { t: `${c.a.trust === "official" && c.b.trust === "official" ? "Official sources disagree" : "Sources disagree"} on ${topicText(c.topic, ctx.short)}. ${conflictNote(c.note, c.a, c.b)}` },
     { ref: ctx.reg.ref(c.a) },
     { ref: ctx.reg.ref(c.b) },
     { t: ` ${whatToDoShort(c.whatToDo)}` },
@@ -303,7 +303,7 @@ function estimatePara(ctx: Ctx): Para | null {
     const names = est.map((i) => lowerFirst(ctx.short(i.stepId)));
     const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
     segs.push({
-      t: `${segs.length ? " " : ""}${est.length === 1 ? "One date is my estimate" : `${est.length} of the ${real.length} dates are my estimates`}, because no source gave a processing time: ${list}. ${est.length === 1 ? "It is" : "They are"} marked * on the map.`,
+      t: `${segs.length ? " " : ""}${est.length === 1 ? "One date is an estimate" : `${est.length} of the ${real.length} dates are estimates`}, because no official figure was found: ${list}. ${est.length === 1 ? "It is" : "They are"} marked * in the plan.`,
     });
   }
   if (!segs.length) return null;

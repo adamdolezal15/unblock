@@ -11,6 +11,8 @@ import type { Selection } from "../graph/PlanGraph";
 import { Footnote } from "../letter/Footnote";
 import { QuoteCard } from "../letter/QuoteCard";
 import { IconClose, MODE_LABEL } from "../icons";
+import { Help, Term } from "../Help";
+import { disagreeLabel } from "@/lib/ui/glossary";
 
 type Props = { state: RunState; doc: LetterDoc; selection: NonNullable<Selection>; onSelect: (s: Selection) => void };
 
@@ -157,7 +159,11 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
     <div>
       <p className="pr-8 text-[15px] text-muted">
         {step.authority}, {MODE_LABEL[step.mode].toLowerCase()}
-        {critical && <span className="text-accent">, on your critical path</span>}
+        {critical && (
+          <span className="text-accent">
+            , <Term term="slowest" />
+          </span>
+        )}
       </p>
       <h2 className="mt-1 pr-8 font-serif text-[26px] font-semibold leading-[1.2] text-ink">
         {step.title}
@@ -168,7 +174,12 @@ function StepView({ ctx, id }: { ctx: Ctx; id: string }) {
       ) : (
         <p className="num mt-3 text-[17px] leading-relaxed text-ink">
           {plainSummary(step, item?.startDate)}
-          {item?.estimated && <span className="text-muted"> The date is an estimate: no official figure found.</span>}
+          {item?.estimated && (
+            <span className="text-muted">
+              {" "}
+              <Term term="estimate" />
+            </span>
+          )}
           {item?.movedBy && <span className="text-muted"> Moved from {fmtLongDay(item.movedBy.from)} for {item.movedBy.holiday}.</span>}
           {item?.note && !item.estimated && <span className="block text-[15px] text-muted">Timing: {item.note}.</span>}
         </p>
@@ -307,10 +318,11 @@ function Tips({ ctx, tips }: { ctx: Ctx; tips: Tip[] }) {
 
 function ConflictCallout({ ctx, c }: { ctx: Ctx; c: Conflict }) {
   return (
-    <section className="mt-6 rounded-[6px] border border-amber-line bg-amber-soft px-4 py-4" aria-label="Sources disagree">
+    <section className="mt-6 rounded-[6px] border border-amber-line bg-amber-soft px-4 py-4" aria-label={disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}>
       <h3 className="flex items-center gap-2 text-[16px] font-semibold text-amber">
         <span className="h-3 w-3 shrink-0 rounded-full bg-amber-dot" />
-        Sources disagree on {topicText(c.topic, ctx.name)}
+        {disagreeLabel(c.a.trust === "official" && c.b.trust === "official")}: {topicText(c.topic, ctx.name)}
+        <Help term="disagree" />
       </h3>
       <p className="mt-1 text-[15px] leading-relaxed text-ink">{conflictNote(c.note, c.a, c.b)}</p>
       <div className="mt-3 grid gap-4">
@@ -333,7 +345,9 @@ function MilestoneView({ ctx, id }: { ctx: Ctx; id: string }) {
   const deps = (state.graph?.graph.edges ?? []).filter((e) => e.source === id && !e.anyOf).map((e) => e.target);
   return (
     <div>
-      <p className="pr-8 text-[15px] text-muted">Any one of these is enough</p>
+      <p className="pr-8 text-[15px] text-muted">
+        <Term term="either" />
+      </p>
       <h2 className="mt-1 pr-8 font-serif text-[26px] font-semibold leading-[1.2] text-ink">{ms?.title ?? ctx.name(id)}</h2>
       <H>Ways to get it</H>
       <ul className="mt-2 space-y-2 text-[16px] text-ink">

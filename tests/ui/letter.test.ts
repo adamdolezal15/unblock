@@ -68,8 +68,8 @@ describe("letter: Marta", () => {
   it("names the conflict and the estimates", () => {
     const keys = doc.letter!.paras.map((p) => p.key);
     expect(keys).toEqual(["shortcut", "money", "conflict", "estimates"]);
-    expect(text(doc.letter!.paras[2].segs)).toMatch(/^Sources disagree on whether a Finnish personal identity code is needed to open a bank account\./);
-    expect(text(doc.letter!.paras[3].segs)).toContain("2 of the 9 dates are my estimates");
+    expect(text(doc.letter!.paras[2].segs)).toMatch(/^Official sources disagree on whether a Finnish personal identity code is needed to open a bank account\./);
+    expect(text(doc.letter!.paras[3].segs)).toContain("2 of the 9 dates are estimates, because no official figure was found");
   });
 });
 

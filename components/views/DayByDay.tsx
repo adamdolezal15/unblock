@@ -7,6 +7,7 @@ import { fmtDay } from "@/lib/ui/format";
 import { nodeLabel } from "@/lib/ui/graphLayout";
 import { Prose } from "../letter/LetterView";
 import { Footnote } from "../letter/Footnote";
+import { Term } from "../Help";
 import { IconCalendar, IconCheck, IconDownload, IconExternal } from "../icons";
 
 const LONG_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -136,7 +137,11 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
           <StepBlock key={s.id} ctx={ctx} s={s} first={i === 0} />
         ))}
       </div>
-      {e.steps.length > 1 && <p className="mt-3 text-[15px] text-muted">Do both in one visit.</p>}
+      {e.steps.length > 1 && (
+        <p className="mt-3 text-[15px] text-muted">
+          <Term term="oneVisit" />
+        </p>
+      )}
       {e.bring.length > 0 && (
         <div className="mt-4">
           <p className="text-[16px] font-semibold text-ink">Bring</p>

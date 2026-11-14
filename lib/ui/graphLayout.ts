@@ -285,7 +285,7 @@ export function layoutGraph(input: LayoutInput): Layout {
     framed.add(v);
     const top = Math.min(...ps.map((p) => p.y));
     const bottom = Math.max(...ids.map((id) => pos.get(id)!.y + hOf(id)));
-    nodes.push({ id: `frame:${v}`, type: "frame", x: ps[0].x - 5, y: top - 5, zIndex: -1, data: { kind: "frame", label: "one visit", width: NODE_W + 10, height: bottom - top + 10 } });
+    nodes.push({ id: `frame:${v}`, type: "frame", x: ps[0].x - 5, y: top - 5, zIndex: -1, data: { kind: "frame", label: "Do both in one visit", width: NODE_W + 10, height: bottom - top + 10 } });
   }
   for (const id of stepIds) {
     const n = byId.get(id)!;

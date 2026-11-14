@@ -7,6 +7,7 @@ import type { Conflict, Step } from "@/lib/types";
 import { layoutGraph, type Layout } from "@/lib/ui/graphLayout";
 import { nodeTypes } from "./nodes";
 import { edgeTypes } from "./RoutedEdge";
+import { Term } from "../Help";
 
 export type Selection = { kind: "step"; id: string } | { kind: "edge"; id: string; source: string; target: string } | null;
 
@@ -168,24 +169,24 @@ function Inner({ graph, steps, items, criticalPath, conflicts, deadlocks, select
 
 export function GraphLegend() {
   return (
-    <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[14px] text-muted">
+    <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] text-muted">
       <li className="flex items-center gap-2">
-        <span className="inline-block h-[3px] w-6 bg-accent" /> Critical path
+        <span className="inline-block h-[3px] w-6 shrink-0 bg-accent" /> <Term term="slowest" long />
       </li>
       <li className="flex items-center gap-2">
-        <span className="inline-block h-2.5 w-2.5 rotate-45 border-[1.5px] border-ink" /> Any one is enough
+        <span className="inline-block h-2.5 w-2.5 shrink-0 rotate-45 border-[1.5px] border-ink" /> <Term term="either" />
       </li>
       <li className="flex items-center gap-2">
-        <span className="inline-block h-3.5 w-5 rounded-[3px] border border-dashed border-ink/40" /> One visit
+        <span className="inline-block h-3.5 w-5 shrink-0 rounded-[3px] border border-dashed border-ink/40" /> <Term term="oneVisit" />
       </li>
       <li className="flex items-center gap-2">
-        <span className="inline-block h-3 w-3 rounded-full bg-amber-dot" /> Sources disagree
+        <span className="inline-block h-3 w-3 shrink-0 rounded-full bg-amber-dot" /> <Term term="disagree" long />
       </li>
       <li className="flex items-center gap-2">
-        <span className="inline-block h-3 w-3 rounded-full bg-ink" /> Official source
+        <span className="inline-block h-3 w-3 shrink-0 rounded-full bg-ink" /> Official source
       </li>
-      <li>
-        <span className="num text-ink">*</span> Estimated date
+      <li className="flex items-center gap-2">
+        <span className="num text-ink">*</span> <Term term="estimate" />
       </li>
     </ul>
   );

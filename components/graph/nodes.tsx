@@ -55,7 +55,7 @@ export function StepNode({ data, selected }: NodeProps<StepNodeData & Extra>) {
         </span>
       </div>
       {data.conflict && (
-        <span className="absolute -right-2 -top-2 h-4 w-4 rounded-full border-2 border-raised bg-amber-dot" title="Sources disagree on this step" />
+        <span className="absolute -right-2 -top-2 h-4 w-4 rounded-full border-2 border-raised bg-amber-dot" title="Sources disagree here: open the step to see why" />
       )}
     </div>
   );
@@ -67,13 +67,13 @@ export function AnyOfNode({ data, selected }: NodeProps<DiamondNodeData & Extra>
     <div
       style={{ width: DIAMOND, height: DIAMOND }}
       className={`relative cursor-pointer transition-opacity duration-150 ${data.faded ? "opacity-45" : ""}`}
-      title={`${data.label || "This step"}: any one of the arrows into the diamond is enough`}
+      title={`${data.label || "This step"}: either one is enough`}
     >
       <Handles />
       <div className={`absolute inset-[3px] rotate-45 border-[1.5px] ${tone} ${selected ? "shadow-[0_0_0_3px_rgba(0,53,128,0.25)]" : ""}`} />
       {/* Opaque tag above the diamond, clear of the lines (they enter and leave at mid-height). */}
       <span className="pointer-events-none absolute bottom-full left-1/2 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-[4px] border border-rule-strong bg-paper px-1.5 py-0.5 text-[14px] leading-4 text-ink">
-        {data.label ? `${data.label}: any one` : "Any one of"}
+        {data.label ? `${data.label}: either one is enough` : "Either one is enough"}
       </span>
     </div>
   );
