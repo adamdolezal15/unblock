@@ -20,14 +20,21 @@ export type FormLine = {
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
+/**
+ * The name a form is shown under. A real form name starts with a capital or a number ("Form 6150e", "EU registration");
+ * an extracted fragment that does not ("your application the") is shown as "Official form", never as a title.
+ */
+export const displayFormName = (name: string) => (/^[\p{Lu}\d]/u.test(name.trim()) ? name.trim() : "Official form");
+
 /** "Form 6150e: fill in before you go, sign at the office" + its footnote. */
 export function formLine(form: StepForm, ref: (c: Citation) => Ref): FormLine {
-  const text = form.guidance ? `${form.name}: ${form.guidance}` : form.name;
+  const name = displayFormName(form.name);
+  const text = form.guidance ? `${name}: ${form.guidance}` : name;
   const r = ref(form.citation);
   return {
     form,
     segs: [{ t: text }, { ref: r }],
-    name: form.name,
+    name,
     guide: form.guidance ? [{ t: cap(form.guidance.trim()) }, { ref: r }] : [{ ref: r }],
     href: form.url ?? form.citation.url,
     linkLabel: form.url ? (form.type === "pdf" ? "Open official form (PDF)" : "Open official form") : "Open the official page",
