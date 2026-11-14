@@ -20,7 +20,7 @@ export function Station({ x, y, main = false, hollow = false, lit = false, done 
 }
 
 /** "Either one is enough": the diamond. */
-export function Interchange({ x, y, lit = false, scale = 1, className }: P & { lit?: boolean; scale?: number; className?: string }) {
+export function Interchange({ x, y, lit = false, scale = 1, className, color }: P & { lit?: boolean; scale?: number; className?: string; color?: string }) {
   const s = DIAMOND.size * scale;
   return (
     <g className={className} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
@@ -31,7 +31,7 @@ export function Interchange({ x, y, lit = false, scale = 1, className }: P & { l
         height={s}
         transform={`rotate(45 ${x} ${y})`}
         fill={lit ? C.lake : C.paper}
-        stroke={lit ? C.blue : C.ink}
+        stroke={color ?? (lit ? C.blue : C.ink)}
         strokeWidth={DIAMOND.stroke * scale}
       />
     </g>

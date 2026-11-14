@@ -46,41 +46,35 @@ function waitLabel(days: number, office: string): string {
   return `${t} waiting${office ? ` for ${office.split(" + ").pop()!.replace(/^Your /, "your ")}` : ""}`;
 }
 
-const PAD = 90; // px kept free at both ends for labels
-const MIN_GAP = 0.17; // stations closer than this (share of the width) stagger their labels
+const PAD = 80; // px kept free at both ends for labels
+const GAP = 160; // minimum px between neighbouring stations
 const WAIT_DAYS = 4; // gaps of at least this many calendar days are drawn as waiting
 
 export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: (id: string) => void }) {
   const stops = stopsFrom(entries);
   if (stops.length < 2) return null;
-  const span = Math.max(1, calendarDaysBetween(stops[0].date, stops[stops.length - 1].date));
-  const frac = stops.map((s) => calendarDaysBetween(stops[0].date, s.date) / span);
+  const n = stops.length;
+  const seg = 1 / (n - 1); // equal spacing; dates are in the labels, waits are drawn as dashes
   const at = (f: number) => `calc(${PAD}px + (100% - ${2 * PAD}px) * ${f})`;
-  // Stagger: a station too close to the previous one on its row moves its labels onto the other row.
-  const row: number[] = [];
-  const lastOn = [-1, -1];
-  stops.forEach((_, i) => {
-    const r = lastOn[0] < 0 || frac[i] - frac[lastOn[0]] >= MIN_GAP ? 0 : lastOn[1] < 0 || frac[i] - frac[lastOn[1]] >= MIN_GAP ? 1 : 0;
-    row.push(r);
-    lastOn[r] = i;
-  });
-  const staggered = row.some((r) => r === 1);
-  const top = staggered ? 96 : 62; // y of the line
-  const height = top + (staggered ? 112 : 58);
+  const top = 44; // y of the line
 
   return (
-    <div className="-mx-2 overflow-x-auto px-2 pb-2">
-      <div className="relative min-w-[640px]" style={{ height }} role="list" aria-label="Your visits in order">
-        {/* the line: solid between stations, lighter dashed while waiting */}
+    <div className="-mx-2 overflow-x-auto overflow-y-hidden px-2 pb-2">
+      <div className="relative" style={{ height: top + 76, minWidth: (n - 1) * GAP + 2 * PAD }} role="list" aria-label="Your visits in order">
         {stops.slice(0, -1).map((s, i) => {
           const gap = calendarDaysBetween(s.date, stops[i + 1].date);
           const waiting = gap >= WAIT_DAYS;
-          const style = { left: at(frac[i]), width: `calc((100% - ${2 * PAD}px) * ${frac[i + 1] - frac[i]})`, top: top - 2 };
+          const left = at(i * seg);
+          const width = `calc((100% - ${2 * PAD}px) * ${seg})`;
           return (
             <div key={`l${i}`} aria-hidden>
-              <div className={`absolute ${waiting ? "border-t-[3px] border-dashed border-accent/35" : "h-[4px] bg-accent"}`} style={waiting ? { ...style, top: top - 1.5, height: 0 } : style} />
+              {waiting ? (
+                <div className="absolute border-t-[3px] border-dashed border-accent/35" style={{ left, width, top: top - 1.5 }} />
+              ) : (
+                <div className="absolute h-[4px] bg-accent" style={{ left, width, top: top - 2 }} />
+              )}
               {waiting && (
-                <div className="absolute -translate-x-1/2 whitespace-nowrap text-[13px] text-muted" style={{ left: `calc(${at(frac[i])} + (100% - ${2 * PAD}px) * ${(frac[i + 1] - frac[i]) / 2})`, top: top - 28 }}>
+                <div className="absolute w-[150px] -translate-x-1/2 text-center text-[13px] leading-tight text-muted" style={{ left: `calc(${left} + ${width} / 2)`, top: top - 40 }}>
                   {waitLabel(gap, s.label)}
                 </div>
               )}
@@ -88,25 +82,13 @@ export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: 
           );
         })}
         {stops.map((s, i) => {
-          const up = row[i] === 1;
-          const body = (
-            <>
-              {s.end ? <Marker kind="end" /> : <Station />}
-            </>
-          );
-          const aboveY = up ? 0 : staggered ? 34 : 0;
-          const belowY = up ? top + 66 : top + 22;
-          const labelAbove = s.end ? fmtDay(s.date) : <>{fmtDay(s.date)}<span className="mx-1.5">·</span>{s.label}</>;
-          const stem = up ? { top: aboveY + 20, height: top - aboveY - 30 } : null;
-          const stemBelow = up ? { top: top + 12, height: 50 } : null;
+          const body = s.end ? <Marker kind="end" /> : <Station />;
           return (
             <div key={i} role="listitem">
-              <div className="absolute w-40 -translate-x-1/2 text-center" style={{ left: at(frac[i]), top: aboveY }}>
-                <span className={`num block text-[14px] leading-tight ${s.end ? "font-bold text-ink" : "text-muted"}`}>{labelAbove}</span>
+              <div className="absolute w-36 -translate-x-1/2 text-center" style={{ left: at(i * seg), top: 0 }}>
+                <span className={`num block text-[14px] leading-tight ${s.end ? "font-bold text-ink" : "text-muted"}`}>{fmtDay(s.date)}</span>
               </div>
-              {stemBelow && <div className="absolute w-px -translate-x-1/2 bg-rule-strong" style={{ left: at(frac[i]), ...stemBelow }} aria-hidden />}
-              {stem && <div className="absolute w-px -translate-x-1/2 bg-rule-strong" style={{ left: at(frac[i]), ...stem }} aria-hidden />}
-              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: at(frac[i]), top }}>
+              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: at(i * seg), top }}>
                 {s.stepId ? (
                   <button type="button" onClick={() => onOpen(s.stepId!)} aria-label={`${fmtDay(s.date)}, ${s.what}: show details`} className="block rounded-full">
                     {body}
@@ -115,8 +97,8 @@ export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: 
                   body
                 )}
               </div>
-              <div className="absolute w-40 -translate-x-1/2 text-center" style={{ left: at(frac[i]), top: belowY }}>
-                <span className={`block text-[15px] leading-tight ${s.end ? "font-bold" : ""} text-ink`}>{s.what}</span>
+              <div className="absolute w-36 -translate-x-1/2 text-center" style={{ left: at(i * seg), top: top + 24 }}>
+                <span className={`line-clamp-2 text-[15px] leading-tight text-ink ${s.end ? "font-bold" : ""}`}>{s.what}</span>
               </div>
             </div>
           );
