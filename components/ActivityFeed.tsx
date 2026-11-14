@@ -75,7 +75,7 @@ const ACTOR_LABEL: Record<Actor, string> = { exa: "Exa", claude: "Claude", check
 export function ActorTag({ actor }: { actor: Actor }) {
   return (
     <span className="mt-px flex w-[60px] shrink-0">
-      <span className="rounded-[3px] border border-ink/50 px-1 font-mono text-[13px] leading-4 text-ink/80">{ACTOR_LABEL[actor]}</span>
+      <span className="rounded-[4px] border border-ink/50 px-1 font-mono text-[13px] leading-4 text-ink/80">{ACTOR_LABEL[actor]}</span>
     </span>
   );
 }

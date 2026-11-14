@@ -66,7 +66,7 @@ export function RunInput({ value, running, onSubmit }: Props) {
           <button
             type="submit"
             disabled={running || !draft.trim()}
-            className="inline-flex h-12 shrink-0 items-center rounded-[10px] bg-accent px-6 text-[17px] font-bold text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-rule-strong"
+            className="btn-primary shrink-0 px-6 text-[17px] disabled:cursor-not-allowed disabled:bg-rule-strong"
           >
             Plan my move
           </button>

@@ -185,7 +185,7 @@ function StationMark({ s, faded, selected, onEnter, onLeave, onOpen }: { s: Metr
       {s.kind === "interchange" ? <Interchange x={s.x} y={s.y} scale={1.15} /> : <Station x={s.x} y={s.y} main={s.main} hollow={s.hollow} done={s.done} />}
       <text x={s.x} y={top} textAnchor="middle" className="metro-label" style={{ paintOrder: "stroke" }} stroke={C.paper} strokeWidth={4} strokeLinejoin="round">
         {lines.map((l, i) => (
-          <tspan key={i} x={s.x} dy={i === 0 ? 0 : LH} fontSize={14} fontWeight={l.bold ? 700 : 400} fill={l.bold ? (s.main ? C.blue : C.ink) : C.muted}>
+          <tspan key={i} x={s.x} dy={i === 0 ? 0 : LH} fontSize={15} fontWeight={l.bold ? 700 : 400} fill={l.bold ? (s.main ? C.blue : C.ink) : C.muted}>
             {l.t}
           </tspan>
         ))}

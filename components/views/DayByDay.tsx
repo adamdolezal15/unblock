@@ -146,7 +146,7 @@ function Optional({ ctx, steps }: { ctx: Ctx; steps: DayStep[] }) {
 
 /** The label on a step this person can skip. */
 function OptionalTag() {
-  return <span className="rounded-[3px] border border-rule-strong px-2 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
+  return <span className="rounded-[6px] border border-rule-strong px-2 py-[1px] text-[13px] font-bold uppercase tracking-wide text-muted">Optional</span>;
 }
 
 /** An optional step in the timeline: on the day it would be done, hollow station, one line saying why it can be skipped. */
@@ -596,7 +596,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
               <ul className="mt-2 space-y-2 text-[17px] leading-snug text-ink">
                 {e.bring.map((b) => (
                   <li key={b.value} className="flex gap-2">
-                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[3px] border-[1.5px] border-rule-strong" aria-hidden />
+                    <span className="mt-[3px] h-[15px] w-[15px] shrink-0 rounded-[4px] border-[1.5px] border-rule-strong" aria-hidden />
                     <span>{b.value}</span>
                   </li>
                 ))}
