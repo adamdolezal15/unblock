@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { sortSteps } from "@/components/StepsPreview";
 import type { Step } from "@/lib/types";
 import { assumptionLabel } from "./assumptionLabel";
+import { layoutGraph } from "./graphLayout";
+import type { Graph, ScheduledStep } from "@/lib/graph/types";
 import { initialRunState, runReducer } from "./runState";
 
 describe("assumptionLabel", () => {
@@ -42,5 +44,50 @@ describe("runReducer", () => {
   it("treats a stream that ends without done as an error", () => {
     const s = runReducer(runReducer(initialRunState, { type: "start", text: "x", at: 0 }), { type: "end", at: 1 });
     expect(s.phase).toBe("error");
+  });
+});
+
+describe("layoutGraph", () => {
+  const node = (id: string, authority: string, milestone = false) => ({ id, title: id, authority, mode: "in_person" as const, unresolved: false, milestone });
+  const graph: Graph = {
+    nodes: [node("reg", "DVV"), node("vero", "Vero"), node("tax", "Vero"), node("bank", "Bank"), node("code", "any", true)],
+    edges: [
+      { id: "reg->code#any0", source: "reg", target: "code", anyOf: "code#any0" },
+      { id: "vero->code#any0", source: "vero", target: "code", anyOf: "code#any0" },
+      { id: "code->tax", source: "code", target: "tax" },
+      { id: "code->bank", source: "code", target: "bank" },
+    ],
+  };
+  const it_ = (startIndex: number, readyIndex: number, startDate: string, visitId?: string) =>
+    ({ startIndex, readyIndex, startDate, estimated: false, ...(visitId ? { visitId } : {}) }) as ScheduledStep;
+  const items = { reg: it_(1, 9, "2026-12-02"), vero: it_(0, 4, "2026-12-01", "v1"), tax: it_(0, 1, "2026-12-01", "v1"), bank: it_(4, 8, "2026-12-07") };
+
+  it("places columns by start date, the milestone as an any-of diamond, lanes by authority", () => {
+    const L = layoutGraph({ graph, steps: {}, items, criticalPath: ["vero", "bank"] });
+    const x = (id: string) => L.nodes.find((n) => n.id === id)!.x;
+    expect(x("vero")).toBe(x("tax"));
+    expect(x("vero")).toBeLessThan(x("reg"));
+    expect(x("reg")).toBeLessThan(x("code"));
+    expect(x("code")).toBeLessThan(x("bank"));
+    expect(L.nodes.find((n) => n.id === "code")!.type).toBe("anyof");
+    expect(L.nodes.filter((n) => n.type === "lane").map((n) => (n.data as { label: string }).label)).toEqual(["Vero", "DVV", "Bank"]);
+    expect(L.nodes.filter((n) => n.type === "tick").map((n) => (n.data as { label: string }).label)).toEqual(["2026-12-01", "2026-12-02", "2026-12-07"]);
+    expect(L.nodes.some((n) => n.type === "frame")).toBe(true);
+  });
+
+  it("draws an edge back in time as a 'same visit' back-curve, never drops it", () => {
+    const L = layoutGraph({ graph, steps: {}, items });
+    const e = L.edges.find((x) => x.id === "code->tax")!;
+    expect(e).toMatchObject({ backward: true, label: "same visit" });
+    expect(L.edges).toHaveLength(graph.edges.length);
+  });
+
+  it("falls back to topological depth before the schedule exists", () => {
+    const L = layoutGraph({ graph, steps: {} });
+    const x = (id: string) => L.nodes.find((n) => n.id === id)!.x;
+    expect(L.dated).toBe(false);
+    expect(x("reg")).toBeLessThan(x("code"));
+    expect(x("code")).toBeLessThan(x("bank"));
+    expect(L.edges.every((e) => !e.backward)).toBe(true);
   });
 });

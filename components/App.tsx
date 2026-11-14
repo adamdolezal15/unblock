@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import { ProfileStrip } from "./ProfileStrip";
 import { RunInput } from "./RunInput";
 import { EmptyState, ErrorState, OutOfScopeState, PartialNotice } from "./States";
+import { GraphLegend, PlanGraph, type Selection } from "./graph/PlanGraph";
 import { StepsPreview } from "./StepsPreview";
 import { SummaryBar } from "./SummaryBar";
 
@@ -37,6 +38,10 @@ function Workspace({ state, onCorrect }: { state: RunState; onCorrect: (correcti
   const toggleFeed = () => setFeedPref({ runKey: state.runKey, collapsed: !collapsed });
   const elapsed = state.summary?.totalMs ?? (state.finishedAt ? state.finishedAt - state.startedAt : undefined);
   const steps = state.stepOrder.map((id) => state.steps[id]);
+  // Selection is per run.
+  const [sel, setSel] = useState<{ runKey: number; selection: Selection }>({ runKey: 0, selection: null });
+  const selection = sel.runKey === state.runKey ? sel.selection : null;
+  const select = (selection: Selection) => setSel({ runKey: state.runKey, selection });
 
   const feed = (
     <ActivityFeed statuses={state.statuses} running={running} elapsedMs={elapsed} collapsed={collapsed} onToggle={toggleFeed} />
@@ -63,7 +68,42 @@ function Workspace({ state, onCorrect }: { state: RunState; onCorrect: (correcti
               ))}
             </ul>
           )}
-          <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} order={state.graph?.order} />
+          {state.graph ? (
+            <section aria-label="Plan graph" className="flex flex-col gap-2">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h2 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted">
+                  Your plan{state.schedule ? ", by start date" : ""}
+                </h2>
+                <GraphLegend />
+              </div>
+              <div className="h-[clamp(380px,calc(100vh-270px),680px)] rounded-md border border-rule bg-paper">
+                <PlanGraph
+                  graph={state.graph.graph}
+                  steps={state.steps}
+                  items={state.schedule?.schedule.items}
+                  criticalPath={state.schedule?.criticalPath.stepIds}
+                  conflicts={state.conflicts}
+                  deadlocks={state.graph.deadlocks}
+                  selection={selection}
+                  onSelect={select}
+                />
+              </div>
+              {state.stubs.length > 0 && (
+                <ul className="space-y-1 text-[14px] text-muted">
+                  {state.stubs.map((s) => (
+                    <li key={s.id}>
+                      <span className="font-medium text-ink">{s.label}:</span> {s.message}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <p className="sr-only" aria-live="polite">
+                {selection?.kind === "step" ? `Selected ${state.steps[selection.id]?.title ?? selection.id}` : ""}
+              </p>
+            </section>
+          ) : (
+            <StepsPreview steps={steps} stubs={state.stubs} running={running} items={state.schedule?.schedule.items} />
+          )}
         </main>
       </div>
     </div>

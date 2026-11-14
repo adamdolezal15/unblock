@@ -108,3 +108,37 @@ body {
     animation: none;
   }
 }
+
+/* React Flow, restyled to the document look. Controls are opaque like every overlay. */
+.plan-graph .react-flow__controls {
+  box-shadow: none;
+  border: 1px solid #c4bdb0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f7f5f0;
+}
+.plan-graph .react-flow__controls-button {
+  width: 30px;
+  height: 30px;
+  background: #f7f5f0;
+  border-bottom: 1px solid #ddd8ce;
+  fill: #16181d;
+}
+.plan-graph .react-flow__controls-button:hover {
+  background: #efece5;
+}
+.plan-graph .react-flow__attribution {
+  background: #f7f5f0;
+  color: #8a8e96;
+}
+.plan-graph .react-flow__node:focus,
+.plan-graph .react-flow__node:focus-visible {
+  outline: none;
+}
+.plan-graph .react-flow__node:focus-visible > div {
+  outline: 2px solid #003580;
+  outline-offset: 3px;
+}
+.plan-graph .react-flow__edge {
+  cursor: pointer;
+}
