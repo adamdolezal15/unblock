@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Overpass, Source_Serif_4 } from "next/font/google";
+import { Inter, Source_Serif_4, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-// Overpass: after the Highway Gothic road-sign lettering, for the whole UI and the headlines. The plan
-// reads like wayfinding, so its type does too.
-const overpass = Overpass({
-  variable: "--font-overpass",
+// Inter for body text; Space Grotesk for headings and the big date numbers.
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
+  weight: "variable",
+});
+const grotesk = Space_Grotesk({
+  variable: "--font-grotesk",
   subsets: ["latin", "latin-ext"],
   weight: "variable",
 });
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${overpass.variable} ${serif.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${grotesk.variable} ${serif.variable} h-full`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

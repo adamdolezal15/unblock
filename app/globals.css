@@ -28,6 +28,12 @@
   --color-done-soft: color-mix(in srgb, var(--color-done) 10%, var(--color-surface));
   --color-done-line: color-mix(in srgb, var(--color-done) 35%, var(--color-surface));
 
+  /* Day by day rail and dots; the lower half of a merged visit; warning text on amber. */
+  --color-rail: #ddd7cc;
+  --color-dot: #cfc9be;
+  --color-stub: #fbfaf7;
+  --color-amber-text: #8a520a;
+
   --shadow-card: 0 1px 2px rgba(27, 35, 48, 0.04);
 }
 
@@ -35,7 +41,8 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-  --font-sans: var(--font-overpass), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
 }
 
@@ -54,6 +61,14 @@ body {
   font-size: 17px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
 }
 
 .num {
@@ -203,7 +218,7 @@ body {
 
 /* One display treatment for every big headline (docs/BRAND.md type scale). */
 .display {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;

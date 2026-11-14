@@ -25,7 +25,7 @@ type Props = {
 
 /**
  * The answer first, in this order only: the date, the one shortcut sentence, the short timeline, one meta line
- * with the single "Add all to calendar" button, a small Exa line, and the quiet "Heads up" block.
+ * with the single "Add all to calendar" button, a small Exa line, (warnings sit on the step they concern, in Day by day).
  */
 export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Props) {
   const entries = useMemo(() => buildDays(state, doc.ref), [state, doc]);
@@ -54,9 +54,12 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
   // One meta line: "5 visits · 4 online · 15 days sooner" (the comparison keeps its source number, after "sooner").
   const meta: Seg[][] = [[{ t: say.visits(n.visits) }], [{ t: say.online(n.online) }]];
   let metaTitle: string | undefined;
+  let joined = -1;
   if (comparison?.gain) {
     const ref = comparison.sentence.find((x) => "ref" in x);
-    meta.push([{ t: `${comparison.gain.days} days sooner` }, ...(ref ? [ref] : [])]);
+    // "than the usual order" may wrap on its own; the dot always stays with "15 days sooner".
+    meta.push([{ t: `${comparison.gain.days} days sooner` }], [{ t: "than the usual order" }, ...(ref ? [ref] : [])]);
+    joined = meta.length - 1;
     metaTitle = `${comparison.gain.days} days sooner than the usual order (DVV first)`;
   } else if (comparison) {
     meta.push([{ t: "same order as usual" }]);
@@ -68,13 +71,13 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
 
   return (
     <section aria-label="Your answer">
-      <div className="grid gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-x-12">
+      <div className="grid gap-y-8 min-[860px]:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] min-[860px]:items-start min-[860px]:gap-x-10 lg:gap-x-12">
         <div>
           {end ? (
             <h1 className="relative isolate">
               <span className="block text-[13px] font-semibold uppercase leading-none tracking-[0.08em] text-muted">Set up by{fuzzy ? " about" : ""}</span>{" "}
               <DateRing />
-              <span className="num mt-2 block text-[56px] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
+              <span className="num mt-2 block font-display text-[clamp(44px,6vw,56px)] font-bold leading-[1.1] tracking-[-0.02em] text-ink">
                 <span className="text-accent">{dayMonth}</span>
                 {year && ` ${year}`}
               </span>
@@ -88,10 +91,8 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
             <p className="num flex flex-wrap items-baseline text-[17px] font-semibold text-ink" title={metaTitle}>
               {meta.map((segs, i) => (
-                <span key={i} className="whitespace-nowrap">
-                  {i > 0 && (
-                    <Sep />
-                  )}
+                <span key={i} className={`whitespace-nowrap ${i === joined ? "ml-[0.3em]" : ""}`}>
+                  {i > 0 && i !== joined && <Sep />}
                   <Prose segs={segs} />
                 </span>
               ))}
@@ -109,7 +110,7 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
           </div>
           <ExaLine state={state} onShowFeed={onShowFeed} />
         </div>
-        <div className="lg:pt-1">
+        <div className="min-[860px]:pt-1">
           <TransitLine entries={entries} onOpen={onOpen} />
         </div>
       </div>
@@ -130,7 +131,7 @@ function ExaLine({ state, onShowFeed }: { state: RunState; onShowFeed?: () => vo
         <span className="whitespace-nowrap">
           <Sep />
           <button type="button" onClick={onShowFeed} className="link">
-            see the activity
+            how
           </button>
         </span>
       )}

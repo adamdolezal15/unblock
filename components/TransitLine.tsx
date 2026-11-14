@@ -84,7 +84,7 @@ export function TransitLine({ entries, onOpen }: { entries: DayEntry[]; onOpen: 
         return (
           <li key={i}>
             {gap >= WAIT_DAYS && (
-              <p className={`border-b ${t.rule} pb-2 pl-[96px] text-[13px] italic leading-snug ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
+              <p className={`border-b ${t.rule} pb-2 pl-[100px] text-[13px] italic leading-snug ${t.muted}`}>{waitLabel(gap, stops[i - 1].label)}</p>
             )}
             <div className={waitFollows ? "" : `border-b ${t.rule}`}>
               {s.stepId ? (
