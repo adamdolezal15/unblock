@@ -32,6 +32,10 @@ const plain = (segs: Seg[]) =>
     .replace(/\s+/g, " ")
     .replace(/\s+([.,:;!?])/g, "$1")
     .trim();
+/** A note that belongs in Details, not on the rail. */
+const ESTIMATE_NOTE = /\s*Estimate: no official figure found\.?/i;
+/** The wait as the rail shows it: the plain sentence without the estimate note. */
+const waitLine = (wait: Seg[]) => plain(wait).replace(ESTIMATE_NOTE, "").trim();
 const refsOf = (segs?: Seg[]) => (segs ?? []).flatMap((s) => ("ref" in s ? [s.ref] : []));
 const uniqueRefs = (refs: (Ref | undefined)[]) =>
   refs.filter((r): r is Ref => !!r).filter((r, i, all) => all.findIndex((x) => x.n === r.n) === i).sort((a, b) => a.n - b.n);
@@ -162,11 +166,12 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
   const marker = (
     <Marker kind={kinds.has("done") ? "end" : critical ? "main" : kinds.has("visit") ? "station" : kinds.size === 1 && kinds.has("reminder") ? "small" : "hollow"} />
   );
-  // Steps done in one visit often share the same wait line: say it once, as one quiet line without a number
-  // (its source is in the card's Details).
-  const waits = [
-    ...new Set(entries.flatMap((x) => (x.kind === "visit" || x.kind === "online" ? x.steps.filter((s) => s.wait) : [])).map((s) => plain(s.wait!))),
-  ];
+  // At most one wait line per day: the slowest chain's (it is what moves the next date). Every other wait,
+  // and the "no official figure" note, is in the card's Details.
+  const criticalWait = entries
+    .flatMap((x) => (x.kind === "visit" || x.kind === "online" ? x.steps : []))
+    .find((s) => s.critical && s.wait);
+  const waits = criticalWait ? [waitLine(criticalWait.wait!)] : [];
   const [dayNum, month] = fmtDay(entry.date).split(" ");
 
   return (
@@ -188,7 +193,7 @@ function Row({ entries, last, mainLeg, inLeg, children }: { entries: DayEntry[];
         {children}
         {waits.map((w) => (
           <p key={w} className="mt-3 flex items-start gap-2 pl-1 text-[15px] leading-normal text-muted">
-            <span className="mt-[11px] w-5 shrink-0 border-t border-dashed border-rule-strong" aria-hidden />
+            <span className="mt-[11px] w-4 shrink-0 border-t border-hairline-strong" aria-hidden />
             <span>{w}</span>
           </p>
         ))}
@@ -381,6 +386,25 @@ function MoreToDo({ forms, offers, drafts }: { forms: FormLine[]; offers: DraftO
   );
 }
 
+/** Every wait of the card's steps in full, including "Estimate: no official figure found" (the rail shows one, shortened). */
+function Waits({ steps }: { steps: DayStep[] }) {
+  const w = steps.filter((s) => s.wait);
+  if (!w.length) return null;
+  return (
+    <section className="sm:col-span-2">
+      <p className="text-[13px] font-semibold text-muted">Waiting time</p>
+      <ul className="mt-2 space-y-1 text-[15px] leading-normal text-ink">
+        {w.map((s) => (
+          <li key={s.id}>
+            {w.length > 1 && <span className="font-semibold">{s.short}: </span>}
+            {plain(s.wait!)}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 /** The verified quotes behind a card, each with its number. */
 function SourceQuotes({ refs }: { refs: Ref[] }) {
   if (!refs.length) return null;
@@ -558,6 +582,7 @@ function Visit({ ctx, e }: { ctx: Ctx; e: VisitEntry }) {
               </ul>
             </details>
           )}
+          <Waits steps={e.steps} />
           <SourceQuotes refs={refs} />
         </div>
       )}
@@ -607,6 +632,7 @@ function OnlineStep({ ctx, s }: { ctx: Ctx; s: DayStep }) {
               <Term term="slowest" long />
             </p>
           )}
+          <Waits steps={[s]} />
           <SourceQuotes refs={refs} />
         </div>
       )}
