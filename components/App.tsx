@@ -12,6 +12,7 @@ import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
 import { useDesign } from "@/lib/ui/useDesign";
 import { DesignSwitch } from "./DesignSwitch";
+import { JourneyHeader } from "./journey/JourneyHeader";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { runProgress } from "@/lib/ui/progress";
 import { coverage as coverageOf } from "@/lib/ui/coverage";
@@ -71,13 +72,24 @@ export function App() {
   return (
     <div className={design === "journey" ? "journey" : "min-h-screen"} data-design={design}>
       {design === "classic" && <Contours variant="result" />}
-      <TopBar
-        demo={demo}
-        onEdit={() => home(true)}
-        onHome={() => home(false)}
-        progress={state.phase === "running" ? runProgress(state).value : undefined}
-        right={<DesignSwitch design={design} onChange={setDesign} />}
-      />
+      {design === "journey" ? (
+        <JourneyHeader
+          demo={demo}
+          onEdit={() => home(true)}
+          onHome={() => home(false)}
+          progress={state.phase === "running" ? runProgress(state).value : undefined}
+          sources={planNumbers(state).sources}
+          right={<DesignSwitch design={design} onChange={setDesign} />}
+        />
+      ) : (
+        <TopBar
+          demo={demo}
+          onEdit={() => home(true)}
+          onHome={() => home(false)}
+          progress={state.phase === "running" ? runProgress(state).value : undefined}
+          right={<DesignSwitch design={design} onChange={setDesign} />}
+        />
+      )}
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
