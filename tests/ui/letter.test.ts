@@ -76,7 +76,7 @@ describe("letter: Marta", () => {
     const keys = doc.letter!.paras.map((p) => p.key);
     expect(keys).toEqual(["shortcut", "money", "conflict"]);
     expect(text(doc.letter!.paras[2].segs)).toMatch(/^Official sources disagree on whether a Finnish personal identity code is needed to open a bank account\./);
-    expect(text(doc.letter!.paras[0].segs)).toMatch(/^Vero can give you the identity code 13 working days before DVV, and your tax card in the same visit\.\[\d+\]$/);
+    expect(text(doc.letter!.paras[0].segs)).toMatch(/^Your ID code arrives 21 days sooner than at DVV, and you get the tax card in the same visit\.\[\d+\]$/);
   });
 });
 

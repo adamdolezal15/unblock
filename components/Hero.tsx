@@ -50,16 +50,16 @@ export function Hero({ state, doc, comparison, onOpen, onShowFeed, icsUrl }: Pro
 
   const n = planNumbers(state);
 
-  // One meta line: "5 visits · 4 online · 15 days sooner" (the comparison keeps its source number, after "sooner").
+  // One meta line: "5 visits · 4 online · Set up 15 days sooner than the usual order" (the comparison keeps its source number, after "sooner").
   const meta: Seg[][] = [[{ t: say.visits(n.visits) }], [{ t: say.online(n.online) }]];
   let metaTitle: string | undefined;
   let joined = -1;
   if (comparison?.gain) {
     const ref = comparison.sentence.find((x) => "ref" in x);
     // "than the usual order" may wrap on its own; the dot always stays with "15 days sooner".
-    meta.push([{ t: `${comparison.gain.days} days sooner` }], [{ t: "than the usual order" }, ...(ref ? [ref] : [])]);
+    meta.push([{ t: `Set up ${comparison.gain.days} days sooner` }], [{ t: "than the usual order" }, ...(ref ? [ref] : [])]);
     joined = meta.length - 1;
-    metaTitle = `${comparison.gain.days} days sooner than the usual order (DVV first)`;
+    metaTitle = `Set up ${comparison.gain.days} days sooner than the usual order (DVV first)`;
   } else if (comparison) {
     meta.push([{ t: "same order as usual" }]);
     metaTitle = "Your order matches the usual order (DVV first)";

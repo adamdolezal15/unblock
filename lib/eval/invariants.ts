@@ -174,7 +174,11 @@ export function checkInvariants(state: RunState): Violation[] {
     if (gain < MIN_GAIN_WORKING_DAYS) add("shortcut", `${sc.id}: identity code gain ${gain} working days`);
   }
   const sp = doc.letter?.paras.find((p) => p.key === "shortcut");
-  if (sp && !/\b([3-9]|\d{2,}) working days\b/.test(segText(sp.segs))) add("shortcut", `letter: "${segText(sp.segs)}"`);
+  // The sentence states calendar days ("arrives 21 days sooner than at DVV"), or, when that equals the
+  // header's number, says once where those days come from. Never working days in user-facing text.
+  const spText = sp ? segText(sp.segs) : "";
+  if (sp && (/working days?/.test(spText) || !/(\b([3-9]|\d{2,}) days sooner than at\b|^Those days come from your\b)/.test(spText)))
+    add("shortcut", `letter: "${spText}"`);
 
   // --- permit: a non-EU residence permit starts before arrival
   const arrival = profile.arrivalDate?.slice(0, 10);

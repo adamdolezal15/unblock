@@ -9,6 +9,7 @@ import { domainOf } from "./format";
 import { nodeLabel } from "./labels";
 import { waitCitation } from "./days";
 import { BASELINE_ROUTE } from "@/lib/graph/baseline";
+import { calendarDaysBetween } from "@/lib/graph/dates";
 
 export type Source = { n: number; url: string; domain: string; trust: Trust; fetchedAt: string; quotes: string[] };
 export type Ref = { n: number; citation: Citation };
@@ -219,11 +220,25 @@ function findShortcut(ctx: Ctx): Shortcut | null {
 }
 
 function shortcutPara(ctx: Ctx, s: Shortcut): Para {
-  const items = ctx.state.schedule!.schedule.items;
-  const code = s.milestone === "personal_identity_code" ? "identity code" : s.label;
+  const sched = ctx.state.schedule!;
+  const items = sched.schedule.items;
+  const what = s.milestone === "personal_identity_code" ? "ID code" : s.label;
   const visit = items[s.fast.id]?.visitId;
   const mate = visit ? Object.values(items).find((i) => i.visitId === visit && i.stepId !== s.fast.id)?.stepId : undefined;
-  const t = `${who(s.fast.authority)} can give you the ${code} ${s.gap} working days before ${who(s.slow.authority)}${mate ? `, and your ${lowerFirst(ctx.short(mate))} in the same visit` : ""}.`;
+  const also = mate ? `, and you get the ${lowerFirst(ctx.short(mate))} in the same visit` : "";
+  // Calendar days, like the header: the gap between the two ready dates the schedule placed on its
+  // holiday-aware working-day calendar (s.gap counts working days and only picks the shortcut).
+  const days = calendarDaysBetween(s.fast.ready, s.slow.ready);
+  // The header's number: how much sooner the whole plan is set up than in the usual order.
+  const path = sched.criticalPath.stepIds;
+  const ours = path.length ? items[path[path.length - 1]]?.doneDate : undefined;
+  const planGain = ours && sched.baseline?.endDate ? calendarDaysBetween(ours, sched.baseline.endDate) : null;
+  const slow = who(s.slow.authority);
+  // Equal numbers are said once (the header has it); then this sentence only says where they come from.
+  const t =
+    days === planGain
+      ? `Those days come from your ${what}: it arrives sooner than at ${slow}${also}.`
+      : `Your ${what} arrives ${days} ${days === 1 ? "day" : "days"} sooner than at ${slow}${also}.`;
   return { key: "shortcut", stepId: s.fast.id, segs: [{ t }, ...(s.fastRef ? [{ ref: s.fastRef }] : [])] };
 }
 
