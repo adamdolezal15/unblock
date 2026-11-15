@@ -463,10 +463,13 @@ body {
   color: var(--j-ink);
   font-size: 16px;
 }
-.journey h1,
-.journey h2,
-.journey h3 {
-  font-family: var(--font-j-serif);
+/* In the base layer, so a utility (font-sans) on a heading still wins. */
+@layer base {
+  .journey h1,
+  .journey h2,
+  .journey h3 {
+    font-family: var(--font-j-serif);
+  }
 }
 .journey ::selection {
   background: var(--j-marker);

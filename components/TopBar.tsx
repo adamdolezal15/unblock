@@ -21,7 +21,9 @@ export function TopBar({ onEdit, onHome, progress, demo, right }: Props) {
           <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M13 8H3M7 4L3 8l4 4" />
           </svg>
-          Edit your situation
+          {/* Short on phones, so the design switch fits on the same row. */}
+          <span className="sm:hidden">Edit</span>
+          <span className="hidden sm:inline">Edit your situation</span>
         </button>}
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2" aria-label="Unblock, start over">
           <span className="text-[20px] font-bold text-ink">Unblock</span>

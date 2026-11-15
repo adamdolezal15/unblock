@@ -10,7 +10,8 @@ import { buildLetter } from "@/lib/ui/letter";
 import { fallbackSteps } from "@/lib/ui/days";
 import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
-import { useDesign } from "@/lib/ui/useDesign";
+import { useDesign, type Design } from "@/lib/ui/useDesign";
+import { JourneyResults } from "./journey/JourneyResults";
 import { DesignSwitch } from "./DesignSwitch";
 import { JourneyHeader } from "./journey/JourneyHeader";
 import { compareWithUsual } from "@/lib/ui/compare";
@@ -95,14 +96,15 @@ export function App() {
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
       )}
       {(state.phase === "running" || state.phase === "done" || (state.phase === "error" && state.stepOrder.length > 0)) && (
-        <Results state={state} demo={demo} rows={rows} answers={answers} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
+        <Results state={state} design={design} demo={demo} rows={rows} answers={answers} onAnswer={setAnswers} onRerun={(t) => void begin(t)} />
       )}
     </div>
   );
 }
 
-function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
+function Results({ state, design, demo, rows, answers, onAnswer, onRerun }: {
   state: RunState;
+  design: Design;
   /** A saved demo run: profile values are plain text, with a link to plan your own move. */
   demo: boolean;
   rows: RefineRow[];
@@ -157,11 +159,9 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
     );
   }
 
-  return (
-    <main className="mx-auto max-w-[1040px] px-4 pb-24 sm:px-6">
-      <div className="pt-10">
-        {state.profile && (
-          <div className="mb-8">
+  // The pieces both designs share: the profile sentence, the footer (refine, watch, sources, how), the details panel.
+  const profileBlock = state.profile && (
+          <div className={design === "journey" ? "" : "mb-8"}>
             {demo && (
               <p className="mb-2 text-[13px] text-muted">
                 Saved demo
@@ -183,7 +183,96 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
             />
             <RefinementChips answers={answers} onChange={onAnswer} />
           </div>
+  );
+  const footer = (
+      /* One quiet footer row: the counts on the left; refine, watch and the sources open below it. */
+      <footer id="activity-feed" className="mt-16 scroll-mt-24 border-t border-hairline pt-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <div className="min-w-0">{state.summary && <Closing summary={state.summary} numbers={numbers} />}</div>
+          {state.phase === "done" && (
+            <nav aria-label="More" className="flex flex-wrap items-baseline gap-x-5 gap-y-1 text-[13px]">
+              {!listOnly && rows.length > 0 && <FooterLink id="refine" open={panel} onToggle={togglePanel}>Make it more accurate</FooterLink>}
+              {state.summary?.runId && <FooterLink id="watch" open={panel} onToggle={togglePanel}>Watch this plan</FooterLink>}
+              {doc.sources.length > 0 && <FooterLink id="sources" open={panel} onToggle={togglePanel}>{`All ${doc.sources.length} sources`}</FooterLink>}
+              {/* Classic has this link in the answer header's Exa line; Journey has no such line. */}
+              {design === "journey" && (
+                <button type="button" aria-expanded={showFeed} onClick={() => (showFeed ? setFeedOpen({ runKey: state.runKey, open: false }) : showAndScrollFeed())} className="link">
+                  How I worked this out
+                </button>
+              )}
+            </nav>
+          )}
+        </div>
+        {panel === "refine" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
+        {panel === "watch" && state.summary?.runId && (
+          <div className="mt-6">
+            <Watch key={state.summary.runId} runId={state.summary.runId} />
+          </div>
         )}
+        {panel === "sources" && doc.sources.length > 0 && (
+          <div className="mt-6 max-w-[880px]">
+            <SourcesList sources={doc.sources} bare />
+          </div>
+        )}
+        {showFeed && (
+          <div className="mt-6 max-w-[680px] text-left">
+            <ActivityFeed
+              statuses={state.statuses}
+              notes={state.notes}
+              running={running}
+              elapsedMs={elapsed}
+              collapsed={false}
+              embedded
+              onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
+              activity={state.summary?.activity}
+              numbers={numbers}
+            />
+          </div>
+        )}
+      </footer>
+  );
+  const sidePanel = selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />;
+  const notices = (
+    <>
+      {coverage && <CoverageNotice coverage={coverage} />}
+      {running && <p className="mt-4 text-[15px] text-muted">Still cross-checking sources…</p>}
+      {(state.partial || state.error) && (
+        <div className="mt-6 max-w-[680px] space-y-3">
+          {state.partial && <PartialNotice message={state.partial.message} missing={state.partial.missing} />}
+          {state.error && <p className="text-[17px] text-ink">{state.error}</p>}
+        </div>
+      )}
+    </>
+  );
+
+  // Journey: the same run in the Journey layout (a plan without dates stays in the Classic list layout).
+  if (design === "journey" && !listOnly && doc.letter) {
+    return (
+      <>
+        <JourneyResults
+          key={state.runKey}
+          state={state}
+          doc={doc}
+          comparison={comparison}
+          numbers={numbers}
+          profile={profileBlock}
+          notices={notices}
+          footer={footer}
+          onOpen={openStep}
+          onSources={openSources}
+          selection={selection}
+          onSelect={select}
+          icsUrl={state.phase === "done" ? state.calendar?.icsUrl : undefined}
+        />
+        {sidePanel}
+      </>
+    );
+  }
+
+  return (
+    <main className="mx-auto max-w-[1040px] px-4 pb-24 sm:px-6">
+      <div className="pt-10">
+        {profileBlock}
         <Hero
           state={state}
           doc={doc}
@@ -239,46 +328,8 @@ function Results({ state, demo, rows, answers, onAnswer, onRerun }: {
         {view === "map" && <MapView state={state} selection={selection} onSelect={select} />}
       </div>
 
-      {/* One quiet footer row: the counts on the left; refine, watch and the sources open below it. */}
-      <footer id="activity-feed" className="mt-16 scroll-mt-24 border-t border-hairline pt-4">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <div className="min-w-0">{state.summary && <Closing summary={state.summary} numbers={numbers} />}</div>
-          {state.phase === "done" && (
-            <nav aria-label="More" className="flex flex-wrap items-baseline gap-x-5 gap-y-1 text-[13px]">
-              {!listOnly && rows.length > 0 && <FooterLink id="refine" open={panel} onToggle={togglePanel}>Make it more accurate</FooterLink>}
-              {state.summary?.runId && <FooterLink id="watch" open={panel} onToggle={togglePanel}>Watch this plan</FooterLink>}
-              {doc.sources.length > 0 && <FooterLink id="sources" open={panel} onToggle={togglePanel}>{`All ${doc.sources.length} sources`}</FooterLink>}
-            </nav>
-          )}
-        </div>
-        {panel === "refine" && !listOnly && <Refine rows={rows} onChange={onAnswer} />}
-        {panel === "watch" && state.summary?.runId && (
-          <div className="mt-6">
-            <Watch key={state.summary.runId} runId={state.summary.runId} />
-          </div>
-        )}
-        {panel === "sources" && doc.sources.length > 0 && (
-          <div className="mt-6 max-w-[880px]">
-            <SourcesList sources={doc.sources} bare />
-          </div>
-        )}
-        {showFeed && (
-          <div className="mt-6 max-w-[680px] text-left">
-            <ActivityFeed
-              statuses={state.statuses}
-              notes={state.notes}
-              running={running}
-              elapsedMs={elapsed}
-              collapsed={false}
-              embedded
-              onToggle={() => setFeedOpen({ runKey: state.runKey, open: false })}
-              activity={state.summary?.activity}
-              numbers={numbers}
-            />
-          </div>
-        )}
-      </footer>
-      {selection && <SidePanel state={state} doc={doc} selection={selection} onSelect={select} />}
+      {footer}
+      {sidePanel}
     </main>
   );
 }

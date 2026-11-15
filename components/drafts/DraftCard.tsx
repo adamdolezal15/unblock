@@ -10,7 +10,7 @@ const link = "text-[15px] link";
 
 const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s[0].toLowerCase() + s.slice(1) : s);
 /** What a draft is, in a few words: "Booking note", "Email to the bank", "Email to your employer". */
-const draftKindName = (o: DraftOffer) => (o.kind === "booking" ? "Booking note" : o.title);
+export const draftKindName = (o: DraftOffer) => (o.kind === "booking" ? "Booking note" : o.title);
 /** "Prepare booking note" / "Preparing booking note…" / "Booking note ready". */
 export function draftLabel(o: DraftOffer, status?: string): string {
   const name = draftKindName(o);
@@ -64,15 +64,24 @@ function Actions({ children }: { children: React.ReactNode[] }) {
   );
 }
 
+/** A request to open one draft ("Read"), from elsewhere on the page; a new `seq` asks again. */
+export type DraftFocus = { id: string; seq: number };
+
 /**
  * One draft, in "Ready to send" only, as a quiet row: icon, title, "Read · Copy · Open in email ↗" (or "Open
  * booking ↗"). Before it is prepared the row offers "Prepare draft". "Read" shows the full text inline.
  */
-function DraftRow({ offer, drafts }: { offer: DraftOffer; drafts: DraftsApi }) {
+function DraftRow({ offer, drafts, focus }: { offer: DraftOffer; drafts: DraftsApi; focus?: DraftFocus }) {
   const entry = drafts.get(offer.id);
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
   const d = entry.draft;
+  // Asked to open from elsewhere (the Journey "Paperwork ready" panel): opens once the text is ready.
+  const [handled, setHandled] = useState(0);
+  if (focus && focus.id === offer.id && focus.seq !== handled && d) {
+    setHandled(focus.seq);
+    setOpen(true);
+  }
   const [name, rest] = splitTitle(offer);
   const Icon = offer.kind === "booking" ? IconPencil : IconEnvelope;
 
@@ -140,7 +149,7 @@ ${d.body}` : d.body);
 }
 
 /** "Ready to send": official forms and the prepared emails and notes, both as the same quiet list. */
-export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[] }) {
+export function ReadyToSend({ drafts, forms = [], focus }: { drafts: DraftsApi; forms?: { form: StepForm; steps: Step[]; line: FormLine }[]; focus?: DraftFocus }) {
   if (!drafts.offers.length && !forms.length) return null;
   return (
     <section aria-label="Ready to send" className="mt-12">
@@ -169,7 +178,7 @@ export function ReadyToSend({ drafts, forms = [] }: { drafts: DraftsApi; forms?:
           <h3 className="text-[17px] font-semibold text-ink">Emails and notes</h3>
           <ul className="mt-2 max-w-[760px] border-t border-hairline">
             {drafts.offers.map((o) => (
-              <DraftRow key={o.id} offer={o} drafts={drafts} />
+              <DraftRow key={o.id} offer={o} drafts={drafts} focus={focus} />
             ))}
           </ul>
         </div>
