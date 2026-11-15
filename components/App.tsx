@@ -69,8 +69,8 @@ export function App() {
   const demo = new URLSearchParams(window.location.search).has("demo") && (Object.values(DEMO_SENTENCES) as string[]).includes(state.text);
 
   return (
-    <div className="min-h-screen" data-design={design}>
-      <Contours variant="result" />
+    <div className={design === "journey" ? "journey" : "min-h-screen"} data-design={design}>
+      {design === "classic" && <Contours variant="result" />}
       <TopBar
         demo={demo}
         onEdit={() => home(true)}

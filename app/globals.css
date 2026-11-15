@@ -388,3 +388,98 @@ body {
     animation: none;
   }
 }
+
+/* ---------------------------------------------------------------------------------------------------------
+   Journey design (components/journey; the switch in the result header). Its tokens exist only inside
+   .journey. The classic tokens are remapped there too, so every classic piece reused inside Journey
+   (details panel, map, summary, refine, watch, draft viewer) reads the Journey colours and fonts.
+   --------------------------------------------------------------------------------------------------------- */
+@theme inline {
+  --color-j-bg: var(--j-bg);
+  --color-j-ink: var(--j-ink);
+  --color-j-primary: var(--j-primary);
+  --color-j-muted: var(--j-muted);
+  --color-j-hairline: var(--j-hairline);
+  --color-j-chip: var(--j-chip);
+  --color-j-shortcut: var(--j-shortcut);
+  --color-j-shortcut-chip: var(--j-shortcut-chip);
+  --color-j-shortcut-chip-text: var(--j-shortcut-chip-text);
+  --color-j-warn-bg: var(--j-warn-bg);
+  --color-j-warn-border: var(--j-warn-border);
+  --color-j-warn-text: var(--j-warn-text);
+  --color-j-done: var(--j-done);
+  --color-j-marker: var(--j-marker);
+  --color-j-panel-muted: var(--j-panel-muted);
+  --font-j-serif: var(--font-fraunces-src), Georgia, "Times New Roman", serif;
+}
+
+.journey {
+  --j-bg: #f3f6f4;
+  --j-ink: #0f2a23;
+  --j-primary: #13896f;
+  --j-muted: #5e6e69;
+  --j-hairline: #dce5e0;
+  --j-chip: #eaf0ec;
+  --j-shortcut: #c9402a;
+  --j-shortcut-chip: #ffe3db;
+  --j-shortcut-chip-text: #c2412a;
+  --j-warn-bg: #fff4dd;
+  --j-warn-border: #f2dba4;
+  --j-warn-text: #9a6206;
+  --j-done: #0f6b57;
+  /* From the reference: the date's soft marker, a stop not reached yet, text on the dark panel. */
+  --j-marker: #cdebe1;
+  --j-unreached: #c4d3cb;
+  --j-panel-muted: #9fc7b9;
+
+  --color-paper: var(--j-bg);
+  --color-ink: var(--j-ink);
+  --color-muted: var(--j-muted);
+  --color-faint: var(--j-muted);
+  --color-hairline: var(--j-hairline);
+  --color-rule: var(--j-hairline);
+  --color-hairline-strong: var(--j-unreached);
+  --color-rule-strong: var(--j-unreached);
+  --color-accent: var(--j-primary);
+  --color-accent-hover: color-mix(in srgb, var(--j-primary) 86%, var(--j-ink));
+  --color-accent-soft: var(--j-chip);
+  --color-sunk: var(--j-chip);
+  --color-stub: #f8faf9;
+  --color-rail: var(--j-hairline);
+  --color-dot: var(--j-unreached);
+  --color-done: var(--j-done);
+  --color-done-soft: color-mix(in srgb, var(--j-done) 10%, #fff);
+  --color-done-line: color-mix(in srgb, var(--j-done) 35%, #fff);
+  --color-amber: var(--j-warn-text);
+  --color-amber-dot: var(--j-warn-text);
+  --color-amber-text: var(--j-warn-text);
+  --color-amber-soft: var(--j-warn-bg);
+  --color-amber-line: var(--j-warn-border);
+  /* Classic headings (Space Grotesk) become Fraunces inside Journey. */
+  --font-grotesk: var(--font-fraunces-src);
+
+  min-height: 100vh;
+  background: var(--j-bg);
+  color: var(--j-ink);
+  font-size: 16px;
+}
+.journey h1,
+.journey h2,
+.journey h3 {
+  font-family: var(--font-j-serif);
+}
+.journey ::selection {
+  background: var(--j-marker);
+}
+.journey :focus-visible {
+  outline-color: var(--j-primary);
+}
+/* The headline's date: primary, on a soft marker stroke. */
+.j-marker {
+  color: var(--j-primary);
+  font-weight: 700;
+  background: linear-gradient(transparent 62%, var(--j-marker) 62%);
+  padding: 0 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
