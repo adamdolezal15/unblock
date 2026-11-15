@@ -2,9 +2,17 @@
 import { BrandStripe } from "./brand";
 
 /** Results header: back to edit the situation and the wordmark. The calendar is the answer header's one button. */
-type Props = { onEdit: () => void; onHome: () => void; progress?: number; /** A saved demo: no "Edit your situation" (there is nothing of yours to edit). */ demo?: boolean };
+type Props = {
+  onEdit: () => void;
+  onHome: () => void;
+  progress?: number;
+  /** A saved demo: no "Edit your situation" (there is nothing of yours to edit). */
+  demo?: boolean;
+  /** The right-hand cell (the design switch). */
+  right?: React.ReactNode;
+};
 
-export function TopBar({ onEdit, onHome, progress, demo }: Props) {
+export function TopBar({ onEdit, onHome, progress, demo, right }: Props) {
   return (
     <header className="sticky top-0 z-30 bg-paper/95 backdrop-blur-[2px]">
       <BrandStripe progress={progress} />
@@ -18,7 +26,7 @@ export function TopBar({ onEdit, onHome, progress, demo }: Props) {
         <button type="button" onClick={onHome} className="inline-flex items-center gap-2" aria-label="Unblock, start over">
           <span className="text-[20px] font-bold text-ink">Unblock</span>
         </button>
-        <div />
+        <div className="justify-self-end">{right}</div>
       </div>
       <div className="h-px bg-rule" />
     </header>

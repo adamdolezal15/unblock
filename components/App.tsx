@@ -10,6 +10,8 @@ import { buildLetter } from "@/lib/ui/letter";
 import { fallbackSteps } from "@/lib/ui/days";
 import { correction } from "@/lib/ui/profileSentence";
 import { useView } from "@/lib/ui/useView";
+import { useDesign } from "@/lib/ui/useDesign";
+import { DesignSwitch } from "./DesignSwitch";
 import { compareWithUsual } from "@/lib/ui/compare";
 import { runProgress } from "@/lib/ui/progress";
 import { coverage as coverageOf } from "@/lib/ui/coverage";
@@ -37,6 +39,7 @@ import { Working } from "./Working";
 
 export function App() {
   const { state: run, start, reset } = useRun();
+  const [design, setDesign] = useDesign();
   // "Make it more accurate": the answers live in the URL; the views read the run with them applied (pure, in the browser).
   const [answers, setAnswers] = useRefinements();
   const input = useMemo(() => refineInput(run), [run]);
@@ -66,9 +69,15 @@ export function App() {
   const demo = new URLSearchParams(window.location.search).has("demo") && (Object.values(DEMO_SENTENCES) as string[]).includes(state.text);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" data-design={design}>
       <Contours variant="result" />
-      <TopBar demo={demo} onEdit={() => home(true)} onHome={() => home(false)} progress={state.phase === "running" ? runProgress(state).value : undefined} />
+      <TopBar
+        demo={demo}
+        onEdit={() => home(true)}
+        onHome={() => home(false)}
+        progress={state.phase === "running" ? runProgress(state).value : undefined}
+        right={<DesignSwitch design={design} onChange={setDesign} />}
+      />
       {state.phase === "out_of_scope" && <OutOfScopeState message={state.outOfScope ?? ""} />}
       {state.phase === "error" && state.stepOrder.length === 0 && (
         <ErrorState message={state.error ?? "Something went wrong."} onRetry={() => begin(state.text)} />
