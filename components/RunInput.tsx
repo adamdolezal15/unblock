@@ -3,8 +3,12 @@
 // example moves. (Results have no field: "Edit your situation" brings you back here with your sentence.)
 // The examples open the saved demos (/?demo=<key>), never a live run. When the server refuses a live run
 // (LIVE_PASSCODE on the deployment), a small Passcode field appears with links to the demos.
+// A sentence without citizenship or purpose does not run yet: "Plan my move" first shows those questions as
+// chips (components/Clarify), and runs once both are answered (the answers are appended as a fixed clause).
 import { useLayoutEffect, useRef, useState } from "react";
 import { DEMO_SENTENCES, type DemoKey } from "@/lib/demo/sentences";
+import { clarifyFields, profileSoFar, submitDecision, type Answers } from "@/lib/agent/profileAnswers";
+import { Clarify } from "./Clarify";
 
 export const EXAMPLES: { key: DemoKey; short: string }[] = [
   { key: "marta", short: "Czech, job and a master's in Helsinki" },
@@ -35,8 +39,17 @@ export function RunInput({ value, running, locked, onSubmit }: Props) {
     el.style.height = "auto";
     el.style.height = `${el.scrollHeight}px`;
   }, [draft]);
+  // The clarify step: shown after the first "Plan my move" on a sentence that leaves citizenship or purpose open.
+  const [asked, setAsked] = useState(false);
+  const [answers, setAnswers] = useState<Answers>({});
+  const open = asked ? clarifyFields(draft) : [];
+  const decision = submitDecision(draft, answers);
+  const waiting = asked && decision.kind === "ask";
   const submit = (t: string) => {
-    if (t.trim() && !running) onSubmit(t, locked ? passcode : undefined);
+    if (!t.trim() || running) return;
+    const d = submitDecision(t, answers);
+    if (d.kind === "ask") return setAsked(true);
+    onSubmit(d.text, locked ? passcode : undefined);
   };
 
   return (
@@ -69,12 +82,13 @@ export function RunInput({ value, running, locked, onSubmit }: Props) {
           />
           <button
             type="submit"
-            disabled={running || !draft.trim()}
+            disabled={running || !draft.trim() || waiting}
             className="btn-primary shrink-0 px-6 text-[17px] disabled:cursor-not-allowed disabled:bg-rule-strong"
           >
             Plan my move
           </button>
         </div>
+        {open.length > 0 && <Clarify fields={open} answers={answers} onChange={setAnswers} soFar={profileSoFar(draft)} />}
         {locked && (
           <div className="mt-3 flex items-center justify-center gap-2 text-[15px]">
             <label htmlFor="passcode" className="text-muted">
